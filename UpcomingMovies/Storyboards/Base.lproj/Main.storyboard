@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fpU-Xp-XHW">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="Skq-J6-ZgL">
+            <objects>
+                <viewController id="fpU-Xp-XHW" customClass="SplashViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RfM-mj-Ltw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="tUc-xj-R8R">
+                                <rect key="frame" x="112.5" y="258.5" width="150" height="150"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="aFZ-X1-gbe">
+                                <rect key="frame" x="169" y="424.5" width="37" height="37"/>
+                                <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="aFZ-X1-gbe" firstAttribute="top" secondItem="tUc-xj-R8R" secondAttribute="bottom" constant="16" id="BB1-9w-sV7"/>
+                            <constraint firstItem="aFZ-X1-gbe" firstAttribute="centerX" secondItem="RfM-mj-Ltw" secondAttribute="centerX" id="SNk-ts-cNH"/>
+                            <constraint firstItem="tUc-xj-R8R" firstAttribute="centerY" secondItem="RfM-mj-Ltw" secondAttribute="centerY" id="XRt-h0-rOd"/>
+                            <constraint firstItem="tUc-xj-R8R" firstAttribute="centerX" secondItem="RfM-mj-Ltw" secondAttribute="centerX" id="eCh-Un-mQM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KE8-hV-qzK"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Al8-jb-2pG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-971" y="-3"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController storyboardIdentifier="MainTabBarController" id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="E0t-fn-Tcg" kind="relationship" relationship="viewControllers" id="Nwt-Qk-hnI"/>
+                        <segue destination="LlS-37-NpT" kind="relationship" relationship="viewControllers" id="Q04-9T-kQw"/>
+                        <segue destination="UO7-oR-1N6" kind="relationship" relationship="viewControllers" id="hgR-cC-y8r"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--UpcomingMoviesNavigationController-->
+        <scene sceneID="rmy-SA-Z2m">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UpcomingMovies" referencedIdentifier="UpcomingMoviesNavigationController" id="E0t-fn-Tcg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="clN-fZ-Q5X"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2jh-II-zuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="696" y="-240"/>
+        </scene>
+        <!--SearchMoviesNavigationController-->
+        <scene sceneID="A0D-pP-wxe">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SearchMovies" referencedIdentifier="SearchMoviesNavigationController" id="LlS-37-NpT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="SbY-cX-zJG"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Gt-A4-ra2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="697" y="-1"/>
+        </scene>
+        <!--SettingsNavigationController-->
+        <scene sceneID="sLK-Ox-h9l">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" referencedIdentifier="SettingsNavigationController" id="UO7-oR-1N6" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Jb2-mX-LPX"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="czi-C9-XNF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="654" y="237"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Logo" width="150" height="150"/>
+    </resources>
+</document>

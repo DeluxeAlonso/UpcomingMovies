@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Upcoming movies-->
+        <scene sceneID="8j3-pf-oBs">
+            <objects>
+                <viewController id="EZU-as-DXw" customClass="UpcomingMoviesViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6KU-iX-s3v">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W1Q-nX-oEZ" userLabel="Upcoming Movies Table View">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="W1Q-nX-oEZ" firstAttribute="trailing" secondItem="fkc-0u-one" secondAttribute="trailing" id="2pp-7O-VpL"/>
+                            <constraint firstItem="W1Q-nX-oEZ" firstAttribute="leading" secondItem="fkc-0u-one" secondAttribute="leading" id="GsV-1x-ws9"/>
+                            <constraint firstItem="W1Q-nX-oEZ" firstAttribute="bottom" secondItem="fkc-0u-one" secondAttribute="bottom" id="e44-8G-YyM"/>
+                            <constraint firstItem="W1Q-nX-oEZ" firstAttribute="top" secondItem="fkc-0u-one" secondAttribute="top" id="lgI-w6-NPb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fkc-0u-one"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Upcoming movies" id="FBi-9u-wKu">
+                        <barButtonItem key="backBarButtonItem" title=" " id="1uH-Ge-Gt9"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="loadingView" destination="cne-Ik-Vjp" id="Ez4-QU-xLF"/>
+                        <outlet property="tableView" destination="W1Q-nX-oEZ" id="4vI-If-4LA"/>
+                        <segue destination="RoE-rT-Mzt" kind="show" identifier="MovieDetailSegue" id="BHy-mp-6be"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JXE-16-sg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="cne-Ik-Vjp" userLabel="Loading View">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="95"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bAX-bO-BOS">
+                            <rect key="frame" x="101.5" y="29" width="37" height="37"/>
+                            <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="bAX-bO-BOS" firstAttribute="centerY" secondItem="cne-Ik-Vjp" secondAttribute="centerY" id="68I-UY-pQv"/>
+                        <constraint firstItem="bAX-bO-BOS" firstAttribute="centerX" secondItem="cne-Ik-Vjp" secondAttribute="centerX" id="Q1i-xR-Lg6"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="64m-3G-8qV"/>
+                </view>
+            </objects>
+            <point key="canvasLocation" x="901.60000000000002" y="86.806596701649184"/>
+        </scene>
+        <!--Upcoming-->
+        <scene sceneID="Mvv-4Q-SfO">
+            <objects>
+                <navigationController storyboardIdentifier="UpcomingMoviesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="IG8-Ti-8Hu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Upcoming" image="Movies" id="D5x-SM-ILe"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Hhm-Rf-6aq">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EZU-as-DXw" kind="relationship" relationship="rootViewController" id="uVj-sq-eLh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FRw-43-Prx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="133.59999999999999" y="86.806596701649184"/>
+        </scene>
+        <!--MovieDetailViewController-->
+        <scene sceneID="iDF-At-FPq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MovieDetail" referencedIdentifier="MovieDetailViewController" id="RoE-rT-Mzt" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i2u-bF-Uhm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1622" y="86"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Movies" width="37.5" height="37.5"/>
+    </resources>
+</document>

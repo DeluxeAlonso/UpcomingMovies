@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="4op-bm-CjR" customClass="ErrorPlaceholderView" customModule="Urbaner" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="345"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ErrorPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="fLV-g5-yWI">
+                    <rect key="frame" x="137.5" y="51" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="O1d-2c-OSK"/>
+                        <constraint firstAttribute="height" constant="100" id="wv1-3S-wAS"/>
+                    </constraints>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="VvV-04-FUP">
+                    <rect key="frame" x="16" y="167" width="343" height="51"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¡Ups!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmU-b6-dw7">
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="23"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Something wrong happened" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNK-yP-ZAJ">
+                            <rect key="frame" x="0.0" y="28" width="343" height="23"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ej-Of-szu" customClass="LoadingButton" customModule="UpcomingMovies" customModuleProvider="target">
+                    <rect key="frame" x="127.5" y="234" width="120" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="0ed-Db-fyR"/>
+                        <constraint firstAttribute="width" constant="120" id="zXe-6l-0c4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <state key="normal" title="Reintentar"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="VvV-04-FUP" firstAttribute="centerY" secondItem="4op-bm-CjR" secondAttribute="centerY" constant="20" id="0X0-7M-lwg"/>
+                <constraint firstItem="VvV-04-FUP" firstAttribute="centerX" secondItem="4op-bm-CjR" secondAttribute="centerX" id="6fo-SN-Yrq"/>
+                <constraint firstItem="VvV-04-FUP" firstAttribute="top" secondItem="fLV-g5-yWI" secondAttribute="bottom" constant="16" id="8Ny-uU-Qfv"/>
+                <constraint firstItem="0ej-Of-szu" firstAttribute="centerX" secondItem="4op-bm-CjR" secondAttribute="centerX" id="AEA-4P-plR"/>
+                <constraint firstItem="T47-RJ-N5g" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="0ej-Of-szu" secondAttribute="bottom" constant="8" id="IRv-0C-14C"/>
+                <constraint firstItem="fLV-g5-yWI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="T47-RJ-N5g" secondAttribute="top" constant="8" id="JWj-5p-7gb"/>
+                <constraint firstItem="0ej-Of-szu" firstAttribute="top" secondItem="VvV-04-FUP" secondAttribute="bottom" constant="16" id="K4p-cZ-Ymf"/>
+                <constraint firstItem="fLV-g5-yWI" firstAttribute="centerX" secondItem="4op-bm-CjR" secondAttribute="centerX" id="MA6-5z-VnE"/>
+                <constraint firstItem="VvV-04-FUP" firstAttribute="leading" secondItem="T47-RJ-N5g" secondAttribute="leading" constant="16" id="O3B-ru-alc"/>
+                <constraint firstItem="T47-RJ-N5g" firstAttribute="trailing" secondItem="VvV-04-FUP" secondAttribute="trailing" constant="16" id="l9n-jO-NSg"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="T47-RJ-N5g"/>
+            <connections>
+                <outlet property="errorDetailLabel" destination="GNK-yP-ZAJ" id="VYV-qT-X8R"/>
+                <outlet property="errorTitleLabel" destination="mmU-b6-dw7" id="Zkl-rv-mBH"/>
+                <outlet property="retryButton" destination="0ej-Of-szu" id="bLR-mB-B77"/>
+            </connections>
+            <point key="canvasLocation" x="647.20000000000005" y="204.64767616191907"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ErrorPlaceholder" width="75" height="75"/>
+    </resources>
+</document>

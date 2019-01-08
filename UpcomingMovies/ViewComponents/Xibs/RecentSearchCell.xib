@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="59" id="Abd-GN-Oi2" customClass="RecentSearchTableViewCell" customModule="Urbaner" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Abd-GN-Oi2" id="vOQ-bf-KRG">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RecentSearch" translatesAutoresizingMaskIntoConstraints="NO" id="R0n-d7-Ksu">
+                        <rect key="frame" x="343" y="22" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="3Zf-pf-5vO"/>
+                            <constraint firstAttribute="height" constant="16" id="OYA-ea-FHj"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent Search" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBw-dv-PQ8">
+                        <rect key="frame" x="16" y="8" width="311" height="43.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="sed-Yw-a2R"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="dBw-dv-PQ8" secondAttribute="bottom" constant="8" id="28h-Je-91W"/>
+                    <constraint firstAttribute="trailing" secondItem="R0n-d7-Ksu" secondAttribute="trailing" constant="16" id="3dc-uL-II7"/>
+                    <constraint firstItem="dBw-dv-PQ8" firstAttribute="top" secondItem="vOQ-bf-KRG" secondAttribute="top" constant="8" id="F1f-Q3-Kpt"/>
+                    <constraint firstItem="R0n-d7-Ksu" firstAttribute="centerY" secondItem="vOQ-bf-KRG" secondAttribute="centerY" id="eYe-Pe-VxA"/>
+                    <constraint firstItem="dBw-dv-PQ8" firstAttribute="leading" secondItem="vOQ-bf-KRG" secondAttribute="leading" constant="16" id="fNM-uH-PnP"/>
+                    <constraint firstItem="R0n-d7-Ksu" firstAttribute="leading" secondItem="dBw-dv-PQ8" secondAttribute="trailing" constant="16" id="tH8-HO-asz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="searchLabel" destination="dBw-dv-PQ8" id="FPl-Ko-Mhx"/>
+            </connections>
+            <point key="canvasLocation" x="-23.5" y="-44"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="RecentSearch" width="36" height="36"/>
+    </resources>
+</document>

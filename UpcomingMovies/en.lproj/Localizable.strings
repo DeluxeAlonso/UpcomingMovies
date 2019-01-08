@@ -1,0 +1,16 @@
+/* 
+  File.strings
+  UpcomingMovies
+
+  Created by Alonso on 11/6/18.
+  Copyright © 2018 Alonso. All rights reserved.
+*/
+
+"upcomingMoviesTabBarTitle" = "Upcoming";
+"upcomingMoviesTitle" = "Upcoming movies";
+
+"searchMoviesTabBarTitle" = "Search";
+"searchMoviesTitle" = "Search movies";
+
+"settingsTabBarTitle" = "Settings";
+"settingsTitle" = "Settings";
