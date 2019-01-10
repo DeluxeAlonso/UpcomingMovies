@@ -3,8 +3,16 @@
     <entity name="MovieSearch" representedClassName=".MovieSearch" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="searchText" optional="YES" attributeType="String" syncable="YES"/>
+        <fetchIndex name="bySearchTextPropertyIndex">
+            <fetchIndexElement property="createdAt" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="searchText"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="MovieSearch" positionX="-63" positionY="-18" width="128" height="30"/>
+        <element name="MovieSearch" positionX="-63" positionY="-18" width="128" height="75"/>
     </elements>
 </model>

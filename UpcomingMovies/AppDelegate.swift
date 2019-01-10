@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         container.loadPersistentStores { _, error in
             guard error == nil else { fatalError() }
         }
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return container
     }()
 
