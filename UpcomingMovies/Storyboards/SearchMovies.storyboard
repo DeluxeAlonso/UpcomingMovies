@@ -17,25 +17,12 @@
                     <view key="view" contentMode="scaleToFill" id="E9m-7H-qwO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QiU-cm-JW3">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="QiU-cm-JW3" firstAttribute="leading" secondItem="3dg-4W-SQK" secondAttribute="leading" id="Epo-S8-edk"/>
-                            <constraint firstItem="3dg-4W-SQK" firstAttribute="trailing" secondItem="QiU-cm-JW3" secondAttribute="trailing" id="KRG-0w-7iY"/>
-                            <constraint firstItem="3dg-4W-SQK" firstAttribute="bottom" secondItem="QiU-cm-JW3" secondAttribute="bottom" id="QlS-Po-qqO"/>
-                            <constraint firstItem="QiU-cm-JW3" firstAttribute="top" secondItem="3dg-4W-SQK" secondAttribute="top" id="fAN-Nf-cT8"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="3dg-4W-SQK"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="uk2-fb-tQf"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="tableView" destination="QiU-cm-JW3" id="Ke4-r5-4hq"/>
                         <segue destination="CfN-SO-eWY" kind="show" identifier="MovieDetailSegue" id="Pid-Xm-PyO"/>
                     </connections>
                 </viewController>

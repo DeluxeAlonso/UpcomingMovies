@@ -11,8 +11,6 @@ import CoreData
 
 class SearchMoviesViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    
     private var viewModel: SearchMoviesViewModel!
     private var searchController: MovieSearchController!
     
@@ -32,7 +30,6 @@ class SearchMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel = SearchMoviesViewModel(managedObjectContext: managedObjectContext)
         setupUI()
     }
     
@@ -41,7 +38,6 @@ class SearchMoviesViewController: UIViewController {
     private func setupUI() {
         title = Constants.Title
         setupNavigationBar()
-        setupTableView()
         setupSearchController()
     }
     
@@ -50,16 +46,8 @@ class SearchMoviesViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
-    private func setupTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.tableFooterView = viewModel.recentSearches.count > 0 ? UIView() : customFooterView
-        tableView.register(RecentSearchTableViewCell.self, forCellReuseIdentifier: RecentSearchTableViewCell.identifier)
-        tableView.register(UINib(nibName: RecentSearchTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RecentSearchTableViewCell.identifier)
-    }
-    
     private func setupSearchController() {
-        let searchResultViewModel = SearchMoviesResultViewModel()
+        let searchResultViewModel = SearchMoviesResultViewModel(managedObjectContext: managedObjectContext)
         let searchResultController = SearchMoviesResultController(viewModel: searchResultViewModel)
         searchController = MovieSearchController(searchResultsController: searchResultController)
         searchController.searchBar.delegate = self
@@ -69,13 +57,7 @@ class SearchMoviesViewController: UIViewController {
         searchResultController.delegate = self
     }
     
-    private func reloadRecentSearches() {
-        tableView.tableFooterView = viewModel.recentSearches.count > 0 ? UIView() : customFooterView
-        tableView.reloadData()
-    }
-    
     private func startSearch(_ resultController: SearchMoviesResultController, withSearchText searchText: String) {
-        viewModel.saveSearchText(searchText)
         resultController.startSearch(withSearchText: searchText)
     }
     
@@ -107,50 +89,6 @@ extension SearchMoviesViewController: UISearchResultsUpdating {
     
 }
 
-// MARK: - UITableViewDataSource
-
-extension SearchMoviesViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.recentSearches.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let searchText = viewModel.recentSearches[indexPath.row].searchText
-        let cell = tableView.dequeueReusableCell(withIdentifier: RecentSearchTableViewCell.identifier, for: indexPath) as! RecentSearchTableViewCell
-        cell.viewModel = RecentSearchCellViewModel(searchText: searchText)
-        return cell
-    }
-    
-}
-
-// MARK: - UITableViewDelegate
-
-extension SearchMoviesViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        searchController.searchBar.text = viewModel.recentSearches[indexPath.row].searchText
-        guard let searchText = searchController.searchBar.text,
-            !searchText.isEmpty,
-            let searchResultsController = searchController.searchResultsController as? SearchMoviesResultController else {
-                return
-        }
-        searchController.searchBar.becomeFirstResponder()
-        startSearch(searchResultsController, withSearchText: searchText)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = RecentSearchesHeaderView()
-        return view
-    }
-    
-}
-
 // MARK: - UISearchBarDelegate
 
 extension SearchMoviesViewController: UISearchBarDelegate {
@@ -168,8 +106,6 @@ extension SearchMoviesViewController: UISearchBarDelegate {
         guard let searchResultsController = searchController.searchResultsController as? SearchMoviesResultController else {
             return
         }
-        viewModel.loadRecentSearches()
-        reloadRecentSearches()
         searchResultsController.resetSearch()
     }
     
@@ -178,10 +114,21 @@ extension SearchMoviesViewController: UISearchBarDelegate {
 // MARK: - SearchMoviesResultControllerDelegate
 
 extension SearchMoviesViewController: SearchMoviesResultControllerDelegate {
-    
     func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectMovie movie: MovieDetailViewModel) {
         performSegue(withIdentifier: "MovieDetailSegue", sender: movie)
     }
+    
+    func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectRecentSearch searchText: String) {
+        searchController.searchBar.text = searchText
+        guard let searchText = searchController.searchBar.text,
+            !searchText.isEmpty,
+            let searchResultsController = searchController.searchResultsController as? SearchMoviesResultController else {
+                return
+        }
+        searchController.searchBar.endEditing(true)
+        startSearch(searchResultsController, withSearchText: searchText)
+    }
+    
     
 }
 
