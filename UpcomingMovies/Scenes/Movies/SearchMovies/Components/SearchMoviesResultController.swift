@@ -12,6 +12,8 @@ protocol SearchMoviesResultControllerDelegate: class {
     
     func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectMovie movie: MovieDetailViewModel)
     
+    func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectRecentSearch searchText: String)
+    
 }
 
 class SearchMoviesResultController: UIViewController {
@@ -29,6 +31,8 @@ class SearchMoviesResultController: UIViewController {
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
         tableView.register(UINib(nibName: MovieTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MovieTableViewCell.identifier)
         
+        tableView.register(RecentSearchTableViewCell.self, forCellReuseIdentifier: RecentSearchTableViewCell.identifier)
+        tableView.register(UINib(nibName: RecentSearchTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RecentSearchTableViewCell.identifier)
         
         return tableView
     }()
@@ -166,14 +170,38 @@ class SearchMoviesResultController: UIViewController {
 extension SearchMoviesResultController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        guard let sections = viewModel.viewState.value.sections else { return 0 }
+        return sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.movieCells.count
+        guard let section = viewModel.viewState.value.sections?[section] else { return 0 }
+        switch section {
+        case .recentSearches:
+            return viewModel.recentSearches.count
+        case .searchedMovies:
+            return viewModel.movieCells.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let section = viewModel.viewState.value.sections?[indexPath.section] else { return UITableViewCell() }
+        switch section {
+        case .recentSearches:
+            return recentSearchesDataSource(tableView, indexPath: indexPath)
+        case .searchedMovies:
+            return searchedMoviesDataSource(tableView, indexPath: indexPath)
+        }
+    }
+    
+    fileprivate func recentSearchesDataSource(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        let searchText = viewModel.recentSearches[indexPath.row].searchText
+        let cell = tableView.dequeueReusableCell(withIdentifier: RecentSearchTableViewCell.identifier, for: indexPath) as! RecentSearchTableViewCell
+        cell.viewModel = RecentSearchCellViewModel(searchText: searchText)
+        return cell
+    }
+    
+    fileprivate func searchedMoviesDataSource(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath) as! MovieTableViewCell
         cell.viewModel = viewModel.movieCells[indexPath.row]
         return cell
@@ -187,10 +215,47 @@ extension SearchMoviesResultController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let detailViewModel = viewModel.buildDetailViewModel(atIndex: indexPath.row) else {
-            return
+        let viewState = viewModel.viewState.value
+        switch viewState {
+        case .initial:
+            guard viewModel.recentSearches.count > 0 else {
+                return
+            }
+            let searchText = viewModel.recentSearches[indexPath.row].searchText
+            delegate?.searchMoviesResultController(self, didSelectRecentSearch: searchText)
+        case .populated:
+            guard let detailViewModel = viewModel.buildDetailViewModel(atIndex: indexPath.row) else {
+                return
+            }
+            delegate?.searchMoviesResultController(self, didSelectMovie: detailViewModel)
+        default:
+            break
         }
-        delegate?.searchMoviesResultController(self, didSelectMovie: detailViewModel)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let viewState = viewModel.viewState.value
+        switch viewState {
+        case .initial:
+            let view = RecentSearchesHeaderView()
+            return view
+        case .populated:
+            let view = UIView()
+            view.backgroundColor = .clear
+            return view
+        case .searching, .error, .empty:
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let viewState = viewModel.viewState.value
+        switch viewState {
+        case .initial:
+            return 50
+        case .searching, .error, .empty, .populated:
+            return 0
+        }
     }
     
 }
