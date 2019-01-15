@@ -106,7 +106,7 @@ final class SearchMoviesResultViewModel: NSObject {
 
 }
 
-// MARK: - View States
+// MARK: - View states
 
 extension SearchMoviesResultViewModel {
     
@@ -118,7 +118,7 @@ extension SearchMoviesResultViewModel {
         case populated([Movie])
         case error(Error)
         
-        var sections: [SearchMoviesSections]? {
+        var sections: [SearchMoviesResultSections]? {
             switch self {
             case .populated:
                 return [.searchedMovies]
@@ -131,7 +131,7 @@ extension SearchMoviesResultViewModel {
         
     }
     
-    enum SearchMoviesSections {
+    enum SearchMoviesResultSections {
         case recentSearches, searchedMovies
     }
     

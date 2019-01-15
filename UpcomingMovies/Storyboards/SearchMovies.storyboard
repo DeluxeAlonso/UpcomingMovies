@@ -17,7 +17,21 @@
                     <view key="view" contentMode="scaleToFill" id="E9m-7H-qwO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LhR-s0-Tff">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <connections>
+                                    <segue destination="2gm-qj-p6l" kind="embed" id="Ryo-Lv-lCN"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LhR-s0-Tff" firstAttribute="leading" secondItem="3dg-4W-SQK" secondAttribute="leading" id="4hB-PN-y5z"/>
+                            <constraint firstItem="3dg-4W-SQK" firstAttribute="trailing" secondItem="LhR-s0-Tff" secondAttribute="trailing" id="HZt-g6-BAk"/>
+                            <constraint firstItem="LhR-s0-Tff" firstAttribute="top" secondItem="3dg-4W-SQK" secondAttribute="top" id="TXD-Nj-MWl"/>
+                            <constraint firstItem="3dg-4W-SQK" firstAttribute="bottom" secondItem="LhR-s0-Tff" secondAttribute="bottom" id="ySh-t2-JGV"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="3dg-4W-SQK"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="uk2-fb-tQf"/>
@@ -57,6 +71,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZY4-u7-E0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1825" y="-565"/>
+        </scene>
+        <!--Search Options Table View Controller-->
+        <scene sceneID="B4z-0t-kzA">
+            <objects>
+                <tableViewController id="2gm-qj-p6l" customClass="SearchOptionsTableViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="gCe-Xq-zQs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="2gm-qj-p6l" id="SvP-Wh-bqT"/>
+                            <outlet property="delegate" destination="2gm-qj-p6l" id="yPO-YU-cxC"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E75-oG-SmB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1006" y="133"/>
         </scene>
     </scenes>
     <resources>
