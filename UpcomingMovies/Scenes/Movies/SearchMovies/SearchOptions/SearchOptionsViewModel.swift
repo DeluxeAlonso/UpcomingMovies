@@ -23,8 +23,14 @@ final class SearchOptionsViewModel: NSObject {
         return visited
     }
     
-    var genres: [Genre] {
-        return AppManager.shared.genres
+    var genreCells: [GenreSearchOptionCellViewModel] {
+        let genres = AppManager.shared.genres
+        return genres.map { GenreSearchOptionCellViewModel(genre: $0) }
+    }
+    
+    let defaultSearchOptions: [DefaultSearchOption] = [.popular, .topRated]
+    var defaultSearchOptionsCells: [DefaultSearchOptionCellViewModel] {
+        return defaultSearchOptions.map { DefaultSearchOptionCellViewModel(defaultSearchOption: $0) }
     }
     
     // MARK: - Initializers

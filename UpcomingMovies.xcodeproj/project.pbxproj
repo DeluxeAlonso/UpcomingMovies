@@ -57,6 +57,12 @@
 		E222DC282192B61300A2EDF4 /* MovieCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222DC272192B61300A2EDF4 /* MovieCellViewModel.swift */; };
 		E222DC2B2192B83200A2EDF4 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E222DC2A2192B83200A2EDF4 /* MovieCell.xib */; };
 		E222DC2D2192CBBD00A2EDF4 /* URLConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222DC2C2192CBBD00A2EDF4 /* URLConfiguration.swift */; };
+		E223773521EEA20C000400B7 /* GenreSearchOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E223773421EEA20C000400B7 /* GenreSearchOptionCell.xib */; };
+		E223773821EEA2D8000400B7 /* GenreSearchOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773721EEA2D8000400B7 /* GenreSearchOptionTableViewCell.swift */; };
+		E223773A21EEA317000400B7 /* GenreSearchOptionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773921EEA317000400B7 /* GenreSearchOptionCellViewModel.swift */; };
+		E223773C21EEAEFF000400B7 /* DefaultSearchOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773B21EEAEFF000400B7 /* DefaultSearchOption.swift */; };
+		E223773E21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773D21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift */; };
+		E223774021EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773F21EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift */; };
 		E26011642193823C00E53095 /* TableViewCellAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26011632193823C00E53095 /* TableViewCellAnimator.swift */; };
 		E26011672193870800E53095 /* ErrorPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26011662193870800E53095 /* ErrorPlaceholderView.swift */; };
 		E26011692193876500E53095 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26011682193876500E53095 /* NibLoadable.swift */; };
@@ -143,6 +149,12 @@
 		E222DC272192B61300A2EDF4 /* MovieCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellViewModel.swift; sourceTree = "<group>"; };
 		E222DC2A2192B83200A2EDF4 /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
 		E222DC2C2192CBBD00A2EDF4 /* URLConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConfiguration.swift; sourceTree = "<group>"; };
+		E223773421EEA20C000400B7 /* GenreSearchOptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenreSearchOptionCell.xib; sourceTree = "<group>"; };
+		E223773721EEA2D8000400B7 /* GenreSearchOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreSearchOptionTableViewCell.swift; sourceTree = "<group>"; };
+		E223773921EEA317000400B7 /* GenreSearchOptionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreSearchOptionCellViewModel.swift; sourceTree = "<group>"; };
+		E223773B21EEAEFF000400B7 /* DefaultSearchOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOption.swift; sourceTree = "<group>"; };
+		E223773D21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOptionTableViewCell.swift; sourceTree = "<group>"; };
+		E223773F21EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOptionCellViewModel.swift; sourceTree = "<group>"; };
 		E26011632193823C00E53095 /* TableViewCellAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellAnimator.swift; sourceTree = "<group>"; };
 		E26011662193870800E53095 /* ErrorPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPlaceholderView.swift; sourceTree = "<group>"; };
 		E26011682193876500E53095 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
@@ -205,6 +217,7 @@
 			children = (
 				E200182721EE323200F29220 /* SearchOptionsTableViewController.swift */,
 				E200182921EE336F00F29220 /* SearchOptionsViewModel.swift */,
+				E223773B21EEAEFF000400B7 /* DefaultSearchOption.swift */,
 			);
 			path = SearchOptions;
 			sourceTree = "<group>";
@@ -455,6 +468,7 @@
 		E222DC242192AF8700A2EDF4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E223773621EEA2C0000400B7 /* SearchOption */,
 				E21F378E2193F33900D6BFB6 /* Movie */,
 				E21F378D2193F32400D6BFB6 /* RecentSearch */,
 			);
@@ -467,8 +481,20 @@
 				E222DC2A2192B83200A2EDF4 /* MovieCell.xib */,
 				E260117321938C0000E53095 /* ErrorPlaceholderView.xib */,
 				E21F37932193F47800D6BFB6 /* RecentSearchCell.xib */,
+				E223773421EEA20C000400B7 /* GenreSearchOptionCell.xib */,
 			);
 			path = Xibs;
+			sourceTree = "<group>";
+		};
+		E223773621EEA2C0000400B7 /* SearchOption */ = {
+			isa = PBXGroup;
+			children = (
+				E223773721EEA2D8000400B7 /* GenreSearchOptionTableViewCell.swift */,
+				E223773921EEA317000400B7 /* GenreSearchOptionCellViewModel.swift */,
+				E223773D21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift */,
+				E223773F21EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift */,
+			);
+			path = SearchOption;
 			sourceTree = "<group>";
 		};
 		E26011622193822500E53095 /* Animations */ = {
@@ -609,6 +635,7 @@
 				E22116A7219150490039F8C9 /* UpcomingMovies.storyboard in Resources */,
 				E260117421938C0000E53095 /* ErrorPlaceholderView.xib in Resources */,
 				E222DC2B2192B83200A2EDF4 /* MovieCell.xib in Resources */,
+				E223773521EEA20C000400B7 /* GenreSearchOptionCell.xib in Resources */,
 				E22116A92191524D0039F8C9 /* SearchMovies.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -704,6 +731,7 @@
 				E22116CA219167B50039F8C9 /* UpcomingMoviesViewController.swift in Sources */,
 				E21F37AF2194200A00D6BFB6 /* AppManager.swift in Sources */,
 				E21F37A121941D2900D6BFB6 /* SplashViewController.swift in Sources */,
+				E223773C21EEAEFF000400B7 /* DefaultSearchOption.swift in Sources */,
 				E26F03B621E46159009859DF /* UpcomingMovies.xcdatamodeld in Sources */,
 				E260117B21939A1B00E53095 /* MovieDetailViewController.swift in Sources */,
 				E260116E219388B700E53095 /* FontHelper.swift in Sources */,
@@ -712,6 +740,7 @@
 				E222DC202192AAB900A2EDF4 /* SearchMoviesViewController.swift in Sources */,
 				E26011672193870800E53095 /* ErrorPlaceholderView.swift in Sources */,
 				E222DC262192AF9700A2EDF4 /* MovieTableViewCell.swift in Sources */,
+				E223773A21EEA317000400B7 /* GenreSearchOptionCellViewModel.swift in Sources */,
 				E21F37A321941D3900D6BFB6 /* SplashViewModel.swift in Sources */,
 				E22116C2219160D90039F8C9 /* ApiError.swift in Sources */,
 				E22116B921915F5A0039F8C9 /* MovieResult.swift in Sources */,
@@ -730,6 +759,7 @@
 				E26011642193823C00E53095 /* TableViewCellAnimator.swift in Sources */,
 				E260116C2193884C00E53095 /* LoadingButton.swift in Sources */,
 				E22116C82191668E0039F8C9 /* MovieProvider.swift in Sources */,
+				E223773821EEA2D8000400B7 /* GenreSearchOptionTableViewCell.swift in Sources */,
 				E222DC2D2192CBBD00A2EDF4 /* URLConfiguration.swift in Sources */,
 				E22116B72191582C0039F8C9 /* Movie.swift in Sources */,
 				E200182A21EE336F00F29220 /* SearchOptionsViewModel.swift in Sources */,
@@ -742,6 +772,8 @@
 				E22116C5219164430039F8C9 /* MovieClient.swift in Sources */,
 				E21F37AA21941EC000D6BFB6 /* GenreProvider.swift in Sources */,
 				E21F378A2193ED4000D6BFB6 /* SearchMoviesResultViewModel.swift in Sources */,
+				E223774021EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift in Sources */,
+				E223773E21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift in Sources */,
 				E21F379C2193FF1400D6BFB6 /* CustomFooterView.swift in Sources */,
 				E260117621938D6C00E53095 /* Retryable.swift in Sources */,
 				E200182821EE323200F29220 /* SearchOptionsTableViewController.swift in Sources */,
