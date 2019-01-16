@@ -11,7 +11,7 @@ import CoreData
 
 class SearchMoviesViewController: UIViewController {
     
-    private var viewModel: SearchMoviesViewModel!
+    private var viewModel: SearchMoviesViewModel = SearchMoviesViewModel()
     private var searchController: MovieSearchController!
     
     private var managedObjectContext: NSManagedObjectContext {
@@ -47,8 +47,7 @@ class SearchMoviesViewController: UIViewController {
     }
     
     private func setupSearchController() {
-        let searchResultViewModel = SearchMoviesResultViewModel(managedObjectContext: managedObjectContext)
-        let searchResultController = SearchMoviesResultController(viewModel: searchResultViewModel)
+        let searchResultController = viewModel.prepareSearchResultController(managedObjectContext)
         searchController = MovieSearchController(searchResultsController: searchResultController)
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
@@ -67,6 +66,9 @@ class SearchMoviesViewController: UIViewController {
         if let viewController = segue.destination as? MovieDetailViewController, let viewModel = sender as? MovieDetailViewModel {
             _ = viewController.view
             viewController.viewModel = viewModel
+        } else if let viewController = segue.destination as? SearchOptionsTableViewController {
+            _ = viewController.view
+            viewController.viewModel = viewModel.searchOptionsViewModel(managedObjectContext)
         }
     }
 
@@ -114,6 +116,7 @@ extension SearchMoviesViewController: UISearchBarDelegate {
 // MARK: - SearchMoviesResultControllerDelegate
 
 extension SearchMoviesViewController: SearchMoviesResultControllerDelegate {
+    
     func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectMovie movie: MovieDetailViewModel) {
         performSegue(withIdentifier: "MovieDetailSegue", sender: movie)
     }
@@ -128,7 +131,6 @@ extension SearchMoviesViewController: SearchMoviesResultControllerDelegate {
         searchController.searchBar.endEditing(true)
         startSearch(searchResultsController, withSearchText: searchText)
     }
-    
     
 }
 

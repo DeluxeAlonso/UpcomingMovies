@@ -3,7 +3,7 @@
     <entity name="MovieSearch" representedClassName=".MovieSearch" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="searchText" optional="YES" attributeType="String" syncable="YES"/>
-        <fetchIndex name="bySearchTextPropertyIndex">
+        <fetchIndex name="byCreatedAtPropertyIndex">
             <fetchIndexElement property="createdAt" type="Binary" order="ascending"/>
         </fetchIndex>
         <uniquenessConstraints>
@@ -12,7 +12,16 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="MovieVisit" representedClassName=".MovieVisit" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="posterPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <fetchIndex name="byCreatedAtPropertyIndex">
+            <fetchIndexElement property="createdAt" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
     <elements>
         <element name="MovieSearch" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="MovieVisit" positionX="-63" positionY="9" width="128" height="30"/>
     </elements>
 </model>
