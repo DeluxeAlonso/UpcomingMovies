@@ -24,12 +24,12 @@ class RecentSearchTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        prepareView()
+        setupUI()
     }
     
     // MARK: - Private
     
-    fileprivate func prepareView() {
+    fileprivate func setupUI() {
         setupSearchLabel()
     }
     

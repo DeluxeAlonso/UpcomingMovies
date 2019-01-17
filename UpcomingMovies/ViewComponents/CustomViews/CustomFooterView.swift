@@ -35,7 +35,7 @@ class CustomFooterView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        prepareView()
+        setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,7 +44,7 @@ class CustomFooterView: UIView {
     
     // MARK: - Private
     
-    fileprivate func prepareView() {
+    fileprivate func setupUI() {
         addSubview(messageLabel)
         NSLayoutConstraint.activate([messageLabel.topAnchor.constraint(equalTo: topAnchor),
                                      messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.horizontalMargin),

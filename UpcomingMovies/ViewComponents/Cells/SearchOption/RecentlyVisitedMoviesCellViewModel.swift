@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import CoreData
 
 final class RecentlyVisitedMoviesCellViewModel {
     
-    var posterPath: String
+    var visitedMovieCells: [VisitedMovieCellViewModel]
     
-    init(movieVisit: MovieVisit) {
-        posterPath = movieVisit.posterPath
+    init(visitedMovieCells: [VisitedMovieCellViewModel]) {
+        self.visitedMovieCells = visitedMovieCells
     }
     
 }

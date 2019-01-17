@@ -23,7 +23,7 @@ class LoadingFooterView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        prepareView()
+        setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,7 +32,7 @@ class LoadingFooterView: UIView {
     
     // MARK: - Private
     
-    fileprivate func prepareView() {
+    fileprivate func setupUI() {
         setupActivityIndicatorView()
     }
     
