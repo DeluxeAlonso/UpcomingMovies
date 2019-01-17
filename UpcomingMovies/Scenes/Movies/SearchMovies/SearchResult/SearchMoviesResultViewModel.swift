@@ -24,11 +24,11 @@ final class SearchMoviesResultViewModel: NSObject {
     
     // MARK: - Computed Properties
     
-    var recentSearches: [MovieSearch] {
+    var recentSearchCells: [RecentSearchCellViewModel] {
         guard let searches = fetchedResultsController.fetchedObjects else {
             return []
         }
-        return searches
+        return searches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
     }
     
     var movieCells: [MovieCellViewModel] {

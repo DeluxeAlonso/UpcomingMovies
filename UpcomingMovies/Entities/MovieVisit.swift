@@ -11,12 +11,14 @@ import CoreData
 
 final class MovieVisit: NSManagedObject {
     
+    @NSManaged fileprivate(set) var id: Int
     @NSManaged fileprivate(set) var title: String
     @NSManaged fileprivate(set) var posterPath: String
     @NSManaged fileprivate(set) var createdAt: Date
     
-    static func insert(into context: NSManagedObjectContext, title: String, posterPath: String) -> MovieVisit {
+    static func insert(into context: NSManagedObjectContext, id: Int, title: String, posterPath: String) -> MovieVisit {
         let movieVisit: MovieVisit = context.insertObject()
+        movieVisit.id = id
         movieVisit.title = title
         movieVisit.posterPath = posterPath
         movieVisit.createdAt = Date()

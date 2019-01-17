@@ -32,10 +32,10 @@ class DefaultSearchOptionTableViewCell: UITableViewCell {
     // MARK: - Private
     
     private func setupUI() {
-        textLabel?.font = FontHelper.regular(withSize: 14.0)
+        textLabel?.font = FontHelper.regular(withSize: 16.0)
         textLabel?.textColor = ColorPalette.lightBlueColor
         
-        detailTextLabel?.font = FontHelper.light(withSize: 12.0)
+        detailTextLabel?.font = FontHelper.light(withSize: 13.0)
         detailTextLabel?.textColor = ColorPalette.lightBlueColor
     }
     

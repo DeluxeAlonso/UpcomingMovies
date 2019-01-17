@@ -14,14 +14,20 @@
     </entity>
     <entity name="MovieVisit" representedClassName=".MovieVisit" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="posterPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <fetchIndex name="byCreatedAtPropertyIndex">
             <fetchIndexElement property="createdAt" type="Binary" order="ascending"/>
         </fetchIndex>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="MovieSearch" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="MovieVisit" positionX="-63" positionY="9" width="128" height="30"/>
+        <element name="MovieVisit" positionX="-63" positionY="9" width="128" height="105"/>
     </elements>
 </model>
