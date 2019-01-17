@@ -15,12 +15,14 @@ final class SearchOptionsViewModel: NSObject {
     private var fetchedResultsController: NSFetchedResultsController<MovieVisit>
     
     let viewState: Bindable<SearchOptionsViewState> = Bindable(.initial)
+    var prepareUpdate: ((Bool) -> ())?
+    var updateVisitedMovies: (() -> ())?
     
-    var visitedMovies: [MovieVisit] {
+    var visitedMovieCells: [VisitedMovieCellViewModel] {
         guard let visited = fetchedResultsController.fetchedObjects else {
             return []
         }
-        return visited
+        return visited.map { VisitedMovieCellViewModel(movieVisit: $0) }
     }
     
     var genreCells: [GenreSearchOptionCellViewModel] {
@@ -54,6 +56,12 @@ final class SearchOptionsViewModel: NSObject {
     
     func loadMovieVisits() {
         try! fetchedResultsController.performFetch()
+    }
+    
+    // MARK: - Public
+    
+    func prepareRecentlyVisitedMoviesCell() -> RecentlyVisitedMoviesCellViewModel {
+        return RecentlyVisitedMoviesCellViewModel(visitedMovieCells: visitedMovieCells)
     }
     
 }
@@ -101,12 +109,15 @@ extension SearchOptionsViewModel {
 extension SearchOptionsViewModel: NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        prepareUpdate?(true)
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        updateVisitedMovies?()
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        prepareUpdate?(false)
     }
     
 }

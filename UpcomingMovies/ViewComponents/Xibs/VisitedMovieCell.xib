@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="c5C-WX-hQC" customClass="VisitedMovieCollectionViewCell" customModule="UpcomingMovies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="162" height="186"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="162" height="186"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1f1-cj-z1D" userLabel="Movie Poster Image View">
+                        <rect key="frame" x="0.0" y="0.0" width="162" height="186"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="1f1-cj-z1D" firstAttribute="leading" secondItem="c5C-WX-hQC" secondAttribute="leading" id="H35-Pi-qve"/>
+                <constraint firstAttribute="bottom" secondItem="1f1-cj-z1D" secondAttribute="bottom" id="NpW-Jy-36n"/>
+                <constraint firstItem="1f1-cj-z1D" firstAttribute="top" secondItem="c5C-WX-hQC" secondAttribute="top" id="dhZ-CY-7Rq"/>
+                <constraint firstAttribute="trailing" secondItem="1f1-cj-z1D" secondAttribute="trailing" id="s2u-Q8-Uyc"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="IDx-Vu-Kse"/>
+            <size key="customSize" width="162" height="186"/>
+            <connections>
+                <outlet property="posterImageView" destination="1f1-cj-z1D" id="LLg-db-8kk"/>
+            </connections>
+            <point key="canvasLocation" x="219.19999999999999" y="212.29385307346328"/>
+        </collectionViewCell>
+    </objects>
+</document>

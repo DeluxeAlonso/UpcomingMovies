@@ -10,12 +10,15 @@ import Foundation
 
 struct Movie: Decodable {
     
-    let title: String?
+    let id: Int
+    let title: String
     let genres: [Int]?
     let posterPath: String?
     let backdropPath: String?
     let releaseDate: String?
     let overview: String?
+    
+    static let posterAspectRatio: Double = 1.5
     
     var genreName: String {
         guard let genres = genres,
@@ -27,6 +30,7 @@ struct Movie: Decodable {
     }
     
     private enum CodingKeys: String, CodingKey {
+        case id
         case title
         case overview
         case genres = "genre_ids"

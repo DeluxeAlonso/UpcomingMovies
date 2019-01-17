@@ -30,6 +30,9 @@ class SearchOptionsTableViewController: UITableViewController {
     }
     
     private func setupTableView() {
+        tableView.register(RecentlyVisitedMoviesTableViewCell.self, forCellReuseIdentifier: RecentlyVisitedMoviesTableViewCell.identifier)
+        tableView.register(UINib(nibName: RecentlyVisitedMoviesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RecentlyVisitedMoviesTableViewCell.identifier)
+        
         tableView.register(DefaultSearchOptionTableViewCell.self, forCellReuseIdentifier: DefaultSearchOptionTableViewCell.identifier)
         
         tableView.register(GenreSearchOptionTableViewCell.self, forCellReuseIdentifier: GenreSearchOptionTableViewCell.identifier)
@@ -39,7 +42,15 @@ class SearchOptionsTableViewController: UITableViewController {
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
+        viewModel?.prepareUpdate = { [weak self] beginUpdate in
+            guard let strongSelf = self else { return }
+            beginUpdate ? strongSelf.tableView.beginUpdates() : strongSelf.tableView.endUpdates()
+        }
         
+        viewModel?.updateVisitedMovies = { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.tableView.reloadSections(IndexSet(integer: 0), with: .none)
+        }
     }
 
     // MARK: - Table view data source
@@ -71,12 +82,19 @@ class SearchOptionsTableViewController: UITableViewController {
         guard let viewModel = viewModel else { return  UITableViewCell() }
         switch viewModel.section(at: indexPath.section) {
         case .recentlyVisited:
-            return UITableViewCell()
+            return recentlyVisitedDataSource(tableView, at: indexPath)
         case .defaultSearches:
             return defaultSearchOptionDataSource(tableView, at: indexPath)
         case .genres:
             return genreSearchOptionDataSource(tableView, at: indexPath)
         }
+    }
+    
+    private func recentlyVisitedDataSource(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        guard let viewModel = viewModel else { fatalError() }
+        let cell = tableView.dequeueReusableCell(withIdentifier: RecentlyVisitedMoviesTableViewCell.identifier, for: indexPath) as! RecentlyVisitedMoviesTableViewCell
+        cell.viewModel = viewModel.prepareRecentlyVisitedMoviesCell()
+        return cell
     }
     
     private func defaultSearchOptionDataSource(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
@@ -101,7 +119,7 @@ class SearchOptionsTableViewController: UITableViewController {
         guard let viewModel = viewModel else { return 0.0 }
         switch viewModel.section(at: indexPath.section) {
         case .recentlyVisited:
-            return UITableView.automaticDimension
+            return 140.0
         case .defaultSearches:
             return 65.0
         case .genres:

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import Kingfisher
 
 class MovieDetailViewController: UIViewController {
@@ -21,6 +22,11 @@ class MovieDetailViewController: UIViewController {
         didSet {
             setupBindables()
         }
+    }
+    
+    private var managedObjectContext: NSManagedObjectContext {
+        guard let appDelegate = appDelegate else { fatalError() }
+        return appDelegate.persistentContainer.viewContext
     }
     
     // MARK: - Lifecycle
@@ -43,22 +49,21 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        guard let viewModel = viewModel else {
-            return
-        }
-        titleLabel.text = viewModel.name
+        guard let viewModel = viewModel else { return }
+        titleLabel.text = viewModel.title
         genreLabel.text = viewModel.genre
         releaseDateLabel.text = viewModel.releaseDate
         backdropImageView.kf.indicatorType = .activity
         backdropImageView.kf.setImage(with: viewModel.fullBackdropPath)
         overviewLabel.text = viewModel.overview
+        viewModel.saveVisitedMovie(managedObjectContext)
     }
     
     // MARK: - Selectors
     
     @objc func shareBarButtonAction() {
-        guard let movieName = viewModel?.name else { return }
-        let shareText = "Come with me to watch \(movieName)!"
+        guard let movieTitle = viewModel?.title else { return }
+        let shareText = "Come with me to watch \(movieTitle)!"
         let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
         self.present(activityViewController, animated: true, completion: nil)
     }
