@@ -45,24 +45,19 @@ class SearchOptionsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        guard let viewModel = viewModel else {
-            return 0
-        }
+        guard let viewModel = viewModel else { return 0 }
         return viewModel.viewState.value.sections.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let viewModel = viewModel else {
-            return nil
-        }
+        guard let viewModel = viewModel else { return nil }
         let sections = viewModel.viewState.value.sections
         return sections[section].title
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { return 0 }
-        let sections = viewModel.viewState.value.sections
-        switch sections[section] {
+        switch viewModel.section(at: section) {
         case .recentlyVisited:
             return 1
         case .defaultSearches:
@@ -74,8 +69,7 @@ class SearchOptionsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let viewModel = viewModel else { return  UITableViewCell() }
-        let sections = viewModel.viewState.value.sections
-        switch sections[indexPath.section] {
+        switch viewModel.section(at: indexPath.section) {
         case .recentlyVisited:
             return UITableViewCell()
         case .defaultSearches:
@@ -104,7 +98,15 @@ class SearchOptionsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-       return 50.0
+        guard let viewModel = viewModel else { return 0.0 }
+        switch viewModel.section(at: indexPath.section) {
+        case .recentlyVisited:
+            return UITableView.automaticDimension
+        case .defaultSearches:
+            return 65.0
+        case .genres:
+           return 50.0
+        }
     }
 
 }

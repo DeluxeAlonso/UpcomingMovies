@@ -90,6 +90,10 @@ extension SearchOptionsViewModel {
         
     }
     
+    func section(at index: Int) -> SearchOptionsSections {
+        return viewState.value.sections[index]
+    }
+    
 }
 
 // MARK: - NSFetchedResultsControllerDelegate

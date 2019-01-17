@@ -178,7 +178,7 @@ extension SearchMoviesResultController: UITableViewDataSource {
         guard let section = viewModel.viewState.value.sections?[section] else { return 0 }
         switch section {
         case .recentSearches:
-            return viewModel.recentSearches.count
+            return viewModel.recentSearchCells.count
         case .searchedMovies:
             return viewModel.movieCells.count
         }
@@ -195,9 +195,8 @@ extension SearchMoviesResultController: UITableViewDataSource {
     }
     
     fileprivate func recentSearchesDataSource(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let searchText = viewModel.recentSearches[indexPath.row].searchText
         let cell = tableView.dequeueReusableCell(withIdentifier: RecentSearchTableViewCell.identifier, for: indexPath) as! RecentSearchTableViewCell
-        cell.viewModel = RecentSearchCellViewModel(searchText: searchText)
+        cell.viewModel = viewModel.recentSearchCells[indexPath.row]
         return cell
     }
     
@@ -218,10 +217,8 @@ extension SearchMoviesResultController: UITableViewDelegate {
         let viewState = viewModel.viewState.value
         switch viewState {
         case .initial:
-            guard viewModel.recentSearches.count > 0 else {
-                return
-            }
-            let searchText = viewModel.recentSearches[indexPath.row].searchText
+            guard viewModel.recentSearchCells.count > 0 else { return }
+            let searchText = viewModel.recentSearchCells[indexPath.row].searchText
             delegate?.searchMoviesResultController(self, didSelectRecentSearch: searchText)
         case .populated:
             guard let detailViewModel = viewModel.buildDetailViewModel(atIndex: indexPath.row) else {
@@ -237,8 +234,7 @@ extension SearchMoviesResultController: UITableViewDelegate {
         let viewState = viewModel.viewState.value
         switch viewState {
         case .initial:
-            let view = RecentSearchesHeaderView()
-            return view
+            return RecentSearchesHeaderView()
         case .populated:
             let view = UIView()
             view.backgroundColor = .clear
