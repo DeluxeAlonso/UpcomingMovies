@@ -30,7 +30,7 @@ final class MovieVisit: NSManagedObject {
 extension MovieVisit: Managed {
     
     static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: #keyPath(createdAt), ascending: true)]
+        return [NSSortDescriptor(key: #keyPath(createdAt), ascending: false)]
     }
     
 }
