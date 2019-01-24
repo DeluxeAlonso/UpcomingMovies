@@ -67,6 +67,7 @@
 		E223773C21EEAEFF000400B7 /* DefaultSearchOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773B21EEAEFF000400B7 /* DefaultSearchOption.swift */; };
 		E223773E21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773D21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift */; };
 		E223774021EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773F21EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift */; };
+		E24E010321FA33CE00A1A0A2 /* SegueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */; };
 		E26011642193823C00E53095 /* TableViewCellAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26011632193823C00E53095 /* TableViewCellAnimator.swift */; };
 		E26011672193870800E53095 /* ErrorPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26011662193870800E53095 /* ErrorPlaceholderView.swift */; };
 		E26011692193876500E53095 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26011682193876500E53095 /* NibLoadable.swift */; };
@@ -172,6 +173,7 @@
 		E223773B21EEAEFF000400B7 /* DefaultSearchOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOption.swift; sourceTree = "<group>"; };
 		E223773D21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOptionTableViewCell.swift; sourceTree = "<group>"; };
 		E223773F21EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOptionCellViewModel.swift; sourceTree = "<group>"; };
+		E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueHandler.swift; sourceTree = "<group>"; };
 		E26011632193823C00E53095 /* TableViewCellAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellAnimator.swift; sourceTree = "<group>"; };
 		E26011662193870800E53095 /* ErrorPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPlaceholderView.swift; sourceTree = "<group>"; };
 		E26011682193876500E53095 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 				E260116D219388B700E53095 /* FontHelper.swift */,
 				E260116F219388C500E53095 /* ColorPalette.swift */,
 				E21F37B02194241B00D6BFB6 /* UIViewController+Extensions.swift */,
+				E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -783,6 +786,7 @@
 				E22116CA219167B50039F8C9 /* UpcomingMoviesViewController.swift in Sources */,
 				E21F37AF2194200A00D6BFB6 /* AppManager.swift in Sources */,
 				E21F37A121941D2900D6BFB6 /* SplashViewController.swift in Sources */,
+				E24E010321FA33CE00A1A0A2 /* SegueHandler.swift in Sources */,
 				E223773C21EEAEFF000400B7 /* DefaultSearchOption.swift in Sources */,
 				E26F03B621E46159009859DF /* UpcomingMovies.xcdatamodeld in Sources */,
 				E260117B21939A1B00E53095 /* MovieDetailViewController.swift in Sources */,

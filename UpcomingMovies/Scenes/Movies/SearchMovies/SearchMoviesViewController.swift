@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class SearchMoviesViewController: UIViewController {
+class SearchMoviesViewController: UIViewController, SegueHandler {
     
     private var viewModel: SearchMoviesViewModel = SearchMoviesViewModel()
     private var searchController: MovieSearchController!
@@ -63,15 +63,21 @@ class SearchMoviesViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let viewController = segue.destination as? MovieDetailViewController, let viewModel = sender as? MovieDetailViewModel {
+        switch segueIdentifier(for: segue) {
+        case .movieList:
+            guard let viewController = segue.destination as? MovieListViewController else { fatalError() }
+            guard let viewModel = sender as? MovieListViewModel else { return }
+            viewController.viewModel = viewModel
+        case .movieDetail:
+            guard let viewController = segue.destination as? MovieDetailViewController else { fatalError() }
+            guard let viewModel = sender as? MovieDetailViewModel else { return }
             _ = viewController.view
             viewController.viewModel = viewModel
-        } else if let viewController = segue.destination as? SearchOptionsTableViewController {
+        case .searchOption:
+            guard let viewController = segue.destination as? SearchOptionsTableViewController else { fatalError() }
             _ = viewController.view
             viewController.delegate = self
             viewController.viewModel = viewModel.searchOptionsViewModel(managedObjectContext)
-        } else if let viewController = segue.destination as? MovieListViewController, let viewModel = sender as? MovieListViewModel {
-            viewController.viewModel = viewModel
         }
     }
 
@@ -142,15 +148,27 @@ extension SearchMoviesViewController: SearchMoviesResultControllerDelegate {
 extension SearchMoviesViewController: SearchOptionsTableViewControllerDelegate {
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectPopularMovies selected: Bool) {
-        performSegue(withIdentifier: "MovieListSegue", sender: viewModel.popularMoviesViewModel())
+        performSegue(withIdentifier: SegueIdentifier.movieList.rawValue, sender: viewModel.popularMoviesViewModel())
     }
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectTopRatedMovies selected: Bool) {
-        performSegue(withIdentifier: "MovieListSegue", sender: viewModel.topRatedMoviesViewModel())
+        performSegue(withIdentifier: SegueIdentifier.movieList.rawValue, sender: viewModel.topRatedMoviesViewModel())
     }
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectMovieGenre genreId: Int) {
-        performSegue(withIdentifier: "MovieListSegue", sender: viewModel.moviesByGenreViewModel(genreId: genreId))
+        performSegue(withIdentifier: SegueIdentifier.movieList.rawValue, sender: viewModel.moviesByGenreViewModel(genreId: genreId))
+    }
+    
+}
+
+// MARK: - Segue Identifiers
+
+extension SearchMoviesViewController {
+    
+    enum SegueIdentifier: String {
+        case movieDetail = "MovieDetailSegue"
+        case movieList = "MovieListSegue"
+        case searchOption = "SearchOptionSegue"
     }
     
 }

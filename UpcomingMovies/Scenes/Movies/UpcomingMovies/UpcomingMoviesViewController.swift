@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpcomingMoviesViewController: UIViewController, Retryable {
+class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var loadingView: UIView!
@@ -80,9 +80,12 @@ class UpcomingMoviesViewController: UIViewController, Retryable {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let viewController = segue.destination as? MovieDetailViewController, let indexPath = sender as? IndexPath {
+        switch segueIdentifier(for: segue) {
+        case .movieDetail:
+            guard let viewController = segue.destination as? MovieDetailViewController else { fatalError() }
+            guard let indexpath = sender as? IndexPath else { return }
             _ = viewController.view
-            viewController.viewModel = viewModel.buildDetailViewModel(atIndex: indexPath.row)
+            viewController.viewModel = viewModel.buildDetailViewModel(atIndex: indexpath.row)
         }
     }
     
@@ -123,7 +126,7 @@ extension UpcomingMoviesViewController: UICollectionViewDataSource {
 extension UpcomingMoviesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "MovieDetailSegue", sender: indexPath)
+        performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue, sender: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -143,10 +146,6 @@ extension UpcomingMoviesViewController: UICollectionViewDelegateFlowLayout {
         let posterHeight: Double = Constants.cellHeight
         let posterWidth: Double = posterHeight / Movie.posterAspectRatio
         return CGSize(width: posterWidth, height: posterHeight)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -169,6 +168,16 @@ extension UpcomingMoviesViewController: UICollectionViewDataSourcePrefetching {
         }
     }
 
+}
+
+// MARK: - Segue Identifiers
+
+extension UpcomingMoviesViewController {
+    
+    enum SegueIdentifier: String {
+        case movieDetail = "MovieDetailSegue"
+    }
+    
 }
 
 // MARK: - Constants
