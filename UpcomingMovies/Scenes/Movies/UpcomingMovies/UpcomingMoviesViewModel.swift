@@ -39,8 +39,8 @@ final class UpcomingMoviesViewModel {
         return viewState.value.currentMovies
     }
     
-    var movieCells: [MovieCellViewModel] {
-        return movies.compactMap { MovieCellViewModel($0) }
+    var movieCells: [UpcomingMovieCellViewModel] {
+        return movies.compactMap { UpcomingMovieCellViewModel($0) }
     }
     
     // MARK: - Public
