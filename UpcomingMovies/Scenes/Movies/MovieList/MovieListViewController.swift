@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieListViewController: UIViewController, Retryable {
+class MovieListViewController: UIViewController, Retryable, SegueHandler {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var loadingView: UIView!
@@ -71,7 +71,10 @@ class MovieListViewController: UIViewController, Retryable {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let viewController = segue.destination as? MovieDetailViewController, let indexPath = sender as? IndexPath {
+        switch segueIdentifier(for: segue) {
+        case .movieDetail:
+            guard let viewController = segue.destination as? MovieDetailViewController else { fatalError() }
+            guard let indexPath = sender as? IndexPath else { return }
             _ = viewController.view
             viewController.viewModel = viewModel.buildDetailViewModel(atIndex: indexPath.row)
         }
@@ -102,7 +105,7 @@ extension MovieListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "MovieDetailSegue", sender: indexPath)
+        performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue, sender: indexPath)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -146,6 +149,16 @@ extension MovieListViewController: UITableViewDataSourcePrefetching {
         if indexPaths.contains(where: isLoadingCell) {
             viewModel.getUpcomingMovies()
         }
+    }
+    
+}
+
+// MARK: - Segue Identifiers
+
+extension MovieListViewController {
+    
+    enum SegueIdentifier: String {
+        case movieDetail = "MovieDetailSegue"
     }
     
 }
