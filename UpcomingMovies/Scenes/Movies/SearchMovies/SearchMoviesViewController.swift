@@ -68,7 +68,10 @@ class SearchMoviesViewController: UIViewController {
             viewController.viewModel = viewModel
         } else if let viewController = segue.destination as? SearchOptionsTableViewController {
             _ = viewController.view
+            viewController.delegate = self
             viewController.viewModel = viewModel.searchOptionsViewModel(managedObjectContext)
+        } else if let viewController = segue.destination as? MovieListViewController, let viewModel = sender as? MovieListViewModel {
+            viewController.viewModel = viewModel
         }
     }
 
@@ -134,6 +137,24 @@ extension SearchMoviesViewController: SearchMoviesResultControllerDelegate {
     
 }
 
+// MARK: - SearchOptionsTableViewControllerDelegate
+
+extension SearchMoviesViewController: SearchOptionsTableViewControllerDelegate {
+    
+    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectPopularMovies selected: Bool) {
+        performSegue(withIdentifier: "MovieListSegue", sender: viewModel.popularMoviesViewModel())
+    }
+    
+    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectTopRatedMovies selected: Bool) {
+        performSegue(withIdentifier: "MovieListSegue", sender: viewModel.topRatedMoviesViewModel())
+    }
+    
+    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectMovieGenre genreId: Int) {
+        performSegue(withIdentifier: "MovieListSegue", sender: viewModel.moviesByGenreViewModel(genreId: genreId))
+    }
+    
+}
+
 // MARK: - Constants
 
 extension SearchMoviesViewController {
@@ -148,4 +169,3 @@ extension SearchMoviesViewController {
     }
     
 }
-

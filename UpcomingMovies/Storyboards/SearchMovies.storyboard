@@ -10,6 +10,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--MovieListViewController-->
+        <scene sceneID="TEz-h1-bro">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MovieList" referencedIdentifier="MovieListViewController" id="goR-Jk-cJY" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="NZV-kW-vIJ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XhQ-wL-0ei" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1814" y="-786"/>
+        </scene>
         <!--Search-->
         <scene sceneID="UzA-XT-ygR">
             <objects>
@@ -34,10 +44,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3dg-4W-SQK"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search" id="uk2-fb-tQf"/>
+                    <navigationItem key="navigationItem" title="Search" id="uk2-fb-tQf">
+                        <barButtonItem key="backBarButtonItem" title=" " id="8ZX-kp-9wX"/>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="CfN-SO-eWY" kind="show" identifier="MovieDetailSegue" id="Pid-Xm-PyO"/>
+                        <segue destination="goR-Jk-cJY" kind="show" identifier="MovieListSegue" id="nNB-Lv-gbA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mhw-R1-a3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -70,7 +83,7 @@
                 <viewControllerPlaceholder storyboardName="MovieDetail" referencedIdentifier="MovieDetailViewController" id="CfN-SO-eWY" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZY4-u7-E0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1825" y="-565"/>
+            <point key="canvasLocation" x="1824" y="-372"/>
         </scene>
         <!--Search Options Table View Controller-->
         <scene sceneID="B4z-0t-kzA">

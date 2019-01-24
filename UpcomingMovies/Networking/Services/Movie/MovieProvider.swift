@@ -11,6 +11,9 @@ import Foundation
 enum MovieProvider {
     
     case getUpcoming(page: Int)
+    case getPopular(page: Int)
+    case getTopRated(page: Int)
+    case getByGenreId(page: Int, genreId: Int)
     case search(searchText: String)
     
 }
@@ -27,6 +30,12 @@ extension MovieProvider: Endpoint {
         switch self {
         case .getUpcoming:
             return "/3/movie/upcoming"
+        case .getPopular:
+            return "/3/movie/popular"
+        case .getTopRated:
+            return "/3/movie/top_rated"
+        case .getByGenreId:
+            return "/3/discover/movie"
         case .search:
             return "/3/search/movie"
         }
@@ -36,6 +45,14 @@ extension MovieProvider: Endpoint {
         switch self {
         case .getUpcoming(let page):
             return ["page": page]
+        case .getPopular(let page):
+            return ["page": page]
+        case .getTopRated(let page):
+            return ["page": page]
+        case .getByGenreId(let page, let genreId):
+            return ["page": page,
+                    "with_genres": genreId,
+                    "sort_by": "release_date.asc"]
         case .search(let searchText):
             return ["query": searchText]
         }

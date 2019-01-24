@@ -20,4 +20,18 @@ final class SearchMoviesViewModel: NSObject {
         return SearchMoviesResultController(viewModel: viewModel)
     }
     
+    // MARK: - Default search options
+    
+    func popularMoviesViewModel() -> MovieListViewModel {
+        return MovieListViewModel(filter: .popular)
+    }
+    
+    func topRatedMoviesViewModel() -> MovieListViewModel {
+        return MovieListViewModel(filter: .topRated)
+    }
+    
+    func moviesByGenreViewModel(genreId: Int) -> MovieListViewModel {
+        return MovieListViewModel(filter: .byGenre(genreId: genreId))
+    }
+    
 }

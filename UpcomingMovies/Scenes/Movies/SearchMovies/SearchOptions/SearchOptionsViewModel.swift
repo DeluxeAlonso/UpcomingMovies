@@ -17,6 +17,8 @@ final class SearchOptionsViewModel: NSObject {
     let viewState: Bindable<SearchOptionsViewState> = Bindable(.initial)
     var prepareUpdate: ((Bool) -> ())?
     var updateVisitedMovies: (() -> ())?
+    var selectedDefaultSearchOption: ((DefaultSearchOption) -> ())?
+    var selectedMovieGenre: ((Int) -> ())?
     
     var visitedMovieCells: [VisitedMovieCellViewModel] {
         guard let visited = fetchedResultsController.fetchedObjects else {
@@ -62,6 +64,16 @@ final class SearchOptionsViewModel: NSObject {
     
     func prepareRecentlyVisitedMoviesCell() -> RecentlyVisitedMoviesCellViewModel {
         return RecentlyVisitedMoviesCellViewModel(visitedMovieCells: visitedMovieCells)
+    }
+    
+    func getDefaultSearchSelection(by index: Int) {
+        let defaultSearchOption = defaultSearchOptions[index]
+        selectedDefaultSearchOption?(defaultSearchOption)
+    }
+    
+    func getMovieGenreSelection(by index: Int) {
+        let genres = AppManager.shared.genres
+        selectedMovieGenre?(genres[index].id)
     }
     
 }

@@ -67,7 +67,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2jh-II-zuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="696" y="-240"/>
+            <point key="canvasLocation" x="696" y="-243"/>
         </scene>
         <!--SearchMoviesNavigationController-->
         <scene sceneID="A0D-pP-wxe">

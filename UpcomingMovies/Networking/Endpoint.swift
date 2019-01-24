@@ -19,7 +19,7 @@ protocol Endpoint {
 extension Endpoint {
     
     var apiKey: String {
-        return "34a92f7d77a168fdcd9a46ee1863edf1"
+        return "0141e6d543b187f0b7e6bb3a1902209a"
     }
     
     var urlComponents: URLComponents {
