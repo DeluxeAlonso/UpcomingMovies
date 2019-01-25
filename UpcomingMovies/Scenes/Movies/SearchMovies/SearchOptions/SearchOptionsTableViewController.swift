@@ -12,7 +12,8 @@ protocol SearchOptionsTableViewControllerDelegate: class {
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectPopularMovies selected: Bool)
     
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectTopRatedMovies selected: Bool)
+    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
+                                          didSelectTopRatedMovies selected: Bool)
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectMovieGenre genreId: Int)
     
@@ -42,13 +43,18 @@ class SearchOptionsTableViewController: UITableViewController {
     }
     
     private func setupTableView() {
-        tableView.register(RecentlyVisitedMoviesTableViewCell.self, forCellReuseIdentifier: RecentlyVisitedMoviesTableViewCell.identifier)
-        tableView.register(UINib(nibName: RecentlyVisitedMoviesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RecentlyVisitedMoviesTableViewCell.identifier)
+        tableView.register(RecentlyVisitedMoviesTableViewCell.self,
+                           forCellReuseIdentifier: RecentlyVisitedMoviesTableViewCell.identifier)
+        tableView.register(UINib(nibName: RecentlyVisitedMoviesTableViewCell.identifier, bundle: nil),
+                           forCellReuseIdentifier: RecentlyVisitedMoviesTableViewCell.identifier)
         
-        tableView.register(DefaultSearchOptionTableViewCell.self, forCellReuseIdentifier: DefaultSearchOptionTableViewCell.identifier)
+        tableView.register(DefaultSearchOptionTableViewCell.self,
+                           forCellReuseIdentifier: DefaultSearchOptionTableViewCell.identifier)
         
-        tableView.register(GenreSearchOptionTableViewCell.self, forCellReuseIdentifier: GenreSearchOptionTableViewCell.identifier)
-        tableView.register(UINib(nibName: GenreSearchOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: GenreSearchOptionTableViewCell.identifier)
+        tableView.register(GenreSearchOptionTableViewCell.self,
+                           forCellReuseIdentifier: GenreSearchOptionTableViewCell.identifier)
+        tableView.register(UINib(nibName: GenreSearchOptionTableViewCell.identifier, bundle: nil),
+                           forCellReuseIdentifier: GenreSearchOptionTableViewCell.identifier)
     }
     
     // MARK: - Reactive Behaviour
@@ -119,19 +125,22 @@ class SearchOptionsTableViewController: UITableViewController {
     
     private func recentlyVisitedDataSource(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         guard let viewModel = viewModel else { fatalError() }
-        let cell = tableView.dequeueReusableCell(withIdentifier: RecentlyVisitedMoviesTableViewCell.identifier, for: indexPath) as! RecentlyVisitedMoviesTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: RecentlyVisitedMoviesTableViewCell.identifier,
+                                                 for: indexPath) as! RecentlyVisitedMoviesTableViewCell
         cell.viewModel = viewModel.prepareRecentlyVisitedMoviesCell()
         return cell
     }
     
     private func defaultSearchOptionDataSource(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: DefaultSearchOptionTableViewCell.identifier, for: indexPath) as! DefaultSearchOptionTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: DefaultSearchOptionTableViewCell.identifier,
+                                                 for: indexPath) as! DefaultSearchOptionTableViewCell
         cell.viewModel = viewModel?.defaultSearchOptionsCells[indexPath.row]
         return cell
     }
     
     private func genreSearchOptionDataSource(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: GenreSearchOptionTableViewCell.identifier, for: indexPath) as! GenreSearchOptionTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: GenreSearchOptionTableViewCell.identifier,
+                                                 for: indexPath) as! GenreSearchOptionTableViewCell
         cell.viewModel = viewModel?.genreCells[indexPath.row]
         return cell
     }

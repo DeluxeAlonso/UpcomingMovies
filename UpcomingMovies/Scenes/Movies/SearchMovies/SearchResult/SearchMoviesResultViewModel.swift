@@ -1,4 +1,3 @@
-
 //
 //  SearchMoviesResultViewModel.swift
 //  UpcomingMovies
@@ -49,7 +48,6 @@ final class SearchMoviesResultViewModel: NSObject {
                                                               sectionNameKeyPath: nil,
                                                               cacheName: nil)
         super.init()
-        fetchedResultsController.delegate = self
         loadRecentSearches()
     }
     
@@ -88,7 +86,11 @@ final class SearchMoviesResultViewModel: NSObject {
     // MARK: - Recent searches persistence
     
     func loadRecentSearches() {
-        try! fetchedResultsController.performFetch()
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError(error.localizedDescription)
+        }
     }
     
     func saveSearchText(_ searchText: String) {
@@ -138,21 +140,6 @@ extension SearchMoviesResultViewModel {
     func resetViewState() {
         clearMovies()
         viewState.value = .initial
-    }
-    
-}
-
-// MARK: - NSFetchedResultsControllerDelegate
-
-extension SearchMoviesResultViewModel: NSFetchedResultsControllerDelegate {
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     }
     
 }

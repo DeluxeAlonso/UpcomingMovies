@@ -40,4 +40,3 @@ extension Retryable where Self: UIViewController {
     }
     
 }
-

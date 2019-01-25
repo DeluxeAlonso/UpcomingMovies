@@ -10,7 +10,7 @@ import UIKit
 
 class LoadingButton: UIButton {
     
-    @IBInspectable var indicatorColor : UIColor = .white
+    @IBInspectable var indicatorColor: UIColor = .white
     
     var originalButtonText: String?
     var activityIndicator: UIActivityIndicatorView!
@@ -50,10 +50,22 @@ class LoadingButton: UIButton {
     }
     
     private func centerActivityIndicatorInButton() {
-        let xCenterConstraint = NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: activityIndicator, attribute: .centerX, multiplier: 1, constant: 0)
+        let xCenterConstraint = NSLayoutConstraint(item: self,
+                                                   attribute: .centerX,
+                                                   relatedBy: .equal,
+                                                   toItem: activityIndicator,
+                                                   attribute: .centerX,
+                                                   multiplier: 1,
+                                                   constant: 0)
         self.addConstraint(xCenterConstraint)
         
-        let yCenterConstraint = NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: activityIndicator, attribute: .centerY, multiplier: 1, constant: 0)
+        let yCenterConstraint = NSLayoutConstraint(item: self,
+                                                   attribute: .centerY,
+                                                   relatedBy: .equal,
+                                                   toItem: activityIndicator,
+                                                   attribute: .centerY,
+                                                   multiplier: 1,
+                                                   constant: 0)
         self.addConstraint(yCenterConstraint)
     }
     

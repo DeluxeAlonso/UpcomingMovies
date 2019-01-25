@@ -66,7 +66,7 @@ final class UpcomingMoviesViewModel {
         switch viewState.value {
         case .populated, .empty, .error, .loading:
             return 1
-        case .paging(_ , let page):
+        case .paging(_, let page):
             return page
         }
     }

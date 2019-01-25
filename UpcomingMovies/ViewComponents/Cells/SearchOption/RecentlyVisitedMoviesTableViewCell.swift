@@ -37,8 +37,10 @@ class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        collectionView.register(VisitedMovieCollectionViewCell.self, forCellWithReuseIdentifier: VisitedMovieCollectionViewCell.identifier)
-        collectionView.register(UINib(nibName: VisitedMovieCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: VisitedMovieCollectionViewCell.identifier)
+        collectionView.register(VisitedMovieCollectionViewCell.self,
+                                forCellWithReuseIdentifier: VisitedMovieCollectionViewCell.identifier)
+        collectionView.register(UINib(nibName: VisitedMovieCollectionViewCell.identifier, bundle: nil),
+                                forCellWithReuseIdentifier: VisitedMovieCollectionViewCell.identifier)
     }
     
     // MARK: - Reactive Behaviour
@@ -60,7 +62,8 @@ extension RecentlyVisitedMoviesTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let viewModel = viewModel else { fatalError() }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VisitedMovieCollectionViewCell.identifier, for: indexPath) as! VisitedMovieCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VisitedMovieCollectionViewCell.identifier,
+                                                      for: indexPath) as! VisitedMovieCollectionViewCell
         cell.viewModel = viewModel.visitedMovieCells[indexPath.row]
         return cell
     }
@@ -77,17 +80,23 @@ extension RecentlyVisitedMoviesTableViewCell: UICollectionViewDelegate {
 
 extension RecentlyVisitedMoviesTableViewCell: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         let posterHeight: Double = Double(contentView.frame.height) - Constants.cellHeightOffset
         let posterWidth: Double = posterHeight / Movie.posterAspectRatio
         return CGSize(width: posterWidth, height: posterHeight)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0.0, left: Constants.cellsVerticalMargin, bottom: 0.0, right: Constants.cellsVerticalMargin)
     }
     

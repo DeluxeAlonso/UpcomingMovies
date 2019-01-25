@@ -42,11 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                           to: controllerView!,
                           duration: 0.5,
                           options: [UIView.AnimationOptions.curveEaseOut, UIView.AnimationOptions.transitionCrossDissolve],
-                          completion: { (finished: Bool) -> () in
+                          completion: { _ in
                             self.window?.rootViewController = controller
         })
         UIView.commitAnimations()
     }
 
 }
-

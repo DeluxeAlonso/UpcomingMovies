@@ -28,11 +28,15 @@ class SearchMoviesResultController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
-        tableView.register(UINib(nibName: MovieTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MovieTableViewCell.identifier)
+        tableView.register(MovieTableViewCell.self,
+                           forCellReuseIdentifier: MovieTableViewCell.identifier)
+        tableView.register(UINib(nibName: MovieTableViewCell.identifier, bundle: nil),
+                           forCellReuseIdentifier: MovieTableViewCell.identifier)
         
-        tableView.register(RecentSearchTableViewCell.self, forCellReuseIdentifier: RecentSearchTableViewCell.identifier)
-        tableView.register(UINib(nibName: RecentSearchTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RecentSearchTableViewCell.identifier)
+        tableView.register(RecentSearchTableViewCell.self,
+                           forCellReuseIdentifier: RecentSearchTableViewCell.identifier)
+        tableView.register(UINib(nibName: RecentSearchTableViewCell.identifier, bundle: nil),
+                           forCellReuseIdentifier: RecentSearchTableViewCell.identifier)
         
         return tableView
     }()
@@ -83,8 +87,14 @@ class SearchMoviesResultController: UIViewController {
     // MARK: - Private
     
     private func setupObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(_:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(_:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
     
     private func setupUI() {
@@ -147,7 +157,7 @@ class SearchMoviesResultController: UIViewController {
     
     // MARK: - Selectors
     
-    @objc func keyboardWillShow(_ notification:Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         guard var keyboardFrame: CGRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
@@ -157,7 +167,7 @@ class SearchMoviesResultController: UIViewController {
         self.view.layoutIfNeeded()
     }
     
-    @objc func keyboardWillHide(_ notification:Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         self.view.layoutIfNeeded()
         tableViewBottomConstraint.constant = 0
         self.view.layoutIfNeeded()

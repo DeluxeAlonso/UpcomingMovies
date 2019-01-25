@@ -37,7 +37,7 @@ class ErrorPlaceholderView: UIView, NibLoadable {
     }
     
     var isPresented: Bool = false
-    var retry: (()->())?
+    var retry: (() -> Void)?
     
     // MARK: - Lifecycle
     

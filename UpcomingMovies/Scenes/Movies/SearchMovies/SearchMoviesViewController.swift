@@ -147,11 +147,13 @@ extension SearchMoviesViewController: SearchMoviesResultControllerDelegate {
 
 extension SearchMoviesViewController: SearchOptionsTableViewControllerDelegate {
     
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectPopularMovies selected: Bool) {
+    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
+                                          didSelectPopularMovies selected: Bool) {
         performSegue(withIdentifier: SegueIdentifier.movieList.rawValue, sender: viewModel.popularMoviesViewModel())
     }
     
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectTopRatedMovies selected: Bool) {
+    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
+                                          didSelectTopRatedMovies selected: Bool) {
         performSegue(withIdentifier: SegueIdentifier.movieList.rawValue, sender: viewModel.topRatedMoviesViewModel())
     }
     

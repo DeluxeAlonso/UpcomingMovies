@@ -43,8 +43,10 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.prefetchDataSource = self
-        collectionView.register(UpcomingMovieCollectionViewCell.self, forCellWithReuseIdentifier: UpcomingMovieCollectionViewCell.identifier)
-        collectionView.register(UINib(nibName: UpcomingMovieCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: UpcomingMovieCollectionViewCell.identifier)
+        collectionView.register(UpcomingMovieCollectionViewCell.self,
+                                forCellWithReuseIdentifier: UpcomingMovieCollectionViewCell.identifier)
+        collectionView.register(UINib(nibName: UpcomingMovieCollectionViewCell.identifier, bundle: nil),
+                                forCellWithReuseIdentifier: UpcomingMovieCollectionViewCell.identifier)
     }
     
     /**
@@ -91,7 +93,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     
 }
 
-// MARK - Retryable
+// MARK: - Retryable
 
 extension UpcomingMoviesViewController {
     
@@ -114,7 +116,8 @@ extension UpcomingMoviesViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingMovieCollectionViewCell.identifier, for: indexPath) as! UpcomingMovieCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingMovieCollectionViewCell.identifier,
+                                                      for: indexPath) as! UpcomingMovieCollectionViewCell
         cell.viewModel = viewModel.movieCells[indexPath.row]
         return cell
     }
@@ -142,14 +145,21 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
 
 extension UpcomingMoviesViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         let posterHeight: Double = Constants.cellHeight
         let posterWidth: Double = posterHeight / Movie.posterAspectRatio
         return CGSize(width: posterWidth, height: posterHeight)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: Constants.cellMargin, left: Constants.cellMargin, bottom: Constants.cellMargin, right: Constants.cellMargin)
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: Constants.cellMargin,
+                            left: Constants.cellMargin,
+                            bottom: Constants.cellMargin,
+                            right: Constants.cellMargin)
     }
     
 }

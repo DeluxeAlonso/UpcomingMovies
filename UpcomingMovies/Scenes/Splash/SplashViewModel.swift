@@ -12,13 +12,13 @@ final class SplashViewModel {
     
     private let genreClient = GenreClient()
     
-    var genresFetched: (() -> ())?
+    var genresFetched: (() -> Void)?
     
     /**
      * Fetch all the movie genres and save them in the AppManager Singleton.
      */
     func getMovieGenres() {
-        genreClient.getAllGenres() { result in
+        genreClient.getAllGenres { result in
             switch result {
             case .success(let genreResult):
                 guard let genreResult = genreResult,

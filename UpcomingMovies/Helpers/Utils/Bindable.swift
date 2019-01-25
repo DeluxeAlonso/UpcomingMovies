@@ -19,8 +19,8 @@ class Bindable<T> {
         }
     }
     
-    init(_ v: T) {
-        self.value = v
+    init(_ value: T) {
+        self.value = value
     }
     
     func bind(_ listener: Listener?) {
