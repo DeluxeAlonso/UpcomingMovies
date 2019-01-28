@@ -19,6 +19,8 @@ class VoteAverageView: UIView {
         return label
     }()
     
+    // MARK: - Configurable properties
+    
     private let backgroundLayer = CAShapeLayer()
     @IBInspectable var backgroundLayerColor: UIColor = .gray {
         didSet {
@@ -30,6 +32,18 @@ class VoteAverageView: UIView {
     @IBInspectable var loadedLayerColor: UIColor = .black {
         didSet {
             updateShapeLayerColors()
+        }
+    }
+    
+    @IBInspectable var layerLineWidth: CGFloat = 5.0 {
+        didSet {
+            setupShapeLayers()
+        }
+    }
+    
+    @IBInspectable var layerStartAngle: CGFloat = 45.0 {
+        didSet {
+            setupShapeLayerPath(loadedLayer)
         }
     }
     
@@ -72,13 +86,13 @@ class VoteAverageView: UIView {
     }
     
     private func setupShapeLayers() {
-        backgroundLayer.lineWidth = 5
+        backgroundLayer.lineWidth = layerLineWidth
         backgroundLayer.fillColor = nil
         backgroundLayer.strokeEnd = 1.0
         backgroundLayer.strokeColor = backgroundLayerColor.cgColor
         layer.addSublayer(backgroundLayer)
         
-        loadedLayer.lineWidth = 5
+        loadedLayer.lineWidth = layerLineWidth
         loadedLayer.fillColor = nil
         loadedLayer.strokeEnd = 0
         loadedLayer.strokeColor = loadedLayerColor.cgColor
@@ -89,8 +103,8 @@ class VoteAverageView: UIView {
     
     private func setupShapeLayerPath(_ shapeLayer: CAShapeLayer) {
         shapeLayer.frame = bounds
-        let startAngle = degreesToRadians(270.0)
-        let endAngle = degreesToRadians(630.0)
+        let startAngle = degreesToRadians(layerStartAngle)
+        let endAngle = degreesToRadians(layerStartAngle) + 2 * .pi
         let center = voteAverageLabel.center
         let radius = bounds.width * 0.35
         let path = UIBezierPath(arcCenter: center,

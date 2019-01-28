@@ -16,6 +16,7 @@ final class MovieDetailViewModel {
     var genre: String?
     var releaseDate: String?
     var posterPath: String?
+    var fullPosterPath: URL?
     var fullBackdropPath: URL?
     var overview: String?
     
@@ -28,6 +29,9 @@ final class MovieDetailViewModel {
         releaseDate = movie.releaseDate
         overview = movie.overview
         posterPath = movie.posterPath
+        if let posterPath = self.posterPath {
+            fullPosterPath = URL(string: URLConfiguration.mediaBackdropPath + posterPath)
+        }
         if let backdropPath = movie.backdropPath {
             fullBackdropPath = URL(string: URLConfiguration.mediaBackdropPath + backdropPath)
         }

@@ -13,6 +13,8 @@ import Kingfisher
 class MovieDetailViewController: UIViewController {
     
     @IBOutlet weak var backdropImageView: UIImageView!
+    @IBOutlet weak var posterContainerView: UIView!
+    @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
@@ -39,6 +41,7 @@ class MovieDetailViewController: UIViewController {
     private func setupUI() {
         title = "Movie detail"
         setupNavigationBar()
+        posterContainerView.setShadowBorder()
     }
     
     private func setupNavigationBar() {
@@ -53,8 +56,13 @@ class MovieDetailViewController: UIViewController {
         titleLabel.text = viewModel.title
         genreLabel.text = viewModel.genre
         releaseDateLabel.text = viewModel.releaseDate
+        
         backdropImageView.kf.indicatorType = .activity
         backdropImageView.kf.setImage(with: viewModel.fullBackdropPath)
+        
+        posterImageView.kf.indicatorType = .activity
+        posterImageView.kf.setImage(with: viewModel.fullPosterPath)
+        
         overviewLabel.text = viewModel.overview
         viewModel.saveVisitedMovie(managedObjectContext)
     }
