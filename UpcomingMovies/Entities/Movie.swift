@@ -13,10 +13,11 @@ struct Movie: Decodable {
     let id: Int
     let title: String
     let genres: [Int]?
+    let overview: String?
     let posterPath: String?
     let backdropPath: String?
     let releaseDate: String?
-    let overview: String?
+    let voteAverage: Double?
     
     static let posterAspectRatio: Double = 1.5
     
@@ -37,6 +38,7 @@ struct Movie: Decodable {
         case posterPath = "poster_path"
         case backdropPath = "backdrop_path"
         case releaseDate = "release_date"
+        case voteAverage = "vote_average"
     }
 
 }

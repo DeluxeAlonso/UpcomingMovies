@@ -14,11 +14,13 @@ final class MovieCellViewModel {
     var genre: String?
     var releaseDate: String?
     var fullPosterPath: URL?
+    var voteAverage: Double?
 
     init(_ movie: Movie) {
         name = movie.title
         genre = movie.genreName
         releaseDate = movie.releaseDate
+        voteAverage = movie.voteAverage
         if let posterPath = movie.posterPath {
             fullPosterPath = URL(string: URLConfiguration.mediaPath + posterPath)
         }
