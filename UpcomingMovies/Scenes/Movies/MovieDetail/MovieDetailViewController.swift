@@ -16,6 +16,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var posterContainerView: UIView!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var voteAverageView: VoteAverageView!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
@@ -63,6 +64,7 @@ class MovieDetailViewController: UIViewController {
         posterImageView.kf.indicatorType = .activity
         posterImageView.kf.setImage(with: viewModel.fullPosterPath)
         
+        voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview
         viewModel.saveVisitedMovie(managedObjectContext)
     }
