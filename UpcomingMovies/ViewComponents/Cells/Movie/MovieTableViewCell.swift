@@ -18,6 +18,7 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var voteAverageView: VoteAverageView!
     
     var viewModel: MovieCellViewModel? {
         didSet {
@@ -52,6 +53,7 @@ class MovieTableViewCell: UITableViewCell {
         releaseDateLabel.text = viewModel.releaseDate
         posterImageView.kf.indicatorType = .activity
         posterImageView.kf.setImage(with: viewModel.fullPosterPath)
+        voteAverageView.voteValue = viewModel.voteAverage
     }
 
 }
