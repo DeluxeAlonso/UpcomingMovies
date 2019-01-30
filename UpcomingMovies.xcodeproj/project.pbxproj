@@ -67,6 +67,8 @@
 		E223773C21EEAEFF000400B7 /* DefaultSearchOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773B21EEAEFF000400B7 /* DefaultSearchOption.swift */; };
 		E223773E21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773D21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift */; };
 		E223774021EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773F21EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift */; };
+		E2244B6D2200F5A500C484C2 /* MovieDetailTransitioningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2244B6B2200F5A500C484C2 /* MovieDetailTransitioningAnimator.swift */; };
+		E2244B6E2200F5A500C484C2 /* MovieDetailTransitioningInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2244B6C2200F5A500C484C2 /* MovieDetailTransitioningInteractor.swift */; };
 		E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */; };
 		E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64A21FFA099004AA771 /* UIView+Extensions.swift */; };
 		E24E010321FA33CE00A1A0A2 /* SegueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */; };
@@ -177,6 +179,8 @@
 		E223773B21EEAEFF000400B7 /* DefaultSearchOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOption.swift; sourceTree = "<group>"; };
 		E223773D21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOptionTableViewCell.swift; sourceTree = "<group>"; };
 		E223773F21EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOptionCellViewModel.swift; sourceTree = "<group>"; };
+		E2244B6B2200F5A500C484C2 /* MovieDetailTransitioningAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieDetailTransitioningAnimator.swift; path = UpcomingMovies/Scenes/Movies/MovieDetail/Components/Transitions/MovieDetailTransitioningAnimator.swift; sourceTree = SOURCE_ROOT; };
+		E2244B6C2200F5A500C484C2 /* MovieDetailTransitioningInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieDetailTransitioningInteractor.swift; path = UpcomingMovies/Scenes/Movies/MovieDetail/Components/Transitions/MovieDetailTransitioningInteractor.swift; sourceTree = SOURCE_ROOT; };
 		E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailBackdropView.swift; sourceTree = "<group>"; };
 		E226C64A21FFA099004AA771 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueHandler.swift; sourceTree = "<group>"; };
@@ -547,9 +551,20 @@
 			path = SearchOption;
 			sourceTree = "<group>";
 		};
+		E2244B6A2200F59400C484C2 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				E2244B6B2200F5A500C484C2 /* MovieDetailTransitioningAnimator.swift */,
+				E2244B6C2200F5A500C484C2 /* MovieDetailTransitioningInteractor.swift */,
+			);
+			name = Transitions;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		E226C64721FF89DD004AA771 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E2244B6A2200F59400C484C2 /* Transitions */,
 				E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */,
 			);
 			path = Components;
@@ -866,6 +881,7 @@
 				E2D4DD7221F018980004B7BF /* RecentlyVisitedMoviesCellViewModel.swift in Sources */,
 				E222DC2D2192CBBD00A2EDF4 /* URLConfiguration.swift in Sources */,
 				E22116B72191582C0039F8C9 /* Movie.swift in Sources */,
+				E2244B6D2200F5A500C484C2 /* MovieDetailTransitioningAnimator.swift in Sources */,
 				E26AB93021F8C0ED00D9FEAA /* MovieListViewController.swift in Sources */,
 				E200182A21EE336F00F29220 /* SearchOptionsViewModel.swift in Sources */,
 				E21F37852193EAD400D6BFB6 /* SearchMoviesViewModel.swift in Sources */,
@@ -880,6 +896,7 @@
 				E21F378A2193ED4000D6BFB6 /* SearchMoviesResultViewModel.swift in Sources */,
 				E223774021EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift in Sources */,
 				E223773E21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift in Sources */,
+				E2244B6E2200F5A500C484C2 /* MovieDetailTransitioningInteractor.swift in Sources */,
 				E21F379C2193FF1400D6BFB6 /* CustomFooterView.swift in Sources */,
 				E260117621938D6C00E53095 /* Retryable.swift in Sources */,
 				E200182821EE323200F29220 /* SearchOptionsTableViewController.swift in Sources */,
