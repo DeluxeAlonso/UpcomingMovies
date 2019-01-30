@@ -12,6 +12,7 @@ import Kingfisher
 
 class MovieDetailViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backdropImageView: UIImageView!
     @IBOutlet weak var posterContainerView: UIView!
     @IBOutlet weak var posterImageView: UIImageView!
@@ -38,6 +39,8 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
+
+    // MARK: - Private
     
     private func setupUI() {
         title = "Movie detail"

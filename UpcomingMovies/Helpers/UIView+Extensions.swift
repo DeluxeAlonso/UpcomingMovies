@@ -11,6 +11,13 @@ import UIKit
 extension UIView {
     
     /**
+     * Frame of the view relative to the app window.
+     */
+    var globalFrame: CGRect? {
+        return self.superview?.convert(self.frame, to: nil)
+    }
+    
+    /**
      * Show a single shadow around the border of the view.
      */
     func setShadowBorder(shadowColor: CGColor = UIColor.black.cgColor, shadowRadious: CGFloat = 5) {

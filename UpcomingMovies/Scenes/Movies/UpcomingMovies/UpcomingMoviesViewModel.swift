@@ -43,6 +43,8 @@ final class UpcomingMoviesViewModel {
         return movies.compactMap { UpcomingMovieCellViewModel($0) }
     }
     
+    var selectedMovieCell: UpcomingMovieCellViewModel?
+    
     // MARK: - Public
     
     func buildDetailViewModel(atIndex index: Int) -> MovieDetailViewModel? {
@@ -69,6 +71,10 @@ final class UpcomingMoviesViewModel {
         case .paging(_, let page):
             return page
         }
+    }
+    
+    func setSelectedMovie(at index: Int) {
+        selectedMovieCell = movieCells[index]
     }
     
     // MARK: - Private
