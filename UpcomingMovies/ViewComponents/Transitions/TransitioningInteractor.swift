@@ -1,5 +1,5 @@
 //
-//  MovieDetailTransitioningInteractor.swift
+//  TransitioningInteractor.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 1/29/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieDetailTransitioningInteractor: UIPercentDrivenInteractiveTransition {
+class TransitioningInteractor: UIPercentDrivenInteractiveTransition {
     
     private var navigationController: UINavigationController
     private var shouldCompleteTransition: Bool = false
