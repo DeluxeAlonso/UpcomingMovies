@@ -51,7 +51,7 @@ final class UpcomingMoviesViewModel {
     }
     
     func getUpcomingMovies() {
-        movieClient.getUpcomingMovies(page: getCurrentPage()) { result in
+        movieClient.getMovies(page: getCurrentPage(), filter: .upcoming) { result in
             switch result {
             case .success(let movieResult):
                 guard let movieResult = movieResult else { return }
