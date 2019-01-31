@@ -94,18 +94,6 @@ final class MovieListViewModel {
         })
     }
     
-    func getUpcomingMovies() {
-        movieClient.getUpcomingMovies(page: getCurrentPage()) { result in
-            switch result {
-            case .success(let movieResult):
-                guard let movieResult = movieResult else { return }
-                self.processMovieResult(movieResult)
-            case .failure(let error):
-                self.viewState.value = .error(error)
-            }
-        }
-    }
-    
     private func getCurrentPage() -> Int {
         switch viewState.value {
         case .populated, .empty, .error, .loading:

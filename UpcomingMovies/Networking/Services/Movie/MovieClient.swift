@@ -41,19 +41,21 @@ class MovieClient: APIClient {
         }, completion: completion)
     }
     
-    func getUpcomingMovies(page: Int = 1, completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
-        fetch(with: MovieProvider.getUpcoming(page: page).request, decode: { json -> MovieResult? in
-            guard let movieResult = json as? MovieResult else { return  nil }
-            return movieResult
-        }, completion: completion)
-    }
-    
     // MARK: - Movie search
     
     func searchMovies(searchText: String, completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
         fetch(with: MovieProvider.search(searchText: searchText).request, decode: { json -> MovieResult? in
             guard let movieResult = json as? MovieResult else { return  nil }
             return movieResult
+        }, completion: completion)
+    }
+    
+    // MARK: - Movie detail
+    
+    func getMovieDetail(with movieId: Int, completion: @escaping (Result<Movie?, APIError>) -> Void) {
+        fetch(with: MovieProvider.getDetail(id: movieId).request, decode: { json -> Movie? in
+            guard let movie = json as? Movie else { return nil}
+            return movie
         }, completion: completion)
     }
     

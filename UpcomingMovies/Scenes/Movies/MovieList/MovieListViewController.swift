@@ -125,7 +125,7 @@ extension MovieListViewController {
         self.presentFullScreenErrorView(withErrorMessage: errorMessage)
         self.errorView?.retry = { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.viewModel.getUpcomingMovies()
+            strongSelf.viewModel.getMovies()
         }
     }
     
@@ -147,7 +147,7 @@ extension MovieListViewController: UITableViewDataSourcePrefetching {
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         if indexPaths.contains(where: isLoadingCell) {
-            viewModel.getUpcomingMovies()
+            viewModel.getMovies()
         }
     }
     
