@@ -10,11 +10,11 @@ import UIKit
 import CoreData
 import Kingfisher
 
-class MovieDetailViewController: UIViewController {
+class MovieDetailViewController: UIViewController, Transitionable {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backdropImageView: UIImageView!
-    @IBOutlet weak var posterContainerView: UIView!
+    @IBOutlet weak var transitionContainerView: UIView!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var voteAverageView: VoteAverageView!
@@ -45,7 +45,7 @@ class MovieDetailViewController: UIViewController {
     private func setupUI() {
         title = "Movie detail"
         setupNavigationBar()
-        posterContainerView.setShadowBorder()
+        transitionContainerView.setShadowBorder()
     }
     
     private func setupNavigationBar() {

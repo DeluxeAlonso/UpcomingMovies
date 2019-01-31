@@ -230,11 +230,11 @@
                         <outlet property="backdropImageView" destination="RsL-2b-bRH" id="s7t-J9-geQ"/>
                         <outlet property="genreLabel" destination="Gkj-So-5cA" id="6cf-Ds-lSf"/>
                         <outlet property="overviewLabel" destination="1SK-ri-asW" id="H56-aK-zWQ"/>
-                        <outlet property="posterContainerView" destination="Bbt-pF-Smm" id="wIt-9R-cct"/>
                         <outlet property="posterImageView" destination="zXa-53-Cbr" id="BFV-Zl-Ysh"/>
                         <outlet property="releaseDateLabel" destination="slt-aQ-ofO" id="tNa-Gm-6GR"/>
                         <outlet property="scrollView" destination="QLg-25-1il" id="q22-P0-AtW"/>
                         <outlet property="titleLabel" destination="r2f-cr-5vC" id="geG-f4-gTb"/>
+                        <outlet property="transitionContainerView" destination="Bbt-pF-Smm" id="Dt4-HJ-CP4"/>
                         <outlet property="voteAverageView" destination="Tar-Cz-6l1" id="atM-cI-oWs"/>
                     </connections>
                 </viewController>

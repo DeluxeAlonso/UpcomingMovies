@@ -13,7 +13,7 @@ extension UIView {
     /**
      * Frame of the view relative to the app window.
      */
-    var globalFrame: CGRect? {
+    var absoluteFrame: CGRect? {
         return self.superview?.convert(self.frame, to: nil)
     }
     

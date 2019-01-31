@@ -18,7 +18,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     
     private var selectedFrame: CGRect?
     private var imageToTransition: UIImage?
-    private var transitionInteractor: MovieDetailTransitioningInteractor?
+    private var transitionInteractor: TransitioningInteractor?
     
     var errorView: ErrorPlaceholderView?
 
@@ -199,21 +199,18 @@ extension UpcomingMoviesViewController: UINavigationControllerDelegate {
                               animationControllerFor operation: UINavigationController.Operation,
                               from fromVC: UIViewController,
                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        guard let frame = selectedFrame else {
-                return nil
-        }
+        guard let frame = selectedFrame else { return nil }
+        let transitionView = UIImageView(image: imageToTransition)
         switch operation {
         case .push:
-            transitionInteractor = MovieDetailTransitioningInteractor(attachTo: toVC)
-            return MovieDetailTransitioningAnimator(duration: TimeInterval(0.3),
-                                                    isPresenting: true,
+            transitionInteractor = TransitioningInteractor(attachTo: toVC)
+            return TransitioningAnimator(isPresenting: true,
                                                     originFrame: frame,
-                                                    image: imageToTransition)
+                                                    transitionView: transitionView)
         case .pop, .none:
-            return MovieDetailTransitioningAnimator(duration: TimeInterval(0.3),
-                                                    isPresenting: false,
+            return TransitioningAnimator(isPresenting: false,
                                                     originFrame: frame,
-                                                    image: imageToTransition)
+                                                    transitionView: transitionView)
         }
     }
     
