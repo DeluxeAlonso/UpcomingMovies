@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class VisitedMovieCollectionViewCell: UICollectionViewCell {
+class VisitedMovieCollectionViewCell: UICollectionViewCell, Animatable {
     
     static let identifier = "VisitedMovieCell"
     
@@ -21,16 +21,21 @@ class VisitedMovieCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    // MARK: - Lifecycle
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    var settings: AnimatableSettings {
+        var settings = AnimatableSettings()
+        settings.transform = .init(scaleX: 0.90, y: 0.90)
+        settings.duration = 0.3
+        settings.springDamping = 1.0
+        settings.springVelocity = 0.5
+        return settings
     }
     
-    // MARK: - Private
+    // MARK: - Lifecycle
     
-    private func setupUI() {
-        
+    override var isHighlighted: Bool {
+        didSet {
+            highlight(isHighlighted)
+        }
     }
     
     // MARK: - Reactive Behaviour
