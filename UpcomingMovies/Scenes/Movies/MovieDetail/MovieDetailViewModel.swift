@@ -15,9 +15,11 @@ final class MovieDetailViewModel {
     var title: String
     var genre: String?
     var releaseDate: String?
-    var posterPath: String?
-    var fullBackdropPath: URL?
     var overview: String?
+    var voteAverage: Double?
+    var posterPath: String?
+    var fullPosterPath: URL?
+    var fullBackdropPath: URL?
     
     // MARK: - Initializers
 
@@ -26,8 +28,12 @@ final class MovieDetailViewModel {
         title = movie.title
         genre = movie.genreName
         releaseDate = movie.releaseDate
+        voteAverage = movie.voteAverage
         overview = movie.overview
         posterPath = movie.posterPath
+        if let posterPath = self.posterPath {
+            fullPosterPath = URL(string: URLConfiguration.mediaBackdropPath + posterPath)
+        }
         if let backdropPath = movie.backdropPath {
             fullBackdropPath = URL(string: URLConfiguration.mediaBackdropPath + backdropPath)
         }

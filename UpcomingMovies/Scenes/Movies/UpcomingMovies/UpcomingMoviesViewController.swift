@@ -16,6 +16,10 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     private var viewModel = UpcomingMoviesViewModel()
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
+    private var selectedFrame: CGRect?
+    private var imageToTransition: UIImage?
+    private var transitionInteractor: TransitioningInteractor?
+    
     var errorView: ErrorPlaceholderView?
 
     // MARK: - Lifecycle
@@ -36,6 +40,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     }
     
     private func setupNavigationBar() {
+        navigationController?.delegate = self
         navigationItem.title = Constants.NavigationItemTitle
     }
     
@@ -129,6 +134,12 @@ extension UpcomingMoviesViewController: UICollectionViewDataSource {
 extension UpcomingMoviesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cellAttributes = collectionView.layoutAttributesForItem(at: indexPath) else { return }
+        let cell = collectionView.cellForItem(at: indexPath) as! UpcomingMovieCollectionViewCell
+        imageToTransition = cell.posterImageView.image
+        selectedFrame = collectionView.convert(cellAttributes.frame,
+                                               to: collectionView.superview)
+        viewModel.setSelectedMovie(at: indexPath.row)
         performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue, sender: indexPath)
     }
     
@@ -178,6 +189,38 @@ extension UpcomingMoviesViewController: UICollectionViewDataSourcePrefetching {
         }
     }
 
+}
+
+// MARK: - UINavigationControllerDelegate
+
+extension UpcomingMoviesViewController: UINavigationControllerDelegate {
+    
+    func navigationController(_ navigationController: UINavigationController,
+                              animationControllerFor operation: UINavigationController.Operation,
+                              from fromVC: UIViewController,
+                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        guard let frame = selectedFrame else { return nil }
+        let transitionView = UIImageView(image: imageToTransition)
+        switch operation {
+        case .push:
+            transitionInteractor = TransitioningInteractor(attachTo: toVC)
+            return TransitioningAnimator(isPresenting: true,
+                                                    originFrame: frame,
+                                                    transitionView: transitionView)
+        case .pop, .none:
+            return TransitioningAnimator(isPresenting: false,
+                                                    originFrame: frame,
+                                                    transitionView: transitionView)
+        }
+    }
+    
+    func navigationController(_ navigationController: UINavigationController,
+                              interactionControllerFor animationController: UIViewControllerAnimatedTransitioning)
+        -> UIViewControllerInteractiveTransitioning? {
+        guard let transitionInteractor = transitionInteractor else { return nil }
+        return transitionInteractor.transitionInProgress ? transitionInteractor : nil
+    }
+    
 }
 
 // MARK: - Segue Identifiers

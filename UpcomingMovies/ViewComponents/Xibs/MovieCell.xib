@@ -90,6 +90,12 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="loadedLayerColor">
                                                 <color key="value" red="0.0" green="0.39607843139999999" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layerLineWidth">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layerStartAngle">
+                                                <real key="value" value="270"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
