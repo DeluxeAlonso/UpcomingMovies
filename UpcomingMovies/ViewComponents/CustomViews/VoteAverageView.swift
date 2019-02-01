@@ -121,7 +121,7 @@ class VoteAverageView: UIView {
     }
     
     private func updateVoteValue() {
-        guard let voteValue = voteValue else {
+        guard let voteValue = voteValue, voteValue > 0.0 else {
             voteAverageLabel.text = "-"
             loadedLayer.strokeEnd = 0.0
             return
