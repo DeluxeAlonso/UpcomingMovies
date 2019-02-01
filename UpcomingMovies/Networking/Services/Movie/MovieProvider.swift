@@ -55,7 +55,7 @@ extension MovieProvider: Endpoint {
         case .getByGenreId(let page, let genreId):
             return ["page": page,
                     "with_genres": genreId,
-                    "sort_by": "release_date.asc"]
+                    "sort_by": "release_date.desc"]
         case .search(let searchText):
             return ["query": searchText]
         case .getDetail:
