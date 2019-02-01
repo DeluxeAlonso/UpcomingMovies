@@ -201,6 +201,7 @@ extension UpcomingMoviesViewController: UINavigationControllerDelegate {
                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         guard let frame = selectedFrame else { return nil }
         let transitionView = UIImageView(image: imageToTransition)
+        transitionView.contentMode = .scaleAspectFit
         switch operation {
         case .push:
             transitionInteractor = TransitioningInteractor(attachTo: toVC)
