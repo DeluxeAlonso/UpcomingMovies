@@ -27,8 +27,11 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
         setupBindables()
     }
     
+    // MARK: - Private
+    
     private func setupUI() {
         setupTableView()
+        setupForceTouchSupport()
     }
     
     private func setupTableView() {
@@ -38,6 +41,12 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
         tableView.estimatedRowHeight = 150
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
         tableView.register(UINib(nibName: MovieTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MovieTableViewCell.identifier)
+    }
+    
+    private func setupForceTouchSupport() {
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: tableView)
+        }
     }
     
     /**
@@ -149,6 +158,28 @@ extension MovieListViewController: UITableViewDataSourcePrefetching {
         if indexPaths.contains(where: isLoadingCell) {
             viewModel.getMovies()
         }
+    }
+    
+}
+
+extension MovieListViewController: UIViewControllerPreviewingDelegate {
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location),
+            let cell = tableView.cellForRow(at: indexPath) else {
+            return nil
+        }
+        let storyboard = UIStoryboard(name: "MovieDetail", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
+        _ = viewController.view
+        viewController.viewModel = viewModel.buildDetailViewModel(atIndex: indexPath.row)
+        viewController.preferredContentSize = CGSize(width: 0.0, height: 450)
+        previewingContext.sourceRect = cell.frame
+        return viewController
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: nil)
     }
     
 }

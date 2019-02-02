@@ -63,7 +63,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
             collectionView.backgroundView = loadingView
             hideErrorView()
         case .populated, .paging, .empty:
-            collectionView.backgroundView = UIView(frame: .zero)//nil
+            collectionView.backgroundView = UIView(frame: .zero)
             hideErrorView()
         case .error(let error):
             showErrorView(withErrorMessage: error.localizedDescription)
