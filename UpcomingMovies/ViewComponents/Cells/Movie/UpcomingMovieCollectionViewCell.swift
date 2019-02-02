@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class UpcomingMovieCollectionViewCell: UICollectionViewCell {
+class UpcomingMovieCollectionViewCell: UICollectionViewCell, Animatable {
     
     static let identifier = "UpcomingMovieCell"
     

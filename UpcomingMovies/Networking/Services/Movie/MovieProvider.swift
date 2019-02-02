@@ -15,6 +15,7 @@ enum MovieProvider {
     case getTopRated(page: Int)
     case getByGenreId(page: Int, genreId: Int)
     case search(searchText: String)
+    case getDetail(id: Int)
     
 }
 
@@ -38,6 +39,8 @@ extension MovieProvider: Endpoint {
             return "/3/discover/movie"
         case .search:
             return "/3/search/movie"
+        case .getDetail(let id):
+            return "/3/movie/\(id)"
         }
     }
     
@@ -52,9 +55,11 @@ extension MovieProvider: Endpoint {
         case .getByGenreId(let page, let genreId):
             return ["page": page,
                     "with_genres": genreId,
-                    "sort_by": "release_date.asc"]
+                    "sort_by": "release_date.desc"]
         case .search(let searchText):
             return ["query": searchText]
+        case .getDetail:
+            return nil
         }
     }
     
