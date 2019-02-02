@@ -34,6 +34,10 @@ class MovieDetailViewController: UIViewController, Transitionable {
     }
     
     // MARK: - Lifecycle
+    
+    deinit {
+        print("MovieDetailViewController")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
