@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum AppShortcutItem: String {
+    
+    case searchMovies
+    
+}
+
 class AppManager {
     
     static let shared: AppManager = AppManager()

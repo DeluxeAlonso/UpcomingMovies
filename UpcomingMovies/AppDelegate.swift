@@ -14,10 +14,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var storyboard: UIStoryboard!
+    
+    private var currentTabBarSelectedIndex: Int = 0
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         storyboard = UIStoryboard(name: "Main", bundle: nil)
         return true
+    }
+    
+    func application(_ application: UIApplication,
+                     performActionFor shortcutItem: UIApplicationShortcutItem,
+                     completionHandler: @escaping (Bool) -> Void) {
+        guard let shorcut = AppShortcutItem(rawValue: shortcutItem.type) else { return }
+        switch shorcut {
+        case .searchMovies:
+            currentTabBarSelectedIndex = 1
+            guard let tabBarController = window?.rootViewController as? UITabBarController else {
+                return
+            }
+            tabBarController.selectedIndex = currentTabBarSelectedIndex
+        }
     }
     
     // MARK: - Core Data Handler
@@ -36,8 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func initialTransition() {
         let initialViewController = window?.rootViewController
         let initialView = initialViewController?.view
-        let controller = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as UIViewController?
-        let controllerView = controller?.view
+        guard let controller = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController else {
+            fatalError()
+        }
+        controller.selectedIndex = currentTabBarSelectedIndex
+        let controllerView = controller.view
         UIView.transition(from: initialView!,
                           to: controllerView!,
                           duration: 0.5,
