@@ -52,10 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func initialTransition() {
         let initialViewController = window?.rootViewController
         let initialView = initialViewController?.view
-        guard let controller = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController else {
+        guard let controller = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController else {
             fatalError()
         }
-        controller.selectedIndex = currentTabBarSelectedIndex
+        controller.setSelectedIndex(currentTabBarSelectedIndex)
         let controllerView = controller.view
         UIView.transition(from: initialView!,
                           to: controllerView!,

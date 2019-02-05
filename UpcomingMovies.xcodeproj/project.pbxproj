@@ -91,6 +91,10 @@
 		E284EF4D21F127FB004E705F /* VisitedMovieCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284EF4C21F127FB004E705F /* VisitedMovieCellViewModel.swift */; };
 		E284EF4F21F12A12004E705F /* VisitedMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284EF4E21F12A11004E705F /* VisitedMovieCollectionViewCell.swift */; };
 		E284EF5121F12AF5004E705F /* VisitedMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E284EF5021F12AF5004E705F /* VisitedMovieCell.xib */; };
+		E29407FE2209E83600A74F68 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */; };
+		E29408002209E85000A74F68 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */; };
+		E2940803220A152700A74F68 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2940802220A152700A74F68 /* MainTabBarController.swift */; };
+		E2940805220A188100A74F68 /* TabBarScrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2940804220A188000A74F68 /* TabBarScrollable.swift */; };
 		E2A65E5121FEC39800485B4E /* VoteAverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A65E5021FEC39800485B4E /* VoteAverageView.swift */; };
 		E2A65E5321FECC2200485B4E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A65E5221FECC2200485B4E /* Utils.swift */; };
 		E2D4DD6E21F016E10004B7BF /* RecentlyVisitedMoviesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D4DD6D21F016E10004B7BF /* RecentlyVisitedMoviesCell.xib */; };
@@ -205,6 +209,10 @@
 		E284EF4C21F127FB004E705F /* VisitedMovieCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitedMovieCellViewModel.swift; sourceTree = "<group>"; };
 		E284EF4E21F12A11004E705F /* VisitedMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitedMovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		E284EF5021F12AF5004E705F /* VisitedMovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisitedMovieCell.xib; sourceTree = "<group>"; };
+		E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		E2940802220A152700A74F68 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		E2940804220A188000A74F68 /* TabBarScrollable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScrollable.swift; sourceTree = "<group>"; };
 		E2A65E5021FEC39800485B4E /* VoteAverageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteAverageView.swift; sourceTree = "<group>"; };
 		E2A65E5221FECC2200485B4E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E2D4DD6D21F016E10004B7BF /* RecentlyVisitedMoviesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentlyVisitedMoviesCell.xib; sourceTree = "<group>"; };
@@ -388,6 +396,7 @@
 		E22116A221914EF00039F8C9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E2940801220A150900A74F68 /* TabBar */,
 				E21F379F21941D1900D6BFB6 /* Splash */,
 				E22116A321914EF60039F8C9 /* Movies */,
 				E22116A521914F000039F8C9 /* Settings */,
@@ -427,13 +436,15 @@
 			isa = PBXGroup;
 			children = (
 				E26F03B721E461C7009859DF /* Core Data */,
-				E222DC2C2192CBBD00A2EDF4 /* URLConfiguration.swift */,
 				E22116B2219156F10039F8C9 /* Utils */,
+				E222DC2C2192CBBD00A2EDF4 /* URLConfiguration.swift */,
 				E260116D219388B700E53095 /* FontHelper.swift */,
 				E260116F219388C500E53095 /* ColorPalette.swift */,
 				E21F37B02194241B00D6BFB6 /* UIViewController+Extensions.swift */,
 				E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */,
 				E226C64A21FFA099004AA771 /* UIView+Extensions.swift */,
+				E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */,
+				E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -447,6 +458,7 @@
 				E260117121938BB800E53095 /* ErrorDisplayable.swift */,
 				E260117521938D6C00E53095 /* Retryable.swift */,
 				E2A65E5221FECC2200485B4E /* Utils.swift */,
+				E2940804220A188000A74F68 /* TabBarScrollable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -619,6 +631,14 @@
 				E26F03BA21E462E2009859DF /* NSManagedObjectContext+Extensions.swift */,
 			);
 			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		E2940801220A150900A74F68 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				E2940802220A152700A74F68 /* MainTabBarController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		E2F9F71D2201FBE600C62089 /* Transitions */ = {
@@ -835,6 +855,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E29408002209E85000A74F68 /* UICollectionView+Extensions.swift in Sources */,
 				E22116BC219160260039F8C9 /* ApiClient.swift in Sources */,
 				E2A65E5121FEC39800485B4E /* VoteAverageView.swift in Sources */,
 				E21F378C2193F01600D6BFB6 /* MovieSearchController.swift in Sources */,
@@ -844,6 +865,7 @@
 				E26AB93221F8C15800D9FEAA /* MovieListViewModel.swift in Sources */,
 				E22116CA219167B50039F8C9 /* UpcomingMoviesViewController.swift in Sources */,
 				E21F37AF2194200A00D6BFB6 /* AppManager.swift in Sources */,
+				E2940805220A188100A74F68 /* TabBarScrollable.swift in Sources */,
 				E21F37A121941D2900D6BFB6 /* SplashViewController.swift in Sources */,
 				E24E010321FA33CE00A1A0A2 /* SegueHandler.swift in Sources */,
 				E223773C21EEAEFF000400B7 /* DefaultSearchOption.swift in Sources */,
@@ -858,6 +880,7 @@
 				E222B95B21FA0F49008BA816 /* UpcomingMovieCellViewModel.swift in Sources */,
 				E222DC262192AF9700A2EDF4 /* MovieTableViewCell.swift in Sources */,
 				E223773A21EEA317000400B7 /* GenreSearchOptionCellViewModel.swift in Sources */,
+				E2940803220A152700A74F68 /* MainTabBarController.swift in Sources */,
 				E21F37A321941D3900D6BFB6 /* SplashViewModel.swift in Sources */,
 				E22116C2219160D90039F8C9 /* ApiError.swift in Sources */,
 				E22116B921915F5A0039F8C9 /* MovieResult.swift in Sources */,
@@ -880,6 +903,7 @@
 				E284EF4D21F127FB004E705F /* VisitedMovieCellViewModel.swift in Sources */,
 				E21F37902193F36300D6BFB6 /* RecentSearchTableViewCell.swift in Sources */,
 				E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */,
+				E29407FE2209E83600A74F68 /* UITableView+Extensions.swift in Sources */,
 				E26011642193823C00E53095 /* TableViewCellAnimator.swift in Sources */,
 				E2F9F7222202787F00C62089 /* TransitioningAnimator.swift in Sources */,
 				E260116C2193884C00E53095 /* LoadingButton.swift in Sources */,

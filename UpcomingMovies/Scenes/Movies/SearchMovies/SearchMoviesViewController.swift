@@ -13,6 +13,7 @@ class SearchMoviesViewController: UIViewController, SegueHandler {
     
     private var viewModel: SearchMoviesViewModel = SearchMoviesViewModel()
     private var searchController: MovieSearchController!
+    private var searchOptionsContainerView: SearchOptionsTableViewController!
     
     private var managedObjectContext: NSManagedObjectContext {
         guard let appDelegate = appDelegate else { fatalError() }
@@ -78,9 +79,20 @@ class SearchMoviesViewController: UIViewController, SegueHandler {
             _ = viewController.view
             viewController.delegate = self
             viewController.viewModel = viewModel.searchOptionsViewModel(managedObjectContext)
+            searchOptionsContainerView = viewController
         }
     }
 
+}
+
+// MARK: - TabBarScrollable
+
+extension SearchMoviesViewController: TabBarScrollable {
+    
+    func handleTabBarSelection() {
+        searchOptionsContainerView.tableView.scrollToTop(animated: true)
+    }
+    
 }
 
 // MARK: - UISearchResultsUpdating

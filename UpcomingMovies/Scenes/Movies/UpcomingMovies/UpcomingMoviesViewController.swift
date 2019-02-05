@@ -98,6 +98,16 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     
 }
 
+// MARK: - TabBarScrollable
+
+extension UpcomingMoviesViewController: TabBarScrollable {
+    
+    func handleTabBarSelection() {
+        collectionView.scrollToTop(animated: true)
+    }
+    
+}
+
 // MARK: - Retryable
 
 extension UpcomingMoviesViewController {
