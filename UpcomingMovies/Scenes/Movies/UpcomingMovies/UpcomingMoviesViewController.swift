@@ -48,7 +48,6 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     
     private func setupCollectionView() {
         collectionView.delegate = self
-        collectionView.prefetchDataSource = self
         collectionView.register(UpcomingMovieCollectionViewCell.self,
                                 forCellWithReuseIdentifier: UpcomingMovieCollectionViewCell.identifier)
         collectionView.register(UINib(nibName: UpcomingMovieCollectionViewCell.identifier, bundle: nil),
@@ -56,8 +55,12 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     }
     
     private func reloadCollectionView() {
-        dataSource = UpcomingMoviesDataSource(viewModel: viewModel)
+        dataSource = UpcomingMoviesDataSource(viewModel: viewModel,
+                                              prefetchHandler: { [weak self] in
+            self?.viewModel.getUpcomingMovies()
+        })
         collectionView.dataSource = dataSource
+        collectionView.prefetchDataSource = dataSource
         collectionView.reloadData()
     }
     
@@ -167,22 +170,6 @@ extension UpcomingMoviesViewController: UICollectionViewDelegateFlowLayout {
                             bottom: Constants.cellMargin, right: Constants.cellMargin)
     }
     
-}
-
-// MARK: - UICollectionViewDataSourcePrefetching
-
-extension UpcomingMoviesViewController: UICollectionViewDataSourcePrefetching {
-    
-    private func isLoadingCell(for indexPath: IndexPath) -> Bool {
-        return indexPath.row >= viewModel.movieCells.count - 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        if indexPaths.contains(where: isLoadingCell) {
-            viewModel.getUpcomingMovies()
-        }
-    }
-
 }
 
 // MARK: - UINavigationControllerDelegate
