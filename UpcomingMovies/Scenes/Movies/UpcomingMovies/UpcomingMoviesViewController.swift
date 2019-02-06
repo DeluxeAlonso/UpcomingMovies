@@ -14,6 +14,8 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     @IBOutlet var loadingView: UIView!
     
     private var viewModel = UpcomingMoviesViewModel()
+    private var dataSource: UpcomingMoviesDataSource!
+    
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
     private var selectedFrame: CGRect?
@@ -46,12 +48,17 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     
     private func setupCollectionView() {
         collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.prefetchDataSource = self
         collectionView.register(UpcomingMovieCollectionViewCell.self,
                                 forCellWithReuseIdentifier: UpcomingMovieCollectionViewCell.identifier)
         collectionView.register(UINib(nibName: UpcomingMovieCollectionViewCell.identifier, bundle: nil),
                                 forCellWithReuseIdentifier: UpcomingMovieCollectionViewCell.identifier)
+    }
+    
+    private func reloadCollectionView() {
+        dataSource = UpcomingMoviesDataSource(viewModel: viewModel)
+        collectionView.dataSource = dataSource
+        collectionView.reloadData()
     }
     
     /**
@@ -73,14 +80,10 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        setupViewStateReactiveBehaviour()
-    }
-    
-    private func setupViewStateReactiveBehaviour() {
         viewModel.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             strongSelf.configureView(withState: state)
-            strongSelf.collectionView.reloadData()
+            strongSelf.reloadCollectionView()
         })
     }
     
@@ -122,23 +125,6 @@ extension UpcomingMoviesViewController {
     
 }
 
-// MARK: - UICollectionViewDataSource
-
-extension UpcomingMoviesViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.movieCells.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingMovieCollectionViewCell.identifier,
-                                                      for: indexPath) as! UpcomingMovieCollectionViewCell
-        cell.viewModel = viewModel.movieCells[indexPath.row]
-        return cell
-    }
-
-}
-
 // MARK: - UICollectionViewDelegate
 
 extension UpcomingMoviesViewController: UICollectionViewDelegate {
@@ -177,10 +163,8 @@ extension UpcomingMoviesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: Constants.cellMargin,
-                            left: Constants.cellMargin,
-                            bottom: Constants.cellMargin,
-                            right: Constants.cellMargin)
+        return UIEdgeInsets(top: Constants.cellMargin, left: Constants.cellMargin,
+                            bottom: Constants.cellMargin, right: Constants.cellMargin)
     }
     
 }

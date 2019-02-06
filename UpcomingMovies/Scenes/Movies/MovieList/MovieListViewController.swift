@@ -15,6 +15,7 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
     
     var viewModel: MovieListViewModel = MovieListViewModel()
     
+    private var dataSource: MovieListDataSource!
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
     var errorView: ErrorPlaceholderView?
@@ -36,7 +37,6 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
     
     private func setupTableView() {
         tableView.delegate = self
-        tableView.dataSource = self
         tableView.prefetchDataSource = self
         tableView.estimatedRowHeight = 150
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
@@ -47,6 +47,12 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
         if traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: tableView)
         }
+    }
+    
+    private func reloadTableView() {
+        dataSource = MovieListDataSource(viewModel: viewModel)
+        tableView.dataSource = dataSource
+        tableView.reloadData()
     }
     
     /**
@@ -73,7 +79,7 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
         viewModel.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             strongSelf.configureView(withState: state)
-            strongSelf.tableView.reloadData()
+            strongSelf.reloadTableView()
         })
     }
     
@@ -89,23 +95,6 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
         }
     }
 
-}
-
-// MARK: - UITableViewDataSource
-
-extension MovieListViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.movieCells.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath) as!
-        MovieTableViewCell
-        cell.viewModel = viewModel.movieCells[indexPath.row]
-        return cell
-    }
-    
 }
 
 // MARK: - UITableViewDelegate
