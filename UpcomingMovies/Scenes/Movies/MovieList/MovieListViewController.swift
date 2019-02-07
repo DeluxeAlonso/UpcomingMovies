@@ -14,8 +14,9 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
     @IBOutlet var loadingView: UIView!
     
     var viewModel: MovieListViewModel = MovieListViewModel()
-    
     private var dataSource: MovieListDataSource!
+    
+    private var refreshControl: DefaultRefreshControl?
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
     var errorView: ErrorPlaceholderView?
@@ -32,6 +33,7 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
     
     private func setupUI() {
         setupTableView()
+        setupRefreshControl()
         setupForceTouchSupport()
     }
     
@@ -40,6 +42,15 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
         tableView.estimatedRowHeight = 150
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
         tableView.register(UINib(nibName: MovieTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MovieTableViewCell.identifier)
+    }
+    
+    private func setupRefreshControl() {
+        refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
+                                              backgroundColor: tableView.backgroundColor,
+                                              refreshHandler: { [weak self] in
+                                                self?.viewModel.refreshMovies()
+        })
+        tableView.refreshControl = refreshControl
     }
     
     private func setupForceTouchSupport() {
@@ -56,6 +67,7 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
         tableView.dataSource = dataSource
         tableView.prefetchDataSource = dataSource
         tableView.reloadData()
+        refreshControl?.endRefreshing(with: 0.5)
     }
     
     /**

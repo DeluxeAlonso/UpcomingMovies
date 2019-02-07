@@ -74,15 +74,11 @@ extension MoviesViewModel {
     // MARK: - Private
     
     func getMovies() {
-        movieClient.getMovies(page: getCurrentPage(), filter: filter, completion: { result in
-            switch result {
-            case .success(let movieResult):
-                guard let movieResult = movieResult else { return }
-                self.processMovieResult(movieResult)
-            case .failure(let error):
-                self.viewState.value = .error(error)
-            }
-        })
+        fetchMovies(currentPage: getCurrentPage(), filter: filter)
+    }
+    
+    func refreshMovies() {
+        fetchMovies(currentPage: 1, filter: filter)
     }
     
     func getCurrentPage() -> Int {
@@ -94,11 +90,23 @@ extension MoviesViewModel {
         }
     }
     
+    func fetchMovies(currentPage: Int, filter: MovieListFilter) {
+        movieClient.getMovies(page: currentPage, filter: filter, completion: { result in
+            switch result {
+            case .success(let movieResult):
+                guard let movieResult = movieResult else { return }
+                self.processMovieResult(movieResult)
+            case .failure(let error):
+                self.viewState.value = .error(error)
+            }
+        })
+    }
+    
     func processMovieResult(_ movieResult: MovieResult) {
         guard let fetchedMovies = movieResult.results else {
             return
         }
-        var allMovies = viewState.value.currentMovies
+        var allMovies = movieResult.currentPage == 1 ? [] : viewState.value.currentMovies
         allMovies.append(contentsOf: fetchedMovies)
         if movieResult.hasMorePages {
             viewState.value = .paging(allMovies, next: movieResult.nextPage)

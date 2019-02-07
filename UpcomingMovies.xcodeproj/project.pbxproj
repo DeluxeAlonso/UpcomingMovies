@@ -62,6 +62,7 @@
 		E222DC282192B61300A2EDF4 /* MovieCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222DC272192B61300A2EDF4 /* MovieCellViewModel.swift */; };
 		E222DC2B2192B83200A2EDF4 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E222DC2A2192B83200A2EDF4 /* MovieCell.xib */; };
 		E222DC2D2192CBBD00A2EDF4 /* URLConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222DC2C2192CBBD00A2EDF4 /* URLConfiguration.swift */; };
+		E222EA76220C724B00664C7F /* DefaultRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222EA75220C724B00664C7F /* DefaultRefreshControl.swift */; };
 		E2230B37220AAA49002888FC /* UpcomingMoviesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2230B36220AAA49002888FC /* UpcomingMoviesDataSource.swift */; };
 		E223773521EEA20C000400B7 /* GenreSearchOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E223773421EEA20C000400B7 /* GenreSearchOptionCell.xib */; };
 		E223773821EEA2D8000400B7 /* GenreSearchOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773721EEA2D8000400B7 /* GenreSearchOptionTableViewCell.swift */; };
@@ -99,6 +100,7 @@
 		E2940805220A188100A74F68 /* TabBarScrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2940804220A188000A74F68 /* TabBarScrollable.swift */; };
 		E2A65E5121FEC39800485B4E /* VoteAverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A65E5021FEC39800485B4E /* VoteAverageView.swift */; };
 		E2A65E5321FECC2200485B4E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A65E5221FECC2200485B4E /* Utils.swift */; };
+		E2D1040F220CD1BC005F310C /* UIRefreshControl+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D1040E220CD1BC005F310C /* UIRefreshControl+Extensions.swift */; };
 		E2D4DD6E21F016E10004B7BF /* RecentlyVisitedMoviesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D4DD6D21F016E10004B7BF /* RecentlyVisitedMoviesCell.xib */; };
 		E2D4DD7021F018850004B7BF /* RecentlyVisitedMoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4DD6F21F018850004B7BF /* RecentlyVisitedMoviesTableViewCell.swift */; };
 		E2D4DD7221F018980004B7BF /* RecentlyVisitedMoviesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4DD7121F018980004B7BF /* RecentlyVisitedMoviesCellViewModel.swift */; };
@@ -183,6 +185,7 @@
 		E222DC272192B61300A2EDF4 /* MovieCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellViewModel.swift; sourceTree = "<group>"; };
 		E222DC2A2192B83200A2EDF4 /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
 		E222DC2C2192CBBD00A2EDF4 /* URLConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConfiguration.swift; sourceTree = "<group>"; };
+		E222EA75220C724B00664C7F /* DefaultRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRefreshControl.swift; sourceTree = "<group>"; };
 		E2230B36220AAA49002888FC /* UpcomingMoviesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesDataSource.swift; sourceTree = "<group>"; };
 		E223773421EEA20C000400B7 /* GenreSearchOptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenreSearchOptionCell.xib; sourceTree = "<group>"; };
 		E223773721EEA2D8000400B7 /* GenreSearchOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreSearchOptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -220,6 +223,7 @@
 		E2940804220A188000A74F68 /* TabBarScrollable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScrollable.swift; sourceTree = "<group>"; };
 		E2A65E5021FEC39800485B4E /* VoteAverageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteAverageView.swift; sourceTree = "<group>"; };
 		E2A65E5221FECC2200485B4E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		E2D1040E220CD1BC005F310C /* UIRefreshControl+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+Extensions.swift"; sourceTree = "<group>"; };
 		E2D4DD6D21F016E10004B7BF /* RecentlyVisitedMoviesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentlyVisitedMoviesCell.xib; sourceTree = "<group>"; };
 		E2D4DD6F21F018850004B7BF /* RecentlyVisitedMoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyVisitedMoviesTableViewCell.swift; sourceTree = "<group>"; };
 		E2D4DD7121F018980004B7BF /* RecentlyVisitedMoviesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyVisitedMoviesCellViewModel.swift; sourceTree = "<group>"; };
@@ -453,6 +457,7 @@
 				E226C64A21FFA099004AA771 /* UIView+Extensions.swift */,
 				E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */,
 				E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */,
+				E2D1040E220CD1BC005F310C /* UIRefreshControl+Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -609,6 +614,7 @@
 				E21F37992193FEB000D6BFB6 /* LoadingFooterView.swift */,
 				E21F379B2193FF1400D6BFB6 /* CustomFooterView.swift */,
 				E2A65E5021FEC39800485B4E /* VoteAverageView.swift */,
+				E222EA75220C724B00664C7F /* DefaultRefreshControl.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -884,6 +890,7 @@
 				E260116E219388B700E53095 /* FontHelper.swift in Sources */,
 				E260117221938BB800E53095 /* ErrorDisplayable.swift in Sources */,
 				E2D4DD7021F018850004B7BF /* RecentlyVisitedMoviesTableViewCell.swift in Sources */,
+				E222EA76220C724B00664C7F /* DefaultRefreshControl.swift in Sources */,
 				E21F37882193EC8100D6BFB6 /* SearchMoviesResultController.swift in Sources */,
 				E222DC202192AAB900A2EDF4 /* SearchMoviesViewController.swift in Sources */,
 				E26011672193870800E53095 /* ErrorPlaceholderView.swift in Sources */,
@@ -912,6 +919,7 @@
 				E21F37A721941E3500D6BFB6 /* GenreResult.swift in Sources */,
 				E2DBF2F3220532C300CBB365 /* Animatable.swift in Sources */,
 				E284EF4D21F127FB004E705F /* VisitedMovieCellViewModel.swift in Sources */,
+				E2D1040F220CD1BC005F310C /* UIRefreshControl+Extensions.swift in Sources */,
 				E21F37902193F36300D6BFB6 /* RecentSearchTableViewCell.swift in Sources */,
 				E220B1E2220BD5B900A5D054 /* MoviesViewModel.swift in Sources */,
 				E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */,
