@@ -37,7 +37,6 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
     
     private func setupTableView() {
         tableView.delegate = self
-        tableView.prefetchDataSource = self
         tableView.estimatedRowHeight = 150
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
         tableView.register(UINib(nibName: MovieTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MovieTableViewCell.identifier)
@@ -50,15 +49,19 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
     }
     
     private func reloadTableView() {
-        dataSource = MovieListDataSource(viewModel: viewModel)
+        dataSource = MovieListDataSource(viewModel: viewModel,
+                                         prefetchHandler: { [weak self] in
+            self?.viewModel.getMovies()
+        })
         tableView.dataSource = dataSource
+        tableView.prefetchDataSource = dataSource
         tableView.reloadData()
     }
     
     /**
      * Configures the tableview footer given the current state of the view.
      */
-    private func configureView(withState state: MovieListViewState) {
+    private func configureView(withState state: MoviesViewState) {
         switch state {
         case .loading, .paging:
             tableView.tableFooterView = loadingView
@@ -129,27 +132,7 @@ extension MovieListViewController {
     
 }
 
-// MARK: - UITableViewDataSourcePrefetching
-
-extension MovieListViewController: UITableViewDataSourcePrefetching {
-    
-    private func isLoadingCell(for indexPath: IndexPath) -> Bool {
-        return indexPath.row >= viewModel.movieCells.count - 1
-    }
-    
-    private func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
-        let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows ?? []
-        let indexPathsIntersection = Set(indexPathsForVisibleRows).intersection(indexPaths)
-        return Array(indexPathsIntersection)
-    }
-    
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        if indexPaths.contains(where: isLoadingCell) {
-            viewModel.getMovies()
-        }
-    }
-    
-}
+// MARK: - UIViewControllerPreviewingDelegate
 
 extension MovieListViewController: UIViewControllerPreviewingDelegate {
     
