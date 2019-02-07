@@ -16,6 +16,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     private var viewModel = UpcomingMoviesViewModel()
     private var dataSource: UpcomingMoviesDataSource!
     
+    private var refreshControl: DefaultRefreshControl?
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
     private var selectedFrame: CGRect?
@@ -39,6 +40,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
         title = Constants.Title
         setupNavigationBar()
         setupCollectionView()
+        setupRefreshControl()
     }
     
     private func setupNavigationBar() {
@@ -54,6 +56,15 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
                                 forCellWithReuseIdentifier: UpcomingMovieCollectionViewCell.identifier)
     }
     
+    private func setupRefreshControl() {
+        refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
+                                              backgroundColor: collectionView.backgroundColor,
+                                              refreshHandler: { [weak self] in
+                                                self?.viewModel.refreshMovies()
+        })
+        collectionView.refreshControl = refreshControl
+    }
+    
     private func reloadCollectionView() {
         dataSource = UpcomingMoviesDataSource(viewModel: viewModel,
                                               prefetchHandler: { [weak self] in
@@ -62,6 +73,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = dataSource
         collectionView.reloadData()
+        refreshControl?.endRefreshing(with: 0.5)
     }
     
     /**
@@ -223,6 +235,8 @@ extension UpcomingMoviesViewController {
         
         static let Title = NSLocalizedString("upcomingMoviesTabBarTitle", comment: "")
         static let NavigationItemTitle = NSLocalizedString("upcomingMoviesTitle", comment: "")
+        
+        static let RefreshControlTitle = NSLocalizedString("refreshControlTitle", comment: "")
         
         static let cellMargin: CGFloat = 16.0
         static let cellHeight: Double = 150.0

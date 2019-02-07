@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Kingfisher
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var storyboard: UIStoryboard!
     
-    private var currentTabBarSelectedIndex: Int = 0
+    private var currentTabBarSelectedIndex: MainTabBarController.Items = .upcomingMovies
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -28,11 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let shorcut = AppShortcutItem(rawValue: shortcutItem.type) else { return }
         switch shorcut {
         case .searchMovies:
-            currentTabBarSelectedIndex = 1
+            currentTabBarSelectedIndex = .searchMovies
             guard let tabBarController = window?.rootViewController as? UITabBarController else {
                 return
             }
-            tabBarController.selectedIndex = currentTabBarSelectedIndex
+            tabBarController.selectedIndex = currentTabBarSelectedIndex.rawValue
         }
     }
     
@@ -55,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let controller = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController else {
             fatalError()
         }
-        controller.setSelectedIndex(currentTabBarSelectedIndex)
+        controller.setSelectedIndex(currentTabBarSelectedIndex.rawValue)
         let controllerView = controller.view
         UIView.transition(from: initialView!,
                           to: controllerView!,

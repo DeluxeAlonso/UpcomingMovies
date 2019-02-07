@@ -9,6 +9,10 @@
 import UIKit
 
 extension UICollectionView {
+
+    func isScrolledToTop() -> Bool {
+        return contentOffset == .zero
+    }
     
     func scrollToTop(animated: Bool) {
         setContentOffset(.zero, animated: animated)
