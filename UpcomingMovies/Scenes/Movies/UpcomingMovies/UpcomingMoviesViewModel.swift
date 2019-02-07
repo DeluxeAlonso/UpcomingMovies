@@ -8,88 +8,30 @@
 
 import Foundation
 
-enum UpcomingMoviesViewState {
+final class UpcomingMoviesViewModel: MoviesViewModel {
     
-    case loading
-    case paging([Movie], next: Int)
-    case populated([Movie])
-    case empty
-    case error(Error)
+    // MARK: - Properties
     
-    var currentMovies: [Movie] {
-        switch self {
-        case .populated(let movies):
-            return movies
-        case .paging(let movies, _):
-            return movies
-        case .loading, .empty, .error:
-            return []
-        }
-    }
+    var movieClient = MovieClient()
     
-}
-
-final class UpcomingMoviesViewModel {
+    var filter: MovieListFilter = .upcoming
+    var viewState: Bindable<MoviesViewState> = Bindable(.loading)
+    var selectedMovieCell: UpcomingMovieCellViewModel?
     
-    private let movieClient = MovieClient()
-    
-    let viewState: Bindable<UpcomingMoviesViewState> = Bindable(.loading)
-    
-    private var movies: [Movie] {
-        return viewState.value.currentMovies
-    }
+    // MARK: - Computed Properties
     
     var movieCells: [UpcomingMovieCellViewModel] {
         return movies.compactMap { UpcomingMovieCellViewModel($0) }
     }
     
-    var selectedMovieCell: UpcomingMovieCellViewModel?
+    var movies: [Movie] {
+        return viewState.value.currentMovies
+    }
     
     // MARK: - Public
     
-    func buildDetailViewModel(atIndex index: Int) -> MovieDetailViewModel? {
-        guard index < movies.count else { return nil }
-        return MovieDetailViewModel(movies[index])
-    }
-    
-    func getUpcomingMovies() {
-        movieClient.getMovies(page: getCurrentPage(), filter: .upcoming) { result in
-            switch result {
-            case .success(let movieResult):
-                guard let movieResult = movieResult else { return }
-                self.processMovieResult(movieResult)
-            case .failure(let error):
-                self.viewState.value = .error(error)
-            }
-        }
-    }
-    
-    func getCurrentPage() -> Int {
-        switch viewState.value {
-        case .populated, .empty, .error, .loading:
-            return 1
-        case .paging(_, let page):
-            return page
-        }
-    }
-    
     func setSelectedMovie(at index: Int) {
         selectedMovieCell = movieCells[index]
-    }
-    
-    // MARK: - Private
-    
-    private func processMovieResult(_ movieResult: MovieResult) {
-        guard let fetchedMovies = movieResult.results else {
-            return
-        }
-        var allMovies = viewState.value.currentMovies
-        allMovies.append(contentsOf: fetchedMovies)
-        if movieResult.hasMorePages {
-            viewState.value = .paging(allMovies, next: movieResult.nextPage)
-        } else {
-            viewState.value = .populated(allMovies)
-        }
     }
 
 }

@@ -30,7 +30,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
         super.viewDidLoad()
         setupUI()
         setupBindables()
-        viewModel.getUpcomingMovies()
+        viewModel.getMovies()
     }
     
     // MARK: - Private
@@ -57,7 +57,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     private func reloadCollectionView() {
         dataSource = UpcomingMoviesDataSource(viewModel: viewModel,
                                               prefetchHandler: { [weak self] in
-            self?.viewModel.getUpcomingMovies()
+            self?.viewModel.getMovies()
         })
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = dataSource
@@ -67,7 +67,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     /**
      * Configures the tableview footer given the current state of the view.
      */
-    private func configureView(withState state: UpcomingMoviesViewState) {
+    private func configureView(withState state: MoviesViewState) {
         switch state {
         case .loading:
             collectionView.backgroundView = loadingView
@@ -122,7 +122,7 @@ extension UpcomingMoviesViewController {
         self.presentFullScreenErrorView(withErrorMessage: errorMessage)
         self.errorView?.retry = { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.viewModel.getUpcomingMovies()
+            strongSelf.viewModel.getMovies()
         }
     }
     

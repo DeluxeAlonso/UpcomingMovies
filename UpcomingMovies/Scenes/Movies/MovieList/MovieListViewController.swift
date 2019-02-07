@@ -61,7 +61,7 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
     /**
      * Configures the tableview footer given the current state of the view.
      */
-    private func configureView(withState state: MovieListViewState) {
+    private func configureView(withState state: MoviesViewState) {
         switch state {
         case .loading, .paging:
             tableView.tableFooterView = loadingView
