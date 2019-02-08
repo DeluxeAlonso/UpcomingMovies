@@ -26,7 +26,6 @@ class SearchMoviesResultController: UIViewController {
         tableView.estimatedRowHeight = 150
         tableView.backgroundColor = .clear
         tableView.delegate = self
-        tableView.dataSource = self
         
         tableView.register(MovieTableViewCell.self,
                            forCellReuseIdentifier: MovieTableViewCell.identifier)
@@ -55,6 +54,8 @@ class SearchMoviesResultController: UIViewController {
     }()
     
     private var viewModel: SearchMoviesResultViewModel
+    private var dataSource: SearchMoviesResultDataSource!
+    
     private var tableViewBottomConstraint: NSLayoutConstraint!
     
     weak var delegate: SearchMoviesResultControllerDelegate?
@@ -111,6 +112,18 @@ class SearchMoviesResultController: UIViewController {
                                      tableViewBottomConstraint])
     }
     
+    private func setupFooterTableView(_ tableView: UITableView, withView view: UIView, andFrame frame: CGRect) {
+        let footerContainerView = UIView(frame: frame)
+        footerContainerView.addSubview(view)
+        tableView.tableFooterView = footerContainerView
+    }
+    
+    private func reloadTableView() {
+        dataSource = SearchMoviesResultDataSource(viewModel: viewModel)
+        tableView.dataSource = dataSource
+        tableView.reloadData()
+    }
+    
     private func configureFooterTableView(withState state: SearchMoviesResultViewModel.SearchMoviesResultViewState) {
         tableView.separatorStyle = .none
         switch state {
@@ -128,18 +141,22 @@ class SearchMoviesResultController: UIViewController {
         }
     }
     
-    private func setupFooterTableView(_ tableView: UITableView, withView view: UIView, andFrame frame: CGRect) {
-        let footerContainerView = UIView(frame: frame)
-        footerContainerView.addSubview(view)
-        tableView.tableFooterView = footerContainerView
-    }
-    
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
+        viewModel.prepareUpdate = { [weak self] beginUpdate in
+            guard let strongSelf = self else { return }
+            beginUpdate ? strongSelf.tableView.beginUpdates() : strongSelf.tableView.endUpdates()
+        }
+        
+        viewModel.updateRecentSearches = { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.reloadTableView()
+        }
+        
         viewModel.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
-            strongSelf.tableView.reloadData()
+            strongSelf.reloadTableView()
             strongSelf.configureFooterTableView(withState: state)
         })
     }
@@ -171,49 +188,6 @@ class SearchMoviesResultController: UIViewController {
         self.view.layoutIfNeeded()
         tableViewBottomConstraint.constant = 0
         self.view.layoutIfNeeded()
-    }
-
-}
-
-// MARK: - UITableViewDataSource
-
-extension SearchMoviesResultController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        guard let sections = viewModel.viewState.value.sections else { return 0 }
-        return sections.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let section = viewModel.viewState.value.sections?[section] else { return 0 }
-        switch section {
-        case .recentSearches:
-            return viewModel.recentSearchCells.count
-        case .searchedMovies:
-            return viewModel.movieCells.count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let section = viewModel.viewState.value.sections?[indexPath.section] else { return UITableViewCell() }
-        switch section {
-        case .recentSearches:
-            return recentSearchesDataSource(tableView, indexPath: indexPath)
-        case .searchedMovies:
-            return searchedMoviesDataSource(tableView, indexPath: indexPath)
-        }
-    }
-    
-    fileprivate func recentSearchesDataSource(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RecentSearchTableViewCell.identifier, for: indexPath) as! RecentSearchTableViewCell
-        cell.viewModel = viewModel.recentSearchCells[indexPath.row]
-        return cell
-    }
-    
-    fileprivate func searchedMoviesDataSource(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath) as! MovieTableViewCell
-        cell.viewModel = viewModel.movieCells[indexPath.row]
-        return cell
     }
 
 }
