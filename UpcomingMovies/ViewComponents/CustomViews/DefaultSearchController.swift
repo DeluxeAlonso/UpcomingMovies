@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieSearchController: UISearchController {
+class DefaultSearchController: UISearchController {
 
     override init(searchResultsController: UIViewController?) {
         super.init(searchResultsController: searchResultsController)

@@ -21,6 +21,9 @@ final class SearchMoviesResultViewModel: NSObject {
     
     let viewState: Bindable<SearchMoviesResultViewState> = Bindable(.initial)
     
+    var prepareUpdate: ((Bool) -> Void)?
+    var updateRecentSearches: (() -> Void)?
+    
     // MARK: - Computed Properties
     
     var recentSearchCells: [RecentSearchCellViewModel] {
@@ -48,22 +51,11 @@ final class SearchMoviesResultViewModel: NSObject {
                                                               sectionNameKeyPath: nil,
                                                               cacheName: nil)
         super.init()
+        fetchedResultsController.delegate = self
         loadRecentSearches()
     }
     
     // MARK: - Movies handling
-    
-    private func processMovieResult(_ movieResult: MovieResult) {
-        guard let fetchedMovies = movieResult.results else {
-            return
-        }
-        movies = fetchedMovies
-        if movies.isEmpty {
-            viewState.value = .empty
-        } else {
-            viewState.value = .populated(movies)
-        }
-    }
     
     func searchMovies(withSearchText searchText: String) {
         viewState.value = .searching
@@ -76,6 +68,16 @@ final class SearchMoviesResultViewModel: NSObject {
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
+        }
+    }
+    
+    private func processMovieResult(_ movieResult: MovieResult) {
+        guard let fetchedMovies = movieResult.results else { return }
+        movies = fetchedMovies
+        if movies.isEmpty {
+            viewState.value = .empty
+        } else {
+            viewState.value = .populated(movies)
         }
     }
     
@@ -140,6 +142,26 @@ extension SearchMoviesResultViewModel {
     func resetViewState() {
         clearMovies()
         viewState.value = .initial
+    }
+    
+}
+
+// MARK: - NSFetchedResultsControllerDelegate
+
+extension SearchMoviesResultViewModel: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        prepareUpdate?(true)
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any, at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        updateRecentSearches?()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        prepareUpdate?(false)
     }
     
 }

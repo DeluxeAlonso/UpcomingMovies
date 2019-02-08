@@ -27,6 +27,8 @@ class SearchOptionsTableViewController: UITableViewController {
         }
     }
     
+    private var dataSource: SearchOptionsDataSource!
+    
     weak var delegate: SearchOptionsTableViewControllerDelegate?
     
     // MARK: - Lifecycle
@@ -57,9 +59,21 @@ class SearchOptionsTableViewController: UITableViewController {
                            forCellReuseIdentifier: GenreSearchOptionTableViewCell.identifier)
     }
     
+    private func setupDataSource() {
+        dataSource = SearchOptionsDataSource(viewModel: viewModel)
+        tableView.dataSource = dataSource
+    }
+    
+    private func reloadTableView() {
+        setupDataSource()
+        tableView.reloadSections(IndexSet(integer: 0), with: .none)
+    }
+    
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
+        setupDataSource()
+        
         viewModel?.prepareUpdate = { [weak self] beginUpdate in
             guard let strongSelf = self else { return }
             beginUpdate ? strongSelf.tableView.beginUpdates() : strongSelf.tableView.endUpdates()
@@ -67,7 +81,7 @@ class SearchOptionsTableViewController: UITableViewController {
         
         viewModel?.updateVisitedMovies = { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.tableView.reloadSections(IndexSet(integer: 0), with: .none)
+            strongSelf.reloadTableView()
         }
         
         viewModel?.selectedDefaultSearchOption = { [weak self] option in
@@ -84,65 +98,6 @@ class SearchOptionsTableViewController: UITableViewController {
             guard let strongSelf = self else { return }
             strongSelf.delegate?.searchOptionsTableViewController(strongSelf, didSelectMovieGenre: genredId)
         }
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        guard let viewModel = viewModel else { return 0 }
-        return viewModel.viewState.value.sections.count
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let viewModel = viewModel else { return nil }
-        let sections = viewModel.viewState.value.sections
-        return sections[section].title
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let viewModel = viewModel else { return 0 }
-        switch viewModel.section(at: section) {
-        case .recentlyVisited:
-            return 1
-        case .defaultSearches:
-            return viewModel.defaultSearchOptionsCells.count
-        case .genres:
-            return viewModel.genreCells.count
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let viewModel = viewModel else { return  UITableViewCell() }
-        switch viewModel.section(at: indexPath.section) {
-        case .recentlyVisited:
-            return recentlyVisitedDataSource(tableView, at: indexPath)
-        case .defaultSearches:
-            return defaultSearchOptionDataSource(tableView, at: indexPath)
-        case .genres:
-            return genreSearchOptionDataSource(tableView, at: indexPath)
-        }
-    }
-    
-    private func recentlyVisitedDataSource(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        guard let viewModel = viewModel else { fatalError() }
-        let cell = tableView.dequeueReusableCell(withIdentifier: RecentlyVisitedMoviesTableViewCell.identifier,
-                                                 for: indexPath) as! RecentlyVisitedMoviesTableViewCell
-        cell.viewModel = viewModel.prepareRecentlyVisitedMoviesCell()
-        return cell
-    }
-    
-    private func defaultSearchOptionDataSource(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: DefaultSearchOptionTableViewCell.identifier,
-                                                 for: indexPath) as! DefaultSearchOptionTableViewCell
-        cell.viewModel = viewModel?.defaultSearchOptionsCells[indexPath.row]
-        return cell
-    }
-    
-    private func genreSearchOptionDataSource(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: GenreSearchOptionTableViewCell.identifier,
-                                                 for: indexPath) as! GenreSearchOptionTableViewCell
-        cell.viewModel = viewModel?.genreCells[indexPath.row]
-        return cell
     }
     
     // MARK: - Table view delegate
