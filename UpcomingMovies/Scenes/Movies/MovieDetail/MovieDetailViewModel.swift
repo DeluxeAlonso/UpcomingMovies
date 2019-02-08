@@ -14,8 +14,8 @@ final class MovieDetailViewModel {
     var id: Int
     var title: String
     var genre: String?
-    var releaseDate: String?
-    var overview: String?
+    var releaseDate: String
+    var overview: String
     var voteAverage: Double?
     var posterPath: String?
     var fullPosterPath: URL?
