@@ -13,10 +13,10 @@ struct Movie: Decodable {
     let id: Int
     let title: String
     let genres: [Int]?
-    let overview: String?
+    let overview: String
     let posterPath: String?
     let backdropPath: String?
-    let releaseDate: String?
+    let releaseDate: String
     let voteAverage: Double?
     
     static let posterAspectRatio: Double = 1.5
