@@ -125,12 +125,24 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="92.5" height="63"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="YRY-vC-JoM" secondAttribute="height" multiplier="5:2" id="VHg-U9-EQF"/>
                                                                     <constraint firstAttribute="width" secondItem="YRY-vC-JoM" secondAttribute="height" multiplier="47:32" id="neV-6O-8rM"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="Reviews"/>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="optionTitle" value="Reviews"/>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="VHg-U9-EQF"/>
+                                                                    </mask>
+                                                                </variation>
+                                                                <variation key="heightClass=compact">
+                                                                    <mask key="constraints">
+                                                                        <include reference="VHg-U9-EQF"/>
+                                                                        <exclude reference="neV-6O-8rM"/>
+                                                                    </mask>
+                                                                </variation>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ol2-nL-kyw" userLabel="Trailer Movie Detail Option View" customClass="MovieDetailOptionView" customModule="UpcomingMovies" customModuleProvider="target">
                                                                 <rect key="frame" x="94" y="0.0" width="93" height="63"/>
