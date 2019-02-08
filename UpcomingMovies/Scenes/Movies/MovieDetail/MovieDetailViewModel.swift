@@ -25,7 +25,7 @@ final class MovieDetailViewModel {
 
     init(_ movie: Movie) {
         id = movie.id
-        title = "\(movie.title)(\(movie.releaseDate))"
+        title = movie.title
         genre = movie.genreName
         releaseDate = movie.releaseDate
         voteAverage = movie.voteAverage
