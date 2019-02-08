@@ -11,34 +11,54 @@ import XCTest
 
 class UpcomingMoviesTests: XCTestCase {
     
-    var movieResultUnderTest: MovieResult!
+    var viewModelToTest: UpcomingMoviesViewModel!
+    var moviesToTest: [Movie]!
 
     override func setUp() {
         super.setUp()
-        movieResultUnderTest = MovieResult(results: nil,
-                                           currentPage: 1,
-                                           totalPages: 2)
+        viewModelToTest = UpcomingMoviesViewModel()
+        moviesToTest = [
+            Movie(id: 1,
+                  title: "Test 1",
+                  genres: nil,
+                  overview: "",
+                  posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
+                  backdropPath: nil, releaseDate: "2019-02-01", voteAverage: nil),
+            Movie(id: 2,
+                  title: "Test 2",
+                  genres: nil,
+                  overview: "",
+                  posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
+                  backdropPath: nil, releaseDate: "2020-02-01", voteAverage: nil)
+        ]
     }
 
     override func tearDown() {
-        movieResultUnderTest = nil
+        viewModelToTest = nil
+        moviesToTest = nil
         super.tearDown()
     }
     
-    // MARK: - Pagination Test
+    // MARK: - View Model Test
     
-    func testMovieResultPagination() {
+    func testMovieCellsCount() {
+        // Arrange
+        viewModelToTest.viewState.value = .populated(moviesToTest)
         // Act
-        let hasMorePages = movieResultUnderTest.hasMorePages
+        let movieCellCount = viewModelToTest.movieCells.count
         // Assert
-        XCTAssertTrue(hasMorePages)
+        XCTAssertEqual(movieCellCount, 2)
     }
     
-    func testMovieResultNextPage() {
+    func testSelectedMovieCell() {
+        // Arrange
+        viewModelToTest.viewState.value = .populated(moviesToTest)
         // Act
-        let nextPage = movieResultUnderTest.nextPage
+        viewModelToTest.setSelectedMovie(at: 0)
+        let selectedMovieCell = viewModelToTest.selectedMovieCell
+        let movieFullPosterPath = selectedMovieCell?.fullPosterPath
         // Assert
-        XCTAssertEqual(nextPage, 2)
+        XCTAssertEqual(movieFullPosterPath, URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
     }
 
 }
