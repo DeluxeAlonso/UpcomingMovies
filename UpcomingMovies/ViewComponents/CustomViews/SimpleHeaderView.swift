@@ -8,16 +8,21 @@
 
 import UIKit
 
-class RecentSearchesHeaderView: UIView {
+class SimpleHeaderView: UIView {
     
     fileprivate lazy var headerTitleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.text = Constants.titleText
         label.font = FontHelper.Default.mediumLight
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    var headerTitle: String? {
+        didSet {
+            headerTitleLabel.text = headerTitle
+        }
+    }
     
     // MARK: - Initializers
     
@@ -53,9 +58,7 @@ class RecentSearchesHeaderView: UIView {
         
         static let horizontalMargin: CGFloat = 16.0
         static let verticalMargin: CGFloat = 8.0
-        
-        static let titleText = "Recent searches"
-        
+
     }
     
 }

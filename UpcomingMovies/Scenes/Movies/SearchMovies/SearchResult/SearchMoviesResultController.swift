@@ -128,7 +128,7 @@ class SearchMoviesResultController: UIViewController {
         tableView.separatorStyle = .none
         switch state {
         case .empty:
-            customFooterView.message = "No results to show."
+            customFooterView.message = Constants.emptyResultsTitle
             setupFooterTableView(tableView, withView: customFooterView, andFrame: CustomFooterView.recommendedFrame)
         case .populated, .initial:
             tableView.tableFooterView = UIView()
@@ -218,7 +218,9 @@ extension SearchMoviesResultController: UITableViewDelegate {
         let viewState = viewModel.viewState.value
         switch viewState {
         case .initial:
-            return RecentSearchesHeaderView()
+            let headerView = SimpleHeaderView()
+            headerView.headerTitle = Constants.recentSearchesHeaderTitle
+            return headerView
         case .populated:
             let view = UIView()
             view.backgroundColor = .clear
@@ -236,6 +238,17 @@ extension SearchMoviesResultController: UITableViewDelegate {
         case .searching, .error, .empty, .populated:
             return 0
         }
+    }
+    
+}
+
+// MARK: - Constants
+
+extension SearchMoviesResultController {
+    
+    struct Constants {
+        static let recentSearchesHeaderTitle = "Recent searches"
+        static let emptyResultsTitle = "No results to show."
     }
     
 }

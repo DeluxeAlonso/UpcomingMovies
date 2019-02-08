@@ -26,7 +26,7 @@
 		E21F37962193F70A00D6BFB6 /* MovieSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37952193F70A00D6BFB6 /* MovieSearch.swift */; };
 		E21F379A2193FEB000D6BFB6 /* LoadingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37992193FEB000D6BFB6 /* LoadingFooterView.swift */; };
 		E21F379C2193FF1400D6BFB6 /* CustomFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F379B2193FF1400D6BFB6 /* CustomFooterView.swift */; };
-		E21F379E219401CF00D6BFB6 /* RecentSearchesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F379D219401CF00D6BFB6 /* RecentSearchesHeaderView.swift */; };
+		E21F379E219401CF00D6BFB6 /* SimpleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F379D219401CF00D6BFB6 /* SimpleHeaderView.swift */; };
 		E21F37A121941D2900D6BFB6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37A021941D2900D6BFB6 /* SplashViewController.swift */; };
 		E21F37A321941D3900D6BFB6 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37A221941D3900D6BFB6 /* SplashViewModel.swift */; };
 		E21F37A521941D9C00D6BFB6 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37A421941D9C00D6BFB6 /* Genre.swift */; };
@@ -150,7 +150,7 @@
 		E21F37952193F70A00D6BFB6 /* MovieSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearch.swift; sourceTree = "<group>"; };
 		E21F37992193FEB000D6BFB6 /* LoadingFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingFooterView.swift; sourceTree = "<group>"; };
 		E21F379B2193FF1400D6BFB6 /* CustomFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFooterView.swift; sourceTree = "<group>"; };
-		E21F379D219401CF00D6BFB6 /* RecentSearchesHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchesHeaderView.swift; sourceTree = "<group>"; };
+		E21F379D219401CF00D6BFB6 /* SimpleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHeaderView.swift; sourceTree = "<group>"; };
 		E21F37A021941D2900D6BFB6 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		E21F37A221941D3900D6BFB6 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		E21F37A421941D9C00D6BFB6 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
@@ -298,20 +298,11 @@
 		E200182621EE31C100F29220 /* SearchResult */ = {
 			isa = PBXGroup;
 			children = (
-				E2116942220E3C5700595822 /* Components */,
 				E21F37872193EC8100D6BFB6 /* SearchMoviesResultController.swift */,
 				E21F37892193ED4000D6BFB6 /* SearchMoviesResultViewModel.swift */,
 				E2116943220E3CBC00595822 /* SearchMoviesResultDataSource.swift */,
 			);
 			path = SearchResult;
-			sourceTree = "<group>";
-		};
-		E2116942220E3C5700595822 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				E21F379D219401CF00D6BFB6 /* RecentSearchesHeaderView.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		E21F378D2193F32400D6BFB6 /* RecentSearch */ = {
@@ -632,6 +623,7 @@
 		E260116A2193883100E53095 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				E21F379D219401CF00D6BFB6 /* SimpleHeaderView.swift */,
 				E260116B2193884C00E53095 /* LoadingButton.swift */,
 				E21F37992193FEB000D6BFB6 /* LoadingFooterView.swift */,
 				E21F379B2193FF1400D6BFB6 /* CustomFooterView.swift */,
@@ -937,7 +929,7 @@
 				E22116BE2191604A0039F8C9 /* Result.swift in Sources */,
 				E26011692193876500E53095 /* NibLoadable.swift in Sources */,
 				E200182C21EE378800F29220 /* MovieVisit.swift in Sources */,
-				E21F379E219401CF00D6BFB6 /* RecentSearchesHeaderView.swift in Sources */,
+				E21F379E219401CF00D6BFB6 /* SimpleHeaderView.swift in Sources */,
 				E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */,
 				E260117D21939D7100E53095 /* MovieDetailViewModel.swift in Sources */,
 				E21F37A721941E3500D6BFB6 /* GenreResult.swift in Sources */,
