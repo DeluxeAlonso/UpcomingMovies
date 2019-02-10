@@ -14,7 +14,9 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
     @IBOutlet var loadingView: UIView!
     
     var viewModel: MovieListViewModel = MovieListViewModel()
-    private var dataSource: MovieListDataSource!
+    
+    private var dataSource: SimpleTableViewDataSource<MovieCellViewModel, MovieTableViewCell>!
+    private var prefetchDataSource: TableViewDataSourcePrefetching!
     
     private var refreshControl: DefaultRefreshControl?
     private var displayedCellsIndexPaths = Set<IndexPath>()
@@ -60,12 +62,13 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
     }
     
     private func reloadTableView() {
-        dataSource = MovieListDataSource(viewModel: viewModel,
-                                         prefetchHandler: { [weak self] in
-            self?.viewModel.getMovies()
+        dataSource = SimpleTableViewDataSource.make(for: viewModel.movieCells)
+        prefetchDataSource = TableViewDataSourcePrefetching(cellCount: viewModel.movieCells.count,
+                                                            prefetchHandler: { [weak self] in
+                                                                self?.viewModel.getMovies()
         })
         tableView.dataSource = dataSource
-        tableView.prefetchDataSource = dataSource
+        tableView.prefetchDataSource = prefetchDataSource
         tableView.reloadData()
         refreshControl?.endRefreshing(with: 0.5)
     }

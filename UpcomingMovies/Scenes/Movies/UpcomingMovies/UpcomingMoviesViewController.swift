@@ -14,7 +14,9 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     @IBOutlet var loadingView: UIView!
     
     private var viewModel = UpcomingMoviesViewModel()
-    private var dataSource: UpcomingMoviesDataSource!
+    
+    private var dataSource: SimpleCollectionViewDataSource<UpcomingMovieCellViewModel>!
+    private var prefetchDataSource: CollectionViewDataSourcePrefetching!
     
     private var refreshControl: DefaultRefreshControl?
     private var displayedCellsIndexPaths = Set<IndexPath>()
@@ -66,12 +68,13 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     }
     
     private func reloadCollectionView() {
-        dataSource = UpcomingMoviesDataSource(viewModel: viewModel,
-                                              prefetchHandler: { [weak self] in
-            self?.viewModel.getMovies()
+        dataSource = SimpleCollectionViewDataSource.make(for: viewModel.movieCells)
+        prefetchDataSource = CollectionViewDataSourcePrefetching(cellCount: viewModel.movieCells.count,
+                                                                       prefetchHandler: { [weak self] in
+                                                                        self?.viewModel.getMovies()
         })
         collectionView.dataSource = dataSource
-        collectionView.prefetchDataSource = dataSource
+        collectionView.prefetchDataSource = prefetchDataSource
         collectionView.reloadData()
         refreshControl?.endRefreshing(with: 0.5)
     }

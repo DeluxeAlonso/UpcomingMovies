@@ -209,8 +209,8 @@ extension SearchMoviesResultController: UITableViewDelegate {
                 return
             }
             delegate?.searchMoviesResultController(self, didSelectMovie: detailViewModel)
-        default:
-            break
+        case .empty, .error, .searching:
+            return
         }
     }
     
