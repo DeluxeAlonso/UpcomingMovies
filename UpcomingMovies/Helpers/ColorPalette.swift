@@ -23,20 +23,20 @@ extension UIColor {
 
 struct ColorPalette {
     
-    struct Constant {
-        static let blackText: CGFloat = 40
-        static let whiteText: CGFloat = 249
-    }
-    
     static let lightBlueColor = UIColor(withIntRed: 74, green: 144, blue: 226, alpha: 1)
     static let lightGrayColor = UIColor(withIntRed: 205, green: 205, blue: 205, alpha: 1)
     static let redColor = UIColor(withIntRed: 255, green: 94, blue: 112, alpha: 1)
     
-    static let whiteColor = UIColor(white: Constant.whiteText / 255, alpha: 1)
+    static let whiteColor = UIColor(white: 249 / 255, alpha: 1)
     static let grayColor = UIColor(withIntRed: 130, green: 130, blue: 130, alpha: 1)
-    static let blackColor = UIColor(white: Constant.blackText / 255, alpha: 1)
+    static let blackColor = UIColor(white: 40 / 255, alpha: 1)
     
     static let darkGray = UIColor.darkGray
     static let lightGray = UIColor.lightGray
     static let lighterGray = UIColor(withIntRed: 223, green: 223, blue: 223, alpha: 1)
+    
+    struct Label {
+        static let defaultColor = UIColor.darkGray
+    }
+    
 }

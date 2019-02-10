@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVKit
 
 class MovieVideosViewController: UIViewController, Retryable {
     

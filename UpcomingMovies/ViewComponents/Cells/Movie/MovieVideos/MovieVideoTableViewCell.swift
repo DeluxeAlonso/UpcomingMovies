@@ -23,9 +23,22 @@ class MovieVideoTableViewCell: UITableViewCell {
     }
     
     // MARK: - Lifecycle
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        previewImageView.image = nil
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupUI()
+    }
+    
+    // MARK: - Private
+    
+    private func setupUI() {
+        nameLabel.font = FontHelper.light(withSize: 16.0)
+        nameLabel.textColor = ColorPalette.Label.defaultColor
     }
     
     // MARK: - Reactive Behaviour
