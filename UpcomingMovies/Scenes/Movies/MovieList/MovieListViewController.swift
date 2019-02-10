@@ -15,7 +15,7 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
     
     var viewModel: MovieListViewModel = MovieListViewModel()
     
-    private var dataSource: SimpleTableViewDataSource<MovieCellViewModel, MovieTableViewCell>!
+    private var dataSource: SimpleTableViewDataSource<MovieCellViewModel>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
     
     private var refreshControl: DefaultRefreshControl?
@@ -41,6 +41,7 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
     
     private func setupTableView() {
         tableView.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
         tableView.register(UINib(nibName: MovieTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MovieTableViewCell.identifier)

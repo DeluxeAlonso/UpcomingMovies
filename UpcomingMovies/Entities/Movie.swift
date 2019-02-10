@@ -21,15 +21,6 @@ struct Movie: Decodable {
     
     static let posterAspectRatio: Double = 1.5
     
-    var genreName: String {
-        guard let genres = genres,
-            !genres.isEmpty,
-            let genre = genres.first else {
-            return "-"
-        }
-        return AppManager.shared.findGenre(withId: genre)
-    }
-    
     private enum CodingKeys: String, CodingKey {
         case id
         case title
@@ -41,4 +32,27 @@ struct Movie: Decodable {
         case voteAverage = "vote_average"
     }
 
+}
+
+extension Movie {
+    
+    var genreName: String {
+        guard let genres = genres,
+            !genres.isEmpty,
+            let genre = genres.first else {
+                return "-"
+        }
+        return AppManager.shared.findGenre(withId: genre)
+    }
+    
+    var posterURL: URL? {
+        guard let posterPath = posterPath else { return nil }
+        return URL(string: URLConfiguration.mediaPath + posterPath)
+    }
+    
+    var backdropURL: URL? {
+        guard let backdropPath = backdropPath else { return nil }
+        return URL(string: URLConfiguration.mediaBackdropPath + backdropPath)
+    }
+    
 }

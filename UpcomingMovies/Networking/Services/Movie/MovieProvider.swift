@@ -16,6 +16,7 @@ enum MovieProvider {
     case getByGenreId(page: Int, genreId: Int)
     case search(searchText: String)
     case getDetail(id: Int)
+    case getVideos(id: Int)
     
 }
 
@@ -41,6 +42,8 @@ extension MovieProvider: Endpoint {
             return "/3/search/movie"
         case .getDetail(let id):
             return "/3/movie/\(id)"
+        case .getVideos(let id):
+            return "/3/movie/\(id)/videos"
         }
     }
     
@@ -59,6 +62,8 @@ extension MovieProvider: Endpoint {
         case .search(let searchText):
             return ["query": searchText]
         case .getDetail:
+            return nil
+        case .getVideos:
             return nil
         }
     }

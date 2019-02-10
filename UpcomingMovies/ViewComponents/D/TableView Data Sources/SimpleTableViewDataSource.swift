@@ -8,9 +8,9 @@
 
 import UIKit
 
-class SimpleTableViewDataSource<ViewModel, Cell: UITableViewCell>: NSObject, UITableViewDataSource {
+class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSource {
     
-    typealias CellConfigurator = (ViewModel, Cell) -> Void
+    typealias CellConfigurator = (ViewModel, UITableViewCell) -> Void
     
     private let reuseIdentifier: String
     private let cellConfigurator: CellConfigurator
@@ -31,7 +31,7 @@ class SimpleTableViewDataSource<ViewModel, Cell: UITableViewCell>: NSObject, UIT
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = cellViewModels[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! Cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         cellConfigurator(viewModel, cell)
         return cell
     }
@@ -47,6 +47,20 @@ extension SimpleTableViewDataSource where ViewModel == MovieCellViewModel {
                                          cellConfigurator: { (viewModel, cell) in
                                                 let cell = cell as! MovieTableViewCell
                                                 cell.viewModel = viewModel
+        })
+    }
+    
+}
+
+extension SimpleTableViewDataSource where ViewModel == MovieVideoCellViewModel {
+    
+    static func make(for cellViewModels: [MovieVideoCellViewModel],
+                     reuseIdentifier: String = MovieVideoTableViewCell.identifier) -> SimpleTableViewDataSource {
+        return SimpleTableViewDataSource(cellViewModels: cellViewModels,
+                                         reuseIdentifier: reuseIdentifier,
+                                         cellConfigurator: { (viewModel, cell) in
+                                            let cell = cell as! MovieVideoTableViewCell
+                                            cell.viewModel = viewModel
         })
     }
     

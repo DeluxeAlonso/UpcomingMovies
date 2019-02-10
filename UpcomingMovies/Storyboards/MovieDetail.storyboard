@@ -147,10 +147,14 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ol2-nL-kyw" userLabel="Trailer Movie Detail Option View" customClass="MovieDetailOptionView" customModule="UpcomingMovies" customModuleProvider="target">
                                                                 <rect key="frame" x="94" y="0.0" width="93" height="63"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <gestureRecognizers/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="PlayVideo"/>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="optionTitle" value="Trailer"/>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="sFM-TJ-Gi3" appends="YES" id="vXP-si-XP3"/>
+                                                                </connections>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oao-oc-GOX" userLabel="Cast Movie Detail Option View" customClass="MovieDetailOptionView" customModule="UpcomingMovies" customModuleProvider="target">
                                                                 <rect key="frame" x="188.5" y="0.0" width="92.5" height="63"/>
@@ -329,11 +333,65 @@
                         <outlet property="titleLabel" destination="r2f-cr-5vC" id="geG-f4-gTb"/>
                         <outlet property="transitionContainerView" destination="Bbt-pF-Smm" id="Dt4-HJ-CP4"/>
                         <outlet property="voteAverageView" destination="Tar-Cz-6l1" id="atM-cI-oWs"/>
+                        <segue destination="cYj-ea-zQe" kind="show" identifier="MovieVideosSegue" id="Uz8-gS-VNP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSa-lq-OS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="sFM-TJ-Gi3" userLabel="Trailer Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="trailersOptionAction:" destination="4Ld-U6-Odg" id="re5-wp-dtY"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3034.4000000000001" y="-124.58770614692655"/>
+        </scene>
+        <!--Movie Videos View Controller-->
+        <scene sceneID="2bO-TR-wtB">
+            <objects>
+                <viewController id="cYj-ea-zQe" customClass="MovieVideosViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GY1-Ek-OHT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lBw-Xx-uPf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hoQ-Lw-dEv" firstAttribute="trailing" secondItem="lBw-Xx-uPf" secondAttribute="trailing" id="CSk-zg-3Yc"/>
+                            <constraint firstItem="lBw-Xx-uPf" firstAttribute="leading" secondItem="hoQ-Lw-dEv" secondAttribute="leading" id="IpB-Y2-eKh"/>
+                            <constraint firstItem="hoQ-Lw-dEv" firstAttribute="bottom" secondItem="lBw-Xx-uPf" secondAttribute="bottom" id="Uwp-J3-TuE"/>
+                            <constraint firstItem="lBw-Xx-uPf" firstAttribute="top" secondItem="hoQ-Lw-dEv" secondAttribute="top" id="chg-oY-kNa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hoQ-Lw-dEv"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="loadingView" destination="WV5-oQ-UTm" id="5TP-pd-MK7"/>
+                        <outlet property="tableView" destination="lBw-Xx-uPf" id="shd-zi-TNg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jUf-hX-NAu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="WV5-oQ-UTm" userLabel="Loading View">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="049-Gg-s5a">
+                            <rect key="frame" x="101.5" y="45.5" width="37" height="37"/>
+                            <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="049-Gg-s5a" firstAttribute="centerX" secondItem="WV5-oQ-UTm" secondAttribute="centerX" id="GDH-5o-8ky"/>
+                        <constraint firstItem="049-Gg-s5a" firstAttribute="centerY" secondItem="WV5-oQ-UTm" secondAttribute="centerY" id="nuk-QA-IZS"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="RXm-At-Qmc"/>
+                </view>
+            </objects>
+            <point key="canvasLocation" x="3937" y="-125"/>
         </scene>
     </scenes>
     <resources>
