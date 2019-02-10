@@ -16,7 +16,7 @@ enum DefaultSearchOption {
         case .popular:
             return "Popular movies"
         case .topRated:
-            return "Top rates movies"
+            return "Top rated movies"
         }
     }
     
