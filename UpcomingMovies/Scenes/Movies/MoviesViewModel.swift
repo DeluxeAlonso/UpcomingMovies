@@ -64,14 +64,10 @@ protocol MoviesViewModel {
 
 extension MoviesViewModel {
     
-    // MARK: - Public
-    
     func buildDetailViewModel(atIndex index: Int) -> MovieDetailViewModel? {
         guard index < movies.count else { return nil }
         return MovieDetailViewModel(movies[index])
     }
-    
-    // MARK: - Private
     
     func getMovies() {
         fetchMovies(currentPage: getCurrentPage(), filter: filter)
@@ -103,9 +99,7 @@ extension MoviesViewModel {
     }
     
     func processMovieResult(_ movieResult: MovieResult) {
-        guard let fetchedMovies = movieResult.results else {
-            return
-        }
+        guard let fetchedMovies = movieResult.results else { return }
         var allMovies = movieResult.currentPage == 1 ? [] : viewState.value.currentMovies
         allMovies.append(contentsOf: fetchedMovies)
         if movieResult.hasMorePages {

@@ -36,6 +36,11 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
         viewModel.getMovies()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.delegate = self
+    }
+    
     // MARK: - Private
     
     private func setupUI() {
@@ -46,7 +51,6 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     }
     
     private func setupNavigationBar() {
-        navigationController?.delegate = self
         navigationItem.title = Constants.NavigationItemTitle
     }
     
@@ -202,12 +206,12 @@ extension UpcomingMoviesViewController: UINavigationControllerDelegate {
         case .push:
             transitionInteractor = TransitioningInteractor(attachTo: toVC)
             return TransitioningAnimator(isPresenting: true,
-                                                    originFrame: frame,
-                                                    transitionView: transitionView)
+                                         originFrame: frame,
+                                         transitionView: transitionView)
         case .pop, .none:
             return TransitioningAnimator(isPresenting: false,
-                                                    originFrame: frame,
-                                                    transitionView: transitionView)
+                                         originFrame: frame,
+                                         transitionView: transitionView)
         }
     }
     

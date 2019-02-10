@@ -10,11 +10,11 @@ import Foundation
 
 final class VisitedMovieCellViewModel {
     
-    var fullPosterPath: URL?
+    var posterURL: URL?
     
     init(movieVisit: MovieVisit) {
         let posterPath = movieVisit.posterPath
-        fullPosterPath = URL(string: URLConfiguration.mediaPath + posterPath)
+        posterURL = URL(string: URLConfiguration.mediaPath + posterPath)
     }
     
 }

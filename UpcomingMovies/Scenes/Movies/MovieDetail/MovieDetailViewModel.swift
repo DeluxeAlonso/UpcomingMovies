@@ -18,8 +18,8 @@ final class MovieDetailViewModel {
     var overview: String
     var voteAverage: Double?
     var posterPath: String?
-    var fullPosterPath: URL?
-    var fullBackdropPath: URL?
+    var posterURL: URL?
+    var backdropURL: URL?
     
     // MARK: - Initializers
 
@@ -31,12 +31,8 @@ final class MovieDetailViewModel {
         voteAverage = movie.voteAverage
         overview = movie.overview
         posterPath = movie.posterPath
-        if let posterPath = self.posterPath {
-            fullPosterPath = URL(string: URLConfiguration.mediaBackdropPath + posterPath)
-        }
-        if let backdropPath = movie.backdropPath {
-            fullBackdropPath = URL(string: URLConfiguration.mediaBackdropPath + backdropPath)
-        }
+        posterURL = movie.posterURL
+        backdropURL = movie.backdropURL
     }
     
     // MARK: - Public
@@ -49,6 +45,10 @@ final class MovieDetailViewModel {
                                   title: self.title,
                                   posterPath: posterPath)
         }
+    }
+    
+    func buildVideosViewModel() -> MovieVideosViewModel {
+        return MovieVideosViewModel(movieId: id, movieTitle: title)
     }
     
 }

@@ -52,7 +52,7 @@ class MovieTableViewCell: UITableViewCell {
         genreLabel.text = viewModel.genre
         releaseDateLabel.text = viewModel.releaseDate
         posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: viewModel.fullPosterPath)
+        posterImageView.kf.setImage(with: viewModel.posterURL)
         voteAverageView.voteValue = viewModel.voteAverage
     }
 

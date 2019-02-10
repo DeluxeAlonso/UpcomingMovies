@@ -43,7 +43,7 @@ class VisitedMovieCollectionViewCell: UICollectionViewCell, Animatable {
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
         posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: viewModel.fullPosterPath)
+        posterImageView.kf.setImage(with: viewModel.posterURL)
     }
     
 }

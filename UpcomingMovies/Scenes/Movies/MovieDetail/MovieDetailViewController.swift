@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import Kingfisher
 
-class MovieDetailViewController: UIViewController, Transitionable {
+class MovieDetailViewController: UIViewController, Transitionable, SegueHandler {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backdropImageView: UIImageView!
@@ -34,10 +34,6 @@ class MovieDetailViewController: UIViewController, Transitionable {
     }
     
     // MARK: - Lifecycle
-    
-    deinit {
-        print("MovieDetailViewController")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,14 +62,26 @@ class MovieDetailViewController: UIViewController, Transitionable {
         releaseDateLabel.text = viewModel.releaseDate
         
         backdropImageView.kf.indicatorType = .activity
-        backdropImageView.kf.setImage(with: viewModel.fullBackdropPath)
+        backdropImageView.kf.setImage(with: viewModel.backdropURL)
         
         posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: viewModel.fullPosterPath)
+        posterImageView.kf.setImage(with: viewModel.posterURL)
         
         voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview
         viewModel.saveVisitedMovie(managedObjectContext)
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segueIdentifier(for: segue) {
+        case .movieVideos:
+            navigationController?.delegate = nil
+            guard let viewController = segue.destination as? MovieVideosViewController else { fatalError() }
+            _ = viewController.view
+            viewController.viewModel = viewModel?.buildVideosViewModel()
+        }
     }
     
     // MARK: - Selectors
@@ -84,5 +92,21 @@ class MovieDetailViewController: UIViewController, Transitionable {
         let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
         self.present(activityViewController, animated: true, completion: nil)
     }
+    
+    // MARK: - Options Actions
+    
+    @IBAction func trailersOptionAction(_ sender: Any) {
+        performSegue(withIdentifier: SegueIdentifier.movieVideos.rawValue, sender: nil)
+    }
+    
+}
 
+// MARK: - Segue Identifiers
+
+extension MovieDetailViewController {
+    
+    enum SegueIdentifier: String {
+        case movieVideos = "MovieVideosSegue"
+    }
+    
 }

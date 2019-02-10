@@ -56,7 +56,7 @@ class UpcomingMoviesTests: XCTestCase {
         // Act
         viewModelToTest.setSelectedMovie(at: 0)
         let selectedMovieCell = viewModelToTest.selectedMovieCell
-        let movieFullPosterPath = selectedMovieCell?.fullPosterPath
+        let movieFullPosterPath = selectedMovieCell?.posterURL
         // Assert
         XCTAssertEqual(movieFullPosterPath, URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
     }
