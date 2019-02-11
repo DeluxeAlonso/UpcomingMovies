@@ -63,14 +63,15 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="Bbt-pF-Smm" firstAttribute="leading" secondItem="dNi-I8-n9k" secondAttribute="leading" constant="16" id="0zj-Xj-UbS"/>
                                                     <constraint firstAttribute="height" constant="200" id="Axk-rd-rxy"/>
                                                     <constraint firstItem="W4O-hv-Tc9" firstAttribute="leading" secondItem="dNi-I8-n9k" secondAttribute="leading" id="Lqa-YM-jjS"/>
                                                     <constraint firstAttribute="bottom" secondItem="W4O-hv-Tc9" secondAttribute="bottom" id="MHd-3l-7kR"/>
                                                     <constraint firstAttribute="bottom" secondItem="Bbt-pF-Smm" secondAttribute="bottom" constant="8" id="YyM-WY-7W0"/>
                                                     <constraint firstItem="W4O-hv-Tc9" firstAttribute="top" secondItem="dNi-I8-n9k" secondAttribute="top" id="dZ8-ia-ZSn"/>
                                                     <constraint firstAttribute="trailing" secondItem="W4O-hv-Tc9" secondAttribute="trailing" id="mR9-Oa-pXW"/>
+                                                    <constraint firstItem="Bbt-pF-Smm" firstAttribute="leading" secondItem="pLJ-3U-CFF" secondAttribute="leading" constant="16" id="vTm-62-9QG"/>
                                                 </constraints>
+                                                <viewLayoutGuide key="safeArea" id="pLJ-3U-CFF"/>
                                             </view>
                                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="OUk-3t-KmG" userLabel="Title View">
                                                 <rect key="frame" x="0.0" y="200" width="375" height="56"/>
@@ -102,11 +103,12 @@
                                                 <constraints>
                                                     <constraint firstItem="Tar-Cz-6l1" firstAttribute="leading" secondItem="r2f-cr-5vC" secondAttribute="trailing" constant="16" id="1lF-0x-4ja"/>
                                                     <constraint firstItem="Tar-Cz-6l1" firstAttribute="centerY" secondItem="OUk-3t-KmG" secondAttribute="centerY" id="G4g-Uc-vdY"/>
-                                                    <constraint firstItem="r2f-cr-5vC" firstAttribute="leading" secondItem="OUk-3t-KmG" secondAttribute="leading" constant="16" id="XXE-Jc-e7j"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Tar-Cz-6l1" secondAttribute="trailing" constant="16" id="iTZ-7z-poh"/>
+                                                    <constraint firstItem="r2f-cr-5vC" firstAttribute="leading" secondItem="ZAr-f7-PzF" secondAttribute="leading" constant="16" id="XXE-Jc-e7j"/>
+                                                    <constraint firstItem="ZAr-f7-PzF" firstAttribute="trailing" secondItem="Tar-Cz-6l1" secondAttribute="trailing" constant="16" id="iTZ-7z-poh"/>
                                                     <constraint firstItem="r2f-cr-5vC" firstAttribute="top" secondItem="OUk-3t-KmG" secondAttribute="top" constant="16" id="srR-ag-FgF"/>
                                                     <constraint firstAttribute="bottom" secondItem="r2f-cr-5vC" secondAttribute="bottom" constant="16" id="ykm-XQ-hzz"/>
                                                 </constraints>
+                                                <viewLayoutGuide key="safeArea" id="ZAr-f7-PzF"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFa-RK-IZ6" userLabel="Separator View">
                                                 <rect key="frame" x="0.0" y="256" width="375" height="1"/>
@@ -274,6 +276,7 @@
                                                         </constraints>
                                                     </view>
                                                 </subviews>
+                                                <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g51-3z-gND" userLabel="Separator View">
                                                 <rect key="frame" x="0.0" y="404" width="375" height="1"/>
@@ -295,13 +298,15 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="1SK-ri-asW" firstAttribute="top" secondItem="lW1-zc-8gr" secondAttribute="top" constant="16" id="SwT-gG-5eR"/>
-                                                    <constraint firstAttribute="trailing" secondItem="1SK-ri-asW" secondAttribute="trailing" constant="16" id="YSe-bs-ZWF"/>
-                                                    <constraint firstItem="1SK-ri-asW" firstAttribute="leading" secondItem="lW1-zc-8gr" secondAttribute="leading" constant="16" id="i7N-Ou-OWA"/>
+                                                    <constraint firstItem="XM4-m6-VHh" firstAttribute="trailing" secondItem="1SK-ri-asW" secondAttribute="trailing" constant="16" id="YSe-bs-ZWF"/>
+                                                    <constraint firstItem="1SK-ri-asW" firstAttribute="leading" secondItem="XM4-m6-VHh" secondAttribute="leading" constant="16" id="i7N-Ou-OWA"/>
                                                     <constraint firstAttribute="bottom" secondItem="1SK-ri-asW" secondAttribute="bottom" constant="16" id="vot-ec-Kju"/>
                                                 </constraints>
+                                                <viewLayoutGuide key="safeArea" id="XM4-m6-VHh"/>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <viewLayoutGuide key="safeArea" id="qYZ-7f-vai"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -315,8 +320,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="QLg-25-1il" firstAttribute="leading" secondItem="DUq-9p-4eU" secondAttribute="leading" id="BWX-7f-3HH"/>
-                            <constraint firstItem="DUq-9p-4eU" firstAttribute="trailing" secondItem="QLg-25-1il" secondAttribute="trailing" id="X1z-0A-1bB"/>
+                            <constraint firstItem="QLg-25-1il" firstAttribute="leading" secondItem="hFz-lI-SND" secondAttribute="leading" id="BWX-7f-3HH"/>
+                            <constraint firstAttribute="trailing" secondItem="QLg-25-1il" secondAttribute="trailing" id="X1z-0A-1bB"/>
                             <constraint firstItem="DUq-9p-4eU" firstAttribute="bottom" secondItem="QLg-25-1il" secondAttribute="bottom" id="gQ8-Bj-CyW"/>
                             <constraint firstItem="QLg-25-1il" firstAttribute="top" secondItem="DUq-9p-4eU" secondAttribute="top" id="xrz-ms-3hl"/>
                         </constraints>
