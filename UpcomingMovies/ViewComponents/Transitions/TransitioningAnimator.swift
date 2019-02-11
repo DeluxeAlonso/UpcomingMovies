@@ -14,14 +14,16 @@ class TransitioningAnimator: NSObject {
     private var isPresenting: Bool
     private var originFrame: CGRect
     private var transitionView: UIView
+    private var verticalSafeAreaOffset: CGFloat
     
     // MARK: - Initializers
     
-    init(duration: TimeInterval = 0.3, isPresenting: Bool, originFrame: CGRect, transitionView: UIView) {
+    init(duration: TimeInterval = 0.3, isPresenting: Bool, originFrame: CGRect, transitionView: UIView, verticalSafeAreaOffset: CGFloat = 0.0) {
         self.duration = duration
         self.isPresenting = isPresenting
         self.originFrame = originFrame
         self.transitionView = transitionView
+        self.verticalSafeAreaOffset = verticalSafeAreaOffset
         super.init()
     }
 
@@ -55,7 +57,9 @@ extension TransitioningAnimator: UIViewControllerAnimatedTransitioning {
         }
         
         guard let transitionContainerView = transitionable.transitionContainerView,
-           let transitionContainerViewFrame = transitionContainerView.absoluteFrame else { return }
+           var transitionContainerViewFrame = transitionContainerView.absoluteFrame else { return }
+        
+        transitionContainerViewFrame.origin.x += verticalSafeAreaOffset
         
         transitionContainerView.alpha = 0.0
         transitionView.frame = isPresenting ? originFrame : transitionContainerViewFrame
