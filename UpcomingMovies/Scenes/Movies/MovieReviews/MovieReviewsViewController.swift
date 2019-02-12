@@ -61,7 +61,7 @@ class MovieReviewsViewController: UIViewController, Retryable {
                                                                 self?.viewModel?.getMovieReviews()
         })
         tableView.dataSource = dataSource
-        //tableView.prefetchDataSource = prefetchDataSource
+        tableView.prefetchDataSource = prefetchDataSource
         tableView.reloadData()
     }
     
@@ -117,5 +117,9 @@ extension MovieReviewsViewController {
 // MARK: - UITableViewDelegate
 
 extension MovieReviewsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
 }

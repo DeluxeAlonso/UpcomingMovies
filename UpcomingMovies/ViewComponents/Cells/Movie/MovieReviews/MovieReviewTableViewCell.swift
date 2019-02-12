@@ -29,6 +29,12 @@ class MovieReviewTableViewCell: UITableViewCell {
     }
     
     private func setupUI() {
+        setupLabels()
+    }
+    
+    private func setupLabels() {
+        authorNameLabel.font = FontHelper.semiBold(withSize: 16.0)
+        contentLabel.font = FontHelper.light(withSize: 15.0)
     }
     
     // MARK: - Reactive Behaviour
