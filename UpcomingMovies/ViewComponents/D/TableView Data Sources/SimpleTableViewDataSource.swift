@@ -40,7 +40,7 @@ class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSource {
 
 extension SimpleTableViewDataSource where ViewModel == MovieCellViewModel {
     
-    static func make(for cellViewModels: [MovieCellViewModel],
+    static func make(for cellViewModels: [ViewModel],
                      reuseIdentifier: String = MovieTableViewCell.identifier) -> SimpleTableViewDataSource {
         return SimpleTableViewDataSource(cellViewModels: cellViewModels,
                                          reuseIdentifier: reuseIdentifier,
@@ -54,12 +54,26 @@ extension SimpleTableViewDataSource where ViewModel == MovieCellViewModel {
 
 extension SimpleTableViewDataSource where ViewModel == MovieVideoCellViewModel {
     
-    static func make(for cellViewModels: [MovieVideoCellViewModel],
+    static func make(for cellViewModels: [ViewModel],
                      reuseIdentifier: String = MovieVideoTableViewCell.identifier) -> SimpleTableViewDataSource {
         return SimpleTableViewDataSource(cellViewModels: cellViewModels,
                                          reuseIdentifier: reuseIdentifier,
                                          cellConfigurator: { (viewModel, cell) in
                                             let cell = cell as! MovieVideoTableViewCell
+                                            cell.viewModel = viewModel
+        })
+    }
+    
+}
+
+extension SimpleTableViewDataSource where ViewModel == MovieReviewCellViewModel {
+    
+    static func make(for cellViewModels: [ViewModel],
+                     reuseIdentifier: String = MovieReviewTableViewCell.identifier) -> SimpleTableViewDataSource {
+        return SimpleTableViewDataSource(cellViewModels: cellViewModels,
+                                         reuseIdentifier: reuseIdentifier,
+                                         cellConfigurator: { (viewModel, cell) in
+                                            let cell = cell as! MovieReviewTableViewCell
                                             cell.viewModel = viewModel
         })
     }

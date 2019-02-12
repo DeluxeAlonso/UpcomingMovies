@@ -51,4 +51,8 @@ final class MovieDetailViewModel {
         return MovieVideosViewModel(movieId: id, movieTitle: title)
     }
     
+    func buildReviewsViewModel() -> MovieReviewsViewModel {
+        return MovieReviewsViewModel(movieId: id, movieTitle: title)
+    }
+    
 }

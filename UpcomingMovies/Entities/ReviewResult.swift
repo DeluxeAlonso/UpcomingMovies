@@ -1,16 +1,16 @@
 //
-//  MovieResult.swift
+//  ReviewResult.swift
 //  UpcomingMovies
 //
-//  Created by Alonso on 11/6/18.
-//  Copyright © 2018 Alonso. All rights reserved.
+//  Created by Alonso on 2/11/19.
+//  Copyright © 2019 Alonso. All rights reserved.
 //
 
 import Foundation
 
-struct MovieResult: Decodable, Paginable {
-
-    let results: [Movie]
+struct ReviewResult: Decodable, Paginable {
+    
+    let results: [Review]
     var currentPage: Int
     var totalPages: Int
     

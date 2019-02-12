@@ -126,6 +126,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YRY-vC-JoM" userLabel="Reviews Movie Detail Option View" customClass="MovieDetailOptionView" customModule="UpcomingMovies" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="92.5" height="63"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <gestureRecognizers/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="YRY-vC-JoM" secondAttribute="height" multiplier="5:2" id="VHg-U9-EQF"/>
                                                                     <constraint firstAttribute="width" secondItem="YRY-vC-JoM" secondAttribute="height" multiplier="47:32" id="neV-6O-8rM"/>
@@ -145,6 +146,9 @@
                                                                         <exclude reference="neV-6O-8rM"/>
                                                                     </mask>
                                                                 </variation>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="ElM-XT-eHR" appends="YES" id="vCA-gK-VG7"/>
+                                                                </connections>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ol2-nL-kyw" userLabel="Trailer Movie Detail Option View" customClass="MovieDetailOptionView" customModule="UpcomingMovies" customModuleProvider="target">
                                                                 <rect key="frame" x="94" y="0.0" width="93" height="63"/>
@@ -152,7 +156,7 @@
                                                                 <gestureRecognizers/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="PlayVideo"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="optionTitle" value="Trailer"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="optionTitle" value="Trailers"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outletCollection property="gestureRecognizers" destination="sFM-TJ-Gi3" appends="YES" id="vXP-si-XP3"/>
@@ -339,16 +343,70 @@
                         <outlet property="transitionContainerView" destination="Bbt-pF-Smm" id="Dt4-HJ-CP4"/>
                         <outlet property="voteAverageView" destination="Tar-Cz-6l1" id="atM-cI-oWs"/>
                         <segue destination="cYj-ea-zQe" kind="show" identifier="MovieVideosSegue" id="Uz8-gS-VNP"/>
+                        <segue destination="tJd-Cb-tNf" kind="show" identifier="MovieReviewsSegue" id="01W-O1-qgM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSa-lq-OS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="sFM-TJ-Gi3" userLabel="Trailer Tap Gesture Recognizer">
+                <tapGestureRecognizer id="sFM-TJ-Gi3" userLabel="Trailers Tap Gesture Recognizer">
                     <connections>
                         <action selector="trailersOptionAction:" destination="4Ld-U6-Odg" id="re5-wp-dtY"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="ElM-XT-eHR" userLabel="Reviews Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="reviewsOptionAction:" destination="4Ld-U6-Odg" id="MVd-5Z-BV6"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3034.4000000000001" y="-124.58770614692655"/>
+        </scene>
+        <!--Movie Reviews View Controller-->
+        <scene sceneID="9vg-Qi-lZh">
+            <objects>
+                <viewController id="tJd-Cb-tNf" customClass="MovieReviewsViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FW6-zN-rcU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1LO-1f-yqK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1LO-1f-yqK" firstAttribute="top" secondItem="A5P-gX-mhd" secondAttribute="top" id="6Zw-Eq-nlz"/>
+                            <constraint firstItem="A5P-gX-mhd" firstAttribute="bottom" secondItem="1LO-1f-yqK" secondAttribute="bottom" id="JF8-Z6-Hj9"/>
+                            <constraint firstItem="1LO-1f-yqK" firstAttribute="leading" secondItem="A5P-gX-mhd" secondAttribute="leading" id="d4Q-f3-FGK"/>
+                            <constraint firstItem="A5P-gX-mhd" firstAttribute="trailing" secondItem="1LO-1f-yqK" secondAttribute="trailing" id="ozc-XB-u0j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="A5P-gX-mhd"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="loadingView" destination="AzO-vT-aeV" id="ofU-Hr-RiJ"/>
+                        <outlet property="tableView" destination="1LO-1f-yqK" id="ROJ-iX-uKa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1NG-Sk-iCY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="AzO-vT-aeV">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="FEb-MN-ndE">
+                            <rect key="frame" x="101.5" y="45.5" width="37" height="37"/>
+                            <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="FEb-MN-ndE" firstAttribute="centerY" secondItem="AzO-vT-aeV" secondAttribute="centerY" id="Wwp-3u-8l6"/>
+                        <constraint firstItem="FEb-MN-ndE" firstAttribute="centerX" secondItem="AzO-vT-aeV" secondAttribute="centerX" id="sef-DU-4rv"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="IAb-R8-QdF"/>
+                </view>
+            </objects>
+            <point key="canvasLocation" x="4056" y="302"/>
         </scene>
         <!--Movie Videos View Controller-->
         <scene sceneID="2bO-TR-wtB">
@@ -396,7 +454,7 @@
                     <viewLayoutGuide key="safeArea" id="RXm-At-Qmc"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3937" y="-125"/>
+            <point key="canvasLocation" x="4066" y="-526"/>
         </scene>
     </scenes>
     <resources>

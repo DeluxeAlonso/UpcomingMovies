@@ -205,8 +205,6 @@ extension UpcomingMoviesViewController: UINavigationControllerDelegate {
         switch operation {
         case .push:
             transitionInteractor = TransitioningInteractor(attachTo: toVC)
-            print(self.view.safeAreaInsets)
-            
             return TransitioningAnimator(isPresenting: true,
                                          originFrame: frame,
                                          transitionView: transitionView,
