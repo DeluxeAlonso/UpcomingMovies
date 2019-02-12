@@ -75,12 +75,16 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        navigationController?.delegate = nil
         switch segueIdentifier(for: segue) {
         case .movieVideos:
-            navigationController?.delegate = nil
             guard let viewController = segue.destination as? MovieVideosViewController else { fatalError() }
             _ = viewController.view
             viewController.viewModel = viewModel?.buildVideosViewModel()
+        case .movieReviews:
+            guard let viewController = segue.destination as? MovieReviewsViewController else { fatalError() }
+            _ = viewController.view
+            viewController.viewModel = viewModel?.buildReviewsViewModel()
         }
     }
     
@@ -99,6 +103,10 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
         performSegue(withIdentifier: SegueIdentifier.movieVideos.rawValue, sender: nil)
     }
     
+    @IBAction func reviewsOptionAction(_ sender: Any) {
+        performSegue(withIdentifier: SegueIdentifier.movieReviews.rawValue, sender: nil)
+    }
+    
 }
 
 // MARK: - Segue Identifiers
@@ -107,6 +115,7 @@ extension MovieDetailViewController {
     
     enum SegueIdentifier: String {
         case movieVideos = "MovieVideosSegue"
+        case movieReviews = "MovieReviewsSegue"
     }
     
 }

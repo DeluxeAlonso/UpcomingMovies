@@ -72,7 +72,7 @@ final class SearchMoviesResultViewModel: NSObject {
     }
     
     private func processMovieResult(_ movieResult: MovieResult) {
-        guard let fetchedMovies = movieResult.results else { return }
+        let fetchedMovies = movieResult.results
         movies = fetchedMovies
         if movies.isEmpty {
             viewState.value = .empty

@@ -21,8 +21,8 @@ final class SplashViewModel {
         genreClient.getAllGenres { result in
             switch result {
             case .success(let genreResult):
-                guard let genreResult = genreResult,
-                 let genres = genreResult.genres else { return }
+                guard let genreResult = genreResult else { return }
+                let genres = genreResult.genres
                 AppManager.shared.genres = genres
                 self.genresFetched?()
             case .failure(let error):

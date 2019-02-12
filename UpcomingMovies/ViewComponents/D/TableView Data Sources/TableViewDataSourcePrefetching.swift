@@ -10,12 +10,16 @@ import UIKit
 
 class TableViewDataSourcePrefetching: NSObject, UITableViewDataSourcePrefetching {
     
-    private let cellCount: Int
+    private var cellCount: Int
     private let prefetchHandler: (() -> Void)
     
     init(cellCount: Int, prefetchHandler: @escaping (() -> Void)) {
         self.cellCount = cellCount
         self.prefetchHandler = prefetchHandler
+    }
+    
+    func updateCellCount(_ cellCount: Int) {
+        self.cellCount = cellCount
     }
     
     private func isLoadingCell(for indexPath: IndexPath) -> Bool {

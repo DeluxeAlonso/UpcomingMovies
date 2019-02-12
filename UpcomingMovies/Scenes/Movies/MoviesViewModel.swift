@@ -99,7 +99,7 @@ extension MoviesViewModel {
     }
     
     func processMovieResult(_ movieResult: MovieResult) {
-        guard let fetchedMovies = movieResult.results else { return }
+        let fetchedMovies = movieResult.results
         var allMovies = movieResult.currentPage == 1 ? [] : viewState.value.currentMovies
         allMovies.append(contentsOf: fetchedMovies)
         if movieResult.hasMorePages {
