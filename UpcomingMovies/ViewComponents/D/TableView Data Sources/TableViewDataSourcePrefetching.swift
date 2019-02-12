@@ -27,6 +27,7 @@ class TableViewDataSourcePrefetching: NSObject, UITableViewDataSourcePrefetching
     }
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        guard tableView.visibleCells.count > 1 else { return }
         if indexPaths.contains(where: isLoadingCell) {
             prefetchHandler()
         }
