@@ -10,6 +10,7 @@ import Foundation
 
 enum MovieListFilter {
     case upcoming, popular, topRated
+    case similar(movieId: Int)
     case byGenre(genreId: Int)
     
     var title: String? {
@@ -20,6 +21,8 @@ enum MovieListFilter {
             return "Popular Movies"
         case .topRated:
             return "Top Rated Movies"
+        case .similar:
+            return "Similar Movies"
         case .byGenre(let genreId):
             let genres = AppManager.shared.genres
             let genre = genres.filter { $0.id == genreId }.first

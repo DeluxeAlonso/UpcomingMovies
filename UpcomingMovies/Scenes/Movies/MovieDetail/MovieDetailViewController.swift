@@ -85,6 +85,9 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
             guard let viewController = segue.destination as? MovieReviewsViewController else { fatalError() }
             _ = viewController.view
             viewController.viewModel = viewModel?.buildReviewsViewModel()
+        case .movieSimilars:
+            guard let viewController = segue.destination as? MovieListViewController else { fatalError() }
+            viewController.viewModel = viewModel!.buildSimilarsViewModel()
         }
     }
     
@@ -107,6 +110,10 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
         performSegue(withIdentifier: SegueIdentifier.movieReviews.rawValue, sender: nil)
     }
     
+    @IBAction func similarsOptionAction(_ sender: Any) {
+        performSegue(withIdentifier: SegueIdentifier.movieSimilars.rawValue, sender: nil)
+    }
+    
 }
 
 // MARK: - Segue Identifiers
@@ -116,6 +123,7 @@ extension MovieDetailViewController {
     enum SegueIdentifier: String {
         case movieVideos = "MovieVideosSegue"
         case movieReviews = "MovieReviewsSegue"
+        case movieSimilars = "MovieSimilarsSegue"
     }
     
 }
