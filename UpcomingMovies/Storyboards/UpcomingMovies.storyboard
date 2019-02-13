@@ -44,27 +44,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="EKd-qK-aII" id="2u5-5u-0xh"/>
-                        <outlet property="loadingView" destination="cne-Ik-Vjp" id="Ez4-QU-xLF"/>
                         <segue destination="RoE-rT-Mzt" kind="show" identifier="MovieDetailSegue" id="BHy-mp-6be"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JXE-16-sg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="cne-Ik-Vjp" userLabel="Loading View">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="95"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bAX-bO-BOS">
-                            <rect key="frame" x="101.5" y="29" width="37" height="37"/>
-                            <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </activityIndicatorView>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="bAX-bO-BOS" firstAttribute="centerY" secondItem="cne-Ik-Vjp" secondAttribute="centerY" id="68I-UY-pQv"/>
-                        <constraint firstItem="bAX-bO-BOS" firstAttribute="centerX" secondItem="cne-Ik-Vjp" secondAttribute="centerX" id="Q1i-xR-Lg6"/>
-                    </constraints>
-                    <viewLayoutGuide key="safeArea" id="64m-3G-8qV"/>
-                </view>
             </objects>
             <point key="canvasLocation" x="959" y="87"/>
         </scene>

@@ -14,16 +14,12 @@ final class MovieListViewModel: MoviesViewModel {
         return movies.compactMap { MovieCellViewModel($0) }
     }
     
-    var movies: [Movie] {
-        return viewState.value.currentMovies
-    }
-    
     // MARK: - Properties
     
     var movieClient = MovieClient()
     var filter: MovieListFilter
     
-    var viewState: Bindable<MoviesViewState> = Bindable(.loading)
+    var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.loading)
     
     // MARK: - Initializers
     

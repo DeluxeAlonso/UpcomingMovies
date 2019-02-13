@@ -10,7 +10,7 @@ import UIKit
 
 class CustomFooterView: UIView {
     
-    static let recommendedFrame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50)
+    static let recommendedFrame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100)
     
     fileprivate lazy var messageLabel: UILabel = {
         let label = UILabel()

@@ -8,41 +8,20 @@
 
 import Foundation
 
-enum MovieReviewsViewState {
-    
-    case loading
-    case paging([Review], next: Int)
-    case populated([Review])
-    case empty
-    case error(Error)
-    
-    var currentReviews: [Review] {
-        switch self {
-        case .populated(let reviews):
-            return reviews
-        case .paging(let reviews, _):
-            return reviews
-        case .loading, .empty, .error:
-            return []
-        }
-    }
-    
-}
-
 final class MovieReviewsViewModel {
     
     let movieId: Int
     let movieTitle: String
     
     let movieClient = MovieClient()
-    let viewState: Bindable<MovieReviewsViewState> = Bindable(.loading)
+    let viewState: Bindable<SimpleViewState<Review>> = Bindable(.loading)
     
     var reviewCells: [MovieReviewCellViewModel] {
         return reviews.map { MovieReviewCellViewModel($0) }
     }
     
     private var reviews: [Review] {
-        return viewState.value.currentReviews
+        return viewState.value.currentEntities
     }
     
     // MARK: - Initializers
@@ -52,11 +31,11 @@ final class MovieReviewsViewModel {
         self.movieTitle = movieTitle
     }
     
-    func shoulPrefetch() -> Bool {
+    func shouldPrefetch() -> Bool {
         switch viewState.value {
         case .paging:
             return true
-        default:
+        case .loading, .empty, .populated, .error:
             return false
         }
     }
@@ -64,7 +43,7 @@ final class MovieReviewsViewModel {
     // MARK: - Networking
     
     func getMovieReviews() {
-        movieClient.getMovieReviews(with: movieId) { result in
+        movieClient.getMovieReviews(page: viewState.value.currentPage, with: movieId) { result in
             switch result {
             case .success(let reviewResult):
                 guard let reviewResult = reviewResult else { return }
@@ -77,7 +56,7 @@ final class MovieReviewsViewModel {
     
     private func processReviewResult(_ reviewResult: ReviewResult) {
         let fetchedReviews = reviewResult.results
-        var allReviews = reviewResult.currentPage == 1 ? [] : viewState.value.currentReviews
+        var allReviews = reviewResult.currentPage == 1 ? [] : viewState.value.currentEntities
         allReviews.append(contentsOf: fetchedReviews)
         guard !allReviews.isEmpty else {
             viewState.value = .empty

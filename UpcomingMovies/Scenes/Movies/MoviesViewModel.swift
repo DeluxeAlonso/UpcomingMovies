@@ -8,27 +8,6 @@
 
 import Foundation
 
-enum MoviesViewState {
-    
-    case loading
-    case paging([Movie], next: Int)
-    case populated([Movie])
-    case empty
-    case error(Error)
-    
-    var currentMovies: [Movie] {
-        switch self {
-        case .populated(let movies):
-            return movies
-        case .paging(let movies, _):
-            return movies
-        case .loading, .empty, .error:
-            return []
-        }
-    }
-    
-}
-
 enum MovieListFilter {
     case upcoming, popular, topRated
     case byGenre(genreId: Int)
@@ -54,7 +33,7 @@ protocol MoviesViewModel {
     associatedtype MovieCellViewModel
     
     var movieClient: MovieClient { get }
-    var viewState: Bindable<MoviesViewState> { get set }
+    var viewState: Bindable<SimpleViewState<Movie>> { get set }
     var filter: MovieListFilter { get set }
     
     var movieCells: [MovieCellViewModel] { get }
@@ -64,26 +43,21 @@ protocol MoviesViewModel {
 
 extension MoviesViewModel {
     
+    var movies: [Movie] {
+        return viewState.value.currentEntities
+    }
+    
     func buildDetailViewModel(atIndex index: Int) -> MovieDetailViewModel? {
         guard index < movies.count else { return nil }
         return MovieDetailViewModel(movies[index])
     }
     
     func getMovies() {
-        fetchMovies(currentPage: getCurrentPage(), filter: filter)
+        fetchMovies(currentPage: viewState.value.currentPage, filter: filter)
     }
     
     func refreshMovies() {
         fetchMovies(currentPage: 1, filter: filter)
-    }
-    
-    func getCurrentPage() -> Int {
-        switch viewState.value {
-        case .populated, .empty, .error, .loading:
-            return 1
-        case .paging(_, let page):
-            return page
-        }
     }
     
     func fetchMovies(currentPage: Int, filter: MovieListFilter) {
@@ -100,7 +74,7 @@ extension MoviesViewModel {
     
     func processMovieResult(_ movieResult: MovieResult) {
         let fetchedMovies = movieResult.results
-        var allMovies = movieResult.currentPage == 1 ? [] : viewState.value.currentMovies
+        var allMovies = movieResult.currentPage == 1 ? [] : viewState.value.currentEntities
         allMovies.append(contentsOf: fetchedMovies)
         if movieResult.hasMorePages {
             viewState.value = .paging(allMovies, next: movieResult.nextPage)
