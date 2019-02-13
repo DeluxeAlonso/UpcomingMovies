@@ -384,27 +384,10 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="loadingView" destination="AzO-vT-aeV" id="ofU-Hr-RiJ"/>
                         <outlet property="tableView" destination="1LO-1f-yqK" id="ROJ-iX-uKa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1NG-Sk-iCY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="AzO-vT-aeV">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="FEb-MN-ndE">
-                            <rect key="frame" x="101.5" y="45.5" width="37" height="37"/>
-                            <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </activityIndicatorView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="FEb-MN-ndE" firstAttribute="centerY" secondItem="AzO-vT-aeV" secondAttribute="centerY" id="Wwp-3u-8l6"/>
-                        <constraint firstItem="FEb-MN-ndE" firstAttribute="centerX" secondItem="AzO-vT-aeV" secondAttribute="centerX" id="sef-DU-4rv"/>
-                    </constraints>
-                    <viewLayoutGuide key="safeArea" id="IAb-R8-QdF"/>
-                </view>
             </objects>
             <point key="canvasLocation" x="4056" y="302"/>
         </scene>
@@ -432,27 +415,10 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="loadingView" destination="WV5-oQ-UTm" id="5TP-pd-MK7"/>
                         <outlet property="tableView" destination="lBw-Xx-uPf" id="shd-zi-TNg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jUf-hX-NAu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="WV5-oQ-UTm" userLabel="Loading View">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="049-Gg-s5a">
-                            <rect key="frame" x="101.5" y="45.5" width="37" height="37"/>
-                            <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </activityIndicatorView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="049-Gg-s5a" firstAttribute="centerX" secondItem="WV5-oQ-UTm" secondAttribute="centerX" id="GDH-5o-8ky"/>
-                        <constraint firstItem="049-Gg-s5a" firstAttribute="centerY" secondItem="WV5-oQ-UTm" secondAttribute="centerY" id="nuk-QA-IZS"/>
-                    </constraints>
-                    <viewLayoutGuide key="safeArea" id="RXm-At-Qmc"/>
-                </view>
             </objects>
             <point key="canvasLocation" x="4066" y="-526"/>
         </scene>

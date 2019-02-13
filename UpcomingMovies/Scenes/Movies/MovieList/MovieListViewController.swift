@@ -11,17 +11,12 @@ import UIKit
 class MovieListViewController: UIViewController, Retryable, SegueHandler {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var loadingView: UIView!
     
     var viewModel: MovieListViewModel = MovieListViewModel()
     
     private var dataSource: SimpleTableViewDataSource<MovieCellViewModel>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
-    
-    private var refreshControl: DefaultRefreshControl?
     private var displayedCellsIndexPaths = Set<IndexPath>()
-    
-    var errorView: ErrorPlaceholderView?
     
     // MARK: - Lifcycle
 
@@ -47,12 +42,11 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
     }
     
     private func setupRefreshControl() {
-        refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
+        tableView.refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
                                               backgroundColor: tableView.backgroundColor,
                                               refreshHandler: { [weak self] in
                                                 self?.viewModel.refreshMovies()
         })
-        tableView.refreshControl = refreshControl
     }
     
     private func setupForceTouchSupport() {
@@ -70,22 +64,25 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
         tableView.dataSource = dataSource
         tableView.prefetchDataSource = prefetchDataSource
         tableView.reloadData()
-        refreshControl?.endRefreshing(with: 0.5)
+        tableView.refreshControl?.endRefreshing(with: 0.5)
     }
     
     /**
      * Configures the tableview footer given the current state of the view.
      */
-    private func configureView(withState state: MoviesViewState) {
+    private func configureView(withState state: SimpleViewState<Movie>) {
         switch state {
         case .loading, .paging:
-            tableView.tableFooterView = loadingView
+            tableView.tableFooterView = LoadingFooterView()
             hideErrorView()
         case .populated, .empty:
             tableView.tableFooterView = nil
             hideErrorView()
         case .error(let error):
-            showErrorView(withErrorMessage: error.localizedDescription)
+            presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
+                                       errorHandler: { [weak self] in
+                                        self?.viewModel.getMovies()
+            })
         }
     }
     
@@ -128,20 +125,6 @@ extension MovieListViewController: UITableViewDelegate {
         if !displayedCellsIndexPaths.contains(indexPath) {
             displayedCellsIndexPaths.insert(indexPath)
             TableViewCellAnimator.fadeAnimate(cell: cell)
-        }
-    }
-    
-}
-
-// MARK: - Retryable
-
-extension MovieListViewController {
-    
-    func showErrorView(withErrorMessage errorMessage: String?) {
-        self.presentFullScreenErrorView(withErrorMessage: errorMessage)
-        self.errorView?.retry = { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.viewModel.getMovies()
         }
     }
     

@@ -11,21 +11,16 @@ import UIKit
 class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet var loadingView: UIView!
     
     private var viewModel = UpcomingMoviesViewModel()
     
     private var dataSource: SimpleCollectionViewDataSource<UpcomingMovieCellViewModel>!
     private var prefetchDataSource: CollectionViewDataSourcePrefetching!
-    
-    private var refreshControl: DefaultRefreshControl?
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
     private var selectedFrame: CGRect?
     private var imageToTransition: UIImage?
     private var transitionInteractor: TransitioningInteractor?
-    
-    var errorView: ErrorPlaceholderView?
 
     // MARK: - Lifecycle
     
@@ -57,15 +52,24 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.registerNib(cellType: UpcomingMovieCollectionViewCell.self)
+        setupCollectionViewLayout()
+    }
+    
+    private func setupCollectionViewLayout() {
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        let posterHeight: Double = Constants.cellHeight
+        let posterWidth: Double = posterHeight / Movie.posterAspectRatio
+        layout.itemSize = CGSize(width: posterWidth, height: posterHeight)
+        layout.sectionInset = UIEdgeInsets(top: Constants.cellMargin, left: Constants.cellMargin,
+                                           bottom: Constants.cellMargin, right: Constants.cellMargin)
     }
     
     private func setupRefreshControl() {
-        refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
+        collectionView.refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
                                               backgroundColor: collectionView.backgroundColor,
                                               refreshHandler: { [weak self] in
                                                 self?.viewModel.refreshMovies()
         })
-        collectionView.refreshControl = refreshControl
     }
     
     private func reloadCollectionView() {
@@ -77,22 +81,25 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = prefetchDataSource
         collectionView.reloadData()
-        refreshControl?.endRefreshing(with: 0.5)
+        collectionView.refreshControl?.endRefreshing(with: 0.5)
     }
     
     /**
      * Configures the tableview footer given the current state of the view.
      */
-    private func configureView(withState state: MoviesViewState) {
+    private func configureView(withState state: SimpleViewState<Movie>) {
         switch state {
         case .loading:
-            collectionView.backgroundView = loadingView
+            collectionView.backgroundView = LoadingFooterView()
             hideErrorView()
         case .populated, .paging, .empty:
             collectionView.backgroundView = UIView(frame: .zero)
             hideErrorView()
         case .error(let error):
-            showErrorView(withErrorMessage: error.localizedDescription)
+            presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
+                                       errorHandler: { [weak self] in
+                                        self?.viewModel.getMovies()
+            })
         }
     }
     
@@ -130,20 +137,6 @@ extension UpcomingMoviesViewController: TabBarScrollable {
     
 }
 
-// MARK: - Retryable
-
-extension UpcomingMoviesViewController {
-    
-    func showErrorView(withErrorMessage errorMessage: String?) {
-        self.presentFullScreenErrorView(withErrorMessage: errorMessage)
-        self.errorView?.retry = { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.viewModel.getMovies()
-        }
-    }
-    
-}
-
 // MARK: - UICollectionViewDelegate
 
 extension UpcomingMoviesViewController: UICollectionViewDelegate {
@@ -163,27 +156,6 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
             displayedCellsIndexPaths.insert(indexPath)
             CollectionViewCellAnimator.fadeAnimate(cell: cell)
         }
-    }
-    
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension UpcomingMoviesViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let posterHeight: Double = Constants.cellHeight
-        let posterWidth: Double = posterHeight / Movie.posterAspectRatio
-        return CGSize(width: posterWidth, height: posterHeight)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: Constants.cellMargin, left: Constants.cellMargin,
-                            bottom: Constants.cellMargin, right: Constants.cellMargin)
     }
     
 }

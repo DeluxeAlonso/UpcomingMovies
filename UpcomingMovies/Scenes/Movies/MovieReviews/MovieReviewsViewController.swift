@@ -11,7 +11,6 @@ import UIKit
 class MovieReviewsViewController: UIViewController, Retryable {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var loadingView: UIView!
     
     var viewModel: MovieReviewsViewModel? {
         didSet {
@@ -59,10 +58,10 @@ class MovieReviewsViewController: UIViewController, Retryable {
     /**
      * Configures the tableview footer given the current state of the view.
      */
-    private func configureView(withState state: MovieReviewsViewState) {
+    private func configureView(withState state: SimpleViewState<Review>) {
         switch state {
         case .loading:
-            tableView.tableFooterView = loadingView
+            tableView.tableFooterView = LoadingFooterView()
             hideErrorView()
         case .populated, .paging:
             tableView.tableFooterView = UIView()
@@ -71,7 +70,10 @@ class MovieReviewsViewController: UIViewController, Retryable {
             tableView.tableFooterView = CustomFooterView(message: "There are no reviews to show right now.")
             hideErrorView()
         case .error(let error):
-            showErrorView(withErrorMessage: error.localizedDescription)
+            presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
+                                       errorHandler: { [weak self] in
+                                        self?.viewModel?.getMovieReviews()
+            })
         }
     }
     
@@ -80,7 +82,6 @@ class MovieReviewsViewController: UIViewController, Retryable {
     private func setupBindables() {
         title = viewModel?.movieTitle
         viewModel?.getMovieReviews()
-        
         viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             strongSelf.configureView(withState: state)
@@ -88,20 +89,6 @@ class MovieReviewsViewController: UIViewController, Retryable {
         })
     }
 
-}
-
-// MARK: - Retryable
-
-extension MovieReviewsViewController {
-    
-    func showErrorView(withErrorMessage errorMessage: String?) {
-        self.presentFullScreenErrorView(withErrorMessage: errorMessage)
-        self.errorView?.retry = { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.viewModel?.getMovieReviews()
-        }
-    }
-    
 }
 
 // MARK: - UITableViewDelegate

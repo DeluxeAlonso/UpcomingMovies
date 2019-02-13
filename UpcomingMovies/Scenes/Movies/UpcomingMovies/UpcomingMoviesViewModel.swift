@@ -15,17 +15,13 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     var movieClient = MovieClient()
     
     var filter: MovieListFilter = .upcoming
-    var viewState: Bindable<MoviesViewState> = Bindable(.loading)
+    var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.loading)
     var selectedMovieCell: UpcomingMovieCellViewModel?
     
     // MARK: - Computed Properties
     
     var movieCells: [UpcomingMovieCellViewModel] {
         return movies.compactMap { UpcomingMovieCellViewModel($0) }
-    }
-    
-    var movies: [Movie] {
-        return viewState.value.currentMovies
     }
     
     // MARK: - Public

@@ -8,24 +8,6 @@
 
 import UIKit
 
-enum MovieVideosViewState {
-    
-    case loading
-    case populated([Video])
-    case empty
-    case error(Error)
-    
-    var currentVideos: [Video] {
-        switch self {
-        case .populated(let videos):
-            return videos
-        case .loading, .empty, .error:
-            return []
-        }
-    }
-    
-}
-
 final class MovieVideosViewModel {
     
     let movieId: Int
@@ -33,14 +15,14 @@ final class MovieVideosViewModel {
     
     let movieClient = MovieClient()
     
-    let viewState: Bindable<MovieVideosViewState> = Bindable(.loading)
+    let viewState: Bindable<SimpleViewState<Video>> = Bindable(.loading)
     
     var videoCells: [MovieVideoCellViewModel] {
         return videos.map { MovieVideoCellViewModel($0) }
     }
     
     private var videos: [Video] {
-        return viewState.value.currentVideos
+        return viewState.value.currentEntities
     }
     
     // MARK: - Initializers

@@ -11,7 +11,6 @@ import UIKit
 class MovieVideosViewController: UIViewController, Retryable {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var loadingView: UIView!
     
     var viewModel: MovieVideosViewModel? {
         didSet {
@@ -21,8 +20,6 @@ class MovieVideosViewController: UIViewController, Retryable {
     
     private var dataSource: SimpleTableViewDataSource<MovieVideoCellViewModel>!
     private var displayedCellsIndexPaths = Set<IndexPath>()
-    
-    var errorView: ErrorPlaceholderView?
     
     // MARK: - Lifecycle
     
@@ -54,10 +51,10 @@ class MovieVideosViewController: UIViewController, Retryable {
     /**
      * Configures the tableview footer given the current state of the view.
      */
-    private func configureView(withState state: MovieVideosViewState) {
+    private func configureView(withState state: SimpleViewState<Video>) {
         switch state {
-        case .loading:
-            tableView.tableFooterView = loadingView
+        case .loading, .paging:
+            tableView.tableFooterView = LoadingFooterView()
             hideErrorView()
         case .populated:
             tableView.tableFooterView = UIView()
@@ -66,7 +63,10 @@ class MovieVideosViewController: UIViewController, Retryable {
             tableView.tableFooterView = CustomFooterView(message: "There are no trailers to show right now.")
             hideErrorView()
         case .error(let error):
-            showErrorView(withErrorMessage: error.localizedDescription)
+            presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
+                                       errorHandler: { [weak self] in
+                                        self?.viewModel?.getMovieVideos()
+            })
         }
     }
 
@@ -82,20 +82,6 @@ class MovieVideosViewController: UIViewController, Retryable {
         })
     }
 
-}
-
-// MARK: - Retryable
-
-extension MovieVideosViewController {
-    
-    func showErrorView(withErrorMessage errorMessage: String?) {
-        self.presentFullScreenErrorView(withErrorMessage: errorMessage)
-        self.errorView?.retry = { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.viewModel?.getMovieVideos()
-        }
-    }
-    
 }
 
 // MARK: - UITableViewDelegate
