@@ -48,11 +48,15 @@ final class MovieDetailViewModel {
     }
     
     func buildVideosViewModel() -> MovieVideosViewModel {
-        return MovieVideosViewModel(movieId: id, movieTitle: title)
+        return MovieVideosViewModel(movieId: self.id, movieTitle: self.title)
     }
     
     func buildReviewsViewModel() -> MovieReviewsViewModel {
-        return MovieReviewsViewModel(movieId: id, movieTitle: title)
+        return MovieReviewsViewModel(movieId: self.id, movieTitle: self.title)
+    }
+    
+    func buildSimilarsViewModel() -> MovieListViewModel {
+        return MovieListViewModel(filter: .similar(movieId: self.id))
     }
     
 }

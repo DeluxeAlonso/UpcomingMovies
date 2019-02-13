@@ -10,6 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--MovieListViewController-->
+        <scene sceneID="kdE-kF-ATo">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MovieList" referencedIdentifier="MovieListViewController" id="8kV-EH-Iqr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Coe-H0-9ZT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3034" y="337"/>
+        </scene>
         <!--MovieDetailViewController-->
         <scene sceneID="wJn-cU-Ijp">
             <objects>
@@ -170,13 +178,17 @@
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="Cast"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgt-dg-IRa" customClass="MovieDetailOptionView" customModule="UpcomingMovies" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgt-dg-IRa" userLabel="Similar Moviw Option View" customClass="MovieDetailOptionView" customModule="UpcomingMovies" customModuleProvider="target">
                                                                 <rect key="frame" x="282.5" y="0.0" width="92.5" height="63"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <gestureRecognizers/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="SimilarMovies"/>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="optionTitle" value="Similars"/>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="U0c-SP-USZ" appends="YES" id="aVn-ov-Onc"/>
+                                                                </connections>
                                                             </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -344,6 +356,7 @@
                         <outlet property="voteAverageView" destination="Tar-Cz-6l1" id="atM-cI-oWs"/>
                         <segue destination="cYj-ea-zQe" kind="show" identifier="MovieVideosSegue" id="Uz8-gS-VNP"/>
                         <segue destination="tJd-Cb-tNf" kind="show" identifier="MovieReviewsSegue" id="01W-O1-qgM"/>
+                        <segue destination="8kV-EH-Iqr" kind="show" identifier="MovieSimilarsSegue" id="j7M-Fl-jcH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSa-lq-OS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -355,6 +368,11 @@
                 <tapGestureRecognizer id="ElM-XT-eHR" userLabel="Reviews Tap Gesture Recognizer">
                     <connections>
                         <action selector="reviewsOptionAction:" destination="4Ld-U6-Odg" id="MVd-5Z-BV6"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="U0c-SP-USZ" userLabel="Similars Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="similarsOptionAction:" destination="4Ld-U6-Odg" id="R9T-ZC-gnq"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
