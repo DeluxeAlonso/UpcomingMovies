@@ -33,9 +33,10 @@ class CustomFooterView: UIView {
     
     // MARK: - Initializers
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(message: String) {
+        super.init(frame: CustomFooterView.recommendedFrame)
         setupUI()
+        messageLabel.text = message
     }
     
     required init?(coder aDecoder: NSCoder) {

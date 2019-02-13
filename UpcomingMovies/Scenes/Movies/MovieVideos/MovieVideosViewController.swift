@@ -13,12 +13,6 @@ class MovieVideosViewController: UIViewController, Retryable {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var loadingView: UIView!
     
-    private lazy var customFooterView: CustomFooterView = {
-        let footerView = CustomFooterView()
-        footerView.frame = CustomFooterView.recommendedFrame
-        return footerView
-    }()
-    
     var viewModel: MovieVideosViewModel? {
         didSet {
             setupBindables()
@@ -47,9 +41,7 @@ class MovieVideosViewController: UIViewController, Retryable {
         tableView.delegate = self
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(MovieVideoTableViewCell.self, forCellReuseIdentifier: MovieVideoTableViewCell.identifier)
-        tableView.register(UINib(nibName: MovieVideoTableViewCell.identifier, bundle: nil),
-                           forCellReuseIdentifier: MovieVideoTableViewCell.identifier)
+        tableView.registerNib(cellType: MovieVideoTableViewCell.self)
     }
     
     private func reloadTableView() {
@@ -71,8 +63,7 @@ class MovieVideosViewController: UIViewController, Retryable {
             tableView.tableFooterView = UIView()
             hideErrorView()
         case .empty:
-            tableView.tableFooterView = customFooterView
-            customFooterView.message = "There are no trailers to show right now."
+            tableView.tableFooterView = CustomFooterView(message: "There are no trailers to show right now.")
             hideErrorView()
         case .error(let error):
             showErrorView(withErrorMessage: error.localizedDescription)

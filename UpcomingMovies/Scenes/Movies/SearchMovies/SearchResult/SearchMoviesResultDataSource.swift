@@ -42,13 +42,13 @@ class SearchMoviesResultDataSource: NSObject, UITableViewDataSource {
     }
     
     fileprivate func recentSearchesDataSource(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RecentSearchTableViewCell.identifier, for: indexPath) as! RecentSearchTableViewCell
+        let cell = tableView.dequeueReusableCell(with: RecentSearchTableViewCell.self, for: indexPath)
         cell.viewModel = viewModel.recentSearchCells[indexPath.row]
         return cell
     }
     
     fileprivate func searchedMoviesDataSource(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath) as! MovieTableViewCell
+        let cell = tableView.dequeueReusableCell(with: MovieTableViewCell.self, for: indexPath)
         cell.viewModel = viewModel.movieCells[indexPath.row]
         return cell
     }

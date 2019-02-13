@@ -45,18 +45,9 @@ class SearchOptionsTableViewController: UITableViewController {
     }
     
     private func setupTableView() {
-        tableView.register(RecentlyVisitedMoviesTableViewCell.self,
-                           forCellReuseIdentifier: RecentlyVisitedMoviesTableViewCell.identifier)
-        tableView.register(UINib(nibName: RecentlyVisitedMoviesTableViewCell.identifier, bundle: nil),
-                           forCellReuseIdentifier: RecentlyVisitedMoviesTableViewCell.identifier)
-        
-        tableView.register(DefaultSearchOptionTableViewCell.self,
-                           forCellReuseIdentifier: DefaultSearchOptionTableViewCell.identifier)
-        
-        tableView.register(GenreSearchOptionTableViewCell.self,
-                           forCellReuseIdentifier: GenreSearchOptionTableViewCell.identifier)
-        tableView.register(UINib(nibName: GenreSearchOptionTableViewCell.identifier, bundle: nil),
-                           forCellReuseIdentifier: GenreSearchOptionTableViewCell.identifier)
+        tableView.register(cellType: DefaultSearchOptionTableViewCell.self)
+        tableView.registerNib(cellType: RecentlyVisitedMoviesTableViewCell.self)
+        tableView.registerNib(cellType: GenreSearchOptionTableViewCell.self)
     }
     
     private func setupDataSource() {

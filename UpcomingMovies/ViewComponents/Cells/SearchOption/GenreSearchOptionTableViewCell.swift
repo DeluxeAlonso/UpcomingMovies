@@ -9,9 +9,7 @@
 import UIKit
 
 class GenreSearchOptionTableViewCell: UITableViewCell {
-    
-    static let identifier = "GenreSearchOptionCell"
-    
+
     @IBOutlet weak var nameLabel: UILabel!
     
     var viewModel: GenreSearchOptionCellViewModel? {

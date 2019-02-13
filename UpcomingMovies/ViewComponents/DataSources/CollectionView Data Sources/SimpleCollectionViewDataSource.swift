@@ -43,7 +43,7 @@ class SimpleCollectionViewDataSource<ViewModel>: NSObject, UICollectionViewDataS
 extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellViewModel {
     
     static func make(for cellViewModels: [UpcomingMovieCellViewModel],
-                     reuseIdentifier: String = UpcomingMovieCollectionViewCell.identifier) -> SimpleCollectionViewDataSource {
+                     reuseIdentifier: String = UpcomingMovieCollectionViewCell.dequeuIdentifier) -> SimpleCollectionViewDataSource {
         return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
                                               reuseIdentifier: reuseIdentifier,
                                               cellConfigurator: { (viewModel, cell) in

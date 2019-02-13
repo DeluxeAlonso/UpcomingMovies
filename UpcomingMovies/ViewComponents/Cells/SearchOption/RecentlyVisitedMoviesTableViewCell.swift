@@ -10,8 +10,6 @@ import UIKit
 
 class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
     
-    static let identifier = "RecentlyVisitedMoviesCell"
-
     @IBOutlet weak var collectionView: UICollectionView!
     
     var viewModel: RecentlyVisitedMoviesCellViewModel? {
@@ -36,11 +34,7 @@ class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
     private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        
-        collectionView.register(VisitedMovieCollectionViewCell.self,
-                                forCellWithReuseIdentifier: VisitedMovieCollectionViewCell.identifier)
-        collectionView.register(UINib(nibName: VisitedMovieCollectionViewCell.identifier, bundle: nil),
-                                forCellWithReuseIdentifier: VisitedMovieCollectionViewCell.identifier)
+        collectionView.registerNib(cellType: VisitedMovieCollectionViewCell.self)
     }
     
     // MARK: - Reactive Behaviour
@@ -62,8 +56,7 @@ extension RecentlyVisitedMoviesTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let viewModel = viewModel else { fatalError() }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VisitedMovieCollectionViewCell.identifier,
-                                                      for: indexPath) as! VisitedMovieCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(with: VisitedMovieCollectionViewCell.self, for: indexPath)
         cell.viewModel = viewModel.visitedMovieCells[indexPath.row]
         return cell
     }

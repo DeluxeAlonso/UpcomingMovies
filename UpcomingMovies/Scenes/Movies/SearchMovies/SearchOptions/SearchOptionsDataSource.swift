@@ -53,22 +53,19 @@ class SearchOptionsDataSource: NSObject, UITableViewDataSource {
     
     private func recentlyVisitedDataSource(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         guard let viewModel = viewModel else { fatalError() }
-        let cell = tableView.dequeueReusableCell(withIdentifier: RecentlyVisitedMoviesTableViewCell.identifier,
-                                                 for: indexPath) as! RecentlyVisitedMoviesTableViewCell
+        let cell = tableView.dequeueReusableCell(with: RecentlyVisitedMoviesTableViewCell.self, for: indexPath)
         cell.viewModel = viewModel.prepareRecentlyVisitedMoviesCell()
         return cell
     }
     
     private func defaultSearchOptionDataSource(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: DefaultSearchOptionTableViewCell.identifier,
-                                                 for: indexPath) as! DefaultSearchOptionTableViewCell
+        let cell = tableView.dequeueReusableCell(with: DefaultSearchOptionTableViewCell.self, for: indexPath)
         cell.viewModel = viewModel?.defaultSearchOptionsCells[indexPath.row]
         return cell
     }
     
     private func genreSearchOptionDataSource(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: GenreSearchOptionTableViewCell.identifier,
-                                                 for: indexPath) as! GenreSearchOptionTableViewCell
+        let cell = tableView.dequeueReusableCell(with: GenreSearchOptionTableViewCell.self, for: indexPath)
         cell.viewModel = viewModel?.genreCells[indexPath.row]
         return cell
     }

@@ -11,8 +11,6 @@ import Kingfisher
 
 class VisitedMovieCollectionViewCell: UICollectionViewCell, Animatable {
     
-    static let identifier = "VisitedMovieCell"
-    
     @IBOutlet weak var posterImageView: UIImageView!
     
     var viewModel: VisitedMovieCellViewModel? {

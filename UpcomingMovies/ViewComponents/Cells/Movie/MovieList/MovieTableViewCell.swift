@@ -11,8 +11,6 @@ import Kingfisher
 
 class MovieTableViewCell: UITableViewCell {
     
-    static let identifier = "MovieCell"
-    
     @IBOutlet weak var movieContainerView: UIView!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

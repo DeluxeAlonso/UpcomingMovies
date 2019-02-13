@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="4op-bm-CjR" customClass="ErrorPlaceholderView" customModule="Urbaner" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="4op-bm-CjR" customClass="ErrorPlaceholderView" customModule="UpcomingMovies" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="345"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -66,8 +66,8 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="T47-RJ-N5g"/>
             <connections>
-                <outlet property="errorDetailLabel" destination="GNK-yP-ZAJ" id="VYV-qT-X8R"/>
-                <outlet property="errorTitleLabel" destination="mmU-b6-dw7" id="Zkl-rv-mBH"/>
+                <outlet property="errorDetailLabel" destination="GNK-yP-ZAJ" id="cjy-Ib-ysx"/>
+                <outlet property="errorTitleLabel" destination="mmU-b6-dw7" id="lvv-GB-IiB"/>
                 <outlet property="retryButton" destination="0ej-Of-szu" id="bLR-mB-B77"/>
             </connections>
             <point key="canvasLocation" x="647.20000000000005" y="204.64767616191907"/>

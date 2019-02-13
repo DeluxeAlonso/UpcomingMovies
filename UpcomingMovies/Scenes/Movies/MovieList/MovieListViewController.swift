@@ -43,8 +43,7 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
-        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
-        tableView.register(UINib(nibName: MovieTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MovieTableViewCell.identifier)
+        tableView.registerNib(cellType: MovieTableViewCell.self)
     }
     
     private func setupRefreshControl() {

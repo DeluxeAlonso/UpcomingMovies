@@ -27,15 +27,8 @@ class SearchMoviesResultController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.delegate = self
         
-        tableView.register(MovieTableViewCell.self,
-                           forCellReuseIdentifier: MovieTableViewCell.identifier)
-        tableView.register(UINib(nibName: MovieTableViewCell.identifier, bundle: nil),
-                           forCellReuseIdentifier: MovieTableViewCell.identifier)
-        
-        tableView.register(RecentSearchTableViewCell.self,
-                           forCellReuseIdentifier: RecentSearchTableViewCell.identifier)
-        tableView.register(UINib(nibName: RecentSearchTableViewCell.identifier, bundle: nil),
-                           forCellReuseIdentifier: RecentSearchTableViewCell.identifier)
+        tableView.registerNib(cellType: MovieTableViewCell.self)
+        tableView.registerNib(cellType: RecentSearchTableViewCell.self)
         
         return tableView
     }()
@@ -44,12 +37,6 @@ class SearchMoviesResultController: UIViewController {
         let footerView = LoadingFooterView()
         footerView.frame = LoadingFooterView.recommendedFrame
         footerView.startAnimating()
-        return footerView
-    }()
-    
-    private lazy var customFooterView: CustomFooterView = {
-        let footerView = CustomFooterView()
-        footerView.frame = CustomFooterView.recommendedFrame
         return footerView
     }()
     
@@ -128,16 +115,14 @@ class SearchMoviesResultController: UIViewController {
         tableView.separatorStyle = .none
         switch state {
         case .empty:
-            customFooterView.message = Constants.emptyResultsTitle
-            setupFooterTableView(tableView, withView: customFooterView, andFrame: CustomFooterView.recommendedFrame)
+            tableView.tableFooterView = CustomFooterView(message: Constants.emptyResultsTitle)
         case .populated, .initial:
             tableView.tableFooterView = UIView()
             tableView.separatorStyle = .singleLine
         case .searching:
             setupFooterTableView(tableView, withView: loadingFooterView, andFrame: LoadingFooterView.recommendedFrame)
         case .error(let error):
-            customFooterView.message = error.localizedDescription
-            setupFooterTableView(tableView, withView: customFooterView, andFrame: CustomFooterView.recommendedFrame)
+            tableView.tableFooterView = CustomFooterView(message: error.localizedDescription)
         }
     }
     

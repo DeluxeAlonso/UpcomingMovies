@@ -9,9 +9,7 @@
 import UIKit
 
 class MovieReviewTableViewCell: UITableViewCell {
-    
-    static let identifier = "MovieReviewCell"
-    
+
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     

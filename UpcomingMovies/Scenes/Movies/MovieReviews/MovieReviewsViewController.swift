@@ -13,12 +13,6 @@ class MovieReviewsViewController: UIViewController, Retryable {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var loadingView: UIView!
     
-    private lazy var customFooterView: CustomFooterView = {
-        let footerView = CustomFooterView()
-        footerView.frame = CustomFooterView.recommendedFrame
-        return footerView
-    }()
-    
     var viewModel: MovieReviewsViewModel? {
         didSet {
             setupBindables()
@@ -47,10 +41,7 @@ class MovieReviewsViewController: UIViewController, Retryable {
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
-        tableView.register(MovieReviewTableViewCell.self,
-                           forCellReuseIdentifier: MovieReviewTableViewCell.identifier)
-        tableView.register(UINib(nibName: MovieReviewTableViewCell.identifier, bundle: nil),
-                           forCellReuseIdentifier: MovieReviewTableViewCell.identifier)
+        tableView.registerNib(cellType: MovieReviewTableViewCell.self)
     }
     
     private func reloadTableView() {
@@ -77,8 +68,7 @@ class MovieReviewsViewController: UIViewController, Retryable {
             tableView.tableFooterView = UIView()
             hideErrorView()
         case .empty:
-            tableView.tableFooterView = customFooterView
-            customFooterView.message = "There are no reviews to show right now."
+            tableView.tableFooterView = CustomFooterView(message: "There are no reviews to show right now.")
             hideErrorView()
         case .error(let error):
             showErrorView(withErrorMessage: error.localizedDescription)

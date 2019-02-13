@@ -10,8 +10,6 @@ import UIKit
 
 class DefaultSearchOptionTableViewCell: UITableViewCell {
     
-    static let identifier = "DefaultSearchOptionCell"
-    
     var viewModel: DefaultSearchOptionCellViewModel? {
         didSet {
             setupBindables()

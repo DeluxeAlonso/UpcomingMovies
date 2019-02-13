@@ -20,13 +20,6 @@ class SearchMoviesViewController: UIViewController, SegueHandler {
         return appDelegate.persistentContainer.viewContext
     }
     
-    private lazy var customFooterView: CustomFooterView = {
-        let footerView = CustomFooterView()
-        footerView.message = Constants.noRecentSearchText
-        footerView.frame = CustomFooterView.recommendedFrame
-        return footerView
-    }()
-    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {

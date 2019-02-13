@@ -41,7 +41,7 @@ class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSource {
 extension SimpleTableViewDataSource where ViewModel == MovieCellViewModel {
     
     static func make(for cellViewModels: [ViewModel],
-                     reuseIdentifier: String = MovieTableViewCell.identifier) -> SimpleTableViewDataSource {
+                     reuseIdentifier: String = MovieTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {
         return SimpleTableViewDataSource(cellViewModels: cellViewModels,
                                          reuseIdentifier: reuseIdentifier,
                                          cellConfigurator: { (viewModel, cell) in
@@ -55,7 +55,7 @@ extension SimpleTableViewDataSource where ViewModel == MovieCellViewModel {
 extension SimpleTableViewDataSource where ViewModel == MovieVideoCellViewModel {
     
     static func make(for cellViewModels: [ViewModel],
-                     reuseIdentifier: String = MovieVideoTableViewCell.identifier) -> SimpleTableViewDataSource {
+                     reuseIdentifier: String = MovieVideoTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {
         return SimpleTableViewDataSource(cellViewModels: cellViewModels,
                                          reuseIdentifier: reuseIdentifier,
                                          cellConfigurator: { (viewModel, cell) in
@@ -69,7 +69,7 @@ extension SimpleTableViewDataSource where ViewModel == MovieVideoCellViewModel {
 extension SimpleTableViewDataSource where ViewModel == MovieReviewCellViewModel {
     
     static func make(for cellViewModels: [ViewModel],
-                     reuseIdentifier: String = MovieReviewTableViewCell.identifier) -> SimpleTableViewDataSource {
+                     reuseIdentifier: String = MovieReviewTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {
         return SimpleTableViewDataSource(cellViewModels: cellViewModels,
                                          reuseIdentifier: reuseIdentifier,
                                          cellConfigurator: { (viewModel, cell) in

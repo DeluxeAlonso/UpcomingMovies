@@ -9,7 +9,7 @@
 import UIKit
 
 class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
-    
+
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var loadingView: UIView!
     
@@ -56,10 +56,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     
     private func setupCollectionView() {
         collectionView.delegate = self
-        collectionView.register(UpcomingMovieCollectionViewCell.self,
-                                forCellWithReuseIdentifier: UpcomingMovieCollectionViewCell.identifier)
-        collectionView.register(UINib(nibName: UpcomingMovieCollectionViewCell.identifier, bundle: nil),
-                                forCellWithReuseIdentifier: UpcomingMovieCollectionViewCell.identifier)
+        collectionView.registerNib(cellType: UpcomingMovieCollectionViewCell.self)
     }
     
     private func setupRefreshControl() {
