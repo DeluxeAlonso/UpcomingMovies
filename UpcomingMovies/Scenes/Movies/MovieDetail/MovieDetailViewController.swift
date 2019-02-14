@@ -49,6 +49,8 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
     }
     
     private func setupNavigationBar() {
+        let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backItem
         let shareBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareBarButtonAction))
         navigationItem.rightBarButtonItem = shareBarButtonItem
     }
@@ -85,6 +87,10 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
             guard let viewController = segue.destination as? MovieReviewsViewController else { fatalError() }
             _ = viewController.view
             viewController.viewModel = viewModel?.buildReviewsViewModel()
+        case .movieCredits:
+            guard let viewController = segue.destination as? MovieCreditsViewController else { fatalError() }
+            _ = viewController.view
+            viewController.viewModel = viewModel?.buildCreditsViewModel()
         case .movieSimilars:
             guard let viewController = segue.destination as? MovieListViewController else { fatalError() }
             viewController.viewModel = viewModel!.buildSimilarsViewModel()
@@ -110,6 +116,10 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
         performSegue(withIdentifier: SegueIdentifier.movieReviews.rawValue, sender: nil)
     }
     
+    @IBAction func creditsOptionAction(_ sender: Any) {
+        performSegue(withIdentifier: SegueIdentifier.movieCredits.rawValue, sender: nil)
+    }
+    
     @IBAction func similarsOptionAction(_ sender: Any) {
         performSegue(withIdentifier: SegueIdentifier.movieSimilars.rawValue, sender: nil)
     }
@@ -124,6 +134,7 @@ extension MovieDetailViewController {
         case movieVideos = "MovieVideosSegue"
         case movieReviews = "MovieReviewsSegue"
         case movieSimilars = "MovieSimilarsSegue"
+        case movieCredits = "MovieCreditsSegue"
     }
     
 }

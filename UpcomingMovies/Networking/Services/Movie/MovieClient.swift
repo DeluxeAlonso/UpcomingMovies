@@ -82,4 +82,13 @@ class MovieClient: APIClient {
         }, completion: completion)
     }
     
+    // MARK: - Movie credits
+    
+    func getMovieCredits( with movieId: Int, completion: @escaping (Result<CreditResult?, APIError>) -> Void) {
+        fetch(with: MovieProvider.getCredits(id: movieId).request, decode: { json -> CreditResult? in
+            guard let reviewResult = json as? CreditResult else { return nil }
+            return reviewResult
+        }, completion: completion)
+    }
+    
 }
