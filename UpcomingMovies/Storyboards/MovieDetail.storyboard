@@ -18,6 +18,44 @@
             </objects>
             <point key="canvasLocation" x="3034" y="337"/>
         </scene>
+        <!--Movie Credits View Controller-->
+        <scene sceneID="bLQ-MW-xmD">
+            <objects>
+                <viewController id="dIV-7j-Rhb" customClass="MovieCreditsViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fyu-GJ-OYn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="t6G-YF-8J4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tDJ-KK-hnl">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="t6G-YF-8J4" firstAttribute="top" secondItem="0Ow-Af-evW" secondAttribute="top" id="GrB-QH-fQk"/>
+                            <constraint firstItem="0Ow-Af-evW" firstAttribute="bottom" secondItem="t6G-YF-8J4" secondAttribute="bottom" id="KEP-1j-n7z"/>
+                            <constraint firstItem="0Ow-Af-evW" firstAttribute="trailing" secondItem="t6G-YF-8J4" secondAttribute="trailing" id="Lzc-Us-FRC"/>
+                            <constraint firstItem="t6G-YF-8J4" firstAttribute="leading" secondItem="0Ow-Af-evW" secondAttribute="leading" id="xZe-jf-rYP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0Ow-Af-evW"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="collectionView" destination="t6G-YF-8J4" id="fZm-0f-8jK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cYL-tV-PjJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2149" y="-126"/>
+        </scene>
         <!--MovieDetailViewController-->
         <scene sceneID="wJn-cU-Ijp">
             <objects>
@@ -173,10 +211,14 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oao-oc-GOX" userLabel="Cast Movie Detail Option View" customClass="MovieDetailOptionView" customModule="UpcomingMovies" customModuleProvider="target">
                                                                 <rect key="frame" x="188.5" y="0.0" width="92.5" height="63"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <gestureRecognizers/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="optionTitle" value="Cast"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="optionTitle" value="Credits"/>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="Cast"/>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="o9o-3F-xia" appends="YES" id="tKK-mR-Ckn"/>
+                                                                </connections>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgt-dg-IRa" userLabel="Similar Moviw Option View" customClass="MovieDetailOptionView" customModule="UpcomingMovies" customModuleProvider="target">
                                                                 <rect key="frame" x="282.5" y="0.0" width="92.5" height="63"/>
@@ -357,6 +399,7 @@
                         <segue destination="cYj-ea-zQe" kind="show" identifier="MovieVideosSegue" id="Uz8-gS-VNP"/>
                         <segue destination="tJd-Cb-tNf" kind="show" identifier="MovieReviewsSegue" id="01W-O1-qgM"/>
                         <segue destination="8kV-EH-Iqr" kind="show" identifier="MovieSimilarsSegue" id="j7M-Fl-jcH"/>
+                        <segue destination="dIV-7j-Rhb" kind="show" identifier="MovieCreditsSegue" id="GIN-c7-Gcw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSa-lq-OS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -373,6 +416,11 @@
                 <tapGestureRecognizer id="U0c-SP-USZ" userLabel="Similars Tap Gesture Recognizer">
                     <connections>
                         <action selector="similarsOptionAction:" destination="4Ld-U6-Odg" id="R9T-ZC-gnq"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="o9o-3F-xia" userLabel="Credits Gesture Recognizer">
+                    <connections>
+                        <action selector="creditsOptionAction:" destination="4Ld-U6-Odg" id="dm1-Ep-YVS"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

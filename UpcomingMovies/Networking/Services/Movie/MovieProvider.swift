@@ -19,6 +19,7 @@ enum MovieProvider {
     case getVideos(id: Int)
     case getReviews(page: Int, id: Int)
     case getSimilars(page:Int, id: Int)
+    case getCredits(id: Int)
     
 }
 
@@ -50,6 +51,8 @@ extension MovieProvider: Endpoint {
             return "/3/movie/\(id)/reviews"
         case .getSimilars(_, let id):
             return "/3/movie/\(id)/similar"
+        case .getCredits(let id):
+            return "/3/movie/\(id)/credits"
         }
     }
     
@@ -67,7 +70,7 @@ extension MovieProvider: Endpoint {
                     "sort_by": "release_date.desc"]
         case .search(let searchText):
             return ["query": searchText]
-        case .getDetail, .getVideos:
+        case .getDetail, .getVideos, .getCredits:
             return nil
         case .getReviews(let page, _):
             return ["page": page]

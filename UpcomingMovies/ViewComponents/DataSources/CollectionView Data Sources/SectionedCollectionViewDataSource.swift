@@ -34,5 +34,5 @@ extension SectionedCollectionViewDataSource: UICollectionViewDataSource {
         let indexPath = IndexPath(row: indexPath.row, section: 0)
         return dataSource.collectionView(collectionView, cellForItemAt: indexPath)
     }
-    
+
 }
