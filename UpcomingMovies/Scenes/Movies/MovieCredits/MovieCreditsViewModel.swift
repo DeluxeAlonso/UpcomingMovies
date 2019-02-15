@@ -14,7 +14,10 @@ final class MovieCreditsViewModel {
     let movieTitle: String
     
     private let movieClient = MovieClient()
-    private var sections: [MovieCreditsViewSections] = [.cast, .crew]
+    
+    var sections: [MovieCreditsCollapsibleSection] =
+        [MovieCreditsCollapsibleSection(type: .cast, opened: true),
+         MovieCreditsCollapsibleSection(type: .crew, opened: false)]
     
     var viewState: Bindable<ViewState> = Bindable(.loading)
     
@@ -31,6 +34,40 @@ final class MovieCreditsViewModel {
     init(movieId: Int, movieTitle: String) {
         self.movieId = movieId
         self.movieTitle = movieTitle
+    }
+    
+    // MARK: - Public
+    
+    func rowCount(for section: Int) -> Int {
+        let section = sections[section]
+        guard section.opened else { return 0 }
+        switch section.type {
+        case .cast:
+            return castCells.count
+        case .crew:
+            return crewCells.count
+        }
+    }
+    
+    func credit(for section: Int, and index: Int) -> MovieCreditCellViewModel {
+        switch sections[section].type {
+        case .cast:
+            return castCells[index]
+        case .crew:
+            return crewCells[index]
+        }
+    }
+    
+    func headerModel(for index: Int) -> CollapsibleHeaderViewModel {
+        let section = sections[index]
+        return CollapsibleHeaderViewModel(opened: section.opened,
+                                          section: index,
+                                          title: section.type.title)
+    }
+    
+    func toggleSection(_ section: Int) -> Bool {
+        sections[section].opened = !sections[section].opened
+        return sections[section].opened
     }
     
     // MARK: - Networking
@@ -63,7 +100,12 @@ final class MovieCreditsViewModel {
 
 extension MovieCreditsViewModel {
     
-    enum MovieCreditsViewSections {
+    struct MovieCreditsCollapsibleSection {
+        let type: MovieCreditsViewSection
+        var opened: Bool
+    }
+    
+    enum MovieCreditsViewSection {
         case cast, crew
         
         var title: String {
