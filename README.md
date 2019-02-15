@@ -10,6 +10,8 @@ Movies app written in Swift 4 using the Movie Database API.
 
 <img src="Screenshots/Home.png" width=200 height=433> <img src="Screenshots/Detail.png" width=200 height=433>
 <img src="Screenshots/Search.png" width=200 height=433> <img src="Screenshots/SearchResult.png" width=200 height=433>
+<img src="Screenshots/Reviews.png" width=200 height=433> <img src="Screenshots/Videos.png" width=200 height=433>
+<img src="Screenshots/Credits.png" width=200 height=433>
 
 ## Third-party libraries
 
