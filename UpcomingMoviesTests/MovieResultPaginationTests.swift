@@ -15,7 +15,7 @@ class MovieResultPaginationTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        movieResultUnderTest = MovieResult(results: nil,
+        movieResultUnderTest = MovieResult(results: [],
                                            currentPage: 1,
                                            totalPages: 2)
     }

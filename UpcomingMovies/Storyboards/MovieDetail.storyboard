@@ -26,16 +26,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="t6G-YF-8J4">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="t6G-YF-8J4">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tDJ-KK-hnl">
                                     <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="60"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="CollapsibleCollectionHeaderView" id="Bk2-oD-YYu" customClass="CollapsibleCollectionHeaderView" customModule="UpcomingMovies" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CollapsibleArrow" translatesAutoresizingMaskIntoConstraints="NO" id="GKJ-Cl-bvG">
+                                            <rect key="frame" x="322" y="16" width="37" height="37"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="GKJ-Cl-bvG" secondAttribute="height" multiplier="1:1" id="BqT-FJ-bsQ"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="joB-oD-goD">
+                                            <rect key="frame" x="16" y="16" width="298" height="37"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="GKJ-Cl-bvG" firstAttribute="top" secondItem="Bk2-oD-YYu" secondAttribute="topMargin" constant="8" id="79b-4U-yMI"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="GKJ-Cl-bvG" secondAttribute="trailing" constant="8" id="AjE-mo-jvQ"/>
+                                        <constraint firstItem="joB-oD-goD" firstAttribute="leading" secondItem="Bk2-oD-YYu" secondAttribute="leadingMargin" constant="8" id="DsB-SM-uR9"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="GKJ-Cl-bvG" secondAttribute="bottom" constant="8" id="GUP-qV-3eL"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="joB-oD-goD" secondAttribute="bottom" constant="8" id="YpY-TO-hsG"/>
+                                        <constraint firstItem="joB-oD-goD" firstAttribute="top" secondItem="Bk2-oD-YYu" secondAttribute="topMargin" constant="8" id="kCI-3S-ZiY"/>
+                                        <constraint firstItem="GKJ-Cl-bvG" firstAttribute="leading" secondItem="joB-oD-goD" secondAttribute="trailing" constant="8" id="xEV-h8-9uT"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="arrowImageView" destination="GKJ-Cl-bvG" id="aWS-QT-sjc"/>
+                                        <outlet property="titleLabel" destination="joB-oD-goD" id="cqH-jH-BbR"/>
+                                    </connections>
+                                </collectionReusableView>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -54,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYL-tV-PjJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2149" y="-126"/>
+            <point key="canvasLocation" x="2148" y="-126.38680659670166"/>
         </scene>
         <!--MovieDetailViewController-->
         <scene sceneID="wJn-cU-Ijp">
@@ -491,6 +523,7 @@
     </scenes>
     <resources>
         <image name="Cast" width="176" height="176"/>
+        <image name="CollapsibleArrow" width="176" height="176"/>
         <image name="FavoriteOff" width="176" height="176"/>
         <image name="Logo" width="150" height="150"/>
         <image name="PlayVideo" width="176" height="176"/>
