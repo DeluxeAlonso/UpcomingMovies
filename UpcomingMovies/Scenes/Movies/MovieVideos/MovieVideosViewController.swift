@@ -77,8 +77,10 @@ class MovieVideosViewController: UIViewController, Retryable {
         viewModel?.getMovieVideos()
         viewModel?.viewState.bindAndFire({ [weak self] viewState in
             guard let strongSelf = self else { return }
-            strongSelf.configureView(withState: viewState)
-            strongSelf.reloadTableView()
+            DispatchQueue.main.async {
+                strongSelf.configureView(withState: viewState)
+                strongSelf.reloadTableView()
+            }
         })
     }
 

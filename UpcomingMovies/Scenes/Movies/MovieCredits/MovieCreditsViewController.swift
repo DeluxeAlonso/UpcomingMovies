@@ -64,8 +64,10 @@ class MovieCreditsViewController: UIViewController, Retryable {
         viewModel.getMovieCredits()
         viewModel.viewState.bind({ [weak self] state in
             guard let strongSelf = self else { return }
-            strongSelf.configureView(with: state)
-            strongSelf.collectionView.reloadData()
+            DispatchQueue.main.async {
+                strongSelf.configureView(with: state)
+                strongSelf.collectionView.reloadData()
+            }
         })
     }
 

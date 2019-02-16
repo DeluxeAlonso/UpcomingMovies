@@ -66,7 +66,7 @@ class MovieDetailTests: XCTestCase {
         //Act
         let fullPosterPath = viewModelToTest.posterURL
         //Assert
-        XCTAssertEqual(fullPosterPath!, URL(string: "https://image.tmdb.org/t/p/w500/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
+        XCTAssertEqual(fullPosterPath!, URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
     }
     
     func testMovieDetailBackdropPath() {
