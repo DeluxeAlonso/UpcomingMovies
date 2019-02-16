@@ -73,6 +73,8 @@
 		E223773C21EEAEFF000400B7 /* DefaultSearchOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773B21EEAEFF000400B7 /* DefaultSearchOption.swift */; };
 		E223773E21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773D21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift */; };
 		E223774021EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773F21EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift */; };
+		E223DA082217BD1900A3DC58 /* RadarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223DA072217BD1900A3DC58 /* RadarView.swift */; };
+		E223DA0A2217C11C00A3DC58 /* LoaderDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223DA092217C11C00A3DC58 /* LoaderDisplayable.swift */; };
 		E2251B1022146A4D00EE7A51 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2251B0F22146A4D00EE7A51 /* ViewState.swift */; };
 		E2251B132214ECFA00EE7A51 /* MovieCreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2251B122214ECFA00EE7A51 /* MovieCreditsViewController.swift */; };
 		E2251B152214ED0900EE7A51 /* MovieCreditsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2251B142214ED0900EE7A51 /* MovieCreditsViewModel.swift */; };
@@ -230,6 +232,8 @@
 		E223773B21EEAEFF000400B7 /* DefaultSearchOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOption.swift; sourceTree = "<group>"; };
 		E223773D21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOptionTableViewCell.swift; sourceTree = "<group>"; };
 		E223773F21EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOptionCellViewModel.swift; sourceTree = "<group>"; };
+		E223DA072217BD1900A3DC58 /* RadarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarView.swift; sourceTree = "<group>"; };
+		E223DA092217C11C00A3DC58 /* LoaderDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderDisplayable.swift; sourceTree = "<group>"; };
 		E2251B0F22146A4D00EE7A51 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		E2251B122214ECFA00EE7A51 /* MovieCreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditsViewController.swift; sourceTree = "<group>"; };
 		E2251B142214ED0900EE7A51 /* MovieCreditsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditsViewModel.swift; sourceTree = "<group>"; };
@@ -548,6 +552,7 @@
 				E263808022127D390038AD00 /* Paginable.swift */,
 				E2EB92442213D9700067F011 /* Dequeuable.swift */,
 				E2251B0F22146A4D00EE7A51 /* ViewState.swift */,
+				E223DA092217C11C00A3DC58 /* LoaderDisplayable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -724,6 +729,7 @@
 				E222EA75220C724B00664C7F /* DefaultRefreshControl.swift */,
 				E21F378B2193F01600D6BFB6 /* DefaultSearchController.swift */,
 				E294C7462216282D0007F0A5 /* CollapsibleCollectionHeaderView.swift */,
+				E223DA072217BD1900A3DC58 /* RadarView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1133,6 +1139,7 @@
 				E29407FE2209E83600A74F68 /* UITableView+Extensions.swift in Sources */,
 				E26011642193823C00E53095 /* TableViewCellAnimator.swift in Sources */,
 				E2F9F7222202787F00C62089 /* TransitioningAnimator.swift in Sources */,
+				E223DA082217BD1900A3DC58 /* RadarView.swift in Sources */,
 				E2116946220E3F7800595822 /* SearchOptionsDataSource.swift in Sources */,
 				E260116C2193884C00E53095 /* LoadingButton.swift in Sources */,
 				E2A65E5321FECC2200485B4E /* Utils.swift in Sources */,
@@ -1147,6 +1154,7 @@
 				E200182A21EE336F00F29220 /* SearchOptionsViewModel.swift in Sources */,
 				E2D10411220CE364005F310C /* MovieDetailOptionView.swift in Sources */,
 				E21F37852193EAD400D6BFB6 /* SearchMoviesViewModel.swift in Sources */,
+				E223DA0A2217C11C00A3DC58 /* LoaderDisplayable.swift in Sources */,
 				E294C7472216282D0007F0A5 /* CollapsibleCollectionHeaderView.swift in Sources */,
 				E21F37A521941D9C00D6BFB6 /* Genre.swift in Sources */,
 				E2251B172214F0D300EE7A51 /* Cast.swift in Sources */,

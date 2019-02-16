@@ -141,8 +141,10 @@ class SearchMoviesResultController: UIViewController {
         
         viewModel.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
-            strongSelf.reloadTableView()
-            strongSelf.configureFooterTableView(withState: state)
+            DispatchQueue.main.async {
+                strongSelf.reloadTableView()
+                strongSelf.configureFooterTableView(withState: state)
+            }
         })
     }
     

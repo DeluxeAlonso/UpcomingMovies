@@ -8,8 +8,8 @@
 
 import UIKit
 
-class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
-
+class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, LoaderDisplayable {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var viewModel = UpcomingMoviesViewModel()
@@ -21,7 +21,11 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     private var selectedFrame: CGRect?
     private var imageToTransition: UIImage?
     private var transitionInteractor: TransitioningInteractor?
-
+    
+    // MARK: - LoaderDiplayable
+    
+    var loaderView: RadarView!
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -88,9 +92,10 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
      * Configures the tableview footer given the current state of the view.
      */
     private func configureView(withState state: SimpleViewState<Movie>) {
+        state == .loading ? showLoader() : hideLoader()
         switch state {
         case .loading:
-            collectionView.backgroundView = LoadingFooterView()
+            collectionView.backgroundView = nil
             hideErrorView()
         case .populated, .paging, .empty:
             collectionView.backgroundView = UIView(frame: .zero)
@@ -108,8 +113,10 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler {
     private func setupBindables() {
         viewModel.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
-            strongSelf.configureView(withState: state)
-            strongSelf.reloadCollectionView()
+            DispatchQueue.main.async {
+                strongSelf.configureView(withState: state)
+                strongSelf.reloadCollectionView()
+            }
         })
     }
     

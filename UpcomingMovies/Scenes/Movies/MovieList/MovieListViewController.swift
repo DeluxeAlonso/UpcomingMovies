@@ -93,8 +93,10 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
         viewModel.getMovies()
         viewModel.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
-            strongSelf.configureView(withState: state)
-            strongSelf.reloadTableView()
+            DispatchQueue.main.async {
+                strongSelf.configureView(withState: state)
+                strongSelf.reloadTableView()
+            }
         })
     }
     
