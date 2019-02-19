@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SimpleViewState<Entity>: Equatable {
+enum SimpleViewState<Entity>: Equatable where Entity: Equatable {
     
     case initial
     case paging([Entity], next: Int)
@@ -21,9 +21,9 @@ enum SimpleViewState<Entity>: Equatable {
         case (.initial, .initial):
             return true
         case (let .paging(lhsEntities, _), let .paging(rhsEntities, _)):
-            return lhsEntities.count == rhsEntities.count
+            return lhsEntities == rhsEntities
         case (let .populated(lhsEntities), let .populated(rhsEntities)):
-            return lhsEntities.count == rhsEntities.count
+            return lhsEntities == rhsEntities
         case (.empty, .empty):
             return true
         case (.error, .error):

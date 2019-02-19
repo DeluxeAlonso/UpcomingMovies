@@ -25,17 +25,26 @@ class MovieResultPaginationTests: XCTestCase {
         super.tearDown()
     }
 
-    func testMovieResultPagination() {
-        // Act
+    func testMovieResultHasMorePagesTrue() {
+        //Act
         let hasMorePages = movieResultUnderTest.hasMorePages
-        // Assert
+        //Assert
         XCTAssertTrue(hasMorePages)
     }
     
+    func testMovieResultHasMorePagesFalse() {
+        //Arrange
+        movieResultUnderTest.totalPages = 1
+        //Act
+        let hasMorePages = movieResultUnderTest.hasMorePages
+        //Assert
+        XCTAssertFalse(hasMorePages)
+    }
+    
     func testMovieResultNextPage() {
-        // Act
+        //Act
         let nextPage = movieResultUnderTest.nextPage
-        // Assert
+        //Assert
         XCTAssertEqual(nextPage, 2)
     }
 

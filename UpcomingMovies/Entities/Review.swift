@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Review: Decodable {
+struct Review: Decodable, Equatable {
     
     let id: String
     let authorName: String

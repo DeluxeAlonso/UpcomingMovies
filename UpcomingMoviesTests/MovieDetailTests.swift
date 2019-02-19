@@ -11,14 +11,13 @@ import XCTest
 
 class MovieDetailTests: XCTestCase {
     
-    var viewModelToTest: MovieDetailViewModel!
-    var movieToTest: Movie!
+    private var viewModelToTest: MovieDetailViewModel!
 
     override func setUp() {
         super.setUp()
         let genres = [Genre(id: 1, name: "Genre 1"), Genre(id: 2, name: "Genre 2")]
         AppManager.shared.genres = genres
-        movieToTest = Movie(id: 1,
+        let movieToTest = Movie(id: 1,
                             title: "Test 1",
                             genres: [1, 2],
                             overview: "Overview",
@@ -29,7 +28,6 @@ class MovieDetailTests: XCTestCase {
     }
 
     override func tearDown() {
-        movieToTest = nil
         viewModelToTest = nil
         super.tearDown()
     }

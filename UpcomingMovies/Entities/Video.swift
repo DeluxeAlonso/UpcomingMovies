@@ -32,3 +32,24 @@ extension Video {
     }
     
 }
+
+extension Video: Equatable {
+    
+    static func == (lhs: Video, rhs: Video) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+}
+
+// MARK: - Test mockups
+
+extension Video {
+    
+    static func with(id: String = "1",
+                     key: String = "ABC",
+                     name: String = "Video1",
+                     site: String = "youtube123" ) -> Video {
+        return Video(id: id, key: key, name: name, site: site)
+    }
+    
+}
