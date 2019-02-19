@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieReviewsViewController: UIViewController, Retryable {
+class MovieReviewsViewController: UIViewController, Retryable, LoaderDisplayable {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,7 +23,7 @@ class MovieReviewsViewController: UIViewController, Retryable {
     
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
-    var errorView: ErrorPlaceholderView?
+    var loaderView: RadarView!
     
     // MARK: - Lifecycle
     
@@ -60,10 +60,7 @@ class MovieReviewsViewController: UIViewController, Retryable {
      */
     private func configureView(withState state: SimpleViewState<Review>) {
         switch state {
-        case .loading:
-            tableView.tableFooterView = LoadingFooterView()
-            hideErrorView()
-        case .populated, .paging:
+        case .populated, .paging, .initial:
             tableView.tableFooterView = UIView()
             hideErrorView()
         case .empty:
@@ -81,7 +78,6 @@ class MovieReviewsViewController: UIViewController, Retryable {
     
     private func setupBindables() {
         title = viewModel?.movieTitle
-        viewModel?.getMovieReviews()
         viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
@@ -89,6 +85,10 @@ class MovieReviewsViewController: UIViewController, Retryable {
                 strongSelf.reloadTableView()
             }
         })
+        viewModel?.startLoading = { [weak self] start in
+            start ? self?.showLoader() : self?.hideLoader()
+        }
+        viewModel?.getMovieReviews()
     }
 
 }

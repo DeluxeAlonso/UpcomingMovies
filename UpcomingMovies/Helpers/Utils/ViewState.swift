@@ -10,7 +10,7 @@ import Foundation
 
 enum SimpleViewState<Entity>: Equatable {
     
-    case loading
+    case initial
     case paging([Entity], next: Int)
     case populated([Entity])
     case empty
@@ -18,7 +18,7 @@ enum SimpleViewState<Entity>: Equatable {
     
     static func == (lhs: SimpleViewState, rhs: SimpleViewState) -> Bool {
         switch (lhs, rhs) {
-        case (.loading, .loading):
+        case (.initial, .initial):
             return true
         case (let .paging(lhsEntities, _), let .paging(rhsEntities, _)):
             return lhsEntities.count == rhsEntities.count
@@ -39,14 +39,14 @@ enum SimpleViewState<Entity>: Equatable {
             return entities
         case .paging(let entities, _):
             return entities
-        case .loading, .empty, .error:
+        case .initial, .empty, .error:
             return []
         }
     }
     
     var currentPage: Int {
         switch self {
-        case .populated, .empty, .error, .loading:
+        case .initial, .populated, .empty, .error:
             return 1
         case .paging(_, let page):
             return page

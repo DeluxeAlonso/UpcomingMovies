@@ -14,8 +14,9 @@ final class MovieVideosViewModel {
     let movieTitle: String
     
     let movieClient = MovieClient()
+    let viewState: Bindable<SimpleViewState<Video>> = Bindable(.initial)
     
-    let viewState: Bindable<SimpleViewState<Video>> = Bindable(.loading)
+    var startLoading: ((Bool) -> Void)?
     
     var videoCells: [MovieVideoCellViewModel] {
         return videos.map { MovieVideoCellViewModel($0) }
@@ -49,6 +50,7 @@ final class MovieVideosViewModel {
     // MARK: - Networking
     
     func getMovieVideos() {
+        startLoading?(true)
         movieClient.getMovieVideos(with: movieId) { result in
             switch result {
             case .success(let videoResult):
@@ -61,6 +63,7 @@ final class MovieVideosViewModel {
     }
     
     private func processVideoResult(_ videoResult: VideoResult) {
+        startLoading?(false)
         let fetchedVideos = videoResult.results
         if fetchedVideos.isEmpty {
             viewState.value = .empty

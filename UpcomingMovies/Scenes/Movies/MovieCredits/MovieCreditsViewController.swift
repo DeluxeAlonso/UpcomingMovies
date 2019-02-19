@@ -8,11 +8,13 @@
 
 import UIKit
 
-class MovieCreditsViewController: UIViewController, Retryable {
+class MovieCreditsViewController: UIViewController, Retryable, LoaderDisplayable {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var displayedCellsIndexPaths = Set<IndexPath>()
+    
+    var loaderView: RadarView!
     
     var viewModel: MovieCreditsViewModel? {
         didSet {
@@ -42,10 +44,7 @@ class MovieCreditsViewController: UIViewController, Retryable {
     
     private func configureView(with state: MovieCreditsViewModel.ViewState) {
         switch state {
-        case .loading:
-            collectionView.backgroundView = LoadingFooterView()
-            hideErrorView()
-        case .populated, .empty:
+        case .populated, .empty, .initial:
             collectionView.backgroundView = nil
             hideErrorView()
         case .error(let error):
@@ -61,7 +60,6 @@ class MovieCreditsViewController: UIViewController, Retryable {
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
         title = viewModel.movieTitle
-        viewModel.getMovieCredits()
         viewModel.viewState.bind({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
@@ -69,6 +67,10 @@ class MovieCreditsViewController: UIViewController, Retryable {
                 strongSelf.collectionView.reloadData()
             }
         })
+        viewModel.startLoading = { [weak self] start in
+            start ? self?.showLoader() : self?.hideLoader()
+        }
+        viewModel.getMovieCredits()
     }
 
 }

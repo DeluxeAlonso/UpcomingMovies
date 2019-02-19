@@ -15,8 +15,10 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     var movieClient = MovieClient()
     
     var filter: MovieListFilter = .upcoming
-    var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.loading)
+    var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
     var selectedMovieCell: UpcomingMovieCellViewModel?
+    
+    var startLoading: ((Bool) -> Void)?
     
     // MARK: - Computed Properties
     

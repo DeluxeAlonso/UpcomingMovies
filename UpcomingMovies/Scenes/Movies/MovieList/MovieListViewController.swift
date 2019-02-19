@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieListViewController: UIViewController, Retryable, SegueHandler {
+class MovieListViewController: UIViewController, Retryable, SegueHandler, LoaderDisplayable {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,6 +17,8 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
     private var dataSource: SimpleTableViewDataSource<MovieCellViewModel>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
     private var displayedCellsIndexPaths = Set<IndexPath>()
+    
+    var loaderView: RadarView!
     
     // MARK: - Lifcycle
 
@@ -72,11 +74,11 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
      */
     private func configureView(withState state: SimpleViewState<Movie>) {
         switch state {
-        case .loading, .paging:
+        case .paging:
             tableView.tableFooterView = LoadingFooterView()
             hideErrorView()
-        case .populated, .empty:
-            tableView.tableFooterView = nil
+        case .populated, .empty, .initial:
+            tableView.tableFooterView = UIView()
             hideErrorView()
         case .error(let error):
             presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
@@ -90,7 +92,6 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
     
     private func setupBindables() {
         title = viewModel.filter.title
-        viewModel.getMovies()
         viewModel.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
@@ -98,6 +99,10 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler {
                 strongSelf.reloadTableView()
             }
         })
+        viewModel.startLoading = { [weak self] start in
+            start ? self?.showLoader() : self?.hideLoader()
+        }
+        viewModel.getMovies()
     }
     
     // MARK: - Navigation

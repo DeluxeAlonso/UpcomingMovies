@@ -19,7 +19,8 @@ final class MovieCreditsViewModel {
         [MovieCreditsCollapsibleSection(type: .cast, opened: true),
          MovieCreditsCollapsibleSection(type: .crew, opened: false)]
     
-    var viewState: Bindable<ViewState> = Bindable(.loading)
+    var viewState: Bindable<ViewState> = Bindable(.initial)
+    var startLoading: ((Bool) -> Void)?
     
     var castCells: [MovieCreditCellViewModel] {
         return viewState.value.currentCast.map { MovieCreditCellViewModel(cast: $0) }
@@ -73,6 +74,7 @@ final class MovieCreditsViewModel {
     // MARK: - Networking
     
     func getMovieCredits() {
+        startLoading?(true)
         movieClient.getMovieCredits(with: movieId) { result in
             switch result {
             case .success(let creditResult):
@@ -85,6 +87,7 @@ final class MovieCreditsViewModel {
     }
     
     private func processCreditResult(_ creditResult: CreditResult) {
+        startLoading?(false)
         let fetchedCast = creditResult.cast
         let fetchedCrew = creditResult.crew
         if fetchedCast.isEmpty && fetchedCrew.isEmpty {
@@ -126,7 +129,7 @@ extension MovieCreditsViewModel {
 extension MovieCreditsViewModel {
     
     enum ViewState {
-        case loading
+        case initial
         case empty
         case populated([Cast], [Crew])
         case error(Error)
@@ -135,7 +138,7 @@ extension MovieCreditsViewModel {
             switch self {
             case .populated(let cast, _):
                 return cast
-            case .loading, .empty, .error:
+            case .initial, .empty, .error:
                 return []
             }
         }
@@ -144,7 +147,7 @@ extension MovieCreditsViewModel {
             switch self {
             case .populated(_, let crew):
                 return crew
-            case .loading, .empty, .error:
+            case .initial, .empty, .error:
                 return []
             }
         }

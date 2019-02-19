@@ -9,7 +9,7 @@
 import UIKit
 
 class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, LoaderDisplayable {
-    
+
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var viewModel = UpcomingMoviesViewModel()
@@ -92,12 +92,8 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
      * Configures the tableview footer given the current state of the view.
      */
     private func configureView(withState state: SimpleViewState<Movie>) {
-        state == .loading ? showLoader() : hideLoader()
         switch state {
-        case .loading:
-            collectionView.backgroundView = nil
-            hideErrorView()
-        case .populated, .paging, .empty:
+        case .populated, .paging, .empty, .initial:
             collectionView.backgroundView = UIView(frame: .zero)
             hideErrorView()
         case .error(let error):
@@ -118,6 +114,9 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
                 strongSelf.reloadCollectionView()
             }
         })
+        viewModel.startLoading = { [weak self] start in
+            start ? self?.showLoader() : self?.hideLoader()
+        }
     }
     
     // MARK: - Navigation
