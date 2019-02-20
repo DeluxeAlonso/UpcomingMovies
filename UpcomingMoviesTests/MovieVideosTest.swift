@@ -34,7 +34,7 @@ class MovieVideosTest: XCTestCase {
         //Arrange
         let videoResult = VideoResult(results: [Video.with(id: "1"), Video.with(id: "2")])
         let mockupClient = MockMovieClient()
-        mockupClient.getVideosResult = Result.success(videoResult)
+        mockupClient.getVideoResult = Result.success(videoResult)
         viewModelToTest.movieClient = mockupClient
         //Act
         viewModelToTest.getMovieVideos()
@@ -46,7 +46,7 @@ class MovieVideosTest: XCTestCase {
         //Arrange
         let videoResult = VideoResult(results: [])
         let mockupClient = MockMovieClient()
-        mockupClient.getVideosResult = Result.success(videoResult)
+        mockupClient.getVideoResult = Result.success(videoResult)
         viewModelToTest.movieClient = mockupClient
         //Act
         viewModelToTest.getMovieVideos()
@@ -57,7 +57,7 @@ class MovieVideosTest: XCTestCase {
     func testGetVideosError() {
         //Arrange
         let mockupClient = MockMovieClient()
-        mockupClient.getVideosResult = Result.failure(APIError.badRequest)
+        mockupClient.getVideoResult = Result.failure(APIError.badRequest)
         viewModelToTest.movieClient = mockupClient
         //Act
         viewModelToTest.getMovieVideos()
@@ -69,10 +69,10 @@ class MovieVideosTest: XCTestCase {
 
 private final class MockMovieClient: MovieClient {
     
-    var getVideosResult: Result<VideoResult?, APIError>?
+    var getVideoResult: Result<VideoResult?, APIError>?
     
     override func getMovieVideos(with movieId: Int, completion: @escaping (Result<VideoResult?, APIError>) -> Void) {
-        completion(getVideosResult!)
+        completion(getVideoResult!)
     }
     
 }

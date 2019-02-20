@@ -83,6 +83,10 @@ extension MoviesViewModel {
         let fetchedMovies = movieResult.results
         var allMovies = movieResult.currentPage == 1 ? [] : viewState.value.currentEntities
         allMovies.append(contentsOf: fetchedMovies)
+        guard !allMovies.isEmpty else {
+            viewState.value = .empty
+            return
+        }
         if movieResult.hasMorePages {
             viewState.value = .paging(allMovies, next: movieResult.nextPage)
         } else {

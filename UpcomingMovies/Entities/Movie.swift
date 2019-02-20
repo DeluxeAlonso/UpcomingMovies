@@ -56,3 +56,20 @@ extension Movie {
     }
     
 }
+
+// MARK: - Test mockups
+
+extension Movie {
+    
+    static func with(id: Int = 1, title: String = "Movie 1", genres: [Int] = [],
+                     overview: String = "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
+                     posterPath: String = "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
+                     backdropPath: String = "path2", releaseDate: String = "02-21-2019",
+                     voteAverage: Double = 5.0) -> Movie {
+        return Movie(id: id, title: title, genres: genres,
+                     overview: overview, posterPath: posterPath,
+                     backdropPath: backdropPath, releaseDate: releaseDate,
+                     voteAverage: voteAverage)
+    }
+    
+}
