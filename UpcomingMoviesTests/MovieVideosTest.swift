@@ -12,10 +12,12 @@ import XCTest
 class MovieVideosTest: XCTestCase {
     
     private var viewModelToTest: MovieVideosViewModel!
+    private var movieVideoCellViewModelToTest: MovieVideoCellViewModel!
 
     override func setUp() {
         super.setUp()
         viewModelToTest = MovieVideosViewModel(movieId: 1, movieTitle: "Movie Test")
+        movieVideoCellViewModelToTest = MovieVideoCellViewModel(Video.with())
     }
 
     override func tearDown() {
@@ -63,6 +65,27 @@ class MovieVideosTest: XCTestCase {
         viewModelToTest.getMovieVideos()
         //Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
+    }
+    
+    func testMovieVideoCellName() {
+        //Act
+        let name = movieVideoCellViewModelToTest.name
+        //Assert
+        XCTAssertEqual(name, "Video1")
+    }
+    
+    func testMovieVideoCellKey() {
+        //Act
+        let key = movieVideoCellViewModelToTest.key
+        //Assert
+        XCTAssertEqual(key, "ABC")
+    }
+    
+    func testMovieVideoCellThumbnailURL() {
+        //Act
+        let thumbnailURL = movieVideoCellViewModelToTest.thumbnailURL
+        //Assert
+        XCTAssertEqual(thumbnailURL, URL(string: "https://img.youtube.com/vi/ABC/mqdefault.jpg"))
     }
 
 }
