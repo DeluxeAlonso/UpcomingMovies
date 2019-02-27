@@ -25,6 +25,13 @@ class MovieReviewsTests: XCTestCase {
         movieReviewCellViewModelToTest = nil
         super.tearDown()
     }
+    
+    func testMovieReviewsTitle() {
+        //Act
+        let title = viewModelToTest.movieTitle
+        //Assert
+        XCTAssertEqual(title, "Movie 1")
+    }
 
 }
 
