@@ -13,7 +13,7 @@ final class MovieReviewsViewModel {
     let movieId: Int
     let movieTitle: String
     
-    let movieClient = MovieClient()
+    var movieClient = MovieClient()
     let viewState: Bindable<SimpleViewState<Review>> = Bindable(.initial)
     
     var startLoading: ((Bool) -> Void)?
