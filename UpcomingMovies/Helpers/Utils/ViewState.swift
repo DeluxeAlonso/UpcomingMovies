@@ -53,4 +53,8 @@ enum SimpleViewState<Entity>: Equatable where Entity: Equatable {
         }
     }
     
+    var isInitialPage: Bool {
+        return currentPage == 1
+    }
+    
 }
