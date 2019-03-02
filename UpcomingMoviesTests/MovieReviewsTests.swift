@@ -32,6 +32,57 @@ class MovieReviewsTests: XCTestCase {
         //Assert
         XCTAssertEqual(title, "Movie 1")
     }
+    
+    func testGetReviewsPopulated() {
+        //Arrange
+        let reviewResult = ReviewResult(results: [Review.with(id: "1"), Review.with(id: "2")],
+                                        currentPage: 1, totalPages: 1)
+        let mockupClient = MockMovieClient()
+        mockupClient.getReviewResult = Result.success(reviewResult)
+        viewModelToTest.movieClient = mockupClient
+        //Act
+        viewModelToTest.getMovieReviews()
+        //Assert
+        XCTAssertEqual(viewModelToTest.viewState.value, .populated([Review.with(id: "1"), Review.with(id: "2")]))
+    }
+    
+    func testGetReviewsEmpty() {
+        //Arrange
+        let reviewResult = ReviewResult(results: [],
+                                       currentPage: 1, totalPages: 1)
+        let mockupClient = MockMovieClient()
+        mockupClient.getReviewResult = Result.success(reviewResult)
+        viewModelToTest.movieClient = mockupClient
+        //Act
+        viewModelToTest.getMovieReviews()
+        //Assert
+        XCTAssertEqual(viewModelToTest.viewState.value, .empty)
+    }
+    
+    func testGetReviewsPaging() {
+        //Arrange
+        let reviewResult = ReviewResult(results: [Review.with(id: "1"), Review.with(id: "2")],
+                                        currentPage: 1, totalPages: 2)
+        let mockupClient = MockMovieClient()
+        mockupClient.getReviewResult = Result.success(reviewResult)
+        viewModelToTest.movieClient = mockupClient
+        //Act
+        viewModelToTest.getMovieReviews()
+        //Assert
+        XCTAssertEqual(viewModelToTest.viewState.value,
+                       .paging([Review.with(id: "1"), Review.with(id: "2")], next: 2))
+    }
+    
+    func testGetReviewsError() {
+        //Arrange
+        let mockupClient = MockMovieClient()
+        mockupClient.getReviewResult = Result.failure(APIError.badRequest)
+        viewModelToTest.movieClient = mockupClient
+        //Act
+        viewModelToTest.getMovieReviews()
+        //Assert
+        XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
+    }
 
 }
 
