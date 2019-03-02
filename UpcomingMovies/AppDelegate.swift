@@ -58,9 +58,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-
-enum AppShortcutItem: String {
-    
-    case searchMovies
-    
-}
