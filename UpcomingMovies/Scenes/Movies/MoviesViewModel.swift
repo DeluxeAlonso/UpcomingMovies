@@ -58,15 +58,16 @@ extension MoviesViewModel {
     }
     
     func getMovies() {
-        startLoading?(true)
-        fetchMovies(currentPage: viewState.value.currentPage, filter: filter)
+        let showLoader = viewState.value.isInitialPage
+        fetchMovies(currentPage: viewState.value.currentPage, filter: filter, showLoader: showLoader)
     }
     
     func refreshMovies() {
-        fetchMovies(currentPage: 1, filter: filter)
+        fetchMovies(currentPage: 1, filter: filter, showLoader: false)
     }
     
-    func fetchMovies(currentPage: Int, filter: MovieListFilter) {
+    func fetchMovies(currentPage: Int, filter: MovieListFilter, showLoader: Bool = false) {
+        startLoading?(showLoader)
         movieClient.getMovies(page: currentPage, filter: filter, completion: { result in
             switch result {
             case .success(let movieResult):
