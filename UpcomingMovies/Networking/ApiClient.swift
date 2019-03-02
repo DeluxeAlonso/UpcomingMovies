@@ -27,7 +27,6 @@ extension APIClient {
                                             decodingType: T.Type,
                                             context: NSManagedObjectContext? = nil,
                                             completionHandler completion: @escaping JSONTaskCompletionHandler) -> URLSessionDataTask {
-        let shouldSave = context != nil
         let task = session.dataTask(with: request) { data, response, _ in
             guard let httpResponse = response as? HTTPURLResponse else {
                 completion(nil, .requestFailed)
@@ -37,13 +36,9 @@ extension APIClient {
                 if let data = data {
                     do {
                         let decoder = JSONDecoder()
-                        if shouldSave {
-                            decoder.userInfo[.context] = context
-                        }
+                        decoder.userInfo[.context] = context
                         let genericModel = try decoder.decode(decodingType, from: data)
-                        if shouldSave {
-                            try? context?.save()
-                        }
+                        try? context?.save()
                         completion(genericModel, nil)
                     } catch {
                         completion(nil, .requestFailed)
