@@ -29,8 +29,7 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
     }
     
     private var managedObjectContext: NSManagedObjectContext {
-        guard let appDelegate = appDelegate else { fatalError() }
-        return appDelegate.persistentContainer.viewContext
+        return PersistenceManager.shared.persistentContainer.viewContext
     }
     
     // MARK: - Lifecycle

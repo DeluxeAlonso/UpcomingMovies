@@ -30,8 +30,8 @@ final class SearchMoviesViewModel: NSObject {
         return MovieListViewModel(filter: .topRated)
     }
     
-    func moviesByGenreViewModel(genreId: Int) -> MovieListViewModel {
-        return MovieListViewModel(filter: .byGenre(genreId: genreId))
+    func moviesByGenreViewModel(genreId: Int, genreName: String) -> MovieListViewModel {
+        return MovieListViewModel(filter: .byGenre(genreId: genreId, genreName: genreName))
     }
     
 }

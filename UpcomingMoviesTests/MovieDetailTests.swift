@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import CoreData
 @testable import UpcomingMovies
 
 class MovieDetailTests: XCTestCase {
@@ -15,11 +16,9 @@ class MovieDetailTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        let genres = [Genre(id: 1, name: "Genre 1"), Genre(id: 2, name: "Genre 2")]
-        AppManager.shared.genres = genres
         let movieToTest = Movie(id: 1,
                             title: "Test 1",
-                            genres: [1, 2],
+                            genres: [],
                             overview: "Overview",
                             posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
                             backdropPath: "/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg",
@@ -78,7 +77,7 @@ class MovieDetailTests: XCTestCase {
         //Act
         let genre = viewModelToTest.genre
         //Assert
-        XCTAssertEqual(genre!, "Genre 1")
+        XCTAssertEqual(genre!, "-")
     }
-
+    
 }

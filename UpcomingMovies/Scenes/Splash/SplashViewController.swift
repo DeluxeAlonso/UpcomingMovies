@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import CoreData
 
 class SplashViewController: UIViewController {
     
-    private var viewModel = SplashViewModel()
+    private var viewModel: SplashViewModel!
 
+    private var managedObjectContext: NSManagedObjectContext {
+        return PersistenceManager.shared.persistentContainer.viewContext
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = SplashViewModel(managedObjectContext: managedObjectContext)
         setupBindables()
         viewModel.getMovieGenres()
     }

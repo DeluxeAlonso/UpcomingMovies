@@ -44,7 +44,7 @@ extension LoaderDisplayable where Self: UIViewController {
             containerView.backgroundColor = backgroundColor
             
             self.loaderView = ViewType()
-            self.loaderView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+            self.loaderView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
             self.loaderView.center = self.view.center
             containerView.addSubview(self.loaderView)
             
