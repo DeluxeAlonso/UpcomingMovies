@@ -36,17 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarController.selectedIndex = currentTabBarSelectedIndex.rawValue
         }
     }
-    
-    // MARK: - Core Data Handler
-    
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "UpcomingMovies")
-        container.loadPersistentStores { _, error in
-            guard error == nil else { fatalError() }
-        }
-        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        return container
-    }()
 
     // MARK: - Transitions
     

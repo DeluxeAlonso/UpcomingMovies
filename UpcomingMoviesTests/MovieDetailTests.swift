@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import CoreData
 @testable import UpcomingMovies
 
 class MovieDetailTests: XCTestCase {
@@ -15,8 +16,7 @@ class MovieDetailTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        let genres = [Genre(id: 1, name: "Genre 1"), Genre(id: 2, name: "Genre 2")]
-        AppManager.shared.genres = genres
+        setupMovieGenres()
         let movieToTest = Movie(id: 1,
                             title: "Test 1",
                             genres: [1, 2],
@@ -30,6 +30,12 @@ class MovieDetailTests: XCTestCase {
     override func tearDown() {
         viewModelToTest = nil
         super.tearDown()
+    }
+    
+    private func setupMovieGenres() {
+        let context = PersistenceManager.shared.persistentContainer.viewContext
+        _ = Genre.with(id: 1, name: "Genre 1", context: context)
+        _ = Genre.with(id: 2, name: "Genre 2", context: context)
     }
 
     func testMovieDetailTitle() {
@@ -80,5 +86,5 @@ class MovieDetailTests: XCTestCase {
         //Assert
         XCTAssertEqual(genre!, "Genre 1")
     }
-
+    
 }

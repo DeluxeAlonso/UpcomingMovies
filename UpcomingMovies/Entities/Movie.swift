@@ -42,7 +42,7 @@ extension Movie {
             let genre = genres.first else {
                 return "-"
         }
-        return AppManager.shared.findGenre(withId: genre)
+        return PersistenceManager.shared.findGenre(with: genre)?.name ?? "-"
     }
     
     var posterURL: URL? {

@@ -28,11 +28,6 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
         }
     }
     
-    private var managedObjectContext: NSManagedObjectContext {
-        guard let appDelegate = appDelegate else { fatalError() }
-        return appDelegate.persistentContainer.viewContext
-    }
-    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {

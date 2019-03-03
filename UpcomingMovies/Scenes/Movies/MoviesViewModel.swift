@@ -24,8 +24,7 @@ enum MovieListFilter {
         case .similar:
             return "Similar Movies"
         case .byGenre(let genreId):
-            let genres = AppManager.shared.genres
-            let genre = genres.filter { $0.id == genreId }.first
+            let genre = PersistenceManager.shared.findGenre(with: genreId)
             return genre?.name
         }
     }

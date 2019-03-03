@@ -15,11 +15,6 @@ class SearchMoviesViewController: UIViewController, SegueHandler {
     private var searchController: DefaultSearchController!
     private var searchOptionsContainerView: SearchOptionsTableViewController!
     
-    private var managedObjectContext: NSManagedObjectContext {
-        guard let appDelegate = appDelegate else { fatalError() }
-        return appDelegate.persistentContainer.viewContext
-    }
-    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -162,8 +157,11 @@ extension SearchMoviesViewController: SearchOptionsTableViewControllerDelegate {
         performSegue(withIdentifier: SegueIdentifier.movieList.rawValue, sender: viewModel.topRatedMoviesViewModel())
     }
     
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectMovieGenre genreId: Int) {
-        performSegue(withIdentifier: SegueIdentifier.movieList.rawValue, sender: viewModel.moviesByGenreViewModel(genreId: genreId))
+    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
+                                          didSelectMovieGenre genreId: Int) {
+        let viewModel = self.viewModel.moviesByGenreViewModel(genreId: genreId)
+        performSegue(withIdentifier: SegueIdentifier.movieList.rawValue,
+                     sender: viewModel)
     }
     
 }

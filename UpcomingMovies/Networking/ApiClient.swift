@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import CoreData
 
 protocol APIClient {
     
     var session: URLSession { get }
     
-    func fetch<T: Decodable>(with request: URLRequest, decode: @escaping (Decodable) -> T?, completion: @escaping (Result<T, APIError>) -> Void)
+    func fetch<T: Decodable>(with request: URLRequest,
+                             context: NSManagedObjectContext?,
+                             decode: @escaping (Decodable) -> T?, completion: @escaping (Result<T, APIError>) -> Void)
     
 }
 
@@ -22,8 +25,8 @@ extension APIClient {
     
     private func decodingTask<T: Decodable>(with request: URLRequest,
                                             decodingType: T.Type,
+                                            context: NSManagedObjectContext? = nil,
                                             completionHandler completion: @escaping JSONTaskCompletionHandler) -> URLSessionDataTask {
-        
         let task = session.dataTask(with: request) { data, response, _ in
             guard let httpResponse = response as? HTTPURLResponse else {
                 completion(nil, .requestFailed)
@@ -32,7 +35,10 @@ extension APIClient {
             if httpResponse.statusCode == 200 {
                 if let data = data {
                     do {
-                        let genericModel = try JSONDecoder().decode(decodingType, from: data)
+                        let decoder = JSONDecoder()
+                        decoder.userInfo[.context] = context
+                        let genericModel = try decoder.decode(decodingType, from: data)
+                        try? context?.save()
                         completion(genericModel, nil)
                     } catch {
                         completion(nil, .requestFailed)
@@ -48,9 +54,10 @@ extension APIClient {
     }
     
     func fetch<T: Decodable>(with request: URLRequest,
+                             context: NSManagedObjectContext? = nil,
                              decode: @escaping (Decodable) -> T?,
                              completion: @escaping (Result<T, APIError>) -> Void) {
-        let task = decodingTask(with: request, decodingType: T.self) { (json, error) in
+        let task = decodingTask(with: request, decodingType: T.self, context: context) { (json, error) in
             DispatchQueue.main.async {
                 guard let json = json else {
                     if let error = error {

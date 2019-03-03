@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 final class SplashViewModel {
     
@@ -14,20 +15,22 @@ final class SplashViewModel {
     
     var genresFetched: (() -> Void)?
     
+    private var managedObjectContext: NSManagedObjectContext!
+    
+    init(managedObjectContext: NSManagedObjectContext) {
+        self.managedObjectContext = managedObjectContext
+    }
+    
     /**
      * Fetch all the movie genres and save them in the AppManager Singleton.
      */
     func getMovieGenres() {
-        genreClient.getAllGenres { result in
+        genreClient.getAllGenres(context: managedObjectContext) { result in
             switch result {
-            case .success(let genreResult):
-                guard let genreResult = genreResult else { return }
-                let genres = genreResult.genres
-                AppManager.shared.genres = genres
+            case .success:
                 self.genresFetched?()
-            case .failure(let error):
+            case .failure:
                 self.genresFetched?()
-                print(error.localizedDescription)
             }
         }
     }
