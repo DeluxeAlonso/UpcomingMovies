@@ -86,7 +86,7 @@ class SearchOptionsTableViewController: UITableViewController {
             }
         }
         
-        viewModel?.selectedMovieGenre = { [weak self] genredId, genreName in
+        viewModel?.selectedMovieGenre = { [weak self] genredId in
             guard let strongSelf = self else { return }
             strongSelf.delegate?.searchOptionsTableViewController(strongSelf,
                                                                   didSelectMovieGenre: genredId)

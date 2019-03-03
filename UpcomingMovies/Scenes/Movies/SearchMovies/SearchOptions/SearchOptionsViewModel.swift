@@ -18,7 +18,7 @@ final class SearchOptionsViewModel: NSObject {
     var prepareUpdate: ((Bool) -> Void)?
     var updateVisitedMovies: (() -> Void)?
     var selectedDefaultSearchOption: ((DefaultSearchOption) -> Void)?
-    var selectedMovieGenre: ((Int, String) -> Void)?
+    var selectedMovieGenre: ((Int) -> Void)?
     
     var visitedMovieCells: [VisitedMovieCellViewModel] {
         guard let visited = fetchedResultsController.fetchedObjects else {
@@ -78,7 +78,7 @@ final class SearchOptionsViewModel: NSObject {
     func getMovieGenreSelection(by index: Int) {
         let genres = Genre.findAll(in: managedObjectContext)
         let selectedGenre = genres[index]
-        selectedMovieGenre?(selectedGenre.id, selectedGenre.name)
+        selectedMovieGenre?(selectedGenre.id)
     }
     
 }
