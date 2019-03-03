@@ -101,7 +101,11 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
         self.present(activityViewController, animated: true, completion: nil)
     }
     
-    // MARK: - Options Actions
+    // MARK: - Actions
+    
+    @IBAction func favoriteButtonAction(_ sender: Any) {
+        viewModel?.saveFavoriteMovie(managedObjectContext)
+    }
     
     @IBAction func trailersOptionAction(_ sender: Any) {
         performSegue(withIdentifier: SegueIdentifier.movieVideos.rawValue, sender: nil)

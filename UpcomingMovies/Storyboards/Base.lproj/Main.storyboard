@@ -79,10 +79,10 @@
             </objects>
             <point key="canvasLocation" x="697" y="-1"/>
         </scene>
-        <!--SettingsNavigationController-->
+        <!--FavoritesNavigationController-->
         <scene sceneID="sLK-Ox-h9l">
             <objects>
-                <viewControllerPlaceholder storyboardName="Settings" referencedIdentifier="SettingsNavigationController" id="UO7-oR-1N6" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="FavoriteMovies" referencedIdentifier="FavoritesNavigationController" id="UO7-oR-1N6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Jb2-mX-LPX"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="czi-C9-XNF" userLabel="First Responder" sceneMemberID="firstResponder"/>
