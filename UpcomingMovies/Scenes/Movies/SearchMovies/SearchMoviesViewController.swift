@@ -15,10 +15,6 @@ class SearchMoviesViewController: UIViewController, SegueHandler {
     private var searchController: DefaultSearchController!
     private var searchOptionsContainerView: SearchOptionsTableViewController!
     
-    private var managedObjectContext: NSManagedObjectContext {
-        return PersistenceManager.shared.persistentContainer.viewContext
-    }
-    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -162,9 +158,8 @@ extension SearchMoviesViewController: SearchOptionsTableViewControllerDelegate {
     }
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectMovieGenre genreId: Int, and genreName: String) {
-        let viewModel = self.viewModel.moviesByGenreViewModel(genreId: genreId,
-                                                                    genreName: genreName)
+                                          didSelectMovieGenre genreId: Int) {
+        let viewModel = self.viewModel.moviesByGenreViewModel(genreId: genreId)
         performSegue(withIdentifier: SegueIdentifier.movieList.rawValue,
                      sender: viewModel)
     }

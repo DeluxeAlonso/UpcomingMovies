@@ -16,9 +16,10 @@ class MovieDetailTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        setupMovieGenres()
         let movieToTest = Movie(id: 1,
                             title: "Test 1",
-                            genres: [],
+                            genres: [1, 2],
                             overview: "Overview",
                             posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
                             backdropPath: "/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg",
@@ -29,6 +30,12 @@ class MovieDetailTests: XCTestCase {
     override func tearDown() {
         viewModelToTest = nil
         super.tearDown()
+    }
+    
+    private func setupMovieGenres() {
+        let context = PersistenceManager.shared.persistentContainer.viewContext
+        _ = Genre.with(id: 1, name: "Genre 1", context: context)
+        _ = Genre.with(id: 2, name: "Genre 2", context: context)
     }
 
     func testMovieDetailTitle() {
@@ -77,7 +84,7 @@ class MovieDetailTests: XCTestCase {
         //Act
         let genre = viewModelToTest.genre
         //Assert
-        XCTAssertEqual(genre!, "-")
+        XCTAssertEqual(genre!, "Genre 1")
     }
     
 }

@@ -14,6 +14,13 @@ final class Genre: NSManagedObject {
     @NSManaged fileprivate(set) var id: Int
     @NSManaged fileprivate(set) var name: String
     
+    static func insert(into context: NSManagedObjectContext, id: Int, name: String) -> Genre {
+        let genre: Genre = context.insertObject()
+        genre.id = id
+        genre.name = name
+        return genre
+    }
+    
 }
 
 // MARK: - Decodable
@@ -24,6 +31,8 @@ extension Genre: Decodable {
         case id
         case name
     }
+    
+    // MARK: - Initializer
     
     convenience init(from decoder: Decoder) throws {
         guard let context = decoder.userInfo[.context] as? NSManagedObjectContext else {
@@ -39,6 +48,8 @@ extension Genre: Decodable {
         self.id = try container.decode(Int.self, forKey: .id)
         self.name = try container.decode(String.self, forKey: .name)
     }
+    
+    // MARK: -
     
     static func find(by id: Int, in context: NSManagedObjectContext) -> Genre? {
         let predicate = NSPredicate(format: "id == %d", id)
@@ -60,6 +71,18 @@ extension Genre: Managed {
     
     static var defaultSortDescriptors: [NSSortDescriptor] {
         return [NSSortDescriptor(key: #keyPath(name), ascending: true)]
+    }
+    
+}
+
+// MARK: - Test mockups
+
+extension Genre {
+    
+    static func with(id: Int = 1,
+                     name: String = "Genre 1",
+                     context: NSManagedObjectContext) -> Genre {
+        return Genre.insert(into: context, id: id, name: name)
     }
     
 }

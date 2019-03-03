@@ -16,7 +16,7 @@ protocol SearchOptionsTableViewControllerDelegate: class {
                                           didSelectTopRatedMovies selected: Bool)
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectMovieGenre genreId: Int, and genreName: String)
+                                          didSelectMovieGenre genreId: Int)
     
 }
 
@@ -89,8 +89,7 @@ class SearchOptionsTableViewController: UITableViewController {
         viewModel?.selectedMovieGenre = { [weak self] genredId, genreName in
             guard let strongSelf = self else { return }
             strongSelf.delegate?.searchOptionsTableViewController(strongSelf,
-                                                                  didSelectMovieGenre: genredId,
-                                                                  and: genreName)
+                                                                  didSelectMovieGenre: genredId)
         }
     }
     
