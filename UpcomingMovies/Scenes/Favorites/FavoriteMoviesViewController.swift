@@ -1,5 +1,5 @@
 //
-//  FavoriteMoviesCollectionViewController.swift
+//  FavoriteMoviesViewController.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 11/7/18.
@@ -8,7 +8,9 @@
 
 import UIKit
 
-class FavoriteMoviesCollectionViewController: UICollectionViewController {
+class FavoriteMoviesViewController: UIViewController {
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var viewModel: FavoriteMoviesViewModel!
     
@@ -41,8 +43,9 @@ class FavoriteMoviesCollectionViewController: UICollectionViewController {
     }
     
     private func setupCollectionView() {
-        collectionView.registerNib(cellType: FavoriteMovieCollectionViewCell.self)
+        collectionView.delegate = self
         collectionView.decelerationRate = .fast
+        collectionView.registerNib(cellType: FavoriteMovieCollectionViewCell.self)
     }
     
     private func reloadCollectionView() {
@@ -62,9 +65,17 @@ class FavoriteMoviesCollectionViewController: UICollectionViewController {
     
 }
 
+extension FavoriteMoviesViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        NSLog("Did select item at indexPath: [\(indexPath.section)][\(indexPath.row)]")
+    }
+    
+}
+
 // MARK: - Constants
 
-extension FavoriteMoviesCollectionViewController {
+extension FavoriteMoviesViewController {
     
     struct Constants {
         

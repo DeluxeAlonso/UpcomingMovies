@@ -40,7 +40,7 @@ class FavoriteMovieCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupLabels() {
-        titleLabel.font = FontHelper.bold(withSize: 16.0)
+        titleLabel.font = FontHelper.bold(withSize: 18.0)
         titleLabel.textColor = ColorPalette.whiteColor
     }
     
@@ -52,5 +52,5 @@ class FavoriteMovieCollectionViewCell: UICollectionViewCell {
         backdropImageView.kf.indicatorType = .activity
         backdropImageView.kf.setImage(with: viewModel.backdropURL)
     }
-    
+
 }
