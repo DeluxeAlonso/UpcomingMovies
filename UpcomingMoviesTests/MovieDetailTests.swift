@@ -16,6 +16,7 @@ class MovieDetailTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        setupMovieGenres()
         let movieToTest = Movie(id: 1,
                             title: "Test 1",
                             genres: [1, 2],
