@@ -12,7 +12,7 @@
 "searchMoviesTabBarTitle" = "Search";
 "searchMoviesTitle" = "Search movies";
 
-"settingsTabBarTitle" = "Settings";
-"settingsTitle" = "Settings";
+"favoritesTabBarTitle" = "Favorites";
+"favoritesTitle" = "Favorites";
 
 "refreshControlTitle" = "Fetching new movies...";

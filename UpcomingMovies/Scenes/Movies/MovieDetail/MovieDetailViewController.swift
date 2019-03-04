@@ -20,6 +20,7 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
     @IBOutlet weak var voteAverageView: VoteAverageView!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var overviewLabel: UILabel!
     
     var viewModel: MovieDetailViewModel? {
@@ -66,7 +67,17 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
         
         voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview
-        viewModel.saveVisitedMovie(managedObjectContext)
+        viewModel.saveVisitedMovie()
+        
+        viewModel.isFavorite.bind({ [weak self] isFavorite in
+            guard let strongSelf = self else { return }
+            if isFavorite {
+                strongSelf.favoriteButton.setImage(#imageLiteral(resourceName: "FavoriteOn"), for: .normal)
+            } else {
+                strongSelf.favoriteButton.setImage(#imageLiteral(resourceName: "FavoriteOff"), for: .normal)
+            }
+        })
+        viewModel.checkIfIsFavorite()
     }
     
     // MARK: - Navigation
@@ -101,7 +112,11 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
         self.present(activityViewController, animated: true, completion: nil)
     }
     
-    // MARK: - Options Actions
+    // MARK: - Actions
+    
+    @IBAction func favoriteButtonAction(_ sender: Any) {
+        viewModel?.handleFavoriteMovie()
+    }
     
     @IBAction func trailersOptionAction(_ sender: Any) {
         performSegue(withIdentifier: SegueIdentifier.movieVideos.rawValue, sender: nil)

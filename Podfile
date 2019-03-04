@@ -7,6 +7,7 @@ target 'UpcomingMovies' do
 
   # Pods for UpcomingMovies
   pod 'Kingfisher'
+  pod 'CollectionViewSlantedLayout', '~> 3.1'
 
   target 'UpcomingMoviesTests' do
     inherit! :search_paths

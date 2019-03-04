@@ -49,7 +49,7 @@ extension Genre: Decodable {
         self.name = try container.decode(String.self, forKey: .name)
     }
     
-    // MARK: -
+    // MARK: - Data access
     
     static func find(by id: Int, in context: NSManagedObjectContext) -> Genre? {
         let predicate = NSPredicate(format: "id == %d", id)

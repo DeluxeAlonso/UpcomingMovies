@@ -41,13 +41,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CollapsibleArrow" translatesAutoresizingMaskIntoConstraints="NO" id="GKJ-Cl-bvG">
-                                            <rect key="frame" x="322" y="16" width="37" height="37"/>
+                                            <rect key="frame" x="331" y="16" width="28" height="28"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="GKJ-Cl-bvG" secondAttribute="height" multiplier="1:1" id="BqT-FJ-bsQ"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="joB-oD-goD">
-                                            <rect key="frame" x="16" y="16" width="298" height="37"/>
+                                            <rect key="frame" x="16" y="16" width="307" height="28"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -347,7 +347,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZU-Ru-CVg" userLabel="Favorite View">
                                                         <rect key="frame" x="250" y="0.0" width="125" height="83"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLI-h2-kje">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLI-h2-kje" userLabel="Favorite Button">
                                                                 <rect key="frame" x="61" y="17.5" width="48" height="48"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="48" id="cyd-8v-Jj8"/>
@@ -355,6 +355,9 @@
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="11"/>
                                                                 <state key="normal" image="FavoriteOff"/>
+                                                                <connections>
+                                                                    <action selector="favoriteButtonAction:" destination="4Ld-U6-Odg" eventType="touchUpInside" id="ZGq-6I-YUG"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -420,6 +423,7 @@
                     <navigationItem key="navigationItem" id="fGP-S3-naS"/>
                     <connections>
                         <outlet property="backdropImageView" destination="RsL-2b-bRH" id="s7t-J9-geQ"/>
+                        <outlet property="favoriteButton" destination="oLI-h2-kje" id="iNn-37-O8R"/>
                         <outlet property="genreLabel" destination="Gkj-So-5cA" id="6cf-Ds-lSf"/>
                         <outlet property="overviewLabel" destination="1SK-ri-asW" id="H56-aK-zWQ"/>
                         <outlet property="posterImageView" destination="zXa-53-Cbr" id="BFV-Zl-Ysh"/>
