@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CollectionViewSlantedLayout
 
 class FavoriteMoviesViewController: UIViewController {
     
@@ -25,10 +26,16 @@ class FavoriteMoviesViewController: UIViewController {
         setupBindables()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        updateCollectionViewLayout()
+    }
+    
     // MARK: - Private
     
     private func setupViewModel() {
-        viewModel = FavoriteMoviesViewModel(managedObjectContext: managedObjectContext)
+        let store = FavoriteMoviesStore(managedObjectContext)
+        viewModel = FavoriteMoviesViewModel(store: store)
     }
     
     private func setupUI() {
@@ -46,6 +53,20 @@ class FavoriteMoviesViewController: UIViewController {
         collectionView.delegate = self
         collectionView.decelerationRate = .fast
         collectionView.registerNib(cellType: FavoriteMovieCollectionViewCell.self)
+        setupCollectionViewLayout()
+    }
+    
+    private func setupCollectionViewLayout() {
+        let layout = CollectionViewSlantedLayout()
+        layout.isFirstCellExcluded = true
+        layout.isLastCellExcluded = true
+        collectionView.collectionViewLayout = layout
+    }
+    
+    private func updateCollectionViewLayout() {
+        if let layout = collectionView.collectionViewLayout as? CollectionViewSlantedLayout {
+            layout.itemSize = 225
+        }
     }
     
     private func reloadCollectionView() {
@@ -59,6 +80,7 @@ class FavoriteMoviesViewController: UIViewController {
     private func setupBindables() {
         viewModel.updateFavorites = { [weak self] in
             guard let strongSelf = self else { return }
+            strongSelf.updateCollectionViewLayout()
             strongSelf.reloadCollectionView()
         }
     }

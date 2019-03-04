@@ -7,28 +7,26 @@
 //
 
 import Foundation
-import CoreData
 
-final class SearchOptionsViewModel: NSObject {
+final class SearchOptionsViewModel {
     
-    private var managedObjectContext: NSManagedObjectContext!
-    private var fetchedResultsController: NSFetchedResultsController<MovieVisit>
+    private var store: SearchOptionsStore
     
     let viewState: Bindable<SearchOptionsViewState> = Bindable(.initial)
+    
     var prepareUpdate: ((Bool) -> Void)?
     var updateVisitedMovies: (() -> Void)?
+    
     var selectedDefaultSearchOption: ((DefaultSearchOption) -> Void)?
     var selectedMovieGenre: ((Int) -> Void)?
     
     var visitedMovieCells: [VisitedMovieCellViewModel] {
-        guard let visited = fetchedResultsController.fetchedObjects else {
-            return []
-        }
+        let visited = store.visitedMovies
         return visited.map { VisitedMovieCellViewModel(movieVisit: $0) }
     }
     
     var genreCells: [GenreSearchOptionCellViewModel] {
-        let genres = Genre.findAll(in: managedObjectContext)
+        let genres = store.genres
         return genres.map { GenreSearchOptionCellViewModel(genre: $0) }
     }
     
@@ -39,29 +37,10 @@ final class SearchOptionsViewModel: NSObject {
     
     // MARK: - Initializers
     
-    init(managedObjectContext: NSManagedObjectContext) {
-        self.managedObjectContext = managedObjectContext
-        let request = MovieVisit.sortedFetchRequest
-        request.fetchBatchSize = 10
-        request.fetchLimit = 10
-        
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
-                                                              managedObjectContext: managedObjectContext,
-                                                              sectionNameKeyPath: nil,
-                                                              cacheName: nil)
-        super.init()
-        fetchedResultsController.delegate = self
-        loadMovieVisits()
-    }
-    
-    // MARK: - Movie visits persistence
-    
-    func loadMovieVisits() {
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            fatalError(error.localizedDescription)
-        }
+    init(store: SearchOptionsStore) {
+        self.store = store
+        self.store.delegate = self
+        self.store.loadMovieVisits()
     }
     
     // MARK: - Public
@@ -76,7 +55,7 @@ final class SearchOptionsViewModel: NSObject {
     }
     
     func getMovieGenreSelection(by index: Int) {
-        let genres = Genre.findAll(in: managedObjectContext)
+        let genres = store.genres
         let selectedGenre = genres[index]
         selectedMovieGenre?(selectedGenre.id)
     }
@@ -121,22 +100,16 @@ extension SearchOptionsViewModel {
     
 }
 
-// MARK: - NSFetchedResultsControllerDelegate
+// MARK: - SearchOptionsStoreDelegate
 
-extension SearchOptionsViewModel: NSFetchedResultsControllerDelegate {
+extension SearchOptionsViewModel: SearchOptionsStoreDelegate {
     
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        prepareUpdate?(true)
+    func searchOptionsStore(_ searchOptionsStore: SearchOptionsStore, willUpdateVisitedMovies shouldPrepare: Bool) {
+        prepareUpdate?(shouldPrepare)
     }
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                    didChange anObject: Any, at indexPath: IndexPath?,
-                    for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    func searchOptionsStore(_ searchOptionsStore: SearchOptionsStore, didUpdateVisitedMovies update: Bool) {
         updateVisitedMovies?()
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        prepareUpdate?(false)
     }
     
 }

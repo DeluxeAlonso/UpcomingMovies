@@ -8,8 +8,9 @@
 
 import UIKit
 import Kingfisher
+import CollectionViewSlantedLayout
 
-class FavoriteMovieCollectionViewCell: UICollectionViewCell {
+class FavoriteMovieCollectionViewCell: CollectionViewSlantedCell {
     
     @IBOutlet weak var backdropImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

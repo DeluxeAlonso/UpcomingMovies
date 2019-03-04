@@ -423,6 +423,7 @@
                     <navigationItem key="navigationItem" id="fGP-S3-naS"/>
                     <connections>
                         <outlet property="backdropImageView" destination="RsL-2b-bRH" id="s7t-J9-geQ"/>
+                        <outlet property="favoriteButton" destination="oLI-h2-kje" id="iNn-37-O8R"/>
                         <outlet property="genreLabel" destination="Gkj-So-5cA" id="6cf-Ds-lSf"/>
                         <outlet property="overviewLabel" destination="1SK-ri-asW" id="H56-aK-zWQ"/>
                         <outlet property="posterImageView" destination="zXa-53-Cbr" id="BFV-Zl-Ysh"/>

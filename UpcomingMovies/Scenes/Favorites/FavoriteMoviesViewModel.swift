@@ -9,59 +9,31 @@
 import Foundation
 import CoreData
 
-final class FavoriteMoviesViewModel: NSObject {
+final class FavoriteMoviesViewModel {
     
-    private var managedObjectContext: NSManagedObjectContext!
-    private var fetchedResultsController: NSFetchedResultsController<Favorite>
+    private var store: FavoriteMoviesStore
     
     var updateFavorites: (() -> Void)?
     
     var favoriteMovieCells: [FavoriteMovieCellViewModel] {
-        guard let favorites = fetchedResultsController.fetchedObjects else {
-            return []
-        }
+        let favorites = store.favoriteMovies
         return favorites.map { FavoriteMovieCellViewModel($0) }
     }
     
-    init(managedObjectContext: NSManagedObjectContext) {
-        self.managedObjectContext = managedObjectContext
-        let request = Favorite.sortedFetchRequest
-        request.fetchBatchSize = 5
-        request.returnsObjectsAsFaults = false
-        
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
-                                                              managedObjectContext: managedObjectContext,
-                                                              sectionNameKeyPath: nil,
-                                                              cacheName: nil)
-        super.init()
-        fetchedResultsController.delegate = self
-        loadFavoriteMovies()
-    }
-    
-    func loadFavoriteMovies() {
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            fatalError(error.localizedDescription)
-        }
+    init(store: FavoriteMoviesStore) {
+        self.store = store
+        self.store.delegate = self
+        self.store.loadFavoriteMovies()
     }
     
 }
 
-// MARK: - NSFetchedResultsControllerDelegate
+// MARK: - FavoriteMoviesStoreDelegate
 
-extension FavoriteMoviesViewModel: NSFetchedResultsControllerDelegate {
+extension FavoriteMoviesViewModel: FavoriteMoviesStoreDelegate {
     
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                    didChange anObject: Any, at indexPath: IndexPath?,
-                    for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    func favoriteMoviesStore(_ favoriteMoviesStore: FavoriteMoviesStore, didUpdateFavorites update: Bool) {
         updateFavorites?()
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     }
     
 }

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreData
 
 final class MovieDetailViewModel {
     
@@ -21,6 +20,8 @@ final class MovieDetailViewModel {
     var posterURL: URL?
     var backdropPath: String?
     var backdropURL: URL?
+    
+    let isFavorite: Bindable<Bool> = Bindable(false)
     
     // MARK: - Initializers
 
@@ -39,24 +40,37 @@ final class MovieDetailViewModel {
     
     // MARK: - Public
     
-    func saveVisitedMovie(_ managedObjectContext: NSManagedObjectContext) {
-        guard let posterPath = posterPath else { return }
-        managedObjectContext.performChanges {
-            _ = MovieVisit.insert(into: managedObjectContext,
-                                  id: self.id,
-                                  title: self.title,
-                                  posterPath: posterPath)
+    func saveVisitedMovie() {
+        PersistenceManager.shared.saveVisitedMovie(with: id,
+                                                   title: title,
+                                                   posterPath: posterPath)
+    }
+    
+    // MARK: - Favorites
+    
+    func checkIfIsFavorite() {
+        self.isFavorite.value = PersistenceManager.shared.isFavorite(for: self.id)
+    }
+    
+    func handleFavoriteMovie() {
+        let persistenceManager = PersistenceManager.shared
+        if persistenceManager.isFavorite(for: self.id) {
+            deleteFavoriteMovie()
+            isFavorite.value = false
+        } else {
+            saveFavoriteMovie()
+            isFavorite.value = true
         }
     }
     
-    func saveFavoriteMovie(_ managedObjectContext: NSManagedObjectContext) {
-        guard let backdropPath = backdropPath else { return }
-        managedObjectContext.performChanges {
-            _ = Favorite.insert(into: managedObjectContext,
-                                  id: self.id,
-                                  title: self.title,
-                                  backdropPath: backdropPath)
-        }
+    private func saveFavoriteMovie() {
+        PersistenceManager.shared.saveFavorite(with: self.id,
+                                              title: self.title,
+                                              backdropPath: self.backdropPath)
+    }
+    
+    private func deleteFavoriteMovie() {
+        PersistenceManager.shared.removeFavorite(with: self.id)
     }
     
     // MARK: - View Models Building
