@@ -34,8 +34,7 @@ class FavoriteMoviesViewController: UIViewController {
     // MARK: - Private
     
     private func setupViewModel() {
-        let store = FavoriteMoviesStore(managedObjectContext)
-        viewModel = FavoriteMoviesViewModel(store: store)
+        viewModel = FavoriteMoviesViewModel(managedObjectContext: managedObjectContext)
     }
     
     private func setupUI() {
@@ -51,7 +50,6 @@ class FavoriteMoviesViewController: UIViewController {
     
     private func setupCollectionView() {
         collectionView.delegate = self
-        collectionView.decelerationRate = .fast
         collectionView.registerNib(cellType: FavoriteMovieCollectionViewCell.self)
         setupCollectionViewLayout()
     }

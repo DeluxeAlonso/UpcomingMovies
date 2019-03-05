@@ -12,13 +12,11 @@ import CoreData
 final class SearchMoviesViewModel: NSObject {
     
     func searchOptionsViewModel(_ managedObjectContext: NSManagedObjectContext) -> SearchOptionsViewModel {
-        let store = SearchOptionsStore(managedObjectContext)
-        return SearchOptionsViewModel(store: store)
+        return SearchOptionsViewModel(managedObjectContext: managedObjectContext)
     }
     
     func prepareSearchResultController(_ managedObjectContext: NSManagedObjectContext) -> SearchMoviesResultController {
-        let store = SearchMoviesResultStore(managedObjectContext)
-        let viewModel = SearchMoviesResultViewModel(store: store)
+        let viewModel = SearchMoviesResultViewModel(managedObjectContext: managedObjectContext)
         return SearchMoviesResultController(viewModel: viewModel)
     }
     
