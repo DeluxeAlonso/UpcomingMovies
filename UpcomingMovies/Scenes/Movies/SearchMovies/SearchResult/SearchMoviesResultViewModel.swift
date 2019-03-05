@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import CoreData
 
 final class SearchMoviesResultViewModel {
     
     // MARK: - Properties
     
-    private var store: SearchMoviesResultStore
+    private var movieSearchStore: PersistenceStore<MovieSearch>!
     
     private let movieClient = MovieClient()
     private var movies: [Movie] = []
@@ -25,7 +26,7 @@ final class SearchMoviesResultViewModel {
     // MARK: - Computed Properties
     
     var recentSearchCells: [RecentSearchCellViewModel] {
-        let searches = store.recentSearches
+        let searches = movieSearchStore.entities
         return searches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
     }
     
@@ -35,17 +36,17 @@ final class SearchMoviesResultViewModel {
     
     // MARK: - Initilalizers
     
-    init(store: SearchMoviesResultStore) {
-        self.store = store
-        self.store.delegate = self
-        self.store.loadRecentSearches()
+    init(managedObjectContext: NSManagedObjectContext) {
+        movieSearchStore = PersistenceStore(managedObjectContext)
+        movieSearchStore.configure(limit: 5)
+        movieSearchStore.delegate = self
     }
     
     // MARK: - Movies handling
     
     func searchMovies(withSearchText searchText: String) {
         viewState.value = .searching
-        store.saveSearchText(searchText)
+        movieSearchStore.saveMovieSearch(with: searchText)
         movieClient.searchMovies(searchText: searchText) { result in
             switch result {
             case .success(let movieResult):
@@ -82,16 +83,16 @@ final class SearchMoviesResultViewModel {
 
 // MARK: - SearchMoviesResultStore
 
-extension SearchMoviesResultViewModel: SearchMoviesResultStoreDelegate {
+extension SearchMoviesResultViewModel: PersistenceStoreDelegate {
     
-    func searchMoviesResultStore(_ searchMoviesResultStore: SearchMoviesResultStore, willUpdateSearchMovies shouldPrepare: Bool) {
+    func persistenceStore(willUpdateEntity shouldPrepare: Bool) {
         prepareUpdate?(shouldPrepare)
     }
     
-    func searchMoviesResultStore(_ searchMoviesResultStore: SearchMoviesResultStore, didUpdateSearchMovies update: Bool) {
+    func persistenceStore(didUpdateEntity update: Bool) {
         updateRecentSearches?()
     }
-    
+
 }
 
 // MARK: - View states

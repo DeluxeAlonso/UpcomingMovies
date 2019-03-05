@@ -30,16 +30,6 @@ final class Favorite: NSManagedObject {
         return URL(string: URLConfiguration.mediaBackdropPath + backdropPath)
     }
     
-    // MARK: - Data access
-    
-    static func find(by id: Int, in context: NSManagedObjectContext) -> Favorite? {
-        let predicate = NSPredicate(format: "id == %d", id)
-        guard let favorite = findOrFetch(in: context, matching: predicate) else {
-            return nil
-        }
-        return favorite
-    }
-    
 }
 
 extension Favorite: Managed {

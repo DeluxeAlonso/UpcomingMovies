@@ -23,6 +23,9 @@ final class MovieDetailViewModel {
     
     let isFavorite: Bindable<Bool> = Bindable(false)
     
+    var favoriteStore: PersistenceStore<Favorite>!
+    var movieVisitStore: PersistenceStore<MovieVisit>!
+    
     // MARK: - Initializers
 
     init(_ movie: Movie) {
@@ -36,59 +39,58 @@ final class MovieDetailViewModel {
         posterURL = movie.posterURL
         backdropPath = movie.backdropPath
         backdropURL = movie.backdropURL
+        
+        setupStores()
+    }
+    
+    // MARK: - Private
+    
+    private func setupStores() {
+        let managedObjectContext = PersistenceManager.shared.persistentContainer.viewContext
+        favoriteStore = PersistenceStore(managedObjectContext)
+        movieVisitStore = PersistenceStore(managedObjectContext)
     }
     
     // MARK: - Public
     
     func saveVisitedMovie() {
-        PersistenceManager.shared.saveVisitedMovie(with: id,
-                                                   title: title,
-                                                   posterPath: posterPath)
+        movieVisitStore.saveMovieVisit(with: id, title: title, posterPath: posterPath)
     }
     
     // MARK: - Favorites
     
     func checkIfIsFavorite() {
-        self.isFavorite.value = PersistenceManager.shared.isFavorite(for: self.id)
+        self.isFavorite.value = favoriteStore.exist(with: id)
     }
     
     func handleFavoriteMovie() {
-        let persistenceManager = PersistenceManager.shared
-        if persistenceManager.isFavorite(for: self.id) {
-            deleteFavoriteMovie()
+        if favoriteStore.exist(with: id) {
+            favoriteStore.removeFavorite(with: id)
             isFavorite.value = false
         } else {
-            saveFavoriteMovie()
+            favoriteStore.saveFavorite(with: id,
+                                       title: title,
+                                       backdropPath: backdropPath)
             isFavorite.value = true
         }
-    }
-    
-    private func saveFavoriteMovie() {
-        PersistenceManager.shared.saveFavorite(with: self.id,
-                                              title: self.title,
-                                              backdropPath: self.backdropPath)
-    }
-    
-    private func deleteFavoriteMovie() {
-        PersistenceManager.shared.removeFavorite(with: self.id)
     }
     
     // MARK: - View Models Building
     
     func buildVideosViewModel() -> MovieVideosViewModel {
-        return MovieVideosViewModel(movieId: self.id, movieTitle: self.title)
+        return MovieVideosViewModel(movieId: id, movieTitle: title)
     }
     
     func buildReviewsViewModel() -> MovieReviewsViewModel {
-        return MovieReviewsViewModel(movieId: self.id, movieTitle: self.title)
+        return MovieReviewsViewModel(movieId: id, movieTitle: title)
     }
     
     func buildCreditsViewModel() -> MovieCreditsViewModel {
-        return MovieCreditsViewModel(movieId: self.id, movieTitle: self.title)
+        return MovieCreditsViewModel(movieId: id, movieTitle: title)
     }
     
     func buildSimilarsViewModel() -> MovieListViewModel {
-        return MovieListViewModel(filter: .similar(movieId: self.id))
+        return MovieListViewModel(filter: .similar(movieId: id))
     }
     
 }

@@ -34,8 +34,10 @@ class MovieDetailTests: XCTestCase {
     
     private func setupMovieGenres() {
         let context = PersistenceManager.shared.persistentContainer.viewContext
-        _ = Genre.with(id: 1, name: "Genre 1", context: context)
-        _ = Genre.with(id: 2, name: "Genre 2", context: context)
+        PersistenceManager.shared.genres = [
+            Genre.with(id: 1, name: "Genre 1", context: context),
+            Genre.with(id: 2, name: "Genre 2", context: context)
+        ]
     }
 
     func testMovieDetailTitle() {

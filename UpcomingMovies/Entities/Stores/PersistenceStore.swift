@@ -1,46 +1,54 @@
 //
-//  FavoriteMoviesStore.swift
+//  FavoriteStore.swift
 //  UpcomingMovies
 //
-//  Created by Alonso on 3/3/19.
+//  Created by Alonso on 3/4/19.
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
-protocol FavoriteMoviesStoreDelegate: class {
+protocol PersistenceStoreDelegate: class {
     
-    func favoriteMoviesStore(_ favoriteMoviesStore: FavoriteMoviesStore, didUpdateFavorites update: Bool)
+    func persistenceStore(willUpdateEntity shouldPrepare: Bool)
+    func persistenceStore(didUpdateEntity update: Bool)
     
 }
 
-class FavoriteMoviesStore: NSObject {
+class PersistenceStore<Entity: Managed>: NSObject, NSFetchedResultsControllerDelegate {
     
-    private var managedObjectContext: NSManagedObjectContext
-    private var fetchedResultsController: NSFetchedResultsController<Favorite>
+    var managedObjectContext: NSManagedObjectContext
     
-    weak var delegate: FavoriteMoviesStoreDelegate?
+    private var fetchedResultsController: NSFetchedResultsController<Entity>!
     
-    var favoriteMovies: [Favorite] {
+    weak var delegate: PersistenceStoreDelegate?
+    
+    var entities: [Entity] {
         return fetchedResultsController.fetchedObjects ?? []
     }
     
     init(_ managedObjectContext: NSManagedObjectContext) {
         self.managedObjectContext = managedObjectContext
-        let request = Favorite.sortedFetchRequest
-        request.fetchBatchSize = 5
+        super.init()
+    }
+    
+    // MARK: - Public
+    
+    func configure(batchSize: Int = 5, limit: Int = 0) {
+        let request = Entity.sortedFetchRequest
+        request.fetchBatchSize = batchSize
+        request.fetchLimit = limit
         request.returnsObjectsAsFaults = false
-        
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
                                                               managedObjectContext: managedObjectContext,
                                                               sectionNameKeyPath: nil,
                                                               cacheName: nil)
-        super.init()
         fetchedResultsController.delegate = self
+        performFetch()
     }
     
-    func loadFavoriteMovies() {
+    func performFetch() {
         do {
             try fetchedResultsController.performFetch()
         } catch {
@@ -48,22 +56,21 @@ class FavoriteMoviesStore: NSObject {
         }
     }
     
-}
-
-// MARK: - NSFetchedResultsControllerDelegate
-
-extension FavoriteMoviesStore: NSFetchedResultsControllerDelegate {
+    // MARK: - NSFetchedResultsControllerDelegate
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        delegate?.persistenceStore(willUpdateEntity: true)
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                    didChange anObject: Any, at indexPath: IndexPath?,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
                     for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        delegate?.favoriteMoviesStore(self, didUpdateFavorites: true)
+        delegate?.persistenceStore(didUpdateEntity: true)
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        delegate?.persistenceStore(willUpdateEntity: false)
     }
     
 }

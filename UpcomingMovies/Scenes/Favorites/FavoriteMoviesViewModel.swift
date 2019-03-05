@@ -11,28 +11,31 @@ import CoreData
 
 final class FavoriteMoviesViewModel {
     
-    private var store: FavoriteMoviesStore
+    private var favoriteStore: PersistenceStore<Favorite>!
     
     var updateFavorites: (() -> Void)?
     
     var favoriteMovieCells: [FavoriteMovieCellViewModel] {
-        let favorites = store.favoriteMovies
+        let favorites = favoriteStore.entities
         return favorites.map { FavoriteMovieCellViewModel($0) }
     }
     
-    init(store: FavoriteMoviesStore) {
-        self.store = store
-        self.store.delegate = self
-        self.store.loadFavoriteMovies()
+    init(managedObjectContext: NSManagedObjectContext) {
+        favoriteStore = PersistenceStore(managedObjectContext)
+        favoriteStore.configure()
+        favoriteStore.delegate = self
     }
     
 }
 
 // MARK: - FavoriteMoviesStoreDelegate
 
-extension FavoriteMoviesViewModel: FavoriteMoviesStoreDelegate {
+extension FavoriteMoviesViewModel: PersistenceStoreDelegate {
     
-    func favoriteMoviesStore(_ favoriteMoviesStore: FavoriteMoviesStore, didUpdateFavorites update: Bool) {
+    func persistenceStore(willUpdateEntity shouldPrepare: Bool) {
+    }
+    
+    func persistenceStore(didUpdateEntity update: Bool) {
         updateFavorites?()
     }
     

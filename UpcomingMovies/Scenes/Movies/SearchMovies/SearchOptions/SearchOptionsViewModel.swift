@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import CoreData
 
 final class SearchOptionsViewModel {
     
-    private var store: SearchOptionsStore
+    private var movieVisitStore: PersistenceStore<MovieVisit>!
     
     let viewState: Bindable<SearchOptionsViewState> = Bindable(.initial)
     
@@ -21,12 +22,12 @@ final class SearchOptionsViewModel {
     var selectedMovieGenre: ((Int) -> Void)?
     
     var visitedMovieCells: [VisitedMovieCellViewModel] {
-        let visited = store.visitedMovies
+        let visited = movieVisitStore.entities
         return visited.map { VisitedMovieCellViewModel(movieVisit: $0) }
     }
     
     var genreCells: [GenreSearchOptionCellViewModel] {
-        let genres = store.genres
+        let genres = PersistenceManager.shared.genres
         return genres.map { GenreSearchOptionCellViewModel(genre: $0) }
     }
     
@@ -37,10 +38,10 @@ final class SearchOptionsViewModel {
     
     // MARK: - Initializers
     
-    init(store: SearchOptionsStore) {
-        self.store = store
-        self.store.delegate = self
-        self.store.loadMovieVisits()
+    init(managedObjectContext: NSManagedObjectContext) {
+        movieVisitStore = PersistenceStore(managedObjectContext)
+        movieVisitStore.configure(limit: 10)
+        movieVisitStore.delegate = self
     }
     
     // MARK: - Public
@@ -55,7 +56,7 @@ final class SearchOptionsViewModel {
     }
     
     func getMovieGenreSelection(by index: Int) {
-        let genres = store.genres
+        let genres = PersistenceManager.shared.genres
         let selectedGenre = genres[index]
         selectedMovieGenre?(selectedGenre.id)
     }
@@ -102,13 +103,13 @@ extension SearchOptionsViewModel {
 
 // MARK: - SearchOptionsStoreDelegate
 
-extension SearchOptionsViewModel: SearchOptionsStoreDelegate {
+extension SearchOptionsViewModel: PersistenceStoreDelegate {
     
-    func searchOptionsStore(_ searchOptionsStore: SearchOptionsStore, willUpdateVisitedMovies shouldPrepare: Bool) {
+    func persistenceStore(willUpdateEntity shouldPrepare: Bool) {
         prepareUpdate?(shouldPrepare)
     }
     
-    func searchOptionsStore(_ searchOptionsStore: SearchOptionsStore, didUpdateVisitedMovies update: Bool) {
+    func persistenceStore(didUpdateEntity update: Bool) {
         updateVisitedMovies?()
     }
     
