@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import CoreData
 
 final class MovieDetailViewModel {
+    
+    private var managedObjectContext: NSManagedObjectContext
+    private var favoriteStore: PersistenceStore<Favorite>!
+    private var movieVisitStore: PersistenceStore<MovieVisit>!
     
     var id: Int
     var title: String
@@ -23,12 +28,9 @@ final class MovieDetailViewModel {
     
     let isFavorite: Bindable<Bool> = Bindable(false)
     
-    var favoriteStore: PersistenceStore<Favorite>!
-    var movieVisitStore: PersistenceStore<MovieVisit>!
-    
     // MARK: - Initializers
 
-    init(_ movie: Movie) {
+    init(_ movie: Movie, managedObjectContext: NSManagedObjectContext) {
         id = movie.id
         title = movie.title
         genre = movie.genreName
@@ -40,13 +42,13 @@ final class MovieDetailViewModel {
         backdropPath = movie.backdropPath
         backdropURL = movie.backdropURL
         
+        self.managedObjectContext = managedObjectContext
         setupStores()
     }
     
     // MARK: - Private
     
     private func setupStores() {
-        let managedObjectContext = PersistenceManager.shared.persistentContainer.viewContext
         favoriteStore = PersistenceStore(managedObjectContext)
         movieVisitStore = PersistenceStore(managedObjectContext)
     }
@@ -90,7 +92,8 @@ final class MovieDetailViewModel {
     }
     
     func buildSimilarsViewModel() -> MovieListViewModel {
-        return MovieListViewModel(filter: .similar(movieId: id))
+        return MovieListViewModel(filter: .similar(movieId: id),
+                                  managedObjectContext: managedObjectContext)
     }
     
 }

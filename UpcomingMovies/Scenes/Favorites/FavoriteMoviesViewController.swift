@@ -13,7 +13,7 @@ class FavoriteMoviesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var viewModel: FavoriteMoviesViewModel!
+    private var viewModel = FavoriteMoviesViewModel()
     
     private var dataSource: SimpleCollectionViewDataSource<FavoriteMovieCellViewModel>!
     
@@ -21,7 +21,6 @@ class FavoriteMoviesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewModel()
         setupUI()
         setupBindables()
     }
@@ -29,12 +28,6 @@ class FavoriteMoviesViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         updateCollectionViewLayout()
-    }
-    
-    // MARK: - Private
-    
-    private func setupViewModel() {
-        viewModel = FavoriteMoviesViewModel(managedObjectContext: managedObjectContext)
     }
     
     private func setupUI() {

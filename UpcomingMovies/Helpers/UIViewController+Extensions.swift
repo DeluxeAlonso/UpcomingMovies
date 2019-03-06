@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 extension UIViewController {
     
@@ -16,10 +15,6 @@ extension UIViewController {
             return nil
         }
         return delegate
-    }
-    
-    var managedObjectContext: NSManagedObjectContext {
-        return PersistenceManager.shared.persistentContainer.viewContext
     }
     
 }

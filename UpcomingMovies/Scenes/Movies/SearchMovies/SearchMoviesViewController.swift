@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 class SearchMoviesViewController: UIViewController, SegueHandler {
     
@@ -36,7 +35,7 @@ class SearchMoviesViewController: UIViewController, SegueHandler {
     }
     
     private func setupSearchController() {
-        let searchResultController = viewModel.prepareSearchResultController(managedObjectContext)
+        let searchResultController = viewModel.prepareSearchResultController()
         searchController = DefaultSearchController(searchResultsController: searchResultController)
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
@@ -66,7 +65,7 @@ class SearchMoviesViewController: UIViewController, SegueHandler {
             guard let viewController = segue.destination as? SearchOptionsTableViewController else { fatalError() }
             _ = viewController.view
             viewController.delegate = self
-            viewController.viewModel = viewModel.searchOptionsViewModel(managedObjectContext)
+            viewController.viewModel = viewModel.buildSearchOptionsViewModel()
             searchOptionsContainerView = viewController
         }
     }

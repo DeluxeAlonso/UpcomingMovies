@@ -10,21 +10,14 @@ import UIKit
 
 class SplashViewController: UIViewController {
     
-    private var viewModel: SplashViewModel!
+    private var viewModel = SplashViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewModel()
         setupBindables()
         viewModel.getMovieGenres()
     }
-    
-    // MARK: - Private
-    
-    private func setupViewModel() {
-        viewModel = SplashViewModel(managedObjectContext: managedObjectContext)
-    }
-    
+
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {

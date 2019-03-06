@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 import Kingfisher
 
 class MovieDetailViewController: UIViewController, Transitionable, SegueHandler {

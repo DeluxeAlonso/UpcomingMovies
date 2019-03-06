@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import CoreData
 
 final class UpcomingMoviesViewModel: MoviesViewModel {
     
     // MARK: - Properties
+    
+    var managedObjectContext: NSManagedObjectContext
     
     var movieClient = MovieClient()
     
@@ -24,6 +27,10 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     
     var movieCells: [UpcomingMovieCellViewModel] {
         return movies.compactMap { UpcomingMovieCellViewModel($0) }
+    }
+    
+    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.persistentContainer.viewContext) {
+        self.managedObjectContext = managedObjectContext
     }
     
     // MARK: - Public
