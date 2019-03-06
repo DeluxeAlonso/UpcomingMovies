@@ -7,26 +7,30 @@
 //
 
 import Foundation
+import CoreData
 
 final class MovieListViewModel: MoviesViewModel {
-
+   
+    var movieClient = MovieClient()
+    
+    var managedObjectContext: NSManagedObjectContext
+    var filter: MovieListFilter
+    
+    var startLoading: ((Bool) -> Void)?
+    var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
+    
+    // MARK: - Computed Properties
+    
     var movieCells: [MovieCellViewModel] {
         return movies.compactMap { MovieCellViewModel($0) }
     }
     
-    var startLoading: ((Bool) -> Void)?
-    
-    // MARK: - Properties
-    
-    var movieClient = MovieClient()
-    var filter: MovieListFilter
-    
-    var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
-    
     // MARK: - Initializers
     
-    init(filter: MovieListFilter = .upcoming) {
+    init(filter: MovieListFilter = .upcoming,
+         managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
         self.filter = filter
+        self.managedObjectContext = managedObjectContext
     }
     
 }

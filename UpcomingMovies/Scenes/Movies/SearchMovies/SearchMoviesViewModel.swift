@@ -11,11 +11,17 @@ import CoreData
 
 final class SearchMoviesViewModel: NSObject {
     
-    func searchOptionsViewModel(_ managedObjectContext: NSManagedObjectContext) -> SearchOptionsViewModel {
+    var managedObjectContext: NSManagedObjectContext
+    
+    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
+        self.managedObjectContext = managedObjectContext
+    }
+    
+    func buildSearchOptionsViewModel() -> SearchOptionsViewModel {
         return SearchOptionsViewModel(managedObjectContext: managedObjectContext)
     }
     
-    func prepareSearchResultController(_ managedObjectContext: NSManagedObjectContext) -> SearchMoviesResultController {
+    func prepareSearchResultController() -> SearchMoviesResultController {
         let viewModel = SearchMoviesResultViewModel(managedObjectContext: managedObjectContext)
         return SearchMoviesResultController(viewModel: viewModel)
     }
@@ -23,15 +29,15 @@ final class SearchMoviesViewModel: NSObject {
     // MARK: - Default search options
     
     func popularMoviesViewModel() -> MovieListViewModel {
-        return MovieListViewModel(filter: .popular)
+        return MovieListViewModel(filter: .popular, managedObjectContext: managedObjectContext)
     }
     
     func topRatedMoviesViewModel() -> MovieListViewModel {
-        return MovieListViewModel(filter: .topRated)
+        return MovieListViewModel(filter: .topRated, managedObjectContext: managedObjectContext)
     }
     
     func moviesByGenreViewModel(genreId: Int) -> MovieListViewModel {
-        return MovieListViewModel(filter: .byGenre(genreId: genreId))
+        return MovieListViewModel(filter: .byGenre(genreId: genreId), managedObjectContext: managedObjectContext)
     }
     
 }

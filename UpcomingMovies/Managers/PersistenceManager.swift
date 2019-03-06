@@ -22,6 +22,10 @@ class PersistenceManager {
         return container
     }()
     
+    var mainContext: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
+    
     // MARK: - Movie Genres
     
     var genres: [Genre] = []

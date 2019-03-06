@@ -17,7 +17,7 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler, Loader
     private var dataSource: SimpleTableViewDataSource<MovieCellViewModel>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
     private var displayedCellsIndexPaths = Set<IndexPath>()
-    
+
     var loaderView: RadarView!
     
     // MARK: - Lifcycle

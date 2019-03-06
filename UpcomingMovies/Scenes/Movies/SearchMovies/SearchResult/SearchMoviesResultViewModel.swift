@@ -76,7 +76,8 @@ final class SearchMoviesResultViewModel {
     
     func buildDetailViewModel(atIndex index: Int) -> MovieDetailViewModel? {
         guard index < movies.count else { return nil }
-        return MovieDetailViewModel(movies[index])
+        return MovieDetailViewModel(movies[index],
+                                    managedObjectContext: movieSearchStore.managedObjectContext)
     }
 
 }

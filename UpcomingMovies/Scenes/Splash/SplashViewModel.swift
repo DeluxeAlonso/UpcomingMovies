@@ -18,7 +18,7 @@ final class SplashViewModel {
     private var managedObjectContext: NSManagedObjectContext!
     private var genreStore: PersistenceStore<Genre>!
     
-    init(managedObjectContext: NSManagedObjectContext) {
+    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
         self.managedObjectContext = managedObjectContext
         setupStores()
     }

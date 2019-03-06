@@ -24,7 +24,8 @@ class MovieDetailTests: XCTestCase {
                             posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
                             backdropPath: "/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg",
                             releaseDate: "2019-02-01", voteAverage: 4.5)
-        viewModelToTest = MovieDetailViewModel(movieToTest)
+        viewModelToTest = MovieDetailViewModel(movieToTest,
+                                               managedObjectContext: PersistenceManager.shared.mainContext)
     }
 
     override func tearDown() {
@@ -33,7 +34,7 @@ class MovieDetailTests: XCTestCase {
     }
     
     private func setupMovieGenres() {
-        let context = PersistenceManager.shared.persistentContainer.viewContext
+        let context = PersistenceManager.shared.mainContext
         PersistenceManager.shared.genres = [
             Genre.with(id: 1, name: "Genre 1", context: context),
             Genre.with(id: 2, name: "Genre 2", context: context)

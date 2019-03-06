@@ -20,7 +20,7 @@ final class FavoriteMoviesViewModel {
         return favorites.map { FavoriteMovieCellViewModel($0) }
     }
     
-    init(managedObjectContext: NSManagedObjectContext) {
+    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
         favoriteStore = PersistenceStore(managedObjectContext)
         favoriteStore.configure()
         favoriteStore.delegate = self
