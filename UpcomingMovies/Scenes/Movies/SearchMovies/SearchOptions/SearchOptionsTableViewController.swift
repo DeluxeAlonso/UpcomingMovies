@@ -18,19 +18,23 @@ protocol SearchOptionsTableViewControllerDelegate: class {
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
                                           didSelectMovieGenre genreId: Int)
     
+    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
+                                          didSelectRecentlyVisitedMovie id: Int,
+                                          title: String)
+    
 }
 
 class SearchOptionsTableViewController: UITableViewController {
+    
+    private var dataSource: SearchOptionsDataSource!
+    
+    weak var delegate: SearchOptionsTableViewControllerDelegate?
     
     var viewModel: SearchOptionsViewModel? {
         didSet {
             setupBindables()
         }
     }
-    
-    private var dataSource: SearchOptionsDataSource!
-    
-    weak var delegate: SearchOptionsTableViewControllerDelegate?
     
     // MARK: - Lifecycle
 
@@ -91,6 +95,12 @@ class SearchOptionsTableViewController: UITableViewController {
             strongSelf.delegate?.searchOptionsTableViewController(strongSelf,
                                                                   didSelectMovieGenre: genredId)
         }
+        
+        viewModel?.selectedRecentlyVisitedMovie = { [weak self] id, title in
+            guard let strongSelf = self else { return }
+            strongSelf.delegate?.searchOptionsTableViewController(strongSelf, didSelectRecentlyVisitedMovie: id, title: title)
+        }
+        
     }
     
     // MARK: - Table view delegate

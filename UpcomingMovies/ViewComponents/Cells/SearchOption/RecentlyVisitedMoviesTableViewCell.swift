@@ -8,9 +8,18 @@
 
 import UIKit
 
+protocol RecentlyVisitedMoviesTableViewCellDelegate: class {
+    
+    func recentlyVisitedMoviesTableViewCell(_ recentlyVisitedMoviesTableViewCell: RecentlyVisitedMoviesTableViewCell,
+                                            didSelectMovieAt indexPath: IndexPath)
+    
+}
+
 class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    weak var delegate: RecentlyVisitedMoviesTableViewCellDelegate?
     
     var viewModel: RecentlyVisitedMoviesCellViewModel? {
         didSet {
@@ -69,6 +78,7 @@ extension RecentlyVisitedMoviesTableViewCell: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        delegate?.recentlyVisitedMoviesTableViewCell(self, didSelectMovieAt: indexPath)
     }
     
 }

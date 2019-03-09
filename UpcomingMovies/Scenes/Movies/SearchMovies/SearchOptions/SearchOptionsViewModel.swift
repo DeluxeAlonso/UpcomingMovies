@@ -20,6 +20,7 @@ final class SearchOptionsViewModel {
     
     var selectedDefaultSearchOption: ((DefaultSearchOption) -> Void)?
     var selectedMovieGenre: ((Int) -> Void)?
+    var selectedRecentlyVisitedMovie: ((Int, String) -> Void)?
     
     var visitedMovieCells: [VisitedMovieCellViewModel] {
         let visited = movieVisitStore.entities
@@ -59,6 +60,12 @@ final class SearchOptionsViewModel {
         let genres = PersistenceManager.shared.genres
         let selectedGenre = genres[index]
         selectedMovieGenre?(selectedGenre.id)
+    }
+    
+    func getRecentlyVisitedMovieSelection(by index: Int) {
+        let visitedMovies = movieVisitStore.entities
+        let selectedVisitedMovie = visitedMovies[index]
+        selectedRecentlyVisitedMovie?(selectedVisitedMovie.id, selectedVisitedMovie.title)
     }
     
 }

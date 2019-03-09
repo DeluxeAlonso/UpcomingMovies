@@ -29,15 +29,24 @@ final class SearchMoviesViewModel: NSObject {
     // MARK: - Default search options
     
     func popularMoviesViewModel() -> MovieListViewModel {
-        return MovieListViewModel(filter: .popular, managedObjectContext: managedObjectContext)
+        return MovieListViewModel(filter: .popular,
+                                  managedObjectContext: managedObjectContext)
     }
     
     func topRatedMoviesViewModel() -> MovieListViewModel {
-        return MovieListViewModel(filter: .topRated, managedObjectContext: managedObjectContext)
+        return MovieListViewModel(filter: .topRated,
+                                  managedObjectContext: managedObjectContext)
     }
     
     func moviesByGenreViewModel(genreId: Int) -> MovieListViewModel {
-        return MovieListViewModel(filter: .byGenre(genreId: genreId), managedObjectContext: managedObjectContext)
+        return MovieListViewModel(filter: .byGenre(genreId: genreId),
+                                  managedObjectContext: managedObjectContext)
+    }
+    
+    func recentlyVisitedMovieViewModel(id: Int, title: String) -> MovieDetailViewModel {
+        return MovieDetailViewModel(id: id,
+                                    title: title,
+                                    managedObjectContext: managedObjectContext)
     }
     
 }
