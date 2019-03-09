@@ -57,7 +57,7 @@ class MovieClient: APIClient {
     
     // MARK: - Movie detail
     
-    func getMovieDetail(with movieId: Int, completion: @escaping (Result<Movie?, APIError>) -> Void) {
+    func getMovieDetail(with movieId: Int, completion: @escaping (Result<Movie, APIError>) -> Void) {
         fetch(with: MovieProvider.getDetail(id: movieId).request, decode: { json -> Movie? in
             guard let movie = json as? Movie else { return nil }
             return movie
