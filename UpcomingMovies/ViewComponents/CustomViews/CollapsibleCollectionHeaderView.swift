@@ -33,13 +33,13 @@ class CollapsibleCollectionHeaderView: UICollectionReusableView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var arrowImageView: UIImageView!
     
+    weak var delegate: CollapsibleHeaderViewViewDelegate?
+    
     var viewModel: CollapsibleHeaderViewModel? {
         didSet {
             setupBindables()
         }
     }
-    
-    weak var delegate: CollapsibleHeaderViewViewDelegate?
     
     // MARK: - Lifecycle
     

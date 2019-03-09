@@ -28,6 +28,8 @@ class PersistenceStore<Entity: Managed>: NSObject, NSFetchedResultsControllerDel
         return fetchedResultsController.fetchedObjects ?? []
     }
     
+    // MARK: - Initializers
+    
     init(_ managedObjectContext: NSManagedObjectContext) {
         self.managedObjectContext = managedObjectContext
         super.init()

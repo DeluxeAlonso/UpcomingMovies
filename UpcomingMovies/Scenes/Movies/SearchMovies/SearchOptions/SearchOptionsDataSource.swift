@@ -54,6 +54,8 @@ class SearchOptionsDataSource: NSObject, UITableViewDataSource {
     private func recentlyVisitedDataSource(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         guard let viewModel = viewModel else { fatalError() }
         let cell = tableView.dequeueReusableCell(with: RecentlyVisitedMoviesTableViewCell.self, for: indexPath)
+        cell.selectionStyle = .none
+        cell.delegate = self
         cell.viewModel = viewModel.prepareRecentlyVisitedMoviesCell()
         return cell
     }
@@ -70,4 +72,15 @@ class SearchOptionsDataSource: NSObject, UITableViewDataSource {
         return cell
     }
 
+}
+
+// MARK: - RecentlyVisitedMoviesTableViewCellDelegate
+
+extension SearchOptionsDataSource: RecentlyVisitedMoviesTableViewCellDelegate {
+    
+    func recentlyVisitedMoviesTableViewCell(_ recentlyVisitedMoviesTableViewCell: RecentlyVisitedMoviesTableViewCell,
+                                            didSelectMovieAt indexPath: IndexPath) {
+        viewModel?.getRecentlyVisitedMovieSelection(by: indexPath.row)
+    }
+    
 }

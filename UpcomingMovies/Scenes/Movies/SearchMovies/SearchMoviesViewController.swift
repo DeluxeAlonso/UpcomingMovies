@@ -163,6 +163,13 @@ extension SearchMoviesViewController: SearchOptionsTableViewControllerDelegate {
                      sender: viewModel)
     }
     
+    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
+                                          didSelectRecentlyVisitedMovie id: Int, title: String) {
+        let viewModel = self.viewModel.recentlyVisitedMovieViewModel(id: id, title: title)
+        performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue,
+                     sender: viewModel)
+    }
+    
 }
 
 // MARK: - Segue Identifiers
