@@ -62,15 +62,17 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        viewModel?.saveVisitedMovie()
         setupViewBindables()
         setupLoaderBindable()
         setupErrorBindables()
         setupFavoriteBindables()
+        viewModel?.saveVisitedMovie()
+        viewModel?.getMovieDetail()
     }
     
     private func setupViewBindables() {
         guard let viewModel = viewModel else { return }
+        
         titleLabel.text = viewModel.title
         genreLabel.text = viewModel.genre
         releaseDateLabel.text = viewModel.releaseDate
@@ -88,6 +90,9 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     private func setupLoaderBindable() {
         viewModel?.startLoading = { [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
+        }
+        viewModel?.updateMovieDetail = { [weak self] in
+            self?.setupViewBindables()
         }
     }
     

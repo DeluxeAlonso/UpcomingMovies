@@ -30,6 +30,8 @@ final class MovieDetailViewModel {
     
     var startLoading: ((Bool) -> Void)?
     var showErrorView: ((Error) -> Void)?
+    var updateMovieDetail: (() -> Void)?
+    var needsFetch = false
     var isFavorite: Bindable<Bool> = Bindable(false)
     
     // MARK: - Initializers
@@ -44,7 +46,7 @@ final class MovieDetailViewModel {
         self.id = id
         self.title = title
         self.managedObjectContext = managedObjectContext
-        getMovieDetail()
+        self.needsFetch = true
         setupStores(self.managedObjectContext)
     }
     
@@ -71,12 +73,14 @@ final class MovieDetailViewModel {
     // MARK: - Public
     
     func getMovieDetail() {
+        guard needsFetch else { return }
         startLoading?(true)
         movieClient.getMovieDetail(with: id, completion: { result in
             self.startLoading?(false)
             switch result {
             case .success(let movie):
                 self.setupMovie(movie)
+                self.updateMovieDetail?()
             case .failure(let error):
                 self.showErrorView?(error)
             }
