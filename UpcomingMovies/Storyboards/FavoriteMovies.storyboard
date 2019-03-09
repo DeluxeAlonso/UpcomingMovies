@@ -57,11 +57,20 @@
                     <navigationItem key="navigationItem" id="l7F-al-IjK"/>
                     <connections>
                         <outlet property="collectionView" destination="3RY-jt-cnW" id="GYs-zB-Eq4"/>
+                        <segue destination="E9X-L8-SRP" kind="show" identifier="MovieDetailSegue" id="RR0-hA-Y2p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CpD-dE-guP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="905" y="793"/>
+        </scene>
+        <!--MovieDetailViewController-->
+        <scene sceneID="whN-yo-C3G">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MovieDetail" referencedIdentifier="MovieDetailViewController" id="E9X-L8-SRP" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uuC-7Y-i2r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1637" y="793"/>
         </scene>
     </scenes>
     <resources>

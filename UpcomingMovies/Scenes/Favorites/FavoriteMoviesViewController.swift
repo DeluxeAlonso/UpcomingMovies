@@ -9,7 +9,7 @@
 import UIKit
 import CollectionViewSlantedLayout
 
-class FavoriteMoviesViewController: UIViewController {
+class FavoriteMoviesViewController: UIViewController, SegueHandler {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -76,12 +76,36 @@ class FavoriteMoviesViewController: UIViewController {
         }
     }
     
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        navigationController?.delegate = nil
+        switch segueIdentifier(for: segue) {
+        case .movieDetail:
+            guard let viewController = segue.destination as? MovieDetailViewController,
+                let index = sender as? Int else { fatalError() }
+            _ = viewController.view
+            viewController.viewModel = viewModel.buildDetailViewModel(atIndex: index)
+        }
+    }
+    
 }
 
 extension FavoriteMoviesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        NSLog("Did select item at indexPath: [\(indexPath.section)][\(indexPath.row)]")
+        performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue,
+                     sender: indexPath.row)
+    }
+    
+}
+
+// MARK: - Segue Identifiers
+
+extension FavoriteMoviesViewController {
+    
+    enum SegueIdentifier: String {
+        case movieDetail = "MovieDetailSegue"
     }
     
 }

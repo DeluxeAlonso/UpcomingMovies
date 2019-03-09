@@ -12,9 +12,7 @@ private struct AssociatedKeys {
     static var errorView: ErrorPlaceholderView = ErrorPlaceholderView()
 }
 
-protocol Retryable: class {
-
-}
+protocol Retryable: class { }
 
 extension Retryable where Self: UIViewController {
     

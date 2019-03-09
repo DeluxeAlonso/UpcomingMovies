@@ -15,22 +15,44 @@ final class MovieDetailViewModel {
     private var favoriteStore: PersistenceStore<Favorite>!
     private var movieVisitStore: PersistenceStore<MovieVisit>!
     
-    var id: Int
-    var title: String
+    private var movieClient = MovieClient()
+    
+    var id: Int!
+    var title: String!
     var genre: String?
-    var releaseDate: String
-    var overview: String
+    var releaseDate: String?
+    var overview: String?
     var voteAverage: Double?
     var posterPath: String?
     var posterURL: URL?
     var backdropPath: String?
     var backdropURL: URL?
     
-    let isFavorite: Bindable<Bool> = Bindable(false)
+    var startLoading: ((Bool) -> Void)?
+    var showErrorView: ((Error) -> Void)?
+    var updateMovieDetail: (() -> Void)?
+    var needsFetch = false
+    var isFavorite: Bindable<Bool> = Bindable(false)
     
     // MARK: - Initializers
 
     init(_ movie: Movie, managedObjectContext: NSManagedObjectContext) {
+        self.managedObjectContext = managedObjectContext
+        setupMovie(movie)
+        setupStores(self.managedObjectContext)
+    }
+    
+    init(id: Int, title: String, managedObjectContext: NSManagedObjectContext) {
+        self.id = id
+        self.title = title
+        self.managedObjectContext = managedObjectContext
+        self.needsFetch = true
+        setupStores(self.managedObjectContext)
+    }
+    
+    // MARK: - Private
+    
+    private func setupMovie(_ movie: Movie) {
         id = movie.id
         title = movie.title
         genre = movie.genreName
@@ -41,22 +63,34 @@ final class MovieDetailViewModel {
         posterURL = movie.posterURL
         backdropPath = movie.backdropPath
         backdropURL = movie.backdropURL
-        
-        self.managedObjectContext = managedObjectContext
-        setupStores()
     }
     
-    // MARK: - Private
-    
-    private func setupStores() {
+    private func setupStores(_ managedObjectContext: NSManagedObjectContext) {
         favoriteStore = PersistenceStore(managedObjectContext)
         movieVisitStore = PersistenceStore(managedObjectContext)
     }
     
     // MARK: - Public
     
+    func getMovieDetail() {
+        guard needsFetch else { return }
+        startLoading?(true)
+        movieClient.getMovieDetail(with: id, completion: { result in
+            self.startLoading?(false)
+            switch result {
+            case .success(let movie):
+                self.setupMovie(movie)
+                self.updateMovieDetail?()
+            case .failure(let error):
+                self.showErrorView?(error)
+            }
+        })
+    }
+    
     func saveVisitedMovie() {
-        movieVisitStore.saveMovieVisit(with: id, title: title, posterPath: posterPath)
+        movieVisitStore.saveMovieVisit(with: id,
+                                       title: title,
+                                       posterPath: posterPath)
     }
     
     // MARK: - Favorites
