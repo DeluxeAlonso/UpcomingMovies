@@ -33,6 +33,8 @@ class FavoriteMoviesViewController: UIViewController, SegueHandler {
         updateCollectionViewLayout()
     }
     
+    // MARK: - Private
+    
     private func setupUI() {
         title = Constants.Title
         setupNavigationItem()
@@ -93,6 +95,8 @@ class FavoriteMoviesViewController: UIViewController, SegueHandler {
     }
     
 }
+
+// MARK: - UICollectionViewDelegate
 
 extension FavoriteMoviesViewController: UICollectionViewDelegate {
     
