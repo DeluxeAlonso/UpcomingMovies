@@ -60,12 +60,9 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
     }
     
     private func setupCollectionViewLayout() {
-        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        let posterHeight: Double = Constants.cellHeight
-        let posterWidth: Double = posterHeight / Movie.posterAspectRatio
-        layout.itemSize = CGSize(width: posterWidth, height: posterHeight)
-        layout.sectionInset = UIEdgeInsets(top: Constants.cellMargin, left: Constants.cellMargin,
-                                           bottom: Constants.cellMargin, right: Constants.cellMargin)
+        let layout = SquareFlowLayout(height: Constants.cellHeight,
+                                      margin: Constants.cellMargin)
+        collectionView.collectionViewLayout = layout
     }
     
     private func setupRefreshControl() {
