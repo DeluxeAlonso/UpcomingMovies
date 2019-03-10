@@ -53,7 +53,7 @@ extension MainTabBarController {
     enum Items: Int {
         case upcomingMovies
         case searchMovies
-        case settings
+        case favoriteMovies
     }
     
 }

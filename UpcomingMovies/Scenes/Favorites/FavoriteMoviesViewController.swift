@@ -27,6 +27,9 @@ class FavoriteMoviesViewController: UIViewController, SegueHandler {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        guard tabBarController?.selectedIndex == MainTabBarController.Items.favoriteMovies.rawValue else {
+            return
+        }
         updateCollectionViewLayout()
     }
     
