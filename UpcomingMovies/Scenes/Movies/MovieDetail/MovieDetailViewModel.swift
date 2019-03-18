@@ -38,8 +38,8 @@ final class MovieDetailViewModel {
 
     init(_ movie: Movie, managedObjectContext: NSManagedObjectContext) {
         self.managedObjectContext = managedObjectContext
-        setupMovie(movie)
         setupStores(self.managedObjectContext)
+        setupMovie(movie)
     }
     
     init(id: Int, title: String, managedObjectContext: NSManagedObjectContext) {
@@ -63,6 +63,7 @@ final class MovieDetailViewModel {
         posterURL = movie.posterURL
         backdropPath = movie.backdropPath
         backdropURL = movie.backdropURL
+        saveVisitedMovie()
     }
     
     private func setupStores(_ managedObjectContext: NSManagedObjectContext) {
@@ -75,7 +76,8 @@ final class MovieDetailViewModel {
     func getMovieDetail() {
         guard needsFetch else { return }
         startLoading?(true)
-        movieClient.getMovieDetail(with: id, completion: { result in
+        movieClient.getMovieDetail(managedObjectContext,
+                                   with: id, completion: { result in
             self.startLoading?(false)
             switch result {
             case .success(let movie):

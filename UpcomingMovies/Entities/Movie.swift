@@ -12,7 +12,8 @@ struct Movie: Decodable, Equatable {
     
     let id: Int
     let title: String
-    let genres: [Int]?
+    let genres: [Genre]?
+    let genreIds: [Int]?
     let overview: String
     let posterPath: String?
     let backdropPath: String?
@@ -25,7 +26,8 @@ struct Movie: Decodable, Equatable {
         case id
         case title
         case overview
-        case genres = "genre_ids"
+        case genres
+        case genreIds = "genre_ids"
         case posterPath = "poster_path"
         case backdropPath = "backdrop_path"
         case releaseDate = "release_date"
@@ -34,15 +36,15 @@ struct Movie: Decodable, Equatable {
 
 }
 
+// MARK: - Computed Properties
+
 extension Movie {
     
     var genreName: String {
-        guard let genres = genres,
-            !genres.isEmpty,
-            let genre = genres.first else {
-                return "-"
+        guard let genre = getGenre() else {
+            return Constants.emptyGenreTitle
         }
-        return PersistenceManager.shared.findGenre(with: genre)?.name ?? "-"
+        return genre.name
     }
     
     var posterURL: URL? {
@@ -57,16 +59,46 @@ extension Movie {
     
 }
 
+// MARK: - Private
+
+extension Movie {
+    
+    private func getGenre() -> Genre? {
+        // If the movie have genres assigned
+        if let genres = genres, let genre = genres.first {
+            return genre
+        }
+        // If the movie only have the genre ids assigned
+        guard let genreIds = genreIds, let genre = genreIds.first else {
+            return nil
+        }
+        return PersistenceManager.shared.findGenre(with: genre)
+    }
+    
+}
+
+// MARK: - Constants
+
+extension Movie {
+    
+    struct Constants {
+        static let emptyGenreTitle = "-"
+    }
+    
+}
+
 // MARK: - Test mockups
 
 extension Movie {
     
-    static func with(id: Int = 1, title: String = "Movie 1", genres: [Int] = [],
+    static func with(id: Int = 1, title: String = "Movie 1",
+                     genres: [Genre] = [], genreIds: [Int] = [],
                      overview: String = "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
                      posterPath: String = "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
                      backdropPath: String = "path2", releaseDate: String = "02-21-2019",
                      voteAverage: Double = 5.0) -> Movie {
-        return Movie(id: id, title: title, genres: genres,
+        return Movie(id: id, title: title,
+                     genres: genres, genreIds: genreIds,
                      overview: overview, posterPath: posterPath,
                      backdropPath: backdropPath, releaseDate: releaseDate,
                      voteAverage: voteAverage)

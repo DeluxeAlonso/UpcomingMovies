@@ -41,6 +41,7 @@ extension Genre: Decodable {
         guard let entity = NSEntityDescription.entity(forEntityName: Genre.entityName, in: context) else {
             fatalError("Unknown entity in context")
         }
+
         self.init(entity: entity, insertInto: context)
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
