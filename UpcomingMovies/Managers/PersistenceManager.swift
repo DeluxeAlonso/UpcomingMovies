@@ -13,22 +13,39 @@ class PersistenceManager {
     
     static let shared = PersistenceManager()
     
+    private var genreStore: PersistenceStore<Genre>!
+    
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "UpcomingMovies")
         container.loadPersistentStores { _, error in
             guard error == nil else { fatalError() }
         }
-        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return container
     }()
     
     var mainContext: NSManagedObjectContext {
-        return persistentContainer.viewContext
+        let context = persistentContainer.viewContext
+        context.mergePolicy = NSMergePolicy.overwrite
+        return context
+    }
+    
+    // MARK: - Initializers
+    
+    init() {
+        setupStores()
+    }
+    
+    // MARK: - Private
+    
+    private func setupStores() {
+        genreStore = PersistenceStore(mainContext)
     }
     
     // MARK: - Movie Genres
     
-    var genres: [Genre] = []
+    var genres: [Genre] {
+        return genreStore.findAll()
+    }
     
     func findGenre(with id: Int) -> Genre? {
         return genres.filter { $0.id == id }.first

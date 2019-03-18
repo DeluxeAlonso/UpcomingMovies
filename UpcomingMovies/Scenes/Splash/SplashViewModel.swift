@@ -32,8 +32,6 @@ final class SplashViewModel {
      */
     func getMovieGenres() {
         genreClient.getAllGenres(context: managedObjectContext) { _ in
-            // We only set the genres when starting the appp
-            PersistenceManager.shared.genres = self.genreStore.findAll()
             self.genresFetched?()
         }
     }

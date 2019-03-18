@@ -156,9 +156,9 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
         switch segueIdentifier(for: segue) {
         case .movieDetail:
             guard let viewController = segue.destination as? MovieDetailViewController else { fatalError() }
-            guard let indexpath = sender as? IndexPath else { return }
+            guard let indexPath = sender as? IndexPath else { return }
             _ = viewController.view
-            viewController.viewModel = viewModel.buildDetailViewModel(atIndex: indexpath.row)
+            viewController.viewModel = viewModel.buildDetailViewModel(atIndex: indexPath.row)
         }
     }
     

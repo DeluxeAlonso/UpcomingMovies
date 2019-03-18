@@ -66,7 +66,6 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
         setupLoaderBindable()
         setupErrorBindables()
         setupFavoriteBindables()
-        viewModel?.saveVisitedMovie()
         viewModel?.getMovieDetail()
     }
     

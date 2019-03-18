@@ -15,8 +15,8 @@
         </uniquenessConstraints>
     </entity>
     <entity name="Genre" representedClassName=".Genre" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
         <fetchIndex name="byNamePropertyIndex">
             <fetchIndexElement property="name" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -53,9 +53,9 @@
         </uniquenessConstraints>
     </entity>
     <elements>
+        <element name="Favorite" positionX="-54" positionY="36" width="128" height="30"/>
         <element name="Genre" positionX="-63" positionY="27" width="128" height="75"/>
         <element name="MovieSearch" positionX="-63" positionY="-18" width="128" height="75"/>
         <element name="MovieVisit" positionX="-63" positionY="9" width="128" height="105"/>
-        <element name="Favorite" positionX="-54" positionY="36" width="128" height="30"/>
     </elements>
 </model>

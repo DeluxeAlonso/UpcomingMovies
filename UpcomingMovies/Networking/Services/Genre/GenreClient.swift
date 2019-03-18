@@ -22,7 +22,7 @@ class GenreClient: APIClient {
         self.init(configuration: .default)
     }
     
-    func getAllGenres(context: NSManagedObjectContext, completion: @escaping (Result<GenreResult?, APIError>) -> Void) {
+    func getAllGenres(context: NSManagedObjectContext, completion: @escaping (Result<GenreResult, APIError>) -> Void) {
         fetch(with: GenreProvider.getAll.request, context: context, decode: { json -> GenreResult? in
             guard let genreFeedResult = json as? GenreResult else { return  nil }
             return genreFeedResult
