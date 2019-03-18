@@ -9,15 +9,14 @@
 import Foundation
 import CoreData
 
-final class SearchMoviesResultViewModel: NSObject {
+final class SearchMoviesResultViewModel {
     
     // MARK: - Properties
     
+    private var movieSearchStore: PersistenceStore<MovieSearch>!
+    
     private let movieClient = MovieClient()
     private var movies: [Movie] = []
-    
-    private var managedObjectContext: NSManagedObjectContext!
-    private var fetchedResultsController: NSFetchedResultsController<MovieSearch>
     
     let viewState: Bindable<SearchMoviesResultViewState> = Bindable(.initial)
     
@@ -27,9 +26,7 @@ final class SearchMoviesResultViewModel: NSObject {
     // MARK: - Computed Properties
     
     var recentSearchCells: [RecentSearchCellViewModel] {
-        guard let searches = fetchedResultsController.fetchedObjects else {
-            return []
-        }
+        let searches = movieSearchStore.entities
         return searches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
     }
     
@@ -40,26 +37,16 @@ final class SearchMoviesResultViewModel: NSObject {
     // MARK: - Initilalizers
     
     init(managedObjectContext: NSManagedObjectContext) {
-        self.managedObjectContext = managedObjectContext
-        let request = MovieSearch.sortedFetchRequest
-        request.fetchBatchSize = 5
-        request.fetchLimit = 5
-        request.returnsObjectsAsFaults = false
-        
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
-                                                              managedObjectContext: managedObjectContext,
-                                                              sectionNameKeyPath: nil,
-                                                              cacheName: nil)
-        super.init()
-        fetchedResultsController.delegate = self
-        loadRecentSearches()
+        movieSearchStore = PersistenceStore(managedObjectContext)
+        movieSearchStore.configure(limit: 5)
+        movieSearchStore.delegate = self
     }
     
     // MARK: - Movies handling
     
     func searchMovies(withSearchText searchText: String) {
         viewState.value = .searching
-        saveSearchText(searchText)
+        movieSearchStore.saveMovieSearch(with: searchText)
         movieClient.searchMovies(searchText: searchText) { result in
             switch result {
             case .success(let movieResult):
@@ -85,27 +72,26 @@ final class SearchMoviesResultViewModel: NSObject {
         movies = []
     }
     
-    // MARK: - Recent searches persistence
-    
-    func loadRecentSearches() {
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            fatalError(error.localizedDescription)
-        }
-    }
-    
-    func saveSearchText(_ searchText: String) {
-        managedObjectContext.performChanges {
-            _ = MovieSearch.insert(into: self.managedObjectContext, searchText: searchText)
-        }
-    }
-    
     // MARK: - Movie detail builder
     
     func buildDetailViewModel(atIndex index: Int) -> MovieDetailViewModel? {
         guard index < movies.count else { return nil }
-        return MovieDetailViewModel(movies[index])
+        return MovieDetailViewModel(movies[index],
+                                    managedObjectContext: movieSearchStore.managedObjectContext)
+    }
+
+}
+
+// MARK: - SearchMoviesResultStore
+
+extension SearchMoviesResultViewModel: PersistenceStoreDelegate {
+    
+    func persistenceStore(willUpdateEntity shouldPrepare: Bool) {
+        prepareUpdate?(shouldPrepare)
+    }
+    
+    func persistenceStore(didUpdateEntity update: Bool) {
+        updateRecentSearches?()
     }
 
 }
@@ -142,26 +128,6 @@ extension SearchMoviesResultViewModel {
     func resetViewState() {
         clearMovies()
         viewState.value = .initial
-    }
-    
-}
-
-// MARK: - NSFetchedResultsControllerDelegate
-
-extension SearchMoviesResultViewModel: NSFetchedResultsControllerDelegate {
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        prepareUpdate?(true)
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                    didChange anObject: Any, at indexPath: IndexPath?,
-                    for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        updateRecentSearches?()
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        prepareUpdate?(false)
     }
     
 }

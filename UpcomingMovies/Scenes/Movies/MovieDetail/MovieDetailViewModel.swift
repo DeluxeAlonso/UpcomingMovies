@@ -11,19 +11,48 @@ import CoreData
 
 final class MovieDetailViewModel {
     
-    var id: Int
-    var title: String
+    private var managedObjectContext: NSManagedObjectContext
+    private var favoriteStore: PersistenceStore<Favorite>!
+    private var movieVisitStore: PersistenceStore<MovieVisit>!
+    
+    private var movieClient = MovieClient()
+    
+    var id: Int!
+    var title: String!
     var genre: String?
-    var releaseDate: String
-    var overview: String
+    var releaseDate: String?
+    var overview: String?
     var voteAverage: Double?
     var posterPath: String?
     var posterURL: URL?
+    var backdropPath: String?
     var backdropURL: URL?
+    
+    var startLoading: ((Bool) -> Void)?
+    var showErrorView: ((Error) -> Void)?
+    var updateMovieDetail: (() -> Void)?
+    var needsFetch = false
+    var isFavorite: Bindable<Bool> = Bindable(false)
     
     // MARK: - Initializers
 
-    init(_ movie: Movie) {
+    init(_ movie: Movie, managedObjectContext: NSManagedObjectContext) {
+        self.managedObjectContext = managedObjectContext
+        setupStores(self.managedObjectContext)
+        setupMovie(movie)
+    }
+    
+    init(id: Int, title: String, managedObjectContext: NSManagedObjectContext) {
+        self.id = id
+        self.title = title
+        self.managedObjectContext = managedObjectContext
+        self.needsFetch = true
+        setupStores(self.managedObjectContext)
+    }
+    
+    // MARK: - Private
+    
+    private func setupMovie(_ movie: Movie) {
         id = movie.id
         title = movie.title
         genre = movie.genreName
@@ -32,35 +61,75 @@ final class MovieDetailViewModel {
         overview = movie.overview
         posterPath = movie.posterPath
         posterURL = movie.posterURL
+        backdropPath = movie.backdropPath
         backdropURL = movie.backdropURL
+        saveVisitedMovie()
+    }
+    
+    private func setupStores(_ managedObjectContext: NSManagedObjectContext) {
+        favoriteStore = PersistenceStore(managedObjectContext)
+        movieVisitStore = PersistenceStore(managedObjectContext)
     }
     
     // MARK: - Public
     
-    func saveVisitedMovie(_ managedObjectContext: NSManagedObjectContext) {
-        guard let posterPath = posterPath else { return }
-        managedObjectContext.performChanges {
-            _ = MovieVisit.insert(into: managedObjectContext,
-                                  id: self.id,
-                                  title: self.title,
-                                  posterPath: posterPath)
+    func getMovieDetail() {
+        guard needsFetch else { return }
+        startLoading?(true)
+        movieClient.getMovieDetail(managedObjectContext,
+                                   with: id, completion: { result in
+            self.startLoading?(false)
+            switch result {
+            case .success(let movie):
+                self.setupMovie(movie)
+                self.updateMovieDetail?()
+            case .failure(let error):
+                self.showErrorView?(error)
+            }
+        })
+    }
+    
+    func saveVisitedMovie() {
+        movieVisitStore.saveMovieVisit(with: id,
+                                       title: title,
+                                       posterPath: posterPath)
+    }
+    
+    // MARK: - Favorites
+    
+    func checkIfIsFavorite() {
+        self.isFavorite.value = favoriteStore.exist(with: id)
+    }
+    
+    func handleFavoriteMovie() {
+        if favoriteStore.exist(with: id) {
+            favoriteStore.removeFavorite(with: id)
+            isFavorite.value = false
+        } else {
+            favoriteStore.saveFavorite(with: id,
+                                       title: title,
+                                       backdropPath: backdropPath)
+            isFavorite.value = true
         }
     }
     
+    // MARK: - View Models Building
+    
     func buildVideosViewModel() -> MovieVideosViewModel {
-        return MovieVideosViewModel(movieId: self.id, movieTitle: self.title)
+        return MovieVideosViewModel(movieId: id, movieTitle: title)
     }
     
     func buildReviewsViewModel() -> MovieReviewsViewModel {
-        return MovieReviewsViewModel(movieId: self.id, movieTitle: self.title)
+        return MovieReviewsViewModel(movieId: id, movieTitle: title)
     }
     
     func buildCreditsViewModel() -> MovieCreditsViewModel {
-        return MovieCreditsViewModel(movieId: self.id, movieTitle: self.title)
+        return MovieCreditsViewModel(movieId: id, movieTitle: title)
     }
     
     func buildSimilarsViewModel() -> MovieListViewModel {
-        return MovieListViewModel(filter: .similar(movieId: self.id))
+        return MovieListViewModel(filter: .similar(movieId: id),
+                                  managedObjectContext: managedObjectContext)
     }
     
 }

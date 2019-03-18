@@ -43,11 +43,11 @@ class SimpleCollectionViewDataSource<ViewModel>: NSObject, UICollectionViewDataS
 extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellViewModel {
     
     static func make(for cellViewModels: [UpcomingMovieCellViewModel],
-                     reuseIdentifier: String = UpcomingMovieCollectionViewCell.dequeuIdentifier) -> SimpleCollectionViewDataSource {
+                     presentationMode: UpcomingMoviesViewController.PresentationMode) -> SimpleCollectionViewDataSource {
         return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
-                                              reuseIdentifier: reuseIdentifier,
+                                              reuseIdentifier: presentationMode.cellIdentifier,
                                               cellConfigurator: { (viewModel, cell) in
-                                                let cell = cell as! UpcomingMovieCollectionViewCell
+                                                var cell = cell as! UpcomingMovieCollectionViewCell
                                                 cell.viewModel = viewModel
         })
     }
@@ -62,6 +62,20 @@ extension SimpleCollectionViewDataSource where ViewModel == MovieCreditCellViewM
                                               reuseIdentifier: reuseIdentifier,
                                               cellConfigurator: { (viewModel, cell) in
                                                 let cell = cell as! MovieCreditCollectionViewCell
+                                                cell.viewModel = viewModel
+        })
+    }
+    
+}
+
+extension SimpleCollectionViewDataSource where ViewModel == FavoriteMovieCellViewModel {
+    
+    static func make(for cellViewModels: [FavoriteMovieCellViewModel],
+                     reuseIdentifier: String = FavoriteMovieCollectionViewCell.dequeuIdentifier) -> SimpleCollectionViewDataSource {
+        return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
+                                              reuseIdentifier: reuseIdentifier,
+                                              cellConfigurator: { (viewModel, cell) in
+                                                let cell = cell as! FavoriteMovieCollectionViewCell
                                                 cell.viewModel = viewModel
         })
     }

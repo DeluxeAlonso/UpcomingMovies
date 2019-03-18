@@ -9,26 +9,26 @@
 import Foundation
 import CoreData
 
-final class SearchOptionsViewModel: NSObject {
+final class SearchOptionsViewModel {
     
-    private var managedObjectContext: NSManagedObjectContext!
-    private var fetchedResultsController: NSFetchedResultsController<MovieVisit>
+    private var movieVisitStore: PersistenceStore<MovieVisit>!
     
     let viewState: Bindable<SearchOptionsViewState> = Bindable(.initial)
+    
     var prepareUpdate: ((Bool) -> Void)?
     var updateVisitedMovies: (() -> Void)?
+    
     var selectedDefaultSearchOption: ((DefaultSearchOption) -> Void)?
     var selectedMovieGenre: ((Int) -> Void)?
+    var selectedRecentlyVisitedMovie: ((Int, String) -> Void)?
     
     var visitedMovieCells: [VisitedMovieCellViewModel] {
-        guard let visited = fetchedResultsController.fetchedObjects else {
-            return []
-        }
+        let visited = movieVisitStore.entities
         return visited.map { VisitedMovieCellViewModel(movieVisit: $0) }
     }
     
     var genreCells: [GenreSearchOptionCellViewModel] {
-        let genres = Genre.findAll(in: managedObjectContext)
+        let genres = PersistenceManager.shared.genres
         return genres.map { GenreSearchOptionCellViewModel(genre: $0) }
     }
     
@@ -40,28 +40,9 @@ final class SearchOptionsViewModel: NSObject {
     // MARK: - Initializers
     
     init(managedObjectContext: NSManagedObjectContext) {
-        self.managedObjectContext = managedObjectContext
-        let request = MovieVisit.sortedFetchRequest
-        request.fetchBatchSize = 10
-        request.fetchLimit = 10
-        
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
-                                                              managedObjectContext: managedObjectContext,
-                                                              sectionNameKeyPath: nil,
-                                                              cacheName: nil)
-        super.init()
-        fetchedResultsController.delegate = self
-        loadMovieVisits()
-    }
-    
-    // MARK: - Movie visits persistence
-    
-    func loadMovieVisits() {
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            fatalError(error.localizedDescription)
-        }
+        movieVisitStore = PersistenceStore(managedObjectContext)
+        movieVisitStore.configure(limit: 10)
+        movieVisitStore.delegate = self
     }
     
     // MARK: - Public
@@ -76,9 +57,15 @@ final class SearchOptionsViewModel: NSObject {
     }
     
     func getMovieGenreSelection(by index: Int) {
-        let genres = Genre.findAll(in: managedObjectContext)
+        let genres = PersistenceManager.shared.genres
         let selectedGenre = genres[index]
         selectedMovieGenre?(selectedGenre.id)
+    }
+    
+    func getRecentlyVisitedMovieSelection(by index: Int) {
+        let visitedMovies = movieVisitStore.entities
+        let selectedVisitedMovie = visitedMovies[index]
+        selectedRecentlyVisitedMovie?(selectedVisitedMovie.id, selectedVisitedMovie.title)
     }
     
 }
@@ -121,22 +108,16 @@ extension SearchOptionsViewModel {
     
 }
 
-// MARK: - NSFetchedResultsControllerDelegate
+// MARK: - SearchOptionsStoreDelegate
 
-extension SearchOptionsViewModel: NSFetchedResultsControllerDelegate {
+extension SearchOptionsViewModel: PersistenceStoreDelegate {
     
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        prepareUpdate?(true)
+    func persistenceStore(willUpdateEntity shouldPrepare: Bool) {
+        prepareUpdate?(shouldPrepare)
     }
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                    didChange anObject: Any, at indexPath: IndexPath?,
-                    for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    func persistenceStore(didUpdateEntity update: Bool) {
         updateVisitedMovies?()
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        prepareUpdate?(false)
     }
     
 }

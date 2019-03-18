@@ -41,6 +41,7 @@ extension Genre: Decodable {
         guard let entity = NSEntityDescription.entity(forEntityName: Genre.entityName, in: context) else {
             fatalError("Unknown entity in context")
         }
+
         self.init(entity: entity, insertInto: context)
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -48,21 +49,7 @@ extension Genre: Decodable {
         self.id = try container.decode(Int.self, forKey: .id)
         self.name = try container.decode(String.self, forKey: .name)
     }
-    
-    // MARK: -
-    
-    static func find(by id: Int, in context: NSManagedObjectContext) -> Genre? {
-        let predicate = NSPredicate(format: "id == %d", id)
-        guard let genre = findOrFetch(in: context, matching: predicate) else {
-            return nil
-        }
-        return genre
-    }
-    
-    static func findAll(in context: NSManagedObjectContext) -> [Genre] {
-        return fetch(in: context)
-    }
-    
+
 }
 
 // MARK: - Managed

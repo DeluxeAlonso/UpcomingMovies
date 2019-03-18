@@ -10,21 +10,33 @@ import UIKit
 
 class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, LoaderDisplayable {
 
+    @IBOutlet weak var toggleGridBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var viewModel = UpcomingMoviesViewModel()
     
     private var dataSource: SimpleCollectionViewDataSource<UpcomingMovieCellViewModel>!
-    private var prefetchDataSource: CollectionViewDataSourcePrefetching!
+    private var prefetchDataSource: CollectionViewPrefetching!
     private var displayedCellsIndexPaths = Set<IndexPath>()
+    
+    private var previewLayout: VerticalFlowLayout!
+    private var detailLayout: VerticalFlowLayout!
     
     private var selectedFrame: CGRect?
     private var imageToTransition: UIImage?
     private var transitionInteractor: TransitioningInteractor?
     
-    // MARK: - LoaderDiplayable
-    
     var loaderView: RadarView!
+    
+    private var presentationMode: PresentationMode = .preview {
+        didSet {
+            if presentationMode == .preview {
+                toggleGridBarButtonItem.image = #imageLiteral(resourceName: "List")
+            } else {
+                toggleGridBarButtonItem.image = #imageLiteral(resourceName: "Grid")
+            }
+        }
+    }
     
     // MARK: - Lifecycle
     
@@ -38,6 +50,18 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.delegate = self
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        guard tabBarController?.selectedIndex == MainTabBarController.Items.upcomingMovies.rawValue else {
+            return
+        }
+        coordinator.animate(alongsideTransition: { _ in
+            self.detailLayout.itemSize.width = self.collectionView.frame.width - Constants.detailCellOffset
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }, completion: nil)
+        
     }
     
     // MARK: - Private
@@ -55,17 +79,20 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
     
     private func setupCollectionView() {
         collectionView.delegate = self
-        collectionView.registerNib(cellType: UpcomingMovieCollectionViewCell.self)
+        collectionView.registerNib(cellType: UpcomingMoviePreviewCollectionViewCell.self)
+        collectionView.registerNib(cellType: UpcomingMovieDetailCollectionViewCell.self)
         setupCollectionViewLayout()
     }
     
     private func setupCollectionViewLayout() {
-        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        let posterHeight: Double = Constants.cellHeight
-        let posterWidth: Double = posterHeight / Movie.posterAspectRatio
-        layout.itemSize = CGSize(width: posterWidth, height: posterHeight)
-        layout.sectionInset = UIEdgeInsets(top: Constants.cellMargin, left: Constants.cellMargin,
-                                           bottom: Constants.cellMargin, right: Constants.cellMargin)
+        let detailLayoutWidth = Double(collectionView.frame.width - Constants.detailCellOffset)
+        detailLayout = VerticalFlowLayout(width: detailLayoutWidth,
+                                          height: Constants.detailCellHeight)
+        
+        let previewLayoutWidth = Constants.previewCellHeight / Movie.posterAspectRatio
+        previewLayout = VerticalFlowLayout(width: previewLayoutWidth, height: Constants.previewCellHeight)
+        
+        collectionView.collectionViewLayout = presentationMode == .preview ? previewLayout : detailLayout
     }
     
     private func setupRefreshControl() {
@@ -77,13 +104,17 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
     }
     
     private func reloadCollectionView() {
-        dataSource = SimpleCollectionViewDataSource.make(for: viewModel.movieCells)
-        prefetchDataSource = CollectionViewDataSourcePrefetching(cellCount: viewModel.movieCells.count,
-                                                                       prefetchHandler: { [weak self] in
-                                                                        self?.viewModel.getMovies()
+        dataSource = SimpleCollectionViewDataSource.make(for: viewModel.movieCells,
+                                                         presentationMode: presentationMode)
+        
+        prefetchDataSource = CollectionViewPrefetching(cellCount: viewModel.movieCells.count,
+                                                       prefetchHandler: { [weak self] in
+                                                        self?.viewModel.getMovies()
         })
+        
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = prefetchDataSource
+        
         collectionView.reloadData()
         collectionView.refreshControl?.endRefreshing(with: 0.5)
     }
@@ -125,9 +156,25 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
         switch segueIdentifier(for: segue) {
         case .movieDetail:
             guard let viewController = segue.destination as? MovieDetailViewController else { fatalError() }
-            guard let indexpath = sender as? IndexPath else { return }
+            guard let indexPath = sender as? IndexPath else { return }
             _ = viewController.view
-            viewController.viewModel = viewModel.buildDetailViewModel(atIndex: indexpath.row)
+            viewController.viewModel = viewModel.buildDetailViewModel(atIndex: indexPath.row)
+        }
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func toggleGridAction(_ sender: Any) {
+        collectionView.collectionViewLayout.invalidateLayout()
+        switch presentationMode {
+        case .preview:
+            presentationMode = .detail
+            reloadCollectionView()
+            collectionView.setCollectionViewLayout(detailLayout, animated: false)
+        case .detail:
+            presentationMode = .preview
+            reloadCollectionView()
+            collectionView.setCollectionViewLayout(previewLayout, animated: false)
         }
     }
     
@@ -210,6 +257,26 @@ extension UpcomingMoviesViewController {
     
 }
 
+// MARK: - Presentation Modes
+
+extension UpcomingMoviesViewController {
+    
+    enum PresentationMode {
+        case preview
+        case detail
+        
+        var cellIdentifier: String {
+            switch self {
+            case .preview:
+                return UpcomingMoviePreviewCollectionViewCell.dequeuIdentifier
+            case .detail:
+                return UpcomingMovieDetailCollectionViewCell.dequeuIdentifier
+            }
+        }
+    }
+    
+}
+
 // MARK: - Constants
 
 extension UpcomingMoviesViewController {
@@ -221,8 +288,10 @@ extension UpcomingMoviesViewController {
         
         static let RefreshControlTitle = NSLocalizedString("refreshControlTitle", comment: "")
         
-        static let cellMargin: CGFloat = 16.0
-        static let cellHeight: Double = 150.0
+        static let previewCellHeight: Double = 150.0
+        
+        static let detailCellHeight: Double = 200.0
+        static let detailCellOffset: CGFloat = 32.0
         
     }
     

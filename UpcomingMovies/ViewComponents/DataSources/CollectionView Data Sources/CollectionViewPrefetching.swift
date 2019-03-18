@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CollectionViewDataSourcePrefetching: NSObject, UICollectionViewDataSourcePrefetching {
+class CollectionViewPrefetching: NSObject, UICollectionViewDataSourcePrefetching {
     
     private let cellCount: Int
     private let prefetchHandler: (() -> Void)

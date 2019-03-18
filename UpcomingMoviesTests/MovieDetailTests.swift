@@ -19,12 +19,14 @@ class MovieDetailTests: XCTestCase {
         setupMovieGenres()
         let movieToTest = Movie(id: 1,
                             title: "Test 1",
-                            genres: [1, 2],
+                            genres: [],
+                            genreIds: [1, 2],
                             overview: "Overview",
                             posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
                             backdropPath: "/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg",
                             releaseDate: "2019-02-01", voteAverage: 4.5)
-        viewModelToTest = MovieDetailViewModel(movieToTest)
+        viewModelToTest = MovieDetailViewModel(movieToTest,
+                                               managedObjectContext: PersistenceManager.shared.mainContext)
     }
 
     override func tearDown() {
@@ -33,11 +35,11 @@ class MovieDetailTests: XCTestCase {
     }
     
     private func setupMovieGenres() {
-        let context = PersistenceManager.shared.persistentContainer.viewContext
+        let context = PersistenceManager.shared.mainContext
         _ = Genre.with(id: 1, name: "Genre 1", context: context)
         _ = Genre.with(id: 2, name: "Genre 2", context: context)
     }
-
+    
     func testMovieDetailTitle() {
         //Act
         let title = viewModelToTest.title

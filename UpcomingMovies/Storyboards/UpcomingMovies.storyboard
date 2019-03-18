@@ -41,9 +41,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="Upcoming movies" id="FBi-9u-wKu">
                         <barButtonItem key="backBarButtonItem" title=" " id="1uH-Ge-Gt9"/>
+                        <barButtonItem key="leftBarButtonItem" image="List" id="JjA-67-2z8" userLabel="Toggle Grid Bar Button Item">
+                            <connections>
+                                <action selector="toggleGridAction:" destination="EZU-as-DXw" id="TFH-xz-Jth"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="EKd-qK-aII" id="2u5-5u-0xh"/>
+                        <outlet property="toggleGridBarButtonItem" destination="JjA-67-2z8" id="fnW-wt-Fdj"/>
                         <segue destination="RoE-rT-Mzt" kind="show" identifier="MovieDetailSegue" id="BHy-mp-6be"/>
                     </connections>
                 </viewController>
@@ -81,6 +87,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="List" width="36" height="36"/>
         <image name="Movies" width="37.5" height="37.5"/>
     </resources>
 </document>

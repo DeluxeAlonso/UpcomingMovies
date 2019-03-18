@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import CoreData
 import Kingfisher
 
-class MovieDetailViewController: UIViewController, Transitionable, SegueHandler {
+class MovieDetailViewController: UIViewController, Retryable, Transitionable, SegueHandler, LoaderDisplayable {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backdropImageView: UIImageView!
@@ -20,7 +19,10 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
     @IBOutlet weak var voteAverageView: VoteAverageView!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var overviewLabel: UILabel!
+    
+    var loaderView: RadarView!
     
     var viewModel: MovieDetailViewModel? {
         didSet {
@@ -50,10 +52,26 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
         navigationItem.rightBarButtonItem = shareBarButtonItem
     }
     
+    private func showErrorView(error: Error) {
+        presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
+                                   errorHandler: { [weak self] in
+            self?.viewModel?.getMovieDetail()
+        })
+    }
+    
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
+        setupViewBindables()
+        setupLoaderBindable()
+        setupErrorBindables()
+        setupFavoriteBindables()
+        viewModel?.getMovieDetail()
+    }
+    
+    private func setupViewBindables() {
         guard let viewModel = viewModel else { return }
+        
         titleLabel.text = viewModel.title
         genreLabel.text = viewModel.genre
         releaseDateLabel.text = viewModel.releaseDate
@@ -66,7 +84,33 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
         
         voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview
-        viewModel.saveVisitedMovie(managedObjectContext)
+    }
+    
+    private func setupLoaderBindable() {
+        viewModel?.startLoading = { [weak self] start in
+            start ? self?.showLoader() : self?.hideLoader()
+        }
+        viewModel?.updateMovieDetail = { [weak self] in
+            self?.setupViewBindables()
+        }
+    }
+    
+    private func setupErrorBindables() {
+        viewModel?.showErrorView = { [weak self] error in
+            self?.showErrorView(error: error)
+        }
+    }
+    
+    private func setupFavoriteBindables() {
+        viewModel?.isFavorite.bind({ [weak self] isFavorite in
+            guard let strongSelf = self else { return }
+            if isFavorite {
+                strongSelf.favoriteButton.setImage(#imageLiteral(resourceName: "FavoriteOn"), for: .normal)
+            } else {
+                strongSelf.favoriteButton.setImage(#imageLiteral(resourceName: "FavoriteOff"), for: .normal)
+            }
+        })
+        viewModel?.checkIfIsFavorite()
     }
     
     // MARK: - Navigation
@@ -101,7 +145,11 @@ class MovieDetailViewController: UIViewController, Transitionable, SegueHandler 
         self.present(activityViewController, animated: true, completion: nil)
     }
     
-    // MARK: - Options Actions
+    // MARK: - Actions
+    
+    @IBAction func favoriteButtonAction(_ sender: Any) {
+        viewModel?.handleFavoriteMovie()
+    }
     
     @IBAction func trailersOptionAction(_ sender: Any) {
         performSegue(withIdentifier: SegueIdentifier.movieVideos.rawValue, sender: nil)

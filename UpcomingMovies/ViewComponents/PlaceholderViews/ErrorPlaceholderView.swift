@@ -25,9 +25,12 @@ class ErrorPlaceholderView: UIView, NibLoadable {
     @IBOutlet weak var errorDetailLabel: UILabel!
     @IBOutlet weak var retryButton: LoadingButton!
     
-    weak var delegate: ErrorPlaceholderViewDelegate?
+    private var animationDuration = 0.3
     
-    fileprivate var animationDuration = 0.3
+    var isPresented: Bool = false
+    var retry: (() -> Void)?
+    
+    weak var delegate: ErrorPlaceholderViewDelegate?
     
     var detailText: String? {
         didSet {
@@ -35,9 +38,6 @@ class ErrorPlaceholderView: UIView, NibLoadable {
             errorDetailLabel.text = detailText
         }
     }
-    
-    var isPresented: Bool = false
-    var retry: (() -> Void)?
     
     // MARK: - Lifecycle
     
