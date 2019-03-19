@@ -13,9 +13,11 @@ import CoreData
 class MovieDetailTests: XCTestCase {
     
     private var viewModelToTest: MovieDetailViewModel!
+    private var context: NSManagedObjectContext!
 
     override func setUp() {
         super.setUp()
+        context = PersistenceManager.shared.mainContext
         setupMovieGenres()
         let movieToTest = Movie(id: 1,
                             title: "Test 1",
@@ -26,16 +28,16 @@ class MovieDetailTests: XCTestCase {
                             backdropPath: "/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg",
                             releaseDate: "2019-02-01", voteAverage: 4.5)
         viewModelToTest = MovieDetailViewModel(movieToTest,
-                                               managedObjectContext: PersistenceManager.shared.mainContext)
+                                               managedObjectContext: context)
     }
 
     override func tearDown() {
         viewModelToTest = nil
+        context = nil
         super.tearDown()
     }
     
     private func setupMovieGenres() {
-        let context = PersistenceManager.shared.mainContext
         _ = Genre.with(id: 1, name: "Genre 1", context: context)
         _ = Genre.with(id: 2, name: "Genre 2", context: context)
     }

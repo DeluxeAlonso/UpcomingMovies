@@ -27,8 +27,7 @@ final class MovieListViewModel: MoviesViewModel {
     
     // MARK: - Initializers
     
-    init(filter: MovieListFilter = .upcoming,
-         managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
+    init(filter: MovieListFilter = .upcoming, managedObjectContext: NSManagedObjectContext) {
         self.filter = filter
         self.managedObjectContext = managedObjectContext
     }
