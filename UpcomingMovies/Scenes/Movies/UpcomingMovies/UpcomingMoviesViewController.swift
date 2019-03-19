@@ -28,6 +28,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
     
     var loaderView: RadarView!
     
+    private var isAnimatingPresentation: Bool = false
     private var presentationMode: PresentationMode = .preview {
         didSet {
             if presentationMode == .preview {
@@ -119,6 +120,15 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
         collectionView.refreshControl?.endRefreshing(with: 0.5)
     }
     
+    private func updateCollectionViewLayout(_ layout: UICollectionViewLayout) {
+        collectionView.collectionViewLayout.invalidateLayout()
+        reloadCollectionView()
+        isAnimatingPresentation = true
+        collectionView.setCollectionViewLayout(layout, animated: true) { completed in
+            self.isAnimatingPresentation = !completed
+        }
+    }
+    
     /**
      * Configures the tableview footer given the current state of the view.
      */
@@ -165,16 +175,14 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
     // MARK: - Actions
     
     @IBAction func toggleGridAction(_ sender: Any) {
-        collectionView.collectionViewLayout.invalidateLayout()
+        guard !isAnimatingPresentation else { return }
         switch presentationMode {
         case .preview:
             presentationMode = .detail
-            reloadCollectionView()
-            collectionView.setCollectionViewLayout(detailLayout, animated: false)
+            updateCollectionViewLayout(detailLayout)
         case .detail:
             presentationMode = .preview
-            reloadCollectionView()
-            collectionView.setCollectionViewLayout(previewLayout, animated: false)
+            updateCollectionViewLayout(previewLayout)
         }
     }
     
