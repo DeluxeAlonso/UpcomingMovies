@@ -24,7 +24,8 @@ class PersistenceManager {
     }()
     
     var mainContext: NSManagedObjectContext {
-        let context = persistentContainer.viewContext
+        let container = isTesting() ? mockPersistantContainer : persistentContainer
+        let context = container.viewContext
         context.mergePolicy = NSMergePolicy.overwrite
         return context
     }
@@ -49,6 +50,32 @@ class PersistenceManager {
     
     func findGenre(with id: Int) -> Genre? {
         return genres.filter { $0.id == id }.first
+    }
+    
+    // MARK: - Test mockups
+    
+    lazy var mockPersistantContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "UpcomingMovies")
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+        description.shouldAddStoreAsynchronously = false
+        
+        container.persistentStoreDescriptions = [description]
+        container.loadPersistentStores { (description, error) in
+            
+            // Check if the data store is in memory
+            precondition( description.type == NSInMemoryStoreType )
+            
+            // Check if creating container wrong
+            if let error = error {
+                fatalError("In memory coordinator creation failed \(error)")
+            }
+        }
+        return container
+    }()
+    
+    private func isTesting() -> Bool {
+        return NSClassFromString("XCTest") != nil
     }
     
 }
