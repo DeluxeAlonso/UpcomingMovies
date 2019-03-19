@@ -29,7 +29,7 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
         return movies.compactMap { UpcomingMovieCellViewModel($0) }
     }
     
-    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.persistentContainer.viewContext) {
+    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
         self.managedObjectContext = managedObjectContext
     }
     

@@ -12,7 +12,7 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler, Loader
     
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel: MovieListViewModel = MovieListViewModel()
+    var viewModel: MovieListViewModel!
     
     private var dataSource: SimpleTableViewDataSource<MovieCellViewModel>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
