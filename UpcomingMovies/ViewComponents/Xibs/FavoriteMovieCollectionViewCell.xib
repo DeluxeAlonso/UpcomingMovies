@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="241" height="93"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
-                    <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4HS-u4-vHQ" userLabel="Overlay View">
+                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4HS-u4-vHQ" userLabel="Overlay View">
                         <rect key="frame" x="0.0" y="0.0" width="241" height="93"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
