@@ -40,8 +40,8 @@ class UpcomingMovieDetailCollectionViewCell: UICollectionViewCell, UpcomingMovie
     // MARK: - Private
     
     private func setupUI() {
-        titleLabel.font = FontHelper.bold(withSize: 20.0)
-        releaseDateLabel.font = FontHelper.light(withSize: 16.0)
+        titleLabel.font = FontHelper.bold(withSize: 21.0)
+        releaseDateLabel.font = FontHelper.regular(withSize: 17.0)
     }
     
     // MARK: - Reactive Behaviour
