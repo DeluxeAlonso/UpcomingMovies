@@ -22,9 +22,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
     private var previewLayout: VerticalFlowLayout!
     private var detailLayout: VerticalFlowLayout!
     
-    private var selectedFrame: CGRect?
-    private var imageToTransition: UIImage?
-    private var transitionInteractor: TransitioningInteractor?
+    private var navigationManager: UpcomingMoviesNavigationManager!
     
     var loaderView: RadarView!
     
@@ -50,7 +48,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.delegate = self
+        navigationController?.delegate = navigationManager
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -61,7 +59,9 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
         coordinator.animate(alongsideTransition: { _ in
             self.detailLayout.itemSize.width = self.collectionView.frame.width - Constants.detailCellOffset
             self.collectionView.collectionViewLayout.invalidateLayout()
-        }, completion: nil)
+        }, completion: { _ in
+            self.navigationManager.updateOffset(self.view.safeAreaInsets.left)
+        })
         
     }
     
@@ -75,6 +75,7 @@ class UpcomingMoviesViewController: UIViewController, Retryable, SegueHandler, L
     }
     
     private func setupNavigationBar() {
+        navigationManager = UpcomingMoviesNavigationManager(verticalSafeAreaOffset: view.safeAreaInsets.left)
         navigationItem.title = Constants.NavigationItemTitle
     }
     
@@ -203,11 +204,17 @@ extension UpcomingMoviesViewController: TabBarScrollable {
 extension UpcomingMoviesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cellAttributes = collectionView.layoutAttributesForItem(at: indexPath) else { return }
-        let cell = collectionView.cellForItem(at: indexPath) as! UpcomingMovieCollectionViewCell
-        imageToTransition = cell.posterImageView.image
-        selectedFrame = collectionView.convert(cellAttributes.frame,
+        guard let cellAttributes = collectionView.layoutAttributesForItem(at: indexPath),
+            let cell = collectionView.cellForItem(at: indexPath) as? UpcomingMovieCollectionViewCell else {
+                return
+        }
+        
+        let imageToTransition = cell.posterImageView.image
+        let selectedFrame = collectionView.convert(cellAttributes.frame,
                                                to: collectionView.superview)
+        
+        navigationManager.configure(selectedFrame: selectedFrame, with: imageToTransition)
+        
         viewModel.setSelectedMovie(at: indexPath.row)
         performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue, sender: indexPath)
     }
@@ -217,40 +224,6 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
             displayedCellsIndexPaths.insert(indexPath)
             CollectionViewCellAnimator.fadeAnimate(cell: cell)
         }
-    }
-    
-}
-
-// MARK: - UINavigationControllerDelegate
-
-extension UpcomingMoviesViewController: UINavigationControllerDelegate {
-    
-    func navigationController(_ navigationController: UINavigationController,
-                              animationControllerFor operation: UINavigationController.Operation,
-                              from fromVC: UIViewController,
-                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        guard let frame = selectedFrame else { return nil }
-        let transitionView = UIImageView(image: imageToTransition)
-        transitionView.contentMode = .scaleAspectFit
-        switch operation {
-        case .push:
-            transitionInteractor = TransitioningInteractor(attachTo: toVC)
-            return TransitioningAnimator(isPresenting: true,
-                                         originFrame: frame,
-                                         transitionView: transitionView,
-                                         verticalSafeAreaOffset: view.safeAreaInsets.left)
-        case .pop, .none:
-            return TransitioningAnimator(isPresenting: false,
-                                         originFrame: frame,
-                                         transitionView: transitionView)
-        }
-    }
-    
-    func navigationController(_ navigationController: UINavigationController,
-                              interactionControllerFor animationController: UIViewControllerAnimatedTransitioning)
-        -> UIViewControllerInteractiveTransitioning? {
-        guard let transitionInteractor = transitionInteractor else { return nil }
-        return transitionInteractor.transitionInProgress ? transitionInteractor : nil
     }
     
 }
