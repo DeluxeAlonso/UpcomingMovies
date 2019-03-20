@@ -19,5 +19,13 @@ extension PersistenceStore where Entity == MovieVisit {
                                   posterPath: posterPath)
         }
     }
+    
+    func exists() -> Bool {
+        return countAll() > 0
+    }
+    
+    func countAll() -> Int {
+        return MovieVisit.count(in: managedObjectContext)
+    }
 
 }

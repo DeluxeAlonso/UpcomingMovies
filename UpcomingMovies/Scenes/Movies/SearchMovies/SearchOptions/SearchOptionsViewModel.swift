@@ -13,10 +13,10 @@ final class SearchOptionsViewModel {
     
     private var movieVisitStore: PersistenceStore<MovieVisit>!
     
-    let viewState: Bindable<SearchOptionsViewState> = Bindable(.initial)
+    let viewState: Bindable<SearchOptionsViewState> = Bindable(.emptyMovieVisits)
     
-    var prepareUpdate: ((Bool) -> Void)?
-    var updateVisitedMovies: (() -> Void)?
+    var needsContentReload: (() -> Void)?
+    var updateVisitedMovies: ((Int?) -> Void)?
     
     var selectedDefaultSearchOption: ((DefaultSearchOption) -> Void)?
     var selectedMovieGenre: ((Int) -> Void)?
@@ -43,11 +43,35 @@ final class SearchOptionsViewModel {
         movieVisitStore = PersistenceStore(managedObjectContext)
         movieVisitStore.configure(limit: 10)
         movieVisitStore.delegate = self
+        
+        configureViewState()
+    }
+    
+    // MARK: - Private
+    
+    /**
+     * Configures the state of the view according to the saved movie visists
+     * quantity. Returns true if the state changed and false if not.
+     */
+    @discardableResult
+    private func configureViewState() -> Bool {
+        let oldViewState = viewState.value
+        if movieVisitStore.exists() {
+            viewState.value = .populatedMovieVisits
+        } else {
+            viewState.value = .emptyMovieVisits
+        }
+        return oldViewState != viewState.value
     }
     
     // MARK: - Public
     
-    func prepareRecentlyVisitedMoviesCell() -> RecentlyVisitedMoviesCellViewModel {
+    func sectionIndex(for section: SearchOptionsSection) -> Int? {
+        let sections = viewState.value.sections
+        return sections.firstIndex(of: section)
+    }
+    
+    func buildRecentlyVisitedMoviesCell() -> RecentlyVisitedMoviesCellViewModel {
         return RecentlyVisitedMoviesCellViewModel(visitedMovieCells: visitedMovieCells)
     }
     
@@ -70,23 +94,11 @@ final class SearchOptionsViewModel {
     
 }
 
-// MARK: - View states
+// MARK: - View sections
 
 extension SearchOptionsViewModel {
     
-    enum SearchOptionsViewState {
-        case initial
-        
-        var sections: [SearchOptionsSections] {
-            switch self {
-            case .initial:
-                return [.recentlyVisited, .defaultSearches, .genres]
-            }
-        }
-        
-    }
-    
-    enum SearchOptionsSections {
+    enum SearchOptionsSection {
         case recentlyVisited, defaultSearches, genres
         
         var title: String? {
@@ -102,8 +114,29 @@ extension SearchOptionsViewModel {
         
     }
     
-    func section(at index: Int) -> SearchOptionsSections {
+    func section(at index: Int) -> SearchOptionsSection {
         return viewState.value.sections[index]
+    }
+    
+}
+
+// MARK: - View states
+
+extension SearchOptionsViewModel {
+    
+    enum SearchOptionsViewState {
+        case emptyMovieVisits
+        case populatedMovieVisits
+        
+        var sections: [SearchOptionsSection] {
+            switch self {
+            case .emptyMovieVisits:
+                return [.defaultSearches, .genres]
+            case .populatedMovieVisits:
+                return [.recentlyVisited, .defaultSearches, .genres]
+            }
+        }
+        
     }
     
 }
@@ -112,12 +145,18 @@ extension SearchOptionsViewModel {
 
 extension SearchOptionsViewModel: PersistenceStoreDelegate {
     
-    func persistenceStore(willUpdateEntity shouldPrepare: Bool) {
-        prepareUpdate?(shouldPrepare)
-    }
+    func persistenceStore(willUpdateEntity shouldPrepare: Bool) {}
     
     func persistenceStore(didUpdateEntity update: Bool) {
-        updateVisitedMovies?()
+        // If the state changed we reload the entire table view
+        let viewStateChanged = configureViewState()
+        if viewStateChanged {
+            needsContentReload?()
+        } else {
+            let index = sectionIndex(for: .recentlyVisited)
+            updateVisitedMovies?(index)
+        }
+        
     }
     
 }

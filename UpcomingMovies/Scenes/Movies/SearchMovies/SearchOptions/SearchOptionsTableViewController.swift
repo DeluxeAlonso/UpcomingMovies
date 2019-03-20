@@ -62,7 +62,14 @@ class SearchOptionsTableViewController: UITableViewController {
     
     private func reloadTableView() {
         setupDataSource()
-        tableView.reloadSections(IndexSet(integer: 0), with: .none)
+        tableView.reloadData()
+    }
+    
+    private func reloadSection(_ section: Int) {
+        setupDataSource()
+        tableView.performBatchUpdates({
+            self.tableView.reloadSections(IndexSet(integer: section), with: .none)
+        }, completion: nil)
     }
     
     // MARK: - Reactive Behaviour
@@ -70,14 +77,17 @@ class SearchOptionsTableViewController: UITableViewController {
     private func setupBindables() {
         setupDataSource()
         
-        viewModel?.prepareUpdate = { [weak self] beginUpdate in
-            guard let strongSelf = self else { return }
-            beginUpdate ? strongSelf.tableView.beginUpdates() : strongSelf.tableView.endUpdates()
-        }
-        
-        viewModel?.updateVisitedMovies = { [weak self] in
+        viewModel?.needsContentReload = { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.reloadTableView()
+        }
+        
+        viewModel?.updateVisitedMovies = { [weak self] section in
+            guard let strongSelf = self,
+                let section = section else {
+                    return
+            }
+            strongSelf.reloadSection(section)
         }
         
         viewModel?.selectedDefaultSearchOption = { [weak self] option in

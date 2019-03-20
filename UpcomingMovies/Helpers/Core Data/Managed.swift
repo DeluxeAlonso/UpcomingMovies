@@ -44,6 +44,13 @@ extension Managed where Self: NSManagedObject {
         return (try? context.fetch(request)) ?? []
     }
     
+    static func count(in context: NSManagedObjectContext,
+                      configurationBlock: (NSFetchRequest<Self>) -> Void = { _ in }) -> Int {
+        let request = NSFetchRequest<Self>(entityName: Self.entityName)
+        configurationBlock(request)
+        return (try? context.count(for: request)) ?? 0
+    }
+    
     static func findOrFetch(in context: NSManagedObjectContext, matching predicate: NSPredicate) -> Self? {
         guard let object = materializedObject(in: context, matching: predicate) else {
             return fetch(in: context) { request in
