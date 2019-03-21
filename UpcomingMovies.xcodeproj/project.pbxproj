@@ -107,6 +107,8 @@
 		E22588A22243121F00E1327E /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A12243121F00E1327E /* AccountViewModel.swift */; };
 		E22588A62243280600E1327E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A52243280600E1327E /* LoginViewController.swift */; };
 		E22588A92243281F00E1327E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A82243281F00E1327E /* ProfileViewController.swift */; };
+		E22588AC224333C300E1327E /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588AB224333C300E1327E /* AuthProvider.swift */; };
+		E22588AE224333D100E1327E /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588AD224333D100E1327E /* AuthClient.swift */; };
 		E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */; };
 		E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64A21FFA099004AA771 /* UIView+Extensions.swift */; };
 		E24E010321FA33CE00A1A0A2 /* SegueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */; };
@@ -291,6 +293,8 @@
 		E22588A12243121F00E1327E /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		E22588A52243280600E1327E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E22588A82243281F00E1327E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E22588AB224333C300E1327E /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
+		E22588AD224333D100E1327E /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
 		E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailBackdropView.swift; sourceTree = "<group>"; };
 		E226C64A21FFA099004AA771 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueHandler.swift; sourceTree = "<group>"; };
@@ -649,6 +653,7 @@
 		E22116C3219162A20039F8C9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E22588AA224333A700E1327E /* Auth */,
 				E21F37A821941EB100D6BFB6 /* Genre */,
 				E22116C6219166810039F8C9 /* Movie */,
 			);
@@ -830,6 +835,15 @@
 				E22588A82243281F00E1327E /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		E22588AA224333A700E1327E /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				E22588AB224333C300E1327E /* AuthProvider.swift */,
+				E22588AD224333D100E1327E /* AuthClient.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		E226C64721FF89DD004AA771 /* Components */ = {
@@ -1240,6 +1254,7 @@
 				E26AB93221F8C15800D9FEAA /* MovieListViewModel.swift in Sources */,
 				E221F765222B9C7A008DFF87 /* FavoriteMoviesViewModel.swift in Sources */,
 				E22116CA219167B50039F8C9 /* UpcomingMoviesViewController.swift in Sources */,
+				E22588AC224333C300E1327E /* AuthProvider.swift in Sources */,
 				E2940805220A188100A74F68 /* TabBarScrollable.swift in Sources */,
 				E21F37A121941D2900D6BFB6 /* SplashViewController.swift in Sources */,
 				E24E010321FA33CE00A1A0A2 /* SegueHandler.swift in Sources */,
@@ -1293,6 +1308,7 @@
 				E260117D21939D7100E53095 /* MovieDetailViewModel.swift in Sources */,
 				E22447742234BC3500A59FEF /* UpcomingMovieDetailCollectionViewCell.swift in Sources */,
 				E21F37A721941E3500D6BFB6 /* GenreResult.swift in Sources */,
+				E22588AE224333D100E1327E /* AuthClient.swift in Sources */,
 				E2DBF2F3220532C300CBB365 /* Animatable.swift in Sources */,
 				E284EF4D21F127FB004E705F /* VisitedMovieCellViewModel.swift in Sources */,
 				E2D1040F220CD1BC005F310C /* UIRefreshControl+Extensions.swift in Sources */,

@@ -62,6 +62,11 @@ class AccountViewController: UIViewController {
         viewController.removeFromParent()
     }
     
+    private func didSignIn() {
+        remove(asChildViewController: loginViewController)
+        add(asChildViewController: profileViewController)
+    }
+    
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
@@ -75,7 +80,7 @@ class AccountViewController: UIViewController {
 extension AccountViewController: LoginViewControllerDelegate {
     
     func loginViewController(_ loginViewController: LoginViewController, didTapLoginButton tapped: Bool) {
-        
+        didSignIn()
     }
     
 }
