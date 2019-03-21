@@ -10,7 +10,7 @@ import Foundation
 
 enum AuthProvider {
     
-    case requestToken
+    case getRequestToken
     
 }
 
@@ -24,14 +24,14 @@ extension AuthProvider: Endpoint {
     
     var path: String {
         switch self {
-        case .requestToken:
+        case .getRequestToken:
             return "/3/authentication/token/new"
         }
     }
     
     var params: [String: Any]? {
         switch self {
-        case .requestToken:
+        case .getRequestToken:
             return nil
         }
     }

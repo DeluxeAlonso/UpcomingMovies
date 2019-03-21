@@ -111,6 +111,9 @@
 		E22588AE224333D100E1327E /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588AD224333D100E1327E /* AuthClient.swift */; };
 		E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */; };
 		E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64A21FFA099004AA771 /* UIView+Extensions.swift */; };
+		E241FE04224345FE00144FD3 /* RequestToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241FE03224345FE00144FD3 /* RequestToken.swift */; };
+		E241FE0722434B9B00144FD3 /* AuthPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241FE0622434B9B00144FD3 /* AuthPermissionViewController.swift */; };
+		E241FE0922434D4900144FD3 /* AuthPermissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241FE0822434D4900144FD3 /* AuthPermissionViewModel.swift */; };
 		E24E010321FA33CE00A1A0A2 /* SegueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */; };
 		E2542135221E580F00AC1B75 /* VideoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2542134221E580F00AC1B75 /* VideoTests.swift */; };
 		E25C50DA2241F0DC005639C5 /* UpcomingMoviesNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25C50D92241F0DC005639C5 /* UpcomingMoviesNavigationManager.swift */; };
@@ -297,6 +300,9 @@
 		E22588AD224333D100E1327E /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
 		E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailBackdropView.swift; sourceTree = "<group>"; };
 		E226C64A21FFA099004AA771 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		E241FE03224345FE00144FD3 /* RequestToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToken.swift; sourceTree = "<group>"; };
+		E241FE0622434B9B00144FD3 /* AuthPermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionViewController.swift; sourceTree = "<group>"; };
+		E241FE0822434D4900144FD3 /* AuthPermissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionViewModel.swift; sourceTree = "<group>"; };
 		E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueHandler.swift; sourceTree = "<group>"; };
 		E2542134221E580F00AC1B75 /* VideoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTests.swift; sourceTree = "<group>"; };
 		E25C50D92241F0DC005639C5 /* UpcomingMoviesNavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesNavigationManager.swift; sourceTree = "<group>"; };
@@ -634,6 +640,7 @@
 				E2251B182214F19B00EE7A51 /* Crew.swift */,
 				E2251B1A2214F2B700EE7A51 /* CreditResult.swift */,
 				E221F766222B9D0E008DFF87 /* Favorite.swift */,
+				E241FE03224345FE00144FD3 /* RequestToken.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -815,6 +822,7 @@
 			children = (
 				E22588A12243121F00E1327E /* AccountViewModel.swift */,
 				E225889F2243120000E1327E /* AccountViewController.swift */,
+				E241FE0522434B7000144FD3 /* AuthPermission */,
 				E22588A32243269600E1327E /* Login */,
 				E22588A72243280B00E1327E /* Profile */,
 			);
@@ -853,6 +861,15 @@
 				E2D10410220CE364005F310C /* MovieDetailOptionView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		E241FE0522434B7000144FD3 /* AuthPermission */ = {
+			isa = PBXGroup;
+			children = (
+				E241FE0622434B9B00144FD3 /* AuthPermissionViewController.swift */,
+				E241FE0822434D4900144FD3 /* AuthPermissionViewModel.swift */,
+			);
+			path = AuthPermission;
 			sourceTree = "<group>";
 		};
 		E26011622193822500E53095 /* Animations */ = {
@@ -1156,6 +1173,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-UpcomingMovies/Pods-UpcomingMovies-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CollectionViewSlantedLayout/CollectionViewSlantedLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1163,6 +1181,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CollectionViewSlantedLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1241,6 +1260,7 @@
 				E29408002209E85000A74F68 /* UICollectionView+Extensions.swift in Sources */,
 				E22116BC219160260039F8C9 /* ApiClient.swift in Sources */,
 				E2A65E5121FEC39800485B4E /* VoteAverageView.swift in Sources */,
+				E241FE0922434D4900144FD3 /* AuthPermissionViewModel.swift in Sources */,
 				E21F378C2193F01600D6BFB6 /* DefaultSearchController.swift in Sources */,
 				E221F75F222AF123008DFF87 /* CodingUserInfoKey+Context.swift in Sources */,
 				E2245D8C222E2F7D00AA0A5A /* PersistenceStore+MovieSearch.swift in Sources */,
@@ -1301,6 +1321,7 @@
 				E22447722234AFA000A59FEF /* VerticalFlowLayout.swift in Sources */,
 				E22116BE2191604A0039F8C9 /* Result.swift in Sources */,
 				E22447782234BF0300A59FEF /* UpcomingMovieCollectionViewCell.swift in Sources */,
+				E241FE04224345FE00144FD3 /* RequestToken.swift in Sources */,
 				E26011692193876500E53095 /* NibLoadable.swift in Sources */,
 				E200182C21EE378800F29220 /* MovieVisit.swift in Sources */,
 				E21F379E219401CF00D6BFB6 /* SimpleHeaderView.swift in Sources */,
@@ -1345,6 +1366,7 @@
 				E2709800220FA4F2007F18A2 /* MovieVideosViewController.swift in Sources */,
 				E26F03B921E461D6009859DF /* Managed.swift in Sources */,
 				E21F379A2193FEB000D6BFB6 /* LoadingFooterView.swift in Sources */,
+				E241FE0722434B9B00144FD3 /* AuthPermissionViewController.swift in Sources */,
 				E21F37AC21941ECA00D6BFB6 /* GenreClient.swift in Sources */,
 				E21F37B12194241B00D6BFB6 /* UIViewController+Extensions.swift in Sources */,
 				E22588A02243120000E1327E /* AccountViewController.swift in Sources */,

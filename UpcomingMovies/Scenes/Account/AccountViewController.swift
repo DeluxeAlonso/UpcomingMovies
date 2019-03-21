@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountViewController: UIViewController {
+class AccountViewController: UIViewController, SegueHandler {
     
     private lazy var loginViewController: UIViewController = {
         var viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
@@ -70,7 +70,24 @@ class AccountViewController: UIViewController {
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        
+        viewModel.showAuthPermission = { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.performSegue(withIdentifier: SegueIdentifier.authPermission.rawValue, sender: nil)
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segueIdentifier(for: segue) {
+        case .authPermission:
+            guard let navController = segue.destination as? UINavigationController,
+                let viewController = navController.topViewController as? AuthPermissionViewController else {
+                    return
+            }
+            _ = viewController.view
+            viewController.viewModel = viewModel.buildAuthPermissionViewModel()
+        }
     }
     
 }
@@ -80,7 +97,18 @@ class AccountViewController: UIViewController {
 extension AccountViewController: LoginViewControllerDelegate {
     
     func loginViewController(_ loginViewController: LoginViewController, didTapLoginButton tapped: Bool) {
-        didSignIn()
+        viewModel.getRequestToken()
+        //didSignIn()
+    }
+    
+}
+
+// MARK: - Segue Identifiers
+
+extension AccountViewController {
+    
+    enum SegueIdentifier: String {
+        case authPermission = "AuthPermissionSegue"
     }
     
 }
