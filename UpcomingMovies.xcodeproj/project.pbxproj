@@ -102,6 +102,11 @@
 		E2251B1E2214F98F00EE7A51 /* MovieCreditCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2251B1D2214F98F00EE7A51 /* MovieCreditCellViewModel.swift */; };
 		E2251B202214FBB500EE7A51 /* MovieCreditCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2251B1F2214FBB500EE7A51 /* MovieCreditCollectionViewCell.swift */; };
 		E2251B222214FBC700EE7A51 /* MovieCreditCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2251B212214FBC700EE7A51 /* MovieCreditCollectionViewCell.xib */; };
+		E225889C22430E3B00E1327E /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E225889B22430E3B00E1327E /* Account.storyboard */; };
+		E22588A02243120000E1327E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E225889F2243120000E1327E /* AccountViewController.swift */; };
+		E22588A22243121F00E1327E /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A12243121F00E1327E /* AccountViewModel.swift */; };
+		E22588A62243280600E1327E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A52243280600E1327E /* LoginViewController.swift */; };
+		E22588A92243281F00E1327E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A82243281F00E1327E /* ProfileViewController.swift */; };
 		E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */; };
 		E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64A21FFA099004AA771 /* UIView+Extensions.swift */; };
 		E24E010321FA33CE00A1A0A2 /* SegueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */; };
@@ -281,6 +286,11 @@
 		E2251B1D2214F98F00EE7A51 /* MovieCreditCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditCellViewModel.swift; sourceTree = "<group>"; };
 		E2251B1F2214FBB500EE7A51 /* MovieCreditCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditCollectionViewCell.swift; sourceTree = "<group>"; };
 		E2251B212214FBC700EE7A51 /* MovieCreditCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCreditCollectionViewCell.xib; sourceTree = "<group>"; };
+		E225889B22430E3B00E1327E /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
+		E225889F2243120000E1327E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		E22588A12243121F00E1327E /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		E22588A52243280600E1327E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E22588A82243281F00E1327E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailBackdropView.swift; sourceTree = "<group>"; };
 		E226C64A21FFA099004AA771 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueHandler.swift; sourceTree = "<group>"; };
@@ -513,6 +523,7 @@
 				E22116AA2191528E0039F8C9 /* FavoriteMovies.storyboard */,
 				E2601177219399E000E53095 /* MovieDetail.storyboard */,
 				E26AB93321F95AAE00D9FEAA /* MovieList.storyboard */,
+				E225889B22430E3B00E1327E /* Account.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -520,6 +531,7 @@
 		E22116A221914EF00039F8C9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E225889D224311E700E1327E /* Account */,
 				E2940801220A150900A74F68 /* TabBar */,
 				E21F379F21941D1900D6BFB6 /* Splash */,
 				E22116A321914EF60039F8C9 /* Movies */,
@@ -793,6 +805,33 @@
 			path = MovieCredits;
 			sourceTree = "<group>";
 		};
+		E225889D224311E700E1327E /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				E22588A12243121F00E1327E /* AccountViewModel.swift */,
+				E225889F2243120000E1327E /* AccountViewController.swift */,
+				E22588A32243269600E1327E /* Login */,
+				E22588A72243280B00E1327E /* Profile */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		E22588A32243269600E1327E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E22588A52243280600E1327E /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		E22588A72243280B00E1327E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E22588A82243281F00E1327E /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		E226C64721FF89DD004AA771 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -1064,6 +1103,7 @@
 				E2D4DD6E21F016E10004B7BF /* RecentlyVisitedMoviesTableViewCell.xib in Resources */,
 				E221168921914E4C0039F8C9 /* Assets.xcassets in Resources */,
 				E270980F220FB03B007F18A2 /* MovieVideoTableViewCell.xib in Resources */,
+				E225889C22430E3B00E1327E /* Account.storyboard in Resources */,
 				E221168721914E4B0039F8C9 /* Main.storyboard in Resources */,
 				E221F770222BA316008DFF87 /* FavoriteMovieCollectionViewCell.xib in Resources */,
 				E2251B222214FBC700EE7A51 /* MovieCreditCollectionViewCell.xib in Resources */,
@@ -1273,6 +1313,7 @@
 				E223773821EEA2D8000400B7 /* GenreSearchOptionTableViewCell.swift in Sources */,
 				E221F767222B9D0E008DFF87 /* Favorite.swift in Sources */,
 				E2D4DD7221F018980004B7BF /* RecentlyVisitedMoviesCellViewModel.swift in Sources */,
+				E22588A22243121F00E1327E /* AccountViewModel.swift in Sources */,
 				E270980B220FAF99007F18A2 /* MovieVideoTableViewCell.swift in Sources */,
 				E222DC2D2192CBBD00A2EDF4 /* URLConfiguration.swift in Sources */,
 				E22116B72191582C0039F8C9 /* Movie.swift in Sources */,
@@ -1290,6 +1331,7 @@
 				E21F379A2193FEB000D6BFB6 /* LoadingFooterView.swift in Sources */,
 				E21F37AC21941ECA00D6BFB6 /* GenreClient.swift in Sources */,
 				E21F37B12194241B00D6BFB6 /* UIViewController+Extensions.swift in Sources */,
+				E22588A02243120000E1327E /* AccountViewController.swift in Sources */,
 				E2251B1B2214F2B700EE7A51 /* CreditResult.swift in Sources */,
 				E2EB9241221375490067F011 /* ErrorDisplayable.swift in Sources */,
 				E2245D86222E0D7D00AA0A5A /* PersistenceStore.swift in Sources */,
@@ -1302,8 +1344,10 @@
 				E2251B1E2214F98F00EE7A51 /* MovieCreditCellViewModel.swift in Sources */,
 				E21F378A2193ED4000D6BFB6 /* SearchMoviesResultViewModel.swift in Sources */,
 				E2251B202214FBB500EE7A51 /* MovieCreditCollectionViewCell.swift in Sources */,
+				E22588A62243280600E1327E /* LoginViewController.swift in Sources */,
 				E2F9F7202201FC1100C62089 /* Transitionable.swift in Sources */,
 				E223774021EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift in Sources */,
+				E22588A92243281F00E1327E /* ProfileViewController.swift in Sources */,
 				E223773E21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift in Sources */,
 				E21F379C2193FF1400D6BFB6 /* CustomFooterView.swift in Sources */,
 				E2F387E322126C8800A5DCCE /* Review.swift in Sources */,

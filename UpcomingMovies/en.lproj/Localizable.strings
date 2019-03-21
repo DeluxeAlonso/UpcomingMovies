@@ -15,4 +15,7 @@
 "favoritesTabBarTitle" = "Favorites";
 "favoritesTitle" = "Favorites";
 
+"accountTabBarTitle" = "Account";
+"accountTitle" = "Account";
+
 "refreshControlTitle" = "Fetching new movies...";

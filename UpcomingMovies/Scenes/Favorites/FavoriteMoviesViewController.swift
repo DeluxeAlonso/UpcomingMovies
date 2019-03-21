@@ -37,12 +37,12 @@ class FavoriteMoviesViewController: UIViewController, SegueHandler {
     
     private func setupUI() {
         title = Constants.Title
-        setupNavigationItem()
+        setupNavigationBar()
         setupCollectionView()
         reloadCollectionView()
     }
     
-    private func setupNavigationItem() {
+    private func setupNavigationBar() {
         navigationItem.title = Constants.NavigationItemTitle
     }
     
