@@ -16,12 +16,25 @@ protocol LoginViewControllerDelegate: class {
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var signInButton: UIButton!
+    
     weak var delegate: LoginViewControllerDelegate?
     
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    // MARK: - Private
+    
+    private func setupUI() {
+        setupButtons()
+    }
+    
+    private func setupButtons() {
+        signInButton.layer.cornerRadius = 5
     }
     
     // MARK: - Actions

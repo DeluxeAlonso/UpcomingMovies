@@ -37,8 +37,13 @@ class AccountViewController: UIViewController, SegueHandler {
     
     private func setupUI() {
         title = Constants.Title
-        add(asChildViewController: loginViewController)
+        setupContainerView()
         setupNavigationBar()
+    }
+    
+    private func setupContainerView() {
+        navigationController?.navigationBar.isHidden = true
+        add(asChildViewController: loginViewController)
     }
     
     private func setupNavigationBar() {

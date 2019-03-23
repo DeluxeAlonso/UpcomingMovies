@@ -33,26 +33,71 @@
         <scene sceneID="qVO-mx-whY">
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" id="A5c-4P-QZW" customClass="LoginViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0gL-lu-l8M">
+                    <view key="view" contentMode="scaleToFill" id="0gL-lu-l8M" customClass="GradientView" customModule="UpcomingMovies" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLN-uI-D6w">
-                                <rect key="frame" x="164" y="318" width="47" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign in"/>
-                                <connections>
-                                    <action selector="loginButtonAction:" destination="A5c-4P-QZW" eventType="touchUpInside" id="9g2-0J-puA"/>
-                                </connections>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2u0-4E-af1">
+                                <rect key="frame" x="24" y="202.5" width="327" height="222"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginLogo" translatesAutoresizingMaskIntoConstraints="NO" id="H0D-7d-mxh">
+                                        <rect key="frame" x="0.0" y="0.0" width="327" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="4Sl-ak-WMh"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLN-uI-D6w">
+                                        <rect key="frame" x="0.0" y="170" width="327" height="52"/>
+                                        <color key="backgroundColor" red="0.062745098039215685" green="0.50588235294117645" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="20" maxY="15"/>
+                                        <state key="normal" title="Sign in with TheMovieDB">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="loginButtonAction:" destination="A5c-4P-QZW" eventType="touchUpInside" id="9g2-0J-puA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yit-hB-YvF" userLabel="Help Button">
+                                <rect key="frame" x="303" y="44" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="FZK-sF-MXZ"/>
+                                    <constraint firstAttribute="width" secondItem="Yit-hB-YvF" secondAttribute="height" multiplier="1:1" id="WZG-S7-V3d"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="Help"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hA2-rz-nWS" firstAttribute="trailing" secondItem="Yit-hB-YvF" secondAttribute="trailing" constant="24" id="6CU-jS-3CM"/>
+                            <constraint firstItem="2u0-4E-af1" firstAttribute="centerY" secondItem="0gL-lu-l8M" secondAttribute="centerY" constant="-20" id="JiA-Cz-XHI"/>
+                            <constraint firstItem="2u0-4E-af1" firstAttribute="centerX" secondItem="0gL-lu-l8M" secondAttribute="centerX" id="XL0-c2-XpF"/>
+                            <constraint firstItem="2u0-4E-af1" firstAttribute="leading" secondItem="hA2-rz-nWS" secondAttribute="leading" constant="24" id="leq-Ss-m4Y"/>
+                            <constraint firstItem="hA2-rz-nWS" firstAttribute="trailing" secondItem="2u0-4E-af1" secondAttribute="trailing" constant="24" id="nwO-Jg-l8U"/>
+                            <constraint firstItem="Yit-hB-YvF" firstAttribute="top" secondItem="hA2-rz-nWS" secondAttribute="top" constant="24" id="zsf-iq-bMt"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hA2-rz-nWS"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                <color key="value" red="0.30980392159999998" green="0.4941176471" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                <real key="value" value="0.050000000000000003"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
+                    <connections>
+                        <outlet property="signInButton" destination="xLN-uI-D6w" id="qNi-YA-b12"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLD-6M-Hyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1326" y="81"/>
+            <point key="canvasLocation" x="1325.5999999999999" y="80.50974512743629"/>
         </scene>
         <!--Auth Permission View Controller-->
         <scene sceneID="qHV-bc-VVu">
@@ -145,5 +190,7 @@
     </scenes>
     <resources>
         <image name="Account" width="37.5" height="37.5"/>
+        <image name="Help" width="153.29032897949219" height="153.29032897949219"/>
+        <image name="LoginLogo" width="193.5" height="225"/>
     </resources>
 </document>
