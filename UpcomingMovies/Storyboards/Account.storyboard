@@ -170,17 +170,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authenticated" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBs-f5-RMk">
-                                <rect key="frame" x="133.5" y="323" width="108" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIS-L5-jIt">
+                                <rect key="frame" x="159" y="318.5" width="57" height="30"/>
+                                <state key="normal" title="Sign out"/>
+                                <connections>
+                                    <action selector="signOutButtonAction:" destination="T0E-1f-QbQ" eventType="touchUpInside" id="w6j-GO-wic"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="qBs-f5-RMk" firstAttribute="centerY" secondItem="LK3-Ru-bUd" secondAttribute="centerY" id="Zus-1i-bGQ"/>
-                            <constraint firstItem="qBs-f5-RMk" firstAttribute="centerX" secondItem="LK3-Ru-bUd" secondAttribute="centerX" id="jiO-kl-Yip"/>
+                            <constraint firstItem="HIS-L5-jIt" firstAttribute="centerY" secondItem="LK3-Ru-bUd" secondAttribute="centerY" id="REH-VX-VJD"/>
+                            <constraint firstItem="HIS-L5-jIt" firstAttribute="centerX" secondItem="LK3-Ru-bUd" secondAttribute="centerX" id="g3V-5c-gNK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fTQ-St-5FY"/>
                     </view>

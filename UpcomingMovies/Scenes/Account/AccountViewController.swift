@@ -19,6 +19,7 @@ class AccountViewController: UIViewController, SegueHandler {
     
     private lazy var profileViewController: UIViewController = {
         var viewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        viewController.delegate = self
         self.add(asChildViewController: viewController)
         return viewController
     }()
@@ -55,27 +56,16 @@ class AccountViewController: UIViewController, SegueHandler {
         navigationItem.title = Constants.NavigationItemTitle
     }
     
-    private func add(asChildViewController viewController: UIViewController) {
-        addChild(viewController)
-
-        view.addSubview(viewController.view)
-
-        viewController.view.frame = view.bounds
-        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        viewController.didMove(toParent: self)
-    }
-    
-    private func remove(asChildViewController viewController: UIViewController) {
-        viewController.willMove(toParent: nil)
-        viewController.view.removeFromSuperview()
-        viewController.removeFromParent()
-    }
-    
     private func didSignIn() {
         navigationController?.setNavigationBarHidden(false, animated: true)
         remove(asChildViewController: loginViewController)
         add(asChildViewController: profileViewController)
+    }
+    
+    private func didSignOut() {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        remove(asChildViewController: profileViewController)
+        add(asChildViewController: loginViewController)
     }
     
     // MARK: - Reactive Behaviour
@@ -114,6 +104,15 @@ extension AccountViewController: SignInViewControllerDelegate {
     
     func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
         viewModel.getRequestToken()
+    }
+    
+}
+
+extension AccountViewController: ProfileViewControllerDelegate {
+    
+    func profileViewController(_ profileViewController: ProfileViewController, didTapSignOutButton tapped: Bool) {
+        AuthenticationManager.shared.deleteSessionId()
+        didSignOut()
     }
     
 }

@@ -23,6 +23,10 @@ class AuthenticationManager {
         return keychain.get(Constants.sessionIdKey)
     }
     
+    func deleteSessionId() {
+        keychain.delete(Constants.sessionIdKey)
+    }
+    
     func isUserSignedIn() -> Bool {
         return retrieveSessionId() != nil
     }

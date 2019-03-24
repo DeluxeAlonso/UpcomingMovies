@@ -98,8 +98,7 @@ extension AuthPermissionViewController: WKNavigationDelegate {
                  decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         if let response = navigationResponse.response as? HTTPURLResponse,
             let headers = response.allHeaderFields as? [String: Any],
-            let authCallback = headers["authentication-callback"] as? String {
-            dump(authCallback)
+            let _ = headers["authentication-callback"] as? String {
             dismiss(animated: true) {
                 self.delegate?.authPermissionViewController(self, didSignedIn: true)
             }
