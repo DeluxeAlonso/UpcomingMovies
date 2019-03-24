@@ -53,4 +53,8 @@ final class AccountViewModel {
         return AuthPermissionViewModel(requestToken: requestToken)
     }
     
+    func builProfileViewModel() -> ProfileViewModel? {
+        return ProfileViewModel(managedObjectContext)
+    }
+    
 }
