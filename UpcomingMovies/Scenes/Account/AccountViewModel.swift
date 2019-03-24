@@ -57,4 +57,8 @@ final class AccountViewModel {
         return ProfileViewModel(managedObjectContext)
     }
     
+    func buildFavoriteMoviesViewModel() -> FavoriteMoviesViewModel? {
+        return FavoriteMoviesViewModel(managedObjectContext: managedObjectContext)
+    }
+    
 }

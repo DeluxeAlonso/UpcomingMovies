@@ -10,6 +10,7 @@ import UIKit
 
 protocol ProfileViewControllerDelegate: class {
 
+    func profileViewController(_ profileViewController: ProfileTableViewController, didTapFavoritesSetting tapped: Bool)
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool)
     
 }
@@ -68,7 +69,7 @@ class ProfileTableViewController: UITableViewController {
         guard let viewModel = viewModel else { return }
         switch viewModel.section(at: indexPath.section) {
         case .settings:
-            break
+            delegate?.profileViewController(self, didTapFavoritesSetting: true)
         case .signOut:
             delegate?.profileViewController(self, didTapSignOutButton: true)
         case .userInfo:

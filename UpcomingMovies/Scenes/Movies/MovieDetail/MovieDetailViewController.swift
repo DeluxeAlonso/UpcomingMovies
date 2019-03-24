@@ -132,6 +132,7 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
             viewController.viewModel = viewModel?.buildCreditsViewModel()
         case .movieSimilars:
             guard let viewController = segue.destination as? MovieListViewController else { fatalError() }
+            _ = viewController.view
             viewController.viewModel = viewModel!.buildSimilarsViewModel()
         }
     }

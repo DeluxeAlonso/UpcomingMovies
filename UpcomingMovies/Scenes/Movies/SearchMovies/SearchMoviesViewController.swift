@@ -55,6 +55,7 @@ class SearchMoviesViewController: UIViewController, SegueHandler {
         case .movieList:
             guard let viewController = segue.destination as? MovieListViewController else { fatalError() }
             guard let viewModel = sender as? MovieListViewModel else { return }
+            _ = viewController.view
             viewController.viewModel = viewModel
         case .movieDetail:
             guard let viewController = segue.destination as? MovieDetailViewController else { fatalError() }
