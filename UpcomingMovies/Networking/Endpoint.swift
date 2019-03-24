@@ -13,6 +13,7 @@ protocol Endpoint {
     var base: String { get }
     var path: String { get }
     var params: [String: Any]? { get }
+    var method: HTTPMethod { get }
     
 }
 
@@ -26,7 +27,7 @@ extension Endpoint {
         var components = URLComponents(string: base)!
         components.path = path
         var queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
-        if let params = params {
+        if let params = params, method == .get {
             queryItems.append(contentsOf: params.map {
                 return URLQueryItem(name: "\($0)", value: "\($1)")
             })
@@ -37,7 +38,17 @@ extension Endpoint {
     
     var request: URLRequest {
         let url = urlComponents.url!
-        return URLRequest(url: url)
+        var request = URLRequest(url: url)
+        request.httpMethod = method.rawValue
+        if let params = params, method == .post {
+            request.httpBody = params.percentEscaped().data(using: .utf8)
+        }
+        return request
     }
     
+}
+
+enum HTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
 }
