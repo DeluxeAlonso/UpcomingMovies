@@ -21,10 +21,17 @@ class AuthClient: APIClient {
         self.init(configuration: .default)
     }
     
-    func getRequestToken(completion: @escaping (Result<RequestToken, APIError>) -> Void) {
-        fetch(with: AuthProvider.getRequestToken.request, decode: { json -> RequestToken? in
-            guard let requestToken = json as? RequestToken else { return nil }
+    func getRequestToken(completion: @escaping (Result<RequestTokenResult, APIError>) -> Void) {
+        fetch(with: AuthProvider.getRequestToken.request, decode: { json -> RequestTokenResult? in
+            guard let requestToken = json as? RequestTokenResult else { return nil }
             return requestToken
+        }, completion: completion)
+    }
+    
+    func createSessionId(with requestToken: String, completion: @escaping (Result<SessionResult, APIError>) -> Void) {
+        fetch(with: AuthProvider.createSessionId(requestToken: requestToken).request, decode: { json -> SessionResult? in
+            guard let sessionResult = json as? SessionResult else { return nil }
+            return sessionResult
         }, completion: completion)
     }
     

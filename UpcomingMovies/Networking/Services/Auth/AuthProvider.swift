@@ -11,6 +11,7 @@ import Foundation
 enum AuthProvider {
     
     case getRequestToken
+    case createSessionId(requestToken: String)
     
 }
 
@@ -26,6 +27,8 @@ extension AuthProvider: Endpoint {
         switch self {
         case .getRequestToken:
             return "/3/authentication/token/new"
+        case .createSessionId:
+            return "/3/authentication/session/new"
         }
     }
     
@@ -33,6 +36,17 @@ extension AuthProvider: Endpoint {
         switch self {
         case .getRequestToken:
             return nil
+        case .createSessionId(let requestToken):
+            return ["request_token": requestToken]
+        }
+    }
+    
+    var method: HTTPMethod {
+        switch self {
+        case .getRequestToken:
+            return .get
+        case .createSessionId:
+            return .post
         }
     }
     

@@ -11,7 +11,7 @@ import UIKit
 class AccountViewController: UIViewController, SegueHandler {
     
     private lazy var loginViewController: UIViewController = {
-        var viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        var viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! SignInViewController
         viewController.delegate = self
         self.add(asChildViewController: viewController)
         return viewController
@@ -42,8 +42,13 @@ class AccountViewController: UIViewController, SegueHandler {
     }
     
     private func setupContainerView() {
-        navigationController?.navigationBar.isHidden = true
-        add(asChildViewController: loginViewController)
+        if AuthenticationManager.shared.isUserSignedIn() {
+            navigationController?.navigationBar.isHidden = false
+            add(asChildViewController: profileViewController)
+        } else {
+            navigationController?.navigationBar.isHidden = true
+            add(asChildViewController: loginViewController)
+        }
     }
     
     private func setupNavigationBar() {
@@ -68,6 +73,7 @@ class AccountViewController: UIViewController, SegueHandler {
     }
     
     private func didSignIn() {
+        navigationController?.setNavigationBarHidden(false, animated: true)
         remove(asChildViewController: loginViewController)
         add(asChildViewController: profileViewController)
     }
@@ -78,6 +84,10 @@ class AccountViewController: UIViewController, SegueHandler {
         viewModel.showAuthPermission = { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.performSegue(withIdentifier: SegueIdentifier.authPermission.rawValue, sender: nil)
+        }
+        viewModel.didSignIn = { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.didSignIn()
         }
     }
     
@@ -91,19 +101,30 @@ class AccountViewController: UIViewController, SegueHandler {
                     return
             }
             _ = viewController.view
+            viewController.delegate = self
             viewController.viewModel = viewModel.buildAuthPermissionViewModel()
         }
     }
     
 }
 
-// MARK: - LoginViewControllerDelegate
+// MARK: - SignInViewControllerDelegate
 
-extension AccountViewController: LoginViewControllerDelegate {
+extension AccountViewController: SignInViewControllerDelegate {
     
-    func loginViewController(_ loginViewController: LoginViewController, didTapLoginButton tapped: Bool) {
+    func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
         viewModel.getRequestToken()
-        //didSignIn()
+    }
+    
+}
+
+// MARK: - AuthPermissionViewControllerDelegate
+
+extension AccountViewController: AuthPermissionViewControllerDelegate {
+    
+    func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
+                                      didSignedIn signedIn: Bool) {
+        viewModel.createSessionId()
     }
     
 }

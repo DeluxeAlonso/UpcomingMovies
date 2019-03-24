@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  SignInViewController.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 3/20/19.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-protocol LoginViewControllerDelegate: class {
+protocol SignInViewControllerDelegate: class {
     
-    func loginViewController(_ loginViewController: LoginViewController, didTapLoginButton tapped: Bool)
+    func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool)
     
 }
 
-class LoginViewController: UIViewController {
+class SignInViewController: UIViewController {
     
     @IBOutlet weak var signInButton: UIButton!
     
-    weak var delegate: LoginViewControllerDelegate?
+    weak var delegate: SignInViewControllerDelegate?
     
     // MARK: - Lifecycle
 
@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
     // MARK: - Actions
 
     @IBAction func loginButtonAction(_ sender: Any) {
-        delegate?.loginViewController(self, didTapLoginButton: true)
+        delegate?.signInViewController(self, didTapSignInButton: true)
     }
     
 }

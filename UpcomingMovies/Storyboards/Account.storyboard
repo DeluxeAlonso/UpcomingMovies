@@ -29,10 +29,10 @@
             </objects>
             <point key="canvasLocation" x="1327" y="884"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Sign In View Controller-->
         <scene sceneID="qVO-mx-whY">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="A5c-4P-QZW" customClass="LoginViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="A5c-4P-QZW" customClass="SignInViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0gL-lu-l8M" customClass="GradientView" customModule="UpcomingMovies" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -60,7 +60,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yit-hB-YvF" userLabel="Help Button">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yit-hB-YvF" userLabel="Help Button">
                                 <rect key="frame" x="303" y="44" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="FZK-sF-MXZ"/>
@@ -108,25 +108,53 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPL-PY-RdK">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmq-Bw-6Mp">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem image="Back" id="Q2P-q1-WON" userLabel="Back Bar Button Item">
+                                        <connections>
+                                            <action selector="backButtonAction:" destination="gLm-ei-Jyy" id="Udr-da-vo7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" systemItem="fixedSpace" id="PoT-V7-aMM"/>
+                                    <barButtonItem image="Forward" id="Mqd-ga-f3P" userLabel="Forward Bar Button Item">
+                                        <connections>
+                                            <action selector="forwardButtonAction:" destination="gLm-ei-Jyy" id="f4U-Kx-fsa"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="flexibleSpace" id="yh3-pv-Mda"/>
+                                    <barButtonItem systemItem="refresh" id="7vP-vD-1OC">
+                                        <connections>
+                                            <action selector="reloadButtonAction:" destination="gLm-ei-Jyy" id="zRu-gs-P0p"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="bmq-Bw-6Mp" firstAttribute="top" secondItem="hPL-PY-RdK" secondAttribute="bottom" id="7zd-rM-Gnd"/>
+                            <constraint firstItem="bmq-Bw-6Mp" firstAttribute="leading" secondItem="Ig2-Lo-J6s" secondAttribute="leading" id="GiH-p5-cSJ"/>
                             <constraint firstItem="hPL-PY-RdK" firstAttribute="top" secondItem="Ig2-Lo-J6s" secondAttribute="top" id="KaN-yt-Ml7"/>
                             <constraint firstItem="hPL-PY-RdK" firstAttribute="leading" secondItem="Ig2-Lo-J6s" secondAttribute="leading" id="RdH-kZ-nEe"/>
+                            <constraint firstItem="bmq-Bw-6Mp" firstAttribute="bottom" secondItem="Ig2-Lo-J6s" secondAttribute="bottom" id="Zs5-dK-FRn"/>
+                            <constraint firstItem="bmq-Bw-6Mp" firstAttribute="trailing" secondItem="Ig2-Lo-J6s" secondAttribute="trailing" id="Zww-kz-iAA"/>
                             <constraint firstItem="Ig2-Lo-J6s" firstAttribute="trailing" secondItem="hPL-PY-RdK" secondAttribute="trailing" id="aCG-hP-xao"/>
-                            <constraint firstItem="Ig2-Lo-J6s" firstAttribute="bottom" secondItem="hPL-PY-RdK" secondAttribute="bottom" id="vqm-Yg-p6B"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ig2-Lo-J6s"/>
                     </view>
                     <navigationItem key="navigationItem" id="sRO-4n-AxU"/>
                     <connections>
+                        <outlet property="backButton" destination="Q2P-q1-WON" id="Ygh-y9-o9o"/>
+                        <outlet property="forwardButton" destination="Mqd-ga-f3P" id="Y3O-FY-CBa"/>
+                        <outlet property="reloadButton" destination="7vP-vD-1OC" id="Ry0-EB-V4h"/>
                         <outlet property="webView" destination="hPL-PY-RdK" id="KVC-Uo-hk0"/>
                     </connections>
                 </viewController>
@@ -141,7 +169,19 @@
                     <view key="view" contentMode="scaleToFill" id="LK3-Ru-bUd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authenticated" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBs-f5-RMk">
+                                <rect key="frame" x="133.5" y="323" width="108" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qBs-f5-RMk" firstAttribute="centerY" secondItem="LK3-Ru-bUd" secondAttribute="centerY" id="Zus-1i-bGQ"/>
+                            <constraint firstItem="qBs-f5-RMk" firstAttribute="centerX" secondItem="LK3-Ru-bUd" secondAttribute="centerX" id="jiO-kl-Yip"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fTQ-St-5FY"/>
                     </view>
                 </viewController>
@@ -190,7 +230,9 @@
     </scenes>
     <resources>
         <image name="Account" width="37.5" height="37.5"/>
+        <image name="Back" width="36" height="36"/>
+        <image name="Forward" width="36" height="36"/>
         <image name="Help" width="153.29032897949219" height="153.29032897949219"/>
-        <image name="LoginLogo" width="193.5" height="225"/>
+        <image name="LoginLogo" width="129" height="150"/>
     </resources>
 </document>

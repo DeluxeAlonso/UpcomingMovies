@@ -16,6 +16,7 @@ final class AccountViewModel {
     private var requestToken: String?
     
     var showAuthPermission: (() -> Void)?
+    var didSignIn: (() -> Void)?
     
     init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
         self.managedObjectContext = managedObjectContext
@@ -27,6 +28,20 @@ final class AccountViewModel {
             case .success(let requestToken):
                 self.requestToken = requestToken.token
                 self.showAuthPermission?()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func createSessionId() {
+        guard let requestToken = requestToken else { return }
+        authClient.createSessionId(with: requestToken) { result in
+            switch result {
+            case .success(let sessionResult):
+                guard let sessionId = sessionResult.sessionId else { return }
+                AuthenticationManager.shared.saveSessionId(sessionId)
+                self.didSignIn?()
             case .failure(let error):
                 print(error.localizedDescription)
             }

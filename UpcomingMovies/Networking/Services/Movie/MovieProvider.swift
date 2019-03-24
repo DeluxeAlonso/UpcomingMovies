@@ -79,4 +79,8 @@ extension MovieProvider: Endpoint {
         }
     }
     
+    var method: HTTPMethod {
+        return .get
+    }
+    
 }

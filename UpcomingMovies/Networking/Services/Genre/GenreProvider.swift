@@ -36,4 +36,11 @@ extension GenreProvider: Endpoint {
         }
     }
     
+    var method: HTTPMethod {
+        switch self {
+        case .getAll:
+            return .get
+        }
+    }
+    
 }

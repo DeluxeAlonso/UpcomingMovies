@@ -1,5 +1,5 @@
 //
-//  RequestToken.swift
+//  RequestTokenResult.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 3/20/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct RequestToken: Decodable {
+struct RequestTokenResult: Decodable {
     
     let success: Bool
     let token: String?

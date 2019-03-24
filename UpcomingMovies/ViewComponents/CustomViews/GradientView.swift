@@ -49,6 +49,13 @@ class GradientView: UIView {
     
     override class var layerClass: AnyClass { return CAGradientLayer.self }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updatePoints()
+        updateLocations()
+        updateColors()
+    }
+    
     var gradientLayer: CAGradientLayer { return layer as! CAGradientLayer }
     
     func updatePoints() {
@@ -67,10 +74,4 @@ class GradientView: UIView {
         gradientLayer.colors    = [startColor.cgColor, endColor.cgColor]
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        updatePoints()
-        updateLocations()
-        updateColors()
-    }
 }
