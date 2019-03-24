@@ -74,7 +74,8 @@ class AccountViewController: UIViewController, SegueHandler {
     private func setupBindables() {
         viewModel.showAuthPermission = { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.performSegue(withIdentifier: SegueIdentifier.authPermission.rawValue, sender: nil)
+            strongSelf.performSegue(withIdentifier: SegueIdentifier.authPermission.rawValue,
+                                    sender: nil)
         }
         viewModel.didSignIn = { [weak self] in
             guard let strongSelf = self else { return }
@@ -118,7 +119,8 @@ extension AccountViewController: SignInViewControllerDelegate {
 extension AccountViewController: ProfileViewControllerDelegate {
     
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapFavoritesSetting tapped: Bool) {
-        performSegue(withIdentifier: SegueIdentifier.favoriteMovies.rawValue, sender: nil)
+        performSegue(withIdentifier: SegueIdentifier.favoriteMovies.rawValue,
+                     sender: nil)
     }
     
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool) {

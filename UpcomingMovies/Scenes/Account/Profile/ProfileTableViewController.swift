@@ -11,6 +11,7 @@ import UIKit
 protocol ProfileViewControllerDelegate: class {
 
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapFavoritesSetting tapped: Bool)
+    
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool)
     
 }

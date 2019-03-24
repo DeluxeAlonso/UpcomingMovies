@@ -57,7 +57,8 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler, Loader
     
     private func setupForceTouchSupport() {
         if traitCollection.forceTouchCapability == .available {
-            registerForPreviewing(with: self, sourceView: tableView)
+            registerForPreviewing(with: self,
+                                  sourceView: tableView)
         }
     }
     

@@ -11,8 +11,9 @@ import CoreData
 
 final class AccountViewModel {
     
-    private let authClient = AuthClient()
     private var managedObjectContext: NSManagedObjectContext
+    
+    private let authClient = AuthClient()
     private var requestToken: String?
     
     var showAuthPermission: (() -> Void)?

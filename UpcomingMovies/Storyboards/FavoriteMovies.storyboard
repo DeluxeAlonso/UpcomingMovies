@@ -42,7 +42,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CpD-dE-guP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905" y="793"/>
+            <point key="canvasLocation" x="932" y="793"/>
         </scene>
         <!--MovieDetailViewController-->
         <scene sceneID="whN-yo-C3G">
