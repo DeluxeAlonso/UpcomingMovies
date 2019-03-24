@@ -18,8 +18,9 @@ class AccountViewController: UIViewController, SegueHandler {
     }()
     
     private lazy var profileViewController: UIViewController = {
-        var viewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        var viewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileTableViewController") as! ProfileTableViewController
         viewController.delegate = self
+        viewController.viewModel = viewModel.builProfileViewModel()
         self.add(asChildViewController: viewController)
         return viewController
     }()
@@ -110,7 +111,7 @@ extension AccountViewController: SignInViewControllerDelegate {
 
 extension AccountViewController: ProfileViewControllerDelegate {
     
-    func profileViewController(_ profileViewController: ProfileViewController, didTapSignOutButton tapped: Bool) {
+    func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool) {
         AuthenticationManager.shared.deleteSessionId()
         didSignOut()
     }

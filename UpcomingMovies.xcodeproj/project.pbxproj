@@ -83,6 +83,11 @@
 		E223773C21EEAEFF000400B7 /* DefaultSearchOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773B21EEAEFF000400B7 /* DefaultSearchOption.swift */; };
 		E223773E21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773D21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift */; };
 		E223774021EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773F21EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift */; };
+		E223B0802247E7F10050277B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223B07F2247E7F10050277B /* ProfileViewModel.swift */; };
+		E223B084224828EC0050277B /* ProfileSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223B083224828EC0050277B /* ProfileSettingTableViewCell.swift */; };
+		E223B086224828FB0050277B /* ProfileSettingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223B085224828FB0050277B /* ProfileSettingCellViewModel.swift */; };
+		E223B08822482A170050277B /* ProfileSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E223B08722482A170050277B /* ProfileSettingTableViewCell.xib */; };
+		E223B08A22482BAD0050277B /* ProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223B08922482BAD0050277B /* ProfileDataSource.swift */; };
 		E223DA082217BD1900A3DC58 /* RadarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223DA072217BD1900A3DC58 /* RadarView.swift */; };
 		E223DA0A2217C11C00A3DC58 /* LoaderDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223DA092217C11C00A3DC58 /* LoaderDisplayable.swift */; };
 		E22447722234AFA000A59FEF /* VerticalFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22447712234AFA000A59FEF /* VerticalFlowLayout.swift */; };
@@ -107,7 +112,7 @@
 		E22588A02243120000E1327E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E225889F2243120000E1327E /* AccountViewController.swift */; };
 		E22588A22243121F00E1327E /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A12243121F00E1327E /* AccountViewModel.swift */; };
 		E22588A62243280600E1327E /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A52243280600E1327E /* SignInViewController.swift */; };
-		E22588A92243281F00E1327E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A82243281F00E1327E /* ProfileViewController.swift */; };
+		E22588A92243281F00E1327E /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A82243281F00E1327E /* ProfileTableViewController.swift */; };
 		E22588AC224333C300E1327E /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588AB224333C300E1327E /* AuthProvider.swift */; };
 		E22588AE224333D100E1327E /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588AD224333D100E1327E /* AuthClient.swift */; };
 		E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */; };
@@ -277,6 +282,11 @@
 		E223773B21EEAEFF000400B7 /* DefaultSearchOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOption.swift; sourceTree = "<group>"; };
 		E223773D21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOptionTableViewCell.swift; sourceTree = "<group>"; };
 		E223773F21EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOptionCellViewModel.swift; sourceTree = "<group>"; };
+		E223B07F2247E7F10050277B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		E223B083224828EC0050277B /* ProfileSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingTableViewCell.swift; sourceTree = "<group>"; };
+		E223B085224828FB0050277B /* ProfileSettingCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingCellViewModel.swift; sourceTree = "<group>"; };
+		E223B08722482A170050277B /* ProfileSettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingTableViewCell.xib; sourceTree = "<group>"; };
+		E223B08922482BAD0050277B /* ProfileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataSource.swift; sourceTree = "<group>"; };
 		E223DA072217BD1900A3DC58 /* RadarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarView.swift; sourceTree = "<group>"; };
 		E223DA092217C11C00A3DC58 /* LoaderDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderDisplayable.swift; sourceTree = "<group>"; };
 		E22447712234AFA000A59FEF /* VerticalFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalFlowLayout.swift; sourceTree = "<group>"; };
@@ -301,7 +311,7 @@
 		E225889F2243120000E1327E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		E22588A12243121F00E1327E /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		E22588A52243280600E1327E /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		E22588A82243281F00E1327E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E22588A82243281F00E1327E /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		E22588AB224333C300E1327E /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 		E22588AD224333D100E1327E /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
 		E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailBackdropView.swift; sourceTree = "<group>"; };
@@ -736,6 +746,7 @@
 		E222DC242192AF8700A2EDF4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E223B081224828D60050277B /* Account */,
 				E223773621EEA2C0000400B7 /* SearchOption */,
 				E21F378E2193F33900D6BFB6 /* Movie */,
 				E21F378D2193F32400D6BFB6 /* RecentSearch */,
@@ -758,6 +769,7 @@
 				E2251B212214FBC700EE7A51 /* MovieCreditCollectionViewCell.xib */,
 				E221F76F222BA316008DFF87 /* FavoriteMovieCollectionViewCell.xib */,
 				E224477B2234C05C00A59FEF /* UpcomingMovieDetailCollectionViewCell.xib */,
+				E223B08722482A170050277B /* ProfileSettingTableViewCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -775,6 +787,23 @@
 				E284EF4E21F12A11004E705F /* VisitedMovieCollectionViewCell.swift */,
 			);
 			path = SearchOption;
+			sourceTree = "<group>";
+		};
+		E223B081224828D60050277B /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				E223B082224828DB0050277B /* Profile */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		E223B082224828DB0050277B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E223B083224828EC0050277B /* ProfileSettingTableViewCell.swift */,
+				E223B085224828FB0050277B /* ProfileSettingCellViewModel.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		E224476E223435F100A59FEF /* Layouts */ = {
@@ -854,7 +883,9 @@
 		E22588A72243280B00E1327E /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				E22588A82243281F00E1327E /* ProfileViewController.swift */,
+				E22588A82243281F00E1327E /* ProfileTableViewController.swift */,
+				E223B07F2247E7F10050277B /* ProfileViewModel.swift */,
+				E223B08922482BAD0050277B /* ProfileDataSource.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1154,6 +1185,7 @@
 				E221F770222BA316008DFF87 /* FavoriteMovieCollectionViewCell.xib in Resources */,
 				E2251B222214FBC700EE7A51 /* MovieCreditCollectionViewCell.xib in Resources */,
 				E2601178219399E000E53095 /* MovieDetail.storyboard in Resources */,
+				E223B08822482A170050277B /* ProfileSettingTableViewCell.xib in Resources */,
 				E22116AB2191528E0039F8C9 /* FavoriteMovies.storyboard in Resources */,
 				E21F37942193F47800D6BFB6 /* RecentSearchTableViewCell.xib in Resources */,
 				E22116A7219150490039F8C9 /* UpcomingMovies.storyboard in Resources */,
@@ -1279,6 +1311,7 @@
 				E21F378C2193F01600D6BFB6 /* DefaultSearchController.swift in Sources */,
 				E221F75F222AF123008DFF87 /* CodingUserInfoKey+Context.swift in Sources */,
 				E2245D8C222E2F7D00AA0A5A /* PersistenceStore+MovieSearch.swift in Sources */,
+				E223B084224828EC0050277B /* ProfileSettingTableViewCell.swift in Sources */,
 				E22116C02191605C0039F8C9 /* Endpoint.swift in Sources */,
 				E221F76E222BA252008DFF87 /* FavoriteMovieCellViewModel.swift in Sources */,
 				E22116B02191568E0039F8C9 /* UpcomingMoviesViewModel.swift in Sources */,
@@ -1302,6 +1335,7 @@
 				E2EB923F221375190067F011 /* SectionedCollectionViewDataSource.swift in Sources */,
 				E2D4DD7021F018850004B7BF /* RecentlyVisitedMoviesTableViewCell.swift in Sources */,
 				E263808B221288210038AD00 /* MovieReviewTableViewCell.swift in Sources */,
+				E223B0802247E7F10050277B /* ProfileViewModel.swift in Sources */,
 				E221F769222B9FA3008DFF87 /* FavoriteMoviesViewController.swift in Sources */,
 				E222EA76220C724B00664C7F /* DefaultRefreshControl.swift in Sources */,
 				E2638089221284050038AD00 /* MovieReviewCellViewModel.swift in Sources */,
@@ -1349,6 +1383,7 @@
 				E21F37A721941E3500D6BFB6 /* GenreResult.swift in Sources */,
 				E22588AE224333D100E1327E /* AuthClient.swift in Sources */,
 				E2DBF2F3220532C300CBB365 /* Animatable.swift in Sources */,
+				E223B086224828FB0050277B /* ProfileSettingCellViewModel.swift in Sources */,
 				E284EF4D21F127FB004E705F /* VisitedMovieCellViewModel.swift in Sources */,
 				E2D1040F220CD1BC005F310C /* UIRefreshControl+Extensions.swift in Sources */,
 				E221F76C222BA23D008DFF87 /* FavoriteMovieCollectionViewCell.swift in Sources */,
@@ -1363,6 +1398,7 @@
 				E223DA082217BD1900A3DC58 /* RadarView.swift in Sources */,
 				E2E4452922474855009ABDEA /* Dictionary+Extensions.swift in Sources */,
 				E2116946220E3F7800595822 /* SearchOptionsDataSource.swift in Sources */,
+				E223B08A22482BAD0050277B /* ProfileDataSource.swift in Sources */,
 				E260116C2193884C00E53095 /* LoadingButton.swift in Sources */,
 				E2A65E5321FECC2200485B4E /* Utils.swift in Sources */,
 				E22116C82191668E0039F8C9 /* MovieProvider.swift in Sources */,
@@ -1405,7 +1441,7 @@
 				E22588A62243280600E1327E /* SignInViewController.swift in Sources */,
 				E2F9F7202201FC1100C62089 /* Transitionable.swift in Sources */,
 				E223774021EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift in Sources */,
-				E22588A92243281F00E1327E /* ProfileViewController.swift in Sources */,
+				E22588A92243281F00E1327E /* ProfileTableViewController.swift in Sources */,
 				E223773E21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift in Sources */,
 				E21F379C2193FF1400D6BFB6 /* CustomFooterView.swift in Sources */,
 				E2F387E322126C8800A5DCCE /* Review.swift in Sources */,

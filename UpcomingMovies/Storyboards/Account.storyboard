@@ -162,34 +162,6 @@
             </objects>
             <point key="canvasLocation" x="2264.8000000000002" y="1697.9010494752624"/>
         </scene>
-        <!--Profile View Controller-->
-        <scene sceneID="so5-Cy-FkY">
-            <objects>
-                <viewController storyboardIdentifier="ProfileViewController" id="T0E-1f-QbQ" customClass="ProfileViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="LK3-Ru-bUd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIS-L5-jIt">
-                                <rect key="frame" x="159" y="318.5" width="57" height="30"/>
-                                <state key="normal" title="Sign out"/>
-                                <connections>
-                                    <action selector="signOutButtonAction:" destination="T0E-1f-QbQ" eventType="touchUpInside" id="w6j-GO-wic"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="HIS-L5-jIt" firstAttribute="centerY" secondItem="LK3-Ru-bUd" secondAttribute="centerY" id="REH-VX-VJD"/>
-                            <constraint firstItem="HIS-L5-jIt" firstAttribute="centerX" secondItem="LK3-Ru-bUd" secondAttribute="centerX" id="g3V-5c-gNK"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="fTQ-St-5FY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hvl-2B-Bhd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2265" y="81"/>
-        </scene>
         <!--Account-->
         <scene sceneID="vUC-TL-t1g">
             <objects>
@@ -227,6 +199,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lik-Dv-354" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1325.5999999999999" y="1697.9010494752624"/>
+        </scene>
+        <!--Profile Table View Controller-->
+        <scene sceneID="eWF-S1-xlP">
+            <objects>
+                <tableViewController storyboardIdentifier="ProfileTableViewController" id="3cM-0V-bWN" customClass="ProfileTableViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="mZI-xp-GOO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="3cM-0V-bWN" id="Slq-oC-Jc9"/>
+                            <outlet property="delegate" destination="3cM-0V-bWN" id="xEQ-gQ-bEk"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jtI-KP-cQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2230" y="81"/>
         </scene>
     </scenes>
     <resources>
