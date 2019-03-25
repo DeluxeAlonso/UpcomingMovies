@@ -13,7 +13,11 @@ class FavoriteMoviesViewController: UIViewController, SegueHandler {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var viewModel = FavoriteMoviesViewModel()
+    var viewModel: FavoriteMoviesViewModel? {
+        didSet {
+            setupBindables()
+        }
+    }
     
     private var dataSource: SimpleCollectionViewDataSource<FavoriteMovieCellViewModel>!
     
@@ -22,7 +26,6 @@ class FavoriteMoviesViewController: UIViewController, SegueHandler {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupBindables()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -66,6 +69,7 @@ class FavoriteMoviesViewController: UIViewController, SegueHandler {
     }
     
     private func reloadCollectionView() {
+        guard let viewModel = viewModel else { return }
         dataSource = SimpleCollectionViewDataSource.make(for: viewModel.favoriteMovieCells)
         collectionView.dataSource = dataSource
         collectionView.reloadData()
@@ -74,7 +78,8 @@ class FavoriteMoviesViewController: UIViewController, SegueHandler {
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        viewModel.updateFavorites = { [weak self] in
+        reloadCollectionView()
+        viewModel?.updateFavorites = { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.updateCollectionViewLayout()
             strongSelf.reloadCollectionView()
@@ -90,7 +95,7 @@ class FavoriteMoviesViewController: UIViewController, SegueHandler {
             guard let viewController = segue.destination as? MovieDetailViewController,
                 let index = sender as? Int else { fatalError() }
             _ = viewController.view
-            viewController.viewModel = viewModel.buildDetailViewModel(atIndex: index)
+            viewController.viewModel = viewModel?.buildDetailViewModel(atIndex: index)
         }
     }
     

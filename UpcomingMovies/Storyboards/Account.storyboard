@@ -23,6 +23,7 @@
                     <navigationItem key="navigationItem" title="Account" id="PHb-rS-IvZ"/>
                     <connections>
                         <segue destination="4Wg-PQ-5Ue" kind="presentation" identifier="AuthPermissionSegue" id="WEl-7i-CoI"/>
+                        <segue destination="J5h-h6-Tax" kind="show" identifier="FavoriteMoviesSegue" id="7Fb-jL-0n2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GrE-o3-lT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -217,6 +218,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jtI-KP-cQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2230" y="81"/>
+        </scene>
+        <!--FavoriteMoviesViewController-->
+        <scene sceneID="5AZ-sr-BYE">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FavoriteMovies" referencedIdentifier="FavoriteMoviesViewController" id="J5h-h6-Tax" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Y7-yo-lxl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2100" y="883"/>
         </scene>
     </scenes>
     <resources>

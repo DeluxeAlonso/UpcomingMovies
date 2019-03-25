@@ -55,6 +55,7 @@ class SearchMoviesViewController: UIViewController, SegueHandler {
         case .movieList:
             guard let viewController = segue.destination as? MovieListViewController else { fatalError() }
             guard let viewModel = sender as? MovieListViewModel else { return }
+            _ = viewController.view
             viewController.viewModel = viewModel
         case .movieDetail:
             guard let viewController = segue.destination as? MovieDetailViewController else { fatalError() }
@@ -126,7 +127,8 @@ extension SearchMoviesViewController: UISearchBarDelegate {
 extension SearchMoviesViewController: SearchMoviesResultControllerDelegate {
     
     func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectMovie movie: MovieDetailViewModel) {
-        performSegue(withIdentifier: "MovieDetailSegue", sender: movie)
+        performSegue(withIdentifier: "MovieDetailSegue",
+                     sender: movie)
     }
     
     func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectRecentSearch searchText: String) {
@@ -148,12 +150,14 @@ extension SearchMoviesViewController: SearchOptionsTableViewControllerDelegate {
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
                                           didSelectPopularMovies selected: Bool) {
-        performSegue(withIdentifier: SegueIdentifier.movieList.rawValue, sender: viewModel.popularMoviesViewModel())
+        performSegue(withIdentifier: SegueIdentifier.movieList.rawValue,
+                     sender: viewModel.popularMoviesViewModel())
     }
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
                                           didSelectTopRatedMovies selected: Bool) {
-        performSegue(withIdentifier: SegueIdentifier.movieList.rawValue, sender: viewModel.topRatedMoviesViewModel())
+        performSegue(withIdentifier: SegueIdentifier.movieList.rawValue,
+                     sender: viewModel.topRatedMoviesViewModel())
     }
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,

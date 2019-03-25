@@ -132,6 +132,7 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
             viewController.viewModel = viewModel?.buildCreditsViewModel()
         case .movieSimilars:
             guard let viewController = segue.destination as? MovieListViewController else { fatalError() }
+            _ = viewController.view
             viewController.viewModel = viewModel!.buildSimilarsViewModel()
         }
     }
@@ -141,7 +142,8 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     @objc func shareBarButtonAction() {
         guard let movieTitle = viewModel?.title else { return }
         let shareText = "Come with me to watch \(movieTitle)!"
-        let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [shareText],
+                                                              applicationActivities: nil)
         self.present(activityViewController, animated: true, completion: nil)
     }
     

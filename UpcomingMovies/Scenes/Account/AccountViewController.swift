@@ -74,7 +74,8 @@ class AccountViewController: UIViewController, SegueHandler {
     private func setupBindables() {
         viewModel.showAuthPermission = { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.performSegue(withIdentifier: SegueIdentifier.authPermission.rawValue, sender: nil)
+            strongSelf.performSegue(withIdentifier: SegueIdentifier.authPermission.rawValue,
+                                    sender: nil)
         }
         viewModel.didSignIn = { [weak self] in
             guard let strongSelf = self else { return }
@@ -94,6 +95,12 @@ class AccountViewController: UIViewController, SegueHandler {
             _ = viewController.view
             viewController.delegate = self
             viewController.viewModel = viewModel.buildAuthPermissionViewModel()
+        case .favoriteMovies:
+            guard let viewController = segue.destination as? FavoriteMoviesViewController else {
+                return
+            }
+            _ = viewController.view
+            viewController.viewModel = viewModel.buildFavoriteMoviesViewModel()
         }
     }
     
@@ -110,6 +117,11 @@ extension AccountViewController: SignInViewControllerDelegate {
 }
 
 extension AccountViewController: ProfileViewControllerDelegate {
+    
+    func profileViewController(_ profileViewController: ProfileTableViewController, didTapFavoritesSetting tapped: Bool) {
+        performSegue(withIdentifier: SegueIdentifier.favoriteMovies.rawValue,
+                     sender: nil)
+    }
     
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool) {
         AuthenticationManager.shared.deleteSessionId()
@@ -135,6 +147,7 @@ extension AccountViewController {
     
     enum SegueIdentifier: String {
         case authPermission = "AuthPermissionSegue"
+        case favoriteMovies = "FavoriteMoviesSegue"
     }
     
 }

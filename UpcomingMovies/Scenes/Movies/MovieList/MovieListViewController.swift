@@ -12,13 +12,17 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler, Loader
     
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel: MovieListViewModel!
-    
     private var dataSource: SimpleTableViewDataSource<MovieCellViewModel>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
     private var displayedCellsIndexPaths = Set<IndexPath>()
 
     var loaderView: RadarView!
+    
+    var viewModel: MovieListViewModel? {
+        didSet {
+            setupBindables()
+        }
+    }
     
     // MARK: - Lifcycle
 
@@ -47,21 +51,23 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler, Loader
         tableView.refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
                                               backgroundColor: tableView.backgroundColor,
                                               refreshHandler: { [weak self] in
-                                                self?.viewModel.refreshMovies()
+                                                self?.viewModel?.refreshMovies()
         })
     }
     
     private func setupForceTouchSupport() {
         if traitCollection.forceTouchCapability == .available {
-            registerForPreviewing(with: self, sourceView: tableView)
+            registerForPreviewing(with: self,
+                                  sourceView: tableView)
         }
     }
     
     private func reloadTableView() {
+        guard let viewModel = viewModel else { return }
         dataSource = SimpleTableViewDataSource.make(for: viewModel.movieCells)
         prefetchDataSource = TableViewDataSourcePrefetching(cellCount: viewModel.movieCells.count,
                                                             prefetchHandler: { [weak self] in
-                                                                self?.viewModel.getMovies()
+                                                                self?.viewModel?.getMovies()
         })
         tableView.dataSource = dataSource
         tableView.prefetchDataSource = prefetchDataSource
@@ -83,7 +89,7 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler, Loader
         case .error(let error):
             presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
                                        errorHandler: { [weak self] in
-                                        self?.viewModel.getMovies()
+                                        self?.viewModel?.getMovies()
             })
         }
     }
@@ -91,18 +97,18 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler, Loader
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        title = viewModel.filter.title
-        viewModel.viewState.bindAndFire({ [weak self] state in
+        title = viewModel?.filter.title
+        viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 strongSelf.configureView(withState: state)
                 strongSelf.reloadTableView()
             }
         })
-        viewModel.startLoading = { [weak self] start in
+        viewModel?.startLoading = { [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
         }
-        viewModel.getMovies()
+        viewModel?.getMovies()
     }
     
     // MARK: - Navigation
@@ -113,7 +119,7 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler, Loader
             guard let viewController = segue.destination as? MovieDetailViewController else { fatalError() }
             guard let indexPath = sender as? IndexPath else { return }
             _ = viewController.view
-            viewController.viewModel = viewModel.buildDetailViewModel(atIndex: indexPath.row)
+            viewController.viewModel = viewModel?.buildDetailViewModel(atIndex: indexPath.row)
         }
     }
 
@@ -149,7 +155,7 @@ extension MovieListViewController: UIViewControllerPreviewingDelegate {
         let storyboard = UIStoryboard(name: "MovieDetail", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
         _ = viewController.view
-        viewController.viewModel = viewModel.buildDetailViewModel(atIndex: indexPath.row)
+        viewController.viewModel = viewModel?.buildDetailViewModel(atIndex: indexPath.row)
         viewController.preferredContentSize = CGSize(width: 0.0, height: 450)
         previewingContext.sourceRect = cell.frame
         return viewController

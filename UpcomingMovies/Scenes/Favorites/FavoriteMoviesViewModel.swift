@@ -26,7 +26,7 @@ final class FavoriteMoviesViewModel {
     
     // MARK: - Initializers
     
-    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
+    init(managedObjectContext: NSManagedObjectContext) {
         self.managedObjectContext = managedObjectContext
         setupStores()
     }
