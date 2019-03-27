@@ -26,10 +26,10 @@ extension APIClient {
     private func decodingTask<T: Decodable>(with request: URLRequest,
                                             decodingType: T.Type,
                                             context: NSManagedObjectContext? = nil,
-                                            completionHandler completion: @escaping JSONTaskCompletionHandler) -> URLSessionDataTask {
+                                            completionHandler completion: JSONTaskCompletionHandler?) -> URLSessionDataTask {
         let task = session.dataTask(with: request) { data, response, _ in
             guard let httpResponse = response as? HTTPURLResponse else {
-                completion(nil, .requestFailed)
+                completion?(nil, .requestFailed)
                 return
             }
             if httpResponse.statusCode == 200 {
@@ -38,16 +38,16 @@ extension APIClient {
                         let decoder = JSONDecoder()
                         decoder.userInfo[.context] = context
                         let genericModel = try decoder.decode(decodingType, from: data)
-                        try? context?.save()
-                        completion(genericModel, nil)
+                        try context?.save()
+                        completion?(genericModel, nil)
                     } catch {
-                        completion(nil, .requestFailed)
+                        completion?(nil, .requestFailed)
                     }
                 } else {
-                    completion(nil, .invalidData)
+                    completion?(nil, .invalidData)
                 }
             } else {
-                completion(nil, APIError(response: httpResponse))
+                completion?(nil, APIError(response: httpResponse))
             }
         }
         return task

@@ -156,6 +156,7 @@
 		E284EF4D21F127FB004E705F /* VisitedMovieCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284EF4C21F127FB004E705F /* VisitedMovieCellViewModel.swift */; };
 		E284EF4F21F12A12004E705F /* VisitedMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284EF4E21F12A11004E705F /* VisitedMovieCollectionViewCell.swift */; };
 		E284EF5121F12AF5004E705F /* VisitedMovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E284EF5021F12AF5004E705F /* VisitedMovieCollectionViewCell.xib */; };
+		E293AD27224B38480070F783 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E293AD26224B38480070F783 /* WebKit.framework */; };
 		E29407FE2209E83600A74F68 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */; };
 		E29408002209E85000A74F68 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */; };
 		E2940803220A152700A74F68 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2940802220A152700A74F68 /* MainTabBarController.swift */; };
@@ -355,6 +356,7 @@
 		E284EF4C21F127FB004E705F /* VisitedMovieCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitedMovieCellViewModel.swift; sourceTree = "<group>"; };
 		E284EF4E21F12A11004E705F /* VisitedMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitedMovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		E284EF5021F12AF5004E705F /* VisitedMovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisitedMovieCollectionViewCell.xib; sourceTree = "<group>"; };
+		E293AD26224B38480070F783 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		E2940802220A152700A74F68 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E293AD27224B38480070F783 /* WebKit.framework in Frameworks */,
 				9598E1DA49AA2CBA6E0628E0 /* Pods_UpcomingMovies.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +425,7 @@
 		AEA8FC05E782407089541551 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E293AD26224B38480070F783 /* WebKit.framework */,
 				811C39C9147DA695B15480ED /* Pods_UpcomingMovies.framework */,
 				692FA49829C4185133D08548 /* Pods_UpcomingMoviesTests.framework */,
 			);
@@ -1135,6 +1139,7 @@
 				TargetAttributes = {
 					E221167B21914E4B0039F8C9 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 0;
@@ -1146,6 +1151,7 @@
 					};
 					E221169121914E4D0039F8C9 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = E221167B21914E4B0039F8C9;
 					};
 				};
@@ -1631,6 +1637,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RRTBZ5DXD6;
 				INFOPLIST_FILE = UpcomingMovies/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1638,7 +1645,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1652,6 +1659,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RRTBZ5DXD6;
 				INFOPLIST_FILE = UpcomingMovies/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1659,7 +1667,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -1680,7 +1688,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMoviesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UpcomingMovies.app/UpcomingMovies";
 			};
@@ -1702,7 +1710,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMoviesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UpcomingMovies.app/UpcomingMovies";
 			};
