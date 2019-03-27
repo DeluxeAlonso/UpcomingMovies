@@ -53,6 +53,8 @@ class UpcomingMoviesNavigationManager: NSObject, UINavigationControllerDelegate 
             return TransitioningAnimator(isPresenting: false,
                                          originFrame: frame,
                                          transitionView: transitionView)
+        @unknown default:
+            return nil
         }
     }
     

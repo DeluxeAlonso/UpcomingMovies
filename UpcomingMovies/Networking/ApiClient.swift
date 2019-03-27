@@ -38,7 +38,7 @@ extension APIClient {
                         let decoder = JSONDecoder()
                         decoder.userInfo[.context] = context
                         let genericModel = try decoder.decode(decodingType, from: data)
-                        try? context?.save()
+                        try context?.save()
                         completion(genericModel, nil)
                     } catch {
                         completion(nil, .requestFailed)

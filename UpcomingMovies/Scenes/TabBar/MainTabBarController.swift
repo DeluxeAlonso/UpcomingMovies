@@ -33,7 +33,7 @@ class MainTabBarController: UITabBarController {
 extension MainTabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        guard let currentTabBarIndex = viewControllers?.index(of: viewController),
+        guard let currentTabBarIndex = viewControllers?.firstIndex(of: viewController),
             currentTabBarIndex == selectedIndex,
             selectedIndex == currentSelectedItemIndex else {
                 currentSelectedItemIndex = selectedIndex
