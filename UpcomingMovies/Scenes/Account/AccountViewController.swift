@@ -79,7 +79,9 @@ class AccountViewController: UIViewController, SegueHandler {
         }
         viewModel.didSignIn = { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.didSignIn()
+            DispatchQueue.main.async {
+                strongSelf.didSignIn()
+            }
         }
     }
     
@@ -124,7 +126,7 @@ extension AccountViewController: ProfileViewControllerDelegate {
     }
     
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool) {
-        AuthenticationManager.shared.deleteSessionId()
+        AuthenticationManager.shared.deleteCurrentUser()
         didSignOut()
     }
     

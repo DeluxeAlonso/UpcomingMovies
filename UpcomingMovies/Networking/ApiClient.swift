@@ -41,6 +41,7 @@ extension APIClient {
                         try context?.save()
                         completion?(genericModel, nil)
                     } catch {
+                        print(error.localizedDescription)
                         completion?(nil, .requestFailed)
                     }
                 } else {

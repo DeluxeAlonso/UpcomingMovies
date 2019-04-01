@@ -14,14 +14,19 @@ final class AccountViewModel {
     private var managedObjectContext: NSManagedObjectContext
     
     private let authClient = AuthClient()
+    private let userClient = UserClient()
     private var requestToken: String?
     
     var showAuthPermission: (() -> Void)?
     var didSignIn: (() -> Void)?
     
+    // MARK: - Initializers
+    
     init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
         self.managedObjectContext = managedObjectContext
     }
+    
+    // MARK: - Authentication
     
     func getRequestToken() {
         authClient.getRequestToken { result in
@@ -41,13 +46,27 @@ final class AccountViewModel {
             switch result {
             case .success(let sessionResult):
                 guard let sessionId = sessionResult.sessionId else { return }
-                AuthenticationManager.shared.saveSessionId(sessionId)
-                self.didSignIn?()
+                self.getAccountDetails(sessionId)
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
+    
+    private func getAccountDetails(_ sessionId: String) {
+        userClient.getAccountDetail(managedObjectContext, with: sessionId) { result in
+            switch result {
+            case .success(let user):
+                AuthenticationManager.shared.saveCurrentUser(sessionId,
+                                                             accountId: user.id)
+                self.didSignIn?()
+            case .failure(let error):
+                print(error.description)
+            }
+        }
+    }
+    
+    // MARK: - View model building
     
     func buildAuthPermissionViewModel() -> AuthPermissionViewModel? {
         guard let requestToken = requestToken else { return nil }
