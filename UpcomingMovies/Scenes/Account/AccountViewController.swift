@@ -10,14 +10,14 @@ import UIKit
 
 class AccountViewController: UIViewController, SegueHandler {
     
-    private lazy var signInViewController: UIViewController = {
+    private lazy var signInViewController: SignInViewController = {
         var viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! SignInViewController
         viewController.delegate = self
         self.add(asChildViewController: viewController)
         return viewController
     }()
     
-    private lazy var profileViewController: UIViewController = {
+    private lazy var profileViewController: ProfileTableViewController = {
         var viewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileTableViewController") as! ProfileTableViewController
         viewController.delegate = self
         viewController.viewModel = viewModel.buildProfileViewModel()
@@ -57,14 +57,16 @@ class AccountViewController: UIViewController, SegueHandler {
         navigationItem.title = Constants.NavigationItemTitle
     }
     
-    private func showProfileView() {
-        remove(asChildViewController: signInViewController)
-        add(asChildViewController: profileViewController)
-    }
-    
     private func showSignInView() {
         remove(asChildViewController: profileViewController)
         add(asChildViewController: signInViewController)
+    }
+    
+    private func showProfileView() {
+        remove(asChildViewController: signInViewController)
+        // Rebuild the profile view model to show an up to date profile.
+        profileViewController.viewModel = viewModel.buildProfileViewModel()
+        add(asChildViewController: profileViewController)
     }
     
     private func didSignIn() {
