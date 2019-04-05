@@ -15,15 +15,32 @@ final class ProfileViewModel {
     
     let viewState: Bindable<ProfileViewState> = Bindable(.initial)
     
-    let settingsOptions: [ProfileSettingsOption] = [.favorites]
-    var settingsOptionsCells: [ProfileSettingCellViewModel] {
-        return settingsOptions.map { ProfileSettingCellViewModel($0) }
+    private let userAccount: User?
+    var userInfoCell: ProfileAccountInforCellViewModel? {
+        guard let userAccount = userAccount else { return nil }
+        return ProfileAccountInforCellViewModel(userAccount: userAccount)
+    }
+    
+    private let options: [ProfileOption]
+    var collectionOptionsCells: [ProfileCollectionCellViewModel] {
+        let collectionOptions = options.filter { $0.type == .collection }
+        return collectionOptions.map { ProfileCollectionCellViewModel($0) }
     }
     
     // MARK: - Initializers
     
-    init(_ managedObjectContext: NSManagedObjectContext) {
+    init(_ managedObjectContext: NSManagedObjectContext, userAccount: User?, options: [ProfileOption]) {
         self.managedObjectContext = managedObjectContext
+        self.userAccount = userAccount
+        self.options = options
+    }
+    
+    // MARK: - Public
+    
+    func collectionOption(at index: Int) -> ProfileOption {
+        let collectionOptions = options.filter { $0.type == .collection }
+        guard index < collectionOptions.count else { fatalError() }
+        return collectionOptions[index]
     }
     
 }
@@ -33,7 +50,7 @@ final class ProfileViewModel {
 extension ProfileViewModel {
     
     enum ProfileSection {
-        case userInfo, settings, signOut
+        case accountInfo, collections, signOut
     }
     
     func section(at index: Int) -> ProfileSection {
@@ -52,22 +69,10 @@ extension ProfileViewModel {
         var sections: [ProfileSection] {
             switch self {
             case .initial:
-                return [.settings, .signOut]
+                return [.accountInfo, .collections, .signOut]
             }
         }
         
-    }
-    
-}
-
-enum ProfileSettingsOption {
-    case favorites
-    
-    var title: String? {
-        switch self {
-        case .favorites:
-            return "Favorites"
-        }
     }
     
 }

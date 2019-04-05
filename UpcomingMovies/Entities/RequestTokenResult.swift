@@ -11,7 +11,7 @@ import Foundation
 struct RequestTokenResult: Decodable {
     
     let success: Bool
-    let token: String?
+    let token: String
     let expiresAt: String?
     
     private enum CodingKeys: String, CodingKey {
