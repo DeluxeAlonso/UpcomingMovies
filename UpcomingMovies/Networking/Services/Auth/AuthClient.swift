@@ -29,7 +29,6 @@ class AuthClient: APIClient {
     }
     
     func createSessionId(with requestToken: String, completion: @escaping (Result<SessionResult, APIError>) -> Void) {
-        print(requestToken)
         fetch(with: AuthProvider.createSessionId(requestToken: requestToken).request, decode: { json -> SessionResult? in
             guard let sessionResult = json as? SessionResult else { return nil }
             return sessionResult

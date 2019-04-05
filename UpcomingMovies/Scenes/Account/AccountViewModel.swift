@@ -54,12 +54,9 @@ final class AccountViewModel {
     }
     
     private func getAccountDetails(_ sessionId: String) {
-        print(sessionId)
         userClient.getAccountDetail(managedObjectContext, with: sessionId) { result in
             switch result {
             case .success(let user):
-                print(user.name)
-                print(user.username)
                 AuthenticationManager.shared.saveCurrentUser(sessionId,
                                                              accountId: user.id)
                 self.didSignIn?()
