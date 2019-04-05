@@ -1,5 +1,5 @@
 //
-//  ProfileSettingCellViewModel.swift
+//  ProfileCollectionCellViewModel.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 3/24/19.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-final class ProfileSettingCellViewModel {
+final class ProfileCollectionCellViewModel {
     
     let title: String?
     
-    init(_ profileSetting: ProfileSettingsOption) {
+    init(_ profileSetting: ProfileOption) {
         self.title = profileSetting.title
     }
     

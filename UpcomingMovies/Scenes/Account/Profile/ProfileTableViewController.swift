@@ -10,7 +10,7 @@ import UIKit
 
 protocol ProfileViewControllerDelegate: class {
 
-    func profileViewController(_ profileViewController: ProfileTableViewController, didTapFavoritesSetting tapped: Bool)
+    func profileViewController(_ profileViewController: ProfileTableViewController, didTapCollection collection: ProfileOption)
     
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool)
     
@@ -43,7 +43,8 @@ class ProfileTableViewController: UITableViewController {
     
     private func setupTableView() {
         tableView.delegate = self
-        tableView.registerNib(cellType: ProfileSettingTableViewCell.self)
+        tableView.registerNib(cellType: ProfileAccountInfoTableViewCell.self)
+        tableView.registerNib(cellType: ProfileCollectionTableViewCell.self)
     }
     
     private func setupDataSource() {
@@ -69,11 +70,12 @@ class ProfileTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let viewModel = viewModel else { return }
         switch viewModel.section(at: indexPath.section) {
-        case .settings:
-            delegate?.profileViewController(self, didTapFavoritesSetting: true)
+        case .collections:
+            let collectionOption = viewModel.collectionOption(at: indexPath.row)
+            delegate?.profileViewController(self, didTapCollection: collectionOption)
         case .signOut:
             delegate?.profileViewController(self, didTapSignOutButton: true)
-        case .userInfo:
+        case .accountInfo:
             break
         }
     }
@@ -81,7 +83,9 @@ class ProfileTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let viewModel = viewModel else { return 0 }
         switch viewModel.section(at: indexPath.section) {
-        case .settings, .userInfo, .signOut:
+        case .accountInfo:
+            return 75.0
+        case .collections, .signOut:
             return 50.0
         }
     }

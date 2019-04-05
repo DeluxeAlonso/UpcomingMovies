@@ -10,7 +10,7 @@ import UIKit
 
 class AccountViewController: UIViewController, SegueHandler {
     
-    private lazy var loginViewController: UIViewController = {
+    private lazy var signInViewController: UIViewController = {
         var viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! SignInViewController
         viewController.delegate = self
         self.add(asChildViewController: viewController)
@@ -20,7 +20,7 @@ class AccountViewController: UIViewController, SegueHandler {
     private lazy var profileViewController: UIViewController = {
         var viewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileTableViewController") as! ProfileTableViewController
         viewController.delegate = self
-        viewController.viewModel = viewModel.builProfileViewModel()
+        viewController.viewModel = viewModel.buildProfileViewModel()
         self.add(asChildViewController: viewController)
         return viewController
     }()
@@ -49,7 +49,7 @@ class AccountViewController: UIViewController, SegueHandler {
             add(asChildViewController: profileViewController)
         } else {
             navigationController?.navigationBar.isHidden = true
-            add(asChildViewController: loginViewController)
+            add(asChildViewController: signInViewController)
         }
     }
     
@@ -57,16 +57,24 @@ class AccountViewController: UIViewController, SegueHandler {
         navigationItem.title = Constants.NavigationItemTitle
     }
     
+    private func showProfileView() {
+        remove(asChildViewController: signInViewController)
+        add(asChildViewController: profileViewController)
+    }
+    
+    private func showSignInView() {
+        remove(asChildViewController: profileViewController)
+        add(asChildViewController: signInViewController)
+    }
+    
     private func didSignIn() {
         navigationController?.setNavigationBarHidden(false, animated: true)
-        remove(asChildViewController: loginViewController)
-        add(asChildViewController: profileViewController)
+        showProfileView()
     }
     
     private func didSignOut() {
         navigationController?.setNavigationBarHidden(true, animated: true)
-        remove(asChildViewController: profileViewController)
-        add(asChildViewController: loginViewController)
+        showSignInView()
     }
     
     // MARK: - Reactive Behaviour
@@ -118,11 +126,18 @@ extension AccountViewController: SignInViewControllerDelegate {
     
 }
 
+// MARK: - ProfileViewControllerDelegate
+
 extension AccountViewController: ProfileViewControllerDelegate {
     
-    func profileViewController(_ profileViewController: ProfileTableViewController, didTapFavoritesSetting tapped: Bool) {
-        performSegue(withIdentifier: SegueIdentifier.favoriteMovies.rawValue,
-                     sender: nil)
+    func profileViewController(_ profileViewController: ProfileTableViewController, didTapCollection collection: ProfileOption) {
+        switch collection {
+        case .favorites:
+            performSegue(withIdentifier: SegueIdentifier.favoriteMovies.rawValue,
+                         sender: nil)
+        case .watchlist:
+            break
+        }
     }
     
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool) {
