@@ -8,15 +8,16 @@
 
 import Foundation
 
-enum UserProvider {
+enum AccountProvider {
     
+    case getFavoriteList(page: Int, sessionId: String, accountId: Int)
     case getAccountDetail(sessionId: String)
     
 }
 
 // MARK: - Endpoint
 
-extension UserProvider: Endpoint {
+extension AccountProvider: Endpoint {
     
     var base: String {
         return "https://api.themoviedb.org"
@@ -24,6 +25,8 @@ extension UserProvider: Endpoint {
     
     var path: String {
         switch self {
+        case .getFavoriteList( _, _, let accountId):
+            return "/3/account/\(accountId)/favorite/movies"
         case .getAccountDetail:
             return "/3/account"
         }
@@ -31,6 +34,8 @@ extension UserProvider: Endpoint {
     
     var params: [String: Any]? {
         switch self {
+        case .getFavoriteList(let page, let sessionId, _):
+            return ["session_id": sessionId, "page": page]
         case .getAccountDetail(let sessionId):
             return ["session_id": sessionId]
         }
@@ -38,7 +43,7 @@ extension UserProvider: Endpoint {
     
     var method: HTTPMethod {
         switch self {
-        case .getAccountDetail:
+        case .getAccountDetail, .getFavoriteList:
             return .get
         }
     }

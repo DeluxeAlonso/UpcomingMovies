@@ -98,10 +98,13 @@ final class MovieDetailViewModel {
     // MARK: - Favorites
     
     func checkIfIsFavorite() {
-        self.isFavorite.value = favoriteStore.exist(with: id)
+        // TO-DO: User themoviedb endpoints
+        //self.isFavorite.value = favoriteStore.exist(with: id)
     }
     
     func handleFavoriteMovie() {
+        // TO-DO: User themoviedb endpoints
+        /*
         if favoriteStore.exist(with: id) {
             favoriteStore.removeFavorite(with: id)
             isFavorite.value = false
@@ -110,7 +113,7 @@ final class MovieDetailViewModel {
                                        title: title,
                                        backdropPath: backdropPath)
             isFavorite.value = true
-        }
+        }*/
     }
     
     // MARK: - View Models Building

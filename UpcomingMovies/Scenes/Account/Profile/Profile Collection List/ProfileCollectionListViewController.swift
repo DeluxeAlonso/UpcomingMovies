@@ -1,5 +1,5 @@
 //
-//  FavoriteMoviesViewController.swift
+//  ProfileCollectionListViewController.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 11/7/18.
@@ -9,17 +9,19 @@
 import UIKit
 import CollectionViewSlantedLayout
 
-class FavoriteMoviesViewController: UIViewController, SegueHandler {
+class ProfileCollectionListViewController: UIViewController, Retryable, SegueHandler, LoaderDisplayable {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var viewModel: FavoriteMoviesViewModel? {
+    var viewModel: ProfileCollectionListViewModel? {
         didSet {
             setupBindables()
         }
     }
     
     private var dataSource: SimpleCollectionViewDataSource<FavoriteMovieCellViewModel>!
+    
+    var loaderView: RadarView!
     
     // MARK: - Lifecycle
     
@@ -70,20 +72,43 @@ class FavoriteMoviesViewController: UIViewController, SegueHandler {
     
     private func reloadCollectionView() {
         guard let viewModel = viewModel else { return }
-        dataSource = SimpleCollectionViewDataSource.make(for: viewModel.favoriteMovieCells)
+        dataSource = SimpleCollectionViewDataSource.make(for: viewModel.movieCells)
         collectionView.dataSource = dataSource
         collectionView.reloadData()
+    }
+    
+    /**
+     * Configures the tableview footer given the current state of the view.
+     */
+    private func configureView(withState state: SimpleViewState<Movie>) {
+        switch state {
+        case .populated, .paging, .initial, .empty:
+            collectionView.backgroundView = UIView(frame: .zero)
+            hideErrorView()
+        case .error(let error):
+            presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
+                                       errorHandler: { [weak self] in
+                                        self?.viewModel?.getCollectionList()
+            })
+        }
     }
     
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
         reloadCollectionView()
-        viewModel?.updateFavorites = { [weak self] in
+        viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
-            strongSelf.updateCollectionViewLayout()
-            strongSelf.reloadCollectionView()
+            DispatchQueue.main.async {
+                strongSelf.configureView(withState: state)
+                strongSelf.updateCollectionViewLayout()
+                strongSelf.reloadCollectionView()
+            }
+        })
+        viewModel?.startLoading = { [weak self] start in
+            start ? self?.showLoader() : self?.hideLoader()
         }
+        viewModel?.getCollectionList()
     }
     
     // MARK: - Navigation
@@ -103,7 +128,7 @@ class FavoriteMoviesViewController: UIViewController, SegueHandler {
 
 // MARK: - UICollectionViewDelegate
 
-extension FavoriteMoviesViewController: UICollectionViewDelegate {
+extension ProfileCollectionListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue,
@@ -114,7 +139,7 @@ extension FavoriteMoviesViewController: UICollectionViewDelegate {
 
 // MARK: - Segue Identifiers
 
-extension FavoriteMoviesViewController {
+extension ProfileCollectionListViewController {
     
     enum SegueIdentifier: String {
         case movieDetail = "MovieDetailSegue"
@@ -124,7 +149,7 @@ extension FavoriteMoviesViewController {
 
 // MARK: - Constants
 
-extension FavoriteMoviesViewController {
+extension ProfileCollectionListViewController {
     
     struct Constants {
         

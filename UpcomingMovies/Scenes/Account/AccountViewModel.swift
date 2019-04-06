@@ -14,7 +14,7 @@ final class AccountViewModel {
     private var managedObjectContext: NSManagedObjectContext
     
     private let authClient = AuthClient()
-    private let userClient = UserClient()
+    private let userClient = AccountClient()
     private var requestToken: String?
     
     var showAuthPermission: (() -> Void)?
@@ -75,12 +75,13 @@ final class AccountViewModel {
     
     func buildProfileViewModel() -> ProfileViewModel? {
         let currentUser = AuthenticationManager.shared.currentUser()
-        let options: [ProfileOption] = [.favorites, .watchlist]
+        let options = ProfileOptions(collectionOptions: [.favorites, .watchlist],
+                                     configurationOptions: [])
         return ProfileViewModel(managedObjectContext, userAccount: currentUser, options: options)
     }
     
-    func buildFavoriteMoviesViewModel() -> FavoriteMoviesViewModel? {
-        return FavoriteMoviesViewModel(managedObjectContext: managedObjectContext)
+    func buildFavoriteCollectionListViewModel() -> ProfileCollectionListViewModel? {
+        return ProfileCollectionListViewModel(managedObjectContext: managedObjectContext, collectionOption: .favorites)
     }
     
 }

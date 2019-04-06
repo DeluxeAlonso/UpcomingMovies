@@ -13,7 +13,7 @@ final class FavoriteMovieCellViewModel {
     let title: String
     let backdropURL: URL?
     
-    init(_ favorite: Favorite) {
+    init(_ favorite: Movie) {
         title = favorite.title
         backdropURL = favorite.backdropURL
     }
