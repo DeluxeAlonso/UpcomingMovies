@@ -75,7 +75,7 @@ class AuthenticationManager {
     // MARK: - Authentitacion Persistence
     
     func currentUser() -> User? {
-        guard let _ = retrieveSessionId() else { return nil }
+        guard retrieveSessionId() != nil  else { return nil }
         guard let userAccountId = retrieveUserAccountId() else { return nil }
         return userStore.find(with: userAccountId)
     }

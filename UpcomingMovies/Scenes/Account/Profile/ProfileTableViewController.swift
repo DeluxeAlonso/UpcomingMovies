@@ -52,6 +52,15 @@ class ProfileTableViewController: UITableViewController {
         tableView.dataSource = dataSource
     }
     
+    private func showSignOutActionSheet() {
+        let signOutAction = UIAlertAction(title: "Sign out",
+                                          style: .destructive) { _ in
+            self.delegate?.profileViewController(self, didTapSignOutButton: true)
+        }
+        showSimpleActionSheet(title: "Are you sure you want to sign out?",
+                              message: nil, action: signOutAction)
+    }
+    
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
@@ -74,7 +83,7 @@ class ProfileTableViewController: UITableViewController {
             let collectionOption = viewModel.collectionOption(at: indexPath.row)
             delegate?.profileViewController(self, didTapCollection: collectionOption)
         case .signOut:
-            delegate?.profileViewController(self, didTapSignOutButton: true)
+            showSignOutActionSheet()
         case .accountInfo:
             break
         }

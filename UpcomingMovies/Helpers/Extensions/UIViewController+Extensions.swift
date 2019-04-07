@@ -34,4 +34,21 @@ extension UIViewController {
         viewController.removeFromParent()
     }
     
+    // MARK: - Action sheets
+    
+    func showSimpleActionSheet(title: String?, message: String?, action: UIAlertAction) {
+        let actionSheet = UIAlertController(title: title,
+                                            message: message,
+                                            preferredStyle: .actionSheet)
+        
+        let cancelTitle = "Cancel"
+        let cancelActionButton = UIAlertAction(title: cancelTitle, style: .cancel) { _ in
+            self.dismiss(animated: true)
+        }
+        actionSheet.addAction(cancelActionButton)
+        
+        actionSheet.addAction(action)
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
 }
