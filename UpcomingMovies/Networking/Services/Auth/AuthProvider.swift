@@ -41,6 +41,10 @@ extension AuthProvider: Endpoint {
         }
     }
     
+    var parameterEncoding: ParameterEnconding {
+        return .defaultEncoding
+    }
+    
     var method: HTTPMethod {
         switch self {
         case .getRequestToken:

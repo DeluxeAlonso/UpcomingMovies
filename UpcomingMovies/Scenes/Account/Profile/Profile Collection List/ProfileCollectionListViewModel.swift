@@ -47,13 +47,21 @@ final class ProfileCollectionListViewModel {
     // MARK: - Networking
     
     func getCollectionList() {
+        let showLoader = viewState.value.isInitialPage
+        fetchCollectionList(page: viewState.value.currentPage, option: collectionOption, showLoader: showLoader)
+    }
+    
+    func refreshCollectionList() {
+        fetchCollectionList(page: 1, option: collectionOption, showLoader: false)
+    }
+    
+    func fetchCollectionList(page: Int, option: ProfileCollectionOption, showLoader: Bool) {
         guard let sessionId = AuthenticationManager.shared.retrieveSessionId(),
             let accountId = AuthenticationManager.shared.retrieveUserAccountId() else {
                 return
         }
-        startLoading?(true)
-        accountClient.getCollectionList(page: viewState.value.currentPage,
-                                        option: collectionOption,
+        startLoading?(showLoader)
+        accountClient.getCollectionList(page: page, option: option,
                                         sessionId: sessionId,
                                         accountId: accountId) { result in
             switch result {

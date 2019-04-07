@@ -44,6 +44,7 @@ class ProfileCollectionListViewController: UIViewController, Retryable, SegueHan
         title = Constants.Title
         setupNavigationBar()
         setupCollectionView()
+        setupRefreshControl()
         reloadCollectionView()
     }
     
@@ -70,11 +71,20 @@ class ProfileCollectionListViewController: UIViewController, Retryable, SegueHan
         }
     }
     
+    private func setupRefreshControl() {
+        collectionView.refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
+                                                              backgroundColor: collectionView.backgroundColor,
+                                                              refreshHandler: { [weak self] in
+                                                                self?.viewModel?.refreshCollectionList()
+        })
+    }
+    
     private func reloadCollectionView() {
         guard let viewModel = viewModel else { return }
         dataSource = SimpleCollectionViewDataSource.make(for: viewModel.movieCells)
         collectionView.dataSource = dataSource
         collectionView.reloadData()
+        collectionView.refreshControl?.endRefreshing(with: 0.5)
     }
     
     /**

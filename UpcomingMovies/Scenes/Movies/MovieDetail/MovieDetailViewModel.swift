@@ -12,9 +12,9 @@ import CoreData
 final class MovieDetailViewModel {
     
     private var managedObjectContext: NSManagedObjectContext
-    private var favoriteStore: PersistenceStore<Favorite>!
     private var movieVisitStore: PersistenceStore<MovieVisit>!
     
+    private var accountClient = AccountClient()
     private var movieClient = MovieClient()
     
     var id: Int!
@@ -28,11 +28,12 @@ final class MovieDetailViewModel {
     var backdropPath: String?
     var backdropURL: URL?
     
-    var startLoading: ((Bool) -> Void)?
     var showErrorView: ((Error) -> Void)?
     var updateMovieDetail: (() -> Void)?
     var needsFetch = false
-    var isFavorite: Bindable<Bool> = Bindable(false)
+    
+    var startLoading: Bindable<Bool> = Bindable(false)
+    var isFavorite: Bindable<Bool?> = Bindable(false)
     
     // MARK: - Initializers
 
@@ -40,6 +41,7 @@ final class MovieDetailViewModel {
         self.managedObjectContext = managedObjectContext
         setupStores(self.managedObjectContext)
         setupMovie(movie)
+        checkIfUserIsAuthenticated()
     }
     
     init(id: Int, title: String, managedObjectContext: NSManagedObjectContext) {
@@ -67,23 +69,25 @@ final class MovieDetailViewModel {
     }
     
     private func setupStores(_ managedObjectContext: NSManagedObjectContext) {
-        favoriteStore = PersistenceStore(managedObjectContext)
         movieVisitStore = PersistenceStore(managedObjectContext)
     }
     
     // MARK: - Public
     
+    // MARK: - Networking
+    
     func getMovieDetail() {
         guard needsFetch else { return }
-        startLoading?(true)
+        startLoading.value = true
         movieClient.getMovieDetail(managedObjectContext,
                                    with: id, completion: { result in
-            self.startLoading?(false)
             switch result {
             case .success(let movie):
                 self.setupMovie(movie)
                 self.updateMovieDetail?()
+                self.checkIfUserIsAuthenticated()
             case .failure(let error):
+                self.startLoading.value = false
                 self.showErrorView?(error)
             }
         })
@@ -95,25 +99,49 @@ final class MovieDetailViewModel {
                                        posterPath: posterPath)
     }
     
+    // MARK: - User Authentication
+    
+    func checkIfUserIsAuthenticated() {
+        let isUserSignedIn = AuthenticationManager.shared.isUserSignedIn()
+        let sessionId = AuthenticationManager.shared.retrieveSessionId()
+        if isUserSignedIn, let sessionId = sessionId {
+            checkIfMovieIsFavorite(sessionId: sessionId)
+        } else {
+            startLoading.value = false
+            isFavorite.value = nil
+        }
+    }
+    
     // MARK: - Favorites
     
-    func checkIfIsFavorite() {
-        // TO-DO: User themoviedb endpoints
-        //self.isFavorite.value = favoriteStore.exist(with: id)
+    func checkIfMovieIsFavorite(sessionId: String) {
+        movieClient.getMovieAccountState(with: id, sessionId: sessionId, completion: { result  in
+            self.startLoading.value = false
+            switch result {
+            case .success(let accountStateResult):
+                guard let accountStateResult = accountStateResult else { return }
+                self.isFavorite.value = accountStateResult.favorite
+            case .failure(let error):
+                self.showErrorView?(error)
+            }
+        })
     }
     
     func handleFavoriteMovie() {
-        // TO-DO: User themoviedb endpoints
-        /*
-        if favoriteStore.exist(with: id) {
-            favoriteStore.removeFavorite(with: id)
-            isFavorite.value = false
-        } else {
-            favoriteStore.saveFavorite(with: id,
-                                       title: title,
-                                       backdropPath: backdropPath)
-            isFavorite.value = true
-        }*/
+        let authenticationManager = AuthenticationManager.shared
+        guard let sessionId = authenticationManager.retrieveSessionId(),
+            let accountId = authenticationManager.retrieveUserAccountId(),
+            let isFavorite = isFavorite.value else {
+                return
+        }
+        accountClient.markAsFavorite(id, sessionId: sessionId, accountId: accountId, favorite: !isFavorite, completion: { result  in
+            switch result {
+            case .success:
+                self.isFavorite.value = !isFavorite
+            case .failure(let error):
+                self.showErrorView?(error)
+            }
+        })
     }
     
     // MARK: - View Models Building

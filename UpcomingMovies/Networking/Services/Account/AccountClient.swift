@@ -58,4 +58,17 @@ class AccountClient: APIClient {
         }, completion: completion)
     }
     
+    // MARK: - Mark as favorite
+    
+    func markAsFavorite(_ movieId: Int, sessionId: String,
+                        accountId: Int, favorite: Bool,
+                        completion: @escaping (Result<MarkAsFavoriteResult, APIError>) -> Void) {
+        fetch(with: AccountProvider.markAsFavorite(sessionId: sessionId, accountId: accountId,
+                                                   movieId: movieId, favorite: favorite).request,
+              decode: { json -> MarkAsFavoriteResult? in
+                guard let result = json as? MarkAsFavoriteResult else { return  nil }
+                return result
+        }, completion: completion)
+    }
+    
 }
