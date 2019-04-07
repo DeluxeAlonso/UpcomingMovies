@@ -102,17 +102,18 @@ class AccountViewController: UIViewController, SegueHandler {
         case .authPermission:
             guard let navController = segue.destination as? UINavigationController,
                 let viewController = navController.topViewController as? AuthPermissionViewController else {
-                    return
+                    fatalError()
             }
             _ = viewController.view
             viewController.delegate = self
             viewController.viewModel = viewModel.buildAuthPermissionViewModel()
-        case .favoriteMovies:
-            guard let viewController = segue.destination as? FavoriteMoviesViewController else {
-                return
+        case .collectionList:
+            guard let viewController = segue.destination as? ProfileCollectionListViewController else {
+                fatalError()
             }
+            guard let viewModel = sender as? ProfileCollectionListViewModel else { return }
             _ = viewController.view
-            viewController.viewModel = viewModel.buildFavoriteMoviesViewModel()
+            viewController.viewModel = viewModel
         }
     }
     
@@ -132,11 +133,13 @@ extension AccountViewController: SignInViewControllerDelegate {
 
 extension AccountViewController: ProfileViewControllerDelegate {
     
-    func profileViewController(_ profileViewController: ProfileTableViewController, didTapCollection collection: ProfileOption) {
+    func profileViewController(_ profileViewController: ProfileTableViewController, didTapCollection collection: ProfileCollectionOption) {
+        let segueIdentifier = SegueIdentifier.collectionList.rawValue
+        
         switch collection {
         case .favorites:
-            performSegue(withIdentifier: SegueIdentifier.favoriteMovies.rawValue,
-                         sender: nil)
+            performSegue(withIdentifier: segueIdentifier,
+                         sender: viewModel.buildFavoriteCollectionListViewModel())
         case .watchlist:
             break
         }
@@ -166,7 +169,7 @@ extension AccountViewController {
     
     enum SegueIdentifier: String {
         case authPermission = "AuthPermissionSegue"
-        case favoriteMovies = "FavoriteMoviesSegue"
+        case collectionList = "ProfileCollectionListSegue"
     }
     
 }

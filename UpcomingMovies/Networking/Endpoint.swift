@@ -13,6 +13,7 @@ protocol Endpoint {
     var base: String { get }
     var path: String { get }
     var params: [String: Any]? { get }
+    var parameterEncoding: ParameterEnconding { get }
     var method: HTTPMethod { get }
     
 }
@@ -27,11 +28,23 @@ extension Endpoint {
         var components = URLComponents(string: base)!
         components.path = path
         var queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
-        if let params = params, method == .get {
-            queryItems.append(contentsOf: params.map {
-                return URLQueryItem(name: "\($0)", value: "\($1)")
-            })
+        
+        switch parameterEncoding {
+        case .defaultEncoding:
+            if let params = params, method == .get {
+                queryItems.append(contentsOf: params.map {
+                    return URLQueryItem(name: "\($0)", value: "\($1)")
+                })
+            }
+        case .compositeEncoding, .compositeJSONEncoding:
+            if let params = params,
+                let queryParams = params["query"] as? [String: Any] {
+                queryItems.append(contentsOf: queryParams.map {
+                    return URLQueryItem(name: "\($0)", value: "\($1)")
+                })
+            }
         }
+        
         components.queryItems = queryItems
         return components
     }
@@ -40,9 +53,26 @@ extension Endpoint {
         let url = urlComponents.url!
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        if let params = params, method == .post {
-            request.httpBody = params.percentEscaped().data(using: .utf8)
+        
+        switch parameterEncoding {
+        case .defaultEncoding:
+            if let params = params, method == .post {
+                request.httpBody = params.percentEscaped().data(using: .utf8)
+            }
+        case .compositeEncoding:
+            if let params = params,
+                let bodyParams = params["body"] as? [String: Any] {
+                request.httpBody = bodyParams.percentEscaped().data(using: .utf8)
+            }
+        case .compositeJSONEncoding:
+            if let params = params,
+                let bodyParams = params["body"] as? [String: Any] {
+                request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+                let jsonData = try? JSONSerialization.data(withJSONObject: bodyParams)
+                request.httpBody = jsonData
+            }
         }
+        
         return request
     }
     
@@ -51,4 +81,10 @@ extension Endpoint {
 enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
+}
+
+enum ParameterEnconding {
+    case defaultEncoding
+    case compositeEncoding
+    case compositeJSONEncoding
 }

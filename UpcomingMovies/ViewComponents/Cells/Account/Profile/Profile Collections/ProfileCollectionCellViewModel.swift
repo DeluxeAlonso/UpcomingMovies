@@ -12,8 +12,8 @@ final class ProfileCollectionCellViewModel {
     
     let title: String?
     
-    init(_ profileSetting: ProfileOption) {
-        self.title = profileSetting.title
+    init(_ profileCollectionOption: ProfileCollectionOption) {
+        self.title = profileCollectionOption.title
     }
     
 }

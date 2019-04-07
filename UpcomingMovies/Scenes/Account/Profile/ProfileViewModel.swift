@@ -21,25 +21,22 @@ final class ProfileViewModel {
         return ProfileAccountInforCellViewModel(userAccount: userAccount)
     }
     
-    private let options: [ProfileOption]
+    private let collectionOptions: [ProfileCollectionOption]
     var collectionOptionsCells: [ProfileCollectionCellViewModel] {
-        let collectionOptions = options.filter { $0.type == .collection }
         return collectionOptions.map { ProfileCollectionCellViewModel($0) }
     }
     
     // MARK: - Initializers
     
-    init(_ managedObjectContext: NSManagedObjectContext, userAccount: User?, options: [ProfileOption]) {
+    init(_ managedObjectContext: NSManagedObjectContext, userAccount: User?, options: ProfileOptions) {
         self.managedObjectContext = managedObjectContext
         self.userAccount = userAccount
-        self.options = options
+        self.collectionOptions = options.collectionOptions
     }
     
     // MARK: - Public
     
-    func collectionOption(at index: Int) -> ProfileOption {
-        let collectionOptions = options.filter { $0.type == .collection }
-        guard index < collectionOptions.count else { fatalError() }
+    func collectionOption(at index: Int) -> ProfileCollectionOption {
         return collectionOptions[index]
     }
     

@@ -87,10 +87,21 @@ class MovieClient: APIClient {
     
     // MARK: - Movie credits
     
-    func getMovieCredits( with movieId: Int, completion: @escaping (Result<CreditResult?, APIError>) -> Void) {
+    func getMovieCredits(with movieId: Int, completion: @escaping (Result<CreditResult?, APIError>) -> Void) {
         fetch(with: MovieProvider.getCredits(id: movieId).request, decode: { json -> CreditResult? in
             guard let reviewResult = json as? CreditResult else { return nil }
             return reviewResult
+        }, completion: completion)
+    }
+    
+    // MARK: - Movie Account State
+    
+    func getMovieAccountState(with movieId: Int, sessionId: String,
+                              completion: @escaping (Result<MovieAccountStateResult?, APIError>) -> Void) {
+        fetch(with: MovieProvider.getAccountState(id: movieId, sessionId: sessionId).request,
+              decode: { json -> MovieAccountStateResult? in
+            guard let accountStateResult = json as? MovieAccountStateResult else { return nil }
+            return accountStateResult
         }, completion: completion)
     }
     

@@ -19,6 +19,7 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     @IBOutlet weak var voteAverageView: VoteAverageView!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var favoriteView: UIView!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var overviewLabel: UILabel!
     
@@ -31,10 +32,22 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     }
     
     // MARK: - Lifecycle
+    
+    deinit {
+        print("MovieDetailViewController")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let viewModel = viewModel, !viewModel.startLoading.value else {
+            return
+        }
+        viewModel.checkIfUserIsAuthenticated()
     }
 
     // MARK: - Private
@@ -87,9 +100,9 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     }
     
     private func setupLoaderBindable() {
-        viewModel?.startLoading = { [weak self] start in
+        viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
-        }
+        })
         viewModel?.updateMovieDetail = { [weak self] in
             self?.setupViewBindables()
         }
@@ -104,13 +117,12 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     private func setupFavoriteBindables() {
         viewModel?.isFavorite.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
-            if isFavorite {
-                strongSelf.favoriteButton.setImage(#imageLiteral(resourceName: "FavoriteOn"), for: .normal)
-            } else {
-                strongSelf.favoriteButton.setImage(#imageLiteral(resourceName: "FavoriteOff"), for: .normal)
+            strongSelf.favoriteView.isHidden = isFavorite == nil
+            if let isFavorite = isFavorite {
+                let favoriteIcon = isFavorite ? #imageLiteral(resourceName: "FavoriteOn") : #imageLiteral(resourceName: "FavoriteOff")
+                strongSelf.favoriteButton.setImage(favoriteIcon, for: .normal)
             }
         })
-        viewModel?.checkIfIsFavorite()
     }
     
     // MARK: - Navigation

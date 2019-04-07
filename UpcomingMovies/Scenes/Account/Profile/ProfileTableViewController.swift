@@ -10,7 +10,7 @@ import UIKit
 
 protocol ProfileViewControllerDelegate: class {
 
-    func profileViewController(_ profileViewController: ProfileTableViewController, didTapCollection collection: ProfileOption)
+    func profileViewController(_ profileViewController: ProfileTableViewController, didTapCollection collection: ProfileCollectionOption)
     
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool)
     
