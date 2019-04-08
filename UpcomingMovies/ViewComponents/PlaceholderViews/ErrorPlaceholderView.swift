@@ -76,7 +76,7 @@ class ErrorPlaceholderView: UIView, NibLoadable {
         retryButton.addTarget(self, action: #selector(retryAction), for: .touchUpInside)
     }
     
-    fileprivate func show(animated: Bool = true, completion: ((Bool) -> Swift.Void)? = nil) {
+    private func show(animated: Bool = true, completion: ((Bool) -> Swift.Void)? = nil) {
         self.superview?.bringSubviewToFront(self)
         if animated {
             UIView.animate(withDuration: self.animationDuration, animations: { self.alpha = 1 }, completion: completion)
@@ -88,7 +88,7 @@ class ErrorPlaceholderView: UIView, NibLoadable {
     
     // MARK: - Selectors
     
-    @objc fileprivate func retryAction() {
+    @objc private func retryAction() {
         playAnimation()
         retry?()
     }
@@ -111,7 +111,7 @@ extension ErrorPlaceholderView: ErrorAnimatable {
 
 // MARK: - ErrorDisplayable
 
-extension ErrorPlaceholderView: ErrorDisplayable {
+extension ErrorPlaceholderView {
     
     static func show<T: ErrorPlaceholderView>(
         fromViewController viewController: UIViewController,

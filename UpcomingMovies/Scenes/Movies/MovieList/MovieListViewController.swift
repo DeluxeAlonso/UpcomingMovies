@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieListViewController: UIViewController, Retryable, SegueHandler, LoaderDisplayable {
+class MovieListViewController: UIViewController, FullscreenDisplayable, SegueHandler, LoaderDisplayable {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -82,10 +82,12 @@ class MovieListViewController: UIViewController, Retryable, SegueHandler, Loader
         switch state {
         case .paging:
             tableView.tableFooterView = LoadingFooterView()
-            hideErrorView()
-        case .populated, .empty, .initial:
+            hideFullscreenDisplayedView()
+        case .populated, .initial:
             tableView.tableFooterView = UIView()
-            hideErrorView()
+            hideFullscreenDisplayedView()
+        case .empty:
+            presentFullScreenEmptyView(with: "No movies to show")
         case .error(let error):
             presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
                                        errorHandler: { [weak self] in

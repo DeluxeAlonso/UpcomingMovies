@@ -9,7 +9,7 @@
 import UIKit
 import CollectionViewSlantedLayout
 
-class ProfileCollectionListViewController: UIViewController, Retryable, SegueHandler, LoaderDisplayable {
+class ProfileCollectionListViewController: UIViewController, FullscreenDisplayable, SegueHandler, LoaderDisplayable {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -85,9 +85,11 @@ class ProfileCollectionListViewController: UIViewController, Retryable, SegueHan
      */
     private func configureView(withState state: SimpleViewState<Movie>) {
         switch state {
-        case .populated, .paging, .initial, .empty:
+        case .populated, .paging, .initial:
             collectionView.backgroundView = UIView(frame: .zero)
-            hideErrorView()
+            hideFullscreenDisplayedView()
+        case .empty:
+            presentFullScreenEmptyView(with: "No movies to show")
         case .error(let error):
             presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
                                        errorHandler: { [weak self] in

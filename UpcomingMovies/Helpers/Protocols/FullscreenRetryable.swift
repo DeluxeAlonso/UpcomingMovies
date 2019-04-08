@@ -1,5 +1,5 @@
 //
-//  Retryable.swift
+//  FullscreenRetryable.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 11/7/18.
@@ -12,9 +12,9 @@ private struct AssociatedKeys {
     static var errorView: ErrorPlaceholderView = ErrorPlaceholderView()
 }
 
-protocol Retryable: class { }
+protocol FullscreenRetryable: class { }
 
-extension Retryable where Self: UIViewController {
+extension FullscreenRetryable where Self: UIViewController {
     
     private(set) var errorView: ErrorPlaceholderView {
         get {
@@ -26,10 +26,6 @@ extension Retryable where Self: UIViewController {
         set(newValue) {
             objc_setAssociatedObject(self, &AssociatedKeys.errorView, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
-    }
-    
-    var isErrorViewPresented: Bool {
-        return errorView.isPresented
     }
     
     func presentFullScreenErrorView(withErrorMessage errorMessage: String?, errorHandler: @escaping () -> Void) {

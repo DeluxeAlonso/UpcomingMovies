@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieReviewsViewController: UIViewController, Retryable, LoaderDisplayable {
+class MovieReviewsViewController: UIViewController, FullscreenDisplayable, LoaderDisplayable {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -62,10 +62,9 @@ class MovieReviewsViewController: UIViewController, Retryable, LoaderDisplayable
         switch state {
         case .populated, .paging, .initial:
             tableView.tableFooterView = UIView()
-            hideErrorView()
+            hideFullscreenDisplayedView()
         case .empty:
-            tableView.tableFooterView = CustomFooterView(message: "There are no reviews to show right now.")
-            hideErrorView()
+            presentFullScreenEmptyView(with: "There are no reviews to show right now.")
         case .error(let error):
             presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
                                        errorHandler: { [weak self] in
