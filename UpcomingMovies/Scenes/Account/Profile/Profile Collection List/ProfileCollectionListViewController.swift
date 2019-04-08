@@ -41,15 +41,8 @@ class ProfileCollectionListViewController: UIViewController, Retryable, SegueHan
     // MARK: - Private
     
     private func setupUI() {
-        title = Constants.Title
-        setupNavigationBar()
         setupCollectionView()
         setupRefreshControl()
-        reloadCollectionView()
-    }
-    
-    private func setupNavigationBar() {
-        navigationItem.title = Constants.NavigationItemTitle
     }
     
     private func setupCollectionView() {
@@ -106,6 +99,7 @@ class ProfileCollectionListViewController: UIViewController, Retryable, SegueHan
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
+        title = viewModel?.title
         reloadCollectionView()
         viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
@@ -153,19 +147,6 @@ extension ProfileCollectionListViewController {
     
     enum SegueIdentifier: String {
         case movieDetail = "MovieDetailSegue"
-    }
-    
-}
-
-// MARK: - Constants
-
-extension ProfileCollectionListViewController {
-    
-    struct Constants {
-        
-        static let Title = NSLocalizedString("favoritesTabBarTitle", comment: "")
-        static let NavigationItemTitle = NSLocalizedString("favoritesTitle", comment: "")
-        
     }
     
 }

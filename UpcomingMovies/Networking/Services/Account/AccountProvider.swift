@@ -11,6 +11,7 @@ import Foundation
 enum AccountProvider {
     
     case getFavoriteList(page: Int, sessionId: String, accountId: Int)
+    case getWatchlist(page: Int, sessionId: String, accountId: Int)
     case markAsFavorite(sessionId: String, accountId: Int, movieId: Int, favorite: Bool)
     case getAccountDetail(sessionId: String)
     
@@ -30,6 +31,8 @@ extension AccountProvider: Endpoint {
             return "/3/account"
         case .getFavoriteList( _, _, let accountId):
             return "/3/account/\(accountId)/favorite/movies"
+        case .getWatchlist( _, _, let accountId):
+            return "/3/account/\(accountId)/watchlist/movies"
         case .markAsFavorite( _, let accountId, _, _):
             return "/3/account/\(accountId)/favorite"
         }
@@ -40,6 +43,8 @@ extension AccountProvider: Endpoint {
         case .getAccountDetail(let sessionId):
             return ["session_id": sessionId]
         case .getFavoriteList(let page, let sessionId, _):
+            return ["session_id": sessionId, "page": page]
+        case .getWatchlist(let page, let sessionId, _):
             return ["session_id": sessionId, "page": page]
         case .markAsFavorite(let sessionId, _, let movieId, let favorite):
             let queryParams: [String: Any] = ["session_id": sessionId]
@@ -52,7 +57,7 @@ extension AccountProvider: Endpoint {
     
     var parameterEncoding: ParameterEnconding {
         switch self {
-        case .getAccountDetail, .getFavoriteList:
+        case .getAccountDetail, .getFavoriteList, .getWatchlist:
             return .defaultEncoding
         case .markAsFavorite:
             return .compositeJSONEncoding
@@ -61,7 +66,7 @@ extension AccountProvider: Endpoint {
     
     var method: HTTPMethod {
         switch self {
-        case .getAccountDetail, .getFavoriteList:
+        case .getAccountDetail, .getFavoriteList, .getWatchlist:
             return .get
         case .markAsFavorite:
             return .post

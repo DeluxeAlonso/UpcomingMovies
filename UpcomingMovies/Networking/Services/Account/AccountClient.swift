@@ -43,7 +43,9 @@ class AccountClient: APIClient {
                                                    sessionId: sessionId,
                                                    accountId: accountId).request
         case .watchlist:
-            fatalError("Watchlist not yet implemented")
+            return AccountProvider.getWatchlist(page: page,
+                                                sessionId: sessionId,
+                                                accountId: accountId).request
         }
     }
     

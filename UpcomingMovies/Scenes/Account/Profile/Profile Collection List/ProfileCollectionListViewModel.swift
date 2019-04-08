@@ -27,11 +27,14 @@ final class ProfileCollectionListViewModel {
         return movies.compactMap { FavoriteMovieCellViewModel($0) }
     }
     
+    let title: String?
+    
     // MARK: - Initializers
     
     init(managedObjectContext: NSManagedObjectContext, collectionOption: ProfileCollectionOption) {
         self.managedObjectContext = managedObjectContext
         self.collectionOption = collectionOption
+        self.title = collectionOption.title
     }
     
     // MARK: - Public
