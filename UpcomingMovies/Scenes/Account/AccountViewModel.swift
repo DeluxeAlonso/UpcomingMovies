@@ -79,9 +79,10 @@ final class AccountViewModel {
                                      configurationOptions: [])
         return ProfileViewModel(managedObjectContext, userAccount: currentUser, options: options)
     }
-    
-    func buildFavoriteCollectionListViewModel() -> ProfileCollectionListViewModel? {
-        return ProfileCollectionListViewModel(managedObjectContext: managedObjectContext, collectionOption: .favorites)
+
+    func buildCollectionListViewModel(_ option: ProfileCollectionOption) -> ProfileCollectionListViewModel? {
+        return ProfileCollectionListViewModel(managedObjectContext: managedObjectContext,
+                                              collectionOption: option)
     }
     
 }

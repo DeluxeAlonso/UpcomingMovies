@@ -135,14 +135,8 @@ extension AccountViewController: ProfileViewControllerDelegate {
     
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapCollection collection: ProfileCollectionOption) {
         let segueIdentifier = SegueIdentifier.collectionList.rawValue
-        
-        switch collection {
-        case .favorites:
-            performSegue(withIdentifier: segueIdentifier,
-                         sender: viewModel.buildFavoriteCollectionListViewModel())
-        case .watchlist:
-            break
-        }
+        performSegue(withIdentifier: segueIdentifier,
+                     sender: viewModel.buildCollectionListViewModel(collection))
     }
     
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool) {
