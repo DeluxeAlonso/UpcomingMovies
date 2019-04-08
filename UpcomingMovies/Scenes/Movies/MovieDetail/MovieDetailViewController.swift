@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class MovieDetailViewController: UIViewController, Retryable, Transitionable, SegueHandler, LoaderDisplayable {
+class MovieDetailViewController: UIViewController, FullscreenRetryable, Transitionable, SegueHandler, LoaderDisplayable {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backdropImageView: UIImageView!

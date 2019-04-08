@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieCreditsViewController: UIViewController, Retryable, LoaderDisplayable {
+class MovieCreditsViewController: UIViewController, FullscreenDisplayable, LoaderDisplayable {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -44,9 +44,11 @@ class MovieCreditsViewController: UIViewController, Retryable, LoaderDisplayable
     
     private func configureView(with state: MovieCreditsViewModel.ViewState) {
         switch state {
-        case .populated, .empty, .initial:
+        case .populated, .initial:
             collectionView.backgroundView = nil
-            hideErrorView()
+            hideFullscreenDisplayedView()
+        case .empty:
+            presentFullScreenEmptyView(with: "No credits to show")
         case .error(let error):
             presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
                                        errorHandler: { [weak self] in
