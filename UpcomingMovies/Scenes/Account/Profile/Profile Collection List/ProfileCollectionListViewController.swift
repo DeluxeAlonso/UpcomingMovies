@@ -9,7 +9,7 @@
 import UIKit
 import CollectionViewSlantedLayout
 
-class ProfileCollectionListViewController: UIViewController, FullscreenDisplayable, SegueHandler, LoaderDisplayable {
+class ProfileCollectionListViewController: UIViewController, Displayable, SegueHandler, LoaderDisplayable {
     
     @IBOutlet weak var collectionView: UICollectionView!
     

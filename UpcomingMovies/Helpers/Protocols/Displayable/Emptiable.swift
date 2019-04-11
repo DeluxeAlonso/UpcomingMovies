@@ -1,5 +1,5 @@
 //
-//  FullscreenEmptiable.swift
+//  Emptiable.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 4/7/19.
@@ -12,9 +12,9 @@ private struct AssociatedKeys {
     static var emptyView: EmptyPlaceholderView = EmptyPlaceholderView()
 }
 
-protocol FullscreenEmptiable: class { }
+protocol Emptiable: class { }
 
-extension FullscreenEmptiable where Self: UIViewController {
+extension Emptiable where Self: UIViewController {
     
     private(set) var emptyView: EmptyPlaceholderView {
         get {

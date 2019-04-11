@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieCreditsViewController: UIViewController, FullscreenDisplayable, LoaderDisplayable {
+class MovieCreditsViewController: UIViewController, Displayable, LoaderDisplayable {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
