@@ -1,5 +1,5 @@
 //
-//  FullscreenDisplayable.swift
+//  Displayable.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 4/7/19.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-protocol FullscreenDisplayable: FullscreenRetryable, FullscreenEmptiable {}
+protocol Displayable: Retryable, Emptiable {}
 
-extension FullscreenDisplayable where Self: UIViewController {
+extension Displayable where Self: UIViewController {
     
     func hideFullscreenDisplayedView() {
         hideEmptyView()

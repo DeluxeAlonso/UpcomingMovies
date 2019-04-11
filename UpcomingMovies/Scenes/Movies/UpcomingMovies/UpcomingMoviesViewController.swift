@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpcomingMoviesViewController: UIViewController, FullscreenDisplayable, SegueHandler, LoaderDisplayable {
+class UpcomingMoviesViewController: UIViewController, Displayable, SegueHandler, LoaderDisplayable {
 
     @IBOutlet weak var toggleGridBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!

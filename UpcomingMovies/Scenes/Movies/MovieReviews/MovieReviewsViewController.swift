@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieReviewsViewController: UIViewController, FullscreenDisplayable, LoaderDisplayable {
+class MovieReviewsViewController: UIViewController, Displayable, LoaderDisplayable {
     
     @IBOutlet weak var tableView: UITableView!
     
