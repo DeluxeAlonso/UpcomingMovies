@@ -54,20 +54,18 @@ extension Endpoint {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         
+        guard let params = params, method != .get else { return request }
+        
         switch parameterEncoding {
         case .defaultEncoding:
-            if let params = params, method == .post {
-                request.httpBody = params.percentEscaped().data(using: .utf8)
-            }
+            request.httpBody = params.percentEscaped().data(using: .utf8)
         case .compositeEncoding:
-            if let params = params,
-                let bodyParams = params["body"] as? [String: Any] {
+            if let bodyParams = params["body"] as? [String: Any] {
                 request.httpBody = bodyParams.percentEscaped().data(using: .utf8)
             }
         case .compositeJSONEncoding:
-            if let params = params,
-                let bodyParams = params["body"] as? [String: Any] {
-                request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            if let bodyParams = params["body"] as? [String: Any] {
+                request.setJSONContentType()
                 let jsonData = try? JSONSerialization.data(withJSONObject: bodyParams)
                 request.httpBody = jsonData
             }
