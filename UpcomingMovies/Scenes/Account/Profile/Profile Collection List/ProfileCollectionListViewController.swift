@@ -91,7 +91,7 @@ class ProfileCollectionListViewController: UIViewController, Displayable, SegueH
         case .empty:
             presentEmptyView(with: "No movies to show")
         case .error(let error):
-            presentErrorView(with: error.localizedDescription,
+            presentErrorView(with: error.description,
                                        errorHandler: { [weak self] in
                                         self?.viewModel?.getCollectionList()
             })

@@ -66,7 +66,7 @@ class MovieReviewsViewController: UIViewController, Displayable, Loadable {
         case .empty:
             presentEmptyView(with: "There are no reviews to show right now.")
         case .error(let error):
-            presentErrorView(with: error.localizedDescription,
+            presentErrorView(with: error.description,
                                        errorHandler: { [weak self] in
                                         self?.viewModel?.getMovieReviews()
             })

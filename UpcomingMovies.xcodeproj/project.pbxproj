@@ -132,6 +132,7 @@
 		E25F9CEE225AF6D80069A6A1 /* Emptiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F9CED225AF6D80069A6A1 /* Emptiable.swift */; };
 		E25F9CF2225B090C0069A6A1 /* Displayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F9CF1225B090C0069A6A1 /* Displayable.swift */; };
 		E25FA2F02265A69C00FB5E71 /* URLRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25FA2EF2265A69C00FB5E71 /* URLRequest+Extensions.swift */; };
+		E25FA2F22265A79200FB5E71 /* Descriptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25FA2F12265A79200FB5E71 /* Descriptable.swift */; };
 		E26011642193823C00E53095 /* TableViewCellAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26011632193823C00E53095 /* TableViewCellAnimator.swift */; };
 		E26011672193870800E53095 /* ErrorPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26011662193870800E53095 /* ErrorPlaceholderView.swift */; };
 		E26011692193876500E53095 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26011682193876500E53095 /* NibLoadable.swift */; };
@@ -343,6 +344,7 @@
 		E25F9CED225AF6D80069A6A1 /* Emptiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emptiable.swift; sourceTree = "<group>"; };
 		E25F9CF1225B090C0069A6A1 /* Displayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Displayable.swift; sourceTree = "<group>"; };
 		E25FA2EF2265A69C00FB5E71 /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
+		E25FA2F12265A79200FB5E71 /* Descriptable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Descriptable.swift; sourceTree = "<group>"; };
 		E26011632193823C00E53095 /* TableViewCellAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellAnimator.swift; sourceTree = "<group>"; };
 		E26011662193870800E53095 /* ErrorPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPlaceholderView.swift; sourceTree = "<group>"; };
 		E26011682193876500E53095 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
@@ -949,6 +951,7 @@
 				E263808022127D390038AD00 /* Paginable.swift */,
 				E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */,
 				E2940804220A188000A74F68 /* TabBarScrollable.swift */,
+				E25FA2F12265A79200FB5E71 /* Descriptable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1569,6 +1572,7 @@
 				E234EEC42251B7D3009147CE /* User.swift in Sources */,
 				E21F37AA21941EC000D6BFB6 /* GenreProvider.swift in Sources */,
 				E222B95F21FA2759008BA816 /* CollectionViewCellAnimator.swift in Sources */,
+				E25FA2F22265A79200FB5E71 /* Descriptable.swift in Sources */,
 				E263807F22127ACC0038AD00 /* ReviewResult.swift in Sources */,
 				E221F761222AF15B008DFF87 /* AppShortcutItem.swift in Sources */,
 				E2EB92452213D9700067F011 /* Dequeuable.swift in Sources */,
