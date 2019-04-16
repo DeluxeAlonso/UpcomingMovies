@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieListViewController: UIViewController, Displayable, SegueHandler, LoaderDisplayable {
+class MovieListViewController: UIViewController, Displayable, SegueHandler, Loadable {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -79,17 +79,16 @@ class MovieListViewController: UIViewController, Displayable, SegueHandler, Load
      * Configures the tableview footer given the current state of the view.
      */
     private func configureView(withState state: SimpleViewState<Movie>) {
+        hideDisplayedView()
         switch state {
         case .paging:
             tableView.tableFooterView = LoadingFooterView()
-            hideFullscreenDisplayedView()
         case .populated, .initial:
             tableView.tableFooterView = UIView()
-            hideFullscreenDisplayedView()
         case .empty:
-            presentFullScreenEmptyView(with: "No movies to show")
+            presentEmptyView(with: "No movies to show")
         case .error(let error):
-            presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
+            presentErrorView(with: error.description,
                                        errorHandler: { [weak self] in
                                         self?.viewModel?.getMovies()
             })

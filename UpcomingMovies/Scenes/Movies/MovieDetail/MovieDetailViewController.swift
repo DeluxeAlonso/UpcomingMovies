@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class MovieDetailViewController: UIViewController, Retryable, Transitionable, SegueHandler, LoaderDisplayable {
+class MovieDetailViewController: UIViewController, Retryable, Transitionable, SegueHandler, Loadable {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backdropImageView: UIImageView!
@@ -66,7 +66,7 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     }
     
     private func showErrorView(error: Error) {
-        presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
+        presentErrorView(with: error.localizedDescription,
                                    errorHandler: { [weak self] in
             self?.viewModel?.getMovieDetail()
         })

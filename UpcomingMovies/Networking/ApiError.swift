@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum APIError: Error {
+enum APIError: Error, ErrorDescriptable {
     
     case notAuthenticated
     case notFound

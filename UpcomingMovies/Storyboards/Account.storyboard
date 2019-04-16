@@ -95,7 +95,7 @@
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLN-uI-D6w">
                                         <rect key="frame" x="0.0" y="170" width="327" height="52"/>
-                                        <color key="backgroundColor" red="0.062745098039215685" green="0.50588235294117645" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.14901960784313725" green="0.57647058823529407" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="20" maxY="15"/>
                                         <state key="normal" title="Sign in with TheMovieDB">
@@ -271,6 +271,6 @@
         <image name="Back" width="24" height="24"/>
         <image name="Forward" width="24" height="24"/>
         <image name="Help" width="33" height="33"/>
-        <image name="LoginLogo" width="86" height="100"/>
+        <image name="LoginLogo" width="100" height="100"/>
     </resources>
 </document>

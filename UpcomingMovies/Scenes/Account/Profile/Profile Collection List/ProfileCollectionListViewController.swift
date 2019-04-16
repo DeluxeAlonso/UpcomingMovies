@@ -9,7 +9,7 @@
 import UIKit
 import CollectionViewSlantedLayout
 
-class ProfileCollectionListViewController: UIViewController, Displayable, SegueHandler, LoaderDisplayable {
+class ProfileCollectionListViewController: UIViewController, Displayable, SegueHandler, Loadable {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -84,14 +84,14 @@ class ProfileCollectionListViewController: UIViewController, Displayable, SegueH
      * Configures the tableview footer given the current state of the view.
      */
     private func configureView(withState state: SimpleViewState<Movie>) {
+        hideDisplayedView()
         switch state {
         case .populated, .paging, .initial:
             collectionView.backgroundView = UIView(frame: .zero)
-            hideFullscreenDisplayedView()
         case .empty:
-            presentFullScreenEmptyView(with: "No movies to show")
+            presentEmptyView(with: "No movies to show")
         case .error(let error):
-            presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
+            presentErrorView(with: error.description,
                                        errorHandler: { [weak self] in
                                         self?.viewModel?.getCollectionList()
             })
