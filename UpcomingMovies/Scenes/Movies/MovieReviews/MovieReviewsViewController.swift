@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieReviewsViewController: UIViewController, Displayable, LoaderDisplayable {
+class MovieReviewsViewController: UIViewController, Displayable, Loadable {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -59,14 +59,14 @@ class MovieReviewsViewController: UIViewController, Displayable, LoaderDisplayab
      * Configures the tableview footer given the current state of the view.
      */
     private func configureView(withState state: SimpleViewState<Review>) {
+        hideDisplayedView()
         switch state {
         case .populated, .paging, .initial:
             tableView.tableFooterView = UIView()
-            hideFullscreenDisplayedView()
         case .empty:
-            presentFullScreenEmptyView(with: "There are no reviews to show right now.")
+            presentEmptyView(with: "There are no reviews to show right now.")
         case .error(let error):
-            presentFullScreenErrorView(withErrorMessage: error.localizedDescription,
+            presentErrorView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
                                         self?.viewModel?.getMovieReviews()
             })

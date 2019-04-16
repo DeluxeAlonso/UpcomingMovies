@@ -28,7 +28,7 @@ extension Retryable where Self: UIViewController {
         }
     }
     
-    func presentFullScreenErrorView(withErrorMessage errorMessage: String?, errorHandler: @escaping () -> Void) {
+    func presentErrorView(with errorMessage: String?, errorHandler: @escaping () -> Void) {
         let isPresented = errorView.isPresented
         if isPresented {
             errorView.stopAnimation()

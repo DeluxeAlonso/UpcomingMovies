@@ -12,7 +12,7 @@ protocol Displayable: Retryable, Emptiable {}
 
 extension Displayable where Self: UIViewController {
     
-    func hideFullscreenDisplayedView() {
+    func hideDisplayedView() {
         hideEmptyView()
         hideErrorView()
     }

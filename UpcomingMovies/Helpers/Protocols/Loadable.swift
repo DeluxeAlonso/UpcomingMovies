@@ -12,7 +12,7 @@ private struct AssociatedKeys {
     static var isPresented: Bool = false
 }
 
-protocol LoaderDisplayable: class {
+protocol Loadable: class {
     
     associatedtype ViewType: UIView
     
@@ -20,7 +20,7 @@ protocol LoaderDisplayable: class {
 
 }
 
-extension LoaderDisplayable where Self: UIViewController {
+extension Loadable where Self: UIViewController {
     
     private(set) var isPresented: Bool {
         get {

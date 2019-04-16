@@ -28,7 +28,7 @@ extension Emptiable where Self: UIViewController {
         }
     }
     
-    func presentFullScreenEmptyView(with message: String?) {
+    func presentEmptyView(with message: String?) {
         let isPresented = emptyView.isPresented
         if !isPresented {
             emptyView = EmptyPlaceholderView.show(fromViewController: self,
