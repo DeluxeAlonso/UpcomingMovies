@@ -2,9 +2,9 @@
 
 [![License](https://img.shields.io/cocoapods/l/DLAutoSlidePageViewController.svg?style=flat)]()
 [![Platform](https://img.shields.io/cocoapods/p/DLAutoSlidePageViewController.svg?style=flat)]()
-[![Swift 4](https://img.shields.io/badge/Swift-4-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift 5](https://img.shields.io/badge/Swift-5-orange.svg?style=flat)](https://developer.apple.com/swift/)
 
-Movies app written in Swift 4 using the Movie Database API.
+Movies app written in Swift 5 using the Movie Database API.
 
 # Screenshots
 
