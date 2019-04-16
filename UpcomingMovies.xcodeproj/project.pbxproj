@@ -52,7 +52,6 @@
 		E22116B72191582C0039F8C9 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22116B62191582C0039F8C9 /* Movie.swift */; };
 		E22116B921915F5A0039F8C9 /* MovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22116B821915F5A0039F8C9 /* MovieResult.swift */; };
 		E22116BC219160260039F8C9 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22116BB219160260039F8C9 /* ApiClient.swift */; };
-		E22116BE2191604A0039F8C9 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22116BD2191604A0039F8C9 /* Result.swift */; };
 		E22116C02191605C0039F8C9 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22116BF2191605C0039F8C9 /* Endpoint.swift */; };
 		E22116C2219160D90039F8C9 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22116C1219160D90039F8C9 /* ApiError.swift */; };
 		E22116C5219164430039F8C9 /* MovieClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22116C4219164430039F8C9 /* MovieClient.swift */; };
@@ -265,7 +264,6 @@
 		E22116B62191582C0039F8C9 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		E22116B821915F5A0039F8C9 /* MovieResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResult.swift; sourceTree = "<group>"; };
 		E22116BB219160260039F8C9 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
-		E22116BD2191604A0039F8C9 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		E22116BF2191605C0039F8C9 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		E22116C1219160D90039F8C9 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		E22116C4219164430039F8C9 /* MovieClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieClient.swift; sourceTree = "<group>"; };
@@ -707,7 +705,6 @@
 				E22116BB219160260039F8C9 /* ApiClient.swift */,
 				E22116C1219160D90039F8C9 /* ApiError.swift */,
 				E22116BF2191605C0039F8C9 /* Endpoint.swift */,
-				E22116BD2191604A0039F8C9 /* Result.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1507,7 +1504,6 @@
 				E25F9CEE225AF6D80069A6A1 /* Emptiable.swift in Sources */,
 				E26F03BB21E462E2009859DF /* NSManagedObjectContext+Extensions.swift in Sources */,
 				E22447722234AFA000A59FEF /* VerticalFlowLayout.swift in Sources */,
-				E22116BE2191604A0039F8C9 /* Result.swift in Sources */,
 				E22447782234BF0300A59FEF /* UpcomingMovieCollectionViewCell.swift in Sources */,
 				E241FE04224345FE00144FD3 /* RequestTokenResult.swift in Sources */,
 				E26011692193876500E53095 /* NibLoadable.swift in Sources */,
