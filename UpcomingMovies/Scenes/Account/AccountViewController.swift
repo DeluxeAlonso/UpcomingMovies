@@ -45,10 +45,10 @@ class AccountViewController: UIViewController, SegueHandler {
     
     private func setupContainerView() {
         if AuthenticationManager.shared.isUserSignedIn() {
-            navigationController?.navigationBar.isHidden = false
+            navigationController?.setNavigationBarHidden(false, animated: false)
             add(asChildViewController: profileViewController)
         } else {
-            navigationController?.navigationBar.isHidden = true
+            navigationController?.setNavigationBarHidden(true, animated: false)
             add(asChildViewController: signInViewController)
         }
     }
