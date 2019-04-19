@@ -49,6 +49,26 @@ class AccountClient: APIClient {
         }
     }
     
+    // MARK: - Created Lists
+    
+    func getCreatedLists(page: Int, sessionId: String, accountId: Int, completion: @escaping (Result<ListResult?, APIError>) -> Void) {
+        let request = AccountProvider.getCreatedLists(page: page,
+                                                      sessionId: sessionId,
+                                                      accountId: accountId).request
+        fetch(with: request, decode: { json -> ListResult? in
+            guard let listResult = json as? ListResult else { return  nil }
+            return listResult
+        }, completion: completion)
+    }
+    
+    func getCreatedListDetail(listId: Int, completion: @escaping (Result<List?, APIError>) -> Void) {
+        let request = AccountProvider.getCreatedListDetail(id: listId).request
+        fetch(with: request, decode: { json -> List? in
+            guard let list = json as? List else { return  nil }
+            return list
+        }, completion: completion)
+    }
+    
     // MARK: - Account Detail
     
     func getAccountDetail(_ context: NSManagedObjectContext,
