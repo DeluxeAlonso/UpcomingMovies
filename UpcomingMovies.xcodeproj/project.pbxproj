@@ -40,6 +40,8 @@
 		E21F37AC21941ECA00D6BFB6 /* GenreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37AB21941ECA00D6BFB6 /* GenreClient.swift */; };
 		E21F37B12194241B00D6BFB6 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37B02194241B00D6BFB6 /* UIViewController+Extensions.swift */; };
 		E21F93BB2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F93BA2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift */; };
+		E21F93BD2269AD24009666B1 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F93BC2269AD24009666B1 /* List.swift */; };
+		E21F93BF2269ADCA009666B1 /* ListResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F93BE2269ADCA009666B1 /* ListResult.swift */; };
 		E220B1E2220BD5B900A5D054 /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E220B1E1220BD5B900A5D054 /* MoviesViewModel.swift */; };
 		E221168021914E4B0039F8C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221167F21914E4B0039F8C9 /* AppDelegate.swift */; };
 		E221168721914E4B0039F8C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221168521914E4B0039F8C9 /* Main.storyboard */; };
@@ -249,6 +251,8 @@
 		E21F37AB21941ECA00D6BFB6 /* GenreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreClient.swift; sourceTree = "<group>"; };
 		E21F37B02194241B00D6BFB6 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		E21F93BA2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSignOutTableViewCell.swift; sourceTree = "<group>"; };
+		E21F93BC2269AD24009666B1 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		E21F93BE2269ADCA009666B1 /* ListResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListResult.swift; sourceTree = "<group>"; };
 		E220B1E1220BD5B900A5D054 /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		E221167C21914E4B0039F8C9 /* UpcomingMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UpcomingMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E221167F21914E4B0039F8C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -703,6 +707,7 @@
 				E2251B162214F0D300EE7A51 /* Cast.swift */,
 				E2251B182214F19B00EE7A51 /* Crew.swift */,
 				E234EEC32251B7D3009147CE /* User.swift */,
+				E21F93BC2269AD24009666B1 /* List.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1175,6 +1180,7 @@
 				E263807E22127ACC0038AD00 /* ReviewResult.swift */,
 				E2E4452C22474FCA009ABDEA /* SessionResult.swift */,
 				E2E960192259A3EE006A41D3 /* MarkAsFavoriteResult.swift */,
+				E21F93BE2269ADCA009666B1 /* ListResult.swift */,
 			);
 			path = "Feed Results";
 			sourceTree = "<group>";
@@ -1478,6 +1484,7 @@
 				E2143DB622571AD5003E939F /* ProfileOptions.swift in Sources */,
 				E223B0802247E7F10050277B /* ProfileViewModel.swift in Sources */,
 				E221F769222B9FA3008DFF87 /* ProfileCollectionListViewController.swift in Sources */,
+				E21F93BD2269AD24009666B1 /* List.swift in Sources */,
 				E222EA76220C724B00664C7F /* DefaultRefreshControl.swift in Sources */,
 				E2638089221284050038AD00 /* MovieReviewCellViewModel.swift in Sources */,
 				E2E9601A2259A3EE006A41D3 /* MarkAsFavoriteResult.swift in Sources */,
@@ -1544,6 +1551,7 @@
 				E2E4452922474855009ABDEA /* Dictionary+Extensions.swift in Sources */,
 				E2116946220E3F7800595822 /* SearchOptionsDataSource.swift in Sources */,
 				E223B08A22482BAD0050277B /* ProfileDataSource.swift in Sources */,
+				E21F93BF2269ADCA009666B1 /* ListResult.swift in Sources */,
 				E260116C2193884C00E53095 /* LoadingButton.swift in Sources */,
 				E2A65E5321FECC2200485B4E /* Utils.swift in Sources */,
 				E22116C82191668E0039F8C9 /* MovieProvider.swift in Sources */,

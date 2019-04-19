@@ -52,9 +52,18 @@ final class ProfileViewModel {
 
 extension ProfileViewModel {
     
-    /// Collections refers to favorites list and watchlist
     enum ProfileSection {
-        case accountInfo, collections, groups, signOut
+        /// Section to show the profile user info
+        case accountInfo
+        
+        /// Shows the user's collections like favorites
+        case collections
+        
+        /// Shows the user's created lists
+        case groups
+        
+        /// Shows the sign out Button
+        case signOut
     }
     
     func section(at index: Int) -> ProfileSection {
