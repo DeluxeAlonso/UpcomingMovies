@@ -76,7 +76,7 @@ final class AccountViewModel {
     func buildProfileViewModel() -> ProfileViewModel? {
         let currentUser = AuthenticationManager.shared.currentUser()
         let options = ProfileOptions(collectionOptions: [.favorites, .watchlist],
-                                     groupOptions: [.savedLists],
+                                     groupOptions: [.createdLists],
                                      configurationOptions: [])
         return ProfileViewModel(managedObjectContext, userAccount: currentUser, options: options)
     }
