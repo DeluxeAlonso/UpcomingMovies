@@ -1,5 +1,5 @@
 //
-//  ProfileCollectionCellViewModel.swift
+//  ProfileSelectableOptionCellViewModel.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 3/24/19.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-final class ProfileCollectionCellViewModel {
+final class ProfileSelectableOptionCellViewModel {
     
     let title: String?
     
-    init(_ profileCollectionOption: ProfileCollectionOption) {
+    init(_ profileCollectionOption: ProfileOption) {
         self.title = profileCollectionOption.title
     }
     

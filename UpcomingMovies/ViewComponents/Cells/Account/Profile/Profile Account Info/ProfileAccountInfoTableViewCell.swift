@@ -29,6 +29,7 @@ class ProfileAccountInfoTableViewCell: UITableViewCell {
     // MARK: - Private
     
     private func setupUI() {
+        selectionStyle = .none
         setupLabels()
     }
     

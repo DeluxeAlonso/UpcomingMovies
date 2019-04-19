@@ -10,17 +10,25 @@ import Foundation
 
 /**
  * A profile option can be a Collection(referred to the user movie
- * collections like favorites) or a Configuration which represents
- * account configurable settings by the user.
+ * collections like favorites), a Group(referred to the
+ * option that redirects to a group of collections and not to a plain movie list)
+ * or a Configuration which represents account configurable settings by the user.
  */
 struct ProfileOptions {
     
     let collectionOptions: [ProfileCollectionOption]
+    let groupOptions: [ProfileGroupOption]
     let configurationOptions: [ProfileConfigurationOption]
     
 }
 
-enum ProfileCollectionOption {
+protocol ProfileOption {
+    
+    var title: String? { get }
+    
+}
+
+enum ProfileCollectionOption: ProfileOption {
     
     case favorites, watchlist
     
@@ -35,7 +43,20 @@ enum ProfileCollectionOption {
     
 }
 
-enum ProfileConfigurationOption {
+enum ProfileGroupOption: ProfileOption {
+    
+    case savedLists
+    
+    var title: String? {
+        switch self {
+        case .savedLists:
+            return "Saved Lists"
+        }
+    }
+    
+}
+
+enum ProfileConfigurationOption: ProfileOption {
     
     case includeAdult
     

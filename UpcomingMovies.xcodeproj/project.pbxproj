@@ -39,6 +39,7 @@
 		E21F37AA21941EC000D6BFB6 /* GenreProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37A921941EC000D6BFB6 /* GenreProvider.swift */; };
 		E21F37AC21941ECA00D6BFB6 /* GenreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37AB21941ECA00D6BFB6 /* GenreClient.swift */; };
 		E21F37B12194241B00D6BFB6 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37B02194241B00D6BFB6 /* UIViewController+Extensions.swift */; };
+		E21F93BB2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F93BA2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift */; };
 		E220B1E2220BD5B900A5D054 /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E220B1E1220BD5B900A5D054 /* MoviesViewModel.swift */; };
 		E221168021914E4B0039F8C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221167F21914E4B0039F8C9 /* AppDelegate.swift */; };
 		E221168721914E4B0039F8C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221168521914E4B0039F8C9 /* Main.storyboard */; };
@@ -85,9 +86,9 @@
 		E223773E21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773D21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift */; };
 		E223774021EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223773F21EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift */; };
 		E223B0802247E7F10050277B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223B07F2247E7F10050277B /* ProfileViewModel.swift */; };
-		E223B084224828EC0050277B /* ProfileCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223B083224828EC0050277B /* ProfileCollectionTableViewCell.swift */; };
-		E223B086224828FB0050277B /* ProfileCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223B085224828FB0050277B /* ProfileCollectionCellViewModel.swift */; };
-		E223B08822482A170050277B /* ProfileCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E223B08722482A170050277B /* ProfileCollectionTableViewCell.xib */; };
+		E223B084224828EC0050277B /* ProfileSelectableOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223B083224828EC0050277B /* ProfileSelectableOptionTableViewCell.swift */; };
+		E223B086224828FB0050277B /* ProfileSelectableOptionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223B085224828FB0050277B /* ProfileSelectableOptionCellViewModel.swift */; };
+		E223B08822482A170050277B /* ProfileSelectableOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E223B08722482A170050277B /* ProfileSelectableOptionTableViewCell.xib */; };
 		E223B08A22482BAD0050277B /* ProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223B08922482BAD0050277B /* ProfileDataSource.swift */; };
 		E223DA082217BD1900A3DC58 /* RadarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223DA072217BD1900A3DC58 /* RadarView.swift */; };
 		E223DA0A2217C11C00A3DC58 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223DA092217C11C00A3DC58 /* Loadable.swift */; };
@@ -247,6 +248,7 @@
 		E21F37A921941EC000D6BFB6 /* GenreProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreProvider.swift; sourceTree = "<group>"; };
 		E21F37AB21941ECA00D6BFB6 /* GenreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreClient.swift; sourceTree = "<group>"; };
 		E21F37B02194241B00D6BFB6 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		E21F93BA2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSignOutTableViewCell.swift; sourceTree = "<group>"; };
 		E220B1E1220BD5B900A5D054 /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		E221167C21914E4B0039F8C9 /* UpcomingMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UpcomingMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E221167F21914E4B0039F8C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -296,9 +298,9 @@
 		E223773D21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOptionTableViewCell.swift; sourceTree = "<group>"; };
 		E223773F21EEB0B0000400B7 /* DefaultSearchOptionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchOptionCellViewModel.swift; sourceTree = "<group>"; };
 		E223B07F2247E7F10050277B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		E223B083224828EC0050277B /* ProfileCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionTableViewCell.swift; sourceTree = "<group>"; };
-		E223B085224828FB0050277B /* ProfileCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionCellViewModel.swift; sourceTree = "<group>"; };
-		E223B08722482A170050277B /* ProfileCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCollectionTableViewCell.xib; sourceTree = "<group>"; };
+		E223B083224828EC0050277B /* ProfileSelectableOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectableOptionTableViewCell.swift; sourceTree = "<group>"; };
+		E223B085224828FB0050277B /* ProfileSelectableOptionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectableOptionCellViewModel.swift; sourceTree = "<group>"; };
+		E223B08722482A170050277B /* ProfileSelectableOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSelectableOptionTableViewCell.xib; sourceTree = "<group>"; };
 		E223B08922482BAD0050277B /* ProfileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataSource.swift; sourceTree = "<group>"; };
 		E223DA072217BD1900A3DC58 /* RadarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarView.swift; sourceTree = "<group>"; };
 		E223DA092217C11C00A3DC58 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
@@ -504,9 +506,9 @@
 		E2143DBE22572AE5003E939F /* Profile Collections */ = {
 			isa = PBXGroup;
 			children = (
-				E223B08722482A170050277B /* ProfileCollectionTableViewCell.xib */,
-				E223B083224828EC0050277B /* ProfileCollectionTableViewCell.swift */,
-				E223B085224828FB0050277B /* ProfileCollectionCellViewModel.swift */,
+				E223B08722482A170050277B /* ProfileSelectableOptionTableViewCell.xib */,
+				E223B083224828EC0050277B /* ProfileSelectableOptionTableViewCell.swift */,
+				E223B085224828FB0050277B /* ProfileSelectableOptionCellViewModel.swift */,
 			);
 			path = "Profile Collections";
 			sourceTree = "<group>";
@@ -550,6 +552,14 @@
 				E21F37AB21941ECA00D6BFB6 /* GenreClient.swift */,
 			);
 			path = Genre;
+			sourceTree = "<group>";
+		};
+		E21F93B92269A2A3009666B1 /* Profile Sign Out */ = {
+			isa = PBXGroup;
+			children = (
+				E21F93BA2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift */,
+			);
+			path = "Profile Sign Out";
 			sourceTree = "<group>";
 		};
 		E221167321914E4B0039F8C9 = {
@@ -805,6 +815,7 @@
 		E223B082224828DB0050277B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E21F93B92269A2A3009666B1 /* Profile Sign Out */,
 				E2143DBE22572AE5003E939F /* Profile Collections */,
 				E2143DBD22572AB7003E939F /* Profile Account Info */,
 			);
@@ -1314,7 +1325,7 @@
 				E221F770222BA316008DFF87 /* FavoriteMovieCollectionViewCell.xib in Resources */,
 				E2251B222214FBC700EE7A51 /* MovieCreditCollectionViewCell.xib in Resources */,
 				E2601178219399E000E53095 /* MovieDetail.storyboard in Resources */,
-				E223B08822482A170050277B /* ProfileCollectionTableViewCell.xib in Resources */,
+				E223B08822482A170050277B /* ProfileSelectableOptionTableViewCell.xib in Resources */,
 				E21F37942193F47800D6BFB6 /* RecentSearchTableViewCell.xib in Resources */,
 				E22116A7219150490039F8C9 /* UpcomingMovies.storyboard in Resources */,
 				E222DC2B2192B83200A2EDF4 /* MovieTableViewCell.xib in Resources */,
@@ -1439,7 +1450,7 @@
 				E21F378C2193F01600D6BFB6 /* DefaultSearchController.swift in Sources */,
 				E221F75F222AF123008DFF87 /* CodingUserInfoKey+Context.swift in Sources */,
 				E2245D8C222E2F7D00AA0A5A /* PersistenceStore+MovieSearch.swift in Sources */,
-				E223B084224828EC0050277B /* ProfileCollectionTableViewCell.swift in Sources */,
+				E223B084224828EC0050277B /* ProfileSelectableOptionTableViewCell.swift in Sources */,
 				E22116C02191605C0039F8C9 /* Endpoint.swift in Sources */,
 				E221F76E222BA252008DFF87 /* FavoriteMovieCellViewModel.swift in Sources */,
 				E22116B02191568E0039F8C9 /* UpcomingMoviesViewModel.swift in Sources */,
@@ -1471,6 +1482,7 @@
 				E2638089221284050038AD00 /* MovieReviewCellViewModel.swift in Sources */,
 				E2E9601A2259A3EE006A41D3 /* MarkAsFavoriteResult.swift in Sources */,
 				E2251B192214F19B00EE7A51 /* Crew.swift in Sources */,
+				E21F93BB2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift in Sources */,
 				E21F37882193EC8100D6BFB6 /* SearchMoviesResultController.swift in Sources */,
 				E2E4452D22474FCA009ABDEA /* SessionResult.swift in Sources */,
 				E222DC202192AAB900A2EDF4 /* SearchMoviesViewController.swift in Sources */,
@@ -1515,7 +1527,7 @@
 				E21F37A721941E3500D6BFB6 /* GenreResult.swift in Sources */,
 				E22588AE224333D100E1327E /* AuthClient.swift in Sources */,
 				E2DBF2F3220532C300CBB365 /* Animatable.swift in Sources */,
-				E223B086224828FB0050277B /* ProfileCollectionCellViewModel.swift in Sources */,
+				E223B086224828FB0050277B /* ProfileSelectableOptionCellViewModel.swift in Sources */,
 				E284EF4D21F127FB004E705F /* VisitedMovieCellViewModel.swift in Sources */,
 				E2D1040F220CD1BC005F310C /* UIRefreshControl+Extensions.swift in Sources */,
 				E221F76C222BA23D008DFF87 /* FavoriteMovieCollectionViewCell.swift in Sources */,

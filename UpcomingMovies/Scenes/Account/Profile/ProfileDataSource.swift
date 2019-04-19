@@ -26,11 +26,13 @@ class ProfileDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { return 0 }
         switch viewModel.section(at: section) {
+        case .accountInfo:
+            return 1
         case .collections:
             return viewModel.collectionOptionsCells.count
+        case .groups:
+            return viewModel.groupOptionsCells.count
         case .signOut:
-            return 1
-        case .accountInfo:
             return 1
         }
     }
@@ -41,18 +43,17 @@ class ProfileDataSource: NSObject, UITableViewDataSource {
         case .accountInfo:
             let cell = tableView.dequeueReusableCell(with: ProfileAccountInfoTableViewCell.self, for: indexPath)
             cell.viewModel = viewModel.userInfoCell
-            cell.selectionStyle = .none
             return cell
         case .collections:
-            let cell = tableView.dequeueReusableCell(with: ProfileCollectionTableViewCell.self, for: indexPath)
+            let cell = tableView.dequeueReusableCell(with: ProfileSelectableOptionTableViewCell.self, for: indexPath)
             cell.viewModel = viewModel.collectionOptionsCells[indexPath.row]
             return cell
+        case .groups:
+            let cell = tableView.dequeueReusableCell(with: ProfileSelectableOptionTableViewCell.self, for: indexPath)
+            cell.viewModel = viewModel.groupOptionsCells[indexPath.row]
+            return cell
         case .signOut:
-            let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Sign out"
-            cell.textLabel?.textAlignment = .center
-            cell.textLabel?.textColor = ColorPalette.redColor
-            cell.textLabel?.font = FontHelper.light(withSize: 16.0)
+            let cell = ProfileSignOutTableViewCell(style: .default, reuseIdentifier: nil)
             return cell
         }
     }

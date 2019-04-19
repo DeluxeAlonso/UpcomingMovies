@@ -44,7 +44,8 @@ class ProfileTableViewController: UITableViewController {
     private func setupTableView() {
         tableView.delegate = self
         tableView.registerNib(cellType: ProfileAccountInfoTableViewCell.self)
-        tableView.registerNib(cellType: ProfileCollectionTableViewCell.self)
+        tableView.registerNib(cellType: ProfileSelectableOptionTableViewCell.self)
+        tableView.register(cellType: ProfileSignOutTableViewCell.self)
     }
     
     private func setupDataSource() {
@@ -82,6 +83,8 @@ class ProfileTableViewController: UITableViewController {
         case .collections:
             let collectionOption = viewModel.collectionOption(at: indexPath.row)
             delegate?.profileViewController(self, didTapCollection: collectionOption)
+        case .groups:
+            break
         case .signOut:
             showSignOutActionSheet()
         case .accountInfo:
@@ -94,7 +97,7 @@ class ProfileTableViewController: UITableViewController {
         switch viewModel.section(at: indexPath.section) {
         case .accountInfo:
             return 75.0
-        case .collections, .signOut:
+        case .collections, .groups, .signOut:
             return 50.0
         }
     }

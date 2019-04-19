@@ -1,5 +1,5 @@
 //
-//  ProfileCollectionTableViewCell.swift
+//  ProfileSelectableOptionTableViewCell.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 3/24/19.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ProfileCollectionTableViewCell: UITableViewCell {
+class ProfileSelectableOptionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titlelabel: UILabel!
     
-    var viewModel: ProfileCollectionCellViewModel? {
+    var viewModel: ProfileSelectableOptionCellViewModel? {
         didSet {
             setupBindables()
         }
