@@ -16,7 +16,7 @@ final class CustomListDetailViewModel {
     let id: Int
     let name: String
     let description: String?
-    let movieCount: String
+    let movieCount: Int
     var posterURL: URL?
     
     // MARK: - Initializers
@@ -25,9 +25,21 @@ final class CustomListDetailViewModel {
         id = list.id
         name = list.name
         description = list.description
-        movieCount = String(list.movieCount)
+        movieCount = list.movieCount
         posterURL = list.posterURL
         self.managedObjectContext = managedObjectContext
+    }
+    
+    // MARK: - Public
+    
+    func buildHeaderViewModel() -> CustomListDetailHeaderViewModel {
+        return CustomListDetailHeaderViewModel(name: name,
+                                               description: description,
+                                               posterURL: posterURL)
+    }
+    
+    func buildSectionViewModel() -> CustomListDetailSectionViewModel {
+        return CustomListDetailSectionViewModel(movieCount: movieCount)
     }
     
 }

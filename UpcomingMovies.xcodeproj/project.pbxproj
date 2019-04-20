@@ -123,6 +123,9 @@
 		E22546A3226AE39900E9042C /* CustomListDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22546A2226AE39900E9042C /* CustomListDetailHeaderView.swift */; };
 		E22546A6226AE3B800E9042C /* CustomListDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E22546A5226AE3B800E9042C /* CustomListDetailHeaderView.xib */; };
 		E22546A8226AE42600E9042C /* CustomListDetailHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22546A7226AE42600E9042C /* CustomListDetailHeaderViewModel.swift */; };
+		E22546AB226AF52400E9042C /* CustomListDetailSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22546AA226AF52400E9042C /* CustomListDetailSectionView.swift */; };
+		E22546AD226AF53100E9042C /* CustomListDetailSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E22546AC226AF53100E9042C /* CustomListDetailSectionView.xib */; };
+		E22546AF226AF54800E9042C /* CustomListDetailSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22546AE226AF54800E9042C /* CustomListDetailSectionViewModel.swift */; };
 		E225889C22430E3B00E1327E /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E225889B22430E3B00E1327E /* Account.storyboard */; };
 		E22588A02243120000E1327E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E225889F2243120000E1327E /* AccountViewController.swift */; };
 		E22588A22243121F00E1327E /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A12243121F00E1327E /* AccountViewModel.swift */; };
@@ -347,6 +350,9 @@
 		E22546A2226AE39900E9042C /* CustomListDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailHeaderView.swift; sourceTree = "<group>"; };
 		E22546A5226AE3B800E9042C /* CustomListDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomListDetailHeaderView.xib; sourceTree = "<group>"; };
 		E22546A7226AE42600E9042C /* CustomListDetailHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailHeaderViewModel.swift; sourceTree = "<group>"; };
+		E22546AA226AF52400E9042C /* CustomListDetailSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailSectionView.swift; sourceTree = "<group>"; };
+		E22546AC226AF53100E9042C /* CustomListDetailSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomListDetailSectionView.xib; sourceTree = "<group>"; };
+		E22546AE226AF54800E9042C /* CustomListDetailSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailSectionViewModel.swift; sourceTree = "<group>"; };
 		E225889B22430E3B00E1327E /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
 		E225889F2243120000E1327E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		E22588A12243121F00E1327E /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
@@ -926,7 +932,8 @@
 		E225469A226AC76200E9042C /* CustomListDetail */ = {
 			isa = PBXGroup;
 			children = (
-				E22546A4226AE3A100E9042C /* Header */,
+				E22546A4226AE3A100E9042C /* HeaderView */,
+				E22546A9226AF50600E9042C /* SectionView */,
 				E225469B226AC78200E9042C /* CustomListDetailViewController.swift */,
 				E225469D226AC79C00E9042C /* CustomListDetailViewModel.swift */,
 			);
@@ -943,14 +950,24 @@
 			path = Collections;
 			sourceTree = "<group>";
 		};
-		E22546A4226AE3A100E9042C /* Header */ = {
+		E22546A4226AE3A100E9042C /* HeaderView */ = {
 			isa = PBXGroup;
 			children = (
 				E22546A2226AE39900E9042C /* CustomListDetailHeaderView.swift */,
 				E22546A5226AE3B800E9042C /* CustomListDetailHeaderView.xib */,
 				E22546A7226AE42600E9042C /* CustomListDetailHeaderViewModel.swift */,
 			);
-			path = Header;
+			path = HeaderView;
+			sourceTree = "<group>";
+		};
+		E22546A9226AF50600E9042C /* SectionView */ = {
+			isa = PBXGroup;
+			children = (
+				E22546AA226AF52400E9042C /* CustomListDetailSectionView.swift */,
+				E22546AC226AF53100E9042C /* CustomListDetailSectionView.xib */,
+				E22546AE226AF54800E9042C /* CustomListDetailSectionViewModel.swift */,
+			);
+			path = SectionView;
 			sourceTree = "<group>";
 		};
 		E225889D224311E700E1327E /* Account */ = {
@@ -1403,6 +1420,7 @@
 				E223773521EEA20C000400B7 /* GenreSearchOptionTableViewCell.xib in Resources */,
 				E26AB93421F95AAE00D9FEAA /* MovieList.storyboard in Resources */,
 				E224477C2234C05C00A59FEF /* UpcomingMovieDetailCollectionViewCell.xib in Resources */,
+				E22546AD226AF53100E9042C /* CustomListDetailSectionView.xib in Resources */,
 				E22116A92191524D0039F8C9 /* SearchMovies.storyboard in Resources */,
 				E284EF5121F12AF5004E705F /* VisitedMovieCollectionViewCell.xib in Resources */,
 				E2EB92472213E52F0067F011 /* MovieReviewTableViewCell.xib in Resources */,
@@ -1519,6 +1537,7 @@
 				E241FE0922434D4900144FD3 /* AuthPermissionViewModel.swift in Sources */,
 				E21F378C2193F01600D6BFB6 /* DefaultSearchController.swift in Sources */,
 				E221F75F222AF123008DFF87 /* CodingUserInfoKey+Context.swift in Sources */,
+				E22546AF226AF54800E9042C /* CustomListDetailSectionViewModel.swift in Sources */,
 				E2245D8C222E2F7D00AA0A5A /* PersistenceStore+MovieSearch.swift in Sources */,
 				E223B084224828EC0050277B /* ProfileSelectableOptionTableViewCell.swift in Sources */,
 				E22116C02191605C0039F8C9 /* Endpoint.swift in Sources */,
@@ -1543,6 +1562,7 @@
 				E260116E219388B700E53095 /* FontHelper.swift in Sources */,
 				E2EB923F221375190067F011 /* SectionedCollectionViewDataSource.swift in Sources */,
 				E2D4DD7021F018850004B7BF /* RecentlyVisitedMoviesTableViewCell.swift in Sources */,
+				E22546AB226AF52400E9042C /* CustomListDetailSectionView.swift in Sources */,
 				E234EEC62251BD16009147CE /* PersistenceStore+User.swift in Sources */,
 				E263808B221288210038AD00 /* MovieReviewTableViewCell.swift in Sources */,
 				E2143DB622571AD5003E939F /* ProfileOptions.swift in Sources */,

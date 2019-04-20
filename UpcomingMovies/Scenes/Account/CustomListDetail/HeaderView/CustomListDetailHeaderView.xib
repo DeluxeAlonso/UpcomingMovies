@@ -12,24 +12,24 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomListDetailHeaderView" customModule="UpcomingMovies" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="320"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="226"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oaY-eK-s27" userLabel="Poster Image View">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
-                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.74117647060000003" green="0.85098039219999999" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="150" id="1dP-Sp-Mzn"/>
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="fRO-iW-9EL">
-                    <rect key="frame" x="0.0" y="150" width="414" height="170"/>
+                    <rect key="frame" x="0.0" y="150" width="414" height="76"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j93-7Z-hy9" userLabel="Name View">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="85"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="36.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYr-a2-1i7" userLabel="Name Label">
-                                    <rect key="frame" x="16" y="16" width="382" height="53"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="List Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYr-a2-1i7" userLabel="Name Label">
+                                    <rect key="frame" x="16" y="12" width="382" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -38,16 +38,16 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="eYr-a2-1i7" secondAttribute="trailing" constant="16" id="312-ZZ-1ww"/>
-                                <constraint firstAttribute="bottom" secondItem="eYr-a2-1i7" secondAttribute="bottom" constant="16" id="JKQ-S9-LKo"/>
-                                <constraint firstItem="eYr-a2-1i7" firstAttribute="top" secondItem="j93-7Z-hy9" secondAttribute="top" constant="16" id="M51-u5-szC"/>
+                                <constraint firstAttribute="bottom" secondItem="eYr-a2-1i7" secondAttribute="bottom" constant="4" id="JKQ-S9-LKo"/>
+                                <constraint firstItem="eYr-a2-1i7" firstAttribute="top" secondItem="j93-7Z-hy9" secondAttribute="top" constant="12" id="M51-u5-szC"/>
                                 <constraint firstItem="eYr-a2-1i7" firstAttribute="leading" secondItem="j93-7Z-hy9" secondAttribute="leading" constant="16" id="ebx-Kv-eVj"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDl-vg-Mae" userLabel="Description View">
-                            <rect key="frame" x="0.0" y="85" width="414" height="85"/>
+                            <rect key="frame" x="0.0" y="36.5" width="414" height="39.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bN4-Xi-8GE" userLabel="Description Label">
-                                    <rect key="frame" x="16" y="16" width="382" height="53"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="List Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bN4-Xi-8GE" userLabel="Description Label">
+                                    <rect key="frame" x="16" y="7" width="382" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -55,9 +55,9 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="bN4-Xi-8GE" firstAttribute="top" secondItem="tDl-vg-Mae" secondAttribute="top" constant="16" id="LCR-6R-4qv"/>
-                                <constraint firstItem="bN4-Xi-8GE" firstAttribute="leading" secondItem="tDl-vg-Mae" secondAttribute="leading" constant="16" id="LDb-oz-hhn"/>
-                                <constraint firstAttribute="bottom" secondItem="bN4-Xi-8GE" secondAttribute="bottom" constant="16" id="OEz-Lc-IoN"/>
+                                <constraint firstItem="bN4-Xi-8GE" firstAttribute="top" secondItem="tDl-vg-Mae" secondAttribute="top" priority="999" constant="4" id="LCR-6R-4qv"/>
+                                <constraint firstItem="bN4-Xi-8GE" firstAttribute="leading" secondItem="tDl-vg-Mae" secondAttribute="leading" priority="999" constant="16" id="LDb-oz-hhn"/>
+                                <constraint firstAttribute="bottom" secondItem="bN4-Xi-8GE" secondAttribute="bottom" constant="12" id="OEz-Lc-IoN"/>
                                 <constraint firstAttribute="trailing" secondItem="bN4-Xi-8GE" secondAttribute="trailing" constant="16" id="r6c-N4-2ZP"/>
                             </constraints>
                         </view>
@@ -81,7 +81,7 @@
                 <outlet property="nameLabel" destination="eYr-a2-1i7" id="fNx-bf-yBd"/>
                 <outlet property="posterImageView" destination="oaY-eK-s27" id="81E-uc-DyM"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="-153.34821428571428"/>
+            <point key="canvasLocation" x="131.8840579710145" y="-184.82142857142856"/>
         </view>
     </objects>
 </document>

@@ -26,6 +26,21 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupUI()
+    }
+    
+    // MARK: - Private
+    
+    private func setupUI() {
+        setupLabels()
+    }
+    
+    private func setupLabels() {
+        nameLabel.font = FontHelper.regular(withSize: 18.0)
+        nameLabel.textColor = ColorPalette.lightBlueColor
+        
+        descriptionLabel.font = FontHelper.light(withSize: 16.0)
+        descriptionLabel.textColor = ColorPalette.lightBlueColor
     }
     
     // MARK: - Reactive Behaviour
