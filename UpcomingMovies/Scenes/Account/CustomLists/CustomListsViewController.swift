@@ -1,5 +1,5 @@
 //
-//  ProfileCreatedListsViewController.swift
+//  CustomListsViewController.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 4/19/19.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-class ProfileCreatedListsViewController: UIViewController, Displayable, Loadable {
+class CustomListsViewController: UIViewController, Displayable, Loadable {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var dataSource: SimpleTableViewDataSource<CreatedListCellViewModel>!
+    private var dataSource: SimpleTableViewDataSource<CustomListCellViewModel>!
     
     var loaderView: RadarView!
     
-    var viewModel: ProfileCreatedListsViewModel? {
+    var viewModel: CustomListsViewModel? {
         didSet {
             setupBindables()
         }
@@ -39,7 +39,7 @@ class ProfileCreatedListsViewController: UIViewController, Displayable, Loadable
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100.0
         tableView.delegate = self
-        tableView.registerNib(cellType: CreatedListTableViewCell.self)
+        tableView.registerNib(cellType: CustomListTableViewCell.self)
     }
     
     private func reloadTableView() {
@@ -62,7 +62,7 @@ class ProfileCreatedListsViewController: UIViewController, Displayable, Loadable
         case .error(let error):
             presentErrorView(with: error.description,
                              errorHandler: { [weak self] in
-                                self?.viewModel?.getCreatedLists()
+                                self?.viewModel?.getCustomLists()
             })
         }
     }
@@ -81,13 +81,13 @@ class ProfileCreatedListsViewController: UIViewController, Displayable, Loadable
         viewModel?.startLoading = { [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
         }
-        viewModel?.getCreatedLists()
+        viewModel?.getCustomLists()
     }
 
 }
 
 // MARK: - UITableViewDelegate
 
-extension ProfileCreatedListsViewController: UITableViewDelegate {
+extension CustomListsViewController: UITableViewDelegate {
     
 }

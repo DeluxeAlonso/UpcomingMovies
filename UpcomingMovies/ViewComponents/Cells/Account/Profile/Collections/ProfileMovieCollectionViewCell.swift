@@ -1,5 +1,5 @@
 //
-//  FavoriteMovieCollectionViewCell.swift
+//  ProfileMovieCollectionViewCell.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 3/3/19.
@@ -10,12 +10,12 @@ import UIKit
 import Kingfisher
 import CollectionViewSlantedLayout
 
-class FavoriteMovieCollectionViewCell: CollectionViewSlantedCell {
+class ProfileMovieCollectionViewCell: CollectionViewSlantedCell {
     
     @IBOutlet weak var backdropImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    var viewModel: FavoriteMovieCellViewModel? {
+    var viewModel: ProfileMovieCellViewModel? {
         didSet {
             setupBindables()
         }

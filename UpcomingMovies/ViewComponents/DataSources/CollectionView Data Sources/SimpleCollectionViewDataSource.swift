@@ -68,14 +68,14 @@ extension SimpleCollectionViewDataSource where ViewModel == MovieCreditCellViewM
     
 }
 
-extension SimpleCollectionViewDataSource where ViewModel == FavoriteMovieCellViewModel {
+extension SimpleCollectionViewDataSource where ViewModel == ProfileMovieCellViewModel {
     
-    static func make(for cellViewModels: [FavoriteMovieCellViewModel],
-                     reuseIdentifier: String = FavoriteMovieCollectionViewCell.dequeuIdentifier) -> SimpleCollectionViewDataSource {
+    static func make(for cellViewModels: [ProfileMovieCellViewModel],
+                     reuseIdentifier: String = ProfileMovieCollectionViewCell.dequeuIdentifier) -> SimpleCollectionViewDataSource {
         return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
                                               reuseIdentifier: reuseIdentifier,
                                               cellConfigurator: { (viewModel, cell) in
-                                                let cell = cell as! FavoriteMovieCollectionViewCell
+                                                let cell = cell as! ProfileMovieCollectionViewCell
                                                 cell.viewModel = viewModel
         })
     }

@@ -1,5 +1,5 @@
 //
-//  ProfileCollectionListViewModel.swift
+//  CollectionListViewModel.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 3/3/19.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-final class ProfileCollectionListViewModel {
+final class CollectionListViewModel {
     
     private let managedObjectContext: NSManagedObjectContext
     private let collectionOption: ProfileCollectionOption
@@ -25,8 +25,8 @@ final class ProfileCollectionListViewModel {
         return viewState.value.currentEntities
     }
     
-    var movieCells: [FavoriteMovieCellViewModel] {
-        return movies.compactMap { FavoriteMovieCellViewModel($0) }
+    var movieCells: [ProfileMovieCellViewModel] {
+        return movies.compactMap { ProfileMovieCellViewModel($0) }
     }
     
     let title: String?

@@ -1,5 +1,5 @@
 //
-//  ProfileCreatedListsViewModel.swift
+//  CustomListsViewModel.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 4/19/19.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-final class ProfileCreatedListsViewModel {
+final class CustomListsViewModel {
     
     private let managedObjectContext: NSManagedObjectContext
     private let groupOption: ProfileGroupOption
@@ -31,8 +31,8 @@ final class ProfileCreatedListsViewModel {
         return viewState.value.currentEntities
     }
     
-    var listCells: [CreatedListCellViewModel] {
-        return lists.map { CreatedListCellViewModel($0) }
+    var listCells: [CustomListCellViewModel] {
+        return lists.map { CustomListCellViewModel($0) }
     }
     
     // MARK: - Initializers
@@ -45,10 +45,10 @@ final class ProfileCreatedListsViewModel {
     
     // MARK: - Networking
     
-    func getCreatedLists() {
+    func getCustomLists() {
         guard let credentials = userCredentials else { fatalError() }
         startLoading?(true)
-        accountClient.getCreatedLists(page: viewState.value.currentPage,
+        accountClient.getCustomLists(page: viewState.value.currentPage,
                                       groupOption: groupOption,
                                       sessionId: credentials.sessionId,
                                       accountId: credentials.accountId) { result in

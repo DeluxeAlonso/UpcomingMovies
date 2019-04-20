@@ -76,18 +76,18 @@ final class AccountViewModel {
     func buildProfileViewModel() -> ProfileViewModel {
         let currentUser = AuthenticationManager.shared.currentUser()
         let options = ProfileOptions(collectionOptions: [.favorites, .watchlist],
-                                     groupOptions: [.createdLists],
+                                     groupOptions: [.customLists],
                                      configurationOptions: [])
         return ProfileViewModel(managedObjectContext, userAccount: currentUser, options: options)
     }
 
-    func buildCollectionListViewModel(_ option: ProfileCollectionOption) -> ProfileCollectionListViewModel {
-        return ProfileCollectionListViewModel(managedObjectContext: managedObjectContext,
+    func buildCollectionListViewModel(_ option: ProfileCollectionOption) -> CollectionListViewModel {
+        return CollectionListViewModel(managedObjectContext: managedObjectContext,
                                               collectionOption: option)
     }
     
-    func buildCrearedListsViewModel(_ group: ProfileGroupOption) -> ProfileCreatedListsViewModel {
-        return ProfileCreatedListsViewModel(managedObjectContext,
+    func buildCrearedListsViewModel(_ group: ProfileGroupOption) -> CustomListsViewModel {
+        return CustomListsViewModel(managedObjectContext,
                                             groupOption: group)
     }
     

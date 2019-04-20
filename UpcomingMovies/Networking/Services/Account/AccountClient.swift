@@ -51,10 +51,10 @@ class AccountClient: APIClient {
     
     // MARK: - Created Lists
     
-    func getCreatedLists(page: Int, groupOption: ProfileGroupOption,
-                         sessionId: String, accountId: Int,
-                         completion: @escaping (Result<ListResult?, APIError>) -> Void) {
-        let request = getCreatedListRequest(with: groupOption, page: page,
+    func getCustomLists(page: Int, groupOption: ProfileGroupOption,
+                        sessionId: String, accountId: Int,
+                        completion: @escaping (Result<ListResult?, APIError>) -> Void) {
+        let request = getCustomListRequest(with: groupOption, page: page,
                                             sessionId: sessionId, accountId: accountId)
         fetch(with: request, decode: { json -> ListResult? in
             guard let listResult = json as? ListResult else { return  nil }
@@ -62,11 +62,12 @@ class AccountClient: APIClient {
         }, completion: completion)
     }
     
-    private func getCreatedListRequest(with groupOption: ProfileGroupOption,
-                                       page: Int, sessionId: String, accountId: Int) -> URLRequest {
+    private func getCustomListRequest(with groupOption: ProfileGroupOption,
+                                      page: Int, sessionId: String,
+                                      accountId: Int) -> URLRequest {
         switch groupOption {
-        case .createdLists:
-            return AccountProvider.getCreatedLists(page: page,
+        case .customLists:
+            return AccountProvider.getCustomLists(page: page,
                                                    sessionId: sessionId,
                                                    accountId: accountId).request
         }
@@ -74,8 +75,8 @@ class AccountClient: APIClient {
     
     // MARK: - Created List Details
     
-    func getCreatedListDetail(listId: Int, completion: @escaping (Result<List?, APIError>) -> Void) {
-        let request = AccountProvider.getCreatedListDetail(id: listId).request
+    func getCustomListDetail(listId: Int, completion: @escaping (Result<List?, APIError>) -> Void) {
+        let request = AccountProvider.getCustomListDetail(id: listId).request
         fetch(with: request, decode: { json -> List? in
             guard let list = json as? List else { return  nil }
             return list

@@ -1,5 +1,5 @@
 //
-//  ProfileCollectionListViewController.swift
+//  CollectionListViewController.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 11/7/18.
@@ -9,19 +9,19 @@
 import UIKit
 import CollectionViewSlantedLayout
 
-class ProfileCollectionListViewController: UIViewController, Displayable, SegueHandler, Loadable {
+class CollectionListViewController: UIViewController, Displayable, SegueHandler, Loadable {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var viewModel: ProfileCollectionListViewModel? {
+    private var dataSource: SimpleCollectionViewDataSource<ProfileMovieCellViewModel>!
+    
+    var loaderView: RadarView!
+    
+    var viewModel: CollectionListViewModel? {
         didSet {
             setupBindables()
         }
     }
-    
-    private var dataSource: SimpleCollectionViewDataSource<FavoriteMovieCellViewModel>!
-    
-    var loaderView: RadarView!
     
     // MARK: - Lifecycle
     
@@ -47,7 +47,7 @@ class ProfileCollectionListViewController: UIViewController, Displayable, SegueH
     
     private func setupCollectionView() {
         collectionView.delegate = self
-        collectionView.registerNib(cellType: FavoriteMovieCollectionViewCell.self)
+        collectionView.registerNib(cellType: ProfileMovieCollectionViewCell.self)
         setupCollectionViewLayout()
     }
     
@@ -133,7 +133,7 @@ class ProfileCollectionListViewController: UIViewController, Displayable, SegueH
 
 // MARK: - UICollectionViewDelegate
 
-extension ProfileCollectionListViewController: UICollectionViewDelegate {
+extension CollectionListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue,
@@ -144,7 +144,7 @@ extension ProfileCollectionListViewController: UICollectionViewDelegate {
 
 // MARK: - Segue Identifiers
 
-extension ProfileCollectionListViewController {
+extension CollectionListViewController {
     
     enum SegueIdentifier: String {
         case movieDetail = "MovieDetailSegue"
