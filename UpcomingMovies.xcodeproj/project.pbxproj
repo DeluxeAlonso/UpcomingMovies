@@ -120,6 +120,9 @@
 		E2254696226A3D8100E9042C /* CustomListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2254695226A3D8100E9042C /* CustomListCellViewModel.swift */; };
 		E225469C226AC78200E9042C /* CustomListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E225469B226AC78200E9042C /* CustomListDetailViewController.swift */; };
 		E225469E226AC79C00E9042C /* CustomListDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E225469D226AC79C00E9042C /* CustomListDetailViewModel.swift */; };
+		E22546A3226AE39900E9042C /* CustomListDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22546A2226AE39900E9042C /* CustomListDetailHeaderView.swift */; };
+		E22546A6226AE3B800E9042C /* CustomListDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E22546A5226AE3B800E9042C /* CustomListDetailHeaderView.xib */; };
+		E22546A8226AE42600E9042C /* CustomListDetailHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22546A7226AE42600E9042C /* CustomListDetailHeaderViewModel.swift */; };
 		E225889C22430E3B00E1327E /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E225889B22430E3B00E1327E /* Account.storyboard */; };
 		E22588A02243120000E1327E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E225889F2243120000E1327E /* AccountViewController.swift */; };
 		E22588A22243121F00E1327E /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A12243121F00E1327E /* AccountViewModel.swift */; };
@@ -341,6 +344,9 @@
 		E2254695226A3D8100E9042C /* CustomListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListCellViewModel.swift; sourceTree = "<group>"; };
 		E225469B226AC78200E9042C /* CustomListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailViewController.swift; sourceTree = "<group>"; };
 		E225469D226AC79C00E9042C /* CustomListDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailViewModel.swift; sourceTree = "<group>"; };
+		E22546A2226AE39900E9042C /* CustomListDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailHeaderView.swift; sourceTree = "<group>"; };
+		E22546A5226AE3B800E9042C /* CustomListDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomListDetailHeaderView.xib; sourceTree = "<group>"; };
+		E22546A7226AE42600E9042C /* CustomListDetailHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailHeaderViewModel.swift; sourceTree = "<group>"; };
 		E225889B22430E3B00E1327E /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
 		E225889F2243120000E1327E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		E22588A12243121F00E1327E /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
@@ -920,6 +926,7 @@
 		E225469A226AC76200E9042C /* CustomListDetail */ = {
 			isa = PBXGroup;
 			children = (
+				E22546A4226AE3A100E9042C /* Header */,
 				E225469B226AC78200E9042C /* CustomListDetailViewController.swift */,
 				E225469D226AC79C00E9042C /* CustomListDetailViewModel.swift */,
 			);
@@ -934,6 +941,16 @@
 				E221F76D222BA252008DFF87 /* ProfileMovieCellViewModel.swift */,
 			);
 			path = Collections;
+			sourceTree = "<group>";
+		};
+		E22546A4226AE3A100E9042C /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				E22546A2226AE39900E9042C /* CustomListDetailHeaderView.swift */,
+				E22546A5226AE3B800E9042C /* CustomListDetailHeaderView.xib */,
+				E22546A7226AE42600E9042C /* CustomListDetailHeaderViewModel.swift */,
+			);
+			path = Header;
 			sourceTree = "<group>";
 		};
 		E225889D224311E700E1327E /* Account */ = {
@@ -1366,6 +1383,7 @@
 				E221168C21914E4C0039F8C9 /* LaunchScreen.storyboard in Resources */,
 				E2254694226A3D6500E9042C /* CustomListTableViewCell.xib in Resources */,
 				E222DC1B2192A76700A2EDF4 /* Localizable.strings in Resources */,
+				E22546A6226AE3B800E9042C /* CustomListDetailHeaderView.xib in Resources */,
 				E222B95D21FA14D4008BA816 /* UpcomingMoviePreviewCollectionViewCell.xib in Resources */,
 				E2D4DD6E21F016E10004B7BF /* RecentlyVisitedMoviesTableViewCell.xib in Resources */,
 				E221168921914E4C0039F8C9 /* Assets.xcassets in Resources */,
@@ -1612,6 +1630,7 @@
 				E270980B220FAF99007F18A2 /* MovieVideoTableViewCell.swift in Sources */,
 				E222DC2D2192CBBD00A2EDF4 /* URLConfiguration.swift in Sources */,
 				E22116B72191582C0039F8C9 /* Movie.swift in Sources */,
+				E22546A3226AE39900E9042C /* CustomListDetailHeaderView.swift in Sources */,
 				E25FA2F02265A69C00FB5E71 /* URLRequest+Extensions.swift in Sources */,
 				E26AB93021F8C0ED00D9FEAA /* MovieListViewController.swift in Sources */,
 				E2251B132214ECFA00EE7A51 /* MovieCreditsViewController.swift in Sources */,
@@ -1637,6 +1656,7 @@
 				E2245D86222E0D7D00AA0A5A /* PersistenceStore.swift in Sources */,
 				E22116C5219164430039F8C9 /* MovieClient.swift in Sources */,
 				E234EEC42251B7D3009147CE /* User.swift in Sources */,
+				E22546A8226AE42600E9042C /* CustomListDetailHeaderViewModel.swift in Sources */,
 				E21F37AA21941EC000D6BFB6 /* GenreProvider.swift in Sources */,
 				E222B95F21FA2759008BA816 /* CollectionViewCellAnimator.swift in Sources */,
 				E25FA2F22265A79200FB5E71 /* Descriptable.swift in Sources */,

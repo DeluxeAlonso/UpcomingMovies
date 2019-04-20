@@ -22,5 +22,17 @@ class CustomListDetailViewController: UIViewController {
         super.viewDidLoad()
         
     }
+    
+    private func setupUI() {
+        
+    }
+    
+    private func setupTableView() {
+        
+    }
+    
+    private func setupBindables() {
+        
+    }
 
 }
