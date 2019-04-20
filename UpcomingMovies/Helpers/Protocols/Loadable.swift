@@ -45,7 +45,7 @@ extension Loadable where Self: UIViewController {
             
             self.loaderView = ViewType()
             self.loaderView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-            self.loaderView.center = self.view.center
+            self.loaderView.center = containerView.center
             containerView.addSubview(self.loaderView)
             
             self.view.addSubview(containerView)

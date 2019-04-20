@@ -114,6 +114,13 @@ class AccountViewController: UIViewController, SegueHandler {
             guard let viewModel = sender as? ProfileCollectionListViewModel else { return }
             _ = viewController.view
             viewController.viewModel = viewModel
+        case.createdLists:
+            guard let viewController = segue.destination as? ProfileCreatedListsViewController else {
+                fatalError()
+            }
+            guard let viewModel = sender as? ProfileCreatedListsViewModel else { return }
+            _ = viewController.view
+            viewController.viewModel = viewModel
         }
     }
     
@@ -137,6 +144,11 @@ extension AccountViewController: ProfileViewControllerDelegate {
         let segueIdentifier = SegueIdentifier.collectionList.rawValue
         performSegue(withIdentifier: segueIdentifier,
                      sender: viewModel.buildCollectionListViewModel(collection))
+    }
+    
+    func profileViewController(_ profileViewController: ProfileTableViewController, didTapGroup group: ProfileGroupOption) {
+        performSegue(withIdentifier: SegueIdentifier.createdLists.rawValue,
+                     sender: viewModel.buildCrearedListsViewModel(group))
     }
     
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool) {
@@ -164,6 +176,7 @@ extension AccountViewController {
     enum SegueIdentifier: String {
         case authPermission = "AuthPermissionSegue"
         case collectionList = "ProfileCollectionListSegue"
+        case createdLists = "ProfileCreatedListsSegue"
     }
     
 }

@@ -12,6 +12,8 @@ protocol ProfileViewControllerDelegate: class {
 
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapCollection collection: ProfileCollectionOption)
     
+    func profileViewController(_ profileViewController: ProfileTableViewController, didTapGroup group: ProfileGroupOption)
+    
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool)
     
 }
@@ -84,7 +86,8 @@ class ProfileTableViewController: UITableViewController {
             let collectionOption = viewModel.collectionOption(at: indexPath.row)
             delegate?.profileViewController(self, didTapCollection: collectionOption)
         case .groups:
-            break
+            let groupOption = viewModel.groupOption(at: indexPath.row)
+            delegate?.profileViewController(self, didTapGroup: groupOption)
         case .signOut:
             showSignOutActionSheet()
         case .accountInfo:

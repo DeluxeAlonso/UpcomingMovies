@@ -79,3 +79,17 @@ extension SimpleTableViewDataSource where ViewModel == MovieReviewCellViewModel 
     }
     
 }
+
+extension SimpleTableViewDataSource where ViewModel == CreatedListCellViewModel {
+    
+    static func make(for cellViewModels: [ViewModel],
+                     reuseIdentifier: String = CreatedListTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {
+        return SimpleTableViewDataSource(cellViewModels: cellViewModels,
+                                         reuseIdentifier: reuseIdentifier,
+                                         cellConfigurator: { (viewModel, cell) in
+                                            let cell = cell as! CreatedListTableViewCell
+                                            cell.viewModel = viewModel
+        })
+    }
+    
+}

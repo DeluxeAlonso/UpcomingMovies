@@ -50,7 +50,7 @@ enum ProfileGroupOption: ProfileOption {
     var title: String? {
         switch self {
         case .createdLists:
-            return "Saved Lists"
+            return "Created Lists"
         }
     }
     

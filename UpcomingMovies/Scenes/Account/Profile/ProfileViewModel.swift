@@ -46,6 +46,10 @@ final class ProfileViewModel {
         return collectionOptions[index]
     }
     
+    func groupOption(at index: Int) -> ProfileGroupOption {
+        return groupOptions[index]
+    }
+    
 }
 
 // MARK: - View sections

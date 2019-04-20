@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct List: Decodable {
+struct List: Decodable, Equatable {
     
     let id: Int
     let name: String
