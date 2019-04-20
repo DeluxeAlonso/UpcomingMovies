@@ -10,6 +10,8 @@ import UIKit
 
 class CustomListDetailViewController: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     var viewModel: CustomListDetailViewModel? {
         didSet {
             

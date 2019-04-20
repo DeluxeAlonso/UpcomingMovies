@@ -25,3 +25,14 @@ struct List: Decodable, Equatable {
     }
     
 }
+
+// MARK: - Computed Properties
+
+extension List {
+
+    var posterURL: URL? {
+        guard let posterPath = posterPath else { return nil }
+        return URL(string: URLConfiguration.mediaPath + posterPath)
+    }
+    
+}

@@ -254,11 +254,42 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="KZI-gE-t2g" id="aPA-X7-CmX"/>
+                        <segue destination="Tfe-og-5Ra" kind="show" identifier="CustomListDetailSegue" id="nR4-nk-Q3e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CTM-35-Szu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="452" y="1698"/>
+        </scene>
+        <!--Custom List Detail View Controller-->
+        <scene sceneID="Fpo-Pz-cq2">
+            <objects>
+                <viewController id="Tfe-og-5Ra" customClass="CustomListDetailViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TCl-hJ-efg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lRn-oj-krt">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Iqq-Nx-lIM" firstAttribute="trailing" secondItem="lRn-oj-krt" secondAttribute="trailing" id="AMj-48-i3v"/>
+                            <constraint firstItem="lRn-oj-krt" firstAttribute="leading" secondItem="Iqq-Nx-lIM" secondAttribute="leading" id="J3e-cI-8Ge"/>
+                            <constraint firstItem="Iqq-Nx-lIM" firstAttribute="bottom" secondItem="lRn-oj-krt" secondAttribute="bottom" id="lo2-qQ-bn8"/>
+                            <constraint firstItem="lRn-oj-krt" firstAttribute="top" secondItem="Iqq-Nx-lIM" secondAttribute="top" id="oOo-jz-evD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Iqq-Nx-lIM"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="lRn-oj-krt" id="hfI-o6-86D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NIp-mU-ttj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="452" y="2491"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5gv-0b-L87">

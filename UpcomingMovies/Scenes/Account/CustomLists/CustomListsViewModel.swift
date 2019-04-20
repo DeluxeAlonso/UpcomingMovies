@@ -43,6 +43,14 @@ final class CustomListsViewModel {
         self.title = groupOption.title
     }
     
+    // MARK: - Public
+    
+    func buildDetailViewModel(atIndex index: Int) -> CustomListDetailViewModel? {
+        guard index < lists.count else { return nil }
+        return CustomListDetailViewModel(lists[index],
+                                         managedObjectContext: managedObjectContext)
+    }
+    
     // MARK: - Networking
     
     func getCustomLists() {

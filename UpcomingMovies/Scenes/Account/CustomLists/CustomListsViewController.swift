@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomListsViewController: UIViewController, Displayable, Loadable {
+class CustomListsViewController: UIViewController, Displayable, SegueHandler, Loadable {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -83,11 +83,39 @@ class CustomListsViewController: UIViewController, Displayable, Loadable {
         }
         viewModel?.getCustomLists()
     }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segueIdentifier(for: segue) {
+        case .customListDetail:
+            guard let viewController = segue.destination as? CustomListDetailViewController else { fatalError() }
+            guard let indexPath = sender as? IndexPath else { return }
+            _ = viewController.view
+            viewController.viewModel = viewModel?.buildDetailViewModel(atIndex: indexPath.row)
+        }
+    }
 
 }
 
 // MARK: - UITableViewDelegate
 
 extension CustomListsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: SegueIdentifier.customListDetail.rawValue,
+                     sender: indexPath)
+    }
+    
+}
+
+// MARK: - Segue Identifiers
+
+extension CustomListsViewController {
+    
+    enum SegueIdentifier: String {
+        case customListDetail = "CustomListDetailSegue"
+    }
     
 }
