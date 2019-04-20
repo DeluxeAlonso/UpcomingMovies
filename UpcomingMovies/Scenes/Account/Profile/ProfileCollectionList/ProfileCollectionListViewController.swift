@@ -77,7 +77,7 @@ class ProfileCollectionListViewController: UIViewController, Displayable, SegueH
         dataSource = SimpleCollectionViewDataSource.make(for: viewModel.movieCells)
         collectionView.dataSource = dataSource
         collectionView.reloadData()
-        collectionView.refreshControl?.endRefreshing(with: 0.5)
+        collectionView.refreshControl?.endRefreshing()
     }
     
     /**
@@ -102,7 +102,6 @@ class ProfileCollectionListViewController: UIViewController, Displayable, SegueH
     
     private func setupBindables() {
         title = viewModel?.title
-        reloadCollectionView()
         viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {

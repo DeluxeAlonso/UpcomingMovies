@@ -10,10 +10,12 @@ import Foundation
 
 enum AccountProvider {
     
+    case getAccountDetail(sessionId: String)
     case getFavoriteList(page: Int, sessionId: String, accountId: Int)
     case getWatchlist(page: Int, sessionId: String, accountId: Int)
+    case getCreatedLists(page: Int, sessionId: String, accountId: Int)
+    case getCreatedListDetail(id: Int)
     case markAsFavorite(sessionId: String, accountId: Int, movieId: Int, favorite: Bool)
-    case getAccountDetail(sessionId: String)
     
 }
 
@@ -33,6 +35,10 @@ extension AccountProvider: Endpoint {
             return "/3/account/\(accountId)/favorite/movies"
         case .getWatchlist( _, _, let accountId):
             return "/3/account/\(accountId)/watchlist/movies"
+        case .getCreatedLists( _, _, let accountId):
+            return "/3/account/\(accountId)/lists"
+        case .getCreatedListDetail(let id):
+            return "/3/list/\(id)"
         case .markAsFavorite( _, let accountId, _, _):
             return "/3/account/\(accountId)/favorite"
         }
@@ -46,6 +52,10 @@ extension AccountProvider: Endpoint {
             return ["session_id": sessionId, "page": page]
         case .getWatchlist(let page, let sessionId, _):
             return ["session_id": sessionId, "page": page]
+        case .getCreatedLists(let page, let sessionId, _):
+            return ["session_id": sessionId, "page": page]
+        case .getCreatedListDetail:
+            return nil
         case .markAsFavorite(let sessionId, _, let movieId, let favorite):
             let queryParams: [String: Any] = ["session_id": sessionId]
             let bodyParams: [String: Any] = ["media_type": "movie",
@@ -57,7 +67,8 @@ extension AccountProvider: Endpoint {
     
     var parameterEncoding: ParameterEnconding {
         switch self {
-        case .getAccountDetail, .getFavoriteList, .getWatchlist:
+        case .getAccountDetail, .getFavoriteList, .getWatchlist,
+             .getCreatedLists, .getCreatedListDetail:
             return .defaultEncoding
         case .markAsFavorite:
             return .compositeJSONEncoding
@@ -66,7 +77,8 @@ extension AccountProvider: Endpoint {
     
     var method: HTTPMethod {
         switch self {
-        case .getAccountDetail, .getFavoriteList, .getWatchlist:
+        case .getAccountDetail, .getFavoriteList, .getWatchlist,
+             .getCreatedLists, .getCreatedListDetail:
             return .get
         case .markAsFavorite:
             return .post

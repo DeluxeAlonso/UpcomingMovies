@@ -24,6 +24,7 @@
                     <connections>
                         <segue destination="4Wg-PQ-5Ue" kind="presentation" identifier="AuthPermissionSegue" id="WEl-7i-CoI"/>
                         <segue destination="0Fw-wE-eJ0" kind="show" identifier="ProfileCollectionListSegue" id="NK0-Gf-nSd"/>
+                        <segue destination="b0o-Vv-U75" kind="show" identifier="ProfileCreatedListsSegue" id="aKW-Sh-hJo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GrE-o3-lT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -66,7 +67,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54G-7j-wq8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2330" y="884"/>
+            <point key="canvasLocation" x="2230" y="883"/>
         </scene>
         <!--MovieDetailViewController-->
         <scene sceneID="Z0d-bc-Bvb">
@@ -207,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKD-KS-sjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2264.8000000000002" y="1697.9010494752624"/>
+            <point key="canvasLocation" x="2230" y="1698"/>
         </scene>
         <!--Account-->
         <scene sceneID="vUC-TL-t1g">
@@ -228,6 +229,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssx-24-25A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="452" y="883.80809595202402"/>
+        </scene>
+        <!--Profile Created Lists View Controller-->
+        <scene sceneID="qdV-V1-OOw">
+            <objects>
+                <viewController id="b0o-Vv-U75" customClass="ProfileCreatedListsViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YVv-7a-vR6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="KZI-gE-t2g">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KZI-gE-t2g" firstAttribute="leading" secondItem="YVv-7a-vR6" secondAttribute="leading" id="EmK-9Q-ZiL"/>
+                            <constraint firstItem="KZI-gE-t2g" firstAttribute="top" secondItem="pOE-mr-0W4" secondAttribute="top" id="QjH-A3-eBP"/>
+                            <constraint firstItem="pOE-mr-0W4" firstAttribute="bottom" secondItem="KZI-gE-t2g" secondAttribute="bottom" id="lIx-fu-si3"/>
+                            <constraint firstAttribute="trailing" secondItem="KZI-gE-t2g" secondAttribute="trailing" id="u0W-jW-zgk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pOE-mr-0W4"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="KZI-gE-t2g" id="aPA-X7-CmX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CTM-35-Szu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="452" y="1698"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5gv-0b-L87">

@@ -22,8 +22,13 @@ final class ProfileViewModel {
     }
     
     private let collectionOptions: [ProfileCollectionOption]
-    var collectionOptionsCells: [ProfileCollectionCellViewModel] {
-        return collectionOptions.map { ProfileCollectionCellViewModel($0) }
+    var collectionOptionsCells: [ProfileSelectableOptionCellViewModel] {
+        return collectionOptions.map { ProfileSelectableOptionCellViewModel($0) }
+    }
+    
+    private let groupOptions: [ProfileGroupOption]
+    var groupOptionsCells: [ProfileSelectableOptionCellViewModel] {
+        return groupOptions.map { ProfileSelectableOptionCellViewModel($0) }
     }
     
     // MARK: - Initializers
@@ -32,12 +37,17 @@ final class ProfileViewModel {
         self.managedObjectContext = managedObjectContext
         self.userAccount = userAccount
         self.collectionOptions = options.collectionOptions
+        self.groupOptions = options.groupOptions
     }
     
     // MARK: - Public
     
     func collectionOption(at index: Int) -> ProfileCollectionOption {
         return collectionOptions[index]
+    }
+    
+    func groupOption(at index: Int) -> ProfileGroupOption {
+        return groupOptions[index]
     }
     
 }
@@ -47,7 +57,17 @@ final class ProfileViewModel {
 extension ProfileViewModel {
     
     enum ProfileSection {
-        case accountInfo, collections, signOut
+        /// Section to show the profile user info
+        case accountInfo
+        
+        /// Shows the user's collections like favorites
+        case collections
+        
+        /// Shows the user's created lists
+        case groups
+        
+        /// Shows the sign out Button
+        case signOut
     }
     
     func section(at index: Int) -> ProfileSection {
@@ -66,7 +86,7 @@ extension ProfileViewModel {
         var sections: [ProfileSection] {
             switch self {
             case .initial:
-                return [.accountInfo, .collections, .signOut]
+                return [.accountInfo, .collections, .groups, .signOut]
             }
         }
         

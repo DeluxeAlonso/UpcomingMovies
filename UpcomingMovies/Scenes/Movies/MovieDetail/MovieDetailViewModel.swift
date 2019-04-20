@@ -17,6 +17,8 @@ final class MovieDetailViewModel {
     private var accountClient = AccountClient()
     private var movieClient = MovieClient()
     
+    private var userCredentials = AuthenticationManager.shared.userCredentials()
+    
     var id: Int!
     var title: String!
     var genre: String?
@@ -103,9 +105,8 @@ final class MovieDetailViewModel {
     
     func checkIfUserIsAuthenticated() {
         let isUserSignedIn = AuthenticationManager.shared.isUserSignedIn()
-        let sessionId = AuthenticationManager.shared.retrieveSessionId()
-        if isUserSignedIn, let sessionId = sessionId {
-            checkIfMovieIsFavorite(sessionId: sessionId)
+        if isUserSignedIn, let credentials = userCredentials {
+            checkIfMovieIsFavorite(sessionId: credentials.sessionId)
         } else {
             startLoading.value = false
             isFavorite.value = nil
@@ -128,13 +129,13 @@ final class MovieDetailViewModel {
     }
     
     func handleFavoriteMovie() {
-        let authenticationManager = AuthenticationManager.shared
-        guard let sessionId = authenticationManager.retrieveSessionId(),
-            let accountId = authenticationManager.retrieveUserAccountId(),
+        guard let credentials = userCredentials,
             let isFavorite = isFavorite.value else {
                 return
         }
-        accountClient.markAsFavorite(id, sessionId: sessionId, accountId: accountId, favorite: !isFavorite, completion: { result  in
+        accountClient.markAsFavorite(id, sessionId: credentials.sessionId,
+                                     accountId: credentials.accountId,
+                                     favorite: !isFavorite, completion: { result  in
             switch result {
             case .success:
                 self.isFavorite.value = !isFavorite

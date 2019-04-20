@@ -51,7 +51,7 @@ class AuthenticationManager {
         keychain.delete(Constants.sessionIdKey)
     }
     
-    func retrieveSessionId() -> String? {
+    private func retrieveSessionId() -> String? {
         return keychain.get(Constants.sessionIdKey)
     }
     
@@ -65,19 +65,28 @@ class AuthenticationManager {
         keychain.delete(Constants.sessionIdKey)
     }
     
-    func retrieveUserAccountId() -> Int? {
+    private func retrieveUserAccountId() -> Int? {
         guard let userAccountIdString = keychain.get(Constants.currentUserIdKey) else {
             return nil
         }
         return Int(userAccountIdString)
     }
     
+    // MARK: - Credentials
+    
+    func userCredentials() -> (sessionId: String, accountId: Int)? {
+        guard let sessionId = retrieveSessionId(),
+            let accountId = retrieveUserAccountId() else {
+                return nil
+        }
+        return (sessionId: sessionId, accountId: accountId)
+    }
+    
     // MARK: - Authentitacion Persistence
     
     func currentUser() -> User? {
-        guard retrieveSessionId() != nil  else { return nil }
-        guard let userAccountId = retrieveUserAccountId() else { return nil }
-        return userStore.find(with: userAccountId)
+        guard let credentials = userCredentials() else { return nil }
+        return userStore.find(with: credentials.accountId)
     }
     
     func isUserSignedIn() -> Bool {
