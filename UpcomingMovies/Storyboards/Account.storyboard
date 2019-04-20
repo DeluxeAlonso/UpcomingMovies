@@ -23,18 +23,18 @@
                     <navigationItem key="navigationItem" title="Account" id="PHb-rS-IvZ"/>
                     <connections>
                         <segue destination="4Wg-PQ-5Ue" kind="presentation" identifier="AuthPermissionSegue" id="WEl-7i-CoI"/>
-                        <segue destination="0Fw-wE-eJ0" kind="show" identifier="ProfileCollectionListSegue" id="NK0-Gf-nSd"/>
-                        <segue destination="b0o-Vv-U75" kind="show" identifier="ProfileCreatedListsSegue" id="aKW-Sh-hJo"/>
+                        <segue destination="0Fw-wE-eJ0" kind="show" identifier="CollectionListSegue" id="NK0-Gf-nSd"/>
+                        <segue destination="b0o-Vv-U75" kind="show" identifier="CustomListsSegue" id="aKW-Sh-hJo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GrE-o3-lT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1327" y="884"/>
         </scene>
-        <!--Profile Collection List View Controller-->
+        <!--Collection List View Controller-->
         <scene sceneID="VFJ-zz-NAQ">
             <objects>
-                <viewController id="0Fw-wE-eJ0" customClass="ProfileCollectionListViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0Fw-wE-eJ0" customClass="CollectionListViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qah-C1-uMy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -230,10 +230,10 @@
             </objects>
             <point key="canvasLocation" x="452" y="883.80809595202402"/>
         </scene>
-        <!--Profile Created Lists View Controller-->
+        <!--Custom Lists View Controller-->
         <scene sceneID="qdV-V1-OOw">
             <objects>
-                <viewController id="b0o-Vv-U75" customClass="ProfileCreatedListsViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="b0o-Vv-U75" customClass="CustomListsViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YVv-7a-vR6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

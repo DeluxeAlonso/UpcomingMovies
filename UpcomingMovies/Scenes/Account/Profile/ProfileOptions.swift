@@ -45,11 +45,11 @@ enum ProfileCollectionOption: ProfileOption {
 
 enum ProfileGroupOption: ProfileOption {
     
-    case createdLists
+    case customLists
     
     var title: String? {
         switch self {
-        case .createdLists:
+        case .customLists:
             return "Created Lists"
         }
     }

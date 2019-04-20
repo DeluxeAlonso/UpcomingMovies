@@ -1,5 +1,5 @@
 //
-//  CreatedListTableViewCell.swift
+//  CustomListTableViewCell.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 4/19/19.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class CreatedListTableViewCell: UITableViewCell {
+class CustomListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var viewModel: CreatedListCellViewModel? {
+    var viewModel: CustomListCellViewModel? {
         didSet {
             setupBindables()
         }

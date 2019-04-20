@@ -108,17 +108,17 @@ class AccountViewController: UIViewController, SegueHandler {
             viewController.delegate = self
             viewController.viewModel = viewModel.buildAuthPermissionViewModel()
         case .collectionList:
-            guard let viewController = segue.destination as? ProfileCollectionListViewController else {
+            guard let viewController = segue.destination as? CollectionListViewController else {
                 fatalError()
             }
-            guard let viewModel = sender as? ProfileCollectionListViewModel else { return }
+            guard let viewModel = sender as? CollectionListViewModel else { return }
             _ = viewController.view
             viewController.viewModel = viewModel
-        case.createdLists:
-            guard let viewController = segue.destination as? ProfileCreatedListsViewController else {
+        case.customLists:
+            guard let viewController = segue.destination as? CustomListsViewController else {
                 fatalError()
             }
-            guard let viewModel = sender as? ProfileCreatedListsViewModel else { return }
+            guard let viewModel = sender as? CustomListsViewModel else { return }
             _ = viewController.view
             viewController.viewModel = viewModel
         }
@@ -147,7 +147,7 @@ extension AccountViewController: ProfileViewControllerDelegate {
     }
     
     func profileViewController(_ profileViewController: ProfileTableViewController, didTapGroup group: ProfileGroupOption) {
-        performSegue(withIdentifier: SegueIdentifier.createdLists.rawValue,
+        performSegue(withIdentifier: SegueIdentifier.customLists.rawValue,
                      sender: viewModel.buildCrearedListsViewModel(group))
     }
     
@@ -175,8 +175,8 @@ extension AccountViewController {
     
     enum SegueIdentifier: String {
         case authPermission = "AuthPermissionSegue"
-        case collectionList = "ProfileCollectionListSegue"
-        case createdLists = "ProfileCreatedListsSegue"
+        case collectionList = "CollectionListSegue"
+        case customLists = "CustomListsSegue"
     }
     
 }

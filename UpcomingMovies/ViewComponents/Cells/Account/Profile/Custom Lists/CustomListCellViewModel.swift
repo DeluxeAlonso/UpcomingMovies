@@ -1,5 +1,5 @@
 //
-//  CreatedListCellViewModel.swift
+//  CustomListCellViewModel.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 4/19/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class CreatedListCellViewModel {
+final class CustomListCellViewModel {
     
     let name: String
     let description: String?
