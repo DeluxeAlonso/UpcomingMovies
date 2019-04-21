@@ -702,9 +702,6 @@
 				E2143DB422571A43003E939F /* Extensions */,
 				E26F03B721E461C7009859DF /* Core Data */,
 				E22116B2219156F10039F8C9 /* Utils */,
-				E222DC2C2192CBBD00A2EDF4 /* URLConfiguration.swift */,
-				E260116D219388B700E53095 /* FontHelper.swift */,
-				E260116F219388C500E53095 /* ColorPalette.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -712,6 +709,9 @@
 		E22116B2219156F10039F8C9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E222DC2C2192CBBD00A2EDF4 /* URLConfiguration.swift */,
+				E260116D219388B700E53095 /* FontHelper.swift */,
+				E260116F219388C500E53095 /* ColorPalette.swift */,
 				E2A65E5221FECC2200485B4E /* Utils.swift */,
 				E2251B0F22146A4D00EE7A51 /* ViewState.swift */,
 				E221F760222AF15B008DFF87 /* AppShortcutItem.swift */,

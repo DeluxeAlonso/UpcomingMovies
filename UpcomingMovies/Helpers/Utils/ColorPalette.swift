@@ -24,6 +24,7 @@ extension UIColor {
 struct ColorPalette {
     
     static let lightBlueColor = UIColor(withIntRed: 74, green: 144, blue: 226, alpha: 1)
+    static let darkBlueColor = UIColor(withIntRed: 0, green: 101, blue: 163, alpha: 1)
     static let lightGrayColor = UIColor(withIntRed: 205, green: 205, blue: 205, alpha: 1)
     static let redColor = UIColor(withIntRed: 255, green: 94, blue: 112, alpha: 1)
     

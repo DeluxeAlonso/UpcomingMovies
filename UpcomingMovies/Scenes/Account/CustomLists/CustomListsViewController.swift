@@ -32,7 +32,13 @@ class CustomListsViewController: UIViewController, Displayable, SegueHandler, Lo
     // MARK: - Private
     
     private func setupUI() {
+        setupNavigationBar()
         setupTableView()
+    }
+    
+    private func setupNavigationBar() {
+        let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backItem
     }
     
     private func setupTableView() {

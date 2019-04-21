@@ -34,6 +34,19 @@ extension UIViewController {
         viewController.removeFromParent()
     }
     
+    // MARK: -
+    
+    func setTitleAnimated(_ title: String?,
+                          with transitionType: CATransitionType = .fade) {
+        let fadeTextAnimation = CATransition()
+        fadeTextAnimation.duration = 0.5
+        fadeTextAnimation.type = transitionType
+        
+        navigationController?.navigationBar.layer.add(fadeTextAnimation,
+                                                      forKey: "animateText")
+        navigationItem.title = title
+    }
+    
     // MARK: - Action sheets
     
     func showSimpleActionSheet(title: String?, message: String?, action: UIAlertAction) {

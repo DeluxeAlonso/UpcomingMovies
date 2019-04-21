@@ -37,10 +37,10 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
     
     private func setupLabels() {
         nameLabel.font = FontHelper.regular(withSize: 18.0)
-        nameLabel.textColor = ColorPalette.lightBlueColor
+        nameLabel.textColor = ColorPalette.darkBlueColor
         
         descriptionLabel.font = FontHelper.light(withSize: 16.0)
-        descriptionLabel.textColor = ColorPalette.lightBlueColor
+        descriptionLabel.textColor = ColorPalette.darkBlueColor
     }
     
     // MARK: - Reactive Behaviour
@@ -54,7 +54,8 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
             descriptionView.isHidden = true
         }
         posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: viewModel.posterURL)
+        posterImageView.kf.setImage(with: viewModel.posterURL,
+                                    placeholder: #imageLiteral(resourceName: "PosterPlaceholder"))
     }
 
 }

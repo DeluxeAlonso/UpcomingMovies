@@ -49,7 +49,7 @@ class AccountClient: APIClient {
         }
     }
     
-    // MARK: - Created Lists
+    // MARK: - Custom Lists
     
     func getCustomLists(page: Int, groupOption: ProfileGroupOption,
                         sessionId: String, accountId: Int,
@@ -73,9 +73,9 @@ class AccountClient: APIClient {
         }
     }
     
-    // MARK: - Created List Details
+    // MARK: - Custom List Details
     
-    func getCustomListDetail(listId: Int, completion: @escaping (Result<List?, APIError>) -> Void) {
+    func getCustomListDetail(listId: String, completion: @escaping (Result<List?, APIError>) -> Void) {
         let request = AccountProvider.getCustomListDetail(id: listId).request
         fetch(with: request, decode: { json -> List? in
             guard let list = json as? List else { return  nil }

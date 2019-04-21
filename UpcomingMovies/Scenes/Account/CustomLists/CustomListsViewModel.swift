@@ -13,9 +13,7 @@ final class CustomListsViewModel {
     
     private let managedObjectContext: NSManagedObjectContext
     private let groupOption: ProfileGroupOption
-    
     private let accountClient = AccountClient()
-    
     private let userCredentials = AuthenticationManager.shared.userCredentials()
     
     let title: String?

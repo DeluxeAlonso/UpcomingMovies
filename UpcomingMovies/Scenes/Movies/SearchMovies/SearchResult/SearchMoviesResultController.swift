@@ -99,19 +99,13 @@ class SearchMoviesResultController: UIViewController {
                                      tableViewBottomConstraint])
     }
     
-    private func setupFooterTableView(_ tableView: UITableView, withView view: UIView, andFrame frame: CGRect) {
-        let footerContainerView = UIView(frame: frame)
-        footerContainerView.addSubview(view)
-        tableView.tableFooterView = footerContainerView
-    }
-    
     private func reloadTableView() {
         dataSource = SearchMoviesResultDataSource(viewModel: viewModel)
         tableView.dataSource = dataSource
         tableView.reloadData()
     }
     
-    private func configureFooterTableView(withState state: SearchMoviesResultViewModel.SearchMoviesResultViewState) {
+    private func configureFooterTableView(withState state: SearchMoviesResultViewModel.ViewState) {
         tableView.separatorStyle = .none
         switch state {
         case .empty:
@@ -124,6 +118,12 @@ class SearchMoviesResultController: UIViewController {
         case .error(let error):
             tableView.tableFooterView = CustomFooterView(message: error.localizedDescription)
         }
+    }
+    
+    private func setupFooterTableView(_ tableView: UITableView, withView view: UIView, andFrame frame: CGRect) {
+        let footerContainerView = UIView(frame: frame)
+        footerContainerView.addSubview(view)
+        tableView.tableFooterView = footerContainerView
     }
     
     // MARK: - Reactive Behaviour
