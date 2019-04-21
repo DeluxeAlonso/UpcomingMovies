@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Movie List View Controller-->
+        <scene sceneID="Qh8-fR-0ce">
+            <objects>
+                <viewController storyboardIdentifier="MovieListViewController" id="M3e-1e-vbI" customClass="MovieListViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wwr-Mp-KPd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sQ0-q5-4io">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="sQ0-q5-4io" firstAttribute="top" secondItem="wwr-Mp-KPd" secondAttribute="top" id="SJL-PC-s9t"/>
+                            <constraint firstItem="YG4-1o-lAX" firstAttribute="bottom" secondItem="sQ0-q5-4io" secondAttribute="bottom" id="VGn-XN-y3y"/>
+                            <constraint firstItem="YG4-1o-lAX" firstAttribute="trailing" secondItem="sQ0-q5-4io" secondAttribute="trailing" id="nPl-d0-6eA"/>
+                            <constraint firstItem="sQ0-q5-4io" firstAttribute="leading" secondItem="YG4-1o-lAX" secondAttribute="leading" id="z6d-GK-hdV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YG4-1o-lAX"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="e11-54-OMi"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="sQ0-q5-4io" id="NGD-Sa-LQk"/>
+                        <segue destination="8qy-i3-Acf" kind="show" identifier="MovieDetailSegue" id="xMT-9a-eht"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6hF-tz-54h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1079.2" y="98.50074962518741"/>
+        </scene>
+        <!--MovieDetailViewController-->
+        <scene sceneID="qya-Dt-W2O">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MovieDetail" referencedIdentifier="MovieDetailViewController" id="8qy-i3-Acf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hcd-ww-Jlf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1852.8" y="98.050974512743636"/>
+        </scene>
+    </scenes>
+</document>

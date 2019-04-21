@@ -8,44 +8,53 @@
 
 import UIKit
 import CoreData
+import Kingfisher
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var storyboard: UIStoryboard!
+    
+    private var currentTabBarSelectedIndex: MainTabBarController.Items = .upcomingMovies
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         storyboard = UIStoryboard(name: "Main", bundle: nil)
         return true
     }
     
-    // MARK: - Core Data Handler
-    
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "UpcomingMovies")
-        container.loadPersistentStores { _, error in
-            guard error == nil else { fatalError() }
+    func application(_ application: UIApplication,
+                     performActionFor shortcutItem: UIApplicationShortcutItem,
+                     completionHandler: @escaping (Bool) -> Void) {
+        guard let shorcut = AppShortcutItem(rawValue: shortcutItem.type) else { return }
+        switch shorcut {
+        case .searchMovies:
+            currentTabBarSelectedIndex = .searchMovies
+            guard let tabBarController = window?.rootViewController as? UITabBarController else {
+                return
+            }
+            tabBarController.selectedIndex = currentTabBarSelectedIndex.rawValue
         }
-        return container
-    }()
+    }
 
     // MARK: - Transitions
     
     func initialTransition() {
         let initialViewController = window?.rootViewController
         let initialView = initialViewController?.view
-        let controller = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as UIViewController?
-        let controllerView = controller?.view
+        guard let controller = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController else {
+            fatalError()
+        }
+        controller.setSelectedIndex(currentTabBarSelectedIndex.rawValue)
+        let controllerView = controller.view
         UIView.transition(from: initialView!,
                           to: controllerView!,
                           duration: 0.5,
                           options: [UIView.AnimationOptions.curveEaseOut, UIView.AnimationOptions.transitionCrossDissolve],
-                          completion: { (finished: Bool) -> () in
+                          completion: { _ in
                             self.window?.rootViewController = controller
         })
         UIView.commitAnimations()
     }
 
 }
-

@@ -40,10 +40,10 @@
             </objects>
             <point key="canvasLocation" x="-971" y="-3"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController storyboardIdentifier="MainTabBarController" id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" id="49e-Tb-3d3" customClass="MainTabBarController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -52,7 +52,7 @@
                     <connections>
                         <segue destination="E0t-fn-Tcg" kind="relationship" relationship="viewControllers" id="Nwt-Qk-hnI"/>
                         <segue destination="LlS-37-NpT" kind="relationship" relationship="viewControllers" id="Q04-9T-kQw"/>
-                        <segue destination="UO7-oR-1N6" kind="relationship" relationship="viewControllers" id="hgR-cC-y8r"/>
+                        <segue destination="CUg-Zb-giJ" kind="relationship" relationship="viewControllers" id="3Dh-uX-0ee"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -67,7 +67,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2jh-II-zuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="696" y="-240"/>
+            <point key="canvasLocation" x="701" y="-288"/>
         </scene>
         <!--SearchMoviesNavigationController-->
         <scene sceneID="A0D-pP-wxe">
@@ -77,17 +77,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Gt-A4-ra2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="697" y="-1"/>
+            <point key="canvasLocation" x="686" y="-1"/>
         </scene>
-        <!--SettingsNavigationController-->
-        <scene sceneID="sLK-Ox-h9l">
+        <!--AccountNavigationController-->
+        <scene sceneID="vbr-4S-fIr">
             <objects>
-                <viewControllerPlaceholder storyboardName="Settings" referencedIdentifier="SettingsNavigationController" id="UO7-oR-1N6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Jb2-mX-LPX"/>
+                <viewControllerPlaceholder storyboardName="Account" referencedIdentifier="AccountNavigationController" id="CUg-Zb-giJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="aZ8-g4-65T"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="czi-C9-XNF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5s7-7D-ctb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="654" y="237"/>
+            <point key="canvasLocation" x="670" y="284"/>
         </scene>
     </scenes>
     <resources>

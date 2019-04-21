@@ -10,20 +10,22 @@ import UIKit
 
 class LoadingFooterView: UIView {
     
-    static let recommendedFrame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50)
+    static let recommendedFrame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100)
     
     fileprivate lazy var activityIndicatorView: UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.style = .gray
+        activityIndicatorView.style = .whiteLarge
+        activityIndicatorView.color = .darkGray
+        activityIndicatorView.startAnimating()
         activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicatorView
     }()
     
     // MARK: - Initializers
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        prepareView()
+    init() {
+        super.init(frame: LoadingFooterView.recommendedFrame)
+        setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,7 +34,7 @@ class LoadingFooterView: UIView {
     
     // MARK: - Private
     
-    fileprivate func prepareView() {
+    fileprivate func setupUI() {
         setupActivityIndicatorView()
     }
     

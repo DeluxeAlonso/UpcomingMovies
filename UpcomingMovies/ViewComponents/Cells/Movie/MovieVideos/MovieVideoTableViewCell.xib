@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="173" id="gsY-8e-8IW" customClass="MovieVideoTableViewCell" customModule="UpcomingMovies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="629" height="173"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gsY-8e-8IW" id="nlT-aw-4lo">
+                <rect key="frame" x="0.0" y="0.0" width="629" height="172.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="83G-OD-p15">
+                        <rect key="frame" x="381" y="24.5" width="220" height="123.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="83G-OD-p15" secondAttribute="height" multiplier="16:9" id="fgm-tH-K4O"/>
+                            <constraint firstAttribute="width" constant="200" id="rPt-2k-yZX"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="rPt-2k-yZX"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="rPt-2k-yZX"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tw8-W0-Yso">
+                        <rect key="frame" x="28" y="19" width="345" height="135"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="Tw8-W0-Yso" secondAttribute="bottom" constant="8" id="23i-Ih-UtD"/>
+                    <constraint firstItem="83G-OD-p15" firstAttribute="leading" secondItem="nlT-aw-4lo" secondAttribute="leadingMargin" constant="8" id="35T-qO-zky"/>
+                    <constraint firstItem="Tw8-W0-Yso" firstAttribute="top" secondItem="nlT-aw-4lo" secondAttribute="topMargin" constant="8" id="3NX-xV-DSh"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="83G-OD-p15" secondAttribute="trailing" constant="8" id="FxH-Rh-9yn"/>
+                    <constraint firstItem="83G-OD-p15" firstAttribute="top" relation="greaterThanOrEqual" secondItem="nlT-aw-4lo" secondAttribute="topMargin" constant="8" id="Hde-kP-3Q3"/>
+                    <constraint firstItem="83G-OD-p15" firstAttribute="centerY" secondItem="nlT-aw-4lo" secondAttribute="centerY" id="J0X-rx-q30"/>
+                    <constraint firstItem="Tw8-W0-Yso" firstAttribute="leading" secondItem="83G-OD-p15" secondAttribute="leading" id="Noq-4e-bD7"/>
+                    <constraint firstItem="Tw8-W0-Yso" firstAttribute="trailing" secondItem="83G-OD-p15" secondAttribute="trailing" id="Yun-eH-KlG"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="83G-OD-p15" secondAttribute="bottom" constant="8" id="ZFH-D0-8AO"/>
+                    <constraint firstItem="83G-OD-p15" firstAttribute="centerY" secondItem="nlT-aw-4lo" secondAttribute="centerY" id="jgH-tK-xbC"/>
+                    <constraint firstItem="Tw8-W0-Yso" firstAttribute="top" secondItem="83G-OD-p15" secondAttribute="bottom" constant="16" id="lgK-Dx-Uis"/>
+                    <constraint firstItem="83G-OD-p15" firstAttribute="leading" secondItem="Tw8-W0-Yso" secondAttribute="trailing" constant="8" id="mbJ-aD-hp7"/>
+                    <constraint firstItem="Tw8-W0-Yso" firstAttribute="leading" secondItem="nlT-aw-4lo" secondAttribute="leadingMargin" constant="8" id="okc-qi-3Vd"/>
+                    <constraint firstAttribute="bottom" secondItem="Tw8-W0-Yso" secondAttribute="bottom" constant="16" id="vZ5-aT-AiX"/>
+                    <constraint firstItem="83G-OD-p15" firstAttribute="width" secondItem="nlT-aw-4lo" secondAttribute="width" multiplier="0.35" id="ySf-7v-DUE"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="23i-Ih-UtD"/>
+                        <exclude reference="3NX-xV-DSh"/>
+                        <exclude reference="okc-qi-3Vd"/>
+                        <exclude reference="J0X-rx-q30"/>
+                        <exclude reference="ZFH-D0-8AO"/>
+                        <exclude reference="jgH-tK-xbC"/>
+                        <exclude reference="mbJ-aD-hp7"/>
+                        <exclude reference="ySf-7v-DUE"/>
+                    </mask>
+                </variation>
+                <variation key="heightClass=compact">
+                    <mask key="constraints">
+                        <include reference="23i-Ih-UtD"/>
+                        <include reference="3NX-xV-DSh"/>
+                        <exclude reference="Noq-4e-bD7"/>
+                        <exclude reference="Yun-eH-KlG"/>
+                        <exclude reference="lgK-Dx-Uis"/>
+                        <include reference="okc-qi-3Vd"/>
+                        <exclude reference="vZ5-aT-AiX"/>
+                        <exclude reference="35T-qO-zky"/>
+                        <exclude reference="J0X-rx-q30"/>
+                        <include reference="ZFH-D0-8AO"/>
+                        <include reference="jgH-tK-xbC"/>
+                        <include reference="mbJ-aD-hp7"/>
+                        <include reference="ySf-7v-DUE"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="nameLabel" destination="Tw8-W0-Yso" id="8hn-pp-xRf"/>
+                <outlet property="previewImageView" destination="83G-OD-p15" id="fce-8A-Zfh"/>
+            </connections>
+            <point key="canvasLocation" x="-376.46176911544228" y="141.59999999999999"/>
+        </tableViewCell>
+    </objects>
+</document>

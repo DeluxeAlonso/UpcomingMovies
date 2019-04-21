@@ -11,57 +11,42 @@ import CoreData
 
 final class SearchMoviesViewModel: NSObject {
     
-    var managedObjectContext: NSManagedObjectContext!
-    var fetchedResultsController: NSFetchedResultsController<MovieSearch>
+    var managedObjectContext: NSManagedObjectContext
     
-    var recentSearches: [MovieSearch] {
-        guard let searches = fetchedResultsController.fetchedObjects else {
-            return []
-        }
-        return searches
-    }
-    
-    // MARK: - Initializers
-    
-    init(managedObjectContext: NSManagedObjectContext) {
+    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
         self.managedObjectContext = managedObjectContext
-        let request = MovieSearch.sortedFetchRequest
-        request.fetchBatchSize = 5
-        request.fetchLimit = 5
-        request.returnsObjectsAsFaults = false
-        
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
-                                                              managedObjectContext: managedObjectContext,
-                                                              sectionNameKeyPath: nil,
-                                                              cacheName: nil)
-        super.init()
-        fetchedResultsController.delegate = self
-        loadRecentSearches()
     }
     
-    func loadRecentSearches() {
-        try! fetchedResultsController.performFetch()
+    func buildSearchOptionsViewModel() -> SearchOptionsViewModel {
+        return SearchOptionsViewModel(managedObjectContext: managedObjectContext)
     }
     
-    func saveSearchText(_ searchText: String) {
-        managedObjectContext.performChanges {
-            _ = MovieSearch.insert(into: self.managedObjectContext, searchText: searchText)
-        }
-    }
-
-}
-
-// MARK: - NSFetchedResultsControllerDelegate
-
-extension SearchMoviesViewModel: NSFetchedResultsControllerDelegate {
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    func prepareSearchResultController() -> SearchMoviesResultController {
+        let viewModel = SearchMoviesResultViewModel(managedObjectContext: managedObjectContext)
+        return SearchMoviesResultController(viewModel: viewModel)
     }
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    // MARK: - Default search options
+    
+    func popularMoviesViewModel() -> MovieListViewModel {
+        return MovieListViewModel(filter: .popular,
+                                  managedObjectContext: managedObjectContext)
     }
     
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    func topRatedMoviesViewModel() -> MovieListViewModel {
+        return MovieListViewModel(filter: .topRated,
+                                  managedObjectContext: managedObjectContext)
+    }
+    
+    func moviesByGenreViewModel(genreId: Int) -> MovieListViewModel {
+        return MovieListViewModel(filter: .byGenre(genreId: genreId),
+                                  managedObjectContext: managedObjectContext)
+    }
+    
+    func recentlyVisitedMovieViewModel(id: Int, title: String) -> MovieDetailViewModel {
+        return MovieDetailViewModel(id: id,
+                                    title: title,
+                                    managedObjectContext: managedObjectContext)
     }
     
 }

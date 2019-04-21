@@ -6,7 +6,9 @@ target 'UpcomingMovies' do
   use_frameworks!
 
   # Pods for UpcomingMovies
-  pod 'Kingfisher'
+  pod 'Kingfisher', '5.3.0'
+  pod 'CollectionViewSlantedLayout', '~> 3.1'
+  pod 'KeychainSwift', '~> 14.0'
 
   target 'UpcomingMoviesTests' do
     inherit! :search_paths

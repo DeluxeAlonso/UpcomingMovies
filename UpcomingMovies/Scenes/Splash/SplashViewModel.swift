@@ -7,28 +7,32 @@
 //
 
 import Foundation
+import CoreData
 
 final class SplashViewModel {
     
     private let genreClient = GenreClient()
     
-    var genresFetched: (() -> ())?
+    var genresFetched: (() -> Void)?
+    
+    private var managedObjectContext: NSManagedObjectContext!
+    private var genreStore: PersistenceStore<Genre>!
+    
+    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
+        self.managedObjectContext = managedObjectContext
+        setupStores()
+    }
+    
+    private func setupStores() {
+        genreStore = PersistenceStore(managedObjectContext)
+    }
     
     /**
      * Fetch all the movie genres and save them in the AppManager Singleton.
      */
     func getMovieGenres() {
-        genreClient.getAllGenres() { result in
-            switch result {
-            case .success(let genreResult):
-                guard let genreResult = genreResult,
-                 let genres = genreResult.genres else { return }
-                AppManager.shared.genres = genres
-                self.genresFetched?()
-            case .failure(let error):
-                self.genresFetched?()
-                print(error.localizedDescription)
-            }
+        genreClient.getAllGenres(context: managedObjectContext) { _ in
+            self.genresFetched?()
         }
     }
 

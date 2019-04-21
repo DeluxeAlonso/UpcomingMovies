@@ -10,7 +10,7 @@ import UIKit
 
 class CustomFooterView: UIView {
     
-    static let recommendedFrame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50)
+    static let recommendedFrame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100)
     
     fileprivate lazy var messageLabel: UILabel = {
         let label = UILabel()
@@ -33,9 +33,10 @@ class CustomFooterView: UIView {
     
     // MARK: - Initializers
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        prepareView()
+    init(message: String) {
+        super.init(frame: CustomFooterView.recommendedFrame)
+        setupUI()
+        messageLabel.text = message
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,7 +45,7 @@ class CustomFooterView: UIView {
     
     // MARK: - Private
     
-    fileprivate func prepareView() {
+    fileprivate func setupUI() {
         addSubview(messageLabel)
         NSLayoutConstraint.activate([messageLabel.topAnchor.constraint(equalTo: topAnchor),
                                      messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.horizontalMargin),
