@@ -46,16 +46,20 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        guard let viewModel = viewModel else { return }
-        nameLabel.text = viewModel.name
-        if let description = viewModel.description {
+        nameLabel.text = viewModel?.name
+        if let description = viewModel?.description {
             descriptionLabel.text = description
         } else {
             descriptionView.isHidden = true
         }
-        posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: viewModel.posterURL,
-                                    placeholder: #imageLiteral(resourceName: "PosterPlaceholder"))
+        
+        if let posterURL = viewModel?.posterURL {
+            posterImageView.contentMode = .scaleAspectFill
+            posterImageView.kf.setImage(with: posterURL)
+        } else {
+            posterImageView.contentMode = .center
+            posterImageView.image = #imageLiteral(resourceName: "PosterPlaceholder")
+        }
     }
 
 }
