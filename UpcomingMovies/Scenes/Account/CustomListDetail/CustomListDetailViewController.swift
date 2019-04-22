@@ -93,16 +93,10 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         case .populated:
             tableView.tableFooterView = UIView()
         case .loading:
-            setupFooterTableView(tableView, with: loadingFooterView, and: LoadingFooterView.recommendedFrame)
+            tableView.tableFooterView = loadingFooterView
         case .error(let error):
             tableView.tableFooterView = CustomFooterView(message: error.description)
         }
-    }
-    
-    private func setupFooterTableView(_ tableView: UITableView, with view: UIView, and frame: CGRect) {
-        let footerContainerView = UIView(frame: frame)
-        footerContainerView.addSubview(view)
-        tableView.tableFooterView = footerContainerView
     }
     
     // MARK: - Reactive Behaviour

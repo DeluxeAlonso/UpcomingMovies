@@ -34,7 +34,7 @@ extension UIViewController {
         viewController.removeFromParent()
     }
     
-    // MARK: -
+    // MARK: - Navigation Controller
     
     func setTitleAnimated(_ title: String?,
                           with transitionType: CATransitionType = .fade) {
