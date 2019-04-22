@@ -13,9 +13,7 @@ final class CustomListsViewModel {
     
     private let managedObjectContext: NSManagedObjectContext
     private let groupOption: ProfileGroupOption
-    
     private let accountClient = AccountClient()
-    
     private let userCredentials = AuthenticationManager.shared.userCredentials()
     
     let title: String?
@@ -41,6 +39,14 @@ final class CustomListsViewModel {
         self.managedObjectContext = managedObjectContext
         self.groupOption = groupOption
         self.title = groupOption.title
+    }
+    
+    // MARK: - Public
+    
+    func buildDetailViewModel(atIndex index: Int) -> CustomListDetailViewModel? {
+        guard index < lists.count else { return nil }
+        return CustomListDetailViewModel(lists[index],
+                                         managedObjectContext: managedObjectContext)
     }
     
     // MARK: - Networking

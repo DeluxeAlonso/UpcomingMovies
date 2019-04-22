@@ -32,10 +32,6 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     }
     
     // MARK: - Lifecycle
-    
-    deinit {
-        print("MovieDetailViewController")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

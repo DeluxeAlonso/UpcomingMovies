@@ -18,7 +18,7 @@ final class SearchMoviesResultViewModel {
     private let movieClient = MovieClient()
     private var movies: [Movie] = []
     
-    let viewState: Bindable<SearchMoviesResultViewState> = Bindable(.initial)
+    let viewState: Bindable<ViewState> = Bindable(.initial)
     
     var prepareUpdate: ((Bool) -> Void)?
     var updateRecentSearches: (() -> Void)?
@@ -100,7 +100,7 @@ extension SearchMoviesResultViewModel: PersistenceStoreDelegate {
 
 extension SearchMoviesResultViewModel {
     
-    enum SearchMoviesResultViewState {
+    enum ViewState {
         
         case initial
         case empty

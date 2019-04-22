@@ -24,7 +24,7 @@
                     <connections>
                         <segue destination="4Wg-PQ-5Ue" kind="presentation" identifier="AuthPermissionSegue" id="WEl-7i-CoI"/>
                         <segue destination="0Fw-wE-eJ0" kind="show" identifier="CollectionListSegue" id="NK0-Gf-nSd"/>
-                        <segue destination="b0o-Vv-U75" kind="show" identifier="CustomListsSegue" id="aKW-Sh-hJo"/>
+                        <segue destination="4Qt-BS-1Ob" kind="show" identifier="CustomListsSegue" id="iag-yk-3d5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GrE-o3-lT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -230,36 +230,6 @@
             </objects>
             <point key="canvasLocation" x="452" y="883.80809595202402"/>
         </scene>
-        <!--Custom Lists View Controller-->
-        <scene sceneID="qdV-V1-OOw">
-            <objects>
-                <viewController id="b0o-Vv-U75" customClass="CustomListsViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YVv-7a-vR6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="KZI-gE-t2g">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="KZI-gE-t2g" firstAttribute="leading" secondItem="YVv-7a-vR6" secondAttribute="leading" id="EmK-9Q-ZiL"/>
-                            <constraint firstItem="KZI-gE-t2g" firstAttribute="top" secondItem="pOE-mr-0W4" secondAttribute="top" id="QjH-A3-eBP"/>
-                            <constraint firstItem="pOE-mr-0W4" firstAttribute="bottom" secondItem="KZI-gE-t2g" secondAttribute="bottom" id="lIx-fu-si3"/>
-                            <constraint firstAttribute="trailing" secondItem="KZI-gE-t2g" secondAttribute="trailing" id="u0W-jW-zgk"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="pOE-mr-0W4"/>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="KZI-gE-t2g" id="aPA-X7-CmX"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CTM-35-Szu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="452" y="1698"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="5gv-0b-L87">
             <objects>
@@ -295,6 +265,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jtI-KP-cQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2230" y="81"/>
+        </scene>
+        <!--CustomListsViewController-->
+        <scene sceneID="uGh-Wd-Pgo">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CustomLists" referencedIdentifier="CustomListsViewController" id="4Qt-BS-1Ob" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B2W-Vc-zd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="451" y="1509"/>
         </scene>
     </scenes>
     <resources>
