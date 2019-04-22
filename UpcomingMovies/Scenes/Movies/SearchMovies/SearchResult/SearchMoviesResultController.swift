@@ -116,8 +116,8 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         viewModel.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
-                strongSelf.reloadTableView()
                 strongSelf.configureView(with: state)
+                strongSelf.reloadTableView()
             }
         })
     }
