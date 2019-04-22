@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomListDetailViewController: UIViewController {
+class CustomListDetailViewController: UIViewController, SegueHandler {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -118,12 +118,30 @@ class CustomListDetailViewController: UIViewController {
         })
         viewModel?.getListDetail()
     }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segueIdentifier(for: segue) {
+        case .movieDetail:
+            guard let viewController = segue.destination as? MovieDetailViewController else { fatalError() }
+            guard let indexPath = sender as? IndexPath else { return }
+            _ = viewController.view
+            viewController.viewModel = viewModel?.buildDetailViewModel(at: indexPath.row)
+        }
+    }
 
 }
 
 // MARK: - UITableViewDelegate
 
 extension CustomListDetailViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue,
+                     sender: indexPath)
+    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 60.0
@@ -163,6 +181,16 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
         }
         
         tableViewYPos = currentY
+    }
+    
+}
+
+// MARK: - Segue Identifiers
+
+extension CustomListDetailViewController {
+    
+    enum SegueIdentifier: String {
+        case movieDetail = "MovieDetailSegue"
     }
     
 }
