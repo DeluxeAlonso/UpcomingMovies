@@ -74,7 +74,7 @@ final class SearchMoviesResultViewModel {
     
     // MARK: - Movie detail builder
     
-    func buildDetailViewModel(atIndex index: Int) -> MovieDetailViewModel? {
+    func buildDetailViewModel(at index: Int) -> MovieDetailViewModel? {
         guard index < movies.count else { return nil }
         return MovieDetailViewModel(movies[index],
                                     managedObjectContext: movieSearchStore.managedObjectContext)
@@ -106,7 +106,7 @@ extension SearchMoviesResultViewModel {
         case empty
         case searching
         case populated([Movie])
-        case error(Error)
+        case error(ErrorDescriptable)
         
         var sections: [SearchMoviesResultSections]? {
             switch self {
