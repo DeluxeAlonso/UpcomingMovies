@@ -283,6 +283,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Iqq-Nx-lIM"/>
                     </view>
+                    <navigationItem key="navigationItem" id="lYK-dO-U5n">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="L4l-8n-Izi"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="lRn-oj-krt" id="hfI-o6-86D"/>
                     </connections>

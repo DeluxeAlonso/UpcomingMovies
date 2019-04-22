@@ -37,8 +37,10 @@ class CustomListsViewController: UIViewController, Displayable, SegueHandler, Lo
     }
     
     private func setupNavigationBar() {
-        let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
+        let backBarButtonItem = UIBarButtonItem(title: "",
+                                                style: .done,
+                                                target: nil, action: nil)
+        navigationItem.backBarButtonItem = backBarButtonItem
     }
     
     private func setupTableView() {
