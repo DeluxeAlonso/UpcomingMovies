@@ -43,6 +43,7 @@ class SearchMoviesResultDataSource: NSObject, UITableViewDataSource {
     
     fileprivate func recentSearchesDataSource(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(with: RecentSearchTableViewCell.self, for: indexPath)
+        guard indexPath.row < viewModel.recentSearchCells.count else { return UITableViewCell() }
         cell.viewModel = viewModel.recentSearchCells[indexPath.row]
         return cell
     }

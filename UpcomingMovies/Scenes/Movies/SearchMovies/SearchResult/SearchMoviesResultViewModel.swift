@@ -19,8 +19,7 @@ final class SearchMoviesResultViewModel {
     private var movies: [Movie] = []
     
     let viewState: Bindable<ViewState> = Bindable(.initial)
-    
-    var prepareUpdate: ((Bool) -> Void)?
+
     var updateRecentSearches: (() -> Void)?
     
     // MARK: - Computed Properties
@@ -74,8 +73,7 @@ final class SearchMoviesResultViewModel {
     
     // MARK: - Movie detail builder
     
-    func buildDetailViewModel(at index: Int) -> MovieDetailViewModel? {
-        guard index < movies.count else { return nil }
+    func buildDetailViewModel(at index: Int) -> MovieDetailViewModel {
         return MovieDetailViewModel(movies[index],
                                     managedObjectContext: movieSearchStore.managedObjectContext)
     }
@@ -87,7 +85,6 @@ final class SearchMoviesResultViewModel {
 extension SearchMoviesResultViewModel: PersistenceStoreDelegate {
     
     func persistenceStore(willUpdateEntity shouldPrepare: Bool) {
-        prepareUpdate?(shouldPrepare)
     }
     
     func persistenceStore(didUpdateEntity update: Bool) {

@@ -18,34 +18,12 @@ protocol SearchMoviesResultControllerDelegate: class {
 
 class SearchMoviesResultController: UIViewController, Keyboardable {
     
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 150
-        tableView.backgroundColor = .clear
-        tableView.delegate = self
-        
-        tableView.registerNib(cellType: MovieTableViewCell.self)
-        tableView.registerNib(cellType: RecentSearchTableViewCell.self)
-        
-        return tableView
-    }()
-    
-    private lazy var loadingFooterView: LoadingFooterView = {
-        let footerView = LoadingFooterView()
-        footerView.frame = LoadingFooterView.recommendedFrame
-        footerView.startAnimating()
-        return footerView
-    }()
-    
     private var viewModel: SearchMoviesResultViewModel
     private var dataSource: SearchMoviesResultDataSource!
     
-    private var tableViewBottomConstraint: NSLayoutConstraint!
-    
     weak var delegate: SearchMoviesResultControllerDelegate?
+    
+    var searchMoviesResultView = SearchMoviesResultView()
     
     // MARK: - Initializers
     
@@ -65,6 +43,11 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    override func loadView() {
+        super.loadView()
+        view = searchMoviesResultView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupObservers()
@@ -77,13 +60,13 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
     private func setupObservers() {
         registerKeyboardWillShowNotification(using: { [weak self] keyboardFrame in
             self?.view.layoutIfNeeded()
-            self?.tableViewBottomConstraint.constant = -keyboardFrame.size.height
+            self?.searchMoviesResultView.tableViewBottomConstraint.constant = -keyboardFrame.size.height
             self?.view.layoutIfNeeded()
         })
         
         registerKeyboardWillHideNotification(using: { [weak self] in
             self?.view.layoutIfNeeded()
-            self?.tableViewBottomConstraint.constant = 0
+            self?.searchMoviesResultView.tableViewBottomConstraint.constant = 0
             self?.view.layoutIfNeeded()
         })
     }
@@ -94,21 +77,20 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
     }
     
     private func setupTableView() {
-        view.addSubview(tableView)
-        tableViewBottomConstraint = tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        NSLayoutConstraint.activate([tableView.topAnchor.constraint(equalTo: view.topAnchor),
-                                     tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                                     tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                                     tableViewBottomConstraint])
+        let tableView = searchMoviesResultView.tableView
+        tableView.delegate = self
+        tableView.registerNib(cellType: MovieTableViewCell.self)
+        tableView.registerNib(cellType: RecentSearchTableViewCell.self)
     }
     
     private func reloadTableView() {
         dataSource = SearchMoviesResultDataSource(viewModel: viewModel)
-        tableView.dataSource = dataSource
-        tableView.reloadData()
+        searchMoviesResultView.tableView.dataSource = dataSource
+        searchMoviesResultView.tableView.reloadData()
     }
     
-    private func configureFooterTableView(with state: SearchMoviesResultViewModel.ViewState) {
+    private func configureView(with state: SearchMoviesResultViewModel.ViewState) {
+        let tableView = searchMoviesResultView.tableView
         tableView.separatorStyle = .none
         switch state {
         case .empty:
@@ -117,7 +99,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
             tableView.tableFooterView = UIView()
             tableView.separatorStyle = .singleLine
         case .searching:
-            tableView.tableFooterView = loadingFooterView
+            tableView.tableFooterView = searchMoviesResultView.loadingFooterView
         case .error(let error):
             tableView.tableFooterView = CustomFooterView(message: error.description)
         }
@@ -126,11 +108,6 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        viewModel.prepareUpdate = { [weak self] beginUpdate in
-            guard let strongSelf = self else { return }
-            beginUpdate ? strongSelf.tableView.beginUpdates() : strongSelf.tableView.endUpdates()
-        }
-        
         viewModel.updateRecentSearches = { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.reloadTableView()
@@ -139,8 +116,8 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         viewModel.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
+                strongSelf.configureView(with: state)
                 strongSelf.reloadTableView()
-                strongSelf.configureFooterTableView(with: state)
             }
         })
     }
@@ -171,9 +148,7 @@ extension SearchMoviesResultController: UITableViewDelegate {
             let searchText = viewModel.recentSearchCells[indexPath.row].searchText
             delegate?.searchMoviesResultController(self, didSelectRecentSearch: searchText)
         case .populated:
-            guard let detailViewModel = viewModel.buildDetailViewModel(at: indexPath.row) else {
-                return
-            }
+            let detailViewModel = viewModel.buildDetailViewModel(at: indexPath.row)
             delegate?.searchMoviesResultController(self, didSelectMovie: detailViewModel)
         case .empty, .error, .searching:
             return
