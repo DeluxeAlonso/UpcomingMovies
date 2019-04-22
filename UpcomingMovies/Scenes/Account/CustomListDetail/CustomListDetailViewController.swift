@@ -68,6 +68,8 @@ class CustomListDetailViewController: UIViewController {
     
     private func setupTableView() {
         tableView.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 150
         tableView.registerNib(cellType: MovieTableViewCell.self)
     }
     
