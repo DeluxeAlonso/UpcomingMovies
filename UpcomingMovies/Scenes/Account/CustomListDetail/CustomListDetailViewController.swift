@@ -19,9 +19,11 @@ class CustomListDetailViewController: UIViewController {
         return footerView
     }()
     
+    private var dataSource: CustomListDetailDataSource!
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
-    var lastY: CGFloat = 0
+    /// Used to determinate if the header view is being presented or not.
+    private var tableViewYPos: CGFloat = 0
     
     var viewModel: CustomListDetailViewModel? {
         didSet {
@@ -65,7 +67,6 @@ class CustomListDetailViewController: UIViewController {
     }
     
     private func setupTableView() {
-        tableView.dataSource = self
         tableView.delegate = self
         tableView.registerNib(cellType: MovieTableViewCell.self)
     }
@@ -77,6 +78,9 @@ class CustomListDetailViewController: UIViewController {
     }
     
     private func reloadTableView() {
+        guard let viewModel = viewModel else { return }
+        dataSource = CustomListDetailDataSource(viewModel: viewModel)
+        tableView.dataSource = dataSource
         tableView.reloadData()
     }
     
@@ -115,29 +119,6 @@ class CustomListDetailViewController: UIViewController {
 
 }
 
-// MARK: - UITableViewDataSource
-
-extension CustomListDetailViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let viewModel = viewModel else { return 0 }
-        return viewModel.movieCells.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let viewModel = viewModel else { return UITableViewCell() }
-        let cell = tableView.dequeueReusableCell(with: MovieTableViewCell.self,
-                                                 for: indexPath)
-        cell.viewModel = viewModel.movieCells[indexPath.row]
-        return cell
-    }
-    
-}
-
 // MARK: - UITableViewDelegate
 
 extension CustomListDetailViewController: UITableViewDelegate {
@@ -173,13 +154,13 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
         let currentY = scrollView.contentOffset.y
         let headerHeight = headerView.frame.size.height
         
-        if lastY <= headerHeight && currentY > headerHeight {
+        if tableViewYPos <= headerHeight && currentY > headerHeight {
             setTitleAnimated(viewModel?.name)
-        } else if lastY > headerHeight && currentY <= headerHeight {
+        } else if tableViewYPos > headerHeight && currentY <= headerHeight {
             setTitleAnimated(nil)
         }
         
-        lastY = currentY
+        tableViewYPos = currentY
     }
     
 }
