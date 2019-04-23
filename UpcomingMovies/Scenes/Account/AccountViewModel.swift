@@ -14,7 +14,7 @@ final class AccountViewModel {
     private var managedObjectContext: NSManagedObjectContext
     
     private let authClient = AuthClient()
-    private let userClient = AccountClient()
+    private let accountClient = AccountClient()
     private var requestToken: String?
     
     var showAuthPermission: (() -> Void)?
@@ -54,7 +54,7 @@ final class AccountViewModel {
     }
     
     private func getAccountDetails(_ sessionId: String) {
-        userClient.getAccountDetail(managedObjectContext, with: sessionId) { result in
+        accountClient.getAccountDetail(managedObjectContext, with: sessionId) { result in
             switch result {
             case .success(let user):
                 AuthenticationManager.shared.saveCurrentUser(sessionId,

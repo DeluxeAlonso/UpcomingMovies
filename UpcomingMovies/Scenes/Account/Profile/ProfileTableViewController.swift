@@ -55,6 +55,13 @@ class ProfileTableViewController: UITableViewController {
         tableView.dataSource = dataSource
     }
     
+    private func reloadAccountInfo() {
+        setupDataSource()
+        tableView.performBatchUpdates({
+            self.tableView.reloadSections(IndexSet(integer: 0), with: .none)
+        }, completion: nil)
+    }
+    
     private func showSignOutActionSheet() {
         let signOutAction = UIAlertAction(title: "Sign out",
                                           style: .destructive) { _ in
@@ -67,7 +74,12 @@ class ProfileTableViewController: UITableViewController {
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
+        viewModel?.reloadAccountInfo = { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.reloadAccountInfo()
+        }
         setupDataSource()
+        viewModel?.getAccountDetails()
     }
     
     // MARK: - Actions

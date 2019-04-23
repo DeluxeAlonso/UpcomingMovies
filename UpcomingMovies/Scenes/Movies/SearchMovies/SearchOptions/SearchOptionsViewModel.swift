@@ -50,7 +50,7 @@ final class SearchOptionsViewModel {
     // MARK: - Private
     
     /**
-     * Configures the state of the view according to the saved movie visists
+     * Configures the state of the view according to the saved movie visits
      * quantity. Returns true if the state changed and false if not.
      */
     @discardableResult

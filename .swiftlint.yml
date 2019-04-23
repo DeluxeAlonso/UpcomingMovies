@@ -6,6 +6,7 @@ disabled_rules: # rule identifiers to exclude from running
  - force_cast
  - trailing_whitespace
  - discarded_notification_center_observer
+ - todo
 excluded: # paths to ignore during linting. Takes precedence over `included`.
  - Carthage
  - Pods
