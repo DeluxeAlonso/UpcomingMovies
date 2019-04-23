@@ -18,7 +18,7 @@ final class ProfileViewModel {
     
     let viewState: Bindable<ProfileViewState> = Bindable(.initial)
     
-    var updateAccountInfo: (() -> Void)?
+    var reloadAccountInfo: (() -> Void)?
     
     private var userAccount: User?
     var userInfoCell: ProfileAccountInforCellViewModel? {
@@ -134,7 +134,7 @@ extension ProfileViewModel: PersistenceStoreDelegate {
     
     func persistenceStore(didUpdateEntity update: Bool) {
         updateUserAccount()
-        updateAccountInfo?()
+        reloadAccountInfo?()
     }
     
 }

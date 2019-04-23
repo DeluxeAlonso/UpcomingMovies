@@ -74,7 +74,7 @@ class ProfileTableViewController: UITableViewController {
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        viewModel?.updateAccountInfo = { [weak self] in
+        viewModel?.reloadAccountInfo = { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.reloadAccountInfo()
         }
