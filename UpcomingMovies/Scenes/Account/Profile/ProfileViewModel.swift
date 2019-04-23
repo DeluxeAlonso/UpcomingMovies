@@ -11,11 +11,16 @@ import CoreData
 
 final class ProfileViewModel {
     
-    private var managedObjectContext: NSManagedObjectContext!
+    private var managedObjectContext: NSManagedObjectContext
+    private var userStore: PersistenceStore<User>!
+    
+    private let accountClient = AccountClient()
     
     let viewState: Bindable<ProfileViewState> = Bindable(.initial)
     
-    private let userAccount: User?
+    var updateAccountInfo: (() -> Void)?
+    
+    private var userAccount: User?
     var userInfoCell: ProfileAccountInforCellViewModel? {
         guard let userAccount = userAccount else { return nil }
         return ProfileAccountInforCellViewModel(userAccount: userAccount)
@@ -38,6 +43,23 @@ final class ProfileViewModel {
         self.userAccount = userAccount
         self.collectionOptions = options.collectionOptions
         self.groupOptions = options.groupOptions
+        setupStores()
+    }
+    
+    // MARK: - Private
+    
+    private func setupStores() {
+        userStore = PersistenceStore(managedObjectContext)
+        userStore.configure()
+        userStore.delegate = self
+    }
+    
+    private func updateUserAccount() {
+        guard let userAccountId = userAccount?.id,
+            let updatedUserAccount = userStore.find(with: userAccountId) else {
+                return
+        }
+        userAccount = updatedUserAccount
     }
     
     // MARK: - Public
@@ -48,6 +70,16 @@ final class ProfileViewModel {
     
     func groupOption(at index: Int) -> ProfileGroupOption {
         return groupOptions[index]
+    }
+    
+    // MARK: - Networking
+    
+    // TODO: - Change this method to get the account detail given the id of a user account
+    func getAccountDetails() {
+        guard let credentials = AuthenticationManager.shared.userCredentials() else {
+            return
+        }
+        accountClient.getAccountDetail(managedObjectContext, with: credentials.sessionId) { _ in }
     }
     
 }
@@ -90,6 +122,19 @@ extension ProfileViewModel {
             }
         }
         
+    }
+    
+}
+
+// MARK: - PersistenceStoreDelegate
+
+extension ProfileViewModel: PersistenceStoreDelegate {
+    
+    func persistenceStore(willUpdateEntity shouldPrepare: Bool) {}
+    
+    func persistenceStore(didUpdateEntity update: Bool) {
+        updateUserAccount()
+        updateAccountInfo?()
     }
     
 }
