@@ -22,8 +22,11 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     private var dataSource: CustomListDetailDataSource!
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
+    private var showNavBarAnimator: UIViewPropertyAnimator!
+    private var hideNavBarAnimator: UIViewPropertyAnimator!
+    
     /// Used to determinate if the header view is being presented or not.
-    private var tableViewYPos: CGFloat = 0
+    private var tableViewContentOffsetY: CGFloat = 0
     
     var viewModel: CustomListDetailViewModel? {
         didSet {
@@ -49,6 +52,12 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -61,6 +70,21 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         setupTableView()
     }
     
+    fileprivate func showNavigationBar() {
+        UIView.animate(withDuration: 0.1, animations: { [weak self] in
+            self?.navigationController?.navigationBar.barTintColor = .white
+            self?.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+            self?.navigationController?.navigationBar.shadowImage = nil
+        }, completion: nil)
+    }
+    
+    fileprivate func hideNavigationBar() {
+        UIView.animate(withDuration: 0.1, animations: { [weak self] in
+            self?.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            self?.navigationController?.navigationBar.shadowImage = UIImage()
+        }, completion: nil)
+    }
+    
     private func setupNavigationBar() {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backBarButtonItem
@@ -71,6 +95,7 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
         tableView.registerNib(cellType: MovieTableViewCell.self)
+        tableView.contentInsetAdjustmentBehavior = .never
     }
     
     private func setupTableViewHeader() {
@@ -165,16 +190,21 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
             let headerView = tableView.tableHeaderView else {
                 return
         }
-        let currentY = scrollView.contentOffset.y
-        let headerHeight = headerView.frame.size.height
+        let contentOffsetY = scrollView.contentOffset.y
+        let headerHeight = headerView.frame.size.height - 40.0
         
-        if tableViewYPos <= headerHeight && currentY > headerHeight {
+        print("Contentoffset ->", contentOffsetY)
+        if tableViewContentOffsetY <= headerHeight && contentOffsetY > headerHeight {
+            tableView.contentInsetAdjustmentBehavior = .scrollableAxes
+            showNavigationBar()
             setTitleAnimated(viewModel?.name)
-        } else if tableViewYPos > headerHeight && currentY <= headerHeight {
+        } else if tableViewContentOffsetY > headerHeight && contentOffsetY <= headerHeight {
+            tableView.contentInsetAdjustmentBehavior = . never
+            hideNavigationBar()
             setTitleAnimated(nil)
         }
         
-        tableViewYPos = currentY
+        tableViewContentOffsetY = contentOffsetY
     }
     
 }

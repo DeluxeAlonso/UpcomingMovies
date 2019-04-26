@@ -213,7 +213,7 @@
         <!--Account-->
         <scene sceneID="vUC-TL-t1g">
             <objects>
-                <navigationController storyboardIdentifier="AccountNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="69N-ds-oda" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AccountNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="69N-ds-oda" customClass="KDInteractiveNavigationController" customModule="KDInteractiveNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Account" image="Account" id="XeO-c5-LSU"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
