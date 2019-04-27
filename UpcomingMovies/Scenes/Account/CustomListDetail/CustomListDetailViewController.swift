@@ -11,6 +11,8 @@ import UIKit
 class CustomListDetailViewController: UIViewController, SegueHandler {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var posterImageViewHeightConstraint: NSLayoutConstraint!
     
     private lazy var loadingFooterView: LoadingFooterView = {
         let footerView = LoadingFooterView()
@@ -28,6 +30,10 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     /// Used to determinate if the header view is being presented or not.
     private var tableViewContentOffsetY: CGFloat = 0
     
+    private var currentTableViewTopInset: CGFloat!
+    
+    private var initialHeightContraintConstant: CGFloat!
+    
     var viewModel: CustomListDetailViewModel? {
         didSet {
             setupBindables()
@@ -35,6 +41,18 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     }
     
     // MARK: - Lifecycle
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { _ in
+        }, completion: { _ in
+            if let top = self.navigationController?.navigationBar.intrinsicContentSize.height {
+                let topBarHeight = UIApplication.shared.statusBarFrame.size.height
+                self.currentTableViewTopInset = self.posterImageView.frame.height - top - topBarHeight
+                self.tableView.contentInset = .init(top: self.currentTableViewTopInset, left: 0, bottom: 0, right: 0)
+            }
+        })
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -56,10 +74,16 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
+        if let top = navigationController?.navigationBar.intrinsicContentSize.height {
+            let topBarHeight = UIApplication.shared.statusBarFrame.size.height
+            currentTableViewTopInset = posterImageView.frame.height - top - topBarHeight
+            tableView.contentInset = .init(top: currentTableViewTopInset, left: 0, bottom: 0, right: 0)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialHeightContraintConstant = posterImageViewHeightConstraint.constant
         setupUI()
     }
     
@@ -95,7 +119,6 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
         tableView.registerNib(cellType: MovieTableViewCell.self)
-        tableView.contentInsetAdjustmentBehavior = .never
     }
     
     private func setupTableViewHeader() {
@@ -193,13 +216,21 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
         let contentOffsetY = scrollView.contentOffset.y
         let headerHeight = headerView.frame.size.height - 40.0
         
-        print("Contentoffset ->", contentOffsetY)
+        let height = initialHeightContraintConstant - (scrollView.contentOffset.y + currentTableViewTopInset)
+
+        let newHeight = min(max(height, 40), 400)
+        posterImageViewHeightConstraint.constant = newHeight
+        
+        if contentOffsetY <= 0 && abs(contentOffsetY) <= currentTableViewTopInset {
+            scrollView.contentInset.top = abs(contentOffsetY)
+        } else if contentOffsetY > 0 {
+             scrollView.contentInset.top = 0
+        }
+        
         if tableViewContentOffsetY <= headerHeight && contentOffsetY > headerHeight {
-            tableView.contentInsetAdjustmentBehavior = .scrollableAxes
             showNavigationBar()
             setTitleAnimated(viewModel?.name)
         } else if tableViewContentOffsetY > headerHeight && contentOffsetY <= headerHeight {
-            tableView.contentInsetAdjustmentBehavior = . never
             hideNavigationBar()
             setTitleAnimated(nil)
         }

@@ -16,14 +16,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="20170506_BKP001_0" translatesAutoresizingMaskIntoConstraints="NO" id="oaY-eK-s27" userLabel="Poster Image View">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
                     <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="180" id="1dP-Sp-Mzn"/>
+                        <constraint firstAttribute="height" id="1dP-Sp-Mzn"/>
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="fRO-iW-9EL">
-                    <rect key="frame" x="0.0" y="180" width="414" height="95"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="275"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j93-7Z-hy9" userLabel="Name View">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="36.5"/>
@@ -35,7 +35,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="eYr-a2-1i7" secondAttribute="trailing" constant="16" id="312-ZZ-1ww"/>
                                 <constraint firstAttribute="bottom" secondItem="eYr-a2-1i7" secondAttribute="bottom" constant="4" id="JKQ-S9-LKo"/>
@@ -44,16 +44,16 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDl-vg-Mae" userLabel="Description View">
-                            <rect key="frame" x="0.0" y="36.5" width="414" height="58.5"/>
+                            <rect key="frame" x="0.0" y="36.5" width="414" height="238.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="List Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bN4-Xi-8GE" userLabel="Description Label">
-                                    <rect key="frame" x="16" y="26" width="382" height="20.5"/>
+                                    <rect key="frame" x="16" y="206" width="382" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="bN4-Xi-8GE" firstAttribute="top" secondItem="tDl-vg-Mae" secondAttribute="top" priority="999" constant="4" id="LCR-6R-4qv"/>
                                 <constraint firstItem="bN4-Xi-8GE" firstAttribute="leading" secondItem="tDl-vg-Mae" secondAttribute="leading" priority="999" constant="16" id="LDb-oz-hhn"/>
