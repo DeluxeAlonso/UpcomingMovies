@@ -140,8 +140,9 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     
     private func hideNavigationBar() {
         UIView.animate(withDuration: 0.1, animations: { [weak self] in
+            self?.navigationController?.navigationBar.barStyle = .black
             self?.setClearNavigationBar()
-            }, completion: nil)
+        }, completion: nil)
     }
     
     // MARK: - Reactive Behaviour
