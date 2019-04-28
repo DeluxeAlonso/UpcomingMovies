@@ -39,4 +39,19 @@ extension UITableView {
         return self.dequeueReusableCell(withIdentifier: type.dequeuIdentifier, for: indexPath) as! T
     }
     
+    // MARK: - Header
+    
+    func configureDynamicHeaderViewHeight() {
+        guard let headerView = tableHeaderView else { return }
+        let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        var headerFrame = headerView.frame
+        
+        // Comparison needed to avoid an infinite loop
+        if height != headerFrame.size.height {
+            headerFrame.size.height = height
+            headerView.frame = headerFrame
+            tableHeaderView = headerView
+        }
+    }
+    
 }

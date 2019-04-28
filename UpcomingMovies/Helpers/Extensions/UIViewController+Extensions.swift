@@ -64,4 +64,17 @@ extension UIViewController {
         present(actionSheet, animated: true, completion: nil)
     }
     
+    // MARK: - Navigation Bar
+    
+    func setClearNavigationBar() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    func restoreClearNavigationBar(with barTintColor: UIColor) {
+        navigationController?.navigationBar.barTintColor = barTintColor
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+    }
+    
 }
