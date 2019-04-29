@@ -59,7 +59,7 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.barStyle = isTitlePresented() ? .default : .black
         guard !isNavigationBarConfigured else { return }
         isNavigationBarConfigured = true
         setClearNavigationBar()
@@ -87,6 +87,7 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     private func setupNavigationBar() {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backBarButtonItem
+        navigationController?.navigationBar.barStyle = .black
     }
     
     private func setupTableView() {
@@ -143,6 +144,10 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
             self?.navigationController?.navigationBar.barStyle = .black
             self?.setClearNavigationBar()
         }, completion: nil)
+    }
+    
+    private func isTitlePresented() -> Bool {
+        return navigationItem.title != nil
     }
     
     // MARK: - Reactive Behaviour
@@ -214,9 +219,17 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
         let contentOffsetY = scrollView.contentOffset.y
         let headerHeight = headerView.frame.size.height - 40.0
         
+        configureScrollView(scrollView, for: contentOffsetY, and: headerHeight)
+        
+        tableViewContentOffsetY = contentOffsetY
+    }
+    
+    private func configureScrollView(_ scrollView: UIScrollView,
+                                     for contentOffsetY: CGFloat,
+                                     and headerHeight: CGFloat) {
         // Stretchy header
-        let height = initialHeightContraintConstant - (scrollView.contentOffset.y + currentTableViewTopInset)
-
+        let height = initialHeightContraintConstant - (contentOffsetY + currentTableViewTopInset)
+        
         let newHeight = min(max(height, 40), 400)
         posterImageViewHeightConstraint.constant = newHeight
         
@@ -224,7 +237,7 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
         if contentOffsetY <= 0 && abs(contentOffsetY) <= currentTableViewTopInset {
             scrollView.contentInset.top = abs(contentOffsetY)
         } else if contentOffsetY > 0 {
-             scrollView.contentInset.top = 0
+            scrollView.contentInset.top = 0
         }
         
         // Navigation bar title
@@ -235,8 +248,6 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
             hideNavigationBar()
             setTitleAnimated(nil)
         }
-        
-        tableViewContentOffsetY = contentOffsetY
     }
     
 }

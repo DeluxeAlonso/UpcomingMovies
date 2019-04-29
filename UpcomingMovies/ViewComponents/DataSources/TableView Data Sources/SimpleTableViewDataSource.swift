@@ -47,7 +47,6 @@ extension SimpleTableViewDataSource where ViewModel == MovieCellViewModel {
                                          cellConfigurator: { (viewModel, cell) in
                                                 let cell = cell as! MovieTableViewCell
                                                 cell.viewModel = viewModel
-                                                cell.backgroundColor = .black//.white
         })
     }
     
