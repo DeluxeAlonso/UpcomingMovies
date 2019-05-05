@@ -46,8 +46,8 @@ class SimpleHeaderView: UIView {
         addSubview(headerTitleLabel)
         headerTitleLabel.fillSuperview(padding: .init(top: Constants.verticalMargin,
                                                       left: Constants.horizontalMargin,
-                                                      bottom: -Constants.verticalMargin,
-                                                      right: -Constants.horizontalMargin))
+                                                      bottom: Constants.verticalMargin,
+                                                      right: Constants.horizontalMargin))
     }
     
     // MARK: - Constants

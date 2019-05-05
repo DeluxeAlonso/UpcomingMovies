@@ -48,7 +48,7 @@ class CustomFooterView: UIView {
     fileprivate func setupUI() {
         addSubview(messageLabel)
         messageLabel.fillSuperview(padding: .init(top: 0, left: Constants.horizontalMargin,
-                                                  bottom: 0, right: -Constants.horizontalMargin))
+                                                  bottom: 0, right: Constants.horizontalMargin))
     }
     
     // MARK: - Constants
