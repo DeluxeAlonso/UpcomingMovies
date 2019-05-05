@@ -16,7 +16,7 @@ protocol SignInViewControllerDelegate: class {
 
 class SignInViewController: UIViewController {
     
-    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var signInButton: ShrinkingButton!
     
     weak var delegate: SignInViewControllerDelegate?
     
@@ -35,6 +35,16 @@ class SignInViewController: UIViewController {
     
     private func setupButtons() {
         signInButton.layer.cornerRadius = 5
+    }
+    
+    // MARK: - Public
+    
+    func startLoading() {
+        signInButton.startAnimation()
+    }
+    
+    func stopLoading() {
+        signInButton.stopAnimation(revertAfterDelay: 0.1, completion: nil)
     }
     
     // MARK: - Actions

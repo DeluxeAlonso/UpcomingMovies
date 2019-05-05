@@ -156,7 +156,6 @@
 		E26011642193823C00E53095 /* TableViewCellAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26011632193823C00E53095 /* TableViewCellAnimator.swift */; };
 		E26011672193870800E53095 /* ErrorPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26011662193870800E53095 /* ErrorPlaceholderView.swift */; };
 		E26011692193876500E53095 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26011682193876500E53095 /* NibLoadable.swift */; };
-		E260116C2193884C00E53095 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E260116B2193884C00E53095 /* LoadingButton.swift */; };
 		E260116E219388B700E53095 /* FontHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E260116D219388B700E53095 /* FontHelper.swift */; };
 		E2601170219388C500E53095 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = E260116F219388C500E53095 /* ColorPalette.swift */; };
 		E260117621938D6C00E53095 /* Retryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E260117521938D6C00E53095 /* Retryable.swift */; };
@@ -195,6 +194,9 @@
 		E2A65E5321FECC2200485B4E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A65E5221FECC2200485B4E /* Utils.swift */; };
 		E2B11CA82251B02300092A6E /* AccountProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B11CA72251B02300092A6E /* AccountProvider.swift */; };
 		E2B11CAA2251B14200092A6E /* AccountClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B11CA92251B14200092A6E /* AccountClient.swift */; };
+		E2B47516227EAFB50004F621 /* ShrinkingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B47515227EAFB50004F621 /* ShrinkingButton.swift */; };
+		E2B47518227EAFCE0004F621 /* SpinerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B47517227EAFCE0004F621 /* SpinerLayer.swift */; };
+		E2B4751A227EB0960004F621 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B47519227EB0960004F621 /* CGRect+Extensions.swift */; };
 		E2C03B26222502AB00A4C47A /* MovieReviewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C03B25222502AB00A4C47A /* MovieReviewsTests.swift */; };
 		E2D1040F220CD1BC005F310C /* UIRefreshControl+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D1040E220CD1BC005F310C /* UIRefreshControl+Extensions.swift */; };
 		E2D10411220CE364005F310C /* MovieDetailOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D10410220CE364005F310C /* MovieDetailOptionView.swift */; };
@@ -388,7 +390,6 @@
 		E26011632193823C00E53095 /* TableViewCellAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellAnimator.swift; sourceTree = "<group>"; };
 		E26011662193870800E53095 /* ErrorPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPlaceholderView.swift; sourceTree = "<group>"; };
 		E26011682193876500E53095 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
-		E260116B2193884C00E53095 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		E260116D219388B700E53095 /* FontHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontHelper.swift; sourceTree = "<group>"; };
 		E260116F219388C500E53095 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		E260117521938D6C00E53095 /* Retryable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retryable.swift; sourceTree = "<group>"; };
@@ -427,6 +428,9 @@
 		E2A65E5221FECC2200485B4E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E2B11CA72251B02300092A6E /* AccountProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProvider.swift; sourceTree = "<group>"; };
 		E2B11CA92251B14200092A6E /* AccountClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountClient.swift; sourceTree = "<group>"; };
+		E2B47515227EAFB50004F621 /* ShrinkingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkingButton.swift; sourceTree = "<group>"; };
+		E2B47517227EAFCE0004F621 /* SpinerLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinerLayer.swift; sourceTree = "<group>"; };
+		E2B47519227EB0960004F621 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		E2C03B25222502AB00A4C47A /* MovieReviewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewsTests.swift; sourceTree = "<group>"; };
 		E2D1040E220CD1BC005F310C /* UIRefreshControl+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+Extensions.swift"; sourceTree = "<group>"; };
 		E2D10410220CE364005F310C /* MovieDetailOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailOptionView.swift; sourceTree = "<group>"; };
@@ -531,6 +535,7 @@
 				E2E4452A22474876009ABDEA /* CharacterSet+Extensions.swift */,
 				E25FA2EF2265A69C00FB5E71 /* URLRequest+Extensions.swift */,
 				E22351ED227EAB2000B2544E /* UIView+Layout.swift */,
+				E2B47519227EB0960004F621 /* CGRect+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -805,6 +810,7 @@
 		E222DC232192AF7A00A2EDF4 /* ViewComponents */ = {
 			isa = PBXGroup;
 			children = (
+				E2B47513227EAF920004F621 /* Buttons */,
 				E224476E223435F100A59FEF /* Layouts */,
 				E2EB9233221375190067F011 /* DataSources */,
 				E2F9F71D2201FBE600C62089 /* Transitions */,
@@ -1145,7 +1151,6 @@
 			isa = PBXGroup;
 			children = (
 				E21F379D219401CF00D6BFB6 /* SimpleHeaderView.swift */,
-				E260116B2193884C00E53095 /* LoadingButton.swift */,
 				E21F37992193FEB000D6BFB6 /* LoadingFooterView.swift */,
 				E21F379B2193FF1400D6BFB6 /* CustomFooterView.swift */,
 				E2A65E5021FEC39800485B4E /* VoteAverageView.swift */,
@@ -1260,6 +1265,23 @@
 				E2B11CA92251B14200092A6E /* AccountClient.swift */,
 			);
 			path = Account;
+			sourceTree = "<group>";
+		};
+		E2B47513227EAF920004F621 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				E2B47514227EAFA10004F621 /* Shrinking Button */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		E2B47514227EAFA10004F621 /* Shrinking Button */ = {
+			isa = PBXGroup;
+			children = (
+				E2B47515227EAFB50004F621 /* ShrinkingButton.swift */,
+				E2B47517227EAFCE0004F621 /* SpinerLayer.swift */,
+			);
+			path = "Shrinking Button";
 			sourceTree = "<group>";
 		};
 		E2E9601B2259C55D006A41D3 /* Feed Results */ = {
@@ -1634,6 +1656,7 @@
 				E26011692193876500E53095 /* NibLoadable.swift in Sources */,
 				E2060333226D8C610006FB2E /* Keyboardable.swift in Sources */,
 				E200182C21EE378800F29220 /* MovieVisit.swift in Sources */,
+				E2B4751A227EB0960004F621 /* CGRect+Extensions.swift in Sources */,
 				E21F379E219401CF00D6BFB6 /* SimpleHeaderView.swift in Sources */,
 				E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */,
 				E260117D21939D7100E53095 /* MovieDetailViewModel.swift in Sources */,
@@ -1650,6 +1673,7 @@
 				E2251B1022146A4D00EE7A51 /* ViewState.swift in Sources */,
 				E220B1E2220BD5B900A5D054 /* MoviesViewModel.swift in Sources */,
 				E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */,
+				E2B47516227EAFB50004F621 /* ShrinkingButton.swift in Sources */,
 				E2B11CAA2251B14200092A6E /* AccountClient.swift in Sources */,
 				E29407FE2209E83600A74F68 /* UITableView+Extensions.swift in Sources */,
 				E26011642193823C00E53095 /* TableViewCellAnimator.swift in Sources */,
@@ -1660,7 +1684,6 @@
 				E2116946220E3F7800595822 /* SearchOptionsDataSource.swift in Sources */,
 				E223B08A22482BAD0050277B /* ProfileDataSource.swift in Sources */,
 				E21F93BF2269ADCA009666B1 /* ListResult.swift in Sources */,
-				E260116C2193884C00E53095 /* LoadingButton.swift in Sources */,
 				E2A65E5321FECC2200485B4E /* Utils.swift in Sources */,
 				E22116C82191668E0039F8C9 /* MovieProvider.swift in Sources */,
 				E223773821EEA2D8000400B7 /* GenreSearchOptionTableViewCell.swift in Sources */,
@@ -1686,6 +1709,7 @@
 				E21F37A521941D9C00D6BFB6 /* Genre.swift in Sources */,
 				E2251B172214F0D300EE7A51 /* Cast.swift in Sources */,
 				E2709800220FA4F2007F18A2 /* MovieVideosViewController.swift in Sources */,
+				E2B47518227EAFCE0004F621 /* SpinerLayer.swift in Sources */,
 				E26F03B921E461D6009859DF /* Managed.swift in Sources */,
 				E21F379A2193FEB000D6BFB6 /* LoadingFooterView.swift in Sources */,
 				E241FE0722434B9B00144FD3 /* AuthPermissionViewController.swift in Sources */,

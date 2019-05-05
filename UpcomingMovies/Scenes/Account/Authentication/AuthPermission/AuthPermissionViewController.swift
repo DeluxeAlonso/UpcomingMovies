@@ -11,7 +11,8 @@ import WebKit
 
 protocol AuthPermissionViewControllerDelegate: class {
     
-    func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController, didSignedIn signedIn: Bool)
+    func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
+                                      didSignedIn signedIn: Bool)
     
 }
 
@@ -70,7 +71,10 @@ class AuthPermissionViewController: UIViewController {
     // MARK: - Selectors
     
     @objc func closeBarButtonAction() {
-        dismiss(animated: true)
+        dismiss(animated: true, completion: { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.delegate?.authPermissionViewController(strongSelf, didSignedIn: false)
+        })
     }
     
     // MARK: - Actions
