@@ -14,7 +14,6 @@ class SimpleHeaderView: UIView {
         let label = UILabel()
         label.textAlignment = .left
         label.font = FontHelper.Default.mediumLight
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -38,18 +37,17 @@ class SimpleHeaderView: UIView {
     
     // MARK: - Private
     
-    fileprivate func setupUI() {
+    private func setupUI() {
         backgroundColor = ColorPalette.lighterGray
         setupLabel()
     }
     
-    fileprivate func setupLabel() {
+    private func setupLabel() {
         addSubview(headerTitleLabel)
-        
-        NSLayoutConstraint.activate([headerTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.verticalMargin),
-                                     headerTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.horizontalMargin),
-                                     headerTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.horizontalMargin),
-                                     headerTitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.verticalMargin)])
+        headerTitleLabel.fillSuperview(padding: .init(top: Constants.verticalMargin,
+                                                      left: Constants.horizontalMargin,
+                                                      bottom: -Constants.verticalMargin,
+                                                      right: -Constants.horizontalMargin))
     }
     
     // MARK: - Constants
