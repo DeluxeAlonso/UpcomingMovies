@@ -30,7 +30,7 @@ final class MovieDetailViewModel {
     var backdropPath: String?
     var backdropURL: URL?
     
-    var showErrorView: ((Error) -> Void)?
+    var showErrorView: Bindable<Error?> = Bindable(nil)
     var updateMovieDetail: (() -> Void)?
     var needsFetch = false
     
@@ -90,7 +90,7 @@ final class MovieDetailViewModel {
                 self.checkIfUserIsAuthenticated()
             case .failure(let error):
                 self.startLoading.value = false
-                self.showErrorView?(error)
+                self.showErrorView.value = error
             }
         })
     }
@@ -123,7 +123,7 @@ final class MovieDetailViewModel {
                 guard let accountStateResult = accountStateResult else { return }
                 self.isFavorite.value = accountStateResult.favorite
             case .failure(let error):
-                self.showErrorView?(error)
+                self.showErrorView.value = error
             }
         })
     }
@@ -140,7 +140,7 @@ final class MovieDetailViewModel {
             case .success:
                 self.isFavorite.value = !isFavorite
             case .failure(let error):
-                self.showErrorView?(error)
+                self.showErrorView.value = error
             }
         })
     }

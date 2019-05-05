@@ -16,10 +16,10 @@ final class SearchOptionsViewModel {
     let viewState: Bindable<SearchOptionsViewState> = Bindable(.emptyMovieVisits)
     
     var needsContentReload: (() -> Void)?
-    var updateVisitedMovies: ((Int?) -> Void)?
+    var updateVisitedMovies: Bindable<Int?> = Bindable(nil)
     
-    var selectedDefaultSearchOption: ((DefaultSearchOption) -> Void)?
-    var selectedMovieGenre: ((Int) -> Void)?
+    var selectedDefaultSearchOption: Bindable<DefaultSearchOption?> = Bindable(nil)
+    var selectedMovieGenre: Bindable<Int?> = Bindable(nil)
     var selectedRecentlyVisitedMovie: ((Int, String) -> Void)?
     
     var visitedMovieCells: [VisitedMovieCellViewModel] {
@@ -77,13 +77,13 @@ final class SearchOptionsViewModel {
     
     func getDefaultSearchSelection(by index: Int) {
         let defaultSearchOption = defaultSearchOptions[index]
-        selectedDefaultSearchOption?(defaultSearchOption)
+        selectedDefaultSearchOption.value = defaultSearchOption
     }
     
     func getMovieGenreSelection(by index: Int) {
         let genres = PersistenceManager.shared.genres
         let selectedGenre = genres[index]
-        selectedMovieGenre?(selectedGenre.id)
+        selectedMovieGenre.value = selectedGenre.id
     }
     
     func getRecentlyVisitedMovieSelection(by index: Int) {
@@ -154,7 +154,7 @@ extension SearchOptionsViewModel: PersistenceStoreDelegate {
             needsContentReload?()
         } else {
             let index = sectionIndex(for: .recentlyVisited)
-            updateVisitedMovies?(index)
+            updateVisitedMovies.value = index
         }
         
     }

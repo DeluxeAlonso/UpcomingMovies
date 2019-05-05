@@ -69,9 +69,9 @@ class MovieCreditsViewController: UIViewController, Displayable, Loadable {
                 strongSelf.collectionView.reloadData()
             }
         })
-        viewModel.startLoading = { [weak self] start in
+        viewModel.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
-        }
+        })
         viewModel.getMovieCredits()
     }
 

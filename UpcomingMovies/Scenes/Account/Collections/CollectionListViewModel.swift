@@ -18,7 +18,7 @@ final class CollectionListViewModel {
     
     private let userCredentials = AuthenticationManager.shared.userCredentials()
     
-    var startLoading: ((Bool) -> Void)?
+    var startLoading: Bindable<Bool> = Bindable(false)
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
     
     var movies: [Movie] {
@@ -62,7 +62,7 @@ final class CollectionListViewModel {
     
     func fetchCollectionList(page: Int, option: ProfileCollectionOption, showLoader: Bool) {
         guard let credentials = userCredentials else { return }
-        startLoading?(showLoader)
+        startLoading.value = true
         accountClient.getCollectionList(page: page, option: option,
                                         sessionId: credentials.sessionId,
                                         accountId: credentials.accountId) { result in
@@ -77,7 +77,7 @@ final class CollectionListViewModel {
     }
     
     private func processMovieResult(_ movieResult: MovieResult) {
-        startLoading?(false)
+        startLoading.value = false
         var allMovies = movieResult.currentPage == 1 ? [] : viewState.value.currentEntities
         allMovies.append(contentsOf: movieResult.results)
         guard !allMovies.isEmpty else {

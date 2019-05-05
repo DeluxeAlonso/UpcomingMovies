@@ -16,7 +16,7 @@ final class MovieReviewsViewModel {
     var movieClient = MovieClient()
     let viewState: Bindable<SimpleViewState<Review>> = Bindable(.initial)
     
-    var startLoading: ((Bool) -> Void)?
+    var startLoading: Bindable<Bool> = Bindable(false)
     
     var reviewCells: [MovieReviewCellViewModel] {
         return reviews.map { MovieReviewCellViewModel($0) }
@@ -45,7 +45,7 @@ final class MovieReviewsViewModel {
     // MARK: - Networking
     
     func getMovieReviews() {
-        startLoading?(true)
+        startLoading.value = true
         movieClient.getMovieReviews(page: viewState.value.currentPage, with: movieId) { result in
             switch result {
             case .success(let reviewResult):
@@ -58,7 +58,7 @@ final class MovieReviewsViewModel {
     }
     
     private func processReviewResult(_ reviewResult: ReviewResult) {
-        startLoading?(false)
+        startLoading.value = false
         let fetchedReviews = reviewResult.results
         var allReviews = reviewResult.currentPage == 1 ? [] : viewState.value.currentEntities
         allReviews.append(contentsOf: fetchedReviews)

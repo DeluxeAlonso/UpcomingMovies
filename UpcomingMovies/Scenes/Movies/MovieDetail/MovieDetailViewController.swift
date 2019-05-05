@@ -105,9 +105,10 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     }
     
     private func setupErrorBindables() {
-        viewModel?.showErrorView = { [weak self] error in
+        viewModel?.showErrorView.bind({ [weak self] error in
+            guard let error = error else { return }
             self?.showErrorView(error: error)
-        }
+        })
     }
     
     private func setupFavoriteBindables() {

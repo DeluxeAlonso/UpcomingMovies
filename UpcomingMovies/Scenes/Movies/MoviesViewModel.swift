@@ -44,7 +44,7 @@ protocol MoviesViewModel {
     var movieCells: [MovieCellViewModel] { get }
     var movies: [Movie] { get }
     
-    var startLoading: ((Bool) -> Void)? { get set }
+    var startLoading: Bindable<Bool> { get set }
     
 }
 
@@ -69,7 +69,7 @@ extension MoviesViewModel {
     }
     
     func fetchMovies(currentPage: Int, filter: MovieListFilter, showLoader: Bool = false) {
-        startLoading?(showLoader)
+        startLoading.value = showLoader
         movieClient.getMovies(page: currentPage, filter: filter, completion: { result in
             switch result {
             case .success(let movieResult):
@@ -82,7 +82,7 @@ extension MoviesViewModel {
     }
     
     func processMovieResult(_ movieResult: MovieResult) {
-        startLoading?(false)
+        startLoading.value = false
         let fetchedMovies = movieResult.results
         var allMovies = movieResult.currentPage == 1 ? [] : viewState.value.currentEntities
         allMovies.append(contentsOf: fetchedMovies)
