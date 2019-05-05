@@ -94,7 +94,7 @@
                                             <constraint firstAttribute="height" constant="150" id="4Sl-ak-WMh"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLN-uI-D6w">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLN-uI-D6w" customClass="ShrinkingButton" customModule="UpcomingMovies" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="170" width="327" height="52"/>
                                         <color key="backgroundColor" red="0.14901960784313725" green="0.57647058823529407" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>

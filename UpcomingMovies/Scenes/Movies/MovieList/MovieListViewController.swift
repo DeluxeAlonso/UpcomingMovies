@@ -25,6 +25,11 @@ class MovieListViewController: UIViewController, Displayable, SegueHandler, Load
     }
     
     // MARK: - Lifcycle
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        setupForceTouchSupport()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +42,6 @@ class MovieListViewController: UIViewController, Displayable, SegueHandler, Load
     private func setupUI() {
         setupTableView()
         setupRefreshControl()
-        setupForceTouchSupport()
     }
     
     private func setupTableView() {

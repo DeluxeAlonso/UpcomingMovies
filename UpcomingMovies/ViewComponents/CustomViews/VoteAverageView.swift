@@ -15,7 +15,6 @@ class VoteAverageView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.font = FontHelper.light(withSize: 12.0)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -80,9 +79,7 @@ class VoteAverageView: UIView {
     
     private func setupLabels() {
         addSubview(voteAverageLabel)
-        NSLayoutConstraint.activate([
-            voteAverageLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            voteAverageLabel.centerYAnchor.constraint(equalTo: centerYAnchor)])
+        voteAverageLabel.centerInSuperview()
     }
     
     private func setupShapeLayers() {

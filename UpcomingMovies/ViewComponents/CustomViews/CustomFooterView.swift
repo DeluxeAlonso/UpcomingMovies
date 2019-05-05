@@ -47,10 +47,8 @@ class CustomFooterView: UIView {
     
     fileprivate func setupUI() {
         addSubview(messageLabel)
-        NSLayoutConstraint.activate([messageLabel.topAnchor.constraint(equalTo: topAnchor),
-                                     messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.horizontalMargin),
-                                     messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.horizontalMargin),
-                                     messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor)])
+        messageLabel.fillSuperview(padding: .init(top: 0, left: Constants.horizontalMargin,
+                                                  bottom: 0, right: Constants.horizontalMargin))
     }
     
     // MARK: - Constants

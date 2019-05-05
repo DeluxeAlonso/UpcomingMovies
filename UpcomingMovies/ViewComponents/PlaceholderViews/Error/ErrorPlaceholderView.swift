@@ -23,7 +23,7 @@ class ErrorPlaceholderView: UIView, NibLoadable {
     
     @IBOutlet weak var errorTitleLabel: UILabel!
     @IBOutlet weak var errorDetailLabel: UILabel!
-    @IBOutlet weak var retryButton: LoadingButton!
+    @IBOutlet weak var retryButton: ShrinkingButton!
     
     private var animationDuration = 0.3
     
@@ -100,11 +100,11 @@ class ErrorPlaceholderView: UIView, NibLoadable {
 extension ErrorPlaceholderView: ErrorAnimatable {
     
     func playAnimation() {
-        retryButton.showLoading()
+        retryButton.startAnimation()
     }
     
     func stopAnimation() {
-        retryButton.hideLoading()
+        retryButton.stopAnimation()
     }
     
 }

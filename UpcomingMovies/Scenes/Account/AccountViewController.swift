@@ -131,6 +131,7 @@ class AccountViewController: UIViewController, SegueHandler {
 extension AccountViewController: SignInViewControllerDelegate {
     
     func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
+        signInViewController.startLoading()
         viewModel.getRequestToken()
     }
     
@@ -164,7 +165,8 @@ extension AccountViewController: AuthPermissionViewControllerDelegate {
     
     func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
                                       didSignedIn signedIn: Bool) {
-        viewModel.createSessionId()
+        signInViewController.stopLoading()
+        if signedIn { viewModel.createSessionId() }
     }
     
 }

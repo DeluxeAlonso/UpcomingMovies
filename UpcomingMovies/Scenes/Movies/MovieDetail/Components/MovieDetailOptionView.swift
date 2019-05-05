@@ -16,7 +16,6 @@ class MovieDetailOptionView: UIView {
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.spacing = 3.0
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -76,10 +75,8 @@ class MovieDetailOptionView: UIView {
     
     private func setupStackView() {
         addSubview(optionStackView)
-        NSLayoutConstraint.activate([optionStackView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-                                     optionStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-                                     optionStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-                                     optionStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)])
+        optionStackView.fillSuperview(padding: .init(top: 8, left: 8,
+                                                     bottom: 8, right: 8))
         
         optionStackView.addArrangedSubview(optionImageView)
         optionStackView.addArrangedSubview(optionTitleLabel)
