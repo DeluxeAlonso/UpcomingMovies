@@ -21,7 +21,7 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
     var selectedMovieCell: UpcomingMovieCellViewModel?
     
-    var startLoading: ((Bool) -> Void)?
+    var startLoading: Bindable<Bool> = Bindable(false)
     
     // MARK: - Computed Properties
     

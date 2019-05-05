@@ -16,7 +16,7 @@ final class MovieListViewModel: MoviesViewModel {
     var managedObjectContext: NSManagedObjectContext
     var filter: MovieListFilter
     
-    var startLoading: ((Bool) -> Void)?
+    var startLoading: Bindable<Bool> = Bindable(false)
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
     
     // MARK: - Computed Properties

@@ -86,9 +86,9 @@ class CustomListsViewController: UIViewController, Displayable, SegueHandler, Lo
                 strongSelf.reloadTableView()
             }
         })
-        viewModel?.startLoading = { [weak self] start in
+        viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
-        }
+        })
         viewModel?.getCustomLists()
     }
     

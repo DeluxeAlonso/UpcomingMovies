@@ -106,9 +106,9 @@ class MovieListViewController: UIViewController, Displayable, SegueHandler, Load
                 strongSelf.reloadTableView()
             }
         })
-        viewModel?.startLoading = { [weak self] start in
+        viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
-        }
+        })
         viewModel?.getMovies()
     }
     

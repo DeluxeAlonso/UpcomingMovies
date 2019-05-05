@@ -20,7 +20,7 @@ final class CustomListsViewModel {
     
     // MARK: - Reactive properties
     
-    var startLoading: ((Bool) -> Void)?
+    var startLoading: Bindable<Bool> = Bindable(false)
     var viewState: Bindable<SimpleViewState<List>> = Bindable(.initial)
     
     // MARK: - Computed properties
@@ -53,7 +53,7 @@ final class CustomListsViewModel {
     
     func getCustomLists() {
         guard let credentials = userCredentials else { fatalError() }
-        startLoading?(true)
+        startLoading.value = true
         accountClient.getCustomLists(page: viewState.value.currentPage,
                                       groupOption: groupOption,
                                       sessionId: credentials.sessionId,
@@ -69,7 +69,7 @@ final class CustomListsViewModel {
     }
     
     private func processListResult(_ listResult: ListResult) {
-        startLoading?(false)
+        startLoading.value = false
         var allLists = listResult.currentPage == 1 ? [] : viewState.value.currentEntities
         allLists.append(contentsOf: listResult.results)
         guard !allLists.isEmpty else {

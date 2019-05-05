@@ -82,29 +82,29 @@ class SearchOptionsTableViewController: UITableViewController {
             strongSelf.reloadTableView()
         }
         
-        viewModel?.updateVisitedMovies = { [weak self] section in
+        viewModel?.updateVisitedMovies.bind({ [weak self] section in
             guard let strongSelf = self,
                 let section = section else {
                     return
             }
             strongSelf.reloadSection(section)
-        }
+        })
         
-        viewModel?.selectedDefaultSearchOption = { [weak self] option in
-            guard let strongSelf = self else { return }
+        viewModel?.selectedDefaultSearchOption.bind({ [weak self] option in
+            guard let strongSelf = self, let option = option else { return }
             switch option {
             case .popular:
                 strongSelf.delegate?.searchOptionsTableViewController(strongSelf, didSelectPopularMovies: true)
             case .topRated:
                 strongSelf.delegate?.searchOptionsTableViewController(strongSelf, didSelectTopRatedMovies: true)
             }
-        }
+        })
         
-        viewModel?.selectedMovieGenre = { [weak self] genredId in
-            guard let strongSelf = self else { return }
+        viewModel?.selectedMovieGenre.bind({ [weak self] genreId in
+            guard let strongSelf = self, let genreId = genreId else { return }
             strongSelf.delegate?.searchOptionsTableViewController(strongSelf,
-                                                                  didSelectMovieGenre: genredId)
-        }
+                                                                  didSelectMovieGenre: genreId)
+        })
         
         viewModel?.selectedRecentlyVisitedMovie = { [weak self] id, title in
             guard let strongSelf = self else { return }

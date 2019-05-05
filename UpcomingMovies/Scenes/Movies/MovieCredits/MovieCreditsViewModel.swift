@@ -20,7 +20,7 @@ final class MovieCreditsViewModel {
          MovieCreditsCollapsibleSection(type: .crew, opened: false)]
     
     var viewState: Bindable<ViewState> = Bindable(.initial)
-    var startLoading: ((Bool) -> Void)?
+    var startLoading: Bindable<Bool> = Bindable(false)
     
     var castCells: [MovieCreditCellViewModel] {
         return viewState.value.currentCast.map { MovieCreditCellViewModel(cast: $0) }
@@ -74,7 +74,7 @@ final class MovieCreditsViewModel {
     // MARK: - Networking
     
     func getMovieCredits() {
-        startLoading?(true)
+        startLoading.value = true
         movieClient.getMovieCredits(with: movieId) { result in
             switch result {
             case .success(let creditResult):
@@ -87,7 +87,7 @@ final class MovieCreditsViewModel {
     }
     
     private func processCreditResult(_ creditResult: CreditResult) {
-        startLoading?(false)
+        startLoading.value = false
         let fetchedCast = creditResult.cast
         let fetchedCrew = creditResult.crew
         if fetchedCast.isEmpty && fetchedCrew.isEmpty {
