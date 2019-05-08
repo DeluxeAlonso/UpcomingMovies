@@ -42,6 +42,8 @@ import UIKit
     private let shrinkCurve: CAMediaTimingFunction = CAMediaTimingFunction(name: .linear)
     private let shrinkDuration: CFTimeInterval = 0.1
     
+    var isAnimating: Bool = false
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -70,6 +72,7 @@ import UIKit
     }
     
     func startAnimation() {
+        self.isAnimating = true
         self.isUserInteractionEnabled = false
         
         self.cachedTitle = title(for: .normal)
@@ -87,6 +90,7 @@ import UIKit
     }
     
     func stopAnimation(revertAfterDelay delay: TimeInterval = 1.0, completion: (() -> Void)? = nil) {
+        guard isAnimating else { return }
         
         let delayToRevert = max(delay, 0.2)
         
@@ -102,6 +106,7 @@ import UIKit
         self.setImage(self.cachedImage, for: .normal)
         self.isUserInteractionEnabled = true
         self.layer.cornerRadius = self.cornerRadius
+        self.isAnimating = false
     }
     
     private func animateToOriginalWidth(completion: (() -> Void)?) {

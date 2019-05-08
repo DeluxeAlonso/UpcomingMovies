@@ -78,9 +78,9 @@ final class MovieDetailViewModel {
     
     // MARK: - Networking
     
-    func getMovieDetail() {
+    func getMovieDetail(showLoader: Bool = true) {
         guard needsFetch else { return }
-        startLoading.value = true
+        startLoading.value = showLoader
         movieClient.getMovieDetail(managedObjectContext,
                                    with: id, completion: { result in
             switch result {
@@ -123,6 +123,7 @@ final class MovieDetailViewModel {
                 guard let accountStateResult = accountStateResult else { return }
                 self.isFavorite.value = accountStateResult.favorite
             case .failure(let error):
+                guard self.needsFetch else { return }
                 self.showErrorView.value = error
             }
         })
