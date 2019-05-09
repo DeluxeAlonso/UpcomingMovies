@@ -62,7 +62,7 @@ final class CollectionListViewModel {
     
     func fetchCollectionList(page: Int, option: ProfileCollectionOption, showLoader: Bool) {
         guard let credentials = userCredentials else { return }
-        startLoading.value = true
+        startLoading.value = showLoader
         accountClient.getCollectionList(page: page, option: option,
                                         sessionId: credentials.sessionId,
                                         accountId: credentials.accountId) { result in

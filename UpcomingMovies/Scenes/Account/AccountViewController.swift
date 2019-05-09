@@ -35,6 +35,11 @@ class AccountViewController: UIViewController, SegueHandler {
         setupBindables()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barStyle = .default
+    }
+    
     // MARK: - Private
     
     private func setupUI() {

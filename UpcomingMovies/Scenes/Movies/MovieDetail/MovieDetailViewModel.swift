@@ -74,11 +74,17 @@ final class MovieDetailViewModel {
         movieVisitStore = PersistenceStore(managedObjectContext)
     }
     
-    // MARK: - Public
-    
     // MARK: - Networking
     
-    func getMovieDetail(showLoader: Bool = true) {
+    func getMovieDetail() {
+        fetchMovieDetail(showLoader: true)
+    }
+    
+    func refreshMovieDetail() {
+        fetchMovieDetail(showLoader: false)
+    }
+    
+    private func fetchMovieDetail(showLoader: Bool = true) {
         guard needsFetch else { return }
         startLoading.value = showLoader
         movieClient.getMovieDetail(managedObjectContext,

@@ -64,7 +64,7 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     private func showErrorView(error: Error) {
         presentErrorView(with: error.localizedDescription,
                                    errorHandler: { [weak self] in
-            self?.viewModel?.getMovieDetail(showLoader: false)
+            self?.viewModel?.refreshMovieDetail()
         })
     }
     
