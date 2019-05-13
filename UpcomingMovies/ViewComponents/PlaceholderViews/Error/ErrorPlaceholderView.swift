@@ -104,6 +104,7 @@ extension ErrorPlaceholderView: ErrorAnimatable {
     }
     
     func stopAnimation() {
+        
         retryButton.stopAnimation()
     }
     
