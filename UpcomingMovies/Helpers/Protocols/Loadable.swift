@@ -59,9 +59,11 @@ extension Loadable where Self: UIViewController {
                 return
         }
         isPresented = false
-        DispatchQueue.main.async {
+        UIView.animate(withDuration: 0.5, animations: {
+            containerView.alpha = 0
+        }, completion: { _ in
             containerView.removeFromSuperview()
-        }
+        })
     }
     
 }

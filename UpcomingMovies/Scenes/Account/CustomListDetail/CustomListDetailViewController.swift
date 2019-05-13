@@ -24,9 +24,6 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     private var dataSource: CustomListDetailDataSource!
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
-    private var showNavBarAnimator: UIViewPropertyAnimator!
-    private var hideNavBarAnimator: UIViewPropertyAnimator!
-    
     /// Used to determinate if the header view is being presented or not.
     private var tableViewContentOffsetY: CGFloat = 0
     
@@ -43,6 +40,10 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     }
     
     // MARK: - Lifecycle
+    
+    deinit {
+        print("CustomListDetailViewController")
+    }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -59,7 +60,7 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.barStyle = isTitlePresented() ? .default : .black
+        configureNavigiationBarStyle()
         guard !isNavigationBarConfigured else { return }
         isNavigationBarConfigured = true
         setClearNavigationBar()
@@ -69,8 +70,9 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.tintColor = view.tintColor
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -79,15 +81,19 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     // MARK: - Private
     
     private func setupUI() {
-        initialHeightContraintConstant = posterImageViewHeightConstraint.constant
         setupNavigationBar()
+        setupImageViews()
         setupTableView()
     }
     
     private func setupNavigationBar() {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backBarButtonItem
-        navigationController?.navigationBar.barStyle = .black
+    }
+    
+    private func setupImageViews() {
+        initialHeightContraintConstant = posterImageViewHeightConstraint.constant
+        posterImageView.addOverlay()
     }
     
     private func setupTableView() {
@@ -132,22 +138,30 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         }
     }
     
+    private func configureNavigiationBarStyle() {
+        if navigationItem.title != nil {
+            navigationController?.navigationBar.barStyle = .default
+            navigationController?.navigationBar.tintColor = view.tintColor
+        } else {
+            navigationController?.navigationBar.barStyle = .black
+            navigationController?.navigationBar.tintColor = .white
+        }
+    }
+    
     private func showNavigationBar() {
-        UIView.animate(withDuration: 0.1, animations: { [weak self] in
-            self?.navigationController?.navigationBar.barStyle = .default
-            self?.restoreClearNavigationBar(with: .white)
+        UIView.animate(withDuration: 0.1, animations: {
+            self.navigationController?.navigationBar.barStyle = .default
+            self.navigationController?.navigationBar.tintColor = self.view.tintColor
+            self.restoreClearNavigationBar(with: .white)
             }, completion: nil)
     }
     
     private func hideNavigationBar() {
-        UIView.animate(withDuration: 0.1, animations: { [weak self] in
-            self?.navigationController?.navigationBar.barStyle = .black
-            self?.setClearNavigationBar()
-        }, completion: nil)
-    }
-    
-    private func isTitlePresented() -> Bool {
-        return navigationItem.title != nil
+        UIView.animate(withDuration: 0.1, animations: {
+            self.navigationController?.navigationBar.barStyle = .black
+            self.navigationController?.navigationBar.tintColor = .white
+            self.setClearNavigationBar()
+            }, completion: nil)
     }
     
     // MARK: - Reactive Behaviour

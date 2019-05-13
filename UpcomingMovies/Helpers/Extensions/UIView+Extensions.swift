@@ -36,4 +36,15 @@ extension UIView {
         self.layer.add(animation, forKey: nil)
     }
     
+    // MARK: - Overlay
+    
+    func addOverlay(with backgroundColor: UIColor = .black, and alpha: CGFloat = 0.5) {
+        let overlayView = UIView()
+        overlayView.backgroundColor = backgroundColor
+        overlayView.alpha = alpha
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(overlayView)
+        overlayView.fillSuperview()
+    }
+    
 }

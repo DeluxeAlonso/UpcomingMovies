@@ -12,18 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomListDetailHeaderView" customModule="UpcomingMovies" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="275"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="168"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="20170506_BKP001_0" translatesAutoresizingMaskIntoConstraints="NO" id="oaY-eK-s27" userLabel="Poster Image View">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
-                    <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" id="1dP-Sp-Mzn"/>
-                    </constraints>
-                </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="fRO-iW-9EL">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="275"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="168"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j93-7Z-hy9" userLabel="Name View">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="36.5"/>
@@ -44,10 +37,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDl-vg-Mae" userLabel="Description View">
-                            <rect key="frame" x="0.0" y="36.5" width="414" height="238.5"/>
+                            <rect key="frame" x="0.0" y="36.5" width="414" height="131.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="List Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bN4-Xi-8GE" userLabel="Description Label">
-                                    <rect key="frame" x="16" y="206" width="382" height="20.5"/>
+                                    <rect key="frame" x="16" y="99" width="382" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -67,24 +60,17 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fRO-iW-9EL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3SJ-Wr-b04"/>
-                <constraint firstItem="fRO-iW-9EL" firstAttribute="top" secondItem="oaY-eK-s27" secondAttribute="bottom" id="5KN-gd-niH"/>
                 <constraint firstAttribute="trailing" secondItem="fRO-iW-9EL" secondAttribute="trailing" id="K3v-IH-rB7"/>
-                <constraint firstItem="oaY-eK-s27" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dCH-b4-e7k"/>
+                <constraint firstItem="fRO-iW-9EL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="KkD-Ca-66B"/>
                 <constraint firstAttribute="bottom" secondItem="fRO-iW-9EL" secondAttribute="bottom" id="giE-wx-7Ue"/>
-                <constraint firstAttribute="trailing" secondItem="oaY-eK-s27" secondAttribute="trailing" id="lYk-qW-BIy"/>
-                <constraint firstItem="oaY-eK-s27" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vXf-Pb-hMU"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="descriptionLabel" destination="bN4-Xi-8GE" id="fmb-G0-dVG"/>
                 <outlet property="descriptionView" destination="tDl-vg-Mae" id="Ly4-7D-8IA"/>
                 <outlet property="nameLabel" destination="eYr-a2-1i7" id="fNx-bf-yBd"/>
-                <outlet property="posterImageView" destination="oaY-eK-s27" id="81E-uc-DyM"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="-168.41517857142856"/>
+            <point key="canvasLocation" x="131.8840579710145" y="-47.544642857142854"/>
         </view>
     </objects>
-    <resources>
-        <image name="20170506_BKP001_0" width="595" height="335"/>
-    </resources>
 </document>

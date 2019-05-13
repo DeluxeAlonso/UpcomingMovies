@@ -29,6 +29,12 @@ class CustomListsViewController: UIViewController, Displayable, SegueHandler, Lo
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
     // MARK: - Private
     
     private func setupUI() {
