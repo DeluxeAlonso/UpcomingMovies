@@ -4,7 +4,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/DLAutoSlidePageViewController.svg?style=flat)]()
 [![Swift 5](https://img.shields.io/badge/Swift-5-orange.svg?style=flat)](https://developer.apple.com/swift/)
 
-Movies app written in Swift 5 using the Movie Database API.
+Movies app written in Swift 5 using the TMDb API.
 
 # Screenshots
 
