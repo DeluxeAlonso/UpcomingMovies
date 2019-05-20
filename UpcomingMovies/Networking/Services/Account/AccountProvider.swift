@@ -44,6 +44,10 @@ extension AccountProvider: Endpoint {
         }
     }
     
+    var headers: [String: String]? {
+        return nil
+    }
+    
     var params: [String: Any]? {
         switch self {
         case .getAccountDetail(let sessionId):

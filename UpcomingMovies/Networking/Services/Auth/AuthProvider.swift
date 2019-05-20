@@ -26,9 +26,20 @@ extension AuthProvider: Endpoint {
     var path: String {
         switch self {
         case .getRequestToken:
-            return "/3/authentication/token/new"
+            return "/4/auth/request_token"
         case .createSessionId:
             return "/3/authentication/session/new"
+        }
+    }
+    
+    var headers: [String: String]? {
+        switch self {
+        case .getRequestToken:
+            return [
+                "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTQxZTZkNTQzYjE4N2YwYjdlNmJiM2ExOTAyMjA5YSIsInN1YiI6IjVjNDkwZjlhYzNhMzY4NDc3Nzg5ZjYzMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5LmQZ0jl7xA7QsREDm8FecIKq9yP0hSZ3x2MDTEn5dU"
+            ]
+        case .createSessionId:
+            return nil
         }
     }
     
@@ -48,7 +59,7 @@ extension AuthProvider: Endpoint {
     var method: HTTPMethod {
         switch self {
         case .getRequestToken:
-            return .get
+            return .post
         case .createSessionId:
             return .post
         }

@@ -12,6 +12,7 @@ protocol Endpoint {
     
     var base: String { get }
     var path: String { get }
+    var headers: [String: String]? { get }
     var params: [String: Any]? { get }
     var parameterEncoding: ParameterEnconding { get }
     var method: HTTPMethod { get }
@@ -53,6 +54,12 @@ extension Endpoint {
         let url = urlComponents.url!
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
+        
+        if let headers = headers {
+            for (key, value) in headers {
+                request.setHeader(for: key, with: value)
+            }
+        }
         
         guard let params = params, method != .get else { return request }
         

@@ -13,7 +13,7 @@ final class AuthPermissionViewModel {
     let requestToken: String
     
     var authPermissionURL: URL? {
-        return URL(string: "https://www.themoviedb.org/authenticate/\(requestToken)")
+        return URL(string: "https://www.themoviedb.org/auth/access?request_token=\(requestToken)")
     }
     
     init(requestToken: String) {
