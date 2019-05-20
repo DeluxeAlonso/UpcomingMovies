@@ -21,8 +21,8 @@ class AuthClient: APIClient {
         self.init(configuration: .default)
     }
     
-    func getRequestToken(completion: @escaping (Result<RequestTokenResult, APIError>) -> Void) {
-        fetch(with: AuthProvider.getRequestToken.request, decode: { json -> RequestTokenResult? in
+    func getRequestToken(with accessToken: String, completion: @escaping (Result<RequestTokenResult, APIError>) -> Void) {
+        fetch(with: AuthProvider.getRequestToken(readAccessToken: accessToken).request, decode: { json -> RequestTokenResult? in
             guard let requestToken = json as? RequestTokenResult else { return nil }
             return requestToken
         }, completion: completion)

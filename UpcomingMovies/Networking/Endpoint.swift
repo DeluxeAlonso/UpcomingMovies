@@ -22,7 +22,7 @@ protocol Endpoint {
 extension Endpoint {
     
     var apiKey: String {
-        return "0141e6d543b187f0b7e6bb3a1902209a"
+        return AuthenticationManager.shared.apiKey
     }
     
     var urlComponents: URLComponents {

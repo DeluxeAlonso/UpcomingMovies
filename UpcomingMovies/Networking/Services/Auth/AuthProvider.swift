@@ -10,7 +10,7 @@ import Foundation
 
 enum AuthProvider {
     
-    case getRequestToken
+    case getRequestToken(readAccessToken: String)
     case createSessionId(requestToken: String)
     
 }
@@ -34,10 +34,8 @@ extension AuthProvider: Endpoint {
     
     var headers: [String: String]? {
         switch self {
-        case .getRequestToken:
-            return [
-                "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTQxZTZkNTQzYjE4N2YwYjdlNmJiM2ExOTAyMjA5YSIsInN1YiI6IjVjNDkwZjlhYzNhMzY4NDc3Nzg5ZjYzMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5LmQZ0jl7xA7QsREDm8FecIKq9yP0hSZ3x2MDTEn5dU"
-            ]
+        case .getRequestToken(let accessToken):
+            return ["Authorization": "Bearer \(accessToken)"]
         case .createSessionId:
             return nil
         }

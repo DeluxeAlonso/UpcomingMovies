@@ -9,12 +9,33 @@
 import Foundation
 import KeychainSwift
 
+struct Keys: Decodable {
+    let readAccessToken: String
+    let apiKey: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case readAccessToken = "ReadAccessToken"
+        case apiKey = "ApiKey"
+    }
+    
+}
+
 class AuthenticationManager {
     
     static let shared = AuthenticationManager()
     
     private var userStore: PersistenceStore<User>!
     private lazy var keychain = KeychainSwift()
+    
+    lazy var readAccessToken: String = {
+        let keys = retrieveKeys()
+        return keys.readAccessToken
+    }()
+    
+    lazy var apiKey: String = {
+        let keys = retrieveKeys()
+        return keys.apiKey
+    }()
     
     // MARK: - Initializers
     
@@ -91,6 +112,24 @@ class AuthenticationManager {
     
     func isUserSignedIn() -> Bool {
         return currentUser() != nil
+    }
+    
+    // MARK: - TheMovieDb Keys
+    
+    private func retrieveKeys() -> Keys {
+        guard let url = Bundle.main.url(forResource: "TheMovieDb",
+                                        withExtension: ".plist") else {
+                                            fatalError()
+        }
+        do {
+            let data = try Data(contentsOf: url)
+            let decoder = PropertyListDecoder()
+            let plist = try decoder.decode([String: Keys].self, from: data)
+            guard let keys = plist["Keys"] else { fatalError() }
+            return keys
+        } catch {
+            fatalError()
+        }
     }
     
 }

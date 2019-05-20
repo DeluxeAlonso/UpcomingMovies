@@ -12,6 +12,7 @@ import CoreData
 final class AccountViewModel {
     
     private var managedObjectContext: NSManagedObjectContext
+    private var authManager: AuthenticationManager
     
     private let authClient = AuthClient()
     private let accountClient = AccountClient()
@@ -22,14 +23,17 @@ final class AccountViewModel {
     
     // MARK: - Initializers
     
-    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
+    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext,
+         authManager: AuthenticationManager = AuthenticationManager.shared) {
         self.managedObjectContext = managedObjectContext
+        self.authManager = authManager
     }
     
     // MARK: - Authentication
     
     func getRequestToken() {
-        authClient.getRequestToken { result in
+        let readAccessToken = authManager.readAccessToken
+        authClient.getRequestToken(with: readAccessToken) { result in
             switch result {
             case .success(let requestToken):
                 self.requestToken = requestToken.token
@@ -57,8 +61,8 @@ final class AccountViewModel {
         accountClient.getAccountDetail(managedObjectContext, with: sessionId) { result in
             switch result {
             case .success(let user):
-                AuthenticationManager.shared.saveCurrentUser(sessionId,
-                                                             accountId: user.id)
+                self.authManager.saveCurrentUser(sessionId,
+                                            accountId: user.id)
                 self.didSignIn?()
             case .failure(let error):
                 print(error.description)
@@ -74,7 +78,7 @@ final class AccountViewModel {
     }
     
     func buildProfileViewModel() -> ProfileViewModel {
-        let currentUser = AuthenticationManager.shared.currentUser()
+        let currentUser = authManager.currentUser()
         let options = ProfileOptions(collectionOptions: [.favorites, .watchlist],
                                      groupOptions: [.customLists],
                                      configurationOptions: [])
