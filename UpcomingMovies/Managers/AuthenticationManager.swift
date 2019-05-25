@@ -9,17 +9,6 @@
 import Foundation
 import KeychainSwift
 
-struct Keys: Decodable {
-    let readAccessToken: String
-    let apiKey: String
-    
-    private enum CodingKeys: String, CodingKey {
-        case readAccessToken = "ReadAccessToken"
-        case apiKey = "ApiKey"
-    }
-    
-}
-
 class AuthenticationManager {
     
     static let shared = AuthenticationManager()
@@ -59,6 +48,7 @@ class AuthenticationManager {
     
     func deleteCurrentUser() {
         deleteSessionId()
+        deleteAccessToken()
         deleteUserAccountId()
     }
     
@@ -74,6 +64,20 @@ class AuthenticationManager {
     
     private func retrieveSessionId() -> String? {
         return keychain.get(Constants.sessionIdKey)
+    }
+    
+    // MARK: - Access Token
+    
+    func saveAccessToken(_ accessToken: String) {
+        keychain.set(accessToken, forKey: Constants.accessTokenKey)
+    }
+    
+    private func deleteAccessToken() {
+        keychain.delete(Constants.accessTokenKey)
+    }
+    
+    func retrieveAccessToken() -> String? {
+        return keychain.get(Constants.accessTokenKey)
     }
     
     // MARK: - User Account Id
@@ -137,6 +141,7 @@ class AuthenticationManager {
 extension AuthenticationManager {
     
     struct Constants {
+        static let accessTokenKey = "UpcomingMoviesAccessToken"
         static let sessionIdKey = "UpcomingMoviesSessionId"
         static let currentUserIdKey = "UpcomingMoviesUserId"
     }

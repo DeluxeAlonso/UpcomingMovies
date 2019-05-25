@@ -75,7 +75,7 @@ extension AccountProvider: Endpoint {
              .getCustomLists, .getCustomListDetail:
             return .defaultEncoding
         case .markAsFavorite:
-            return .compositeJSONEncoding
+            return .compositeEncoding
         }
     }
     

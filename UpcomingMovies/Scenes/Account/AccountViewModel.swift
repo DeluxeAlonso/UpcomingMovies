@@ -20,6 +20,7 @@ final class AccountViewModel {
     
     var showAuthPermission: (() -> Void)?
     var didSignIn: (() -> Void)?
+    var didReceiveError: (() -> Void)?
     
     // MARK: - Initializers
     
@@ -39,20 +40,36 @@ final class AccountViewModel {
                 self.requestToken = requestToken.token
                 self.showAuthPermission?()
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error.description)
+                self.didReceiveError?()
             }
         }
     }
     
-    func createSessionId() {
+    func getAccessToken() {
+        let readAccessToken = authManager.readAccessToken
         guard let requestToken = requestToken else { return }
-        authClient.createSessionId(with: requestToken) { result in
+        authClient.getAccessToken(with: readAccessToken, requestToken: requestToken) { result in
+            switch result {
+            case .success(let accessToken):
+                self.authManager.saveAccessToken(accessToken.token)
+                self.createSessionId(with: accessToken.token)
+            case .failure(let error):
+                print(error.description)
+                self.didReceiveError?()
+            }
+        }
+    }
+    
+    func createSessionId(with accessToken: String) {
+        authClient.createSessionId(with: accessToken) { result in
             switch result {
             case .success(let sessionResult):
                 guard let sessionId = sessionResult.sessionId else { return }
                 self.getAccountDetails(sessionId)
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error.description)
+                self.didReceiveError?()
             }
         }
     }
@@ -61,11 +78,13 @@ final class AccountViewModel {
         accountClient.getAccountDetail(managedObjectContext, with: sessionId) { result in
             switch result {
             case .success(let user):
+                print(user.name)
                 self.authManager.saveCurrentUser(sessionId,
                                             accountId: user.id)
                 self.didSignIn?()
             case .failure(let error):
                 print(error.description)
+                self.didReceiveError?()
             }
         }
     }
