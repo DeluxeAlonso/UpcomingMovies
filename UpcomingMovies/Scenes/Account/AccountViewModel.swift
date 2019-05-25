@@ -12,6 +12,7 @@ import CoreData
 final class AccountViewModel {
     
     private var managedObjectContext: NSManagedObjectContext
+    private var authManager: AuthenticationManager
     
     private let authClient = AuthClient()
     private let accountClient = AccountClient()
@@ -19,36 +20,56 @@ final class AccountViewModel {
     
     var showAuthPermission: (() -> Void)?
     var didSignIn: (() -> Void)?
+    var didReceiveError: (() -> Void)?
     
     // MARK: - Initializers
     
-    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
+    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext,
+         authManager: AuthenticationManager = AuthenticationManager.shared) {
         self.managedObjectContext = managedObjectContext
+        self.authManager = authManager
     }
     
     // MARK: - Authentication
     
     func getRequestToken() {
-        authClient.getRequestToken { result in
+        let readAccessToken = authManager.readAccessToken
+        authClient.getRequestToken(with: readAccessToken) { result in
             switch result {
             case .success(let requestToken):
                 self.requestToken = requestToken.token
                 self.showAuthPermission?()
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error.description)
+                self.didReceiveError?()
             }
         }
     }
     
-    func createSessionId() {
+    func getAccessToken() {
+        let readAccessToken = authManager.readAccessToken
         guard let requestToken = requestToken else { return }
-        authClient.createSessionId(with: requestToken) { result in
+        authClient.getAccessToken(with: readAccessToken, requestToken: requestToken) { result in
+            switch result {
+            case .success(let accessToken):
+                self.authManager.saveAccessToken(accessToken.token)
+                self.createSessionId(with: accessToken.token)
+            case .failure(let error):
+                print(error.description)
+                self.didReceiveError?()
+            }
+        }
+    }
+    
+    func createSessionId(with accessToken: String) {
+        authClient.createSessionId(with: accessToken) { result in
             switch result {
             case .success(let sessionResult):
                 guard let sessionId = sessionResult.sessionId else { return }
                 self.getAccountDetails(sessionId)
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error.description)
+                self.didReceiveError?()
             }
         }
     }
@@ -57,11 +78,13 @@ final class AccountViewModel {
         accountClient.getAccountDetail(managedObjectContext, with: sessionId) { result in
             switch result {
             case .success(let user):
-                AuthenticationManager.shared.saveCurrentUser(sessionId,
-                                                             accountId: user.id)
+                print(user.name)
+                self.authManager.saveCurrentUser(sessionId,
+                                            accountId: user.id)
                 self.didSignIn?()
             case .failure(let error):
                 print(error.description)
+                self.didReceiveError?()
             }
         }
     }
@@ -74,7 +97,7 @@ final class AccountViewModel {
     }
     
     func buildProfileViewModel() -> ProfileViewModel {
-        let currentUser = AuthenticationManager.shared.currentUser()
+        let currentUser = authManager.currentUser()
         let options = ProfileOptions(collectionOptions: [.favorites, .watchlist],
                                      groupOptions: [.customLists],
                                      configurationOptions: [])

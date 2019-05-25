@@ -73,7 +73,7 @@ class AuthPermissionViewController: UIViewController {
     @objc func closeBarButtonAction() {
         dismiss(animated: true, completion: { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.delegate?.authPermissionViewController(strongSelf, didSignedIn: false)
+            strongSelf.delegate?.authPermissionViewController(strongSelf, didSignedIn: true)
         })
     }
     
@@ -103,7 +103,7 @@ extension AuthPermissionViewController: WKNavigationDelegate {
         if let response = navigationResponse.response as? HTTPURLResponse,
             let headers = response.allHeaderFields as? [String: Any],
             let callback = headers["authentication-callback"] as? String {
-            dump(callback)
+            print(callback)
             dismiss(animated: true) {
                 self.delegate?.authPermissionViewController(self, didSignedIn: true)
             }

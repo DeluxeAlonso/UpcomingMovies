@@ -15,4 +15,8 @@ extension URLRequest {
                  forHTTPHeaderField: "Content-Type")
     }
     
+    mutating func setHeader(for httpHeaderField: String, with value: String) {
+        setValue(value, forHTTPHeaderField: httpHeaderField)
+    }
+    
 }

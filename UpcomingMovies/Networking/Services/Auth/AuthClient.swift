@@ -21,15 +21,23 @@ class AuthClient: APIClient {
         self.init(configuration: .default)
     }
     
-    func getRequestToken(completion: @escaping (Result<RequestTokenResult, APIError>) -> Void) {
-        fetch(with: AuthProvider.getRequestToken.request, decode: { json -> RequestTokenResult? in
+    func getRequestToken(with readAccessToken: String, completion: @escaping (Result<RequestTokenResult, APIError>) -> Void) {
+        fetch(with: AuthProvider.getRequestToken(readAccessToken: readAccessToken).request, decode: { json -> RequestTokenResult? in
             guard let requestToken = json as? RequestTokenResult else { return nil }
             return requestToken
         }, completion: completion)
     }
     
-    func createSessionId(with requestToken: String, completion: @escaping (Result<SessionResult, APIError>) -> Void) {
-        fetch(with: AuthProvider.createSessionId(requestToken: requestToken).request, decode: { json -> SessionResult? in
+    func getAccessToken(with readAccessToken: String, requestToken: String, completion: @escaping (Result<AccessTokenResult, APIError>) -> Void) {
+        fetch(with: AuthProvider.getAccessToken(readAccessToken: readAccessToken,
+                                                requestToken: requestToken).request, decode: { json -> AccessTokenResult? in
+            guard let requestToken = json as? AccessTokenResult else { return nil }
+            return requestToken
+        }, completion: completion)
+    }
+    
+    func createSessionId(with accessToken: String, completion: @escaping (Result<SessionResult, APIError>) -> Void) {
+        fetch(with: AuthProvider.createSessionId(accessToken: accessToken).request, decode: { json -> SessionResult? in
             guard let sessionResult = json as? SessionResult else { return nil }
             return sessionResult
         }, completion: completion)

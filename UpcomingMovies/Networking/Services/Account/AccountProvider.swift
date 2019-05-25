@@ -44,6 +44,10 @@ extension AccountProvider: Endpoint {
         }
     }
     
+    var headers: [String: String]? {
+        return nil
+    }
+    
     var params: [String: Any]? {
         switch self {
         case .getAccountDetail(let sessionId):
@@ -71,7 +75,7 @@ extension AccountProvider: Endpoint {
              .getCustomLists, .getCustomListDetail:
             return .defaultEncoding
         case .markAsFavorite:
-            return .compositeJSONEncoding
+            return .compositeEncoding
         }
     }
     

@@ -16,6 +16,16 @@ class AuthenticationManager {
     private var userStore: PersistenceStore<User>!
     private lazy var keychain = KeychainSwift()
     
+    lazy var readAccessToken: String = {
+        let keys = retrieveKeys()
+        return keys.readAccessToken
+    }()
+    
+    lazy var apiKey: String = {
+        let keys = retrieveKeys()
+        return keys.apiKey
+    }()
+    
     // MARK: - Initializers
     
     init() {
@@ -38,6 +48,7 @@ class AuthenticationManager {
     
     func deleteCurrentUser() {
         deleteSessionId()
+        deleteAccessToken()
         deleteUserAccountId()
     }
     
@@ -53,6 +64,20 @@ class AuthenticationManager {
     
     private func retrieveSessionId() -> String? {
         return keychain.get(Constants.sessionIdKey)
+    }
+    
+    // MARK: - Access Token
+    
+    func saveAccessToken(_ accessToken: String) {
+        keychain.set(accessToken, forKey: Constants.accessTokenKey)
+    }
+    
+    private func deleteAccessToken() {
+        keychain.delete(Constants.accessTokenKey)
+    }
+    
+    func retrieveAccessToken() -> String? {
+        return keychain.get(Constants.accessTokenKey)
     }
     
     // MARK: - User Account Id
@@ -93,11 +118,30 @@ class AuthenticationManager {
         return currentUser() != nil
     }
     
+    // MARK: - TheMovieDb Keys
+    
+    private func retrieveKeys() -> Keys {
+        guard let url = Bundle.main.url(forResource: "TheMovieDb",
+                                        withExtension: ".plist") else {
+                                            fatalError()
+        }
+        do {
+            let data = try Data(contentsOf: url)
+            let decoder = PropertyListDecoder()
+            let plist = try decoder.decode([String: Keys].self, from: data)
+            guard let keys = plist["Keys"] else { fatalError() }
+            return keys
+        } catch {
+            fatalError()
+        }
+    }
+    
 }
 
 extension AuthenticationManager {
     
     struct Constants {
+        static let accessTokenKey = "UpcomingMoviesAccessToken"
         static let sessionIdKey = "UpcomingMoviesSessionId"
         static let currentUserIdKey = "UpcomingMoviesUserId"
     }

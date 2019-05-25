@@ -77,6 +77,7 @@ class AccountViewController: UIViewController, SegueHandler {
     private func didSignIn() {
         navigationController?.setNavigationBarHidden(false, animated: true)
         showProfileView()
+        signInViewController.stopLoading()
     }
     
     private func didSignOut() {
@@ -96,6 +97,12 @@ class AccountViewController: UIViewController, SegueHandler {
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 strongSelf.didSignIn()
+            }
+        }
+        viewModel.didReceiveError = { [weak self] in
+            guard let strongSelf = self else { return }
+            DispatchQueue.main.async {
+                strongSelf.signInViewController.stopLoading()
             }
         }
     }
@@ -170,8 +177,7 @@ extension AccountViewController: AuthPermissionViewControllerDelegate {
     
     func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
                                       didSignedIn signedIn: Bool) {
-        signInViewController.stopLoading()
-        if signedIn { viewModel.createSessionId() }
+        if signedIn { viewModel.getAccessToken() }
     }
     
 }
