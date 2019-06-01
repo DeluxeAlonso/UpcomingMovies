@@ -11,8 +11,6 @@ import UIKit
 class CustomListDetailViewController: UIViewController, SegueHandler {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var posterImageViewHeightConstraint: NSLayoutConstraint!
     
     private lazy var loadingFooterView: LoadingFooterView = {
         let footerView = LoadingFooterView()
@@ -21,15 +19,13 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         return footerView
     }()
     
+    private var headerView: CustomListDetailHeaderView!
+    
     private var dataSource: CustomListDetailDataSource!
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
     /// Used to determinate if the header view is being presented or not.
     private var tableViewContentOffsetY: CGFloat = 0
-    
-    private var currentTableViewTopInset: CGFloat!
-    
-    private var initialHeightContraintConstant: CGFloat!
     
     private var isNavigationBarConfigured: Bool = false
     
@@ -49,7 +45,7 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: { _ in
         }, completion: { _ in
-            self.configureContentInset()
+            self.setupTableViewHeader()
         })
     }
     
@@ -64,7 +60,7 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         guard !isNavigationBarConfigured else { return }
         isNavigationBarConfigured = true
         setClearNavigationBar()
-        configureContentInset()
+        setupTableViewHeader()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -82,18 +78,12 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     
     private func setupUI() {
         setupNavigationBar()
-        setupImageViews()
         setupTableView()
     }
     
     private func setupNavigationBar() {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backBarButtonItem
-    }
-    
-    private func setupImageViews() {
-        initialHeightContraintConstant = posterImageViewHeightConstraint.constant
-        posterImageView.addOverlay()
     }
     
     private func setupTableView() {
@@ -104,8 +94,14 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     }
     
     private func setupTableViewHeader() {
-        let headerView = CustomListDetailHeaderView.loadFromNib()
+        headerView = CustomListDetailHeaderView.loadFromNib()
         headerView.viewModel = viewModel?.buildHeaderViewModel()
+        
+        headerView.setHeaderOffset(navigationBarHeight)
+        headerView.frame = CGRect(x: 0, y: 0, width: headerView.frame.width, height: headerView.frame.height - navigationBarHeight)
+        
+        tableView.clipsToBounds = false
+        
         tableView.tableHeaderView = headerView
     }
     
@@ -129,22 +125,13 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         }
     }
     
-    private func configureContentInset() {
-        if let top = navigationController?.navigationBar.intrinsicContentSize.height {
-            let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
-            currentTableViewTopInset = initialHeightContraintConstant - top - statusBarHeight
-            tableView.contentInset = .init(top: currentTableViewTopInset,
-                                           left: 0, bottom: 0, right: 0)
-        }
-    }
-    
     private func configureNavigiationBarStyle() {
         if navigationItem.title != nil {
-            navigationController?.navigationBar.barStyle = .default
-            navigationController?.navigationBar.tintColor = view.tintColor
+            //navigationController?.navigationBar.barStyle = .default
+            //navigationController?.navigationBar.tintColor = view.tintColor
         } else {
-            navigationController?.navigationBar.barStyle = .black
-            navigationController?.navigationBar.tintColor = .white
+            //navigationController?.navigationBar.barStyle = .black
+            //navigationController?.navigationBar.tintColor = .white
         }
     }
     
@@ -167,7 +154,6 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        setupTableViewHeader()
         viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
@@ -241,6 +227,15 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
     private func configureScrollView(_ scrollView: UIScrollView,
                                      for contentOffsetY: CGFloat,
                                      and headerHeight: CGFloat) {
+        
+        // Stertchy header
+        let height = headerView.initialHeightConstraintConstant - contentOffsetY
+        let newHeight = min(max(height, 40), 400)
+        let newOffSet = newHeight - headerView.initialHeightConstraintConstant
+        
+        headerView.setHeaderOffset(navigationBarHeight + newOffSet)
+        headerView.setPosterHeight(newHeight)
+        /*
         // Stretchy header
         let height = initialHeightContraintConstant - (contentOffsetY + currentTableViewTopInset)
         
@@ -261,7 +256,7 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
         } else if tableViewContentOffsetY > headerHeight && contentOffsetY <= headerHeight {
             hideNavigationBar()
             setTitleAnimated(nil)
-        }
+        }*/
     }
     
 }

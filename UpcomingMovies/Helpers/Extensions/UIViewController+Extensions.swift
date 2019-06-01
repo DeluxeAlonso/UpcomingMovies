@@ -69,12 +69,23 @@ extension UIViewController {
     func setClearNavigationBar() {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
     }
     
     func restoreClearNavigationBar(with barTintColor: UIColor) {
         navigationController?.navigationBar.barTintColor = barTintColor
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
+    }
+    
+    var navigationBarHeight: CGFloat {
+        guard let navigationController = navigationController else { return 0 }
+        
+        let top = navigationController.navigationBar.intrinsicContentSize.height
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        let navBarHeight =  top + statusBarHeight
+        
+        return navBarHeight
     }
     
 }
