@@ -47,27 +47,26 @@
             <objects>
                 <viewController id="Vbt-3z-z1P" customClass="CustomListDetailViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bH0-Xx-Nm0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="20170506_BKP001_0" translatesAutoresizingMaskIntoConstraints="NO" id="Ibj-J1-THq">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="bDx-9P-r7o"/>
-                                </constraints>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E5x-HP-pCl">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmA-K2-KqE">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Ibj-J1-THq" secondAttribute="trailing" id="MKX-Tt-BD7"/>
-                            <constraint firstItem="Ibj-J1-THq" firstAttribute="top" secondItem="bH0-Xx-Nm0" secondAttribute="top" id="PxX-7U-H16"/>
+                            <constraint firstAttribute="trailing" secondItem="bmA-K2-KqE" secondAttribute="trailing" id="9lk-cK-LaS"/>
                             <constraint firstItem="E5x-HP-pCl" firstAttribute="top" secondItem="aSR-Kb-ARf" secondAttribute="top" id="RHx-ok-dS7"/>
+                            <constraint firstItem="bmA-K2-KqE" firstAttribute="leading" secondItem="bH0-Xx-Nm0" secondAttribute="leading" id="V9U-Li-ftK"/>
+                            <constraint firstItem="bmA-K2-KqE" firstAttribute="top" secondItem="bH0-Xx-Nm0" secondAttribute="top" id="WWs-9b-vcf"/>
+                            <constraint firstItem="E5x-HP-pCl" firstAttribute="top" secondItem="bmA-K2-KqE" secondAttribute="bottom" id="alC-8l-s5V"/>
                             <constraint firstItem="E5x-HP-pCl" firstAttribute="leading" secondItem="bH0-Xx-Nm0" secondAttribute="leading" id="ane-yX-IcX"/>
-                            <constraint firstItem="Ibj-J1-THq" firstAttribute="leading" secondItem="bH0-Xx-Nm0" secondAttribute="leading" id="g3w-8d-fLU"/>
                             <constraint firstAttribute="trailing" secondItem="E5x-HP-pCl" secondAttribute="trailing" id="iZu-BV-rey"/>
                             <constraint firstItem="aSR-Kb-ARf" firstAttribute="bottom" secondItem="E5x-HP-pCl" secondAttribute="bottom" id="idR-eO-Rdb"/>
                         </constraints>
@@ -76,9 +75,9 @@
                     <navigationItem key="navigationItem" id="d7F-he-ty1">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JqG-XA-nD9"/>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="posterImageView" destination="Ibj-J1-THq" id="SA2-BQ-iod"/>
-                        <outlet property="posterImageViewHeightConstraint" destination="bDx-9P-r7o" id="VMe-nH-nUo"/>
+                        <outlet property="navigationBarPlaceholderView" destination="bmA-K2-KqE" id="OqD-us-Ks8"/>
                         <outlet property="tableView" destination="E5x-HP-pCl" id="6Gn-A6-Mb0"/>
                         <segue destination="S81-bR-NK0" kind="show" identifier="MovieDetailSegue" id="dZ8-kf-dfm"/>
                     </connections>
@@ -96,7 +95,4 @@
             <point key="canvasLocation" x="2122" y="1698"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="20170506_BKP001_0" width="595" height="335"/>
-    </resources>
 </document>
