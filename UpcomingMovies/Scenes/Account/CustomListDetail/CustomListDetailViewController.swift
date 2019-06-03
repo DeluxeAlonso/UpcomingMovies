@@ -10,6 +10,7 @@ import UIKit
 
 class CustomListDetailViewController: UIViewController, SegueHandler {
     
+    @IBOutlet weak var navigationBarPlaceholderView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     private lazy var loadingFooterView: LoadingFooterView = {
@@ -29,6 +30,8 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     
     private var isNavigationBarConfigured: Bool = false
     
+    private var navBarAnimator: UIViewPropertyAnimator!
+    
     var viewModel: CustomListDetailViewModel? {
         didSet {
             setupBindables()
@@ -39,6 +42,7 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     
     deinit {
         print("CustomListDetailViewController")
+        navBarAnimator.stopAnimation(true)
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -46,6 +50,7 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         coordinator.animate(alongsideTransition: { _ in
         }, completion: { _ in
             self.setupTableViewHeader()
+            self.configureScrollView(self.tableView, forceUpdate: true)
         })
     }
     
@@ -56,7 +61,7 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureNavigiationBarStyle()
+        configureNavigationBarStyle()
         guard !isNavigationBarConfigured else { return }
         isNavigationBarConfigured = true
         setClearNavigationBar()
@@ -84,6 +89,9 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     private func setupNavigationBar() {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backBarButtonItem
+        navBarAnimator = UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
+            self.navigationBarPlaceholderView.alpha = 1
+        })
     }
     
     private func setupTableView() {
@@ -101,7 +109,6 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         headerView.frame = CGRect(x: 0, y: 0, width: headerView.frame.width, height: headerView.frame.height - navigationBarHeight)
         
         tableView.clipsToBounds = false
-        
         tableView.tableHeaderView = headerView
     }
     
@@ -125,30 +132,26 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         }
     }
     
-    private func configureNavigiationBarStyle() {
+    private func configureNavigationBarStyle() {
         if navigationItem.title != nil {
-            //navigationController?.navigationBar.barStyle = .default
-            //navigationController?.navigationBar.tintColor = view.tintColor
+            navigationController?.navigationBar.barStyle = .default
+            navigationController?.navigationBar.tintColor = view.tintColor
         } else {
-            //navigationController?.navigationBar.barStyle = .black
-            //navigationController?.navigationBar.tintColor = .white
+            navigationController?.navigationBar.barStyle = .black
+            navigationController?.navigationBar.tintColor = .white
         }
     }
     
     private func showNavigationBar() {
-        UIView.animate(withDuration: 0.1, animations: {
-            self.navigationController?.navigationBar.barStyle = .default
-            self.navigationController?.navigationBar.tintColor = self.view.tintColor
-            self.restoreClearNavigationBar(with: .white)
-            }, completion: nil)
+        self.navigationController?.navigationBar.barStyle = .default
+        self.navigationController?.navigationBar.tintColor = self.view.tintColor
+        self.restoreClearNavigationBar(with: .white)
     }
     
     private func hideNavigationBar() {
-        UIView.animate(withDuration: 0.1, animations: {
-            self.navigationController?.navigationBar.barStyle = .black
-            self.navigationController?.navigationBar.tintColor = .white
-            self.setClearNavigationBar()
-            }, completion: nil)
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.tintColor = .white
+        self.setClearNavigationBar()
     }
     
     // MARK: - Reactive Behaviour
@@ -212,21 +215,22 @@ extension CustomListDetailViewController: UITableViewDelegate {
 extension CustomListDetailViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let tableView = scrollView as? UITableView,
-            let headerView = tableView.tableHeaderView else {
-                return
-        }
-        let contentOffsetY = scrollView.contentOffset.y
-        let headerHeight = headerView.frame.size.height - 40.0
-        
-        configureScrollView(scrollView, for: contentOffsetY, and: headerHeight)
-        
-        tableViewContentOffsetY = contentOffsetY
+        configureScrollView(scrollView)
     }
     
-    private func configureScrollView(_ scrollView: UIScrollView,
-                                     for contentOffsetY: CGFloat,
-                                     and headerHeight: CGFloat) {
+    private func configureScrollView(_ scrollView: UIScrollView, forceUpdate: Bool = false) {
+        guard let tableView = scrollView as? UITableView,
+            let headerView = tableView.tableHeaderView as? CustomListDetailHeaderView else {
+                return
+        }
+        let contentOffsetY = tableView.contentOffset.y
+        let headerHeight = headerView.frame.size.height - 40.0
+        
+        if contentOffsetY >= 0 {
+            navBarAnimator.fractionComplete = min(abs(contentOffsetY) / 180.0, 1.0)
+        } else {
+            navBarAnimator.fractionComplete = 0
+        }
         
         // Stertchy header
         let height = headerView.initialHeightConstraintConstant - contentOffsetY
@@ -235,28 +239,20 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
         
         headerView.setHeaderOffset(navigationBarHeight + newOffSet)
         headerView.setPosterHeight(newHeight)
-        /*
-        // Stretchy header
-        let height = initialHeightContraintConstant - (contentOffsetY + currentTableViewTopInset)
-        
-        let newHeight = min(max(height, 40), 400)
-        posterImageViewHeightConstraint.constant = newHeight
-        
-        // Content Inset
-        if contentOffsetY <= 0 && abs(contentOffsetY) <= currentTableViewTopInset {
-            scrollView.contentInset.top = abs(contentOffsetY)
-        } else if contentOffsetY > 0 {
-            scrollView.contentInset.top = 0
-        }
         
         // Navigation bar title
-        if tableViewContentOffsetY <= headerHeight && contentOffsetY > headerHeight {
+        let shouldShowTitle = forceUpdate ? true : tableViewContentOffsetY <= headerHeight
+        let shouldHideTitle = forceUpdate ? true : tableViewContentOffsetY > headerHeight
+        
+        if shouldShowTitle && contentOffsetY > headerHeight {
             showNavigationBar()
             setTitleAnimated(viewModel?.name)
-        } else if tableViewContentOffsetY > headerHeight && contentOffsetY <= headerHeight {
+        } else if shouldHideTitle && contentOffsetY <= headerHeight {
             hideNavigationBar()
             setTitleAnimated(nil)
-        }*/
+        }
+        
+        tableViewContentOffsetY = scrollView.contentOffset.y
     }
     
 }

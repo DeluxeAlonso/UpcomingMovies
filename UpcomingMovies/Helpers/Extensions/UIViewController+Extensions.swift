@@ -37,9 +37,10 @@ extension UIViewController {
     // MARK: - Navigation Controller
     
     func setTitleAnimated(_ title: String?,
-                          with transitionType: CATransitionType = .fade) {
+                          with transitionType: CATransitionType = .fade,
+                          animated: Bool = false) {
         let fadeTextAnimation = CATransition()
-        fadeTextAnimation.duration = 0.5
+        fadeTextAnimation.duration = animated ? 0.5 : 0.0
         fadeTextAnimation.type = transitionType
         
         navigationController?.navigationBar.layer.add(fadeTextAnimation,
