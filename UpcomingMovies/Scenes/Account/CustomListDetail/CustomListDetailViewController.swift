@@ -30,8 +30,6 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     
     private var isNavigationBarConfigured: Bool = false
     
-    private var navBarAnimator: UIViewPropertyAnimator!
-    
     var viewModel: CustomListDetailViewModel? {
         didSet {
             setupBindables()
@@ -42,7 +40,6 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     
     deinit {
         print("CustomListDetailViewController")
-        navBarAnimator.stopAnimation(true)
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -89,9 +86,6 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     private func setupNavigationBar() {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backBarButtonItem
-        navBarAnimator = UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
-            self.navigationBarPlaceholderView.alpha = 1
-        })
     }
     
     private func setupTableView() {
@@ -227,9 +221,9 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
         let headerHeight = headerView.frame.size.height - 40.0
         
         if contentOffsetY >= 0 {
-            navBarAnimator.fractionComplete = min(abs(contentOffsetY) / 180.0, 1.0)
+            navigationBarPlaceholderView.alpha = min(abs(contentOffsetY) / 180.0, 1.0)
         } else {
-            navBarAnimator.fractionComplete = 0
+            navigationBarPlaceholderView.alpha = 0
         }
         
         // Stertchy header
