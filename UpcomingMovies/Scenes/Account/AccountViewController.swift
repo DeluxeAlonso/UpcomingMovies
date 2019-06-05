@@ -38,6 +38,7 @@ class AccountViewController: UIViewController, SegueHandler {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.tintColor = view.tintColor
     }
     
     // MARK: - Private

@@ -13,13 +13,6 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     @IBOutlet weak var navigationBarPlaceholderView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
-    private lazy var loadingFooterView: LoadingFooterView = {
-        let footerView = LoadingFooterView()
-        footerView.frame = LoadingFooterView.recommendedFrame
-        footerView.startAnimating()
-        return footerView
-    }()
-    
     private var headerView: CustomListDetailHeaderView!
     
     private var dataSource: CustomListDetailDataSource!
@@ -38,10 +31,34 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     
     // MARK: - Lifecycle
     
-    deinit {
-        print("CustomListDetailViewController")
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        defer {
+            configureNavigationBar(for: tableView,
+                                   and: tableViewContentOffsetY, forceUpdate: true)
+        }
+        guard !isNavigationBarConfigured else { return }
+        isNavigationBarConfigured = true
+        setClearNavigationBar()
+        setupTableViewHeader()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.configureDynamicHeaderViewHeight()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.tintColor = view.tintColor
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: { _ in
@@ -50,32 +67,7 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
             self.configureScrollView(self.tableView, forceUpdate: true)
         })
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.configureDynamicHeaderViewHeight()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        configureNavigationBarStyle()
-        guard !isNavigationBarConfigured else { return }
-        isNavigationBarConfigured = true
-        setClearNavigationBar()
-        setupTableViewHeader()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.tintColor = view.tintColor
-    }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-    }
-    
     // MARK: - Private
     
     private func setupUI() {
@@ -120,22 +112,33 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         case .populated:
             tableView.tableFooterView = UIView()
         case .loading:
-            tableView.tableFooterView = loadingFooterView
+            tableView.tableFooterView = LoadingFooterView()
         case .error(let error):
             tableView.tableFooterView = CustomFooterView(message: error.description)
         }
     }
     
-    private func configureNavigationBarStyle() {
-        if navigationItem.title != nil {
-            navigationController?.navigationBar.barStyle = .default
-            navigationController?.navigationBar.tintColor = view.tintColor
-        } else {
-            navigationController?.navigationBar.barStyle = .black
-            navigationController?.navigationBar.tintColor = .white
+    private func configureNavigationBar(for tableView: UITableView,
+                                        and previousContentOffsetY: CGFloat,
+                                        forceUpdate: Bool) {
+        guard let headerView = tableView.tableHeaderView as? CustomListDetailHeaderView else {
+            return
+        }
+        let contentOffsetY = tableView.contentOffset.y
+        let headerHeight = headerView.frame.size.height - 40.0
+        
+        let shouldShowTitle = forceUpdate ? true : previousContentOffsetY <= headerHeight
+        let shouldHideTitle = forceUpdate ? true : previousContentOffsetY > headerHeight
+        
+        if shouldShowTitle && contentOffsetY > headerHeight {
+            showNavigationBar()
+            setTitleAnimated(viewModel?.name)
+        } else if shouldHideTitle && contentOffsetY <= headerHeight {
+            hideNavigationBar()
+            setTitleAnimated(nil)
         }
     }
-    
+
     private func showNavigationBar() {
         self.navigationController?.navigationBar.barStyle = .default
         self.navigationController?.navigationBar.tintColor = self.view.tintColor
@@ -218,7 +221,6 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
                 return
         }
         let contentOffsetY = tableView.contentOffset.y
-        let headerHeight = headerView.frame.size.height - 40.0
         
         if contentOffsetY >= 0 {
             navigationBarPlaceholderView.alpha = min(abs(contentOffsetY) / 180.0, 1.0)
@@ -226,7 +228,7 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
             navigationBarPlaceholderView.alpha = 0
         }
         
-        // Stertchy header
+        // Stretchy header
         let height = headerView.initialHeightConstraintConstant - contentOffsetY
         let newHeight = min(max(height, 40), 400)
         let newOffSet = newHeight - headerView.initialHeightConstraintConstant
@@ -235,16 +237,7 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
         headerView.setPosterHeight(newHeight)
         
         // Navigation bar title
-        let shouldShowTitle = forceUpdate ? true : tableViewContentOffsetY <= headerHeight
-        let shouldHideTitle = forceUpdate ? true : tableViewContentOffsetY > headerHeight
-        
-        if shouldShowTitle && contentOffsetY > headerHeight {
-            showNavigationBar()
-            setTitleAnimated(viewModel?.name)
-        } else if shouldHideTitle && contentOffsetY <= headerHeight {
-            hideNavigationBar()
-            setTitleAnimated(nil)
-        }
+        configureNavigationBar(for: tableView, and: tableViewContentOffsetY, forceUpdate: forceUpdate)
         
         tableViewContentOffsetY = scrollView.contentOffset.y
     }
