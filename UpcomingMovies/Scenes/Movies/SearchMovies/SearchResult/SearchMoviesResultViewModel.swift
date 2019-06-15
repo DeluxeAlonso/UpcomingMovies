@@ -12,6 +12,7 @@ import CoreData
 final class SearchMoviesResultViewModel {
     
     // MARK: - Properties
+    private var managedObjectContext: NSManagedObjectContext
     
     private var movieSearchStore: PersistenceStore<MovieSearch>!
     
@@ -36,8 +37,9 @@ final class SearchMoviesResultViewModel {
     // MARK: - Initilalizers
     
     init(managedObjectContext: NSManagedObjectContext) {
+        self.managedObjectContext = managedObjectContext
         movieSearchStore = PersistenceStore(managedObjectContext)
-        movieSearchStore.configure(limit: 5)
+        movieSearchStore.configureResultsContoller(limit: 5)
         movieSearchStore.delegate = self
     }
     
@@ -75,7 +77,7 @@ final class SearchMoviesResultViewModel {
     
     func buildDetailViewModel(at index: Int) -> MovieDetailViewModel {
         return MovieDetailViewModel(movies[index],
-                                    managedObjectContext: movieSearchStore.managedObjectContext)
+                                    managedObjectContext: managedObjectContext)
     }
 
 }

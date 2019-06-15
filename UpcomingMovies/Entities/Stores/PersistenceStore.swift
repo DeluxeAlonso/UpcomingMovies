@@ -21,6 +21,7 @@ class PersistenceStore<Entity: Managed>: NSObject, NSFetchedResultsControllerDel
     var managedObjectContext: NSManagedObjectContext
     
     private var fetchedResultsController: NSFetchedResultsController<Entity>!
+    private var changeTypes: [NSFetchedResultsChangeType]!
     
     weak var delegate: PersistenceStoreDelegate?
     
@@ -37,16 +38,21 @@ class PersistenceStore<Entity: Managed>: NSObject, NSFetchedResultsControllerDel
     
     // MARK: - Public
     
-    func configure(batchSize: Int = 5, limit: Int = 0) {
+    func configureResultsContoller(batchSize: Int = 5, limit: Int = 0,
+                                   notifyChangesOn changeTypes: [NSFetchedResultsChangeType] = [.insert, .delete, .move, .update]) {
         let request = Entity.sortedFetchRequest
         request.fetchBatchSize = batchSize
         request.fetchLimit = limit
         request.returnsObjectsAsFaults = false
+        
+        self.changeTypes = changeTypes
+        
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
                                                               managedObjectContext: managedObjectContext,
                                                               sectionNameKeyPath: nil,
                                                               cacheName: nil)
         fetchedResultsController.delegate = self
+        
         performFetch()
     }
     
@@ -68,7 +74,11 @@ class PersistenceStore<Entity: Managed>: NSObject, NSFetchedResultsControllerDel
                     didChange anObject: Any,
                     at indexPath: IndexPath?,
                     for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        delegate?.persistenceStore(didUpdateEntity: true)
+        guard changeTypes.contains(type) else { return }
+
+        if anObject as? Entity != nil {
+            delegate?.persistenceStore(didUpdateEntity: true)
+        }
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

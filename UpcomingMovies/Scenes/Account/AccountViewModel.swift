@@ -32,6 +32,14 @@ final class AccountViewModel {
     
     // MARK: - Authentication
     
+    func isUserSignedIn() -> Bool {
+        return authManager.isUserSignedIn()
+    }
+    
+    func signOutCurrentUser() {
+        authManager.deleteCurrentUser()
+    }
+    
     func getRequestToken() {
         let readAccessToken = authManager.readAccessToken
         authClient.getRequestToken(with: readAccessToken) { result in
