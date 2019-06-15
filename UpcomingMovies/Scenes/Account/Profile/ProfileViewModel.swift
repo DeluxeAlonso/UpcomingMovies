@@ -50,7 +50,7 @@ final class ProfileViewModel {
     
     private func setupStores() {
         userStore = PersistenceStore(managedObjectContext)
-        userStore.configure()
+        userStore.configureResultsContoller(notifyChangesOn: [.insert])
         userStore.delegate = self
     }
     
@@ -121,7 +121,6 @@ extension ProfileViewModel {
                 return [.accountInfo, .collections, .groups, .signOut]
             }
         }
-        
     }
     
 }

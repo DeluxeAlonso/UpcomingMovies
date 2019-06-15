@@ -10,11 +10,11 @@ import UIKit
 
 protocol ProfileViewControllerDelegate: class {
 
-    func profileViewController(_ profileViewController: ProfileTableViewController, didTapCollection collection: ProfileCollectionOption)
+    func profileViewController(didTapCollection collection: ProfileCollectionOption)
     
-    func profileViewController(_ profileViewController: ProfileTableViewController, didTapGroup group: ProfileGroupOption)
+    func profileViewController(didTapGroup group: ProfileGroupOption)
     
-    func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool)
+    func profileViewController(didTapSignOutButton tapped: Bool)
     
 }
 
@@ -65,7 +65,7 @@ class ProfileTableViewController: UITableViewController {
     private func showSignOutActionSheet() {
         let signOutAction = UIAlertAction(title: "Sign out",
                                           style: .destructive) { _ in
-            self.delegate?.profileViewController(self, didTapSignOutButton: true)
+            self.delegate?.profileViewController(didTapSignOutButton: true)
         }
         showSimpleActionSheet(title: "Are you sure you want to sign out?",
                               message: nil, action: signOutAction)
@@ -85,7 +85,7 @@ class ProfileTableViewController: UITableViewController {
     // MARK: - Actions
     
     @IBAction func signOutButtonAction(_ sender: Any) {
-       delegate?.profileViewController(self, didTapSignOutButton: true)
+       delegate?.profileViewController(didTapSignOutButton: true)
     }
     
     // MARK: - Table view delegate
@@ -96,10 +96,10 @@ class ProfileTableViewController: UITableViewController {
         switch viewModel.section(at: indexPath.section) {
         case .collections:
             let collectionOption = viewModel.collectionOption(at: indexPath.row)
-            delegate?.profileViewController(self, didTapCollection: collectionOption)
+            delegate?.profileViewController(didTapCollection: collectionOption)
         case .groups:
             let groupOption = viewModel.groupOption(at: indexPath.row)
-            delegate?.profileViewController(self, didTapGroup: groupOption)
+            delegate?.profileViewController(didTapGroup: groupOption)
         case .signOut:
             showSignOutActionSheet()
         case .accountInfo:

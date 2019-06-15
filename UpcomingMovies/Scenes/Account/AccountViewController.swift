@@ -20,7 +20,6 @@ class AccountViewController: UIViewController, SegueHandler {
     private lazy var profileViewController: ProfileTableViewController = {
         var viewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileTableViewController") as! ProfileTableViewController
         viewController.delegate = self
-        viewController.viewModel = viewModel.buildProfileViewModel()
         self.add(asChildViewController: viewController)
         return viewController
     }()
@@ -50,25 +49,21 @@ class AccountViewController: UIViewController, SegueHandler {
     }
     
     private func setupContainerView() {
-        if AuthenticationManager.shared.isUserSignedIn() {
-            navigationController?.setNavigationBarHidden(false, animated: false)
-            add(asChildViewController: profileViewController)
-        } else {
-            navigationController?.setNavigationBarHidden(true, animated: false)
-            add(asChildViewController: signInViewController)
-        }
+        viewModel.isUserSignedIn() ? showProfileView() : showSignInView()
     }
     
     private func setupNavigationBar() {
         navigationItem.title = Constants.NavigationItemTitle
     }
     
-    private func showSignInView() {
+    private func showSignInView(withAnimatedNavigationBar animated: Bool = false) {
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         remove(asChildViewController: profileViewController)
         add(asChildViewController: signInViewController)
     }
     
-    private func showProfileView() {
+    private func showProfileView(withAnimatedNavigationBar animated: Bool = false) {
+        navigationController?.setNavigationBarHidden(false, animated: animated)
         remove(asChildViewController: signInViewController)
         // Rebuild the profile view model to show an up to date profile.
         profileViewController.viewModel = viewModel.buildProfileViewModel()
@@ -76,14 +71,12 @@ class AccountViewController: UIViewController, SegueHandler {
     }
     
     private func didSignIn() {
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        showProfileView()
+        showProfileView(withAnimatedNavigationBar: true)
         signInViewController.stopLoading()
     }
     
     private func didSignOut() {
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        showSignInView()
+        showSignInView(withAnimatedNavigationBar: true)
     }
     
     // MARK: - Reactive Behaviour
@@ -91,8 +84,7 @@ class AccountViewController: UIViewController, SegueHandler {
     private func setupBindables() {
         viewModel.showAuthPermission = { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.performSegue(withIdentifier: SegueIdentifier.authPermission.rawValue,
-                                    sender: nil)
+            strongSelf.performSegue(withIdentifier: .authPermission)
         }
         viewModel.didSignIn = { [weak self] in
             guard let strongSelf = self else { return }
@@ -121,16 +113,12 @@ class AccountViewController: UIViewController, SegueHandler {
             viewController.delegate = self
             viewController.viewModel = viewModel.buildAuthPermissionViewModel()
         case .collectionList:
-            guard let viewController = segue.destination as? CollectionListViewController else {
-                fatalError()
-            }
+            guard let viewController = segue.destination as? CollectionListViewController else { fatalError() }
             guard let viewModel = sender as? CollectionListViewModel else { return }
             _ = viewController.view
             viewController.viewModel = viewModel
         case.customLists:
-            guard let viewController = segue.destination as? CustomListsViewController else {
-                fatalError()
-            }
+            guard let viewController = segue.destination as? CustomListsViewController else { fatalError() }
             guard let viewModel = sender as? CustomListsViewModel else { return }
             _ = viewController.view
             viewController.viewModel = viewModel
@@ -154,19 +142,19 @@ extension AccountViewController: SignInViewControllerDelegate {
 
 extension AccountViewController: ProfileViewControllerDelegate {
     
-    func profileViewController(_ profileViewController: ProfileTableViewController, didTapCollection collection: ProfileCollectionOption) {
+    func profileViewController(didTapCollection collection: ProfileCollectionOption) {
         let segueIdentifier = SegueIdentifier.collectionList.rawValue
         performSegue(withIdentifier: segueIdentifier,
                      sender: viewModel.buildCollectionListViewModel(collection))
     }
     
-    func profileViewController(_ profileViewController: ProfileTableViewController, didTapGroup group: ProfileGroupOption) {
+    func profileViewController(didTapGroup group: ProfileGroupOption) {
         performSegue(withIdentifier: SegueIdentifier.customLists.rawValue,
                      sender: viewModel.buildCrearedListsViewModel(group))
     }
     
-    func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool) {
-        AuthenticationManager.shared.deleteCurrentUser()
+    func profileViewController(didTapSignOutButton tapped: Bool) {
+        viewModel.signOutCurrentUser()
         didSignOut()
     }
     
