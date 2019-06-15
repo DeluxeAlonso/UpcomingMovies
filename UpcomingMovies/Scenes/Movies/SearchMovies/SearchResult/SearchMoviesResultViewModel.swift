@@ -39,7 +39,7 @@ final class SearchMoviesResultViewModel {
     init(managedObjectContext: NSManagedObjectContext) {
         self.managedObjectContext = managedObjectContext
         movieSearchStore = PersistenceStore(managedObjectContext)
-        movieSearchStore.configureResultsContoller(limit: 5)
+        movieSearchStore.configureResultsContoller(limit: 5, sortDescriptors: MovieSearch.defaultSortDescriptors)
         movieSearchStore.delegate = self
     }
     

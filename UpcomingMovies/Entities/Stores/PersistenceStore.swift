@@ -16,7 +16,7 @@ protocol PersistenceStoreDelegate: class {
     
 }
 
-class PersistenceStore<Entity: Managed>: NSObject, NSFetchedResultsControllerDelegate {
+class PersistenceStore<Entity: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
     
     var managedObjectContext: NSManagedObjectContext
     
@@ -39,10 +39,16 @@ class PersistenceStore<Entity: Managed>: NSObject, NSFetchedResultsControllerDel
     // MARK: - Public
     
     func configureResultsContoller(batchSize: Int = 5, limit: Int = 0,
+                                   sortDescriptors: [NSSortDescriptor] = [],
+                                   predicate: NSPredicate? = nil,
                                    notifyChangesOn changeTypes: [NSFetchedResultsChangeType] = [.insert, .delete, .move, .update]) {
-        let request = Entity.sortedFetchRequest
+        guard let entityName = Entity.entity().name else { fatalError() }
+        
+        let request =  NSFetchRequest<Entity>(entityName: entityName)
         request.fetchBatchSize = batchSize
         request.fetchLimit = limit
+        request.predicate = predicate
+        request.sortDescriptors = sortDescriptors
         request.returnsObjectsAsFaults = false
         
         self.changeTypes = changeTypes

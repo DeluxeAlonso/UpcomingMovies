@@ -41,7 +41,7 @@ final class SearchOptionsViewModel {
     
     init(managedObjectContext: NSManagedObjectContext) {
         movieVisitStore = PersistenceStore(managedObjectContext)
-        movieVisitStore.configureResultsContoller(limit: 10)
+        movieVisitStore.configureResultsContoller(limit: 10, sortDescriptors: MovieVisit.defaultSortDescriptors)
         movieVisitStore.delegate = self
         
         configureViewState()

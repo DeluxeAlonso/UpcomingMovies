@@ -53,10 +53,4 @@ extension User: Decodable {
 
 // MARK: - Managed
 
-extension User: Managed {
-    
-    static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: #keyPath(name), ascending: true)]
-    }
-    
-}
+extension User: Managed { }
