@@ -19,9 +19,17 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     @IBOutlet weak var voteAverageView: VoteAverageView!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
-    @IBOutlet weak var favoriteView: UIView!
-    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var overviewLabel: UILabel!
+    
+    let shareBarButtonItem: UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareBarButtonAction))
+        return barButtonItem
+    }()
+    
+    lazy var favoriteBarButtonItem: UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "FavoriteOff"), style: .plain, target: self, action: #selector(favoriteButtonAction(_:)))
+        return barButtonItem
+    }()
     
     var loaderView: RadarView!
     
@@ -57,8 +65,16 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     private func setupNavigationBar() {
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
-        let shareBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareBarButtonAction))
-        navigationItem.rightBarButtonItem = shareBarButtonItem
+        navigationItem.rightBarButtonItems = [shareBarButtonItem, favoriteBarButtonItem]
+    }
+    
+    private func configureNavigationBar(isFavorite: Bool?) {
+        if let isFavorite = isFavorite {
+            favoriteBarButtonItem.image = isFavorite ? #imageLiteral(resourceName: "FavoriteOn") : #imageLiteral(resourceName: "FavoriteOff")
+            navigationItem.rightBarButtonItems = [shareBarButtonItem, favoriteBarButtonItem]
+        } else {
+            navigationItem.rightBarButtonItems = [shareBarButtonItem]
+        }
     }
     
     private func showErrorView(error: Error) {
@@ -115,11 +131,7 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     private func setupFavoriteBindables() {
         viewModel?.isFavorite.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
-            strongSelf.favoriteView.isHidden = isFavorite == nil
-            if let isFavorite = isFavorite {
-                let favoriteIcon = isFavorite ? #imageLiteral(resourceName: "FavoriteOn") : #imageLiteral(resourceName: "FavoriteOff")
-                strongSelf.favoriteButton.setImage(favoriteIcon, for: .normal)
-            }
+            strongSelf.configureNavigationBar(isFavorite: isFavorite)
         })
     }
     
@@ -154,7 +166,7 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
         let shareText = "Come with me to watch \(movieTitle)!"
         let activityViewController = UIActivityViewController(activityItems: [shareText],
                                                               applicationActivities: nil)
-        self.present(activityViewController, animated: true, completion: nil)
+        present(activityViewController, animated: true, completion: nil)
     }
     
     // MARK: - Actions
