@@ -121,7 +121,7 @@ final class MovieDetailViewModel {
     
     // MARK: - Favorites
     
-    func checkIfMovieIsFavorite(sessionId: String) {
+    private func checkIfMovieIsFavorite(sessionId: String) {
         movieClient.getMovieAccountState(with: id, sessionId: sessionId, completion: { result  in
             self.startLoading.value = false
             switch result {

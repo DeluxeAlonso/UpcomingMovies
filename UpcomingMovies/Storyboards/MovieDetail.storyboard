@@ -287,19 +287,19 @@
                                                 <rect key="frame" x="0.0" y="321" width="375" height="83"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJt-HO-dKx" userLabel="Genre View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="83"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="83"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Zyn-vf-TL7" userLabel="Genre Stack View">
-                                                                <rect key="frame" x="16" y="16" width="101" height="51"/>
+                                                                <rect key="frame" x="16" y="16" width="163.5" height="51"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wff-o9-jFG" userLabel="Genre Title Label">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="101" height="23"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wff-o9-jFG" userLabel="Genre Title Label">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="163.5" height="23"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comedy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkj-So-5cA">
-                                                                        <rect key="frame" x="0.0" y="28" width="101" height="23"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comedy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkj-So-5cA">
+                                                                        <rect key="frame" x="0.0" y="28" width="163.5" height="23"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -316,19 +316,19 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZq-f3-VHg" userLabel="Release Date View">
-                                                        <rect key="frame" x="125" y="0.0" width="125" height="83"/>
+                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="83"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7AM-Hz-3BW" userLabel="Release Date Stack View">
-                                                                <rect key="frame" x="8" y="16" width="101" height="51"/>
+                                                                <rect key="frame" x="8" y="16" width="163.5" height="51"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Release" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biy-Ap-rpF" userLabel="Release Date Title Label">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="101" height="23"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="163.5" height="23"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-03-12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slt-aQ-ofO">
-                                                                        <rect key="frame" x="0.0" y="28" width="101" height="23"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="163.5" height="23"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -342,30 +342,6 @@
                                                             <constraint firstAttribute="bottom" secondItem="7AM-Hz-3BW" secondAttribute="bottom" constant="16" id="RO4-nt-g1C"/>
                                                             <constraint firstAttribute="trailing" secondItem="7AM-Hz-3BW" secondAttribute="trailing" constant="16" id="oDz-lf-AvM"/>
                                                             <constraint firstItem="7AM-Hz-3BW" firstAttribute="top" secondItem="PZq-f3-VHg" secondAttribute="top" constant="16" id="piO-cB-9xg"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZU-Ru-CVg" userLabel="Favorite View">
-                                                        <rect key="frame" x="250" y="0.0" width="125" height="83"/>
-                                                        <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLI-h2-kje" userLabel="Favorite Button">
-                                                                <rect key="frame" x="61" y="17.5" width="48" height="48"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="48" id="cyd-8v-Jj8"/>
-                                                                    <constraint firstAttribute="width" secondItem="oLI-h2-kje" secondAttribute="height" multiplier="1:1" id="dBq-1F-VFe"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="11"/>
-                                                                <state key="normal" image="FavoriteOff"/>
-                                                                <connections>
-                                                                    <action selector="favoriteButtonAction:" destination="4Ld-U6-Odg" eventType="touchUpInside" id="ZGq-6I-YUG"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstItem="oLI-h2-kje" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NZU-Ru-CVg" secondAttribute="leading" constant="8" id="0Sk-XB-ZZh"/>
-                                                            <constraint firstAttribute="trailing" secondItem="oLI-h2-kje" secondAttribute="trailing" constant="16" id="Bki-bq-IJf"/>
-                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oLI-h2-kje" secondAttribute="trailing" constant="8" id="Yt0-Ao-76z"/>
-                                                            <constraint firstItem="oLI-h2-kje" firstAttribute="centerY" secondItem="NZU-Ru-CVg" secondAttribute="centerY" id="dPB-nK-mhL"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -423,8 +399,6 @@
                     <navigationItem key="navigationItem" id="fGP-S3-naS"/>
                     <connections>
                         <outlet property="backdropImageView" destination="RsL-2b-bRH" id="s7t-J9-geQ"/>
-                        <outlet property="favoriteButton" destination="oLI-h2-kje" id="iNn-37-O8R"/>
-                        <outlet property="favoriteView" destination="NZU-Ru-CVg" id="OVD-uj-Byw"/>
                         <outlet property="genreLabel" destination="Gkj-So-5cA" id="6cf-Ds-lSf"/>
                         <outlet property="overviewLabel" destination="1SK-ri-asW" id="H56-aK-zWQ"/>
                         <outlet property="posterImageView" destination="zXa-53-Cbr" id="BFV-Zl-Ysh"/>
@@ -529,7 +503,6 @@
     <resources>
         <image name="Cast" width="33" height="33"/>
         <image name="CollapsibleArrow" width="33" height="33"/>
-        <image name="FavoriteOff" width="33" height="33"/>
         <image name="Logo" width="150" height="150"/>
         <image name="PlayVideo" width="33" height="33"/>
         <image name="Reviews" width="33" height="33"/>
