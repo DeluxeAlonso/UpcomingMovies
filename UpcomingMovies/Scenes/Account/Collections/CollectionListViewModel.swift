@@ -16,7 +16,7 @@ final class CollectionListViewModel {
     
     private let accountClient = AccountClient()
     
-    private let userCredentials = AuthenticationManager.shared.userCredentials()
+    private let authManager = AuthenticationManager.shared
     
     var startLoading: Bindable<Bool> = Bindable(false)
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
@@ -61,7 +61,7 @@ final class CollectionListViewModel {
     }
     
     func fetchCollectionList(page: Int, option: ProfileCollectionOption, showLoader: Bool) {
-        guard let credentials = userCredentials else { return }
+        guard let credentials = authManager.userCredentials else { return }
         startLoading.value = showLoader
         accountClient.getCollectionList(page: page, option: option,
                                         sessionId: credentials.sessionId,

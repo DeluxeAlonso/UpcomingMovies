@@ -76,7 +76,7 @@ final class ProfileViewModel {
     
     // TODO: - Change this method to get the account detail given the id of a user account
     func getAccountDetails() {
-        guard let credentials = AuthenticationManager.shared.userCredentials() else {
+        guard let credentials = AuthenticationManager.shared.userCredentials else {
             return
         }
         accountClient.getAccountDetail(managedObjectContext, with: credentials.sessionId) { _ in }

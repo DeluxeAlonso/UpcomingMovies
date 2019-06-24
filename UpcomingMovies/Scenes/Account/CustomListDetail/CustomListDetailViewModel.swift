@@ -13,7 +13,7 @@ final class CustomListDetailViewModel {
     
     private let managedObjectContext: NSManagedObjectContext
     private let accountClient = AccountClient()
-    private let userCredentials = AuthenticationManager.shared.userCredentials()
+    private let authManager = AuthenticationManager.shared
     
     private let id: String
     let name: String
@@ -42,7 +42,7 @@ final class CustomListDetailViewModel {
         name = list.name
         description = list.description
         movieCount = list.movieCount
-        posterURL = list.posterURL
+        posterURL = list.backdropURL
         self.managedObjectContext = managedObjectContext
     }
     
@@ -67,7 +67,8 @@ final class CustomListDetailViewModel {
     // MARK: - Networking
     
     func getListDetail() {
-        accountClient.getCustomListDetail(listId: id, completion: { result in
+        guard let accessToken = authManager.accessToken else { return }
+        accountClient.getCustomListDetail(with: accessToken.token, listId: id, completion: { result in
             switch result {
             case .success(let list):
                 self.processList(list)

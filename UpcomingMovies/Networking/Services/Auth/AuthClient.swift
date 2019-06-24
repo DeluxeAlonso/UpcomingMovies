@@ -28,10 +28,10 @@ class AuthClient: APIClient {
         }, completion: completion)
     }
     
-    func getAccessToken(with readAccessToken: String, requestToken: String, completion: @escaping (Result<AccessTokenResult, APIError>) -> Void) {
+    func getAccessToken(with readAccessToken: String, requestToken: String, completion: @escaping (Result<AccessToken, APIError>) -> Void) {
         fetch(with: AuthProvider.getAccessToken(readAccessToken: readAccessToken,
-                                                requestToken: requestToken).request, decode: { json -> AccessTokenResult? in
-            guard let requestToken = json as? AccessTokenResult else { return nil }
+                                                requestToken: requestToken).request, decode: { json -> AccessToken? in
+            guard let requestToken = json as? AccessToken else { return nil }
             return requestToken
         }, completion: completion)
     }
