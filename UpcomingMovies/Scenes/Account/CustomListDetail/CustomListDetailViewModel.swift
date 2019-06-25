@@ -66,20 +66,20 @@ final class CustomListDetailViewModel {
     
     // MARK: - Networking
     
-    func getListDetail() {
+    func getListMovies() {
         guard let accessToken = authManager.accessToken else { return }
-        accountClient.getCustomListDetail(with: accessToken.token, listId: id, completion: { result in
+        accountClient.getCustomListMovies(with: accessToken.token, listId: id, completion: { result in
             switch result {
-            case .success(let list):
-                self.processList(list)
+            case .success(let movieResult):
+                self.processListMovies(movieResult?.results)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
         })
     }
     
-    private func processList(_ list: List?) {
-        guard let list = list, let movies = list.movies, !movies.isEmpty else {
+    private func processListMovies(_ movies: [Movie]?) {
+        guard let movies = movies, !movies.isEmpty else {
             viewState.value = .empty
             return
         }

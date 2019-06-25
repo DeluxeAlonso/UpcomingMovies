@@ -161,7 +161,7 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
                 strongSelf.configureView(with: state)
             }
         })
-        viewModel?.getListDetail()
+        viewModel?.getListMovies()
     }
     
     // MARK: - Navigation

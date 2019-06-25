@@ -76,10 +76,10 @@ class AccountClient: APIClient {
     
     // MARK: - Custom List Details
     
-    func getCustomListDetail(with accessToken: String, listId: String, completion: @escaping (Result<List?, APIError>) -> Void) {
+    func getCustomListMovies(with accessToken: String, listId: String, completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
         let request = AccountProvider.getCustomListDetail(accessToken: accessToken, id: listId).request
-        fetch(with: request, decode: { json -> List? in
-            guard let list = json as? List else { return  nil }
+        fetch(with: request, decode: { json -> MovieResult? in
+            guard let list = json as? MovieResult else { return  nil }
             return list
         }, completion: completion)
     }
