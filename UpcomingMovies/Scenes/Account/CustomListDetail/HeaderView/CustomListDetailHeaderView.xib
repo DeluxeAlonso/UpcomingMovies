@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="297"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="20170506_BKP001_0" translatesAutoresizingMaskIntoConstraints="NO" id="5H8-fK-RG1">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5H8-fK-RG1">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="200" id="pYX-2B-HY2"/>
@@ -85,7 +85,4 @@
             <point key="canvasLocation" x="131.8840579710145" y="-4.3526785714285712"/>
         </view>
     </objects>
-    <resources>
-        <image name="20170506_BKP001_0" width="595" height="335"/>
-    </resources>
 </document>

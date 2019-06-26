@@ -38,7 +38,7 @@ extension UIView {
     
     // MARK: - Overlay
     
-    func addOverlay(with backgroundColor: UIColor = .black, and alpha: CGFloat = 0.5) {
+    func addOverlay(with backgroundColor: UIColor = .black, and alpha: CGFloat = 0.35) {
         let overlayView = UIView()
         overlayView.backgroundColor = backgroundColor
         overlayView.alpha = alpha

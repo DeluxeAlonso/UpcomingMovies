@@ -75,13 +75,13 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
             descriptionView.isHidden = true
         }
         
-        /*if let posterURL = viewModel?.posterURL {
+        if let posterURL = viewModel?.posterURL {
             posterImageView.contentMode = .scaleAspectFill
             posterImageView.kf.setImage(with: posterURL)
         } else {
             posterImageView.contentMode = .center
             posterImageView.image = #imageLiteral(resourceName: "PosterPlaceholder")
-        }*/
+        }
     }
 
 }

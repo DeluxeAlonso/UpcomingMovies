@@ -13,13 +13,15 @@ final class CustomListDetailViewModel {
     
     private let managedObjectContext: NSManagedObjectContext
     private let accountClient = AccountClient()
-    private let userCredentials = AuthenticationManager.shared.userCredentials()
+    private let authManager = AuthenticationManager.shared
     
     private let id: String
     let name: String
     private let description: String?
     private let movieCount: Int
-    private var posterURL: URL?
+    private let rating: Double?
+    private let runtime: Int?
+    private var backdropURL: URL?
     
     // MARK: - Reactive properties
     
@@ -42,7 +44,9 @@ final class CustomListDetailViewModel {
         name = list.name
         description = list.description
         movieCount = list.movieCount
-        posterURL = list.posterURL
+        rating = list.averageRating
+        runtime = list.runtime
+        backdropURL = list.backdropURL
         self.managedObjectContext = managedObjectContext
     }
     
@@ -51,11 +55,11 @@ final class CustomListDetailViewModel {
     func buildHeaderViewModel() -> CustomListDetailHeaderViewModel {
         return CustomListDetailHeaderViewModel(name: name,
                                                description: description,
-                                               posterURL: posterURL)
+                                               posterURL: backdropURL)
     }
     
     func buildSectionViewModel() -> CustomListDetailSectionViewModel {
-        return CustomListDetailSectionViewModel(movieCount: movieCount)
+        return CustomListDetailSectionViewModel(movieCount: movieCount, rating: rating, runtime: runtime)
     }
     
     func buildDetailViewModel(at index: Int) -> MovieDetailViewModel? {
@@ -66,19 +70,20 @@ final class CustomListDetailViewModel {
     
     // MARK: - Networking
     
-    func getListDetail() {
-        accountClient.getCustomListDetail(listId: id, completion: { result in
+    func getListMovies() {
+        guard let accessToken = authManager.accessToken else { return }
+        accountClient.getCustomListMovies(with: accessToken.token, listId: id, completion: { result in
             switch result {
-            case .success(let list):
-                self.processList(list)
+            case .success(let movieResult):
+                self.processListMovies(movieResult?.results)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
         })
     }
     
-    private func processList(_ list: List?) {
-        guard let list = list, let movies = list.movies, !movies.isEmpty else {
+    private func processListMovies(_ movies: [Movie]?) {
+        guard let movies = movies, !movies.isEmpty else {
             viewState.value = .empty
             return
         }

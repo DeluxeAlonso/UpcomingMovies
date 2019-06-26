@@ -13,8 +13,8 @@ enum AccountProvider {
     case getAccountDetail(sessionId: String)
     case getFavoriteList(page: Int, sessionId: String, accountId: Int)
     case getWatchlist(page: Int, sessionId: String, accountId: Int)
-    case getCustomLists(page: Int, sessionId: String, accountId: Int)
-    case getCustomListDetail(id: String)
+    case getCustomLists(page: Int, accessToken: String, accountId: String)
+    case getCustomListDetail(accessToken: String, id: String)
     case markAsFavorite(sessionId: String, accountId: Int, movieId: Int, favorite: Bool)
     
 }
@@ -36,16 +36,23 @@ extension AccountProvider: Endpoint {
         case .getWatchlist( _, _, let accountId):
             return "/3/account/\(accountId)/watchlist/movies"
         case .getCustomLists( _, _, let accountId):
-            return "/3/account/\(accountId)/lists"
-        case .getCustomListDetail(let id):
-            return "/3/list/\(id)"
+            return "/4/account/\(accountId)/lists"
+        case .getCustomListDetail(_, let id):
+            return "/4/list/\(id)"
         case .markAsFavorite( _, let accountId, _, _):
             return "/3/account/\(accountId)/favorite"
         }
     }
     
     var headers: [String: String]? {
-        return nil
+        switch self {
+        case .getCustomLists(_, let accessToken, _):
+            return ["Authorization": "Bearer \(accessToken)"]
+        case .getCustomListDetail(let accessToken, _):
+            return ["Authorization": "Bearer \(accessToken)"]
+        case .getAccountDetail, .getFavoriteList, .getWatchlist, .markAsFavorite:
+            return nil
+        }
     }
     
     var params: [String: Any]? {
@@ -56,8 +63,8 @@ extension AccountProvider: Endpoint {
             return ["session_id": sessionId, "page": page]
         case .getWatchlist(let page, let sessionId, _):
             return ["session_id": sessionId, "page": page]
-        case .getCustomLists(let page, let sessionId, _):
-            return ["session_id": sessionId, "page": page]
+        case .getCustomLists(let page, _, _):
+            return ["page": page]
         case .getCustomListDetail:
             return nil
         case .markAsFavorite(let sessionId, _, let movieId, let favorite):

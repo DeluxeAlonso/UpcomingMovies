@@ -1,5 +1,5 @@
 //
-//  AccessTokenResult.swift
+//  AccessToken.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 5/24/19.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct AccessTokenResult: Decodable {
+struct AccessToken: Decodable {
     
-    let success: Bool
     let token: String
+    let accountId: String
     
     private enum CodingKeys: String, CodingKey {
-        case success
         case token = "access_token"
+        case accountId = "account_id"
     }
     
 }

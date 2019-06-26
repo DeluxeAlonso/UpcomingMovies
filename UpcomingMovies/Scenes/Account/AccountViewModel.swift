@@ -60,7 +60,7 @@ final class AccountViewModel {
         authClient.getAccessToken(with: readAccessToken, requestToken: requestToken) { result in
             switch result {
             case .success(let accessToken):
-                self.authManager.saveAccessToken(accessToken.token)
+                self.authManager.saveAccessToken(accessToken)
                 self.createSessionId(with: accessToken.token)
             case .failure(let error):
                 print(error.description)

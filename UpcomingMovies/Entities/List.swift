@@ -13,14 +13,17 @@ struct List: Decodable, Equatable {
     let id: String
     let name: String
     let description: String?
-    let posterPath: String?
+    let backdropPath: String?
+    let averageRating: Double?
+    let runtime: Int?
     let movieCount: Int
     let movies: [Movie]?
     
     private enum CodingKeys: String, CodingKey {
-        case id, name, description
-        case posterPath = "poster_path"
-        case movieCount = "item_count"
+        case id, name, description, runtime
+        case backdropPath = "backdrop_path"
+        case averageRating = "average_rating"
+        case movieCount = "number_of_items"
         case movies = "items"
     }
     
@@ -37,7 +40,9 @@ struct List: Decodable, Equatable {
         }
         self.name = try container.decode(String.self, forKey: .name)
         self.description = try? container.decode(String.self, forKey: .description)
-        self.posterPath = try? container.decode(String.self, forKey: .posterPath)
+        self.backdropPath = try? container.decode(String.self, forKey: .backdropPath)
+        self.averageRating = try? container.decode(Double.self, forKey: .averageRating)
+        self.runtime = try? container.decode(Int.self, forKey: .runtime)
         self.movieCount = try container.decode(Int.self, forKey: .movieCount)
         self.movies = try? container.decode([Movie].self, forKey: .movies)
     }
@@ -48,8 +53,8 @@ struct List: Decodable, Equatable {
 
 extension List {
 
-    var posterURL: URL? {
-        guard let posterPath = posterPath else { return nil }
+    var backdropURL: URL? {
+        guard let posterPath = backdropPath else { return nil }
         return URL(string: URLConfiguration.mediaPath + posterPath)
     }
     

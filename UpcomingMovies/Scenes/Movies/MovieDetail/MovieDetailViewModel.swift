@@ -17,7 +17,7 @@ final class MovieDetailViewModel {
     private var accountClient = AccountClient()
     private var movieClient = MovieClient()
     
-    private var userCredentials = AuthenticationManager.shared.userCredentials()
+    private var authManager = AuthenticationManager.shared
     
     var id: Int!
     var title: String!
@@ -111,7 +111,7 @@ final class MovieDetailViewModel {
     
     func checkIfUserIsAuthenticated() {
         let isUserSignedIn = AuthenticationManager.shared.isUserSignedIn()
-        if isUserSignedIn, let credentials = userCredentials {
+        if isUserSignedIn, let credentials = authManager.userCredentials {
             checkIfMovieIsFavorite(sessionId: credentials.sessionId)
         } else {
             startLoading.value = false
@@ -136,7 +136,7 @@ final class MovieDetailViewModel {
     }
     
     func handleFavoriteMovie() {
-        guard let credentials = userCredentials,
+        guard let credentials = authManager.userCredentials,
             let isFavorite = isFavorite.value else {
                 return
         }

@@ -14,7 +14,7 @@ final class CustomListsViewModel {
     private let managedObjectContext: NSManagedObjectContext
     private let groupOption: ProfileGroupOption
     private let accountClient = AccountClient()
-    private let userCredentials = AuthenticationManager.shared.userCredentials()
+    private let authManager = AuthenticationManager.shared
     
     let title: String?
     
@@ -52,12 +52,12 @@ final class CustomListsViewModel {
     // MARK: - Networking
     
     func getCustomLists() {
-        guard let credentials = userCredentials else { fatalError() }
+        guard let accessToken = authManager.accessToken else { return }
         startLoading.value = true
         accountClient.getCustomLists(page: viewState.value.currentPage,
                                       groupOption: groupOption,
-                                      sessionId: credentials.sessionId,
-                                      accountId: credentials.accountId) { result in
+                                      accessToken: accessToken.token,
+                                      accountId: accessToken.accountId) { result in
             switch result {
             case .success(let listResult):
                 guard let listResult = listResult else { return }

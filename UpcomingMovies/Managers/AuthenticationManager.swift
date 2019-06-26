@@ -68,16 +68,21 @@ class AuthenticationManager {
     
     // MARK: - Access Token
     
-    func saveAccessToken(_ accessToken: String) {
-        keychain.set(accessToken, forKey: Constants.accessTokenKey)
+    func saveAccessToken(_ accessToken: AccessToken) {
+        keychain.set(accessToken.token, forKey: Constants.accessTokenKey)
+        keychain.set(accessToken.accountId, forKey: Constants.accountIdKey)
     }
     
     private func deleteAccessToken() {
         keychain.delete(Constants.accessTokenKey)
     }
     
-    func retrieveAccessToken() -> String? {
-        return keychain.get(Constants.accessTokenKey)
+    var accessToken: AccessToken? {
+        guard let token = keychain.get(Constants.accessTokenKey),
+            let accountId = keychain.get(Constants.accountIdKey) else {
+                return nil
+        }
+        return AccessToken(token: token, accountId: accountId)
     }
     
     // MARK: - User Account Id
@@ -99,7 +104,7 @@ class AuthenticationManager {
     
     // MARK: - Credentials
     
-    func userCredentials() -> (sessionId: String, accountId: Int)? {
+    var userCredentials: (sessionId: String, accountId: Int)? {
         guard let sessionId = retrieveSessionId(),
             let accountId = retrieveUserAccountId() else {
                 return nil
@@ -110,7 +115,7 @@ class AuthenticationManager {
     // MARK: - Authentitacion Persistence
     
     func currentUser() -> User? {
-        guard let credentials = userCredentials() else { return nil }
+        guard let credentials = userCredentials else { return nil }
         return userStore.find(with: credentials.accountId)
     }
     
@@ -142,6 +147,7 @@ extension AuthenticationManager {
     
     struct Constants {
         static let accessTokenKey = "UpcomingMoviesAccessToken"
+        static let accountIdKey = "UpcomingMoviesAccessAccountId"
         static let sessionIdKey = "UpcomingMoviesSessionId"
         static let currentUserIdKey = "UpcomingMoviesUserId"
     }
