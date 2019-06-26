@@ -110,6 +110,7 @@ class UpcomingMoviesViewController: UIViewController, Displayable, SegueHandler,
                                                          presentationMode: presentationMode)
         
         prefetchDataSource = CollectionViewPrefetching(cellCount: viewModel.movieCells.count,
+                                                       needsPrefetch: viewModel.needsPrefetch,
                                                        prefetchHandler: { [weak self] in
                                                         self?.viewModel.getMovies()
         })

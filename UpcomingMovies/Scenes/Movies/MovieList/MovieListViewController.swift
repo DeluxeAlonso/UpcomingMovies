@@ -70,6 +70,7 @@ class MovieListViewController: UIViewController, Displayable, SegueHandler, Load
         guard let viewModel = viewModel else { return }
         dataSource = SimpleTableViewDataSource.make(for: viewModel.movieCells)
         prefetchDataSource = TableViewDataSourcePrefetching(cellCount: viewModel.movieCells.count,
+                                                            needsPrefetch: viewModel.needsPrefetch,
                                                             prefetchHandler: { [weak self] in
                                                                 self?.viewModel?.getMovies()
         })

@@ -22,6 +22,10 @@ final class MovieReviewsViewModel {
         return reviews.map { MovieReviewCellViewModel($0) }
     }
     
+    var needsPrefetch: Bool {
+        return viewState.value.needsPrefetch
+    }
+    
     private var reviews: [Review] {
         return viewState.value.currentEntities
     }

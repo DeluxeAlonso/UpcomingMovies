@@ -29,6 +29,12 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
         return movies.compactMap { UpcomingMovieCellViewModel($0) }
     }
     
+    var needsPrefetch: Bool {
+        return viewState.value.needsPrefetch
+    }
+    
+    // MARK: - Initializers
+    
     init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
         self.managedObjectContext = managedObjectContext
     }

@@ -11,10 +11,12 @@ import UIKit
 class TableViewDataSourcePrefetching: NSObject, UITableViewDataSourcePrefetching {
     
     private var cellCount: Int
+    private let needsPrefetch: Bool
     private let prefetchHandler: (() -> Void)
     
-    init(cellCount: Int, prefetchHandler: @escaping (() -> Void)) {
+    init(cellCount: Int, needsPrefetch: Bool, prefetchHandler: @escaping (() -> Void)) {
         self.cellCount = cellCount
+        self.needsPrefetch = needsPrefetch
         self.prefetchHandler = prefetchHandler
     }
     
@@ -27,7 +29,7 @@ class TableViewDataSourcePrefetching: NSObject, UITableViewDataSourcePrefetching
     }
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        guard tableView.visibleCells.count > 1 else { return }
+        guard needsPrefetch else { return }
         if indexPaths.contains(where: isLoadingCell) {
             prefetchHandler()
         }

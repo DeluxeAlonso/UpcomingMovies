@@ -11,10 +11,12 @@ import UIKit
 class CollectionViewPrefetching: NSObject, UICollectionViewDataSourcePrefetching {
     
     private let cellCount: Int
+    private let needsPrefetch: Bool
     private let prefetchHandler: (() -> Void)
     
-    init(cellCount: Int, prefetchHandler: @escaping (() -> Void)) {
+    init(cellCount: Int, needsPrefetch: Bool, prefetchHandler: @escaping (() -> Void)) {
         self.cellCount = cellCount
+        self.needsPrefetch = needsPrefetch
         self.prefetchHandler = prefetchHandler
     }
 
@@ -23,6 +25,7 @@ class CollectionViewPrefetching: NSObject, UICollectionViewDataSourcePrefetching
     }
     
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        guard needsPrefetch else { return }
         if indexPaths.contains(where: isLoadingCell) {
             prefetchHandler()
         }

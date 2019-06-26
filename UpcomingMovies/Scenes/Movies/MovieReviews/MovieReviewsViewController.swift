@@ -47,6 +47,7 @@ class MovieReviewsViewController: UIViewController, Displayable, Loadable {
         guard let viewModel = viewModel else { return }
         dataSource = SimpleTableViewDataSource.make(for: viewModel.reviewCells)
         prefetchDataSource = TableViewDataSourcePrefetching(cellCount: viewModel.reviewCells.count,
+                                                            needsPrefetch: viewModel.needsPrefetch,
                                                             prefetchHandler: { [weak self] in
                                                                 self?.viewModel?.getMovieReviews()
         })

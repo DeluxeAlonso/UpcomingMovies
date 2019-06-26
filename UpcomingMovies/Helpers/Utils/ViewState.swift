@@ -57,4 +57,13 @@ enum SimpleViewState<Entity>: Equatable where Entity: Equatable {
         return currentPage == 1
     }
     
+    var needsPrefetch: Bool {
+        switch self {
+        case .initial, .populated, .empty, .error:
+            return false
+        case .paging:
+            return true
+        }
+    }
+    
 }
