@@ -19,7 +19,9 @@ final class CustomListDetailViewModel {
     let name: String
     private let description: String?
     private let movieCount: Int
-    private var posterURL: URL?
+    private let rating: Double?
+    private let runtime: Int?
+    private var backdropURL: URL?
     
     // MARK: - Reactive properties
     
@@ -42,7 +44,9 @@ final class CustomListDetailViewModel {
         name = list.name
         description = list.description
         movieCount = list.movieCount
-        posterURL = list.backdropURL
+        rating = list.averageRating
+        runtime = list.runtime
+        backdropURL = list.backdropURL
         self.managedObjectContext = managedObjectContext
     }
     
@@ -51,11 +55,11 @@ final class CustomListDetailViewModel {
     func buildHeaderViewModel() -> CustomListDetailHeaderViewModel {
         return CustomListDetailHeaderViewModel(name: name,
                                                description: description,
-                                               posterURL: posterURL)
+                                               posterURL: backdropURL)
     }
     
     func buildSectionViewModel() -> CustomListDetailSectionViewModel {
-        return CustomListDetailSectionViewModel(movieCount: movieCount)
+        return CustomListDetailSectionViewModel(movieCount: movieCount, rating: rating, runtime: runtime)
     }
     
     func buildDetailViewModel(at index: Int) -> MovieDetailViewModel? {
