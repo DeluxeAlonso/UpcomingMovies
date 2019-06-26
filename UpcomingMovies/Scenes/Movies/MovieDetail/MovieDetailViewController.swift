@@ -21,8 +21,8 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     
-    let shareBarButtonItem: UIBarButtonItem = {
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareBarButtonAction))
+    lazy var shareBarButtonItem: UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareBarButtonAction(_:)))
         return barButtonItem
     }()
     
@@ -159,17 +159,15 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
         }
     }
     
-    // MARK: - Selectors
+    // MARK: - Actions
     
-    @objc func shareBarButtonAction() {
+    @IBAction func shareBarButtonAction(_ sender: Any) {
         guard let movieTitle = viewModel?.title else { return }
         let shareText = "Come with me to watch \(movieTitle)!"
         let activityViewController = UIActivityViewController(activityItems: [shareText],
                                                               applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
     }
-    
-    // MARK: - Actions
     
     @IBAction func favoriteButtonAction(_ sender: Any) {
         viewModel?.handleFavoriteMovie()
