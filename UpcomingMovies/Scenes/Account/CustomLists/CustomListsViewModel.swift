@@ -52,12 +52,21 @@ final class CustomListsViewModel {
     // MARK: - Networking
     
     func getCustomLists() {
+        let showLoader = viewState.value.isInitialPage
+        fetchCustomLists(currentPage: viewState.value.currentPage, showLoader: showLoader)
+    }
+    
+    func refreshCustomLists() {
+        fetchCustomLists(currentPage: 1, showLoader: false)
+    }
+    
+    private func fetchCustomLists(currentPage: Int, showLoader: Bool) {
         guard let accessToken = authManager.accessToken else { return }
-        startLoading.value = true
-        accountClient.getCustomLists(page: viewState.value.currentPage,
-                                      groupOption: groupOption,
-                                      accessToken: accessToken.token,
-                                      accountId: accessToken.accountId) { result in
+        startLoading.value = showLoader
+        accountClient.getCustomLists(page: currentPage,
+                                     groupOption: groupOption,
+                                     accessToken: accessToken.token,
+                                     accountId: accessToken.accountId) { result in
             switch result {
             case .success(let listResult):
                 guard let listResult = listResult else { return }

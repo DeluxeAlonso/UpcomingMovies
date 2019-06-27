@@ -104,7 +104,6 @@ extension ErrorPlaceholderView: ErrorAnimatable {
     }
     
     func stopAnimation() {
-        
         retryButton.stopAnimation()
     }
     
@@ -149,6 +148,7 @@ extension ErrorPlaceholderView {
         // Configure constraints if needed
         
         subview.alpha = 0
+        subview.isPresented = true
         subview.superview?.sendSubviewToBack(subview)
         subview.show(animated: animated) { _ in
         }

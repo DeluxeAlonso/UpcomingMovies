@@ -72,9 +72,10 @@ extension MoviesViewModel {
         fetchMovies(currentPage: 1, filter: filter, showLoader: false)
     }
     
-    func fetchMovies(currentPage: Int, filter: MovieListFilter, showLoader: Bool = false) {
+    private func fetchMovies(currentPage: Int, filter: MovieListFilter, showLoader: Bool = false) {
         startLoading.value = showLoader
         movieClient.getMovies(page: currentPage, filter: filter, completion: { result in
+            self.startLoading.value = false
             switch result {
             case .success(let movieResult):
                 guard let movieResult = movieResult else { return }
@@ -86,7 +87,6 @@ extension MoviesViewModel {
     }
     
     func processMovieResult(_ movieResult: MovieResult) {
-        startLoading.value = false
         let fetchedMovies = movieResult.results
         var allMovies = movieResult.currentPage == 1 ? [] : viewState.value.currentEntities
         allMovies.append(contentsOf: fetchedMovies)

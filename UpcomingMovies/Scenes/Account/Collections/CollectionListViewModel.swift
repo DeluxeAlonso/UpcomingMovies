@@ -66,6 +66,7 @@ final class CollectionListViewModel {
         accountClient.getCollectionList(page: page, option: option,
                                         sessionId: credentials.sessionId,
                                         accountId: credentials.accountId) { result in
+            self.startLoading.value = false
             switch result {
             case .success(let movieResult):
                 guard let movieResult = movieResult else { return }
@@ -77,7 +78,6 @@ final class CollectionListViewModel {
     }
     
     private func processMovieResult(_ movieResult: MovieResult) {
-        startLoading.value = false
         var allMovies = movieResult.currentPage == 1 ? [] : viewState.value.currentEntities
         allMovies.append(contentsOf: movieResult.results)
         guard !allMovies.isEmpty else {

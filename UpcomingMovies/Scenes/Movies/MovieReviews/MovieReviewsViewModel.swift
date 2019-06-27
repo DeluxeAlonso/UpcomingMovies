@@ -49,8 +49,18 @@ final class MovieReviewsViewModel {
     // MARK: - Networking
     
     func getMovieReviews() {
-        startLoading.value = true
-        movieClient.getMovieReviews(page: viewState.value.currentPage, with: movieId) { result in
+        let showLoader = viewState.value.isInitialPage
+        fetchMovieReviews(currentPage: viewState.value.currentPage, showLoader: showLoader)
+    }
+    
+    func refreshMovieReviews() {
+        fetchMovieReviews(currentPage: 1, showLoader: false)
+    }
+    
+    private func fetchMovieReviews(currentPage: Int, showLoader: Bool = false) {
+        startLoading.value = showLoader
+        movieClient.getMovieReviews(page: currentPage, with: movieId) { result in
+            self.startLoading.value = false
             switch result {
             case .success(let reviewResult):
                 guard let reviewResult = reviewResult else { return }
@@ -62,7 +72,7 @@ final class MovieReviewsViewModel {
     }
     
     private func processReviewResult(_ reviewResult: ReviewResult) {
-        startLoading.value = false
+        //startLoading.value = false
         let fetchedReviews = reviewResult.results
         var allReviews = reviewResult.currentPage == 1 ? [] : viewState.value.currentEntities
         allReviews.append(contentsOf: fetchedReviews)

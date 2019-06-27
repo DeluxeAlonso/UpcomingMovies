@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpcomingMoviesViewController: UIViewController, Displayable, SegueHandler, Loadable {
+class UpcomingMoviesViewController: UIViewController, PlaceholderDisplayable, SegueHandler, Loadable {
 
     @IBOutlet weak var toggleGridBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -135,16 +135,16 @@ class UpcomingMoviesViewController: UIViewController, Displayable, SegueHandler,
      * Configures the view given the current state of the view.
      */
     private func configureView(withState state: SimpleViewState<Movie>) {
-        hideDisplayedView()
         switch state {
         case .populated, .paging, .initial:
+             hideDisplayedPlaceholderView()
             collectionView.backgroundView = UIView(frame: .zero)
         case .empty:
             presentEmptyView(with: "No movies to show")
         case .error(let error):
             presentErrorView(with: error.description,
                                        errorHandler: { [weak self] in
-                                        self?.viewModel.getMovies()
+                                        self?.viewModel.refreshMovies()
             })
         }
     }

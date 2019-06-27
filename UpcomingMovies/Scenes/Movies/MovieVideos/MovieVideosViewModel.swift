@@ -49,8 +49,8 @@ final class MovieVideosViewModel {
     
     // MARK: - Networking
     
-    func getMovieVideos() {
-        startLoading.value = true
+    func getMovieVideos(showLoader: Bool = false) {
+        startLoading.value = showLoader
         movieClient.getMovieVideos(with: movieId) { result in
             switch result {
             case .success(let videoResult):

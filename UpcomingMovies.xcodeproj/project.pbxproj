@@ -153,7 +153,7 @@
 		E25C50DA2241F0DC005639C5 /* UpcomingMoviesNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25C50D92241F0DC005639C5 /* UpcomingMoviesNavigationManager.swift */; };
 		E25F9CEA225AED440069A6A1 /* EmptyPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F9CE9225AED440069A6A1 /* EmptyPlaceholderView.swift */; };
 		E25F9CEE225AF6D80069A6A1 /* Emptiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F9CED225AF6D80069A6A1 /* Emptiable.swift */; };
-		E25F9CF2225B090C0069A6A1 /* Displayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F9CF1225B090C0069A6A1 /* Displayable.swift */; };
+		E25F9CF2225B090C0069A6A1 /* PlaceholderDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F9CF1225B090C0069A6A1 /* PlaceholderDisplayable.swift */; };
 		E25FA2F02265A69C00FB5E71 /* URLRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25FA2EF2265A69C00FB5E71 /* URLRequest+Extensions.swift */; };
 		E25FA2F22265A79200FB5E71 /* Descriptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25FA2F12265A79200FB5E71 /* Descriptable.swift */; };
 		E26011642193823C00E53095 /* TableViewCellAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26011632193823C00E53095 /* TableViewCellAnimator.swift */; };
@@ -390,7 +390,7 @@
 		E25C50D92241F0DC005639C5 /* UpcomingMoviesNavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesNavigationManager.swift; sourceTree = "<group>"; };
 		E25F9CE9225AED440069A6A1 /* EmptyPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPlaceholderView.swift; sourceTree = "<group>"; };
 		E25F9CED225AF6D80069A6A1 /* Emptiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emptiable.swift; sourceTree = "<group>"; };
-		E25F9CF1225B090C0069A6A1 /* Displayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Displayable.swift; sourceTree = "<group>"; };
+		E25F9CF1225B090C0069A6A1 /* PlaceholderDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderDisplayable.swift; sourceTree = "<group>"; };
 		E25FA2EF2265A69C00FB5E71 /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
 		E25FA2F12265A79200FB5E71 /* Descriptable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Descriptable.swift; sourceTree = "<group>"; };
 		E26011632193823C00E53095 /* TableViewCellAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellAnimator.swift; sourceTree = "<group>"; };
@@ -1081,7 +1081,7 @@
 		E25F9CF0225B08F20069A6A1 /* Displayable */ = {
 			isa = PBXGroup;
 			children = (
-				E25F9CF1225B090C0069A6A1 /* Displayable.swift */,
+				E25F9CF1225B090C0069A6A1 /* PlaceholderDisplayable.swift */,
 				E25F9CED225AF6D80069A6A1 /* Emptiable.swift */,
 				E260117521938D6C00E53095 /* Retryable.swift */,
 			);
@@ -1743,7 +1743,7 @@
 				E263807F22127ACC0038AD00 /* ReviewResult.swift in Sources */,
 				E221F761222AF15B008DFF87 /* AppShortcutItem.swift in Sources */,
 				E2EB92452213D9700067F011 /* Dequeuable.swift in Sources */,
-				E25F9CF2225B090C0069A6A1 /* Displayable.swift in Sources */,
+				E25F9CF2225B090C0069A6A1 /* PlaceholderDisplayable.swift in Sources */,
 				E2251B1E2214F98F00EE7A51 /* MovieCreditCellViewModel.swift in Sources */,
 				E21F378A2193ED4000D6BFB6 /* SearchMoviesResultViewModel.swift in Sources */,
 				E2254696226A3D8100E9042C /* CustomListCellViewModel.swift in Sources */,
@@ -1983,7 +1983,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RRTBZ5DXD6;
+				DEVELOPMENT_TEAM = E95KU8J3PN;
 				INFOPLIST_FILE = UpcomingMoviesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2005,7 +2005,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RRTBZ5DXD6;
+				DEVELOPMENT_TEAM = E95KU8J3PN;
 				INFOPLIST_FILE = UpcomingMoviesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

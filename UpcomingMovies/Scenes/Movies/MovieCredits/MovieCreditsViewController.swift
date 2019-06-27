@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieCreditsViewController: UIViewController, Displayable, Loadable {
+class MovieCreditsViewController: UIViewController, PlaceholderDisplayable, Loadable {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -43,9 +43,9 @@ class MovieCreditsViewController: UIViewController, Displayable, Loadable {
     }
     
     private func configureView(with state: MovieCreditsViewModel.ViewState) {
-        hideDisplayedView()
         switch state {
         case .populated, .initial:
+            hideDisplayedPlaceholderView()
             collectionView.backgroundView = nil
         case .empty:
             presentEmptyView(with: "No credits to show")
@@ -72,7 +72,7 @@ class MovieCreditsViewController: UIViewController, Displayable, Loadable {
         viewModel.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
         })
-        viewModel.getMovieCredits()
+        viewModel.getMovieCredits(showLoader: true)
     }
 
 }

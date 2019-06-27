@@ -73,8 +73,8 @@ final class MovieCreditsViewModel {
     
     // MARK: - Networking
     
-    func getMovieCredits() {
-        startLoading.value = true
+    func getMovieCredits(showLoader: Bool = false) {
+        startLoading.value = showLoader
         movieClient.getMovieCredits(with: movieId) { result in
             switch result {
             case .success(let creditResult):

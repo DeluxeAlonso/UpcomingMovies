@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomListsViewController: UIViewController, Displayable, SegueHandler, Loadable {
+class CustomListsViewController: UIViewController, PlaceholderDisplayable, SegueHandler, Loadable {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -67,16 +67,16 @@ class CustomListsViewController: UIViewController, Displayable, SegueHandler, Lo
      * Configures the tableview given its current state.
      */
     private func configureView(withState state: SimpleViewState<List>) {
-        hideDisplayedView()
         switch state {
         case .populated, .paging, .initial:
+            hideDisplayedPlaceholderView()
             tableView.tableFooterView = UIView()
         case .empty:
             presentEmptyView(with: "No created lists to show")
         case .error(let error):
             presentErrorView(with: error.description,
                              errorHandler: { [weak self] in
-                                self?.viewModel?.getCustomLists()
+                                self?.viewModel?.refreshCustomLists()
             })
         }
     }

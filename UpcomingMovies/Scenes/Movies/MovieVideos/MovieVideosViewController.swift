@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieVideosViewController: UIViewController, Displayable, Loadable {
+class MovieVideosViewController: UIViewController, PlaceholderDisplayable, Loadable {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -54,11 +54,12 @@ class MovieVideosViewController: UIViewController, Displayable, Loadable {
      * Configures the tableview footer given the current state of the view.
      */
     private func configureView(withState state: SimpleViewState<Video>) {
-        hideDisplayedView()
         switch state {
         case .paging:
+            hideDisplayedPlaceholderView()
             tableView.tableFooterView = LoadingFooterView()
         case .populated, .initial:
+            hideDisplayedPlaceholderView()
             tableView.tableFooterView = UIView()
         case .empty:
             presentEmptyView(with: "There are no trailers to show right now.")
@@ -84,7 +85,7 @@ class MovieVideosViewController: UIViewController, Displayable, Loadable {
         viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
         })
-        viewModel?.getMovieVideos()
+        viewModel?.getMovieVideos(showLoader: true)
     }
 
 }
