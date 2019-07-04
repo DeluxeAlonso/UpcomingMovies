@@ -48,6 +48,11 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+      
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+      
         guard let viewModel = viewModel, !viewModel.startLoading.value else {
             return
         }
