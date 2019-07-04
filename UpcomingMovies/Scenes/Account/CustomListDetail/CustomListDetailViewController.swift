@@ -230,7 +230,7 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
         
         // Stretchy header
         let height = headerView.initialHeightConstraintConstant - contentOffsetY
-        let newHeight = min(max(height, 40), 400)
+        let newHeight = max(height, 40)
         let newOffSet = newHeight - headerView.initialHeightConstraintConstant
         
         headerView.setHeaderOffset(navigationBarHeight + newOffSet)
