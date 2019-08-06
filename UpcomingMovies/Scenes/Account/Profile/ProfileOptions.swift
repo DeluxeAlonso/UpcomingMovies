@@ -35,9 +35,9 @@ enum ProfileCollectionOption: ProfileOption {
     var title: String? {
         switch self {
         case .favorites:
-            return "Favorites"
+            return NSLocalizedString("favoritesCollectionOption", comment: "")
         case .watchlist:
-            return "Watchlist"
+            return NSLocalizedString("watchlistCollectionOption", comment: "")
         }
     }
     
@@ -50,7 +50,7 @@ enum ProfileGroupOption: ProfileOption {
     var title: String? {
         switch self {
         case .customLists:
-            return "Created Lists"
+            return NSLocalizedString("customListGroupOption", comment: "")
         }
     }
     
@@ -63,7 +63,7 @@ enum ProfileConfigurationOption: ProfileOption {
     var title: String? {
         switch self {
         case .includeAdult:
-            return "Include adult movies"
+            return NSLocalizedString("includeAdults", comment: "")
         }
     }
     

@@ -160,3 +160,14 @@ extension SearchOptionsViewModel: PersistenceStoreDelegate {
     }
     
 }
+
+// MARK: - Constants
+
+extension SearchOptionsViewModel {
+  
+  struct Constants {
+    static let recentlyVisitedSectionTitle = NSLocalizedString("recentlyVisitedSeearchSectionTitle", comment: "")
+    static let genresSectionTitle = NSLocalizedString("movieGenresSearchSectionTitle", comment: "")
+  }
+  
+}
