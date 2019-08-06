@@ -108,7 +108,7 @@
                                                     <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="W4O-hv-Tc9" customClass="MovieDetailBackdropView" customModule="UpcomingMovies" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="RsL-2b-bRH" userLabel="Backdrop Image View">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RsL-2b-bRH" userLabel="Backdrop Image View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </imageView>
@@ -503,7 +503,6 @@
     <resources>
         <image name="Cast" width="33" height="33"/>
         <image name="CollapsibleArrow" width="33" height="33"/>
-        <image name="Logo" width="150" height="150"/>
         <image name="PlayVideo" width="33" height="33"/>
         <image name="Reviews" width="33" height="33"/>
         <image name="SimilarMovies" width="33" height="33"/>

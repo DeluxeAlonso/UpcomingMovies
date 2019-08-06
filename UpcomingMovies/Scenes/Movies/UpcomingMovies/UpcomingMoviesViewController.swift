@@ -269,9 +269,7 @@ extension UpcomingMoviesViewController {
         
         static let Title = NSLocalizedString("upcomingMoviesTabBarTitle", comment: "")
         static let NavigationItemTitle = NSLocalizedString("upcomingMoviesTitle", comment: "")
-        
-        static let RefreshControlTitle = NSLocalizedString("refreshControlTitle", comment: "")
-        
+
         static let previewCellHeight: Double = 150.0
         
         static let detailCellHeight: Double = 200.0

@@ -1,0 +1,31 @@
+/* 
+  File.strings
+  UpcomingMovies
+
+  Created by Alonso on 11/6/18.
+  Copyright © 2018 Alonso. All rights reserved.
+*/
+
+"upcomingMoviesTabBarTitle" = "Próximos";
+"upcomingMoviesTitle" = "Próximas películas";
+
+"searchMoviesTabBarTitle" = "Buscar";
+"searchMoviesTitle" = "Buscar películas";
+"recentSearches" = "Búsquedas recientes";
+"emptySearchResults" = "No hay resultados que mostrar";
+
+"recentlyVisitedSeearchSectionTitle" = "Visitados recientemente";
+"movieGenresSearchSectionTitle" = "Géneros";
+
+"favoritesTabBarTitle" = "Favoritos";
+"favoritesTitle" = "Mis favoritos";
+
+"accountTabBarTitle" = "Cuenta";
+"accountTitle" = "Mi cuenta";
+
+"favoritesCollectionOption" = "Favoritos";
+"watchlistCollectionOption" = "Lista de pendientes";
+"customListGroupOption" = "Listas";
+"includeAdults" = "Incluir películas para adultos";
+
+"signOut" = "Cerrar sesión";

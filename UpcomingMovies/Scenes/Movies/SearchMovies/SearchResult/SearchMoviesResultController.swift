@@ -188,8 +188,8 @@ extension SearchMoviesResultController: UITableViewDelegate {
 extension SearchMoviesResultController {
     
     struct Constants {
-        static let recentSearchesHeaderTitle = "Recent searches"
-        static let emptyResultsTitle = "No results to show."
+        static let recentSearchesHeaderTitle = NSLocalizedString("recentSearches", comment: "")
+        static let emptyResultsTitle = NSLocalizedString("emptySearchResults", comment: "")
     }
     
 }

@@ -70,7 +70,6 @@ extension UIViewController {
     func setClearNavigationBar() {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
-        //navigationController?.navigationBar.isTranslucent = true
     }
     
     func restoreClearNavigationBar(with barTintColor: UIColor) {
