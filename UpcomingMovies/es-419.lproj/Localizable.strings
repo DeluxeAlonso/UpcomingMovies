@@ -20,7 +20,7 @@
 "favoritesTabBarTitle" = "Favoritos";
 "favoritesTitle" = "Mis favoritos";
 
-"accountTabBarTitle" = "Cuenta";
+"accountTabBarTitle" = "Mi cuenta";
 "accountTitle" = "Mi cuenta";
 
 "favoritesCollectionOption" = "Favoritos";
@@ -29,3 +29,11 @@
 "includeAdults" = "Incluir películas para adultos";
 
 "signOut" = "Cerrar sesión";
+
+"emptyVideoResults" = "No hay trailers que mostrar.";
+
+"movieDetailTitle" = "Detalle";
+"reviewsDetailOptions" = "Reviews";
+"trailersDetailOptions" = "Trailers";
+"creditsDetailOptions" = "Créditos";
+"similarsDetailOptions" = "Similares";

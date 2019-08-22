@@ -1,0 +1,9 @@
+
+/* Class = "UINavigationItem"; title = "Account"; ObjectID = "PHb-rS-IvZ"; */
+"PHb-rS-IvZ.title" = "Account";
+
+/* Class = "UITabBarItem"; title = "Account"; ObjectID = "XeO-c5-LSU"; */
+"XeO-c5-LSU.title" = "Mi cuenta";
+
+/* Class = "UIButton"; normalTitle = "Sign in with TheMovieDB"; ObjectID = "xLN-uI-D6w"; */
+"xLN-uI-D6w.normalTitle" = "Sign in with TheMovieDB";

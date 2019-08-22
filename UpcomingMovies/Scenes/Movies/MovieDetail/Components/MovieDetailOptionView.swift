@@ -43,9 +43,10 @@ class MovieDetailOptionView: UIView {
         }
     }
     
-    @IBInspectable var optionTitle: String? {
+    @IBInspectable var localizedOptionTitle: String? {
         didSet {
-            optionTitleLabel.text = optionTitle
+          guard let title = localizedOptionTitle else { return }
+          optionTitleLabel.text = NSLocalizedString(title, comment: "")
         }
     }
     
