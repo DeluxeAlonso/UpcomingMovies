@@ -211,7 +211,7 @@
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="Reviews"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="optionTitle" value="Reviews"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedOptionTitle" value="reviewsDetailOptions"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
@@ -234,7 +234,7 @@
                                                                 <gestureRecognizers/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="PlayVideo"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="optionTitle" value="Trailers"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedOptionTitle" value="trailersDetailOptions"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outletCollection property="gestureRecognizers" destination="sFM-TJ-Gi3" appends="YES" id="vXP-si-XP3"/>
@@ -245,8 +245,8 @@
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <gestureRecognizers/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="optionTitle" value="Credits"/>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="Cast"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedOptionTitle" value="creditsDetailOptions"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outletCollection property="gestureRecognizers" destination="o9o-3F-xia" appends="YES" id="tKK-mR-Ckn"/>
@@ -258,7 +258,7 @@
                                                                 <gestureRecognizers/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="SimilarMovies"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="optionTitle" value="Similars"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedOptionTitle" value="similarsDetailOptions"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outletCollection property="gestureRecognizers" destination="U0c-SP-USZ" appends="YES" id="aVn-ov-Onc"/>

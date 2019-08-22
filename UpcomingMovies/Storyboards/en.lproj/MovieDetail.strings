@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "Movie Overview"; ObjectID = "1SK-ri-asW"; */
+"1SK-ri-asW.text" = "Movie Overview";
+
+/* Class = "UIViewController"; title = "MovieDetailViewController"; ObjectID = "4Ld-U6-Odg"; */
+"4Ld-U6-Odg.title" = "MovieDetailViewController";
+
+/* Class = "UILabel"; text = "Comedy"; ObjectID = "Gkj-So-5cA"; */
+"Gkj-So-5cA.text" = "Comedy";
+
+/* Class = "UILabel"; text = "Release"; ObjectID = "biy-Ap-rpF"; */
+"biy-Ap-rpF.text" = "Release";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "joB-oD-goD"; */
+"joB-oD-goD.text" = "Label";
+
+/* Class = "UILabel"; text = "Movie"; ObjectID = "r2f-cr-5vC"; */
+"r2f-cr-5vC.text" = "Movie";
+
+/* Class = "UILabel"; text = "2018-03-12"; ObjectID = "slt-aQ-ofO"; */
+"slt-aQ-ofO.text" = "2018-03-12";
+
+/* Class = "UILabel"; text = "Genre"; ObjectID = "wff-o9-jFG"; */
+"wff-o9-jFG.text" = "Genre";

@@ -29,3 +29,12 @@
 "includeAdults" = "Include adult movies";
 
 "signOut" = "Sign out";
+
+"emptyVideoResults" = "There are no trailers to show right now.";
+
+"movieDetailTitle" = "Movie detail";
+
+"reviewsDetailOptions" = "Reviews";
+"trailersDetailOptions" = "Trailers";
+"creditsDetailOptions" = "Credits";
+"similarsDetailOptions" = "Similars";
