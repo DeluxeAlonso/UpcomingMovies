@@ -10,10 +10,11 @@ import Foundation
 
 final class MovieReviewsViewModel {
     
+    private let interactor: MovieReviewsInteractorProtocol
+    
     let movieId: Int
     let movieTitle: String
     
-    var movieClient = MovieClient()
     let viewState: Bindable<SimpleViewState<Review>> = Bindable(.initial)
     
     var startLoading: Bindable<Bool> = Bindable(false)
@@ -29,9 +30,10 @@ final class MovieReviewsViewModel {
     
     // MARK: - Initializers
     
-    init(movieId: Int, movieTitle: String) {
+    init(movieId: Int, movieTitle: String, interactor: MovieReviewsInteractorProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
+        self.interactor = interactor
     }
     
     func shouldPrefetch() -> Bool {
@@ -56,31 +58,12 @@ final class MovieReviewsViewModel {
     
     private func fetchMovieReviews(currentPage: Int, showLoader: Bool = false) {
         startLoading.value = showLoader
-        movieClient.getMovieReviews(page: currentPage, with: movieId) { result in
+        interactor.fetchMovieReviews(page: currentPage, movieId: movieId,
+                                                 currentReviews: viewState.value.currentEntities,
+                                                 completion: { state in
             self.startLoading.value = false
-            switch result {
-            case .success(let reviewResult):
-                guard let reviewResult = reviewResult else { return }
-                self.processReviewResult(reviewResult)
-            case .failure(let error):
-                self.viewState.value = .error(error)
-            }
-        }
-    }
-    
-    private func processReviewResult(_ reviewResult: ReviewResult) {
-        let fetchedReviews = reviewResult.results
-        var allReviews = reviewResult.currentPage == 1 ? [] : viewState.value.currentEntities
-        allReviews.append(contentsOf: fetchedReviews)
-        guard !allReviews.isEmpty else {
-            viewState.value = .empty
-            return
-        }
-        if reviewResult.hasMorePages {
-            viewState.value = .paging(allReviews, next: reviewResult.nextPage)
-        } else {
-            viewState.value = .populated(allReviews)
-        }
+            self.viewState.value = state
+        })
     }
     
 }

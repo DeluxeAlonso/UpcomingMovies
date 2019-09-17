@@ -159,7 +159,10 @@ final class MovieDetailViewModel {
     }
     
     func buildReviewsViewModel() -> MovieReviewsViewModel {
-        return MovieReviewsViewModel(movieId: id, movieTitle: title)
+        let interactor = MovieReviewsInteractor()
+        return MovieReviewsViewModel(movieId: id,
+                                     movieTitle: title,
+                                     interactor: interactor)
     }
     
     func buildCreditsViewModel() -> MovieCreditsViewModel {
