@@ -19,15 +19,12 @@ final class MovieReviewsViewModel {
     var startLoading: Bindable<Bool> = Bindable(false)
     
     var reviewCells: [MovieReviewCellViewModel] {
+        let reviews = viewState.value.currentEntities
         return reviews.map { MovieReviewCellViewModel($0) }
     }
     
     var needsPrefetch: Bool {
         return viewState.value.needsPrefetch
-    }
-    
-    private var reviews: [Review] {
-        return viewState.value.currentEntities
     }
     
     // MARK: - Initializers
@@ -72,7 +69,6 @@ final class MovieReviewsViewModel {
     }
     
     private func processReviewResult(_ reviewResult: ReviewResult) {
-        //startLoading.value = false
         let fetchedReviews = reviewResult.results
         var allReviews = reviewResult.currentPage == 1 ? [] : viewState.value.currentEntities
         allReviews.append(contentsOf: fetchedReviews)
