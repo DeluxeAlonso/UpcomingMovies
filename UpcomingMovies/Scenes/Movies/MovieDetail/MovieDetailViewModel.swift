@@ -30,12 +30,12 @@ final class MovieDetailViewModel {
     var backdropPath: String?
     var backdropURL: URL?
     
-    var showErrorView: Bindable<Error?> = Bindable(nil)
     var updateMovieDetail: (() -> Void)?
     var needsFetch = false
     
     var startLoading: Bindable<Bool> = Bindable(false)
     var isFavorite: Bindable<Bool?> = Bindable(false)
+    var showErrorView: Bindable<Error?> = Bindable(nil)
     
     // MARK: - Initializers
 
@@ -159,7 +159,8 @@ final class MovieDetailViewModel {
     }
     
     func buildReviewsViewModel() -> MovieReviewsViewModel {
-        return MovieReviewsViewModel(movieId: id, movieTitle: title)
+        return MovieReviewsViewModel(movieId: id,
+                                     movieTitle: title)
     }
     
     func buildCreditsViewModel() -> MovieCreditsViewModel {
