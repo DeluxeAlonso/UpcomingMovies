@@ -40,21 +40,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Transitions
     
     func initialTransition() {
-        let initialViewController = window?.rootViewController
-        let initialView = initialViewController?.view
-        guard let controller = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController else {
+        guard let window = window,
+            let controller = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController else {
             fatalError()
         }
         controller.setSelectedIndex(currentTabBarSelectedIndex.rawValue)
-        let controllerView = controller.view
-        UIView.transition(from: initialView!,
-                          to: controllerView!,
+        
+        self.window?.rootViewController = controller
+        UIView.transition(with: window,
                           duration: 0.5,
-                          options: [UIView.AnimationOptions.curveEaseOut, UIView.AnimationOptions.transitionCrossDissolve],
-                          completion: { _ in
-                            self.window?.rootViewController = controller
-        })
-        UIView.commitAnimations()
+                          options: [UIView.AnimationOptions.curveEaseOut,
+                                    UIView.AnimationOptions.transitionCrossDissolve],
+                          animations: {},
+                          completion: nil)
     }
-
+    
 }
