@@ -16,7 +16,7 @@ class MovieDetailBackdropView: UIView {
         let layerWidth = layer.frame.width
         let path = UIBezierPath()
 
-        var points: [CGPoint] = [
+        let points: [CGPoint] = [
             .zero,
             CGPoint(x: layerWidth, y: 0),
             CGPoint(x: layerWidth, y: layerHeight),
