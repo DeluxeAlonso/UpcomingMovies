@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class MovieDetailViewController: UIViewController, Retryable, Transitionable, SegueHandler, Loadable {
     
@@ -48,12 +47,8 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-      
-        if #available(iOS 13.0, *) {
-            navigationController?.navigationBar.barTintColor = .systemBackground
-        } else {
-            navigationController?.navigationBar.barTintColor = .white
-        }
+
+        navigationController?.navigationBar.barTintColor = ColorPalette.navigationBarBackgroundColor
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
       
@@ -67,9 +62,6 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     
     private func setupUI() {
         title = "Movie detail"
-        if #available(iOS 13.0, *) {
-            //view.backgroundColor = .systemBackground
-        }
         setupNavigationBar()
         transitionContainerView.setShadowBorder()
     }
@@ -113,11 +105,8 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
         genreLabel.text = viewModel.genre
         releaseDateLabel.text = viewModel.releaseDate
         
-        backdropImageView.kf.indicatorType = .activity
-        backdropImageView.kf.setImage(with: viewModel.backdropURL)
-        
-        posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: viewModel.posterURL)
+        backdropImageView.setImage(with: viewModel.backdropURL)
+        posterImageView.setImage(with: viewModel.posterURL)
         
         voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview

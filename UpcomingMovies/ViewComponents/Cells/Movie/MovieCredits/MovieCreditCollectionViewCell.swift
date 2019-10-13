@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class MovieCreditCollectionViewCell: UICollectionViewCell {
     
@@ -36,8 +35,7 @@ class MovieCreditCollectionViewCell: UICollectionViewCell {
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
-        profileImageView.kf.indicatorType = .activity
-        profileImageView.kf.setImage(with: viewModel.profileURL)
+        profileImageView.setImage(with: viewModel.profileURL)
         nameLabel.text = viewModel.name
     }
     

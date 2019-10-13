@@ -18,7 +18,7 @@ enum MovieProvider {
     case getDetail(id: Int)
     case getVideos(id: Int)
     case getReviews(page: Int, id: Int)
-    case getSimilars(page:Int, id: Int)
+    case getSimilars(page: Int, id: Int)
     case getCredits(id: Int)
     case getAccountState(id: Int, sessionId: String)
     

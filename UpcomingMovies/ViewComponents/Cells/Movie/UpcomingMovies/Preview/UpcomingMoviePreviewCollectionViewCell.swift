@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, UpcomingMovieCollectionViewCell {
     
@@ -40,8 +39,7 @@ class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, UpcomingMovi
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
-        posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: viewModel.posterURL)
+        posterImageView.setImage(with: viewModel.posterURL)
     }
     
 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class UpcomingMovieDetailCollectionViewCell: UICollectionViewCell, UpcomingMovieCollectionViewCell {
     
@@ -52,11 +51,8 @@ class UpcomingMovieDetailCollectionViewCell: UICollectionViewCell, UpcomingMovie
         titleLabel.text = viewModel.title
         releaseDateLabel.text = viewModel.releaseDate
         
-        backdropImageView.kf.indicatorType = .activity
-        backdropImageView.kf.setImage(with: viewModel.backdropURL)
-        
-        posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: viewModel.posterURL)
+        backdropImageView.setImage(with: viewModel.backdropURL)
+        posterImageView.setImage(with: viewModel.posterURL)
     }
     
 }

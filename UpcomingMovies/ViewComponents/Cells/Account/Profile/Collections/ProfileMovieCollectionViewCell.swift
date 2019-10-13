@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 import CollectionViewSlantedLayout
 
 class ProfileMovieCollectionViewCell: CollectionViewSlantedCell {
@@ -50,8 +49,7 @@ class ProfileMovieCollectionViewCell: CollectionViewSlantedCell {
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
         titleLabel.text = viewModel.title
-        backdropImageView.kf.indicatorType = .activity
-        backdropImageView.kf.setImage(with: viewModel.backdropURL)
+        backdropImageView.setImage(with: viewModel.backdropURL)
     }
 
 }
