@@ -51,9 +51,7 @@ class CollapsibleCollectionHeaderView: UICollectionReusableView {
     // MARK: - Private
     
     private func setupUI() {
-        if #available(iOS 13.0, *) {
-            backgroundColor = .systemGray6
-        }
+        backgroundColor = ColorPalette.defaultGrayBackgroundColor
         setupTapGesture()
     }
     
