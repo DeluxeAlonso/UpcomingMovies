@@ -37,6 +37,9 @@ class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
     // MARK: - Private
     
     private func setupUI() {
+        if #available(iOS 13.0, *) {
+            backgroundColor = .systemGray6
+        }
         setupCollectionView()
     }
     
