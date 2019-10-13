@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class MovieTableViewCell: UITableViewCell {
     
@@ -49,8 +48,7 @@ class MovieTableViewCell: UITableViewCell {
         nameLabel.text = viewModel.name
         genreLabel.text = viewModel.genre
         releaseDateLabel.text = viewModel.releaseDate
-        posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: viewModel.posterURL)
+        posterImageView.setImage(with: viewModel.posterURL)
         voteAverageView.voteValue = viewModel.voteAverage
     }
 

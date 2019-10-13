@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class CustomListDetailHeaderView: UIView, NibLoadable {
     
@@ -77,7 +76,7 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
         
         if let posterURL = viewModel?.posterURL {
             posterImageView.contentMode = .scaleAspectFill
-            posterImageView.kf.setImage(with: posterURL)
+            posterImageView.setImage(with: posterURL)
         } else {
             posterImageView.contentMode = .center
             posterImageView.image = #imageLiteral(resourceName: "PosterPlaceholder")

@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import Kingfisher
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
