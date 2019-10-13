@@ -38,7 +38,7 @@ class SimpleHeaderView: UIView {
     // MARK: - Private
     
     private func setupUI() {
-        backgroundColor = ColorPalette.lighterGray
+        backgroundColor = ColorPalette.defaultGrayBackgroundColor
         setupLabel()
     }
     

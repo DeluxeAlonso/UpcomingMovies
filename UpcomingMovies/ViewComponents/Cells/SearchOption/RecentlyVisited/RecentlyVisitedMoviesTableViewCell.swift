@@ -37,6 +37,7 @@ class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
     // MARK: - Private
     
     private func setupUI() {
+        backgroundColor = ColorPalette.groupedCellBackgroundColor
         setupCollectionView()
     }
     

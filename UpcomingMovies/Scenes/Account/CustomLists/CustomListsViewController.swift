@@ -31,7 +31,12 @@ class CustomListsViewController: UIViewController, PlaceholderDisplayable, Segue
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        let textAttributes: [NSAttributedString.Key: UIColor]
+        if #available(iOS 13.0, *) {
+            textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
+        } else {
+            textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        }
         navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     

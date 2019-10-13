@@ -36,12 +36,17 @@ extension Loadable where Self: UIViewController {
     
     // MARK: - FullScreen loader
     
-    func showLoader(with backgroundColor: UIColor = .white) {
+    func showLoader() {
         guard !isPresented else { return }
         isPresented = true
         DispatchQueue.main.async {
             let containerView = UIView(frame: self.view.frame)
-            containerView.backgroundColor = backgroundColor
+            
+            if #available(iOS 13.0, *) {
+                containerView.backgroundColor = .systemBackground
+            } else {
+                containerView.backgroundColor = .white
+            }
             
             self.loaderView = ViewType()
             self.loaderView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)

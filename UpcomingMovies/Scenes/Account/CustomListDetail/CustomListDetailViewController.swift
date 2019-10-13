@@ -142,7 +142,7 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     private func showNavigationBar() {
         self.navigationController?.navigationBar.barStyle = .default
         self.navigationController?.navigationBar.tintColor = self.view.tintColor
-        self.restoreClearNavigationBar(with: .white)
+        self.restoreClearNavigationBar(with: ColorPalette.navigationBarBackgroundColor)
     }
     
     private func hideNavigationBar() {

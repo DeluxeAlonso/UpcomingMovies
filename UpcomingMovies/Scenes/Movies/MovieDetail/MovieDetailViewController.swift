@@ -49,7 +49,11 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
       
-        navigationController?.navigationBar.barTintColor = .white
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.barTintColor = .systemBackground
+        } else {
+            navigationController?.navigationBar.barTintColor = .white
+        }
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
       
@@ -63,6 +67,9 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     
     private func setupUI() {
         title = "Movie detail"
+        if #available(iOS 13.0, *) {
+            //view.backgroundColor = .systemBackground
+        }
         setupNavigationBar()
         transitionContainerView.setShadowBorder()
     }
