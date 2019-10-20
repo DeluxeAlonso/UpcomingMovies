@@ -36,13 +36,9 @@ class AccountViewController: UIViewController, SegueHandler {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if #available(iOS 13.0, *) {
-            navigationController?.navigationBar.barTintColor = .systemBackground
-            navigationController?.navigationBar.tintColor = view.tintColor
-        } else {
-            navigationController?.navigationBar.barStyle = .default
-            navigationController?.navigationBar.tintColor = view.tintColor
-        }
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.tintColor = view.tintColor
+        restoreClearNavigationBar(with: ColorPalette.navigationBarBackgroundColor)
     }
     
     // MARK: - Private

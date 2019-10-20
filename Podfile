@@ -9,7 +9,6 @@ target 'UpcomingMovies' do
   pod 'Kingfisher', '5.3.0'
   pod 'CollectionViewSlantedLayout', '~> 3.1'
   pod 'KeychainSwift', '~> 14.0'
-  pod 'KMNavigationBarTransition'
 
   target 'UpcomingMoviesTests' do
     inherit! :search_paths
