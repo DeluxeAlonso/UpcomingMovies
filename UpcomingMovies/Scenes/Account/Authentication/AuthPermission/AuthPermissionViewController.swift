@@ -30,11 +30,12 @@ class AuthPermissionViewController: UIViewController {
             setupBindables()
         }
     }
-
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.presentationController?.delegate = self
         setupUI()
     }
     
@@ -114,6 +115,16 @@ extension AuthPermissionViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.backButton.isEnabled = webView.canGoBack
         self.forwardButton.isEnabled = webView.canGoForward
+    }
+    
+}
+
+// MARK: - UIAdaptivePresentationControllerDelegate
+
+extension AuthPermissionViewController: UIAdaptivePresentationControllerDelegate {
+    
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        delegate?.authPermissionViewController(self, didSignedIn: true)
     }
     
 }
