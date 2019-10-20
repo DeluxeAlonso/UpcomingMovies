@@ -55,8 +55,7 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.tintColor = view.tintColor
+        showNavigationBar()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -140,15 +139,15 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     }
 
     private func showNavigationBar() {
-        self.navigationController?.navigationBar.barStyle = .default
-        self.navigationController?.navigationBar.tintColor = self.view.tintColor
-        self.restoreClearNavigationBar(with: ColorPalette.navigationBarBackgroundColor)
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.tintColor = self.view.tintColor
+        restoreClearNavigationBar(with: ColorPalette.navigationBarBackgroundColor)
     }
     
     private func hideNavigationBar() {
-        self.navigationController?.navigationBar.barStyle = .black
-        self.navigationController?.navigationBar.tintColor = .white
-        self.setClearNavigationBar()
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.tintColor = .white
+        setClearNavigationBar()
     }
     
     // MARK: - Reactive Behaviour
