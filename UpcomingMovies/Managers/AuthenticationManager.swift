@@ -7,14 +7,12 @@
 //
 
 import Foundation
-import KeychainSwift
 
 class AuthenticationManager {
     
     static let shared = AuthenticationManager()
     
     private var userStore: PersistenceStore<User>!
-    private lazy var keychain = KeychainSwift()
     
     lazy var readAccessToken: String = {
         let keys = retrieveKeys()
@@ -25,6 +23,18 @@ class AuthenticationManager {
         let keys = retrieveKeys()
         return keys.apiKey
     }()
+    
+    @KeychainStorage(key: Constants.sessionIdKey)
+    var sessionId: String?
+    
+    @KeychainStorage(key: Constants.currentUserIdKey)
+    var currentUserId: String?
+    
+    @KeychainStorage(key: Constants.accountIdKey)
+    var accountId: String?
+    
+    @KeychainStorage(key: Constants.accessTokenKey)
+    var token: String?
     
     // MARK: - Initializers
     
@@ -42,71 +52,37 @@ class AuthenticationManager {
     // MARK: - Public
     
     func saveCurrentUser(_ sessionId: String, accountId: Int) {
-        saveSessionId(sessionId)
-        saveUserAccountId(accountId)
+        self.sessionId = sessionId
+        self.currentUserId = String(accountId)
     }
     
     func deleteCurrentUser() {
-        deleteSessionId()
-        deleteAccessToken()
-        deleteUserAccountId()
+        sessionId = nil
+        currentUserId = nil
+        token = nil
     }
-    
-    // MARK: - Session Id
-    
-    private func saveSessionId(_ sessionId: String) {
-        keychain.set(sessionId, forKey: Constants.sessionIdKey)
-    }
-    
-    private func deleteSessionId() {
-        keychain.delete(Constants.sessionIdKey)
-    }
-    
-    private func retrieveSessionId() -> String? {
-        return keychain.get(Constants.sessionIdKey)
-    }
-    
+
     // MARK: - Access Token
     
     func saveAccessToken(_ accessToken: AccessToken) {
-        keychain.set(accessToken.token, forKey: Constants.accessTokenKey)
-        keychain.set(accessToken.accountId, forKey: Constants.accountIdKey)
-    }
-    
-    private func deleteAccessToken() {
-        keychain.delete(Constants.accessTokenKey)
+        token = accessToken.token
+        accountId = accessToken.accountId
     }
     
     var accessToken: AccessToken? {
-        guard let token = keychain.get(Constants.accessTokenKey),
-            let accountId = keychain.get(Constants.accountIdKey) else {
+        guard let token = token,
+            let accountId = accountId else {
                 return nil
         }
         return AccessToken(token: token, accountId: accountId)
     }
     
-    // MARK: - User Account Id
-    
-    private func saveUserAccountId(_ userId: Int) {
-        keychain.set(String(userId), forKey: Constants.currentUserIdKey)
-    }
-    
-    private func deleteUserAccountId() {
-        keychain.delete(Constants.sessionIdKey)
-    }
-    
-    private func retrieveUserAccountId() -> Int? {
-        guard let userAccountIdString = keychain.get(Constants.currentUserIdKey) else {
-            return nil
-        }
-        return Int(userAccountIdString)
-    }
-    
     // MARK: - Credentials
     
     var userCredentials: (sessionId: String, accountId: Int)? {
-        guard let sessionId = retrieveSessionId(),
-            let accountId = retrieveUserAccountId() else {
+        guard let sessionId = sessionId,
+            let currentUserId = currentUserId,
+            let accountId = Int(currentUserId) else {
                 return nil
         }
         return (sessionId: sessionId, accountId: accountId)
