@@ -76,8 +76,7 @@ final class SearchMoviesResultViewModel {
     // MARK: - Movie detail builder
     
     func buildDetailViewModel(at index: Int) -> MovieDetailViewModel {
-        return MovieDetailViewModel(movies[index],
-                                    managedObjectContext: managedObjectContext)
+        return MovieDetailViewModel(movies[index])
     }
 
 }

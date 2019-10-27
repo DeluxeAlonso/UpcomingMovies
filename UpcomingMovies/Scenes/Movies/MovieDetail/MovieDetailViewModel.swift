@@ -7,12 +7,10 @@
 //
 
 import Foundation
-import CoreData
 
 final class MovieDetailViewModel {
     
-    private var managedObjectContext: NSManagedObjectContext
-    private var movieVisitStore: PersistenceStore<MovieVisit>!
+    private let movieVisitUseCase: MovieVisitUseCaseProtocol
     
     private var accountClient = AccountClient()
     private var movieClient = MovieClient()
@@ -39,19 +37,17 @@ final class MovieDetailViewModel {
     
     // MARK: - Initializers
 
-    init(_ movie: Movie, managedObjectContext: NSManagedObjectContext) {
-        self.managedObjectContext = managedObjectContext
-        setupStores(self.managedObjectContext)
+    init(_ movie: Movie, useCaseProvider: UseCaseProviderProtocol = UseCaseProvider()) {
+        movieVisitUseCase = useCaseProvider.movieVisitUseCase()
         setupMovie(movie)
         checkIfUserIsAuthenticated()
     }
     
-    init(id: Int, title: String, managedObjectContext: NSManagedObjectContext) {
+    init(id: Int, title: String, useCaseProvider: UseCaseProviderProtocol = UseCaseProvider()) {
         self.id = id
         self.title = title
-        self.managedObjectContext = managedObjectContext
         self.needsFetch = true
-        setupStores(self.managedObjectContext)
+        self.movieVisitUseCase = useCaseProvider.movieVisitUseCase()
     }
     
     // MARK: - Private
@@ -70,10 +66,6 @@ final class MovieDetailViewModel {
         saveVisitedMovie()
     }
     
-    private func setupStores(_ managedObjectContext: NSManagedObjectContext) {
-        movieVisitStore = PersistenceStore(managedObjectContext)
-    }
-    
     // MARK: - Networking
     
     func getMovieDetail() {
@@ -87,8 +79,7 @@ final class MovieDetailViewModel {
     private func fetchMovieDetail(showLoader: Bool = true) {
         guard needsFetch else { return }
         startLoading.value = showLoader
-        movieClient.getMovieDetail(managedObjectContext,
-                                   with: id, completion: { result in
+        movieClient.getMovieDetail(PersistenceManager.shared.mainContext, with: id, completion: { result in
             switch result {
             case .success(let movie):
                 self.setupMovie(movie)
@@ -102,9 +93,7 @@ final class MovieDetailViewModel {
     }
     
     func saveVisitedMovie() {
-        movieVisitStore.saveMovieVisit(with: id,
-                                       title: title,
-                                       posterPath: posterPath)
+        movieVisitUseCase.save(with: id, title: title, posterPath: posterPath)
     }
     
     // MARK: - User Authentication
@@ -169,7 +158,7 @@ final class MovieDetailViewModel {
     
     func buildSimilarsViewModel() -> MovieListViewModel {
         return MovieListViewModel(filter: .similar(movieId: id),
-                                  managedObjectContext: managedObjectContext)
+                                  managedObjectContext: PersistenceManager.shared.mainContext)
     }
     
 }

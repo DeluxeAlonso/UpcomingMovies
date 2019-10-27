@@ -60,7 +60,7 @@ extension MoviesViewModel {
     
     func buildDetailViewModel(atIndex index: Int) -> MovieDetailViewModel? {
         guard index < movies.count else { return nil }
-        return MovieDetailViewModel(movies[index], managedObjectContext: managedObjectContext)
+        return MovieDetailViewModel(movies[index])
     }
     
     func getMovies() {

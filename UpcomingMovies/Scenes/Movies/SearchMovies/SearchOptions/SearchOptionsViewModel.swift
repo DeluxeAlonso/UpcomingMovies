@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import CoreData
 
 final class SearchOptionsViewModel {
     
-    private var movieVisitStore: PersistenceStore<MovieVisit>!
+    private var movieVisitUseCase: MovieVisitUseCaseProtocol
     
     let viewState: Bindable<SearchOptionsViewState> = Bindable(.emptyMovieVisits)
     
@@ -23,7 +22,7 @@ final class SearchOptionsViewModel {
     var selectedRecentlyVisitedMovie: ((Int, String) -> Void)?
     
     var visitedMovieCells: [VisitedMovieCellViewModel] {
-        let visited = movieVisitStore.entities
+        let visited = movieVisitUseCase.getMovieVisits()
         return visited.map { VisitedMovieCellViewModel(movieVisit: $0) }
     }
     
@@ -39,11 +38,9 @@ final class SearchOptionsViewModel {
     
     // MARK: - Initializers
     
-    init(managedObjectContext: NSManagedObjectContext) {
-        movieVisitStore = PersistenceStore(managedObjectContext)
-        movieVisitStore.configureResultsContoller(limit: 10, sortDescriptors: MovieVisit.defaultSortDescriptors)
-        movieVisitStore.delegate = self
-        
+    init(useCaseProvider: UseCaseProviderProtocol = UseCaseProvider()) {
+        movieVisitUseCase = useCaseProvider.movieVisitUseCase()
+        movieVisitUseCase.delegate = self
         configureViewState()
     }
     
@@ -56,7 +53,7 @@ final class SearchOptionsViewModel {
     @discardableResult
     private func configureViewState() -> Bool {
         let oldViewState = viewState.value
-        if movieVisitStore.exists() {
+        if movieVisitUseCase.hasMovieVisits() {
             viewState.value = .populatedMovieVisits
         } else {
             viewState.value = .emptyMovieVisits
@@ -87,7 +84,7 @@ final class SearchOptionsViewModel {
     }
     
     func getRecentlyVisitedMovieSelection(by index: Int) {
-        let visitedMovies = movieVisitStore.entities
+        let visitedMovies = movieVisitUseCase.getMovieVisits()
         let selectedVisitedMovie = visitedMovies[index]
         selectedRecentlyVisitedMovie?(selectedVisitedMovie.id, selectedVisitedMovie.title)
     }
@@ -141,13 +138,11 @@ extension SearchOptionsViewModel {
     
 }
 
-// MARK: - SearchOptionsStoreDelegate
+// MARK: - MovieVisitUseCaseDelegate
 
-extension SearchOptionsViewModel: PersistenceStoreDelegate {
+extension SearchOptionsViewModel: MovieVisitUseCaseDelegate {
     
-    func persistenceStore(willUpdateEntity shouldPrepare: Bool) {}
-    
-    func persistenceStore(didUpdateEntity update: Bool) {
+    func didUpdateMovieVisit() {
         // If the state changed we reload the entire table view
         let viewStateChanged = configureViewState()
         if viewStateChanged {
@@ -156,7 +151,6 @@ extension SearchOptionsViewModel: PersistenceStoreDelegate {
             let index = sectionIndex(for: .recentlyVisited)
             updateVisitedMovies.value = index
         }
-        
     }
     
 }

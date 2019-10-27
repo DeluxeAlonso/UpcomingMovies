@@ -27,8 +27,7 @@ class MovieDetailTests: XCTestCase {
                             posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
                             backdropPath: "/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg",
                             releaseDate: "2019-02-01", voteAverage: 4.5)
-        viewModelToTest = MovieDetailViewModel(movieToTest,
-                                               managedObjectContext: context)
+        viewModelToTest = MovieDetailViewModel(movieToTest)
     }
 
     override func tearDown() {

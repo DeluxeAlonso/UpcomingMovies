@@ -45,8 +45,7 @@ final class CollectionListViewModel {
         guard index < movies.count else { return nil }
         let movie = movies[index]
         return MovieDetailViewModel(id: movie.id,
-                                    title: movie.title,
-                                    managedObjectContext: managedObjectContext)
+                                    title: movie.title)
     }
     
     // MARK: - Networking

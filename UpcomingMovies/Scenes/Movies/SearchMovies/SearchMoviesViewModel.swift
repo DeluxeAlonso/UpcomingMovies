@@ -18,7 +18,7 @@ final class SearchMoviesViewModel: NSObject {
     }
     
     func buildSearchOptionsViewModel() -> SearchOptionsViewModel {
-        return SearchOptionsViewModel(managedObjectContext: managedObjectContext)
+        return SearchOptionsViewModel()
     }
     
     func prepareSearchResultController() -> SearchMoviesResultController {
@@ -45,8 +45,7 @@ final class SearchMoviesViewModel: NSObject {
     
     func recentlyVisitedMovieViewModel(id: Int, title: String) -> MovieDetailViewModel {
         return MovieDetailViewModel(id: id,
-                                    title: title,
-                                    managedObjectContext: managedObjectContext)
+                                    title: title)
     }
     
 }
