@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="19A583" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="CDMovieVisit" representedClassName=".CDMovieVisit" syncable="YES">
-        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="posterPath" optional="YES" attributeType="String"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
-        <fetchIndex name="byCreatedAtPropertyIndex">
-            <fetchIndexElement property="createdAt" type="Binary" order="ascending"/>
+    <entity name="CDGenre" representedClassName=".CDGenre" syncable="YES">
+        <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <fetchIndex name="byNamePropertyIndex">
+            <fetchIndexElement property="name" type="Binary" order="ascending"/>
         </fetchIndex>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -14,11 +12,13 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="Genre" representedClassName=".Genre" syncable="YES">
-        <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES"/>
-        <attribute name="name" attributeType="String"/>
-        <fetchIndex name="byNamePropertyIndex">
-            <fetchIndexElement property="name" type="Binary" order="ascending"/>
+    <entity name="CDMovieVisit" representedClassName=".CDMovieVisit" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="posterPath" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <fetchIndex name="byCreatedAtPropertyIndex">
+            <fetchIndexElement property="createdAt" type="Binary" order="ascending"/>
         </fetchIndex>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -50,9 +50,9 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Genre" positionX="-63" positionY="27" width="128" height="75"/>
-        <element name="MovieSearch" positionX="-63" positionY="-18" width="128" height="75"/>
         <element name="CDMovieVisit" positionX="-63" positionY="9" width="128" height="103"/>
+        <element name="CDGenre" positionX="-63" positionY="27" width="128" height="73"/>
+        <element name="MovieSearch" positionX="-63" positionY="-18" width="128" height="75"/>
         <element name="User" positionX="-54" positionY="27" width="128" height="105"/>
     </elements>
 </model>

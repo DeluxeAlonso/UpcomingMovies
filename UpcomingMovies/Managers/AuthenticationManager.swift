@@ -45,7 +45,7 @@ class AuthenticationManager {
     // MARK: - Private
     
     private func setupStores() {
-        let context = PersistenceManager.shared.mainContext
+        let context = CoreDataStack.shared.mainContext
         userStore = PersistenceStore(context)
     }
     

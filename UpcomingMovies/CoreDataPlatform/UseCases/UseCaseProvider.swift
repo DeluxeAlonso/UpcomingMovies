@@ -10,12 +10,18 @@ import Foundation
 
 final class UseCaseProvider: UseCaseProviderProtocol {
     
-    private let coreDataStack: PersistenceManager
+    private let coreDataStack: CoreDataStack
+    private let genreStore: PersistenceStore<CDGenre>
     private let movieVisitStore: PersistenceStore<CDMovieVisit>
     
-    init(coreDataStack: PersistenceManager = PersistenceManager.shared) {
+    init(coreDataStack: CoreDataStack = CoreDataStack.shared) {
         self.coreDataStack = coreDataStack
+        self.genreStore = PersistenceStore(self.coreDataStack.mainContext)
         self.movieVisitStore = PersistenceStore(self.coreDataStack.mainContext)
+    }
+    
+    func genreUseCase() -> GenreUseCaseProtocol {
+        return GenreUseCase(store: genreStore)
     }
     
     func movieVisitUseCase() -> MovieVisitUseCaseProtocol {

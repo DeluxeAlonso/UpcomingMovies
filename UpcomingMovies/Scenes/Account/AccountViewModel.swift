@@ -24,7 +24,7 @@ final class AccountViewModel {
     
     // MARK: - Initializers
     
-    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext,
+    init(managedObjectContext: NSManagedObjectContext = CoreDataStack.shared.mainContext,
          authManager: AuthenticationManager = AuthenticationManager.shared) {
         self.managedObjectContext = managedObjectContext
         self.authManager = authManager

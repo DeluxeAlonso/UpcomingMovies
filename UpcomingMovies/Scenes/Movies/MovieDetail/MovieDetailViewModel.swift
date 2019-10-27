@@ -10,6 +10,7 @@ import Foundation
 
 final class MovieDetailViewModel {
     
+    private let useCaseProvider: UseCaseProviderProtocol
     private let movieVisitUseCase: MovieVisitUseCaseProtocol
     
     private var accountClient = AccountClient()
@@ -38,7 +39,8 @@ final class MovieDetailViewModel {
     // MARK: - Initializers
 
     init(_ movie: Movie, useCaseProvider: UseCaseProviderProtocol = UseCaseProvider()) {
-        movieVisitUseCase = useCaseProvider.movieVisitUseCase()
+        self.useCaseProvider = useCaseProvider
+        movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
         setupMovie(movie)
         checkIfUserIsAuthenticated()
     }
@@ -47,6 +49,7 @@ final class MovieDetailViewModel {
         self.id = id
         self.title = title
         self.needsFetch = true
+        self.useCaseProvider = useCaseProvider
         self.movieVisitUseCase = useCaseProvider.movieVisitUseCase()
     }
     
@@ -79,7 +82,7 @@ final class MovieDetailViewModel {
     private func fetchMovieDetail(showLoader: Bool = true) {
         guard needsFetch else { return }
         startLoading.value = showLoader
-        movieClient.getMovieDetail(PersistenceManager.shared.mainContext, with: id, completion: { result in
+        movieClient.getMovieDetail(CoreDataStack.shared.mainContext, with: id, completion: { result in
             switch result {
             case .success(let movie):
                 self.setupMovie(movie)
@@ -158,7 +161,7 @@ final class MovieDetailViewModel {
     
     func buildSimilarsViewModel() -> MovieListViewModel {
         return MovieListViewModel(filter: .similar(movieId: id),
-                                  managedObjectContext: PersistenceManager.shared.mainContext)
+                                  managedObjectContext: CoreDataStack.shared.mainContext)
     }
     
 }

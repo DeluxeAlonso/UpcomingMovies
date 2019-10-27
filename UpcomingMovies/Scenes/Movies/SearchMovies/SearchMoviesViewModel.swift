@@ -13,7 +13,7 @@ final class SearchMoviesViewModel: NSObject {
     
     var managedObjectContext: NSManagedObjectContext
     
-    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
+    init(managedObjectContext: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.managedObjectContext = managedObjectContext
     }
     

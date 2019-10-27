@@ -35,7 +35,7 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     
     // MARK: - Initializers
     
-    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
+    init(managedObjectContext: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.managedObjectContext = managedObjectContext
     }
     
