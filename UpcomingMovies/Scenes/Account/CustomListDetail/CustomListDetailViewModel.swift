@@ -11,7 +11,7 @@ import CoreData
 
 final class CustomListDetailViewModel {
     
-    private let managedObjectContext: NSManagedObjectContext
+    private let useCaseProvider: UseCaseProviderProtocol
     private let accountClient = AccountClient()
     private let authManager = AuthenticationManager.shared
     
@@ -39,7 +39,7 @@ final class CustomListDetailViewModel {
     
     // MARK: - Initializers
     
-    init(_ list: List, managedObjectContext: NSManagedObjectContext) {
+    init(_ list: List, useCaseProvider: UseCaseProviderProtocol) {
         id = list.id
         name = list.name
         description = list.description
@@ -47,7 +47,7 @@ final class CustomListDetailViewModel {
         rating = list.averageRating
         runtime = list.runtime
         backdropURL = list.backdropURL
-        self.managedObjectContext = managedObjectContext
+        self.useCaseProvider = useCaseProvider
     }
     
     // MARK: - Public
@@ -64,7 +64,7 @@ final class CustomListDetailViewModel {
     
     func buildDetailViewModel(at index: Int) -> MovieDetailViewModel? {
         guard index < movies.count else { return nil }
-        return MovieDetailViewModel(movies[index])
+        return MovieDetailViewModel(movies[index], useCaseProvider: useCaseProvider)
     }
     
     // MARK: - Networking

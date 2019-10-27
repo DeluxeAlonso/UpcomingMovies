@@ -20,12 +20,8 @@ final class GenreUseCase: GenreUseCaseProtocol {
         self.store.delegate = self
     }
     
-    func saveGenre(genre: Genre) {
-        store.saveGenre(genre)
-    }
-    
     func saveGenres(_ genres: [Genre]) {
-        genres.forEach { self.saveGenre(genre: $0) }
+        genres.forEach { store.saveGenre($0) }
     }
     
     func find(with id: Int) -> Genre? {

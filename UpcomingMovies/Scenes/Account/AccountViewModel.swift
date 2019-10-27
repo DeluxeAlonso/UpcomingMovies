@@ -11,7 +11,7 @@ import CoreData
 
 final class AccountViewModel {
     
-    private var managedObjectContext: NSManagedObjectContext
+    private let useCaseProvider: UseCaseProviderProtocol
     private var authManager: AuthenticationManager
     
     private let authClient = AuthClient()
@@ -24,9 +24,9 @@ final class AccountViewModel {
     
     // MARK: - Initializers
     
-    init(managedObjectContext: NSManagedObjectContext = CoreDataStack.shared.mainContext,
+    init(useCaseProvider: UseCaseProviderProtocol = UseCaseProvider(),
          authManager: AuthenticationManager = AuthenticationManager.shared) {
-        self.managedObjectContext = managedObjectContext
+        self.useCaseProvider = useCaseProvider
         self.authManager = authManager
     }
     
@@ -83,7 +83,7 @@ final class AccountViewModel {
     }
     
     private func getAccountDetails(_ sessionId: String) {
-        accountClient.getAccountDetail(managedObjectContext, with: sessionId) { result in
+        accountClient.getAccountDetail(CoreDataStack.shared.mainContext, with: sessionId) { result in
             switch result {
             case .success(let user):
                 print(user.name)
@@ -109,16 +109,16 @@ final class AccountViewModel {
         let options = ProfileOptions(collectionOptions: [.favorites, .watchlist],
                                      groupOptions: [.customLists],
                                      configurationOptions: [])
-        return ProfileViewModel(managedObjectContext, userAccount: currentUser, options: options)
+        return ProfileViewModel(CoreDataStack.shared.mainContext, userAccount: currentUser, options: options)
     }
 
     func buildCollectionListViewModel(_ option: ProfileCollectionOption) -> CollectionListViewModel {
-        return CollectionListViewModel(managedObjectContext: managedObjectContext,
-                                              collectionOption: option)
+        return CollectionListViewModel(useCaseProvider: useCaseProvider,
+                                       collectionOption: option)
     }
     
     func buildCrearedListsViewModel(_ group: ProfileGroupOption) -> CustomListsViewModel {
-        return CustomListsViewModel(managedObjectContext,
+        return CustomListsViewModel(useCaseProvider: useCaseProvider,
                                             groupOption: group)
     }
     

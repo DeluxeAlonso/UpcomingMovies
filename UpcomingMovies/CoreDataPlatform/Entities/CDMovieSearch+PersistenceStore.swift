@@ -8,12 +8,12 @@
 
 import Foundation
 
-extension PersistenceStore where Entity == MovieSearch {
+extension PersistenceStore where Entity == CDMovieSearch {
     
     func saveMovieSearch(with searchText: String) {
         managedObjectContext.performChanges {
-            _ = MovieSearch.insert(into: self.managedObjectContext,
-                                   searchText: searchText)
+            _ = CDMovieSearch.insert(into: self.managedObjectContext,
+                                     searchText: searchText)
         }
     }
     

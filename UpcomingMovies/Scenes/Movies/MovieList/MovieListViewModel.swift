@@ -7,13 +7,13 @@
 //
 
 import Foundation
-import CoreData
 
 final class MovieListViewModel: MoviesViewModel {
+    
+    var useCaseProvider: UseCaseProviderProtocol
    
     var movieClient = MovieClient()
     
-    var managedObjectContext: NSManagedObjectContext
     var filter: MovieListFilter
     
     var startLoading: Bindable<Bool> = Bindable(false)
@@ -27,9 +27,9 @@ final class MovieListViewModel: MoviesViewModel {
     
     // MARK: - Initializers
     
-    init(filter: MovieListFilter = .upcoming, managedObjectContext: NSManagedObjectContext) {
+    init(filter: MovieListFilter = .upcoming, useCaseProvider: UseCaseProviderProtocol) {
         self.filter = filter
-        self.managedObjectContext = managedObjectContext
+        self.useCaseProvider = useCaseProvider
     }
     
 }

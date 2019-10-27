@@ -7,14 +7,13 @@
 //
 
 import Foundation
-import CoreData
 
 final class SearchMoviesViewModel: NSObject {
     
-    var managedObjectContext: NSManagedObjectContext
+    private var useCaseProvider: UseCaseProviderProtocol
     
-    init(managedObjectContext: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
-        self.managedObjectContext = managedObjectContext
+    init(useCaseProvider: UseCaseProviderProtocol = UseCaseProvider()) {
+        self.useCaseProvider = useCaseProvider
     }
     
     func buildSearchOptionsViewModel() -> SearchOptionsViewModel {
@@ -22,7 +21,7 @@ final class SearchMoviesViewModel: NSObject {
     }
     
     func prepareSearchResultController() -> SearchMoviesResultController {
-        let viewModel = SearchMoviesResultViewModel(managedObjectContext: managedObjectContext)
+        let viewModel = SearchMoviesResultViewModel(useCaseProvider: useCaseProvider)
         return SearchMoviesResultController(viewModel: viewModel)
     }
     
@@ -30,17 +29,17 @@ final class SearchMoviesViewModel: NSObject {
     
     func popularMoviesViewModel() -> MovieListViewModel {
         return MovieListViewModel(filter: .popular,
-                                  managedObjectContext: managedObjectContext)
+                                  useCaseProvider: useCaseProvider)
     }
     
     func topRatedMoviesViewModel() -> MovieListViewModel {
         return MovieListViewModel(filter: .topRated,
-                                  managedObjectContext: managedObjectContext)
+                                  useCaseProvider: useCaseProvider)
     }
     
     func moviesByGenreViewModel(genreId: Int) -> MovieListViewModel {
         return MovieListViewModel(filter: .byGenre(genreId: genreId),
-                                  managedObjectContext: managedObjectContext)
+                                  useCaseProvider: useCaseProvider)
     }
     
     func recentlyVisitedMovieViewModel(id: Int, title: String) -> MovieDetailViewModel {

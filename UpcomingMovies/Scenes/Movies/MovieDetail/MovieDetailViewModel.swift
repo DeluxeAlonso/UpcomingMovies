@@ -38,7 +38,7 @@ final class MovieDetailViewModel {
     
     // MARK: - Initializers
 
-    init(_ movie: Movie, useCaseProvider: UseCaseProviderProtocol = UseCaseProvider()) {
+    init(_ movie: Movie, useCaseProvider: UseCaseProviderProtocol) {
         self.useCaseProvider = useCaseProvider
         movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
         setupMovie(movie)
@@ -82,7 +82,7 @@ final class MovieDetailViewModel {
     private func fetchMovieDetail(showLoader: Bool = true) {
         guard needsFetch else { return }
         startLoading.value = showLoader
-        movieClient.getMovieDetail(CoreDataStack.shared.mainContext, with: id, completion: { result in
+        movieClient.getMovieDetail(with: id, completion: { result in
             switch result {
             case .success(let movie):
                 self.setupMovie(movie)
@@ -161,7 +161,7 @@ final class MovieDetailViewModel {
     
     func buildSimilarsViewModel() -> MovieListViewModel {
         return MovieListViewModel(filter: .similar(movieId: id),
-                                  managedObjectContext: CoreDataStack.shared.mainContext)
+                                  useCaseProvider: useCaseProvider)
     }
     
 }

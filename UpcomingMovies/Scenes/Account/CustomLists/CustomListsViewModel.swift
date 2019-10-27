@@ -11,7 +11,7 @@ import CoreData
 
 final class CustomListsViewModel {
     
-    private let managedObjectContext: NSManagedObjectContext
+    private let useCaseProvider: UseCaseProviderProtocol
     private let groupOption: ProfileGroupOption
     private let accountClient = AccountClient()
     private let authManager = AuthenticationManager.shared
@@ -35,8 +35,8 @@ final class CustomListsViewModel {
     
     // MARK: - Initializers
     
-    init(_ managedObjectContext: NSManagedObjectContext, groupOption: ProfileGroupOption) {
-        self.managedObjectContext = managedObjectContext
+    init(useCaseProvider: UseCaseProviderProtocol, groupOption: ProfileGroupOption) {
+        self.useCaseProvider = useCaseProvider
         self.groupOption = groupOption
         self.title = groupOption.title
     }
@@ -46,7 +46,7 @@ final class CustomListsViewModel {
     func buildDetailViewModel(atIndex index: Int) -> CustomListDetailViewModel? {
         guard index < lists.count else { return nil }
         return CustomListDetailViewModel(lists[index],
-                                         managedObjectContext: managedObjectContext)
+                                         useCaseProvider: useCaseProvider)
     }
     
     // MARK: - Networking
