@@ -7,26 +7,10 @@
 //
 
 import Foundation
-import CoreData
 
-final class MovieSearch: NSManagedObject {
+struct MovieSearch {
     
-    @NSManaged fileprivate(set) var searchText: String
-    @NSManaged fileprivate(set) var createdAt: Date
-    
-    static func insert(into context: NSManagedObjectContext, searchText: String) -> MovieSearch {
-        let movieSearch: MovieSearch = context.insertObject()
-        movieSearch.searchText = searchText
-        movieSearch.createdAt = Date()
-        return movieSearch
-    }
-    
-}
-
-extension MovieSearch: Managed {
-    
-    static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: #keyPath(createdAt), ascending: false)]
-    }
+    let searchText: String
+    let createdAt: Date
     
 }

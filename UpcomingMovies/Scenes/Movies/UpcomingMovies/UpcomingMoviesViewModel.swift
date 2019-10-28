@@ -7,13 +7,12 @@
 //
 
 import Foundation
-import CoreData
 
 final class UpcomingMoviesViewModel: MoviesViewModel {
     
     // MARK: - Properties
     
-    var managedObjectContext: NSManagedObjectContext
+    var useCaseProvider: UseCaseProviderProtocol
     
     var movieClient = MovieClient()
     
@@ -35,8 +34,8 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     
     // MARK: - Initializers
     
-    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
-        self.managedObjectContext = managedObjectContext
+    init(useCaseProvider: UseCaseProviderProtocol = UseCaseProvider()) {
+        self.useCaseProvider = useCaseProvider
     }
     
     // MARK: - Public

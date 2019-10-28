@@ -7,15 +7,12 @@
 //
 
 import Foundation
-import CoreData
 
 final class CollectionListViewModel {
     
-    private let managedObjectContext: NSManagedObjectContext
+    private let useCaseProvider: UseCaseProviderProtocol
     private let collectionOption: ProfileCollectionOption
-    
     private let accountClient = AccountClient()
-    
     private let authManager = AuthenticationManager.shared
     
     var startLoading: Bindable<Bool> = Bindable(false)
@@ -33,8 +30,8 @@ final class CollectionListViewModel {
     
     // MARK: - Initializers
     
-    init(managedObjectContext: NSManagedObjectContext, collectionOption: ProfileCollectionOption) {
-        self.managedObjectContext = managedObjectContext
+    init(useCaseProvider: UseCaseProviderProtocol, collectionOption: ProfileCollectionOption) {
+        self.useCaseProvider = useCaseProvider
         self.collectionOption = collectionOption
         self.title = collectionOption.title
     }
@@ -45,8 +42,7 @@ final class CollectionListViewModel {
         guard index < movies.count else { return nil }
         let movie = movies[index]
         return MovieDetailViewModel(id: movie.id,
-                                    title: movie.title,
-                                    managedObjectContext: managedObjectContext)
+                                    title: movie.title)
     }
     
     // MARK: - Networking

@@ -7,14 +7,13 @@
 //
 
 import Foundation
-import CoreData
 
 final class SearchMoviesResultViewModel {
     
     // MARK: - Properties
-    private var managedObjectContext: NSManagedObjectContext
     
-    private var movieSearchStore: PersistenceStore<MovieSearch>!
+    private let useCaseProvider: UseCaseProviderProtocol
+    private var movieSearchUseCase: MovieSearchUseCaseProtocol
     
     private let movieClient = MovieClient()
     private var movies: [Movie] = []
@@ -26,7 +25,7 @@ final class SearchMoviesResultViewModel {
     // MARK: - Computed Properties
     
     var recentSearchCells: [RecentSearchCellViewModel] {
-        let searches = movieSearchStore.entities
+        let searches = movieSearchUseCase.getMovieSearchs()
         return searches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
     }
     
@@ -36,18 +35,19 @@ final class SearchMoviesResultViewModel {
     
     // MARK: - Initilalizers
     
-    init(managedObjectContext: NSManagedObjectContext) {
-        self.managedObjectContext = managedObjectContext
-        movieSearchStore = PersistenceStore(managedObjectContext)
-        movieSearchStore.configureResultsContoller(limit: 5, sortDescriptors: MovieSearch.defaultSortDescriptors)
-        movieSearchStore.delegate = self
+    init(useCaseProvider: UseCaseProviderProtocol) {
+        self.useCaseProvider = useCaseProvider
+        self.movieSearchUseCase = self.useCaseProvider.movieSearchUseCase()
+        self.movieSearchUseCase.didUpdateMovieSearch = { [weak self] in
+            self?.updateRecentSearches?()
+        }
     }
     
     // MARK: - Movies handling
     
     func searchMovies(withSearchText searchText: String) {
         viewState.value = .searching
-        movieSearchStore.saveMovieSearch(with: searchText)
+        movieSearchUseCase.save(with: searchText)
         movieClient.searchMovies(searchText: searchText) { result in
             switch result {
             case .success(let movieResult):
@@ -76,21 +76,7 @@ final class SearchMoviesResultViewModel {
     // MARK: - Movie detail builder
     
     func buildDetailViewModel(at index: Int) -> MovieDetailViewModel {
-        return MovieDetailViewModel(movies[index],
-                                    managedObjectContext: managedObjectContext)
-    }
-
-}
-
-// MARK: - SearchMoviesResultStore
-
-extension SearchMoviesResultViewModel: PersistenceStoreDelegate {
-    
-    func persistenceStore(willUpdateEntity shouldPrepare: Bool) {
-    }
-    
-    func persistenceStore(didUpdateEntity update: Bool) {
-        updateRecentSearches?()
+        return MovieDetailViewModel(movies[index], useCaseProvider: useCaseProvider)
     }
 
 }

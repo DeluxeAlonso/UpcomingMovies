@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreData
 
 enum MovieListFilter {
     case upcoming, popular, topRated
@@ -35,7 +34,7 @@ protocol MoviesViewModel {
     
     associatedtype MovieCellViewModel
     
-    var managedObjectContext: NSManagedObjectContext { get set }
+    var useCaseProvider: UseCaseProviderProtocol { get set }
     
     var movieClient: MovieClient { get }
     var viewState: Bindable<SimpleViewState<Movie>> { get set }
@@ -60,7 +59,7 @@ extension MoviesViewModel {
     
     func buildDetailViewModel(atIndex index: Int) -> MovieDetailViewModel? {
         guard index < movies.count else { return nil }
-        return MovieDetailViewModel(movies[index], managedObjectContext: managedObjectContext)
+        return MovieDetailViewModel(movies[index], useCaseProvider: useCaseProvider)
     }
     
     func getMovies() {

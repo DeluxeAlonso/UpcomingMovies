@@ -7,12 +7,11 @@
 //
 
 import Foundation
-import CoreData
 
 final class ProfileViewModel {
     
-    private var managedObjectContext: NSManagedObjectContext
-    private var userStore: PersistenceStore<User>!
+    private let useCaseProvider: UseCaseProviderProtocol
+    private var userUseCase: UserUseCaseProtocol
     
     private let accountClient = AccountClient()
     
@@ -38,25 +37,24 @@ final class ProfileViewModel {
     
     // MARK: - Initializers
     
-    init(_ managedObjectContext: NSManagedObjectContext, userAccount: User?, options: ProfileOptions) {
-        self.managedObjectContext = managedObjectContext
+    init(useCaseProvider: UseCaseProviderProtocol, userAccount: User?, options: ProfileOptions) {
         self.userAccount = userAccount
         self.collectionOptions = options.collectionOptions
         self.groupOptions = options.groupOptions
-        setupStores()
+        
+        self.useCaseProvider = useCaseProvider
+        self.userUseCase = useCaseProvider.userUseCase()
+        self.userUseCase.didUpdateUser = { [weak self] in
+            self?.updateUserAccount()
+            self?.reloadAccountInfo?()
+        }
     }
     
     // MARK: - Private
     
-    private func setupStores() {
-        userStore = PersistenceStore(managedObjectContext)
-        userStore.configureResultsContoller(notifyChangesOn: [.insert])
-        userStore.delegate = self
-    }
-    
     private func updateUserAccount() {
         guard let userAccountId = userAccount?.id,
-            let updatedUserAccount = userStore.find(with: userAccountId) else {
+            let updatedUserAccount = userUseCase.find(with: userAccountId) else {
                 return
         }
         userAccount = updatedUserAccount
@@ -76,10 +74,15 @@ final class ProfileViewModel {
     
     // TODO: - Change this method to get the account detail given the id of a user account
     func getAccountDetails() {
-        guard let credentials = AuthenticationManager.shared.userCredentials else {
-            return
+        guard let credentials = AuthenticationManager.shared.userCredentials else { return }
+        accountClient.getAccountDetail(with: credentials.sessionId) { result in
+            switch result {
+            case .success(let user):
+                self.userUseCase.saveUser(user)
+            case .failure:
+                break
+            }
         }
-        accountClient.getAccountDetail(managedObjectContext, with: credentials.sessionId) { _ in }
     }
     
 }
@@ -121,19 +124,6 @@ extension ProfileViewModel {
                 return [.accountInfo, .collections, .groups, .signOut]
             }
         }
-    }
-    
-}
-
-// MARK: - PersistenceStoreDelegate
-
-extension ProfileViewModel: PersistenceStoreDelegate {
-    
-    func persistenceStore(willUpdateEntity shouldPrepare: Bool) {}
-    
-    func persistenceStore(didUpdateEntity update: Bool) {
-        updateUserAccount()
-        reloadAccountInfo?()
     }
     
 }

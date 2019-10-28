@@ -8,15 +8,15 @@
 
 import Foundation
 
-extension PersistenceStore where Entity == MovieVisit {
+extension PersistenceStore where Entity == CDMovieVisit {
     
     func saveMovieVisit(with id: Int, title: String, posterPath: String?) {
         guard let posterPath = posterPath else { return }
         managedObjectContext.performChanges {
-            _ = MovieVisit.insert(into: self.managedObjectContext,
-                                  id: id,
-                                  title: title,
-                                  posterPath: posterPath)
+            _ = CDMovieVisit.insert(into: self.managedObjectContext,
+                                    id: id,
+                                    title: title,
+                                    posterPath: posterPath)
         }
     }
     
@@ -25,7 +25,7 @@ extension PersistenceStore where Entity == MovieVisit {
     }
     
     func countAll() -> Int {
-        return MovieVisit.count(in: managedObjectContext)
+        return CDMovieVisit.count(in: managedObjectContext)
     }
 
 }
