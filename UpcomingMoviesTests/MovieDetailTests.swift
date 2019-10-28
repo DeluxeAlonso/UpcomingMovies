@@ -13,7 +13,6 @@ import CoreData
 class MovieDetailTests: XCTestCase {
     
     private var viewModelToTest: MovieDetailViewModel!
-    //private var context: NSManagedObjectContext!
     private var useCaseProvider: UseCaseProviderProtocol!
     private var genreUseCase: GenreUseCaseProtocol!
 
@@ -30,7 +29,7 @@ class MovieDetailTests: XCTestCase {
                             posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
                             backdropPath: "/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg",
                             releaseDate: "2019-02-01", voteAverage: 4.5)
-        viewModelToTest = MovieDetailViewModel(movieToTest)
+        viewModelToTest = MovieDetailViewModel(movieToTest, useCaseProvider: useCaseProvider)
     }
 
     override func tearDown() {

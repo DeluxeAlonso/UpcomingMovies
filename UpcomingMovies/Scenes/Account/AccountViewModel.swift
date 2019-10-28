@@ -12,6 +12,8 @@ import CoreData
 final class AccountViewModel {
     
     private let useCaseProvider: UseCaseProviderProtocol
+    private let userUseCase: UserUseCaseProtocol
+    
     private var authManager: AuthenticationManager
     
     private let authClient = AuthClient()
@@ -27,6 +29,7 @@ final class AccountViewModel {
     init(useCaseProvider: UseCaseProviderProtocol = UseCaseProvider(),
          authManager: AuthenticationManager = AuthenticationManager.shared) {
         self.useCaseProvider = useCaseProvider
+        self.userUseCase = self.useCaseProvider.userUseCase()
         self.authManager = authManager
     }
     
@@ -83,10 +86,11 @@ final class AccountViewModel {
     }
     
     private func getAccountDetails(_ sessionId: String) {
-        accountClient.getAccountDetail(CoreDataStack.shared.mainContext, with: sessionId) { result in
+        accountClient.getAccountDetail(with: sessionId) { result in
             switch result {
             case .success(let user):
                 print(user.name)
+                self.userUseCase.saveUser(user)
                 self.authManager.saveCurrentUser(sessionId,
                                             accountId: user.id)
                 self.didSignIn?()
@@ -109,7 +113,7 @@ final class AccountViewModel {
         let options = ProfileOptions(collectionOptions: [.favorites, .watchlist],
                                      groupOptions: [.customLists],
                                      configurationOptions: [])
-        return ProfileViewModel(CoreDataStack.shared.mainContext, userAccount: currentUser, options: options)
+        return ProfileViewModel(useCaseProvider: useCaseProvider, userAccount: currentUser, options: options)
     }
 
     func buildCollectionListViewModel(_ option: ProfileCollectionOption) -> CollectionListViewModel {

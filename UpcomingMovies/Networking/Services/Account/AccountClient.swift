@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreData
 
 class AccountClient: APIClient {
     
@@ -86,10 +85,8 @@ class AccountClient: APIClient {
     
     // MARK: - Account Detail
     
-    func getAccountDetail(_ context: NSManagedObjectContext,
-                          with sessionId: String, completion: @escaping (Result<User, APIError>) -> Void) {
-        fetch(with: AccountProvider.getAccountDetail(sessionId: sessionId).request,
-              context: context, decode: { json -> User? in
+    func getAccountDetail(with sessionId: String, completion: @escaping (Result<User, APIError>) -> Void) {
+        fetch(with: AccountProvider.getAccountDetail(sessionId: sessionId).request, decode: { json -> User? in
             guard let user = json as? User else { return  nil }
             return user
         }, completion: completion)

@@ -14,12 +14,14 @@ final class UseCaseProvider: UseCaseProviderProtocol {
     private let genreStore: PersistenceStore<CDGenre>
     private let movieVisitStore: PersistenceStore<CDMovieVisit>
     private let movieSearchStore: PersistenceStore<CDMovieSearch>
+    private let userStore: PersistenceStore<CDUser>
     
     init(coreDataStack: CoreDataStack = CoreDataStack.shared) {
         self.coreDataStack = coreDataStack
         self.genreStore = PersistenceStore(self.coreDataStack.mainContext)
         self.movieVisitStore = PersistenceStore(self.coreDataStack.mainContext)
         self.movieSearchStore = PersistenceStore(self.coreDataStack.mainContext)
+        self.userStore = PersistenceStore(self.coreDataStack.mainContext)
     }
     
     func genreUseCase() -> GenreUseCaseProtocol {
@@ -32,6 +34,10 @@ final class UseCaseProvider: UseCaseProviderProtocol {
     
     func movieSearchUseCase() -> MovieSearchUseCaseProtocol {
         return MovieSearchUseCase(store: movieSearchStore)
+    }
+    
+    func userUseCase() -> UserUseCaseProtocol {
+        return UserUseCase(store: userStore)
     }
     
 }

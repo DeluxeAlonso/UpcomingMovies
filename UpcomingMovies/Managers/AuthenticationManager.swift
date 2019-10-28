@@ -12,7 +12,8 @@ class AuthenticationManager {
     
     static let shared = AuthenticationManager()
     
-    private var userStore: PersistenceStore<User>!
+    private let userUseCase: UserUseCaseProtocol
+    //private var userStore: PersistenceStore<User>!
     
     lazy var readAccessToken: String = {
         let keys = retrieveKeys()
@@ -39,14 +40,8 @@ class AuthenticationManager {
     // MARK: - Initializers
     
     init() {
-        setupStores()
-    }
-    
-    // MARK: - Private
-    
-    private func setupStores() {
-        let context = CoreDataStack.shared.mainContext
-        userStore = PersistenceStore(context)
+        let useCaseProvider = UseCaseProvider()
+        self.userUseCase = useCaseProvider.userUseCase()
     }
     
     // MARK: - Public
@@ -92,7 +87,7 @@ class AuthenticationManager {
     
     func currentUser() -> User? {
         guard let credentials = userCredentials else { return nil }
-        return userStore.find(with: credentials.accountId)
+        return userUseCase.find(with: credentials.accountId)
     }
     
     func isUserSignedIn() -> Bool {

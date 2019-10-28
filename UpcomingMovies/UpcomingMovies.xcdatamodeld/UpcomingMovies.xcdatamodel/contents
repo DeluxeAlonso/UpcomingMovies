@@ -38,7 +38,7 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="User" representedClassName=".User" syncable="YES">
+    <entity name="CDUser" representedClassName=".CDUser" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="includeAdult" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -51,8 +51,8 @@
     </entity>
     <elements>
         <element name="CDGenre" positionX="-63" positionY="27" width="128" height="73"/>
-        <element name="CDMovieVisit" positionX="-63" positionY="9" width="128" height="103"/>
         <element name="CDMovieSearch" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="User" positionX="-54" positionY="27" width="128" height="105"/>
+        <element name="CDMovieVisit" positionX="-63" positionY="9" width="128" height="103"/>
+        <element name="CDUser" positionX="-54" positionY="27" width="128" height="103"/>
     </elements>
 </model>

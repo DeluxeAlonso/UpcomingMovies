@@ -13,5 +13,6 @@ protocol UseCaseProviderProtocol {
     func genreUseCase() -> GenreUseCaseProtocol
     func movieVisitUseCase() -> MovieVisitUseCaseProtocol
     func movieSearchUseCase() -> MovieSearchUseCaseProtocol
+    func userUseCase() -> UserUseCaseProtocol
     
 }
