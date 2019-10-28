@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import CoreData
 @testable import UpcomingMovies
 
 class MovieDetailTests: XCTestCase {
