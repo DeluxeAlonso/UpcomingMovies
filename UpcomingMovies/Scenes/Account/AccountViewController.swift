@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, SegueHandler {
+class AccountViewController: UIViewController, Storyboarded, SegueHandler {
     
     private lazy var signInViewController: SignInViewController = {
         var viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! SignInViewController
@@ -24,7 +24,9 @@ class AccountViewController: UIViewController, SegueHandler {
         return viewController
     }()
     
-    private var viewModel = AccountViewModel()
+    var viewModel: AccountViewModel!
+    
+    static var storyboardName: String = "Account"
     
     // MARK: - Lifecycle
 

@@ -8,11 +8,14 @@
 
 import UIKit
 
-class SearchMoviesViewController: UIViewController, SegueHandler {
+class SearchMoviesViewController: UIViewController, Storyboarded, SegueHandler {
     
-    private var viewModel: SearchMoviesViewModel = SearchMoviesViewModel()
+    var viewModel: SearchMoviesViewModel!
+    
     private var searchController: DefaultSearchController!
     private var searchOptionsContainerView: SearchOptionsTableViewController!
+    
+    static var storyboardName: String = "SearchMovies"
     
     // MARK: - Lifecycle
 

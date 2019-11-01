@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import UpcomingMovies
+@testable import Domain
 
 class UpcomingMoviesTests: XCTestCase {
     
@@ -16,7 +17,7 @@ class UpcomingMoviesTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        viewModelToTest = UpcomingMoviesViewModel()
+        viewModelToTest = UpcomingMoviesViewModel(useCaseProvider: InjectionFactory.useCaseProvider())
         upcomingMovieCellViewModelToTest = UpcomingMovieCellViewModel(Movie.with())
     }
 

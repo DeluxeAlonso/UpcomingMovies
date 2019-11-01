@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Domain
 
 class CustomListsViewController: UIViewController, PlaceholderDisplayable, SegueHandler, Loadable {
     

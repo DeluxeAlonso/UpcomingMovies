@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Domain
 
 class MovieClient: APIClient {
     
@@ -39,7 +40,7 @@ class MovieClient: APIClient {
             return MovieProvider.getPopular(page: page).request
         case .topRated:
             return MovieProvider.getTopRated(page: page).request
-        case .byGenre(let genreId):
+        case .byGenre(let genreId, _):
             return MovieProvider.getByGenreId(page: page, genreId: genreId).request
         case .similar(let movieId):
             return MovieProvider.getSimilars(page: page, id: movieId).request

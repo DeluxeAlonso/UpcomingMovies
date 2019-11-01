@@ -7,13 +7,18 @@
 //
 
 import UIKit
+import Domain
 
-class UpcomingMoviesViewController: UIViewController, PlaceholderDisplayable, SegueHandler, Loadable {
+class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, SegueHandler, Loadable {
 
     @IBOutlet weak var toggleGridBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var viewModel = UpcomingMoviesViewModel()
+    var viewModel: UpcomingMoviesViewModel? {
+        didSet {
+            setupBindables()
+        }
+    }
     
     private var dataSource: SimpleCollectionViewDataSource<UpcomingMovieCellViewModel>!
     private var prefetchDataSource: CollectionViewPrefetching!
@@ -23,6 +28,8 @@ class UpcomingMoviesViewController: UIViewController, PlaceholderDisplayable, Se
     private var detailLayout: VerticalFlowLayout!
     
     private var navigationManager: UpcomingMoviesNavigationManager!
+    
+    static var storyboardName: String = "UpcomingMovies"
     
     var loaderView: RadarView!
     
@@ -42,8 +49,6 @@ class UpcomingMoviesViewController: UIViewController, PlaceholderDisplayable, Se
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupBindables()
-        viewModel.getMovies()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,7 +58,7 @@ class UpcomingMoviesViewController: UIViewController, PlaceholderDisplayable, Se
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        guard tabBarController?.selectedIndex == MainTabBarController.Items.upcomingMovies.rawValue else {
+        guard tabBarController?.selectedViewController == self else {
             return
         }
         coordinator.animate(alongsideTransition: { _ in
@@ -101,18 +106,19 @@ class UpcomingMoviesViewController: UIViewController, PlaceholderDisplayable, Se
         collectionView.refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
                                               backgroundColor: collectionView.backgroundColor,
                                               refreshHandler: { [weak self] in
-                                                self?.viewModel.refreshMovies()
+                                                self?.viewModel?.refreshMovies()
         })
     }
     
     private func reloadCollectionView() {
+        guard let viewModel = viewModel else { return }
         dataSource = SimpleCollectionViewDataSource.make(for: viewModel.movieCells,
                                                          presentationMode: presentationMode)
         
         prefetchDataSource = CollectionViewPrefetching(cellCount: viewModel.movieCells.count,
                                                        needsPrefetch: viewModel.needsPrefetch,
                                                        prefetchHandler: { [weak self] in
-                                                        self?.viewModel.getMovies()
+                                                        self?.viewModel?.getMovies()
         })
         
         collectionView.dataSource = dataSource
@@ -144,7 +150,7 @@ class UpcomingMoviesViewController: UIViewController, PlaceholderDisplayable, Se
         case .error(let error):
             presentErrorView(with: error.description,
                                        errorHandler: { [weak self] in
-                                        self?.viewModel.refreshMovies()
+                                        self?.viewModel?.refreshMovies()
             })
         }
     }
@@ -152,16 +158,17 @@ class UpcomingMoviesViewController: UIViewController, PlaceholderDisplayable, Se
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        viewModel.viewState.bindAndFire({ [weak self] state in
+        viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 strongSelf.configureView(withState: state)
                 strongSelf.reloadCollectionView()
             }
         })
-        viewModel.startLoading.bind({ [weak self] start in
+        viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
         })
+        viewModel?.getMovies()
     }
     
     // MARK: - Navigation
@@ -172,7 +179,7 @@ class UpcomingMoviesViewController: UIViewController, PlaceholderDisplayable, Se
             guard let viewController = segue.destination as? MovieDetailViewController else { fatalError() }
             guard let indexPath = sender as? IndexPath else { return }
             _ = viewController.view
-            viewController.viewModel = viewModel.buildDetailViewModel(atIndex: indexPath.row)
+            viewController.viewModel = viewModel?.buildDetailViewModel(atIndex: indexPath.row)
         }
     }
     
@@ -218,7 +225,7 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
         
         navigationManager.configure(selectedFrame: selectedFrame, with: imageToTransition)
         
-        viewModel.setSelectedMovie(at: indexPath.row)
+        viewModel?.setSelectedMovie(at: indexPath.row)
         performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue, sender: indexPath)
     }
     

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Domain
 
 class AuthenticationManager {
     
@@ -39,7 +40,7 @@ class AuthenticationManager {
     // MARK: - Initializers
     
     init() {
-        let useCaseProvider = UseCaseProvider()
+        let useCaseProvider = InjectionFactory.useCaseProvider()
         self.userUseCase = useCaseProvider.userUseCase()
     }
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import CollectionViewSlantedLayout
+import Domain
 
 class CollectionListViewController: UIViewController, PlaceholderDisplayable, SegueHandler, Loadable {
     
@@ -32,7 +33,7 @@ class CollectionListViewController: UIViewController, PlaceholderDisplayable, Se
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        guard tabBarController?.selectedIndex == MainTabBarController.Items.favoriteMovies.rawValue else {
+        guard tabBarController?.selectedViewController == self else {
             return
         }
         updateCollectionViewLayout()

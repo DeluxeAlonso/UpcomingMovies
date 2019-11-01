@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Domain
 
 struct MovieResult: Decodable, Paginable {
 

@@ -9,12 +9,19 @@
 import Foundation
 import CoreData
 
-class CoreDataStack {
+public class CoreDataStack {
     
+    public
     static let shared = CoreDataStack()
     
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "UpcomingMovies")
+        let bundle = Bundle(for: CoreDataStack.self)
+        guard let url = bundle.url(forResource: "Model", withExtension: "momd"),
+              let model = NSManagedObjectModel(contentsOf: url) else {
+            fatalError()
+        }
+        
+        let container = NSPersistentContainer(name: "Model", managedObjectModel: model)
         container.loadPersistentStores { _, error in
             guard error == nil else { fatalError() }
         }
@@ -31,7 +38,13 @@ class CoreDataStack {
     // MARK: - Test mockups
     
     lazy var mockPersistantContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "UpcomingMovies")
+        let bundle = Bundle(for: CoreDataStack.self)
+        guard let url = bundle.url(forResource: "Model", withExtension: "momd"),
+              let model = NSManagedObjectModel(contentsOf: url) else {
+            fatalError()
+        }
+        
+        let container = NSPersistentContainer(name: "Model", managedObjectModel: model)
         let description = NSPersistentStoreDescription()
         description.type = NSInMemoryStoreType
         description.shouldAddStoreAsynchronously = false

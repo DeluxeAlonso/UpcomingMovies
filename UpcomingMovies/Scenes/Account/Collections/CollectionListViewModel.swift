@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Domain
 
 final class CollectionListViewModel {
     
@@ -42,7 +43,8 @@ final class CollectionListViewModel {
         guard index < movies.count else { return nil }
         let movie = movies[index]
         return MovieDetailViewModel(id: movie.id,
-                                    title: movie.title)
+                                    title: movie.title,
+                                    useCaseProvider: useCaseProvider)
     }
     
     // MARK: - Networking

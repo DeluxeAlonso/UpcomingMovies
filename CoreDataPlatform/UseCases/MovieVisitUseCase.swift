@@ -9,17 +9,10 @@
 import Foundation
 import Domain
 
-protocol MovieVisitUseCaseDelegate: class {
-    
-    func didUpdateMovieVisit()
-    
-}
-
 final class MovieVisitUseCase: MovieVisitUseCaseProtocol {
     
     private let store: PersistenceStore<CDMovieVisit>
-    
-    weak var delegate: MovieVisitUseCaseDelegate?
+    var didUpdateMovieVisit: (() -> Void)?
     
     init(store: PersistenceStore<CDMovieVisit>) {
         self.store = store
@@ -50,7 +43,7 @@ extension MovieVisitUseCase: PersistenceStoreDelegate {
     func persistenceStore(willUpdateEntity shouldPrepare: Bool) {}
     
     func persistenceStore(didUpdateEntity update: Bool) {
-        delegate?.didUpdateMovieVisit()
+        didUpdateMovieVisit?()
     }
     
 }

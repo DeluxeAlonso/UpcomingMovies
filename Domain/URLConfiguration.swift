@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct URLConfiguration {
+public struct URLConfiguration {
     
-    static let mediaPath = "https://image.tmdb.org/t/p/w185"
-    static let mediaBackdropPath = "https://image.tmdb.org/t/p/w500"
+    public static let mediaPath = "https://image.tmdb.org/t/p/w185"
+    public static let mediaBackdropPath = "https://image.tmdb.org/t/p/w500"
     
 }

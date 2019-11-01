@@ -15,4 +15,11 @@ public struct MovieVisit: Decodable {
     public let posterPath: String
     public let createdAt: Date?
     
+    public init(id: Int, title: String, posterPath: String, createdAt: Date?) {
+        self.id = id
+        self.title = title
+        self.posterPath = posterPath
+        self.createdAt = createdAt
+    }
+    
 }

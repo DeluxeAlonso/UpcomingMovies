@@ -17,6 +17,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
+        viewControllers = MainTabBarBuilder.buildViewControllers(with: InjectionFactory.useCaseProvider())
     }
     
     // MARK: - Public
@@ -45,15 +46,15 @@ extension MainTabBarController: UITabBarControllerDelegate {
     }
     
 }
-
-// MARK: - TabBar Items
-
-extension MainTabBarController {
-    
-    enum Items: Int {
-        case upcomingMovies
-        case searchMovies
-        case favoriteMovies
-    }
-    
-}
+//
+//// MARK: - TabBar Items
+//
+//extension MainTabBarController {
+//    
+//    enum Items: Int {
+//        case upcomingMovies
+//        case searchMovies
+//        case favoriteMovies
+//    }
+//
+//}

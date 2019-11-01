@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct Cast: Decodable {
+public struct Cast: Decodable {
     
-    let id: Int
-    let character: String
-    let name: String
-    let profilePath: String?
+    public let id: Int
+    public let character: String
+    public let name: String
+    public let profilePath: String?
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -26,7 +26,7 @@ struct Cast: Decodable {
 
 extension Cast {
     
-    var profileURL: URL? {
+    public var profileURL: URL? {
         guard let profilePath = profilePath else { return nil }
         return URL(string: URLConfiguration.mediaPath + profilePath)
     }

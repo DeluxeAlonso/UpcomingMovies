@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct Crew: Decodable {
+public struct Crew: Decodable {
     
-    let id: Int
-    let job: String
-    let name: String
-    let profilePath: String?
+    public let id: Int
+    public let job: String
+    public let name: String
+    public let profilePath: String?
  
     private enum CodingKeys: String, CodingKey {
         case id
@@ -26,7 +26,7 @@ struct Crew: Decodable {
 
 extension Crew {
     
-    var profileURL: URL? {
+    public var profileURL: URL? {
         guard let profilePath = profilePath else { return nil }
         return URL(string: URLConfiguration.mediaPath + profilePath)
     }

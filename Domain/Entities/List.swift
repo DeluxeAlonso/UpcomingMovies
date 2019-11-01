@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct List: Decodable, Equatable {
+public struct List: Decodable, Equatable {
     
-    let id: String
-    let name: String
-    let description: String?
-    let backdropPath: String?
-    let averageRating: Double?
-    let runtime: Int?
-    let movieCount: Int
-    let movies: [Movie]?
+    public let id: String
+    public let name: String
+    public let description: String?
+    public let backdropPath: String?
+    public let averageRating: Double?
+    public let runtime: Int?
+    public let movieCount: Int
+    public let movies: [Movie]?
     
     private enum CodingKeys: String, CodingKey {
         case id, name, description, runtime
@@ -29,7 +29,7 @@ struct List: Decodable, Equatable {
     
     // MARK: - Initializer
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         // Id key can be either an Int or a String
@@ -53,7 +53,7 @@ struct List: Decodable, Equatable {
 
 extension List {
 
-    var backdropURL: URL? {
+    public var backdropURL: URL? {
         guard let posterPath = backdropPath else { return nil }
         return URL(string: URLConfiguration.mediaPath + posterPath)
     }

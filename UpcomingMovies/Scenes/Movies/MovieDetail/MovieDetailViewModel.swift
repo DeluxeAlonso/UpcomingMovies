@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import Domain
 
 final class MovieDetailViewModel {
     
     private let useCaseProvider: UseCaseProviderProtocol
     private let movieVisitUseCase: MovieVisitUseCaseProtocol
+    private var genreUseCase: GenreUseCaseProtocol
     
     private var accountClient = AccountClient()
     private var movieClient = MovieClient()
@@ -41,16 +43,18 @@ final class MovieDetailViewModel {
     init(_ movie: Movie, useCaseProvider: UseCaseProviderProtocol) {
         self.useCaseProvider = useCaseProvider
         movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
+        genreUseCase = self.useCaseProvider.genreUseCase()
         setupMovie(movie)
         checkIfUserIsAuthenticated()
     }
     
-    init(id: Int, title: String, useCaseProvider: UseCaseProviderProtocol = UseCaseProvider()) {
+    init(id: Int, title: String, useCaseProvider: UseCaseProviderProtocol) {
         self.id = id
         self.title = title
         self.needsFetch = true
         self.useCaseProvider = useCaseProvider
         self.movieVisitUseCase = useCaseProvider.movieVisitUseCase()
+        self.genreUseCase = useCaseProvider.genreUseCase()
     }
     
     // MARK: - Private
@@ -58,7 +62,11 @@ final class MovieDetailViewModel {
     private func setupMovie(_ movie: Movie) {
         id = movie.id
         title = movie.title
-        genre = movie.genreName
+        
+        if let genreId = movie.genreIds?.first {
+            genre = genreUseCase.find(with: genreId)?.name
+        }
+        
         releaseDate = movie.releaseDate
         voteAverage = movie.voteAverage
         overview = movie.overview
@@ -66,6 +74,7 @@ final class MovieDetailViewModel {
         posterURL = movie.posterURL
         backdropPath = movie.backdropPath
         backdropURL = movie.backdropURL
+        
         saveVisitedMovie()
     }
     

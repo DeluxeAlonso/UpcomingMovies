@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Domain
 
 final class UpcomingMoviesViewModel: MoviesViewModel {
     
@@ -34,7 +35,7 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol = UseCaseProvider()) {
+    init(useCaseProvider: UseCaseProviderProtocol) {
         self.useCaseProvider = useCaseProvider
     }
     

@@ -8,26 +8,26 @@
 
 import Foundation
 
-struct Video: Decodable {
+public struct Video: Decodable {
     
-    let id: String
-    let key: String
-    let name: String
-    let site: String
+    public let id: String
+    public let key: String
+    public let name: String
+    public let site: String
     
 }
 
 extension Video {
     
-    var browserURL: URL? {
+    public var browserURL: URL? {
         return URL(string: "https://www.youtube.com/watch?v=\(key)")
     }
     
-    var deepLinkURL: URL? {
+    public var deepLinkURL: URL? {
         return URL(string: "youtube://\(key)")
     }
     
-    var thumbnailURL: URL? {
+    public var thumbnailURL: URL? {
         return URL(string: "https://img.youtube.com/vi/\(key)/mqdefault.jpg")
     }
     
@@ -35,7 +35,7 @@ extension Video {
 
 extension Video: Equatable {
     
-    static func == (lhs: Video, rhs: Video) -> Bool {
+    public static func == (lhs: Video, rhs: Video) -> Bool {
         return lhs.id == rhs.id
     }
     

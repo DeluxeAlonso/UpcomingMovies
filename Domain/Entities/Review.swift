@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct Review: Decodable, Equatable {
+public struct Review: Decodable, Equatable {
     
-    let id: String
-    let authorName: String
-    let content: String
+    public let id: String
+    public let authorName: String
+    public let content: String
     
     private enum CodingKeys: String, CodingKey {
         case id

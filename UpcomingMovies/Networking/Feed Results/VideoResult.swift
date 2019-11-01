@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import Domain
 
-struct VideoResult: Decodable {
+public struct VideoResult: Decodable {
     
     let results: [Video]
     

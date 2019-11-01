@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import Domain
 
 final class SearchOptionsViewModel {
     
     private var movieVisitUseCase: MovieVisitUseCaseProtocol
+    private var genreUseCase: GenreUseCaseProtocol
     
     let viewState: Bindable<SearchOptionsViewState> = Bindable(.emptyMovieVisits)
     
@@ -27,7 +29,7 @@ final class SearchOptionsViewModel {
     }
     
     var genreCells: [GenreSearchOptionCellViewModel] {
-        let genres = PersistenceManager.shared.genres
+        let genres = genreUseCase.findAll()
         return genres.map { GenreSearchOptionCellViewModel(genre: $0) }
     }
     
@@ -38,9 +40,22 @@ final class SearchOptionsViewModel {
     
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol = UseCaseProvider()) {
+    init(useCaseProvider: UseCaseProviderProtocol) {
+        genreUseCase = useCaseProvider.genreUseCase()
+        
         movieVisitUseCase = useCaseProvider.movieVisitUseCase()
-        movieVisitUseCase.delegate = self
+        movieVisitUseCase.didUpdateMovieVisit = { [weak self] in
+            guard let strongSelf = self else { return }
+            // If the state changed we reload the entire table view
+            let viewStateChanged = strongSelf.configureViewState()
+            if viewStateChanged {
+                strongSelf.needsContentReload?()
+            } else {
+                let index = strongSelf.sectionIndex(for: .recentlyVisited)
+                strongSelf.updateVisitedMovies.value = index
+            }
+        }
+        
         configureViewState()
     }
     
@@ -78,7 +93,7 @@ final class SearchOptionsViewModel {
     }
     
     func getMovieGenreSelection(by index: Int) {
-        let genres = PersistenceManager.shared.genres
+        let genres = genreUseCase.findAll()
         let selectedGenre = genres[index]
         selectedMovieGenre.value = selectedGenre.id
     }
@@ -134,23 +149,6 @@ extension SearchOptionsViewModel {
             }
         }
         
-    }
-    
-}
-
-// MARK: - MovieVisitUseCaseDelegate
-
-extension SearchOptionsViewModel: MovieVisitUseCaseDelegate {
-    
-    func didUpdateMovieVisit() {
-        // If the state changed we reload the entire table view
-        let viewStateChanged = configureViewState()
-        if viewStateChanged {
-            needsContentReload?()
-        } else {
-            let index = sectionIndex(for: .recentlyVisited)
-            updateVisitedMovies.value = index
-        }
     }
     
 }

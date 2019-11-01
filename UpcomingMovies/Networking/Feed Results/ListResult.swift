@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import Domain
 
-struct ListResult: Decodable, Paginable {
+public struct ListResult: Decodable, Paginable {
     
     let results: [List]
     var currentPage: Int

@@ -21,5 +21,12 @@ public struct User: Decodable {
         case username
         case includeAdult = "include_adult"
     }
+    
+    public init(id: Int, name: String, username: String, includeAdult: Bool) {
+        self.id = id
+        self.name = name
+        self.username = username
+        self.includeAdult = includeAdult
+    }
 
 }

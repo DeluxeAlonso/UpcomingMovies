@@ -7,17 +7,20 @@
 //
 
 import Foundation
+import Domain
 
 final class SearchMoviesViewModel: NSObject {
     
     private var useCaseProvider: UseCaseProviderProtocol
+    private var genreUseCase: GenreUseCaseProtocol
     
-    init(useCaseProvider: UseCaseProviderProtocol = UseCaseProvider()) {
+    init(useCaseProvider: UseCaseProviderProtocol) {
         self.useCaseProvider = useCaseProvider
+        self.genreUseCase = useCaseProvider.genreUseCase()
     }
     
     func buildSearchOptionsViewModel() -> SearchOptionsViewModel {
-        return SearchOptionsViewModel()
+        return SearchOptionsViewModel(useCaseProvider: useCaseProvider)
     }
     
     func prepareSearchResultController() -> SearchMoviesResultController {
@@ -38,13 +41,15 @@ final class SearchMoviesViewModel: NSObject {
     }
     
     func moviesByGenreViewModel(genreId: Int) -> MovieListViewModel {
-        return MovieListViewModel(filter: .byGenre(genreId: genreId),
+        let genreName = genreUseCase.find(with: genreId)?.name ?? "-"
+        return MovieListViewModel(filter: .byGenre(genreId: genreId, genreName: genreName),
                                   useCaseProvider: useCaseProvider)
     }
     
     func recentlyVisitedMovieViewModel(id: Int, title: String) -> MovieDetailViewModel {
         return MovieDetailViewModel(id: id,
-                                    title: title)
+                                    title: title,
+                                    useCaseProvider: useCaseProvider)
     }
     
 }
