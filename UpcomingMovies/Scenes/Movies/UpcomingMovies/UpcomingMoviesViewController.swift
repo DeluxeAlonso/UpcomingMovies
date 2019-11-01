@@ -58,7 +58,8 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        guard tabBarController?.selectedViewController == self else {
+        guard let selectedViewController = tabBarController?.selectedViewController,
+            selectedViewController == self || selectedViewController == navigationController else {
             return
         }
         coordinator.animate(alongsideTransition: { _ in

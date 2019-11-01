@@ -33,7 +33,8 @@ class CollectionListViewController: UIViewController, PlaceholderDisplayable, Se
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        guard tabBarController?.selectedViewController == self else {
+        guard let selectedViewController = tabBarController?.selectedViewController,
+            selectedViewController == self || selectedViewController == navigationController else {
             return
         }
         updateCollectionViewLayout()
