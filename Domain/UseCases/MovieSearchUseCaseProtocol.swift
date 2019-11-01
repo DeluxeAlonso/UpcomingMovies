@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol MovieSearchUseCaseProtocol {
+public protocol MovieSearchUseCaseProtocol {
     
     var didUpdateMovieSearch: (() -> Void)? { get set }
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol GenreUseCaseProtocol {
+public protocol GenreUseCaseProtocol {
     
     var didUpdateGenre: (() -> Void)? { get set }
     

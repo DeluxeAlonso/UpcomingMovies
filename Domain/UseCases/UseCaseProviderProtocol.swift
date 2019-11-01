@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol UseCaseProviderProtocol {
+public protocol UseCaseProviderProtocol {
     
     func genreUseCase() -> GenreUseCaseProtocol
     func movieVisitUseCase() -> MovieVisitUseCaseProtocol

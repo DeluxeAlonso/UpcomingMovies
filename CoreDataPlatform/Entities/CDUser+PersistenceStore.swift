@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Domain
 
 extension PersistenceStore where Entity == CDUser {
     

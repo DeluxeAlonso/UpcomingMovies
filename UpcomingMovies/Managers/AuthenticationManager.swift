@@ -13,7 +13,6 @@ class AuthenticationManager {
     static let shared = AuthenticationManager()
     
     private let userUseCase: UserUseCaseProtocol
-    //private var userStore: PersistenceStore<User>!
     
     lazy var readAccessToken: String = {
         let keys = retrieveKeys()

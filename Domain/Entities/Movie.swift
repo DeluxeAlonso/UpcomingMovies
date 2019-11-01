@@ -72,7 +72,7 @@ extension Movie {
         guard let genreIds = genreIds, let genre = genreIds.first else {
             return nil
         }
-        return PersistenceManager.shared.findGenre(with: genre)
+        return nil //PersistenceManager.shared.findGenre(with: genre)
     }
     
 }

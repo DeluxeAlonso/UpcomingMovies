@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol UserUseCaseProtocol {
+public protocol UserUseCaseProtocol {
     
     var didUpdateUser: (() -> Void)? { get set }
     

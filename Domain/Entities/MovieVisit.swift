@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct MovieVisit: Decodable {
+public struct MovieVisit: Decodable {
     
-    let id: Int
-    let title: String
-    let posterPath: String
-    let createdAt: Date?
+    public let id: Int
+    public let title: String
+    public let posterPath: String
+    public let createdAt: Date?
     
 }

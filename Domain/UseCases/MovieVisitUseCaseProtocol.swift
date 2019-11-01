@@ -8,9 +8,9 @@
 
 import Foundation
 
-protocol MovieVisitUseCaseProtocol {
+public protocol MovieVisitUseCaseProtocol {
     
-    var delegate: MovieVisitUseCaseDelegate? { get set }
+    var didUpdateMovieVisit: (() -> Void)? { get set }
     
     func getMovieVisits() -> [MovieVisit]
     func save(with id: Int, title: String, posterPath: String?)
