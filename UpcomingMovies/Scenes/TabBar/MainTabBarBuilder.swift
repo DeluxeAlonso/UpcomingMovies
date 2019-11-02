@@ -24,19 +24,15 @@ class MainTabBarBuilder {
         
         return [
             createNavigationController(upcomingMoviesVC, title: "Upcoming movies", image: #imageLiteral(resourceName: "Movies")),
-            createNavigationController(searchMoviesVC, title: "Search movies", image: #imageLiteral(resourceName: "Search")),
+            createNavigationController(searchMoviesVC, title: "Search", image: #imageLiteral(resourceName: "Search")),
             createNavigationController(accountVC, title: "Account", image: #imageLiteral(resourceName: "Account"))
         ]
     }
     
     class func createNavigationController(_ viewController: UIViewController, title: String, image: UIImage) -> UINavigationController {
-        //viewController.view.backgroundColor = .white
-        viewController.navigationItem.title = title
-        
         let navController = UINavigationController(rootViewController: viewController)
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
-        //navController.navigationBar.prefersLargeTitles = true
         
         return navController
     }

@@ -12,6 +12,7 @@ import Domain
 final class MovieVisitUseCase: MovieVisitUseCaseProtocol {
     
     private let store: PersistenceStore<CDMovieVisit>
+    
     var didUpdateMovieVisit: (() -> Void)?
     
     init(store: PersistenceStore<CDMovieVisit>) {

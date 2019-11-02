@@ -11,6 +11,7 @@ import Domain
 
 final class SearchOptionsViewModel {
     
+    private var useCaseProvider: UseCaseProviderProtocol
     private var movieVisitUseCase: MovieVisitUseCaseProtocol
     private var genreUseCase: GenreUseCaseProtocol
     
@@ -41,18 +42,19 @@ final class SearchOptionsViewModel {
     // MARK: - Initializers
     
     init(useCaseProvider: UseCaseProviderProtocol) {
-        genreUseCase = useCaseProvider.genreUseCase()
+        self.useCaseProvider = useCaseProvider
+        self.genreUseCase = self.useCaseProvider.genreUseCase()
         
-        movieVisitUseCase = useCaseProvider.movieVisitUseCase()
-        movieVisitUseCase.didUpdateMovieVisit = { [weak self] in
-            guard let strongSelf = self else { return }
+        movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
+        movieVisitUseCase.didUpdateMovieVisit = {
+            //guard let strongSelf = self else { return }
             // If the state changed we reload the entire table view
-            let viewStateChanged = strongSelf.configureViewState()
+            let viewStateChanged = self.configureViewState()
             if viewStateChanged {
-                strongSelf.needsContentReload?()
+                self.needsContentReload?()
             } else {
-                let index = strongSelf.sectionIndex(for: .recentlyVisited)
-                strongSelf.updateVisitedMovies.value = index
+                let index = self.sectionIndex(for: .recentlyVisited)
+                self.updateVisitedMovies.value = index
             }
         }
         
