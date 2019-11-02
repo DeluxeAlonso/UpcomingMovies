@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Domain
 
 final class SearchMoviesResultViewModel {
     
@@ -30,7 +31,7 @@ final class SearchMoviesResultViewModel {
     }
     
     var movieCells: [MovieCellViewModel] {
-        return movies.compactMap { MovieCellViewModel($0) }
+        return movies.compactMap { MovieCellViewModel($0, genreUseCase: useCaseProvider.genreUseCase())}
     }
     
     // MARK: - Initilalizers

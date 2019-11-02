@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +11,7 @@
         <!--Upcoming movies-->
         <scene sceneID="8j3-pf-oBs">
             <objects>
-                <viewController id="EZU-as-DXw" customClass="UpcomingMoviesViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UpcomingMoviesViewController" id="EZU-as-DXw" customClass="UpcomingMoviesViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6KU-iX-s3v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -58,6 +58,7 @@
         <!--Upcoming-->
         <scene sceneID="Mvv-4Q-SfO">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FRw-43-Prx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="UpcomingMoviesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="IG8-Ti-8Hu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Upcoming" image="Movies" id="D5x-SM-ILe"/>
                     <toolbarItems/>
@@ -71,7 +72,6 @@
                         <segue destination="EZU-as-DXw" kind="relationship" relationship="rootViewController" id="uVj-sq-eLh"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FRw-43-Prx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="133.59999999999999" y="86.806596701649184"/>
         </scene>

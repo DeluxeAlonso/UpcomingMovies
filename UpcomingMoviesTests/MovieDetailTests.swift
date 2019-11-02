@@ -8,6 +8,8 @@
 
 import XCTest
 @testable import UpcomingMovies
+@testable import Domain
+@testable import CoreDataPlatform
 
 class MovieDetailTests: XCTestCase {
     
@@ -22,7 +24,6 @@ class MovieDetailTests: XCTestCase {
         setupMovieGenres()
         let movieToTest = Movie(id: 1,
                             title: "Test 1",
-                            genres: [],
                             genreIds: [1, 2],
                             overview: "Overview",
                             posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",

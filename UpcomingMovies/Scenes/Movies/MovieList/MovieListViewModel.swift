@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Domain
 
 final class MovieListViewModel: MoviesViewModel {
     
@@ -22,7 +23,7 @@ final class MovieListViewModel: MoviesViewModel {
     // MARK: - Computed Properties
     
     var movieCells: [MovieCellViewModel] {
-        return movies.compactMap { MovieCellViewModel($0) }
+        return movies.compactMap { MovieCellViewModel($0, genreUseCase: useCaseProvider.genreUseCase()) }
     }
     
     // MARK: - Initializers

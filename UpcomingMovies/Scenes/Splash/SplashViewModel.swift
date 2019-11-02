@@ -7,19 +7,18 @@
 //
 
 import Foundation
+import Domain
 
 final class SplashViewModel {
     
-    private let useCaseProvider: UseCaseProviderProtocol
     private let genreUseCase: GenreUseCaseProtocol
-    
     private let genreClient = GenreClient()
     
     var genresFetched: (() -> Void)?
     
-    init(useCaseProvider: UseCaseProviderProtocol = UseCaseProvider()) {
-        self.useCaseProvider = useCaseProvider
-        self.genreUseCase = self.useCaseProvider.genreUseCase()
+    init() {
+        let useCaseProvider = InjectionFactory.useCaseProvider()
+        self.genreUseCase = useCaseProvider.genreUseCase()
     }
     /**
      * Fetch all the movie genres and save them in the AppManager Singleton.

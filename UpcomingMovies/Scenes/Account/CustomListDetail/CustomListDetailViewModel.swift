@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Domain
 
 final class CustomListDetailViewModel {
     
@@ -33,7 +34,7 @@ final class CustomListDetailViewModel {
     }
     
     var movieCells: [MovieCellViewModel] {
-        return movies.map { MovieCellViewModel($0) }
+        return movies.map { MovieCellViewModel($0, genreUseCase: useCaseProvider.genreUseCase()) }
     }
     
     // MARK: - Initializers

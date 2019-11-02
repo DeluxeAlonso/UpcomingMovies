@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import UpcomingMovies
+@testable import Domain
 
 class VideoTests: XCTestCase {
     

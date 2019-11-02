@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Domain
 
 final class AccountViewModel {
     
@@ -25,7 +26,7 @@ final class AccountViewModel {
     
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol = UseCaseProvider(),
+    init(useCaseProvider: UseCaseProviderProtocol,
          authManager: AuthenticationManager = AuthenticationManager.shared) {
         self.useCaseProvider = useCaseProvider
         self.userUseCase = self.useCaseProvider.userUseCase()

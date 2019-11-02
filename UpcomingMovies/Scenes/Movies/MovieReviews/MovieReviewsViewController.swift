@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Domain
 
 class MovieReviewsViewController: UIViewController, PlaceholderDisplayable, Loadable {
     

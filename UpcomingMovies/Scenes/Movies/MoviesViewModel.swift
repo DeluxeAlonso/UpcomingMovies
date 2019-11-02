@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import Domain
 
 enum MovieListFilter {
     case upcoming, popular, topRated
     case similar(movieId: Int)
-    case byGenre(genreId: Int)
+    case byGenre(genreId: Int, genreName: String)
     
     var title: String? {
         switch self {
@@ -23,9 +24,8 @@ enum MovieListFilter {
             return "Top Rated Movies"
         case .similar:
             return "Similar Movies"
-        case .byGenre(let genreId):
-            let genre = PersistenceManager.shared.findGenre(with: genreId)
-            return genre?.name
+        case .byGenre(_, let genreName):
+            return genreName
         }
     }
 }

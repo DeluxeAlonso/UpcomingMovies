@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Domain
 
 protocol RecentlyVisitedMoviesTableViewCellDelegate: class {
     
