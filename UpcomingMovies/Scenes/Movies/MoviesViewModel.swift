@@ -9,27 +9,6 @@
 import Foundation
 import UpcomingMoviesDomain
 
-enum MovieListFilter {
-    case upcoming, popular, topRated
-    case similar(movieId: Int)
-    case byGenre(genreId: Int, genreName: String)
-    
-    var title: String? {
-        switch self {
-        case .upcoming:
-            return "Upcoming Movies"
-        case .popular:
-            return "Popular Movies"
-        case .topRated:
-            return "Top Rated Movies"
-        case .similar:
-            return "Similar Movies"
-        case .byGenre(_, let genreName):
-            return genreName
-        }
-    }
-}
-
 protocol MoviesViewModel {
     
     associatedtype MovieCellViewModel

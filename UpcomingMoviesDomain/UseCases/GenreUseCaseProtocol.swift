@@ -16,6 +16,6 @@ public protocol GenreUseCaseProtocol {
     func findAll() -> [Genre]
     func saveGenres(_ genres: [Genre])
     
-    func fetchAll(completion: Result<Genre, Error>)
+    func fetchAll(completion: @escaping (Result<[Genre], Error>) -> Void)
     
 }

@@ -9,8 +9,8 @@
 import Foundation
 import UpcomingMoviesDomain
 
-protocol GenreRemoteDataSourceProtocol {
+public protocol GenreRemoteDataSourceProtocol {
     
-    func getAllGenres(completion: (Result<Genre, Error>) -> Void)
+    func getAllGenres(completion: @escaping (Result<[Genre], Error>) -> Void)
     
 }

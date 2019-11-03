@@ -10,4 +10,6 @@ import Foundation
 
 public protocol RemoteDataSourceProtocol {
     
+    func genreDataSource() -> GenreRemoteDataSourceProtocol
+    
 }

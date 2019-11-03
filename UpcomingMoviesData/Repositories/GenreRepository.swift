@@ -12,10 +12,12 @@ import UpcomingMoviesDomain
 public final class GenreRepository: GenreUseCaseProtocol {
     
     private var localDataSource: GenreLocalDataSourceProtocol
-    private var remoteDataSource: GenreRemoteDataSourceProtocol?
+    private var remoteDataSource: GenreRemoteDataSourceProtocol
     
-    init(localDataSource: GenreLocalDataSourceProtocol) {
+    init(localDataSource: GenreLocalDataSourceProtocol,
+         remoteDataSource: GenreRemoteDataSourceProtocol) {
         self.localDataSource = localDataSource
+        self.remoteDataSource = remoteDataSource
     }
     
     public var didUpdateGenre: (() -> Void)? {
@@ -36,8 +38,8 @@ public final class GenreRepository: GenreUseCaseProtocol {
         localDataSource.saveGenres(genres)
     }
     
-    public func fetchAll(completion: Result<Genre, Error>) {
-        
+    public func fetchAll(completion: @escaping (Result<[Genre], Error>) -> Void) {
+        remoteDataSource.getAllGenres(completion: completion)
     }
     
 }

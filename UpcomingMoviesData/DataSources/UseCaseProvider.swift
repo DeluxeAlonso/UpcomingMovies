@@ -12,14 +12,19 @@ import UpcomingMoviesDomain
 final public class UseCaseProvider: UseCaseProviderProtocol {
     
     private let localDataSource: LocalDataSourceProtocol
+    private let remoteDataSource: RemoteDataSourceProtocol
     
-    public init(localDataSource: LocalDataSourceProtocol) {
+    public init(localDataSource: LocalDataSourceProtocol,
+                remoteDataSource: RemoteDataSourceProtocol) {
         self.localDataSource = localDataSource
+        self.remoteDataSource = remoteDataSource
     }
     
     public func genreUseCase() -> GenreUseCaseProtocol {
         let localDataSource = self.localDataSource.genreDataSource()
-        return GenreRepository(localDataSource: localDataSource)
+        let remoteDataSource = self.remoteDataSource.genreDataSource()
+        return GenreRepository(localDataSource: localDataSource,
+                               remoteDataSource: remoteDataSource)
     }
     
     public func movieVisitUseCase() -> MovieVisitUseCaseProtocol {
