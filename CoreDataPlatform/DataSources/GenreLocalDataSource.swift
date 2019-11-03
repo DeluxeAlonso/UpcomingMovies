@@ -1,15 +1,16 @@
 //
-//  GenreUseCase.swift
-//  UpcomingMovies
+//  GenreLocalDataSource.swift
+//  CoreDataPlatform
 //
-//  Created by Alonso on 10/27/19.
+//  Created by Alonso on 11/2/19.
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
 import Foundation
 import Domain
+import UpcomingMoviesData
 
-final class GenreUseCase: GenreUseCaseProtocol {
+final class GenreLocalDataSource: GenreLocalDataSourceProtocol {
     
     private let store: PersistenceStore<CDGenre>
     
@@ -37,7 +38,7 @@ final class GenreUseCase: GenreUseCaseProtocol {
 
 // MARK: - PersistenceStoreDelegate
 
-extension GenreUseCase: PersistenceStoreDelegate {
+extension GenreLocalDataSource: PersistenceStoreDelegate {
     
     func persistenceStore(willUpdateEntity shouldPrepare: Bool) {}
     

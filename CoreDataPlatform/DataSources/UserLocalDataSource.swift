@@ -1,15 +1,16 @@
 //
-//  UserUseCase.swift
-//  UpcomingMovies
+//  UserLocalDataSource.swift
+//  CoreDataPlatform
 //
-//  Created by Alonso on 10/27/19.
+//  Created by Alonso on 11/2/19.
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
 import Foundation
 import Domain
+import UpcomingMoviesData
 
-final class UserUseCase: UserUseCaseProtocol {
+final class UserLocalDataSource: UserLocalDataSourceProtocol {
     
     private let store: PersistenceStore<CDUser>
     
@@ -34,7 +35,7 @@ final class UserUseCase: UserUseCaseProtocol {
 
 // MARK: - PersistenceStoreDelegate
 
-extension UserUseCase: PersistenceStoreDelegate {
+extension UserLocalDataSource: PersistenceStoreDelegate {
     
     func persistenceStore(willUpdateEntity shouldPrepare: Bool) {}
     

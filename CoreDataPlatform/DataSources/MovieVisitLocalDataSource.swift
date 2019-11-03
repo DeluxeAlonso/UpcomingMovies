@@ -1,15 +1,16 @@
 //
-//  MovieVisitUseCase.swift
-//  UpcomingMovies
+//  MovieVisitLocalDataSource.swift
+//  CoreDataPlatform
 //
-//  Created by Alonso on 10/26/19.
+//  Created by Alonso on 11/2/19.
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
 import Foundation
 import Domain
+import UpcomingMoviesData
 
-final class MovieVisitUseCase: MovieVisitUseCaseProtocol {
+final class MovieVisitLocalDataSource: MovieVisitLocalDataSourceProtocol {
     
     private let store: PersistenceStore<CDMovieVisit>
     
@@ -39,7 +40,7 @@ final class MovieVisitUseCase: MovieVisitUseCaseProtocol {
 
 // MARK: - PersistenceStoreDelegate
 
-extension MovieVisitUseCase: PersistenceStoreDelegate {
+extension MovieVisitLocalDataSource: PersistenceStoreDelegate {
     
     func persistenceStore(willUpdateEntity shouldPrepare: Bool) {}
     

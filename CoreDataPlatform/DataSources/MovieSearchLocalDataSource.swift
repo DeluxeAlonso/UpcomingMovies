@@ -1,15 +1,16 @@
 //
-//  MovieSearchUseCase.swift
-//  UpcomingMovies
+//  MovieSearchLocalDataSource.swift
+//  CoreDataPlatform
 //
-//  Created by Alonso on 10/27/19.
+//  Created by Alonso on 11/2/19.
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
 import Foundation
 import Domain
+import UpcomingMoviesData
 
-final class MovieSearchUseCase: MovieSearchUseCaseProtocol {
+final class MovieSearchLocalDataSource: MovieSearchLocalDataSourceProtocol {
     
     private let store: PersistenceStore<CDMovieSearch>
     
@@ -34,7 +35,7 @@ final class MovieSearchUseCase: MovieSearchUseCaseProtocol {
 
 // MARK: - PersistenceStoreDelegate
 
-extension MovieSearchUseCase: PersistenceStoreDelegate {
+extension MovieSearchLocalDataSource: PersistenceStoreDelegate {
     
     func persistenceStore(willUpdateEntity shouldPrepare: Bool) {}
     
