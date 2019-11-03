@@ -28,7 +28,7 @@
 		E21E8E2F236E3707006E2DEF /* LocalDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E8E2E236E3707006E2DEF /* LocalDataSourceProtocol.swift */; };
 		E21E8E31236E3773006E2DEF /* MovieVisitLocalDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E8E30236E3773006E2DEF /* MovieVisitLocalDataSourceProtocol.swift */; };
 		E21E8E33236E377E006E2DEF /* MovieSearchLocalDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E8E32236E377E006E2DEF /* MovieSearchLocalDataSourceProtocol.swift */; };
-		E21E8E35236E3788006E2DEF /* UserDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E8E34236E3788006E2DEF /* UserDataSourceProtocol.swift */; };
+		E21E8E35236E3788006E2DEF /* UserLocalDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E8E34236E3788006E2DEF /* UserLocalDataSourceProtocol.swift */; };
 		E21E8E37236E393F006E2DEF /* MovieVisitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E8E36236E393F006E2DEF /* MovieVisitRepository.swift */; };
 		E21E8E39236E39CA006E2DEF /* MovieVisitRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E8E38236E39CA006E2DEF /* MovieVisitRemoteDataSourceProtocol.swift */; };
 		E21E8E3B236E39DD006E2DEF /* MovieSearchRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E8E3A236E39DD006E2DEF /* MovieSearchRemoteDataSourceProtocol.swift */; };
@@ -443,7 +443,7 @@
 		E21E8E2E236E3707006E2DEF /* LocalDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSourceProtocol.swift; sourceTree = "<group>"; };
 		E21E8E30236E3773006E2DEF /* MovieVisitLocalDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVisitLocalDataSourceProtocol.swift; sourceTree = "<group>"; };
 		E21E8E32236E377E006E2DEF /* MovieSearchLocalDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchLocalDataSourceProtocol.swift; sourceTree = "<group>"; };
-		E21E8E34236E3788006E2DEF /* UserDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSourceProtocol.swift; sourceTree = "<group>"; };
+		E21E8E34236E3788006E2DEF /* UserLocalDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocalDataSourceProtocol.swift; sourceTree = "<group>"; };
 		E21E8E36236E393F006E2DEF /* MovieVisitRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVisitRepository.swift; sourceTree = "<group>"; };
 		E21E8E38236E39CA006E2DEF /* MovieVisitRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVisitRemoteDataSourceProtocol.swift; sourceTree = "<group>"; };
 		E21E8E3A236E39DD006E2DEF /* MovieSearchRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchRemoteDataSourceProtocol.swift; sourceTree = "<group>"; };
@@ -816,6 +816,42 @@
 				E20635A3226E127200FDD85E /* SearchMoviesResultView.swift */,
 			);
 			path = SearchResult;
+			sourceTree = "<group>";
+		};
+		E202091B236F20F300EBDC5E /* Genre */ = {
+			isa = PBXGroup;
+			children = (
+				E2727DD4236DEF66004BDC5B /* GenreRemoteDataSourceProtocol.swift */,
+				E2727DD0236DEF31004BDC5B /* GenreLocalDataSourceProtocol.swift */,
+			);
+			path = Genre;
+			sourceTree = "<group>";
+		};
+		E202091E236F212300EBDC5E /* User */ = {
+			isa = PBXGroup;
+			children = (
+				E21E8E3C236E3A0E006E2DEF /* UserRemoteDataSourceProtocol.swift */,
+				E21E8E34236E3788006E2DEF /* UserLocalDataSourceProtocol.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		E202091F236F212A00EBDC5E /* MovieVisit */ = {
+			isa = PBXGroup;
+			children = (
+				E21E8E38236E39CA006E2DEF /* MovieVisitRemoteDataSourceProtocol.swift */,
+				E21E8E30236E3773006E2DEF /* MovieVisitLocalDataSourceProtocol.swift */,
+			);
+			path = MovieVisit;
+			sourceTree = "<group>";
+		};
+		E2020920236F213000EBDC5E /* MovieSearch */ = {
+			isa = PBXGroup;
+			children = (
+				E21E8E32236E377E006E2DEF /* MovieSearchLocalDataSourceProtocol.swift */,
+				E21E8E3A236E39DD006E2DEF /* MovieSearchRemoteDataSourceProtocol.swift */,
+			);
+			path = MovieSearch;
 			sourceTree = "<group>";
 		};
 		E2143DB422571A43003E939F /* Extensions */ = {
@@ -1629,34 +1665,14 @@
 			isa = PBXGroup;
 			children = (
 				E21E8E2C236E3698006E2DEF /* UseCaseProvider.swift */,
-				E2727DD3236DEF3C004BDC5B /* Remote */,
-				E2727DD2236DEF38004BDC5B /* Local */,
+				E21E8E2E236E3707006E2DEF /* LocalDataSourceProtocol.swift */,
+				E21E8E3E236E3A24006E2DEF /* RemoteDataSourceProtocol.swift */,
+				E2020920236F213000EBDC5E /* MovieSearch */,
+				E202091F236F212A00EBDC5E /* MovieVisit */,
+				E202091E236F212300EBDC5E /* User */,
+				E202091B236F20F300EBDC5E /* Genre */,
 			);
 			path = DataSources;
-			sourceTree = "<group>";
-		};
-		E2727DD2236DEF38004BDC5B /* Local */ = {
-			isa = PBXGroup;
-			children = (
-				E21E8E2E236E3707006E2DEF /* LocalDataSourceProtocol.swift */,
-				E2727DD0236DEF31004BDC5B /* GenreLocalDataSourceProtocol.swift */,
-				E21E8E30236E3773006E2DEF /* MovieVisitLocalDataSourceProtocol.swift */,
-				E21E8E32236E377E006E2DEF /* MovieSearchLocalDataSourceProtocol.swift */,
-				E21E8E34236E3788006E2DEF /* UserDataSourceProtocol.swift */,
-			);
-			path = Local;
-			sourceTree = "<group>";
-		};
-		E2727DD3236DEF3C004BDC5B /* Remote */ = {
-			isa = PBXGroup;
-			children = (
-				E2727DD4236DEF66004BDC5B /* GenreRemoteDataSourceProtocol.swift */,
-				E21E8E38236E39CA006E2DEF /* MovieVisitRemoteDataSourceProtocol.swift */,
-				E21E8E3A236E39DD006E2DEF /* MovieSearchRemoteDataSourceProtocol.swift */,
-				E21E8E3C236E3A0E006E2DEF /* UserRemoteDataSourceProtocol.swift */,
-				E21E8E3E236E3A24006E2DEF /* RemoteDataSourceProtocol.swift */,
-			);
-			path = Remote;
 			sourceTree = "<group>";
 		};
 		E283F40F23667E950077D13F /* Extensions */ = {
@@ -2506,7 +2522,7 @@
 				E21E8E3F236E3A24006E2DEF /* RemoteDataSourceProtocol.swift in Sources */,
 				E21E8E41236E3B83006E2DEF /* MovieSearchRepository.swift in Sources */,
 				E21E8E2D236E3698006E2DEF /* UseCaseProvider.swift in Sources */,
-				E21E8E35236E3788006E2DEF /* UserDataSourceProtocol.swift in Sources */,
+				E21E8E35236E3788006E2DEF /* UserLocalDataSourceProtocol.swift in Sources */,
 				E21E8E3D236E3A0E006E2DEF /* UserRemoteDataSourceProtocol.swift in Sources */,
 				E21E8E43236E3D5A006E2DEF /* UserRepository.swift in Sources */,
 				E2727DD5236DEF66004BDC5B /* GenreRemoteDataSourceProtocol.swift in Sources */,
