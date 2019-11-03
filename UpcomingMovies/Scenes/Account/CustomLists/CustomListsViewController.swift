@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Domain
+import UpcomingMoviesDomain
 
 class CustomListsViewController: UIViewController, PlaceholderDisplayable, SegueHandler, Loadable {
     

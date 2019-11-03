@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Domain
+import UpcomingMoviesDomain
 
 public struct ListResult: Decodable, Paginable {
     

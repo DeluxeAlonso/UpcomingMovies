@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Domain
+import UpcomingMoviesDomain
 
 enum MovieListFilter {
     case upcoming, popular, topRated

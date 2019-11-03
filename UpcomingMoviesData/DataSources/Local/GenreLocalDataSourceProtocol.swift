@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Domain
+import UpcomingMoviesDomain
 
 public protocol GenreLocalDataSourceProtocol {
     

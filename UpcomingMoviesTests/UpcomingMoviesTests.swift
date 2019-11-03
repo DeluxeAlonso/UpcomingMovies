@@ -8,7 +8,7 @@
 
 import XCTest
 @testable import UpcomingMovies
-@testable import Domain
+@testable import UpcomingMoviesDomain
 
 class UpcomingMoviesTests: XCTestCase {
     

@@ -8,9 +8,9 @@
 
 import XCTest
 @testable import UpcomingMovies
-@testable import Domain
+@testable import UpcomingMoviesDomain
 @testable import UpcomingMoviesData
-@testable import CoreDataPlatform
+@testable import CoreDataInfraestructure
 
 class MovieDetailTests: XCTestCase {
     

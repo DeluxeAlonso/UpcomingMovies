@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import Domain
-import CoreDataPlatform
+import UpcomingMoviesDomain
+import CoreDataInfraestructure
 import UpcomingMoviesData
 
 final class InjectionFactory {

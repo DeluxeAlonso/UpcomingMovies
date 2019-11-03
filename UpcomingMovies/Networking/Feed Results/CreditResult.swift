@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Domain
+import UpcomingMoviesDomain
 
 struct CreditResult: Decodable {
 

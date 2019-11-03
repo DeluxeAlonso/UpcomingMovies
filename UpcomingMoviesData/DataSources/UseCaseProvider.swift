@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Domain
+import UpcomingMoviesDomain
 
 final public class UseCaseProvider: UseCaseProviderProtocol {
     
