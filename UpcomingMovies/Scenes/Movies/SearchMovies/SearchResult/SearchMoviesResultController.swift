@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Domain
+import UpcomingMoviesDomain
 
 protocol SearchMoviesResultControllerDelegate: class {
     

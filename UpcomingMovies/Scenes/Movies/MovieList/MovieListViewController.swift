@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Domain
+import UpcomingMoviesDomain
 
 class MovieListViewController: UIViewController, PlaceholderDisplayable, SegueHandler, Loadable {
     

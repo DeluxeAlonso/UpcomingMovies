@@ -8,8 +8,9 @@
 
 import XCTest
 @testable import UpcomingMovies
-@testable import Domain
-@testable import CoreDataPlatform
+@testable import UpcomingMoviesDomain
+@testable import UpcomingMoviesData
+@testable import CoreDataInfraestructure
 
 class MovieDetailTests: XCTestCase {
     
@@ -19,7 +20,7 @@ class MovieDetailTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        useCaseProvider = UseCaseProvider()
+        useCaseProvider = UseCaseProvider(localDataSource: LocalDataSource())
         genreUseCase = useCaseProvider.genreUseCase()
         setupMovieGenres()
         let movieToTest = Movie(id: 1,

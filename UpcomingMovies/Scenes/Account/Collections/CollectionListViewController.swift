@@ -8,7 +8,7 @@
 
 import UIKit
 import CollectionViewSlantedLayout
-import Domain
+import UpcomingMoviesDomain
 
 class CollectionListViewController: UIViewController, PlaceholderDisplayable, SegueHandler, Loadable {
     

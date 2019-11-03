@@ -7,13 +7,19 @@
 //
 
 import Foundation
-import Domain
-import CoreDataPlatform
+import UpcomingMoviesDomain
+import CoreDataInfraestructure
+import UpcomingMoviesData
 
 final class InjectionFactory {
     
     class func useCaseProvider() -> UseCaseProviderProtocol {
-        return UseCaseProvider()
+        let localDataSource = makeLocalDataSource()
+        return UseCaseProvider(localDataSource: localDataSource)
+    }
+    
+    class func makeLocalDataSource() -> LocalDataSourceProtocol {
+        return LocalDataSource()
     }
     
 }
