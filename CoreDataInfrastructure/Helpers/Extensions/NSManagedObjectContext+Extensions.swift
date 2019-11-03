@@ -1,6 +1,6 @@
 //
 //  NSManagedObjectContext+Extensions.swift
-//  CoreDataInfraestructure
+//  CoreDataInfrastructure
 //
 //  Created by Alonso on 1/7/19.
 //  Copyright © 2019 Alonso. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  CDGenre.swift
-//  CoreDataInfraestructure
+//  CoreDataInfrastructure
 //
 //  Created by Alonso on 10/27/19.
 //  Copyright © 2019 Alonso. All rights reserved.

@@ -8,7 +8,7 @@
 
 import Foundation
 import UpcomingMoviesDomain
-import CoreDataInfraestructure
+import CoreDataInfrastructure
 import UpcomingMoviesData
 
 final class InjectionFactory {

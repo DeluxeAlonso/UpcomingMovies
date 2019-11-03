@@ -1,6 +1,6 @@
 //
 //  FavoriteStore.swift
-//  CoreDataInfraestructure
+//  CoreDataInfrastructure
 //
 //  Created by Alonso on 3/4/19.
 //  Copyright © 2019 Alonso. All rights reserved.

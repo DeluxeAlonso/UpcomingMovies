@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import CoreDataInfraestructure
+@testable import CoreDataInfrastructure
 
 class CoreDataInfraestructureTests: XCTestCase {
 
