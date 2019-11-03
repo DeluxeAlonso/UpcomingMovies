@@ -2933,7 +2933,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95KU8J3PN;
-				INFOPLIST_FILE = CoreDataPlatformTests/Info.plist;
+				INFOPLIST_FILE = CoreDataInfraestructureTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2954,7 +2954,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95KU8J3PN;
-				INFOPLIST_FILE = CoreDataPlatformTests/Info.plist;
+				INFOPLIST_FILE = CoreDataInfraestructureTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3039,7 +3039,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95KU8J3PN;
-				INFOPLIST_FILE = DomainTests/Info.plist;
+				INFOPLIST_FILE = UpcomingMoviesDomainTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3060,7 +3060,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95KU8J3PN;
-				INFOPLIST_FILE = DomainTests/Info.plist;
+				INFOPLIST_FILE = UpcomingMoviesDomainTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
