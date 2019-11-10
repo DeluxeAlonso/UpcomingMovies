@@ -65,7 +65,7 @@ class MovieVideosViewController: UIViewController, PlaceholderDisplayable, Loada
         case .empty:
             presentEmptyView(with: "There are no trailers to show right now.")
         case .error(let error):
-            presentErrorView(with: error.description,
+            presentErrorView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
                                         self?.viewModel?.getMovieVideos()
             })

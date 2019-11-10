@@ -57,6 +57,23 @@ enum APIError: Error, ErrorDescriptable {
     
 }
 
+extension APIError: LocalizedError {
+    
+    public var errorDescription: String? {
+        switch self {
+        case .notAuthenticated:
+            return ErrorMessages.Default.NotAuthorized
+        case .notFound:
+            return ErrorMessages.Default.NotFound
+        case .networkProblem, .unknown:
+            return ErrorMessages.Default.ServerError
+        case .requestFailed, .badRequest, .invalidData:
+            return ErrorMessages.Default.RequestFailed
+        }
+    }
+    
+}
+
 // MARK: - Constants
 
 extension APIError {

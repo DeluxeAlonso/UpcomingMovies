@@ -12,6 +12,7 @@ import UpcomingMoviesDomain
 final class MovieListViewModel: MoviesViewModel {
     
     var useCaseProvider: UseCaseProviderProtocol
+    var movieUseCase: MovieUseCaseProtocol
    
     var movieClient = MovieClient()
     
@@ -31,6 +32,7 @@ final class MovieListViewModel: MoviesViewModel {
     init(filter: MovieListFilter = .upcoming, useCaseProvider: UseCaseProviderProtocol) {
         self.filter = filter
         self.useCaseProvider = useCaseProvider
+        self.movieUseCase = useCaseProvider.movieUseCase()
     }
     
 }

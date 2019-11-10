@@ -12,7 +12,7 @@ import UpcomingMoviesData
 
 final class GenreRemoteDataSource: GenreRemoteDataSourceProtocol {
     
-    private var client: GenreClient
+    private let client: GenreClient
     
     init(client: GenreClient) {
         self.client = client

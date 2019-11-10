@@ -80,7 +80,7 @@ class CustomListsViewController: UIViewController, PlaceholderDisplayable, Segue
         case .empty:
             presentEmptyView(with: "No created lists to show")
         case .error(let error):
-            presentErrorView(with: error.description,
+            presentErrorView(with: error.localizedDescription,
                              errorHandler: { [weak self] in
                                 self?.viewModel?.refreshCustomLists()
             })

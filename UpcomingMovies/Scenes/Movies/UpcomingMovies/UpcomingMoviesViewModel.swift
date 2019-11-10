@@ -14,6 +14,7 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     // MARK: - Properties
     
     var useCaseProvider: UseCaseProviderProtocol
+    var movieUseCase: MovieUseCaseProtocol
     
     var movieClient = MovieClient()
     
@@ -37,6 +38,7 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     
     init(useCaseProvider: UseCaseProviderProtocol) {
         self.useCaseProvider = useCaseProvider
+        self.movieUseCase = self.useCaseProvider.movieUseCase()
     }
     
     // MARK: - Public

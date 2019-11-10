@@ -1,14 +1,15 @@
 //
-//  MovieUseCaseProtocol.swift
-//  UpcomingMoviesDomain
+//  MovieRemoteDataSourceProtocol.swift
+//  UpcomingMoviesData
 //
-//  Created by Alonso on 11/3/19.
+//  Created by Alonso on 11/10/19.
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
 import Foundation
+import UpcomingMoviesDomain
 
-public protocol MovieUseCaseProtocol {
+public protocol MovieRemoteDataSourceProtocol {
     
     func fetchMovies(page: Int,
                      movieListFilter: MovieListFilter,
