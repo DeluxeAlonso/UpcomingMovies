@@ -82,8 +82,6 @@
 		E21F37A121941D2900D6BFB6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37A021941D2900D6BFB6 /* SplashViewController.swift */; };
 		E21F37A321941D3900D6BFB6 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37A221941D3900D6BFB6 /* SplashViewModel.swift */; };
 		E21F37A721941E3500D6BFB6 /* GenreResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37A621941E3500D6BFB6 /* GenreResult.swift */; };
-		E21F37AA21941EC000D6BFB6 /* GenreProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37A921941EC000D6BFB6 /* GenreProvider.swift */; };
-		E21F37AC21941ECA00D6BFB6 /* GenreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37AB21941ECA00D6BFB6 /* GenreClient.swift */; };
 		E21F37B12194241B00D6BFB6 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37B02194241B00D6BFB6 /* UIViewController+Extensions.swift */; };
 		E21F93BB2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F93BA2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift */; };
 		E21F93BF2269ADCA009666B1 /* ListResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F93BE2269ADCA009666B1 /* ListResult.swift */; };
@@ -591,8 +589,6 @@
 		E21F37A221941D3900D6BFB6 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		E21F37A421941D9C00D6BFB6 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		E21F37A621941E3500D6BFB6 /* GenreResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreResult.swift; sourceTree = "<group>"; };
-		E21F37A921941EC000D6BFB6 /* GenreProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreProvider.swift; sourceTree = "<group>"; };
-		E21F37AB21941ECA00D6BFB6 /* GenreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreClient.swift; sourceTree = "<group>"; };
 		E21F37B02194241B00D6BFB6 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		E21F93BA2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSignOutTableViewCell.swift; sourceTree = "<group>"; };
 		E21F93BC2269AD24009666B1 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
@@ -1217,15 +1213,6 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
-		E21F37A821941EB100D6BFB6 /* Genre */ = {
-			isa = PBXGroup;
-			children = (
-				E21F37A921941EC000D6BFB6 /* GenreProvider.swift */,
-				E21F37AB21941ECA00D6BFB6 /* GenreClient.swift */,
-			);
-			path = Genre;
-			sourceTree = "<group>";
-		};
 		E21F93B92269A2A3009666B1 /* Sign Out */ = {
 			isa = PBXGroup;
 			children = (
@@ -1416,7 +1403,6 @@
 			children = (
 				E2B11CA62251B01100092A6E /* Account */,
 				E22588AA224333A700E1327E /* Auth */,
-				E21F37A821941EB100D6BFB6 /* Genre */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1649,8 +1635,8 @@
 		E22588AA224333A700E1327E /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				E22588AB224333C300E1327E /* AuthProvider.swift */,
 				E22588AD224333D100E1327E /* AuthClient.swift */,
+				E22588AB224333C300E1327E /* AuthProvider.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -2862,7 +2848,6 @@
 				E2B47518227EAFCE0004F621 /* SpinerLayer.swift in Sources */,
 				E21F379A2193FEB000D6BFB6 /* LoadingFooterView.swift in Sources */,
 				E241FE0722434B9B00144FD3 /* AuthPermissionViewController.swift in Sources */,
-				E21F37AC21941ECA00D6BFB6 /* GenreClient.swift in Sources */,
 				E21F37B12194241B00D6BFB6 /* UIViewController+Extensions.swift in Sources */,
 				E22588A02243120000E1327E /* AccountViewController.swift in Sources */,
 				E2E9601822598A9E006A41D3 /* MovieAccountStateResult.swift in Sources */,
@@ -2871,7 +2856,6 @@
 				E26DB21B236C7DBF0054CC95 /* InjectionFactory.swift in Sources */,
 				E26DB219236C73250054CC95 /* Storyboarded.swift in Sources */,
 				E22546A8226AE42600E9042C /* CustomListDetailHeaderViewModel.swift in Sources */,
-				E21F37AA21941EC000D6BFB6 /* GenreProvider.swift in Sources */,
 				E222B95F21FA2759008BA816 /* CollectionViewCellAnimator.swift in Sources */,
 				E25FA2F22265A79200FB5E71 /* Descriptable.swift in Sources */,
 				E263807F22127ACC0038AD00 /* ReviewResult.swift in Sources */,

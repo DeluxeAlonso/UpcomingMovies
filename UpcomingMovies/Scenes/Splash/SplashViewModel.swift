@@ -12,7 +12,6 @@ import UpcomingMoviesDomain
 final class SplashViewModel {
     
     private let genreUseCase: GenreUseCaseProtocol
-    private let genreClient = GenreClient()
     
     var genresFetched: (() -> Void)?
     
