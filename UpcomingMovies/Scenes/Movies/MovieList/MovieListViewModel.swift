@@ -13,8 +13,6 @@ final class MovieListViewModel: MoviesViewModel {
     
     var useCaseProvider: UseCaseProviderProtocol
     var movieUseCase: MovieUseCaseProtocol
-   
-    var movieClient = MovieClient()
     
     var filter: MovieListFilter
     

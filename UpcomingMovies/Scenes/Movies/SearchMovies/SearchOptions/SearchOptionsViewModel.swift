@@ -46,15 +46,15 @@ final class SearchOptionsViewModel {
         self.genreUseCase = self.useCaseProvider.genreUseCase()
         
         movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
-        movieVisitUseCase.didUpdateMovieVisit = {
-            //guard let strongSelf = self else { return }
+        movieVisitUseCase.didUpdateMovieVisit = { [weak self] in
+            guard let strongSelf = self else { return }
             // If the state changed we reload the entire table view
-            let viewStateChanged = self.configureViewState()
+            let viewStateChanged = strongSelf.configureViewState()
             if viewStateChanged {
-                self.needsContentReload?()
+                strongSelf.needsContentReload?()
             } else {
-                let index = self.sectionIndex(for: .recentlyVisited)
-                self.updateVisitedMovies.value = index
+                let index = strongSelf.sectionIndex(for: .recentlyVisited)
+                strongSelf.updateVisitedMovies.value = index
             }
         }
         

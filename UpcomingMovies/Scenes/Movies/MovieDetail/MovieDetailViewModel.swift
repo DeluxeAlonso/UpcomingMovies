@@ -12,8 +12,9 @@ import UpcomingMoviesDomain
 final class MovieDetailViewModel {
     
     private let useCaseProvider: UseCaseProviderProtocol
+    private let movieUseCase: MovieUseCaseProtocol
     private let movieVisitUseCase: MovieVisitUseCaseProtocol
-    private var genreUseCase: GenreUseCaseProtocol
+    private let genreUseCase: GenreUseCaseProtocol
     
     private var accountClient = AccountClient()
     private var movieClient = MovieClient()
@@ -42,8 +43,9 @@ final class MovieDetailViewModel {
 
     init(_ movie: Movie, useCaseProvider: UseCaseProviderProtocol) {
         self.useCaseProvider = useCaseProvider
-        movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
-        genreUseCase = self.useCaseProvider.genreUseCase()
+        self.movieUseCase = self.useCaseProvider.movieUseCase()
+        self.movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
+        self.genreUseCase = self.useCaseProvider.genreUseCase()
         setupMovie(movie)
         checkIfUserIsAuthenticated()
     }
@@ -53,8 +55,9 @@ final class MovieDetailViewModel {
         self.title = title
         self.needsFetch = true
         self.useCaseProvider = useCaseProvider
-        self.movieVisitUseCase = useCaseProvider.movieVisitUseCase()
-        self.genreUseCase = useCaseProvider.genreUseCase()
+        self.movieUseCase = self.useCaseProvider.movieUseCase()
+        self.movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
+        self.genreUseCase = self.useCaseProvider.genreUseCase()
     }
     
     // MARK: - Private
@@ -91,7 +94,7 @@ final class MovieDetailViewModel {
     private func fetchMovieDetail(showLoader: Bool = true) {
         guard needsFetch else { return }
         startLoading.value = showLoader
-        movieClient.getMovieDetail(with: id, completion: { result in
+        movieUseCase.fetchMovieDetail(with: id, completion: { result in
             switch result {
             case .success(let movie):
                 self.setupMovie(movie)

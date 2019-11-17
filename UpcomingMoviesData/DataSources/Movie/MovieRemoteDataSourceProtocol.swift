@@ -15,4 +15,7 @@ public protocol MovieRemoteDataSourceProtocol {
                      movieListFilter: MovieListFilter,
                      completion: @escaping (Result<[Movie], Error>) -> Void)
     
+    func fetchMovieDetail(with movieId: Int,
+                          completion: @escaping (Result<Movie, Error>) -> Void)
+    
 }

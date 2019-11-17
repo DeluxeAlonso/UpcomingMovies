@@ -259,6 +259,7 @@
 		E2727DD1236DEF31004BDC5B /* GenreLocalDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2727DD0236DEF31004BDC5B /* GenreLocalDataSourceProtocol.swift */; };
 		E2727DD5236DEF66004BDC5B /* GenreRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2727DD4236DEF66004BDC5B /* GenreRemoteDataSourceProtocol.swift */; };
 		E2727DDB236E1798004BDC5B /* GenreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2727DDA236E1798004BDC5B /* GenreRepository.swift */; };
+		E273CDC5238105480018464B /* MovieDetailResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CDC4238105480018464B /* MovieDetailResult.swift */; };
 		E284EF4D21F127FB004E705F /* VisitedMovieCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284EF4C21F127FB004E705F /* VisitedMovieCellViewModel.swift */; };
 		E284EF4F21F12A12004E705F /* VisitedMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284EF4E21F12A11004E705F /* VisitedMovieCollectionViewCell.swift */; };
 		E284EF5121F12AF5004E705F /* VisitedMovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E284EF5021F12AF5004E705F /* VisitedMovieCollectionViewCell.xib */; };
@@ -751,6 +752,7 @@
 		E2727DD0236DEF31004BDC5B /* GenreLocalDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreLocalDataSourceProtocol.swift; sourceTree = "<group>"; };
 		E2727DD4236DEF66004BDC5B /* GenreRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreRemoteDataSourceProtocol.swift; sourceTree = "<group>"; };
 		E2727DDA236E1798004BDC5B /* GenreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreRepository.swift; sourceTree = "<group>"; };
+		E273CDC4238105480018464B /* MovieDetailResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailResult.swift; sourceTree = "<group>"; };
 		E284EF4C21F127FB004E705F /* VisitedMovieCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitedMovieCellViewModel.swift; sourceTree = "<group>"; };
 		E284EF4E21F12A11004E705F /* VisitedMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitedMovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		E284EF5021F12AF5004E705F /* VisitedMovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisitedMovieCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1041,6 +1043,7 @@
 				E2963EE223785EAB00C36E16 /* SessionResult.swift */,
 				E2963EE823785EAC00C36E16 /* VideoResult.swift */,
 				E202096F236F283800EBDC5E /* GenreResult.swift */,
+				E273CDC4238105480018464B /* MovieDetailResult.swift */,
 			);
 			path = FeedResults;
 			sourceTree = "<group>";
@@ -1682,9 +1685,9 @@
 		E229A561236BF44E006FF112 /* UpcomingMoviesDomain */ = {
 			isa = PBXGroup;
 			children = (
-				E222DC2C2192CBBD00A2EDF4 /* URLConfiguration.swift */,
 				E22116B5219157DC0039F8C9 /* Entities */,
 				E29779BC2365450E0053A45D /* UseCases */,
+				E273CDC32380FDA00018464B /* Helpers */,
 				E229A562236BF44E006FF112 /* UpcomingMoviesDomain.h */,
 				E229A563236BF44E006FF112 /* Info.plist */,
 			);
@@ -1945,6 +1948,14 @@
 				E202091B236F20F300EBDC5E /* Genre */,
 			);
 			path = DataSources;
+			sourceTree = "<group>";
+		};
+		E273CDC32380FDA00018464B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E222DC2C2192CBBD00A2EDF4 /* URLConfiguration.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		E283F40F23667E950077D13F /* Extensions */ = {
@@ -2645,6 +2656,7 @@
 				E2020978236F3E0D00EBDC5E /* APIClient.swift in Sources */,
 				E2963EDE23785E3300C36E16 /* MovieProvider.swift in Sources */,
 				E2963EF7237864FF00C36E16 /* MovieRemoteDataSource.swift in Sources */,
+				E273CDC5238105480018464B /* MovieDetailResult.swift in Sources */,
 				E2963EEE23785EAD00C36E16 /* MovieResult.swift in Sources */,
 				E2020970236F283800EBDC5E /* GenreResult.swift in Sources */,
 				E2020985236F3F1D00EBDC5E /* URLRequest+Extensions.swift in Sources */,

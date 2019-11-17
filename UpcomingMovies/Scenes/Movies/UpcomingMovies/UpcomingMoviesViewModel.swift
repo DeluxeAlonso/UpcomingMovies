@@ -16,8 +16,6 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     var useCaseProvider: UseCaseProviderProtocol
     var movieUseCase: MovieUseCaseProtocol
     
-    var movieClient = MovieClient()
-    
     var filter: MovieListFilter = .upcoming
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
     var selectedMovieCell: UpcomingMovieCellViewModel?

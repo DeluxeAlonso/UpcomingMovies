@@ -16,7 +16,6 @@ protocol MoviesViewModel {
     var useCaseProvider: UseCaseProviderProtocol { get set }
     var movieUseCase: MovieUseCaseProtocol { get set }
     
-    var movieClient: MovieClient { get }
     var viewState: Bindable<SimpleViewState<Movie>> { get set }
     var filter: MovieListFilter { get set }
     

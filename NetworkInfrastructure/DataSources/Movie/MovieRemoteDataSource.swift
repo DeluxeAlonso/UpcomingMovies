@@ -30,4 +30,17 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         })
     }
     
+    func fetchMovieDetail(with movieId: Int,
+                          completion: @escaping (Result<Movie, Error>) -> Void) {
+        client.getMovieDetail(with: movieId, completion: { result in
+            switch result {
+            case .success(let movieDetailResult):
+                let movie = movieDetailResult.asMovie()
+                completion(.success(movie))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
+    }
+    
 }
