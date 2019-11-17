@@ -12,5 +12,6 @@ public protocol RemoteDataSourceProtocol {
     
     func movieDataSource() -> MovieRemoteDataSourceProtocol
     func genreDataSource() -> GenreRemoteDataSourceProtocol
+    func accountDataSource() -> AccountRemoteDataSourceProtocol
     
 }

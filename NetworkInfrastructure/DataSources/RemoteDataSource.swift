@@ -23,4 +23,9 @@ final public class RemoteDataSource: RemoteDataSourceProtocol {
         return GenreRemoteDataSource(client: client)
     }
     
+    public func accountDataSource() -> AccountRemoteDataSourceProtocol {
+        let client = AccountClient()
+        return AccountRemoteDataSource(client: client)
+    }
+    
 }

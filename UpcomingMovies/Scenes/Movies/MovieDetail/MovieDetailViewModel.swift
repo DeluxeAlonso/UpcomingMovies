@@ -15,6 +15,7 @@ final class MovieDetailViewModel {
     private let movieUseCase: MovieUseCaseProtocol
     private let movieVisitUseCase: MovieVisitUseCaseProtocol
     private let genreUseCase: GenreUseCaseProtocol
+    private let accountUseCase: AccountUseCaseProtocol
     
     private var accountClient = AccountClient()
     private var movieClient = MovieClient()
@@ -46,6 +47,8 @@ final class MovieDetailViewModel {
         self.movieUseCase = self.useCaseProvider.movieUseCase()
         self.movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
         self.genreUseCase = self.useCaseProvider.genreUseCase()
+        self.accountUseCase = self.useCaseProvider.accountUseCase()
+        
         setupMovie(movie)
         checkIfUserIsAuthenticated()
     }
@@ -54,10 +57,12 @@ final class MovieDetailViewModel {
         self.id = id
         self.title = title
         self.needsFetch = true
+        
         self.useCaseProvider = useCaseProvider
         self.movieUseCase = self.useCaseProvider.movieUseCase()
         self.movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
         self.genreUseCase = self.useCaseProvider.genreUseCase()
+        self.accountUseCase = self.useCaseProvider.accountUseCase()
     }
     
     // MARK: - Private
@@ -144,9 +149,7 @@ final class MovieDetailViewModel {
             let isFavorite = isFavorite.value else {
                 return
         }
-        accountClient.markAsFavorite(id, sessionId: credentials.sessionId,
-                                     accountId: credentials.accountId,
-                                     favorite: !isFavorite, completion: { result  in
+        accountUseCase.markMovieAsFavorite(movieId: id, favorite: !isFavorite, account: credentials, completion: { result in
             switch result {
             case .success:
                 self.isFavorite.value = !isFavorite

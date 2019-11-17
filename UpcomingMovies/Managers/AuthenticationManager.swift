@@ -74,13 +74,13 @@ class AuthenticationManager {
     
     // MARK: - Credentials
     
-    var userCredentials: (sessionId: String, accountId: Int)? {
+    var userCredentials: Account? {
         guard let sessionId = sessionId,
             let currentUserId = currentUserId,
             let accountId = Int(currentUserId) else {
                 return nil
         }
-        return (sessionId: sessionId, accountId: accountId)
+        return Account(accountId: accountId, sessionId: sessionId)
     }
     
     // MARK: - Authentitacion Persistence
