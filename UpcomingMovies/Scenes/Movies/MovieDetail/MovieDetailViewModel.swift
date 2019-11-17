@@ -64,7 +64,7 @@ final class MovieDetailViewModel {
         title = movie.title
         
         if let genreId = movie.genreIds?.first {
-            genre = genreUseCase.find(with: genreId)?.name
+            genre = genreUseCase.find(with: genreId)?.name ?? "-"
         }
         
         releaseDate = movie.releaseDate
