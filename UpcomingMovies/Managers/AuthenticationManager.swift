@@ -74,7 +74,7 @@ class AuthenticationManager {
     
     // MARK: - Credentials
     
-    var userCredentials: Account? {
+    var userAccount: Account? {
         guard let sessionId = sessionId,
             let currentUserId = currentUserId,
             let accountId = Int(currentUserId) else {
@@ -86,8 +86,8 @@ class AuthenticationManager {
     // MARK: - Authentitacion Persistence
     
     func currentUser() -> User? {
-        guard let credentials = userCredentials else { return nil }
-        return userUseCase.find(with: credentials.accountId)
+        guard let account = userAccount else { return nil }
+        return userUseCase.find(with: account.accountId)
     }
     
     func isUserSignedIn() -> Bool {

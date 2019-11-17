@@ -10,12 +10,12 @@ import Foundation
 
 public protocol MovieUseCaseProtocol {
     
-    func fetchMovies(page: Int,
-                     movieListFilter: MovieListFilter,
-                     completion: @escaping (Result<[Movie], Error>) -> Void)
+    func getMovies(page: Int,
+                   movieListFilter: MovieListFilter,
+                   completion: @escaping (Result<[Movie], Error>) -> Void)
     
-    func fetchMovieDetail(for movieId: Int,
-                          completion: @escaping (Result<Movie, Error>) -> Void)
+    func getMovieDetail(for movieId: Int,
+                        completion: @escaping (Result<Movie, Error>) -> Void)
     
     func searchMovies(searchText: String, page: Int?,
                       completion: @escaping (Result<[Movie], Error>) -> Void)

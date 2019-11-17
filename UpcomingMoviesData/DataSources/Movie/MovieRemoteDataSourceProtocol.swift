@@ -11,12 +11,12 @@ import UpcomingMoviesDomain
 
 public protocol MovieRemoteDataSourceProtocol {
     
-    func fetchMovies(page: Int,
-                     movieListFilter: MovieListFilter,
-                     completion: @escaping (Result<[Movie], Error>) -> Void)
+    func getMovies(page: Int,
+                   movieListFilter: MovieListFilter,
+                   completion: @escaping (Result<[Movie], Error>) -> Void)
     
-    func fetchMovieDetail(with movieId: Int,
-                          completion: @escaping (Result<Movie, Error>) -> Void)
+    func getMovieDetail(with movieId: Int,
+                        completion: @escaping (Result<Movie, Error>) -> Void)
     
     func searchMovies(searchText: String, page: Int?,
                       completion: @escaping (Result<[Movie], Error>) -> Void)

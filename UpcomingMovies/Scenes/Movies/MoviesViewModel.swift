@@ -52,7 +52,8 @@ extension MoviesViewModel {
     
     private func fetchMovies(currentPage: Int, filter: MovieListFilter, showLoader: Bool = false) {
         startLoading.value = showLoader
-        movieUseCase.fetchMovies(page: currentPage, movieListFilter: filter, completion: { result in
+        movieUseCase.getMovies(page: currentPage, movieListFilter: filter, completion: { result in
+            self.startLoading.value = false
             switch result {
             case .success(let movies):
                 self.processMovieResult(movies, currentPage: currentPage)

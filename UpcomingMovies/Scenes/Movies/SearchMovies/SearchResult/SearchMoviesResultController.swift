@@ -102,7 +102,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         case .searching:
             tableView.tableFooterView = searchMoviesResultView.loadingFooterView
         case .error(let error):
-            tableView.tableFooterView = CustomFooterView(message: error.description)
+            tableView.tableFooterView = CustomFooterView(message: error.localizedDescription)
         }
     }
     

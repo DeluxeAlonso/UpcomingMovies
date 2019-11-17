@@ -17,14 +17,14 @@ public final class MovieRepository: MovieUseCaseProtocol {
         self.remoteDataSource = remoteDataSource
     }
     
-    public func fetchMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        remoteDataSource.fetchMovies(page: page,
-                                     movieListFilter: movieListFilter,
-                                     completion: completion)
+    public func getMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.getMovies(page: page,
+                                   movieListFilter: movieListFilter,
+                                   completion: completion)
     }
     
-    public func fetchMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void) {
-        remoteDataSource.fetchMovieDetail(with: movieId, completion: completion)
+    public func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void) {
+        remoteDataSource.getMovieDetail(with: movieId, completion: completion)
     }
     
     public func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {

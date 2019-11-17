@@ -14,7 +14,9 @@ final class MovieReviewsViewModel {
     let movieId: Int
     let movieTitle: String
     
-    var movieClient = MovieClient()
+    private let useCaseProvider: UseCaseProviderProtocol
+    private let movieUseCase: MovieUseCaseProtocol
+    
     let viewState: Bindable<SimpleViewState<Review>> = Bindable(.initial)
     
     var startLoading: Bindable<Bool> = Bindable(false)
@@ -30,9 +32,12 @@ final class MovieReviewsViewModel {
     
     // MARK: - Initializers
     
-    init(movieId: Int, movieTitle: String) {
+    init(movieId: Int, movieTitle: String, useCaseProvider: UseCaseProviderProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
+        
+        self.useCaseProvider = useCaseProvider
+        self.movieUseCase = self.useCaseProvider.movieUseCase()
     }
     
     func shouldPrefetch() -> Bool {
@@ -57,30 +62,28 @@ final class MovieReviewsViewModel {
     
     private func fetchMovieReviews(currentPage: Int, showLoader: Bool = false) {
         startLoading.value = showLoader
-        movieClient.getMovieReviews(page: currentPage, with: movieId) { result in
+        movieUseCase.getMovieReviews(for: movieId, page: currentPage, completion: { result in
             self.startLoading.value = false
             switch result {
-            case .success(let reviewResult):
-                guard let reviewResult = reviewResult else { return }
-                self.processReviewResult(reviewResult)
+            case .success(let reviews):
+                self.processReviewResult(reviews, currentPage: currentPage)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
-        }
+        })
     }
     
-    private func processReviewResult(_ reviewResult: ReviewResult) {
-        let fetchedReviews = reviewResult.results
-        var allReviews = reviewResult.currentPage == 1 ? [] : viewState.value.currentEntities
-        allReviews.append(contentsOf: fetchedReviews)
+    private func processReviewResult(_ reviews: [Review], currentPage: Int) {
+        var allReviews = currentPage == 1 ? [] : viewState.value.currentEntities
+        allReviews.append(contentsOf: reviews)
         guard !allReviews.isEmpty else {
             viewState.value = .empty
             return
         }
-        if reviewResult.hasMorePages {
-            viewState.value = .paging(allReviews, next: reviewResult.nextPage)
-        } else {
+        if reviews.isEmpty {
             viewState.value = .populated(allReviews)
+        } else {
+            viewState.value = .paging(allReviews, next: currentPage + 1)
         }
     }
     

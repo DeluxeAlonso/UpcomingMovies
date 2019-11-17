@@ -18,7 +18,7 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         self.client = client
     }
     
-    func fetchMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func getMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[Movie], Error>) -> Void) {
         client.getMovies(page: page, filter: movieListFilter, completion: { result in
             switch result {
             case .success(let movieResult):
@@ -30,8 +30,8 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         })
     }
     
-    func fetchMovieDetail(with movieId: Int,
-                          completion: @escaping (Result<Movie, Error>) -> Void) {
+    func getMovieDetail(with movieId: Int,
+                        completion: @escaping (Result<Movie, Error>) -> Void) {
         client.getMovieDetail(with: movieId, completion: { result in
             switch result {
             case .success(let movieDetailResult):
