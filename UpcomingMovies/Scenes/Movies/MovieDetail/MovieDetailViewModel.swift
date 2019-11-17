@@ -17,7 +17,6 @@ final class MovieDetailViewModel {
     private let genreUseCase: GenreUseCaseProtocol
     private let accountUseCase: AccountUseCaseProtocol
     
-    private var accountClient = AccountClient()
     private var movieClient = MovieClient()
     
     private var authManager = AuthenticationManager.shared
@@ -99,7 +98,7 @@ final class MovieDetailViewModel {
     private func fetchMovieDetail(showLoader: Bool = true) {
         guard needsFetch else { return }
         startLoading.value = showLoader
-        movieUseCase.fetchMovieDetail(with: id, completion: { result in
+        movieUseCase.fetchMovieDetail(for: id, completion: { result in
             switch result {
             case .success(let movie):
                 self.setupMovie(movie)
@@ -171,7 +170,8 @@ final class MovieDetailViewModel {
     }
     
     func buildCreditsViewModel() -> MovieCreditsViewModel {
-        return MovieCreditsViewModel(movieId: id, movieTitle: title)
+        return MovieCreditsViewModel(movieId: id, movieTitle: title,
+                                     useCaseProvider: useCaseProvider)
     }
     
     func buildSimilarsViewModel() -> MovieListViewModel {

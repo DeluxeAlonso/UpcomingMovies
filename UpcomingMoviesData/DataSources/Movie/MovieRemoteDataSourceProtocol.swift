@@ -18,4 +18,22 @@ public protocol MovieRemoteDataSourceProtocol {
     func fetchMovieDetail(with movieId: Int,
                           completion: @escaping (Result<Movie, Error>) -> Void)
     
+    func searchMovies(searchText: String, page: Int?,
+                      completion: @escaping (Result<[Movie], Error>) -> Void)
+    
+    func getMovieReviews(for movieId: Int, page: Int?,
+                         completion: @escaping (Result<[Review], Error>) -> Void)
+    
+    func getMovieVideos(for movieId: Int, page: Int?,
+                        completion: @escaping (Result<[Video], Error>) -> Void)
+    
+    func getMovieCredits(for movieId: Int, page: Int?,
+                         completion: @escaping (Result<MovieCredits, Error>) -> Void)
+    
+    func isMovieInFavorites(for movieId: Int, and account: Account,
+                            completion: @escaping (Result<Bool, Error>) -> Void)
+    
+    func isMovieInWatchList(for movieId: Int, and account: Account,
+                            completion: @escaping (Result<Bool, Error>) -> Void)
+    
 }
