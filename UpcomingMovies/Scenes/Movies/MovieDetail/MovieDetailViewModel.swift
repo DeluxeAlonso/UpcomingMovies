@@ -117,8 +117,8 @@ final class MovieDetailViewModel {
     
     func checkIfUserIsAuthenticated() {
         let isUserSignedIn = AuthenticationManager.shared.isUserSignedIn()
-        if isUserSignedIn, let account = authManager.userAccount {
-            checkIfMovieIsFavorite(for: account)
+        if isUserSignedIn {
+            checkIfMovieIsFavorite()
         } else {
             startLoading.value = false
             isFavorite.value = nil
@@ -127,8 +127,8 @@ final class MovieDetailViewModel {
     
     // MARK: - Favorites
     
-    private func checkIfMovieIsFavorite(for account: Account) {
-        movieUseCase.isMovieInFavorites(for: id, and: account, completion: { result in
+    private func checkIfMovieIsFavorite() {
+        movieUseCase.isMovieInFavorites(for: id, completion: { result in
             self.startLoading.value = false
             switch result {
             case .success(let isFavorite):
@@ -141,11 +141,8 @@ final class MovieDetailViewModel {
     }
     
     func handleFavoriteMovie() {
-        guard let credentials = authManager.userAccount,
-            let isFavorite = isFavorite.value else {
-                return
-        }
-        accountUseCase.markMovieAsFavorite(movieId: id, favorite: !isFavorite, account: credentials, completion: { result in
+        guard let isFavorite = isFavorite.value else { return }
+        accountUseCase.markMovieAsFavorite(movieId: id, favorite: !isFavorite, completion: { result in
             switch result {
             case .success:
                 self.isFavorite.value = !isFavorite

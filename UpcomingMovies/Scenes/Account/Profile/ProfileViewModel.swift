@@ -13,8 +13,7 @@ final class ProfileViewModel {
     
     private let useCaseProvider: UseCaseProviderProtocol
     private var userUseCase: UserUseCaseProtocol
-    
-    private let accountClient = AccountClient()
+    private let accountUseCase: AccountUseCaseProtocol
     
     let viewState: Bindable<ProfileViewState> = Bindable(.initial)
     
@@ -44,7 +43,8 @@ final class ProfileViewModel {
         self.groupOptions = options.groupOptions
         
         self.useCaseProvider = useCaseProvider
-        self.userUseCase = useCaseProvider.userUseCase()
+        self.accountUseCase = self.useCaseProvider.accountUseCase()
+        self.userUseCase = self.useCaseProvider.userUseCase()
         self.userUseCase.didUpdateUser = { [weak self] in
             self?.updateUserAccount()
             self?.reloadAccountInfo?()
@@ -75,15 +75,14 @@ final class ProfileViewModel {
     
     // TODO: - Change this method to get the account detail given the id of a user account
     func getAccountDetails() {
-        guard let credentials = AuthenticationManager.shared.userAccount else { return }
-        accountClient.getAccountDetail(with: credentials.sessionId) { result in
+        accountUseCase.getAccountDetail(completion: { result in
             switch result {
             case .success(let user):
                 self.userUseCase.saveUser(user)
             case .failure:
                 break
             }
-        }
+        })
     }
     
 }

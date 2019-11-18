@@ -13,9 +13,11 @@ import UpcomingMoviesData
 final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
     
     private let client: MovieClient
+    private let authManager: AuthenticationManager
     
-    init(client: MovieClient) {
+    init(client: MovieClient, authManager: AuthenticationManager = AuthenticationManager.shared) {
         self.client = client
+        self.authManager = authManager
     }
     
     func getMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[Movie], Error>) -> Void) {
@@ -93,7 +95,8 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         })
     }
     
-    func isMovieInFavorites(for movieId: Int, and account: Account, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+        guard let account = authManager.userAccount else { return }
         client.getMovieAccountState(with: movieId, sessionId: account.sessionId, completion: { result in
             switch result {
             case .success(let movieAccountStateResult):
@@ -105,7 +108,8 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         })
     }
     
-    func isMovieInWatchList(for movieId: Int, and account: Account, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func isMovieInWatchList(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+        guard let account = authManager.userAccount else { return }
         client.getMovieAccountState(with: movieId, sessionId: account.sessionId, completion: { result in
             switch result {
             case .success(let movieAccountStateResult):

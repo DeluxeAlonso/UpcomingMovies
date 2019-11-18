@@ -9,15 +9,11 @@
 import Foundation
 
 final class AuthPermissionViewModel {
+
+    var authPermissionURL: URL?
     
-    let requestToken: String
-    
-    var authPermissionURL: URL? {
-        return URL(string: "https://www.themoviedb.org/auth/access?request_token=\(requestToken)")
-    }
-    
-    init(requestToken: String) {
-        self.requestToken = requestToken
+    init(authPermissionURL: URL?) {
+        self.authPermissionURL = authPermissionURL
     }
     
 }

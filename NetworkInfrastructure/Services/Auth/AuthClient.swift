@@ -1,8 +1,8 @@
 //
-//  AuthenticationClient.swift
-//  UpcomingMovies
+//  AuthClient.swift
+//  NetworkInfrastructure
 //
-//  Created by Alonso on 3/20/19.
+//  Created by Alonso on 11/17/19.
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
@@ -27,7 +27,7 @@ class AuthClient: APIClient {
             return requestToken
         }, completion: completion)
     }
-    
+
     func getAccessToken(with readAccessToken: String, requestToken: String, completion: @escaping (Result<AccessToken, APIError>) -> Void) {
         fetch(with: AuthProvider.getAccessToken(readAccessToken: readAccessToken,
                                                 requestToken: requestToken).request, decode: { json -> AccessToken? in
@@ -35,7 +35,7 @@ class AuthClient: APIClient {
             return requestToken
         }, completion: completion)
     }
-    
+
     func createSessionId(with accessToken: String, completion: @escaping (Result<SessionResult, APIError>) -> Void) {
         fetch(with: AuthProvider.createSessionId(accessToken: accessToken).request, decode: { json -> SessionResult? in
             guard let sessionResult = json as? SessionResult else { return nil }

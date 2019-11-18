@@ -30,10 +30,10 @@ public protocol MovieRemoteDataSourceProtocol {
     func getMovieCredits(for movieId: Int, page: Int?,
                          completion: @escaping (Result<MovieCredits, Error>) -> Void)
     
-    func isMovieInFavorites(for movieId: Int, and account: Account,
+    func isMovieInFavorites(for movieId: Int,
                             completion: @escaping (Result<Bool, Error>) -> Void)
     
-    func isMovieInWatchList(for movieId: Int, and account: Account,
+    func isMovieInWatchList(for movieId: Int,
                             completion: @escaping (Result<Bool, Error>) -> Void)
     
 }

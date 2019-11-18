@@ -16,5 +16,6 @@ public protocol UseCaseProviderProtocol {
     func movieSearchUseCase() -> MovieSearchUseCaseProtocol
     func userUseCase() -> UserUseCaseProtocol
     func accountUseCase() -> AccountUseCaseProtocol
+    func authUseCase() -> AuthUseCaseProtocol
     
 }

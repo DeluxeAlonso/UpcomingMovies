@@ -12,7 +12,8 @@ import UpcomingMoviesDomain
 final class CustomListDetailViewModel {
     
     private let useCaseProvider: UseCaseProviderProtocol
-    private let accountClient = AccountClient()
+    private let accountUseCase: AccountUseCaseProtocol
+    
     private let authManager = AuthenticationManager.shared
     
     private let id: String
@@ -47,7 +48,9 @@ final class CustomListDetailViewModel {
         rating = list.averageRating
         runtime = list.runtime
         backdropURL = list.backdropURL
+        
         self.useCaseProvider = useCaseProvider
+        self.accountUseCase = self.useCaseProvider.accountUseCase()
     }
     
     // MARK: - Public
@@ -70,11 +73,10 @@ final class CustomListDetailViewModel {
     // MARK: - Networking
     
     func getListMovies() {
-        guard let accessToken = authManager.accessToken else { return }
-        accountClient.getCustomListMovies(with: accessToken.token, listId: id, completion: { result in
+        accountUseCase.getCustomListMovies(listId: id, completion: { result in
             switch result {
-            case .success(let movieResult):
-                self.processListMovies(movieResult?.results)
+            case .success(let movies):
+                self.processListMovies(movies)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
@@ -99,7 +101,7 @@ extension CustomListDetailViewModel {
         case loading
         case empty
         case populated([Movie])
-        case error(ErrorDescriptable)
+        case error(Error)
         
         var currentMovies: [Movie] {
             switch self {

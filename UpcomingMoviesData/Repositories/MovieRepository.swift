@@ -47,13 +47,13 @@ public final class MovieRepository: MovieUseCaseProtocol {
                                          completion: completion)
     }
     
-    public func isMovieInFavorites(for movieId: Int, and account: Account, completion: @escaping (Result<Bool, Error>) -> Void) {
-        remoteDataSource.isMovieInFavorites(for: movieId, and: account,
+    public func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+        remoteDataSource.isMovieInFavorites(for: movieId,
                                             completion: completion)
     }
     
-    public func isMovieInWatchList(for movieId: Int, and account: Account, completion: @escaping (Result<Bool, Error>) -> Void) {
-        remoteDataSource.isMovieInWatchList(for: movieId, and: account,
+    public func isMovieInWatchList(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+        remoteDataSource.isMovieInWatchList(for: movieId,
                                             completion: completion)
     }
 

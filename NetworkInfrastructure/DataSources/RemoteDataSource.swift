@@ -28,4 +28,10 @@ final public class RemoteDataSource: RemoteDataSourceProtocol {
         return AccountRemoteDataSource(client: client)
     }
     
+    public func authDataSource() -> AuthRemoteDataSourceProtocol {
+        let authClient = AuthClient()
+        let accountClient = AccountClient()
+        return AuthRemoteDataSource(authClient: authClient, accountClient: accountClient)
+    }
+    
 }

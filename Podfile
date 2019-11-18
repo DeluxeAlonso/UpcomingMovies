@@ -9,6 +9,12 @@ target 'UpcomingMovies' do
   pod 'Kingfisher', '5.3.0'
   pod 'CollectionViewSlantedLayout', '~> 3.1'
   pod 'KeychainSwift', '~> 14.0'
+  
+  target 'NetworkInfrastructure' do
+    use_frameworks!
+    pod 'KeychainSwift', '~> 14.0'
+    inherit! :search_paths
+  end
 
   target 'UpcomingMoviesTests' do
     inherit! :search_paths
@@ -16,3 +22,5 @@ target 'UpcomingMovies' do
   end
 
 end
+
+

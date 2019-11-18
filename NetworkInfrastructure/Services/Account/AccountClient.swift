@@ -24,55 +24,55 @@ class AccountClient: APIClient {
     
     // MARK: - Collection List
     
-//    func getCollectionList(page: Int, option: ProfileCollectionOption,
-//                           sessionId: String, accountId: Int,
-//                           completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
-//        let request = getCollectionListRequest(with: option, page: page,
-//                                               sessionId: sessionId, accountId: accountId)
-//        fetch(with: request, decode: { json -> MovieResult? in
-//            guard let movieResult = json as? MovieResult else { return  nil }
-//            return movieResult
-//        }, completion: completion)
-//    }
+    func getCollectionList(page: Int, option: ProfileCollectionOption,
+                           sessionId: String, accountId: Int,
+                           completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
+        let request = getCollectionListRequest(with: option, page: page,
+                                               sessionId: sessionId, accountId: accountId)
+        fetch(with: request, decode: { json -> MovieResult? in
+            guard let movieResult = json as? MovieResult else { return  nil }
+            return movieResult
+        }, completion: completion)
+    }
     
-//    private func getCollectionListRequest(with collectionOption: ProfileCollectionOption,
-//                                          page: Int, sessionId: String, accountId: Int) -> URLRequest {
-//        switch collectionOption {
-//        case .favorites:
-//            return AccountProvider.getFavoriteList(page: page,
-//                                                   sessionId: sessionId,
-//                                                   accountId: accountId).request
-//        case .watchlist:
-//            return AccountProvider.getWatchlist(page: page,
-//                                                sessionId: sessionId,
-//                                                accountId: accountId).request
-//        }
-//    }
+    private func getCollectionListRequest(with collectionOption: ProfileCollectionOption,
+                                          page: Int, sessionId: String, accountId: Int) -> URLRequest {
+        switch collectionOption {
+        case .favorites:
+            return AccountProvider.getFavoriteList(page: page,
+                                                   sessionId: sessionId,
+                                                   accountId: accountId).request
+        case .watchlist:
+            return AccountProvider.getWatchlist(page: page,
+                                                sessionId: sessionId,
+                                                accountId: accountId).request
+        }
+    }
     
     // MARK: - Custom Lists
     
-//    func getCustomLists(page: Int, groupOption: ProfileGroupOption,
-//                        accessToken: String, accountId: String,
-//                        completion: @escaping (Result<ListResult?, APIError>) -> Void) {
-//        let request = getCustomListRequest(with: groupOption, page: page,
-//                                           accessToken: accessToken, accountId: accountId)
-//        fetch(with: request, decode: { json -> ListResult? in
-//            guard let listResult = json as? ListResult else { return  nil }
-//            return listResult
-//        }, completion: completion)
-//    }
-//
-//    private func getCustomListRequest(with groupOption: ProfileGroupOption,
-//                                      page: Int,
-//                                      accessToken: String,
-//                                      accountId: String) -> URLRequest {
-//        switch groupOption {
-//        case .customLists:
-//            return AccountProvider.getCustomLists(page: page,
-//                                                  accessToken: accessToken,
-//                                                  accountId: accountId).request
-//        }
-//    }
+    func getCustomLists(page: Int, groupOption: ProfileGroupOption,
+                        accessToken: String, accountId: String,
+                        completion: @escaping (Result<ListResult?, APIError>) -> Void) {
+        let request = getCustomListRequest(with: groupOption, page: page,
+                                           accessToken: accessToken, accountId: accountId)
+        fetch(with: request, decode: { json -> ListResult? in
+            guard let listResult = json as? ListResult else { return  nil }
+            return listResult
+        }, completion: completion)
+    }
+
+    private func getCustomListRequest(with groupOption: ProfileGroupOption,
+                                      page: Int,
+                                      accessToken: String,
+                                      accountId: String) -> URLRequest {
+        switch groupOption {
+        case .customLists:
+            return AccountProvider.getCustomLists(page: page,
+                                                  accessToken: accessToken,
+                                                  accountId: accountId).request
+        }
+    }
     
     // MARK: - Custom List Details
     

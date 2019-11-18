@@ -1,8 +1,8 @@
 //
 //  AuthProvider.swift
-//  UpcomingMovies
+//  NetworkInfrastructure
 //
-//  Created by Alonso on 3/20/19.
+//  Created by Alonso on 11/17/19.
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
