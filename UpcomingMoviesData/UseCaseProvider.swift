@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final public class UseCaseProvider: UseCaseProviderProtocol {
+public class UseCaseProvider: UseCaseProviderProtocol {
     
     private let localDataSource: LocalDataSourceProtocol
     private let remoteDataSource: RemoteDataSourceProtocol

@@ -9,6 +9,8 @@
 import XCTest
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
+@testable import UpcomingMoviesData
+@testable import NetworkInfrastructure
 
 class MovieReviewsTests: XCTestCase {
     
@@ -17,7 +19,9 @@ class MovieReviewsTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        viewModelToTest = MovieReviewsViewModel(movieId: 1, movieTitle: "Movie 1")
+        let useCaseProvider = MockInjectionFactory.useCaseProvider()
+        useCaseProvider.movieUseCase().
+        viewModelToTest = MovieReviewsViewModel(movieId: 1, movieTitle: "Movie 1", useCaseProvider: <#UseCaseProviderProtocol#>)
         movieReviewCellViewModelToTest = MovieReviewCellViewModel(Review.with())
     }
     
@@ -93,6 +97,28 @@ private final class MockMovieClient: MovieClient {
     
     override func getMovieReviews(page: Int, with movieId: Int, completion: @escaping (Result<ReviewResult?, APIError>) -> Void) {
         completion(getReviewResult!)
+    }
+    
+}
+
+private final class MockMovieUseCase: MovieRepository {
+    
+    var getReviewResult: Result<[Review], Error>?
+    
+    override func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[Review], Error>) -> Void) {
+        completion(getReviewResult!)
+    }
+    
+}
+
+private final class MockUseCaseProvider: UseCaseProvider {
+    
+    var getReviewResult: Result<[Review], Error>?
+    
+    override func movieUseCase() -> MovieUseCaseProtocol {
+        let movieUseCase = MockMovieUseCase(remoteDataSource: MovieRemoteDataSource(client: MovieClient()))
+        movieUseCase.getReviewResult = getReviewResult
+        return movieUseCase
     }
     
 }

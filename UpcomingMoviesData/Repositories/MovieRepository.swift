@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-public final class MovieRepository: MovieUseCaseProtocol {
+public class MovieRepository: MovieUseCaseProtocol {
     
     private var remoteDataSource: MovieRemoteDataSourceProtocol
     
