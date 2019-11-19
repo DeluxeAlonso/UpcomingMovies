@@ -17,8 +17,6 @@ final class MovieDetailViewModel {
     private let genreUseCase: GenreUseCaseProtocol
     private let accountUseCase: AccountUseCaseProtocol
     
-    private var authManager = AuthenticationManager.shared
-    
     var id: Int!
     var title: String!
     var genre: String?
@@ -116,7 +114,7 @@ final class MovieDetailViewModel {
     // MARK: - User Authentication
     
     func checkIfUserIsAuthenticated() {
-        let isUserSignedIn = AuthenticationManager.shared.isUserSignedIn()
+        let isUserSignedIn = AuthenticationHandler.shared.isUserSignedIn()
         if isUserSignedIn {
             checkIfMovieIsFavorite()
         } else {

@@ -8,12 +8,12 @@
 
 import Foundation
 
-class KeysManager {
+class KeysManager: NSObject {
     
     class func retrieveKeys() -> Keys {
-        guard let url = Bundle.main.url(forResource: "TheMovieDb",
-                                        withExtension: ".plist") else {
-                                            fatalError()
+        let bundle = Bundle(for: self.classForCoder())
+        guard let url = bundle.url(forResource: "TheMovieDb", withExtension: ".plist") else {
+            fatalError()
         }
         do {
             let data = try Data(contentsOf: url)

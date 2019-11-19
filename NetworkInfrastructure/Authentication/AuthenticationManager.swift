@@ -13,15 +13,13 @@ class AuthenticationManager {
     
     static let shared = AuthenticationManager()
     
-    //private let userUseCase: UserUseCaseProtocol
-    
     lazy var readAccessToken: String = {
-        let keys = retrieveKeys()
+        let keys = KeysManager.retrieveKeys()
         return keys.readAccessToken
     }()
     
     lazy var apiKey: String = {
-        let keys = retrieveKeys()
+        let keys = KeysManager.retrieveKeys()
         return keys.apiKey
     }()
     
@@ -42,10 +40,7 @@ class AuthenticationManager {
     
     // MARK: - Initializers
     
-    init() {
-//        let useCaseProvider = UseCaseProvider()
-//        self.userUseCase = useCaseProvider.userUseCase()
-    }
+    init() {}
     
     // MARK: - Public
     
@@ -92,35 +87,6 @@ class AuthenticationManager {
         return Account(accountId: accountId, sessionId: sessionId)
     }
     
-    // MARK: - Authentitacion Persistence
-    
-//    func currentUser() -> User? {
-//        guard let account = userAccount else { return nil }
-//        return userUseCase.find(with: account.accountId)
-//    }
-//
-//    func isUserSignedIn() -> Bool {
-//        return currentUser() != nil
-//    }
-    
-    // MARK: - TheMovieDb Keys
-    
-    private func retrieveKeys() -> Keys {
-        guard let url = Bundle.main.url(forResource: "TheMovieDb",
-                                        withExtension: ".plist") else {
-                                            fatalError()
-        }
-        do {
-            let data = try Data(contentsOf: url)
-            let decoder = PropertyListDecoder()
-            let plist = try decoder.decode([String: Keys].self, from: data)
-            guard let keys = plist["Keys"] else { fatalError() }
-            return keys
-        } catch {
-            fatalError()
-        }
-    }
-    
 }
 
 extension AuthenticationManager {
@@ -131,7 +97,6 @@ extension AuthenticationManager {
         static let accountIdKey = "UpcomingMoviesAccessAccountId"
         static let sessionIdKey = "UpcomingMoviesSessionId"
         static let currentUserIdKey = "UpcomingMoviesUserId"
-        
     }
     
 }

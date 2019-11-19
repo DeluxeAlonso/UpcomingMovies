@@ -15,7 +15,6 @@ final class CustomListsViewModel {
     private let accountUseCase: AccountUseCaseProtocol
     
     private let groupOption: ProfileGroupOption
-    private let authManager = AuthenticationManager.shared
     
     let title: String?
     

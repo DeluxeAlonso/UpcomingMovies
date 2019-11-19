@@ -14,15 +14,14 @@ final class CustomListDetailViewModel {
     private let useCaseProvider: UseCaseProviderProtocol
     private let accountUseCase: AccountUseCaseProtocol
     
-    private let authManager = AuthenticationManager.shared
-    
     private let id: String
-    let name: String
     private let description: String?
     private let movieCount: Int
     private let rating: Double?
     private let runtime: Int?
     private var backdropURL: URL?
+    
+    let name: String
     
     // MARK: - Reactive properties
     

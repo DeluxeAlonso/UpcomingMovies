@@ -34,11 +34,10 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
     }
     
     func getCustomLists(groupOption: ProfileGroupOption, page: Int?, completion: @escaping (Result<[List], Error>) -> Void) {
-        guard let account = authManager.userAccount,
+        guard let accountId = authManager.accessToken?.accountId,
             let accessToken = authManager.accessToken?.token else {
             return
         }
-        let accountId = String(account.accountId)
         client.getCustomLists(page: page ?? 1, groupOption: groupOption, accessToken: accessToken, accountId: accountId, completion: { result in
             switch result {
             case .success(let listResult):

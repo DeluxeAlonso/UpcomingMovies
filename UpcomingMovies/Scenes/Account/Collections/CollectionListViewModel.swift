@@ -16,8 +16,6 @@ final class CollectionListViewModel {
     
     private let collectionOption: ProfileCollectionOption
     
-    private let authManager = AuthenticationManager.shared
-    
     var startLoading: Bindable<Bool> = Bindable(false)
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
     
