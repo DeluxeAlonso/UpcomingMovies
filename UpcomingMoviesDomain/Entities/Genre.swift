@@ -22,7 +22,7 @@ public struct Genre: Decodable, Equatable {
 
 // MARK: - Test mockups
 
-extension Genre {
+public extension Genre {
     
     static func with(id: Int = 1,
                      name: String = "Genre 1") -> Genre {

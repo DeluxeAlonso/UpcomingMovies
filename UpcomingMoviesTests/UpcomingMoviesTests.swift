@@ -9,81 +9,69 @@
 import XCTest
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
+@testable import NetworkInfrastructure
 
 class UpcomingMoviesTests: XCTestCase {
     
-    var viewModelToTest: UpcomingMoviesViewModel!
+    private var useCaseProvider: MockUseCaseProvider!
+    private var movieUseCase: MockMovieUseCase!
+    
     var upcomingMovieCellViewModelToTest: UpcomingMovieCellViewModel!
 
     override func setUp() {
         super.setUp()
-        viewModelToTest = UpcomingMoviesViewModel(useCaseProvider: InjectionFactory.useCaseProvider())
+        movieUseCase = MockMovieUseCase(remoteDataSource: MockInjectionFactory.makeRemoteDataSource().movieDataSource())
+        useCaseProvider = (MockInjectionFactory.useCaseProvider() as! MockUseCaseProvider)
+        useCaseProvider.mockMovieUseCase = self.movieUseCase
+        
         upcomingMovieCellViewModelToTest = UpcomingMovieCellViewModel(Movie.with())
     }
 
     override func tearDown() {
-        viewModelToTest = nil
+        useCaseProvider = nil
+        movieUseCase = nil
+        upcomingMovieCellViewModelToTest = nil
         super.tearDown()
-    }
-    
-    func testGestMoviesPopulated() {
-        //Arrange
-        let movieResult = MovieResult(results: [Movie.with(id: 1), Movie.with(id: 2)],
-                                      currentPage: 1, totalPages: 1)
-        let mockupClient = MockMovieClient()
-        mockupClient.getMovieResult = Result.success(movieResult)
-        viewModelToTest.movieClient = mockupClient
-        //Act
-        viewModelToTest.getMovies()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .populated([Movie.with(id: 1), Movie.with(id: 2)]))
     }
     
     func testGetMoviesEmpty() {
         //Arrange
-        let movieResult = MovieResult(results: [],
-                                      currentPage: 1, totalPages: 1)
-        let mockupClient = MockMovieClient()
-        mockupClient.getMovieResult = Result.success(movieResult)
-        viewModelToTest.movieClient = mockupClient
+        movieUseCase.movies = Result.success([])
+        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider)
         //Act
-        viewModelToTest.getMovies()
+        viewModel.getMovies()
         //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .empty)
+        XCTAssertEqual(viewModel.viewState.value, .empty)
     }
     
     func testGetMoviesPaging() {
         //Arrange
-        let movieResult = MovieResult(results: [Movie.with(id: 1), Movie.with(id: 2)],
-                                      currentPage: 1, totalPages: 2)
-        let mockupClient = MockMovieClient()
-        mockupClient.getMovieResult = Result.success(movieResult)
-        viewModelToTest.movieClient = mockupClient
+        movieUseCase.movies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
+        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider)
         //Act
-        viewModelToTest.getMovies()
+        viewModel.getMovies()
         //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value,
+        XCTAssertEqual(viewModel.viewState.value,
                        .paging([Movie.with(id: 1), Movie.with(id: 2)], next: 2))
     }
     
     func testGetMoviesError() {
         //Arrange
-        let mockupClient = MockMovieClient()
-        mockupClient.getMovieResult = Result.failure(APIError.badRequest)
-        viewModelToTest.movieClient = mockupClient
+        movieUseCase.movies = Result.failure(APIError.badRequest)
+        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider)
         //Act
-        viewModelToTest.getMovies()
+        viewModel.getMovies()
         //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
+        XCTAssertEqual(viewModel.viewState.value, .error(APIError.badRequest))
     }
     
     func testSelectedMovieCell() {
         //Arrange
-        let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
-        viewModelToTest.viewState.value = .populated(moviesToTest)
+        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider)
+        viewModel.viewState.value = .populated([Movie.with(id: 1), Movie.with(id: 2)])
         //Act
-        viewModelToTest.setSelectedMovie(at: 0)
-        let selectedMovieCell = viewModelToTest.selectedMovieCell
+        viewModel.setSelectedMovie(at: 0)
+        let selectedMovieCell = viewModel.selectedMovieCell
         let movieFullPosterPath = selectedMovieCell?.posterURL
         //Assert
         XCTAssertEqual(movieFullPosterPath, URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
@@ -96,14 +84,4 @@ class UpcomingMoviesTests: XCTestCase {
         XCTAssertEqual(posterPath, URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
     }
 
-}
-
-private final class MockMovieClient: MovieClient {
-    
-    var getMovieResult: Result<MovieResult?, APIError>?
-    
-    override func getMovies(page: Int, filter: MovieListFilter, completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
-        completion(getMovieResult!)
-    }
-    
 }

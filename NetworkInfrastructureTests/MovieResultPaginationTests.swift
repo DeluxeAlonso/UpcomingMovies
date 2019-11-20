@@ -1,16 +1,16 @@
 //
 //  MovieResultPaginationTests.swift
-//  UpcomingMoviesTests
+//  NetworkInfrastructureTests
 //
-//  Created by Alonso on 2/8/19.
+//  Created by Alonso on 11/19/19.
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
 import XCTest
-@testable import UpcomingMovies
+@testable import NetworkInfrastructure
 
 class MovieResultPaginationTests: XCTestCase {
-    
+
     var movieResultUnderTest: MovieResult!
 
     override func setUp() {
@@ -31,7 +31,7 @@ class MovieResultPaginationTests: XCTestCase {
         //Assert
         XCTAssertTrue(hasMorePages)
     }
-    
+
     func testMovieResultHasMorePagesFalse() {
         //Arrange
         movieResultUnderTest.totalPages = 1
@@ -40,7 +40,7 @@ class MovieResultPaginationTests: XCTestCase {
         //Assert
         XCTAssertFalse(hasMorePages)
     }
-    
+
     func testMovieResultNextPage() {
         //Act
         let nextPage = movieResultUnderTest.nextPage
