@@ -12,7 +12,6 @@ import UpcomingMoviesDomain
 final class SplashViewModel {
     
     private let genreUseCase: GenreUseCaseProtocol
-    private let genreClient = GenreClient()
     
     var genresFetched: (() -> Void)?
     
@@ -21,13 +20,13 @@ final class SplashViewModel {
         self.genreUseCase = useCaseProvider.genreUseCase()
     }
     /**
-     * Fetch all the movie genres and save them in the AppManager Singleton.
+     * Fetch all the movie genres and save them locally.
      */
     func getMovieGenres() {
-        genreClient.getAllGenres { result in
+        genreUseCase.fetchAll { result in
             switch result {
-            case .success(let genreResult):
-                self.genreUseCase.saveGenres(genreResult.genres)
+            case .success(let genres):
+                self.genreUseCase.saveGenres(genres)
             case .failure:
                 break
             }

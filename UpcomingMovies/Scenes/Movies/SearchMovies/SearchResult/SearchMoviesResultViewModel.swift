@@ -14,9 +14,9 @@ final class SearchMoviesResultViewModel {
     // MARK: - Properties
     
     private let useCaseProvider: UseCaseProviderProtocol
+    private let movieUseCase: MovieUseCaseProtocol
     private var movieSearchUseCase: MovieSearchUseCaseProtocol
     
-    private let movieClient = MovieClient()
     private var movies: [Movie] = []
     
     let viewState: Bindable<ViewState> = Bindable(.initial)
@@ -38,6 +38,7 @@ final class SearchMoviesResultViewModel {
     
     init(useCaseProvider: UseCaseProviderProtocol) {
         self.useCaseProvider = useCaseProvider
+        self.movieUseCase = self.useCaseProvider.movieUseCase()
         self.movieSearchUseCase = self.useCaseProvider.movieSearchUseCase()
         self.movieSearchUseCase.didUpdateMovieSearch = { [weak self] in
             self?.updateRecentSearches?()
@@ -49,24 +50,22 @@ final class SearchMoviesResultViewModel {
     func searchMovies(withSearchText searchText: String) {
         viewState.value = .searching
         movieSearchUseCase.save(with: searchText)
-        movieClient.searchMovies(searchText: searchText) { result in
+        movieUseCase.searchMovies(searchText: searchText, page: nil, completion: { result in
             switch result {
-            case .success(let movieResult):
-                guard let movieResult = movieResult else { return }
-                self.processMovieResult(movieResult)
+            case .success(let movies):
+                self.processMovieResult(movies)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
-        }
+        })
     }
     
-    private func processMovieResult(_ movieResult: MovieResult) {
-        let fetchedMovies = movieResult.results
-        movies = fetchedMovies
-        if movies.isEmpty {
+    private func processMovieResult(_ movies: [Movie]) {
+        self.movies = movies
+        if self.movies.isEmpty {
             viewState.value = .empty
         } else {
-            viewState.value = .populated(movies)
+            viewState.value = .populated(self.movies)
         }
     }
     
@@ -92,7 +91,7 @@ extension SearchMoviesResultViewModel {
         case empty
         case searching
         case populated([Movie])
-        case error(ErrorDescriptable)
+        case error(Error)
         
         var sections: [SearchMoviesResultSections]? {
             switch self {

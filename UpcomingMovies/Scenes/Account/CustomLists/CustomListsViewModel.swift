@@ -12,9 +12,9 @@ import UpcomingMoviesDomain
 final class CustomListsViewModel {
     
     private let useCaseProvider: UseCaseProviderProtocol
+    private let accountUseCase: AccountUseCaseProtocol
+    
     private let groupOption: ProfileGroupOption
-    private let accountClient = AccountClient()
-    private let authManager = AuthenticationManager.shared
     
     let title: String?
     
@@ -37,6 +37,8 @@ final class CustomListsViewModel {
     
     init(useCaseProvider: UseCaseProviderProtocol, groupOption: ProfileGroupOption) {
         self.useCaseProvider = useCaseProvider
+        self.accountUseCase = self.useCaseProvider.accountUseCase()
+        
         self.groupOption = groupOption
         self.title = groupOption.title
     }
@@ -61,34 +63,29 @@ final class CustomListsViewModel {
     }
     
     private func fetchCustomLists(currentPage: Int, showLoader: Bool) {
-        guard let accessToken = authManager.accessToken else { return }
         startLoading.value = showLoader
-        accountClient.getCustomLists(page: currentPage,
-                                     groupOption: groupOption,
-                                     accessToken: accessToken.token,
-                                     accountId: accessToken.accountId) { result in
+        accountUseCase.getCustomLists(groupOption: groupOption, page: currentPage, completion: { result in
+            self.startLoading.value = false
             switch result {
-            case .success(let listResult):
-                guard let listResult = listResult else { return }
-                self.processListResult(listResult)
+            case .success(let lists):
+                self.processListResult(lists, currentPage: currentPage)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
-        }
+        })
     }
     
-    private func processListResult(_ listResult: ListResult) {
-        startLoading.value = false
-        var allLists = listResult.currentPage == 1 ? [] : viewState.value.currentEntities
-        allLists.append(contentsOf: listResult.results)
+    private func processListResult(_ lists: [List], currentPage: Int) {
+        var allLists = currentPage == 1 ? [] : viewState.value.currentEntities
+        allLists.append(contentsOf: lists)
         guard !allLists.isEmpty else {
             viewState.value = .empty
             return
         }
-        if listResult.hasMorePages {
-            viewState.value = .paging(allLists, next: listResult.nextPage)
-        } else {
+        if lists.isEmpty {
             viewState.value = .populated(allLists)
+        } else {
+            viewState.value = .paging(allLists, next: currentPage + 1)
         }
     }
     

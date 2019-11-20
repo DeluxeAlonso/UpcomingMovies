@@ -8,18 +8,25 @@
 
 import Foundation
 import UpcomingMoviesDomain
-import CoreDataInfraestructure
 import UpcomingMoviesData
+import CoreDataInfrastructure
+import NetworkInfrastructure
 
 final class InjectionFactory {
     
     class func useCaseProvider() -> UseCaseProviderProtocol {
         let localDataSource = makeLocalDataSource()
-        return UseCaseProvider(localDataSource: localDataSource)
+        let remoteDataSource = makeRemoteDataSource()
+        return UseCaseProvider(localDataSource: localDataSource,
+                               remoteDataSource: remoteDataSource)
     }
     
     class func makeLocalDataSource() -> LocalDataSourceProtocol {
         return LocalDataSource()
+    }
+    
+    class func makeRemoteDataSource() -> RemoteDataSourceProtocol {
+        return RemoteDataSource()
     }
     
 }

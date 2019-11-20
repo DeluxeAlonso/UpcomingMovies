@@ -14,8 +14,9 @@ final class MovieCreditsViewModel {
     private let movieId: Int
     let movieTitle: String
     
-    private let movieClient = MovieClient()
-    
+    private let useCaseProvider: UseCaseProviderProtocol
+    private let movieUseCase: MovieUseCaseProtocol
+
     var sections: [MovieCreditsCollapsibleSection] =
         [MovieCreditsCollapsibleSection(type: .cast, opened: true),
          MovieCreditsCollapsibleSection(type: .crew, opened: false)]
@@ -33,9 +34,12 @@ final class MovieCreditsViewModel {
     
     // MARK: - Initializers
     
-    init(movieId: Int, movieTitle: String) {
+    init(movieId: Int, movieTitle: String, useCaseProvider: UseCaseProviderProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
+        
+        self.useCaseProvider = useCaseProvider
+        self.movieUseCase = self.useCaseProvider.movieUseCase()
     }
     
     // MARK: - Public
@@ -76,21 +80,20 @@ final class MovieCreditsViewModel {
     
     func getMovieCredits(showLoader: Bool = false) {
         startLoading.value = showLoader
-        movieClient.getMovieCredits(with: movieId) { result in
+        movieUseCase.getMovieCredits(for: movieId, page: nil, completion: { result in
             switch result {
-            case .success(let creditResult):
-                guard let creditResult = creditResult else { return }
-                self.processCreditResult(creditResult)
+            case .success(let movieCredits):
+                self.processCreditResult(movieCredits)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
-        }
+        })
     }
     
-    private func processCreditResult(_ creditResult: CreditResult) {
+    private func processCreditResult(_ movieCredits: MovieCredits) {
         startLoading.value = false
-        let fetchedCast = creditResult.cast
-        let fetchedCrew = creditResult.crew
+        let fetchedCast = movieCredits.cast
+        let fetchedCrew = movieCredits.crew
         if fetchedCast.isEmpty && fetchedCrew.isEmpty {
             viewState.value = .empty
         } else {

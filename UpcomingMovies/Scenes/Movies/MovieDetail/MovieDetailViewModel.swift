@@ -12,13 +12,10 @@ import UpcomingMoviesDomain
 final class MovieDetailViewModel {
     
     private let useCaseProvider: UseCaseProviderProtocol
+    private let movieUseCase: MovieUseCaseProtocol
     private let movieVisitUseCase: MovieVisitUseCaseProtocol
-    private var genreUseCase: GenreUseCaseProtocol
-    
-    private var accountClient = AccountClient()
-    private var movieClient = MovieClient()
-    
-    private var authManager = AuthenticationManager.shared
+    private let genreUseCase: GenreUseCaseProtocol
+    private let accountUseCase: AccountUseCaseProtocol
     
     var id: Int!
     var title: String!
@@ -42,8 +39,11 @@ final class MovieDetailViewModel {
 
     init(_ movie: Movie, useCaseProvider: UseCaseProviderProtocol) {
         self.useCaseProvider = useCaseProvider
-        movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
-        genreUseCase = self.useCaseProvider.genreUseCase()
+        self.movieUseCase = self.useCaseProvider.movieUseCase()
+        self.movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
+        self.genreUseCase = self.useCaseProvider.genreUseCase()
+        self.accountUseCase = self.useCaseProvider.accountUseCase()
+        
         setupMovie(movie)
         checkIfUserIsAuthenticated()
     }
@@ -52,9 +52,12 @@ final class MovieDetailViewModel {
         self.id = id
         self.title = title
         self.needsFetch = true
+        
         self.useCaseProvider = useCaseProvider
-        self.movieVisitUseCase = useCaseProvider.movieVisitUseCase()
-        self.genreUseCase = useCaseProvider.genreUseCase()
+        self.movieUseCase = self.useCaseProvider.movieUseCase()
+        self.movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
+        self.genreUseCase = self.useCaseProvider.genreUseCase()
+        self.accountUseCase = self.useCaseProvider.accountUseCase()
     }
     
     // MARK: - Private
@@ -91,7 +94,7 @@ final class MovieDetailViewModel {
     private func fetchMovieDetail(showLoader: Bool = true) {
         guard needsFetch else { return }
         startLoading.value = showLoader
-        movieClient.getMovieDetail(with: id, completion: { result in
+        movieUseCase.getMovieDetail(for: id, completion: { result in
             switch result {
             case .success(let movie):
                 self.setupMovie(movie)
@@ -111,9 +114,9 @@ final class MovieDetailViewModel {
     // MARK: - User Authentication
     
     func checkIfUserIsAuthenticated() {
-        let isUserSignedIn = AuthenticationManager.shared.isUserSignedIn()
-        if isUserSignedIn, let credentials = authManager.userCredentials {
-            checkIfMovieIsFavorite(sessionId: credentials.sessionId)
+        let isUserSignedIn = AuthenticationHandler.shared.isUserSignedIn()
+        if isUserSignedIn {
+            checkIfMovieIsFavorite()
         } else {
             startLoading.value = false
             isFavorite.value = nil
@@ -122,13 +125,12 @@ final class MovieDetailViewModel {
     
     // MARK: - Favorites
     
-    private func checkIfMovieIsFavorite(sessionId: String) {
-        movieClient.getMovieAccountState(with: id, sessionId: sessionId, completion: { result  in
+    private func checkIfMovieIsFavorite() {
+        movieUseCase.isMovieInFavorites(for: id, completion: { result in
             self.startLoading.value = false
             switch result {
-            case .success(let accountStateResult):
-                guard let accountStateResult = accountStateResult else { return }
-                self.isFavorite.value = accountStateResult.favorite
+            case .success(let isFavorite):
+                self.isFavorite.value = isFavorite
             case .failure(let error):
                 guard self.needsFetch else { return }
                 self.showErrorView.value = error
@@ -137,13 +139,8 @@ final class MovieDetailViewModel {
     }
     
     func handleFavoriteMovie() {
-        guard let credentials = authManager.userCredentials,
-            let isFavorite = isFavorite.value else {
-                return
-        }
-        accountClient.markAsFavorite(id, sessionId: credentials.sessionId,
-                                     accountId: credentials.accountId,
-                                     favorite: !isFavorite, completion: { result  in
+        guard let isFavorite = isFavorite.value else { return }
+        accountUseCase.markMovieAsFavorite(movieId: id, favorite: !isFavorite, completion: { result in
             switch result {
             case .success:
                 self.isFavorite.value = !isFavorite
@@ -156,16 +153,19 @@ final class MovieDetailViewModel {
     // MARK: - View Models Building
     
     func buildVideosViewModel() -> MovieVideosViewModel {
-        return MovieVideosViewModel(movieId: id, movieTitle: title)
+        return MovieVideosViewModel(movieId: id, movieTitle: title,
+                                    useCaseProvider: useCaseProvider)
     }
     
     func buildReviewsViewModel() -> MovieReviewsViewModel {
         return MovieReviewsViewModel(movieId: id,
-                                     movieTitle: title)
+                                     movieTitle: title,
+                                     useCaseProvider: useCaseProvider)
     }
     
     func buildCreditsViewModel() -> MovieCreditsViewModel {
-        return MovieCreditsViewModel(movieId: id, movieTitle: title)
+        return MovieCreditsViewModel(movieId: id, movieTitle: title,
+                                     useCaseProvider: useCaseProvider)
     }
     
     func buildSimilarsViewModel() -> MovieListViewModel {

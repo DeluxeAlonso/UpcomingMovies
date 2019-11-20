@@ -12,9 +12,9 @@ import UpcomingMoviesDomain
 final class CollectionListViewModel {
     
     private let useCaseProvider: UseCaseProviderProtocol
+    private let accountUseCase: AccountUseCaseProtocol
+    
     private let collectionOption: ProfileCollectionOption
-    private let accountClient = AccountClient()
-    private let authManager = AuthenticationManager.shared
     
     var startLoading: Bindable<Bool> = Bindable(false)
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
@@ -33,6 +33,8 @@ final class CollectionListViewModel {
     
     init(useCaseProvider: UseCaseProviderProtocol, collectionOption: ProfileCollectionOption) {
         self.useCaseProvider = useCaseProvider
+        self.accountUseCase = self.useCaseProvider.accountUseCase()
+        
         self.collectionOption = collectionOption
         self.title = collectionOption.title
     }
@@ -59,33 +61,29 @@ final class CollectionListViewModel {
     }
     
     func fetchCollectionList(page: Int, option: ProfileCollectionOption, showLoader: Bool) {
-        guard let credentials = authManager.userCredentials else { return }
         startLoading.value = showLoader
-        accountClient.getCollectionList(page: page, option: option,
-                                        sessionId: credentials.sessionId,
-                                        accountId: credentials.accountId) { result in
+        accountUseCase.getCollectionList(option: option, page: page, completion: { result in
             self.startLoading.value = false
             switch result {
-            case .success(let movieResult):
-                guard let movieResult = movieResult else { return }
-                self.processMovieResult(movieResult)
+            case .success(let movies):
+                self.processMovieResult(movies, currentPage: self.viewState.value.currentPage)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
-        }
+        })
     }
     
-    private func processMovieResult(_ movieResult: MovieResult) {
-        var allMovies = movieResult.currentPage == 1 ? [] : viewState.value.currentEntities
-        allMovies.append(contentsOf: movieResult.results)
+    private func processMovieResult(_ movies: [Movie], currentPage: Int) {
+        var allMovies = currentPage == 1 ? [] : viewState.value.currentEntities
+        allMovies.append(contentsOf: movies)
         guard !allMovies.isEmpty else {
             viewState.value = .empty
             return
         }
-        if movieResult.hasMorePages {
-            viewState.value = .paging(allMovies, next: movieResult.nextPage)
-        } else {
+        if movies.isEmpty {
             viewState.value = .populated(allMovies)
+        } else {
+            viewState.value = .paging(allMovies, next: currentPage + 1)
         }
     }
     

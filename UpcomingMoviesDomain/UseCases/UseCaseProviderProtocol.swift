@@ -10,9 +10,12 @@ import Foundation
 
 public protocol UseCaseProviderProtocol {
     
+    func movieUseCase() -> MovieUseCaseProtocol
     func genreUseCase() -> GenreUseCaseProtocol
     func movieVisitUseCase() -> MovieVisitUseCaseProtocol
     func movieSearchUseCase() -> MovieSearchUseCaseProtocol
     func userUseCase() -> UserUseCaseProtocol
+    func accountUseCase() -> AccountUseCaseProtocol
+    func authUseCase() -> AuthUseCaseProtocol
     
 }

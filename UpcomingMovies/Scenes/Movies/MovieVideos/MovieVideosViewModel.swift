@@ -14,7 +14,9 @@ final class MovieVideosViewModel {
     let movieId: Int
     let movieTitle: String
     
-    var movieClient = MovieClient()
+    private let useCaseProvider: UseCaseProviderProtocol
+    private let movieUseCase: MovieUseCaseProtocol
+    
     let viewState: Bindable<SimpleViewState<Video>> = Bindable(.initial)
     
     var startLoading: Bindable<Bool> = Bindable(false)
@@ -29,9 +31,12 @@ final class MovieVideosViewModel {
     
     // MARK: - Initializers
     
-    init(movieId: Int, movieTitle: String) {
+    init(movieId: Int, movieTitle: String, useCaseProvider: UseCaseProviderProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
+        
+        self.useCaseProvider = useCaseProvider
+        self.movieUseCase = self.useCaseProvider.movieUseCase()
     }
     
     // MARK: - Public
@@ -52,24 +57,22 @@ final class MovieVideosViewModel {
     
     func getMovieVideos(showLoader: Bool = false) {
         startLoading.value = showLoader
-        movieClient.getMovieVideos(with: movieId) { result in
+        movieUseCase.getMovieVideos(for: movieId, page: nil, completion: { result in
             switch result {
-            case .success(let videoResult):
-                guard let videoResult = videoResult else { return }
-                self.processVideoResult(videoResult)
+            case .success(let videos):
+                self.processVideosResult(videos)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
-        }
+        })
     }
     
-    private func processVideoResult(_ videoResult: VideoResult) {
+    private func processVideosResult(_ videos: [Video]) {
         startLoading.value = false
-        let fetchedVideos = videoResult.results
-        if fetchedVideos.isEmpty {
+        if videos.isEmpty {
             viewState.value = .empty
         } else {
-            viewState.value = .populated(fetchedVideos)
+            viewState.value = .populated(videos)
         }
     }
 

@@ -149,7 +149,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         case .empty:
             presentEmptyView(with: "No movies to show")
         case .error(let error):
-            presentErrorView(with: error.description,
+            presentErrorView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
                                         self?.viewModel?.refreshMovies()
             })

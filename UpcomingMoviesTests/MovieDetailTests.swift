@@ -10,19 +10,26 @@ import XCTest
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 @testable import UpcomingMoviesData
-@testable import CoreDataInfraestructure
+@testable import CoreDataInfrastructure
 
 class MovieDetailTests: XCTestCase {
     
     private var viewModelToTest: MovieDetailViewModel!
-    private var useCaseProvider: UseCaseProviderProtocol!
-    private var genreUseCase: GenreUseCaseProtocol!
+    private var useCaseProvider: MockUseCaseProvider!
+    private var movieUseCase: MockMovieUseCase!
+    private var genreUseCase: MockGenreUseCase!
 
     override func setUp() {
         super.setUp()
-        useCaseProvider = UseCaseProvider(localDataSource: LocalDataSource())
-        genreUseCase = useCaseProvider.genreUseCase()
-        setupMovieGenres()
+        
+        movieUseCase = MockMovieUseCase(remoteDataSource: MockInjectionFactory.makeRemoteDataSource().movieDataSource())
+        genreUseCase = MockGenreUseCase(localDataSource: MockInjectionFactory.makeLocalDataSource().genreDataSource(),
+                                        remoteDataSource: MockInjectionFactory.makeRemoteDataSource().genreDataSource())
+        
+        useCaseProvider = (MockInjectionFactory.useCaseProvider() as! MockUseCaseProvider)
+        useCaseProvider.mockMovieUseCase = self.movieUseCase
+        useCaseProvider.mockGenreUseCase = self.genreUseCase
+        
         let movieToTest = Movie(id: 1,
                             title: "Test 1",
                             genreIds: [1, 2],
@@ -39,12 +46,7 @@ class MovieDetailTests: XCTestCase {
         genreUseCase = nil
         super.tearDown()
     }
-    
-    private func setupMovieGenres() {
-        genreUseCase.saveGenres([Genre.with(id: 1, name: "Genre 1"),
-                                 Genre.with(id: 2, name: "Genre 2")])
-    }
-    
+
     func testMovieDetailTitle() {
         //Act
         let title = viewModelToTest.title
@@ -88,11 +90,11 @@ class MovieDetailTests: XCTestCase {
     }
     
     //TO-DO: Implement a mocked use case provider
-    /*func testMovieDetailGenre() {
+    func testMovieDetailGenre() {
         //Act
         let genre = viewModelToTest.genre
         //Assert
         XCTAssertEqual(genre!, "Genre 1")
-    }*/
+    }
     
 }

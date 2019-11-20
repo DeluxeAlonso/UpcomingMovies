@@ -113,7 +113,7 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         case .loading:
             tableView.tableFooterView = LoadingFooterView()
         case .error(let error):
-            tableView.tableFooterView = CustomFooterView(message: error.description)
+            tableView.tableFooterView = CustomFooterView(message: error.localizedDescription)
         }
     }
     

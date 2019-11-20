@@ -13,12 +13,12 @@ final class AccountViewModel {
     
     private let useCaseProvider: UseCaseProviderProtocol
     private let userUseCase: UserUseCaseProtocol
+    private let accountUseCase: AccountUseCaseProtocol
+    private let authUseCase: AuthUseCaseProtocol
     
-    private var authManager: AuthenticationManager
+    private var authHandler: AuthenticationHandler
     
-    private let authClient = AuthClient()
-    private let accountClient = AccountClient()
-    private var requestToken: String?
+    private var authPermissionURL: URL?
     
     var showAuthPermission: (() -> Void)?
     var didSignIn: (() -> Void)?
@@ -27,89 +27,57 @@ final class AccountViewModel {
     // MARK: - Initializers
     
     init(useCaseProvider: UseCaseProviderProtocol,
-         authManager: AuthenticationManager = AuthenticationManager.shared) {
+         authHandler: AuthenticationHandler = AuthenticationHandler.shared) {
         self.useCaseProvider = useCaseProvider
         self.userUseCase = self.useCaseProvider.userUseCase()
-        self.authManager = authManager
+        self.accountUseCase = self.useCaseProvider.accountUseCase()
+        self.authUseCase = self.useCaseProvider.authUseCase()
+        
+        self.authHandler = authHandler
     }
     
     // MARK: - Authentication
     
     func isUserSignedIn() -> Bool {
-        return authManager.isUserSignedIn()
+        return authHandler.isUserSignedIn()
     }
     
     func signOutCurrentUser() {
-        authManager.deleteCurrentUser()
+        authHandler.deleteCurrentUser()
     }
     
     func getRequestToken() {
-        let readAccessToken = authManager.readAccessToken
-        authClient.getRequestToken(with: readAccessToken) { result in
+        authUseCase.getAuthURL(completion: { result in
             switch result {
-            case .success(let requestToken):
-                self.requestToken = requestToken.token
+            case .success(let url):
+                self.authPermissionURL = url
                 self.showAuthPermission?()
-            case .failure(let error):
-                print(error.description)
+            case .failure:
                 self.didReceiveError?()
             }
-        }
+        })
     }
     
     func getAccessToken() {
-        let readAccessToken = authManager.readAccessToken
-        guard let requestToken = requestToken else { return }
-        authClient.getAccessToken(with: readAccessToken, requestToken: requestToken) { result in
-            switch result {
-            case .success(let accessToken):
-                self.authManager.saveAccessToken(accessToken)
-                self.createSessionId(with: accessToken.token)
-            case .failure(let error):
-                print(error.description)
-                self.didReceiveError?()
-            }
-        }
-    }
-    
-    func createSessionId(with accessToken: String) {
-        authClient.createSessionId(with: accessToken) { result in
-            switch result {
-            case .success(let sessionResult):
-                guard let sessionId = sessionResult.sessionId else { return }
-                self.getAccountDetails(sessionId)
-            case .failure(let error):
-                print(error.description)
-                self.didReceiveError?()
-            }
-        }
-    }
-    
-    private func getAccountDetails(_ sessionId: String) {
-        accountClient.getAccountDetail(with: sessionId) { result in
+        authUseCase.signInUser(completion: { result in
             switch result {
             case .success(let user):
-                print(user.name)
                 self.userUseCase.saveUser(user)
-                self.authManager.saveCurrentUser(sessionId,
-                                            accountId: user.id)
                 self.didSignIn?()
-            case .failure(let error):
-                print(error.description)
+            case .failure:
                 self.didReceiveError?()
             }
-        }
+        })
     }
     
     // MARK: - View model building
     
     func buildAuthPermissionViewModel() -> AuthPermissionViewModel? {
-        guard let requestToken = requestToken else { return nil }
-        return AuthPermissionViewModel(requestToken: requestToken)
+        return AuthPermissionViewModel(authPermissionURL: authPermissionURL)
     }
     
     func buildProfileViewModel() -> ProfileViewModel {
-        let currentUser = authManager.currentUser()
+        let currentUser = authHandler.currentUser()
         let options = ProfileOptions(collectionOptions: [.favorites, .watchlist],
                                      groupOptions: [.customLists],
                                      configurationOptions: [])

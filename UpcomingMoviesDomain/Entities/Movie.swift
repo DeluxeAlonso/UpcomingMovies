@@ -31,7 +31,22 @@ public struct Movie: Decodable, Equatable {
         case releaseDate = "release_date"
         case voteAverage = "vote_average"
     }
-
+    
+    // MARK: - Initializers
+    
+    public init(id: Int, title: String, genreIds: [Int]?,
+                overview: String, posterPath: String?, backdropPath: String?,
+                releaseDate: String, voteAverage: Double?) {
+        self.id = id
+        self.title = title
+        self.genreIds = genreIds
+        self.overview = overview
+        self.posterPath = posterPath
+        self.backdropPath = backdropPath
+        self.releaseDate = releaseDate
+        self.voteAverage = voteAverage
+    }
+    
 }
 
 // MARK: - Computed Properties
