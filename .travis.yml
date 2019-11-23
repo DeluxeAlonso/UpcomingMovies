@@ -3,6 +3,7 @@ osx_image: xcode11.2
 xcode_workspace: UpcomingMovies.xcworkspace
 xcode_scheme: 
   - UpcomingMovies
+  - UpcomingMoviesDomain
   - CoreDataInfrastructure
   - NetworkInfrastructure
   - UpcomingMoviesData
