@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E229A567236BF44E006FF112"
+               BuildableName = "UpcomingMoviesDomainTests.xctest"
+               BlueprintName = "UpcomingMoviesDomainTests"
+               ReferencedContainer = "container:UpcomingMovies.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
