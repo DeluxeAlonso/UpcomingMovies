@@ -195,6 +195,7 @@
 		E229A590236BF518006FF112 /* UserUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B4F50923664BDE003B89A9 /* UserUseCaseProtocol.swift */; };
 		E229A591236BF6A8006FF112 /* URLConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222DC2C2192CBBD00A2EDF4 /* URLConfiguration.swift */; };
 		E23769DD23898217005C9EC6 /* VideoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23769DC23898217005C9EC6 /* VideoTests.swift */; };
+		E23769DF2389834C005C9EC6 /* CDUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23769DE2389834C005C9EC6 /* CDUserTests.swift */; };
 		E241FE0722434B9B00144FD3 /* AuthPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241FE0622434B9B00144FD3 /* AuthPermissionViewController.swift */; };
 		E241FE0922434D4900144FD3 /* AuthPermissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241FE0822434D4900144FD3 /* AuthPermissionViewModel.swift */; };
 		E24E010321FA33CE00A1A0A2 /* SegueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */; };
@@ -675,6 +676,7 @@
 		E234EEC32251B7D3009147CE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E234EEC52251BD16009147CE /* CDUser+PersistenceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDUser+PersistenceStore.swift"; sourceTree = "<group>"; };
 		E23769DC23898217005C9EC6 /* VideoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTests.swift; sourceTree = "<group>"; };
+		E23769DE2389834C005C9EC6 /* CDUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDUserTests.swift; sourceTree = "<group>"; };
 		E241FE0622434B9B00144FD3 /* AuthPermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionViewController.swift; sourceTree = "<group>"; };
 		E241FE0822434D4900144FD3 /* AuthPermissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionViewModel.swift; sourceTree = "<group>"; };
 		E24E010221FA33CE00A1A0A2 /* SegueHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueHandler.swift; sourceTree = "<group>"; };
@@ -1612,6 +1614,7 @@
 			children = (
 				E229A538236BF242006FF112 /* CoreDataInfraestructureTests.swift */,
 				E229A53A236BF242006FF112 /* Info.plist */,
+				E23769DE2389834C005C9EC6 /* CDUserTests.swift */,
 			);
 			path = CoreDataInfrastructureTests;
 			sourceTree = "<group>";
@@ -2872,6 +2875,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E229A539236BF242006FF112 /* CoreDataInfraestructureTests.swift in Sources */,
+				E23769DF2389834C005C9EC6 /* CDUserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
