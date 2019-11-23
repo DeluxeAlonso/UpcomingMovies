@@ -1,7 +1,8 @@
 language: swift
 osx_image: xcode11.2
-xcode_workspace: UpcomingMovies.xcworkspace # path to your xcodeproj folder
-xcode_scheme: UpcomingMovies
+xcode_workspace: UpcomingMovies.xcworkspace
+xcode_scheme: 
+  - UpcomingMovies
 xcode_destination: platform=iOS Simulator,OS=12.2,name=iPad Pro (9.7-inch)
 before_install:
   - gem install cocoapods -v '1.8.4'

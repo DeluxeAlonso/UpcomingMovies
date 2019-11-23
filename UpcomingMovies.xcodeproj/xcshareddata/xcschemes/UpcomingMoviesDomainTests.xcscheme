@@ -16,9 +16,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E221169121914E4D0039F8C9"
-               BuildableName = "UpcomingMoviesTests.xctest"
-               BlueprintName = "UpcomingMoviesTests"
+               BlueprintIdentifier = "E229A567236BF44E006FF112"
+               BuildableName = "UpcomingMoviesDomainTests.xctest"
+               BlueprintName = "UpcomingMoviesDomainTests"
                ReferencedContainer = "container:UpcomingMovies.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -34,6 +34,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "E221167B21914E4B0039F8C9"
+            BuildableName = "UpcomingMovies.app"
+            BlueprintName = "UpcomingMovies"
+            ReferencedContainer = "container:UpcomingMovies.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -41,6 +51,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "E221167B21914E4B0039F8C9"
+            BuildableName = "UpcomingMovies.app"
+            BlueprintName = "UpcomingMovies"
+            ReferencedContainer = "container:UpcomingMovies.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

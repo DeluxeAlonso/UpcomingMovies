@@ -1,13 +1,12 @@
 //
 //  VideoTests.swift
-//  UpcomingMoviesTests
+//  UpcomingMoviesDomainTests
 //
-//  Created by Alonso on 2/20/19.
+//  Created by Alonso on 11/23/19.
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
 import XCTest
-@testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 
 class VideoTests: XCTestCase {

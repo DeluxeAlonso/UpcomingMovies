@@ -8,7 +8,6 @@ target 'UpcomingMovies' do
   # Pods for UpcomingMovies
   pod 'Kingfisher', '5.3.0'
   pod 'CollectionViewSlantedLayout', '~> 3.1'
-  pod 'KeychainSwift', '~> 14.0'
   
   target 'NetworkInfrastructure' do
     use_frameworks!
