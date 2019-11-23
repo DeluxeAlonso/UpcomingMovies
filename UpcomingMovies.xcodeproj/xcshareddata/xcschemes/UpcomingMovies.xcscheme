@@ -71,16 +71,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E2727D8B236DE623004BDC5B"
-               BuildableName = "InterfaceAdaptersTests.xctest"
-               BlueprintName = "InterfaceAdaptersTests"
-               ReferencedContainer = "container:UpcomingMovies.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "E2727DAD236DEB85004BDC5B"
                BuildableName = "UpcomingMoviesDataTests.xctest"
                BlueprintName = "UpcomingMoviesDataTests"
@@ -91,29 +81,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E202092D236F25A600EBDC5E"
-               BuildableName = "NetworkInfraestructureTests.xctest"
-               BlueprintName = "NetworkInfraestructureTests"
-               ReferencedContainer = "container:UpcomingMovies.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "E202094F236F27BC00EBDC5E"
                BuildableName = "NetworkInfrastructureTests.xctest"
                BlueprintName = "NetworkInfrastructureTests"
-               ReferencedContainer = "container:UpcomingMovies.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E268AB0D238227190069E2A9"
-               BuildableName = "AuthenticationInfrastructureTests.xctest"
-               BlueprintName = "AuthenticationInfrastructureTests"
                ReferencedContainer = "container:UpcomingMovies.xcodeproj">
             </BuildableReference>
          </TestableReference>
