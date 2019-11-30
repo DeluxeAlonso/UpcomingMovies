@@ -11,8 +11,7 @@ import CoreData
 
 public class CoreDataStack {
     
-    public
-    static let shared = CoreDataStack()
+    public static let shared = CoreDataStack()
     
     lazy var persistentContainer: NSPersistentContainer = {
         let bundle = Bundle(for: CoreDataStack.self)

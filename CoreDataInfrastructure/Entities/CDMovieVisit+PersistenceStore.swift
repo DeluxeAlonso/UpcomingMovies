@@ -10,13 +10,17 @@ import Foundation
 
 extension PersistenceStore where Entity == CDMovieVisit {
     
-    func saveMovieVisit(with id: Int, title: String, posterPath: String?) {
-        guard let posterPath = posterPath else { return }
+    func saveMovieVisit(with id: Int, title: String, posterPath: String?, completion: ((Bool) -> Void)? = nil) {
+        guard let posterPath = posterPath else {
+            completion?(false)
+            return
+        }
         managedObjectContext.performChanges {
             _ = CDMovieVisit.insert(into: self.managedObjectContext,
                                     id: id,
                                     title: title,
                                     posterPath: posterPath)
+            completion?(true)
         }
     }
     
