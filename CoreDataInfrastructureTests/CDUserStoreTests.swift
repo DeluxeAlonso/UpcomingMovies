@@ -1,5 +1,5 @@
 //
-//  CDUserTests.swift
+//  CDUserStoreTests.swift
 //  CoreDataInfrastructureTests
 //
 //  Created by Alonso on 11/23/19.
@@ -10,7 +10,7 @@ import XCTest
 @testable import CoreDataInfrastructure
 @testable import UpcomingMoviesDomain
 
-class CDUserTests: XCTestCase {
+class CDUserStoreTests: XCTestCase {
     
     private var storeToTest: PersistenceStore<CDUser>!
     
@@ -26,7 +26,7 @@ class CDUserTests: XCTestCase {
 
     func testSaveUser() {
         //Arrange
-        let userToTest = User.init(id: 1, name: "Alonso", username: "DeluxeAlonso", includeAdult: true)
+        let userToTest = User(id: 1, name: "Alonso", username: "DeluxeAlonso", includeAdult: true)
         let saveExpectation = XCTestExpectation(description: "Save user")
         //Act
         storeToTest.saveUser(userToTest) { _ in

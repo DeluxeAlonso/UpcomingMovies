@@ -10,10 +10,11 @@ import Foundation
 
 extension PersistenceStore where Entity == CDMovieSearch {
     
-    func saveMovieSearch(with searchText: String) {
+    func saveMovieSearch(with searchText: String, completion: ((Bool) -> Void)? = nil) {
         managedObjectContext.performChanges {
             _ = CDMovieSearch.insert(into: self.managedObjectContext,
                                      searchText: searchText)
+            completion?(true)
         }
     }
     
