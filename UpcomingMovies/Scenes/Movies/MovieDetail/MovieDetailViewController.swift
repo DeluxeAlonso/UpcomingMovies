@@ -193,22 +193,6 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
         viewModel?.handleFavoriteMovie()
     }
     
-    /*@IBAction func trailersOptionAction(_ sender: Any) {
-        performSegue(withIdentifier: SegueIdentifier.movieVideos.rawValue, sender: nil)
-    }
-    
-    @IBAction func reviewsOptionAction(_ sender: Any) {
-        performSegue(withIdentifier: SegueIdentifier.movieReviews.rawValue, sender: nil)
-    }
-    
-    @IBAction func creditsOptionAction(_ sender: Any) {
-        performSegue(withIdentifier: SegueIdentifier.movieCredits.rawValue, sender: nil)
-    }
-    
-    @IBAction func similarsOptionAction(_ sender: Any) {
-        performSegue(withIdentifier: SegueIdentifier.movieSimilars.rawValue, sender: nil)
-    }*/
-    
 }
 
 // MARK: - Segue Identifiers
