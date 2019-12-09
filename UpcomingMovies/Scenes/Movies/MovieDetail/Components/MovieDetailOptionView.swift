@@ -56,6 +56,23 @@ class MovieDetailOptionView: UIView {
         }
     }
     
+    var identifier: String?
+    
+    // MARK: - Initializers
+    
+    init(option: MovieDetailOption) {
+        super.init(frame: .zero)
+        self.identifier = option.identifier
+        optionTitleLabel.text = option.title
+        optionImageView.image = option.icon
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupUI()
+    }
+    
     // MARK: - Lifecycle
     
     override func awakeFromNib() {
@@ -71,6 +88,7 @@ class MovieDetailOptionView: UIView {
     // MARK: - Private
     
     private func setupUI() {
+        backgroundColor = ColorPalette.navigationBarBackgroundColor
         setupStackView()
     }
     

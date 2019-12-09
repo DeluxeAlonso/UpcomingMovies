@@ -19,6 +19,7 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var optionsStackView: UIStackView!
     
     lazy var shareBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareBarButtonAction(_:)))
@@ -31,6 +32,11 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     }()
     
     var loaderView: RadarView!
+    
+    var options: [MovieDetailOption] = [ReviewsMovieDetailOption(),
+                                        TrailersMovieDetailOption(),
+                                        CreditsMovieDetailOption(),
+                                        SimilarsMovieDetailOption()]
     
     var viewModel: MovieDetailViewModel? {
         didSet {
@@ -58,6 +64,7 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     private func setupUI() {
         title = "Movie detail"
         setupNavigationBar()
+        setupOptionsStackView()
         transitionContainerView.setShadowBorder()
     }
     
@@ -65,6 +72,16 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
         navigationItem.rightBarButtonItems = [shareBarButtonItem, favoriteBarButtonItem]
+    }
+    
+    private func setupOptionsStackView() {
+        let optionsViews = options.map { MovieDetailOptionView(option: $0) }
+        for optionView in optionsViews {
+            optionView.translatesAutoresizingMaskIntoConstraints = false
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(optionAction(_:)))
+            optionView.addGestureRecognizer(tapGesture)
+            optionsStackView.addArrangedSubview(optionView)
+        }
     }
     
     private func configureNavigationBar(isFavorite: Bool?) {
@@ -155,6 +172,13 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
         }
     }
     
+    // MARK: - Selectors
+    
+    @objc func optionAction(_ sender: UITapGestureRecognizer) {
+        guard let sender = sender.view as? MovieDetailOptionView else { return }
+        performSegue(withIdentifier: sender.identifier!, sender: nil)
+    }
+    
     // MARK: - Actions
     
     @IBAction func shareBarButtonAction(_ sender: Any) {
@@ -169,7 +193,7 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
         viewModel?.handleFavoriteMovie()
     }
     
-    @IBAction func trailersOptionAction(_ sender: Any) {
+    /*@IBAction func trailersOptionAction(_ sender: Any) {
         performSegue(withIdentifier: SegueIdentifier.movieVideos.rawValue, sender: nil)
     }
     
@@ -183,7 +207,7 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     
     @IBAction func similarsOptionAction(_ sender: Any) {
         performSegue(withIdentifier: SegueIdentifier.movieSimilars.rawValue, sender: nil)
-    }
+    }*/
     
 }
 
