@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct SimilarsMovieDetailOption: MovieDetailOption {
+class SimilarsMovieDetailOption: MovieDetailOption {
     
     var title: String {
         return NSLocalizedString("similarsDetailOptions", comment: "")
@@ -20,6 +20,12 @@ struct SimilarsMovieDetailOption: MovieDetailOption {
     
     var identifier: String {
         return "MovieSimilarsSegue"
+    }
+    
+    func prepare(viewController: inout UIViewController, with viewModel: MovieDetailViewModel) {
+        guard let viewController = viewController as? MovieListViewController else { fatalError() }
+        _ = viewController.view
+        viewController.viewModel = viewModel.buildSimilarsViewModel()
     }
 
 }

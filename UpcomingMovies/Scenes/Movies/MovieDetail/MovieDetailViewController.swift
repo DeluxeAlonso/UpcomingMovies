@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieDetailViewController: UIViewController, Retryable, Transitionable, SegueHandler, Loadable {
+class MovieDetailViewController: UIViewController, Retryable, Transitionable, Loadable {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backdropImageView: UIImageView!
@@ -152,31 +152,20 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         navigationController?.delegate = nil
-        switch segueIdentifier(for: segue) {
-        case .movieVideos:
-            guard let viewController = segue.destination as? MovieVideosViewController else { fatalError() }
-            _ = viewController.view
-            viewController.viewModel = viewModel?.buildVideosViewModel()
-        case .movieReviews:
-            guard let viewController = segue.destination as? MovieReviewsViewController else { fatalError() }
-            _ = viewController.view
-            viewController.viewModel = viewModel?.buildReviewsViewModel()
-        case .movieCredits:
-            guard let viewController = segue.destination as? MovieCreditsViewController else { fatalError() }
-            _ = viewController.view
-            viewController.viewModel = viewModel?.buildCreditsViewModel()
-        case .movieSimilars:
-            guard let viewController = segue.destination as? MovieListViewController else { fatalError() }
-            _ = viewController.view
-            viewController.viewModel = viewModel!.buildSimilarsViewModel()
+        guard let option = sender as? MovieDetailOption,
+            let viewModel = viewModel else {
+            return
         }
+        var viewController = segue.destination
+        option.prepare(viewController: &viewController, with: viewModel)
     }
     
     // MARK: - Selectors
     
     @objc func optionAction(_ sender: UITapGestureRecognizer) {
         guard let sender = sender.view as? MovieDetailOptionView else { return }
-        performSegue(withIdentifier: sender.identifier!, sender: nil)
+        guard let identifier = sender.identifier else { return }
+        performSegue(withIdentifier: identifier, sender: sender.option)
     }
     
     // MARK: - Actions
@@ -191,19 +180,6 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     
     @IBAction func favoriteButtonAction(_ sender: Any) {
         viewModel?.handleFavoriteMovie()
-    }
-    
-}
-
-// MARK: - Segue Identifiers
-
-extension MovieDetailViewController {
-    
-    enum SegueIdentifier: String {
-        case movieVideos = "MovieVideosSegue"
-        case movieReviews = "MovieReviewsSegue"
-        case movieSimilars = "MovieSimilarsSegue"
-        case movieCredits = "MovieCreditsSegue"
     }
     
 }

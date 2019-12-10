@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct TrailersMovieDetailOption: MovieDetailOption {
+class TrailersMovieDetailOption: MovieDetailOption {
     
     typealias ViewModel = MovieVideosViewModel
     
@@ -22,6 +22,12 @@ struct TrailersMovieDetailOption: MovieDetailOption {
     
     var identifier: String {
         return "MovieVideosSegue"
+    }
+    
+    func prepare(viewController: inout UIViewController, with viewModel: MovieDetailViewModel) {
+        guard let viewController = viewController as? MovieVideosViewController else { fatalError() }
+        _ = viewController.view
+        viewController.viewModel = viewModel.buildVideosViewModel()
     }
     
 }

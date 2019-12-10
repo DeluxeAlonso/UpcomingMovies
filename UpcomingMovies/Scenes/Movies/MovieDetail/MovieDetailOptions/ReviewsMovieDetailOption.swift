@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ReviewsMovieDetailOption: MovieDetailOption {
+class ReviewsMovieDetailOption: MovieDetailOption {
     
     var title: String {
         return NSLocalizedString("reviewsDetailOptions", comment: "")
@@ -20,6 +20,12 @@ struct ReviewsMovieDetailOption: MovieDetailOption {
     
     var identifier: String {
         return "MovieReviewsSegue"
+    }
+    
+    func prepare(viewController: inout UIViewController, with viewModel: MovieDetailViewModel) {
+        guard let viewController = viewController as? MovieReviewsViewController else { fatalError() }
+        _ = viewController.view
+        viewController.viewModel = viewModel.buildReviewsViewModel()
     }
     
 }

@@ -8,10 +8,12 @@
 
 import UIKit
 
-protocol MovieDetailOption {
+protocol MovieDetailOption: class {
     
     var title: String { get }
     var icon: UIImage { get }
     var identifier: String { get }
+    
+    func prepare(viewController: inout UIViewController, with viewModel: MovieDetailViewModel)
     
 }
