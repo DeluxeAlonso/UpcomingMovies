@@ -33,11 +33,6 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Lo
     
     var loaderView: RadarView!
     
-    var options: [MovieDetailOption] = [ReviewsMovieDetailOption(),
-                                        TrailersMovieDetailOption(),
-                                        CreditsMovieDetailOption(),
-                                        SimilarsMovieDetailOption()]
-    
     var viewModel: MovieDetailViewModel? {
         didSet {
             setupBindables()
@@ -75,9 +70,8 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Lo
     }
     
     private func setupOptionsStackView() {
-        let optionsViews = options.map { MovieDetailOptionView(option: $0) }
+        let optionsViews = MovieDetailFactory.getOptions().map { MovieDetailOptionView(option: $0) }
         for optionView in optionsViews {
-            optionView.translatesAutoresizingMaskIntoConstraints = false
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(optionAction(_:)))
             optionView.addGestureRecognizer(tapGesture)
             optionsStackView.addArrangedSubview(optionView)
@@ -163,9 +157,11 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Lo
     // MARK: - Selectors
     
     @objc func optionAction(_ sender: UITapGestureRecognizer) {
-        guard let sender = sender.view as? MovieDetailOptionView else { return }
-        guard let identifier = sender.identifier else { return }
-        performSegue(withIdentifier: identifier, sender: sender.option)
+        guard let sender = sender.view as? MovieDetailOptionView,
+            let segueIdentifier = sender.identifier else {
+                return
+        }
+        performSegue(withIdentifier: segueIdentifier, sender: sender.option)
     }
     
     // MARK: - Actions
