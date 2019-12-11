@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -95,7 +95,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLg-25-1il">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLg-25-1il">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ijy-JB-Zii">
@@ -174,7 +174,7 @@
                                                                 <real key="value" value="270"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="backgroundLayerColor">
-                                                                <color key="value" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="value" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="loadedLayerColor">
                                                                 <color key="value" name="VoteAverageFill"/>
@@ -205,81 +205,34 @@
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1.5" translatesAutoresizingMaskIntoConstraints="NO" id="wi6-nq-fos" userLabel="Options Stack View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YRY-vC-JoM" userLabel="Reviews Movie Detail Option View" customClass="MovieDetailOptionView" customModule="UpcomingMovies" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="92.5" height="63"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                <gestureRecognizers/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="YRY-vC-JoM" secondAttribute="height" multiplier="5:2" id="VHg-U9-EQF"/>
-                                                                    <constraint firstAttribute="width" secondItem="YRY-vC-JoM" secondAttribute="height" multiplier="47:32" id="neV-6O-8rM"/>
-                                                                </constraints>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="Reviews"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedOptionTitle" value="reviewsDetailOptions"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <variation key="default">
-                                                                    <mask key="constraints">
-                                                                        <exclude reference="VHg-U9-EQF"/>
-                                                                    </mask>
-                                                                </variation>
-                                                                <variation key="heightClass=compact">
-                                                                    <mask key="constraints">
-                                                                        <include reference="VHg-U9-EQF"/>
-                                                                        <exclude reference="neV-6O-8rM"/>
-                                                                    </mask>
-                                                                </variation>
-                                                                <connections>
-                                                                    <outletCollection property="gestureRecognizers" destination="ElM-XT-eHR" appends="YES" id="vCA-gK-VG7"/>
-                                                                </connections>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ol2-nL-kyw" userLabel="Trailer Movie Detail Option View" customClass="MovieDetailOptionView" customModule="UpcomingMovies" customModuleProvider="target">
-                                                                <rect key="frame" x="94" y="0.0" width="93" height="63"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                <gestureRecognizers/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="PlayVideo"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedOptionTitle" value="trailersDetailOptions"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <outletCollection property="gestureRecognizers" destination="sFM-TJ-Gi3" appends="YES" id="vXP-si-XP3"/>
-                                                                </connections>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oao-oc-GOX" userLabel="Cast Movie Detail Option View" customClass="MovieDetailOptionView" customModule="UpcomingMovies" customModuleProvider="target">
-                                                                <rect key="frame" x="188.5" y="0.0" width="92.5" height="63"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                <gestureRecognizers/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="Cast"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedOptionTitle" value="creditsDetailOptions"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <outletCollection property="gestureRecognizers" destination="o9o-3F-xia" appends="YES" id="tKK-mR-Ckn"/>
-                                                                </connections>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgt-dg-IRa" userLabel="Similar Moviw Option View" customClass="MovieDetailOptionView" customModule="UpcomingMovies" customModuleProvider="target">
-                                                                <rect key="frame" x="282.5" y="0.0" width="92.5" height="63"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                <gestureRecognizers/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="SimilarMovies"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedOptionTitle" value="similarsDetailOptions"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <outletCollection property="gestureRecognizers" destination="U0c-SP-USZ" appends="YES" id="aVn-ov-Onc"/>
-                                                                </connections>
-                                                            </view>
-                                                        </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="wi6-nq-fos" firstAttribute="leading" secondItem="WmX-R4-dMd" secondAttribute="leading" id="Bgk-sJ-wCA"/>
                                                     <constraint firstAttribute="bottom" secondItem="wi6-nq-fos" secondAttribute="bottom" id="SpT-R0-BPu"/>
+                                                    <constraint firstAttribute="width" secondItem="WmX-R4-dMd" secondAttribute="height" multiplier="11:1" id="Vbq-5K-lhT"/>
                                                     <constraint firstItem="wi6-nq-fos" firstAttribute="top" secondItem="WmX-R4-dMd" secondAttribute="top" id="W1g-OK-P3A"/>
                                                     <constraint firstAttribute="trailing" secondItem="wi6-nq-fos" secondAttribute="trailing" id="YdH-XL-iHM"/>
+                                                    <constraint firstAttribute="width" secondItem="WmX-R4-dMd" secondAttribute="height" multiplier="125:21" id="y6E-e8-5Sp"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="Vbq-5K-lhT"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="Vbq-5K-lhT"/>
+                                                        <exclude reference="y6E-e8-5Sp"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=compact-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <exclude reference="y6E-e8-5Sp"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jK-m0-ZH0" userLabel="Separator View">
                                                 <rect key="frame" x="0.0" y="320" width="375" height="1"/>
@@ -405,6 +358,7 @@
                     <connections>
                         <outlet property="backdropImageView" destination="RsL-2b-bRH" id="s7t-J9-geQ"/>
                         <outlet property="genreLabel" destination="Gkj-So-5cA" id="6cf-Ds-lSf"/>
+                        <outlet property="optionsStackView" destination="wi6-nq-fos" id="Q58-bN-AVn"/>
                         <outlet property="overviewLabel" destination="1SK-ri-asW" id="H56-aK-zWQ"/>
                         <outlet property="posterImageView" destination="zXa-53-Cbr" id="BFV-Zl-Ysh"/>
                         <outlet property="releaseDateLabel" destination="slt-aQ-ofO" id="tNa-Gm-6GR"/>
@@ -419,14 +373,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSa-lq-OS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="sFM-TJ-Gi3" userLabel="Trailers Tap Gesture Recognizer">
+                <tapGestureRecognizer id="o9o-3F-xia" userLabel="Credits Gesture Recognizer">
                     <connections>
-                        <action selector="trailersOptionAction:" destination="4Ld-U6-Odg" id="re5-wp-dtY"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="ElM-XT-eHR" userLabel="Reviews Tap Gesture Recognizer">
-                    <connections>
-                        <action selector="reviewsOptionAction:" destination="4Ld-U6-Odg" id="MVd-5Z-BV6"/>
+                        <action selector="creditsOptionAction:" destination="4Ld-U6-Odg" id="dm1-Ep-YVS"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="U0c-SP-USZ" userLabel="Similars Tap Gesture Recognizer">
@@ -434,9 +383,14 @@
                         <action selector="similarsOptionAction:" destination="4Ld-U6-Odg" id="R9T-ZC-gnq"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="o9o-3F-xia" userLabel="Credits Gesture Recognizer">
+                <tapGestureRecognizer id="ElM-XT-eHR" userLabel="Reviews Tap Gesture Recognizer">
                     <connections>
-                        <action selector="creditsOptionAction:" destination="4Ld-U6-Odg" id="dm1-Ep-YVS"/>
+                        <action selector="reviewsOptionAction:" destination="4Ld-U6-Odg" id="MVd-5Z-BV6"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="sFM-TJ-Gi3" userLabel="Trailers Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="trailersOptionAction:" destination="4Ld-U6-Odg" id="re5-wp-dtY"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -506,13 +460,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Cast" width="33" height="33"/>
         <image name="CollapsibleArrow" width="33" height="33"/>
-        <image name="PlayVideo" width="33" height="33"/>
-        <image name="Reviews" width="33" height="33"/>
-        <image name="SimilarMovies" width="33" height="33"/>
         <namedColor name="VoteAverageFill">
-            <color red="0.039215686274509803" green="0.51764705882352946" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class MovieDetailOptionView: UIView {
     
     private lazy var optionStackView: UIStackView = {
@@ -36,24 +35,25 @@ class MovieDetailOptionView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+
+    var option: MovieDetailOption
     
-    @IBInspectable var optionImage: UIImage? {
-        didSet {
-            optionImageView.image = optionImage
-        }
+    var identifier: String? {
+        return option.identifier
     }
     
-    @IBInspectable var localizedOptionTitle: String? {
-        didSet {
-          guard let title = localizedOptionTitle else { return }
-          optionTitleLabel.text = NSLocalizedString(title, comment: "")
-        }
+    // MARK: - Initializers
+    
+    init(option: MovieDetailOption) {
+        self.option = option
+        super.init(frame: .zero)
+        optionTitleLabel.text = self.option.title
+        optionImageView.image = self.option.icon
+        setupUI()
     }
     
-    @IBInspectable var optionTitleColor: UIColor? {
-        didSet {
-            optionTitleLabel.textColor = optionTitleColor
-        }
+    required init?(coder: NSCoder) {
+        fatalError()
     }
     
     // MARK: - Lifecycle
@@ -71,6 +71,7 @@ class MovieDetailOptionView: UIView {
     // MARK: - Private
     
     private func setupUI() {
+        backgroundColor = ColorPalette.navigationBarBackgroundColor
         setupStackView()
     }
     

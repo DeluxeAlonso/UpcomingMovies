@@ -31,6 +31,10 @@ final class MovieDetailViewModel {
     var updateMovieDetail: (() -> Void)?
     var needsFetch = false
     
+    var options: [MovieDetailOption] {
+        return MovieDetailFactory.getOptions()
+    }
+    
     var startLoading: Bindable<Bool> = Bindable(false)
     var isFavorite: Bindable<Bool?> = Bindable(false)
     var showErrorView: Bindable<Error?> = Bindable(nil)
