@@ -59,7 +59,6 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Lo
     private func setupUI() {
         title = "Movie detail"
         setupNavigationBar()
-        setupOptionsStackView()
         transitionContainerView.setShadowBorder()
     }
     
@@ -67,15 +66,6 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Lo
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
         navigationItem.rightBarButtonItems = [shareBarButtonItem, favoriteBarButtonItem]
-    }
-    
-    private func setupOptionsStackView() {
-        let optionsViews = MovieDetailFactory.getOptions().map { MovieDetailOptionView(option: $0) }
-        for optionView in optionsViews {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(optionAction(_:)))
-            optionView.addGestureRecognizer(tapGesture)
-            optionsStackView.addArrangedSubview(optionView)
-        }
     }
     
     private func configureNavigationBar(isFavorite: Bool?) {
@@ -116,6 +106,18 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Lo
         
         voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview
+        
+        configureOptionsStackView()
+    }
+    
+    private func configureOptionsStackView() {
+        guard let viewModel = viewModel else { return }
+        let optionsViews = viewModel.options.map { MovieDetailOptionView(option: $0) }
+        for optionView in optionsViews {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(optionAction(_:)))
+            optionView.addGestureRecognizer(tapGesture)
+            optionsStackView.addArrangedSubview(optionView)
+        }
     }
     
     private func setupLoaderBindable() {
