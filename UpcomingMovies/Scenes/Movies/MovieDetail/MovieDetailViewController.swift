@@ -111,7 +111,7 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Lo
     }
     
     private func configureOptionsStackView() {
-        guard let viewModel = viewModel else { return }
+        guard let viewModel = viewModel, optionsStackView.arrangedSubviews.isEmpty else { return }
         let optionsViews = viewModel.options.map { MovieDetailOptionView(option: $0) }
         for optionView in optionsViews {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(optionAction(_:)))
