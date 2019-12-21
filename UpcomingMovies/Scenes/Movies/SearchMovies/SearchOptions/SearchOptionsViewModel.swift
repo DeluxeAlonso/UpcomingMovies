@@ -15,13 +15,15 @@ final class SearchOptionsViewModel {
     private var movieVisitUseCase: MovieVisitUseCaseProtocol
     private var genreUseCase: GenreUseCaseProtocol
     
+    private var genres: [Genre] = []
+    
     let viewState: Bindable<SearchOptionsViewState> = Bindable(.emptyMovieVisits)
     
     var needsContentReload: (() -> Void)?
     var updateVisitedMovies: Bindable<Int?> = Bindable(nil)
     
     var selectedDefaultSearchOption: Bindable<DefaultSearchOption?> = Bindable(nil)
-    var selectedMovieGenre: Bindable<Int?> = Bindable(nil)
+    var selectedMovieGenre: Bindable<(Int?, String?)> = Bindable((nil, nil))
     var selectedRecentlyVisitedMovie: ((Int, String) -> Void)?
     
     var visitedMovieCells: [VisitedMovieCellViewModel] {
@@ -30,7 +32,6 @@ final class SearchOptionsViewModel {
     }
     
     var genreCells: [GenreSearchOptionCellViewModel] {
-        let genres = genreUseCase.findAll()
         return genres.map { GenreSearchOptionCellViewModel(genre: $0) }
     }
     
@@ -80,6 +81,19 @@ final class SearchOptionsViewModel {
     
     // MARK: - Public
     
+    func load() {
+        genreUseCase.fetchAll(completion: { [weak self] result in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(let genres):
+                strongSelf.genres = genres
+                strongSelf.needsContentReload?()
+            case .failure:
+                break
+            }
+        })
+    }
+    
     func sectionIndex(for section: SearchOptionsSection) -> Int? {
         let sections = viewState.value.sections
         return sections.firstIndex(of: section)
@@ -95,9 +109,8 @@ final class SearchOptionsViewModel {
     }
     
     func getMovieGenreSelection(by index: Int) {
-        let genres = genreUseCase.findAll()
         let selectedGenre = genres[index]
-        selectedMovieGenre.value = selectedGenre.id
+        selectedMovieGenre.value = (selectedGenre.id, selectedGenre.name)
     }
     
     func getRecentlyVisitedMovieSelection(by index: Int) {

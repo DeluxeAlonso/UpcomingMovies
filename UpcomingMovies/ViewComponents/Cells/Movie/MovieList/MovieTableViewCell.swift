@@ -46,7 +46,7 @@ class MovieTableViewCell: UITableViewCell {
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
         nameLabel.text = viewModel.name
-        genreLabel.text = viewModel.genre
+        genreLabel.text = viewModel.genreName
         releaseDateLabel.text = viewModel.releaseDate
         posterImageView.setImage(with: viewModel.posterURL)
         voteAverageView.voteValue = viewModel.voteAverage

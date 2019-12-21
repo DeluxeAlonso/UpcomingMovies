@@ -34,7 +34,7 @@ final class CustomListDetailViewModel {
     }
     
     var movieCells: [MovieCellViewModel] {
-        return movies.map { MovieCellViewModel($0, genreUseCase: useCaseProvider.genreUseCase()) }
+        return movies.map { MovieCellViewModel($0, genreName: nil) }
     }
     
     // MARK: - Initializers

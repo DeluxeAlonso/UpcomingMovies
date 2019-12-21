@@ -46,15 +46,3 @@ extension MainTabBarController: UITabBarControllerDelegate {
     }
     
 }
-//
-//// MARK: - TabBar Items
-//
-//extension MainTabBarController {
-//    
-//    enum Items: Int {
-//        case upcomingMovies
-//        case searchMovies
-//        case favoriteMovies
-//    }
-//
-//}

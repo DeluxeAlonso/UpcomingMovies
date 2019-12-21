@@ -40,8 +40,7 @@ final class SearchMoviesViewModel: NSObject {
                                   useCaseProvider: useCaseProvider)
     }
     
-    func moviesByGenreViewModel(genreId: Int) -> MovieListViewModel {
-        let genreName = genreUseCase.find(with: genreId)?.name ?? "-"
+    func moviesByGenreViewModel(genreId: Int, genreName: String) -> MovieListViewModel {
         return MovieListViewModel(filter: .byGenre(genreId: genreId, genreName: genreName),
                                   useCaseProvider: useCaseProvider)
     }

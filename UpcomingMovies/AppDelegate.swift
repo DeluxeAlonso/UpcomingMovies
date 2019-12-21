@@ -34,13 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func initialTransition() {
         guard let window = window else { return }
-        window.rootViewController = MainTabBarController()
         UIView.transition(with: window,
                           duration: 0.5,
                           options: [UIView.AnimationOptions.curveEaseOut,
                                     UIView.AnimationOptions.transitionCrossDissolve],
                           animations: {},
-                          completion: nil)
+                          completion: { _ in
+                            window.rootViewController = MainTabBarController()
+        })
     }
     
 }
