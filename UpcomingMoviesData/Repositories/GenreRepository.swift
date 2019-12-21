@@ -25,28 +25,14 @@ public final class GenreRepository: GenreUseCaseProtocol {
             self.localDataSource.didUpdateGenre = didUpdateGenre
         }
     }
-//
-//    public func find(with id: Int) -> Genre? {
-//        return localDataSource.find(with: id)
-//    }
-//
-//    public func findAll() -> [Genre] {
-//        return localDataSource.findAll()
-//    }
-//
-//    public func saveGenres(_ genres: [Genre]) {
-//        localDataSource.saveGenres(genres)
-//    }
-    
+
     public func find(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void) {
         return completion(.success(localDataSource.find(with: id)))
     }
     
     public func fetchAll(completion: @escaping (Result<[Genre], Error>) -> Void) {
         let localGenres = localDataSource.findAll()
-        if !localGenres.isEmpty {
-            completion(.success(localGenres))
-        }
+        if !localGenres.isEmpty { completion(.success(localGenres)) }
         
         remoteDataSource.getAllGenres(completion: { [weak self] result in
             guard let strongSelf = self else { return }
