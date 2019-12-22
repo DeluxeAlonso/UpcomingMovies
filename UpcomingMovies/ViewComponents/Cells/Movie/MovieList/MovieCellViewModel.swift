@@ -17,9 +17,11 @@ final class MovieCellViewModel {
     var posterURL: URL?
     var voteAverage: Double?
 
-    init(_ movie: Movie, genreName: String?) {
+    init(_ movie: Movie, genreHandler: GenreHandler = GenreHandler.shared) {
         self.name = movie.title
-        self.genreName = genreName
+        if let genreId = movie.genreIds?.first {
+            self.genreName = genreHandler.getGenreName(for: genreId)
+        }
         self.releaseDate = movie.releaseDate
         self.voteAverage = movie.voteAverage
         self.posterURL = movie.posterURL

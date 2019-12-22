@@ -22,7 +22,7 @@ final class MovieListViewModel: MoviesViewModel {
     // MARK: - Computed Properties
     
     var movieCells: [MovieCellViewModel] {
-        return movies.compactMap { MovieCellViewModel($0, genreName: nil) }
+        return movies.compactMap { MovieCellViewModel($0) }
     }
     
     // MARK: - Initializers

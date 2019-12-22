@@ -31,7 +31,7 @@ final class SearchMoviesResultViewModel {
     }
     
     var movieCells: [MovieCellViewModel] {
-        return movies.compactMap { MovieCellViewModel($0, genreName: nil)}
+        return movies.compactMap { MovieCellViewModel($0)}
     }
     
     // MARK: - Initilalizers

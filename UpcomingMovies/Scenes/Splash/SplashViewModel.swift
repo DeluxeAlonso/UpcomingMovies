@@ -24,9 +24,10 @@ final class SplashViewModel {
      * Fetch all the movie genres and save them locally.
      */
     func getMovieGenres() {
-        genreUseCase.fetchAll { _ in
+        genreUseCase.fetchAll { result in
+            _ = result.map { GenreHandler.shared.setGenres($0) }
             self.genresFetched?()
         }
     }
-
+    
 }
