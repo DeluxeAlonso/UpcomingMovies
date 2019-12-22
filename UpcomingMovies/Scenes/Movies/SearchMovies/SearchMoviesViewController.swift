@@ -164,8 +164,8 @@ extension SearchMoviesViewController: SearchOptionsTableViewControllerDelegate {
     }
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectMovieGenre genreId: Int) {
-        let viewModel = self.viewModel.moviesByGenreViewModel(genreId: genreId)
+                                          didSelectMovieGenreWithId genreId: Int, andGenreName genreName: String) {
+        let viewModel = self.viewModel.moviesByGenreViewModel(genreId: genreId, genreName: genreName)
         performSegue(withIdentifier: SegueIdentifier.movieList.rawValue,
                      sender: viewModel)
     }

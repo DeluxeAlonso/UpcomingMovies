@@ -16,7 +16,7 @@ protocol SearchOptionsTableViewControllerDelegate: class {
                                           didSelectTopRatedMovies selected: Bool)
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectMovieGenre genreId: Int)
+                                          didSelectMovieGenreWithId genreId: Int, andGenreName genreName: String)
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
                                           didSelectRecentlyVisitedMovie id: Int,
@@ -75,7 +75,7 @@ class SearchOptionsTableViewController: UITableViewController {
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        setupDataSource()
+        //setupDataSource()
         
         viewModel?.needsContentReload = { [weak self] in
             guard let strongSelf = self else { return }
@@ -100,10 +100,15 @@ class SearchOptionsTableViewController: UITableViewController {
             }
         })
         
-        viewModel?.selectedMovieGenre.bind({ [weak self] genreId in
-            guard let strongSelf = self, let genreId = genreId else { return }
+        viewModel?.selectedMovieGenre.bind({ [weak self] (genreId, genreName) in
+            guard let strongSelf = self,
+                let genreId = genreId,
+                let genreName = genreName else {
+                    return
+            }
             strongSelf.delegate?.searchOptionsTableViewController(strongSelf,
-                                                                  didSelectMovieGenre: genreId)
+                                                                  didSelectMovieGenreWithId: genreId,
+                                                                  andGenreName: genreName)
         })
         
         viewModel?.selectedRecentlyVisitedMovie = { [weak self] id, title in
@@ -111,6 +116,7 @@ class SearchOptionsTableViewController: UITableViewController {
             strongSelf.delegate?.searchOptionsTableViewController(strongSelf, didSelectRecentlyVisitedMovie: id, title: title)
         }
         
+        viewModel?.load()
     }
     
     // MARK: - Table view delegate

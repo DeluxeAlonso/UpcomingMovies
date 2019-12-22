@@ -47,7 +47,7 @@ extension MoviesViewModel {
     }
     
     func refreshMovies() {
-        fetchMovies(currentPage: 1, filter: filter, showLoader: false)
+        self.fetchMovies(currentPage: 1, filter: self.filter, showLoader: false)
     }
     
     private func fetchMovies(currentPage: Int, filter: MovieListFilter, showLoader: Bool = false) {

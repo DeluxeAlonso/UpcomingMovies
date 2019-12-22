@@ -210,6 +210,7 @@
 		E260117621938D6C00E53095 /* Retryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E260117521938D6C00E53095 /* Retryable.swift */; };
 		E260117B21939A1B00E53095 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E260117A21939A1B00E53095 /* MovieDetailViewController.swift */; };
 		E260117D21939D7100E53095 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E260117C21939D7100E53095 /* MovieDetailViewModel.swift */; };
+		E2634D0A23AFA28D00857DD8 /* GenresHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2634D0923AFA28D00857DD8 /* GenresHandler.swift */; };
 		E2638084221281B80038AD00 /* MovieReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2638083221281B80038AD00 /* MovieReviewsViewController.swift */; };
 		E2638086221281E50038AD00 /* MovieReviewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2638085221281E50038AD00 /* MovieReviewsViewModel.swift */; };
 		E2638089221284050038AD00 /* MovieReviewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2638088221284050038AD00 /* MovieReviewCellViewModel.swift */; };
@@ -699,6 +700,7 @@
 		E260117521938D6C00E53095 /* Retryable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retryable.swift; sourceTree = "<group>"; };
 		E260117A21939A1B00E53095 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		E260117C21939D7100E53095 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
+		E2634D0923AFA28D00857DD8 /* GenresHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresHandler.swift; sourceTree = "<group>"; };
 		E2638083221281B80038AD00 /* MovieReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewsViewController.swift; sourceTree = "<group>"; };
 		E2638085221281E50038AD00 /* MovieReviewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewsViewModel.swift; sourceTree = "<group>"; };
 		E2638088221284050038AD00 /* MovieReviewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewCellViewModel.swift; sourceTree = "<group>"; };
@@ -1259,7 +1261,6 @@
 			isa = PBXGroup;
 			children = (
 				E2FE24E0223E24A800E6E664 /* UpcomingMovies.entitlements */,
-				E221F75A222AE44D008DFF87 /* Managers */,
 				E222DC232192AF7A00A2EDF4 /* ViewComponents */,
 				E22116A221914EF00039F8C9 /* Scenes */,
 				E22116A121914EB30039F8C9 /* Storyboards */,
@@ -1339,6 +1340,7 @@
 		E22116B1219156EA0039F8C9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E221F75A222AE44D008DFF87 /* Managers */,
 				E25F9CEF225B083A0069A6A1 /* Protocols */,
 				E2143DB422571A43003E939F /* Extensions */,
 				E22116B2219156F10039F8C9 /* Utils */,
@@ -1349,6 +1351,7 @@
 		E22116B2219156F10039F8C9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E26DB21A236C7DBF0054CC95 /* InjectionFactory.swift */,
 				E260116D219388B700E53095 /* FontHelper.swift */,
 				E260116F219388C500E53095 /* ColorPalette.swift */,
 				E2A65E5221FECC2200485B4E /* Utils.swift */,
@@ -1381,7 +1384,7 @@
 			isa = PBXGroup;
 			children = (
 				E2E4452E22475533009ABDEA /* AuthenticationHandler.swift */,
-				E26DB21A236C7DBF0054CC95 /* InjectionFactory.swift */,
+				E2634D0923AFA28D00857DD8 /* GenresHandler.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -2842,6 +2845,7 @@
 				E241FE0722434B9B00144FD3 /* AuthPermissionViewController.swift in Sources */,
 				E21F37B12194241B00D6BFB6 /* UIViewController+Extensions.swift in Sources */,
 				E22588A02243120000E1327E /* AccountViewController.swift in Sources */,
+				E2634D0A23AFA28D00857DD8 /* GenresHandler.swift in Sources */,
 				E225469C226AC78200E9042C /* CustomListDetailViewController.swift in Sources */,
 				E26DB21B236C7DBF0054CC95 /* InjectionFactory.swift in Sources */,
 				E26DB219236C73250054CC95 /* Storyboarded.swift in Sources */,

@@ -107,6 +107,10 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Lo
         voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview
         
+        viewModel.showGenreName.bindAndFire({ [weak self] genreName in
+            self?.genreLabel.text = genreName
+        })
+        
         configureOptionsStackView()
     }
     

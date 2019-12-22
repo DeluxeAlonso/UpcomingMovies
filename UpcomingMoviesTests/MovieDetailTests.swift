@@ -89,12 +89,4 @@ class MovieDetailTests: XCTestCase {
         XCTAssertEqual(fullBackdropPath!, URL(string: "https://image.tmdb.org/t/p/w500/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg"))
     }
     
-    //TO-DO: Implement a mocked use case provider
-    func testMovieDetailGenre() {
-        //Act
-        let genre = viewModelToTest.genre
-        //Assert
-        XCTAssertEqual(genre!, "Genre 1")
-    }
-    
 }

@@ -109,16 +109,9 @@ final class MockGenreUseCase: GenreUseCaseProtocol {
     
     var didUpdateGenre: (() -> Void)?
     
-    func find(with id: Int) -> Genre? {
-        return Genre.with(id: 1, name: "Genre 1")
+    func find(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void) {
+        completion(.success(Genre.with(id: 1, name: "Genre 1")))
     }
-    
-    func findAll() -> [Genre] {
-        return [Genre.with(id: 1, name: "Genre 1"),
-                 Genre.with(id: 2, name: "Genre 2")]
-    }
-    
-    func saveGenres(_ genres: [Genre]) {}
     
     var genres: Result<[Genre], Error>?
     func fetchAll(completion: @escaping (Result<[Genre], Error>) -> Void) {

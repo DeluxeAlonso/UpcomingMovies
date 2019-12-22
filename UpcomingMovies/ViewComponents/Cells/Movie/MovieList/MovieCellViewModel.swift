@@ -12,21 +12,19 @@ import UpcomingMoviesDomain
 final class MovieCellViewModel {
     
     var name: String?
-    var genre: String? = "-"
+    var genreName: String? = "-"
     var releaseDate: String?
     var posterURL: URL?
     var voteAverage: Double?
 
-    init(_ movie: Movie, genreUseCase: GenreUseCaseProtocol) {
-        name = movie.title
-        
+    init(_ movie: Movie, genreHandler: GenreHandler = GenreHandler.shared) {
+        self.name = movie.title
         if let genreId = movie.genreIds?.first {
-            genre = genreUseCase.find(with: genreId)?.name ?? "-"
+            self.genreName = genreHandler.getGenreName(for: genreId)
         }
-        
-        releaseDate = movie.releaseDate
-        voteAverage = movie.voteAverage
-        posterURL = movie.posterURL
+        self.releaseDate = movie.releaseDate
+        self.voteAverage = movie.voteAverage
+        self.posterURL = movie.posterURL
     }
     
 }

@@ -19,19 +19,15 @@ final class SplashViewModel {
         let useCaseProvider = InjectionFactory.useCaseProvider()
         self.genreUseCase = useCaseProvider.genreUseCase()
     }
+    
     /**
      * Fetch all the movie genres and save them locally.
      */
     func getMovieGenres() {
         genreUseCase.fetchAll { result in
-            switch result {
-            case .success(let genres):
-                self.genreUseCase.saveGenres(genres)
-            case .failure:
-                break
-            }
+            _ = result.map { GenreHandler.shared.setGenres($0) }
             self.genresFetched?()
         }
     }
-
+    
 }

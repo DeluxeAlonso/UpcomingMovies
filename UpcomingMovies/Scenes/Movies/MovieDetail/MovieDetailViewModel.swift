@@ -38,6 +38,7 @@ final class MovieDetailViewModel {
     var startLoading: Bindable<Bool> = Bindable(false)
     var isFavorite: Bindable<Bool?> = Bindable(false)
     var showErrorView: Bindable<Error?> = Bindable(nil)
+    var showGenreName: Bindable<String> = Bindable("-")
     
     // MARK: - Initializers
 
@@ -70,10 +71,6 @@ final class MovieDetailViewModel {
         id = movie.id
         title = movie.title
         
-        if let genreId = movie.genreIds?.first {
-            genre = genreUseCase.find(with: genreId)?.name ?? "-"
-        }
-        
         releaseDate = movie.releaseDate
         voteAverage = movie.voteAverage
         overview = movie.overview
@@ -82,7 +79,21 @@ final class MovieDetailViewModel {
         backdropPath = movie.backdropPath
         backdropURL = movie.backdropURL
         
+        getMovieGenreName(for: movie.genreIds?.first)
         saveVisitedMovie()
+    }
+    
+    private func getMovieGenreName(for genreId: Int?) {
+        guard let genreId = genreId else { return }
+        genreUseCase.find(with: genreId, completion: { [weak self] result in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(let genre):
+                strongSelf.showGenreName.value = genre?.name ?? "-"
+            case .failure:
+                break
+            }
+        })
     }
     
     // MARK: - Networking

@@ -12,10 +12,7 @@ public protocol GenreUseCaseProtocol {
     
     var didUpdateGenre: (() -> Void)? { get set }
     
-    func find(with id: Int) -> Genre?
-    func findAll() -> [Genre]
-    func saveGenres(_ genres: [Genre])
-    
+    func find(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void)
     func fetchAll(completion: @escaping (Result<[Genre], Error>) -> Void)
     
 }
