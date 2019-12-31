@@ -21,17 +21,6 @@ public struct Movie: Decodable, Equatable {
     
     public static let posterAspectRatio: Double = 1.5
     
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case title
-        case overview
-        case genreIds = "genre_ids"
-        case posterPath = "poster_path"
-        case backdropPath = "backdrop_path"
-        case releaseDate = "release_date"
-        case voteAverage = "vote_average"
-    }
-    
     // MARK: - Initializers
     
     public init(id: Int, title: String, genreIds: [Int]?,

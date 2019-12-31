@@ -20,12 +20,13 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         self.authManager = authManager
     }
     
-    func getMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func getMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         client.getMovies(page: page, filter: movieListFilter, completion: { result in
             switch result {
             case .success(let movieResult):
                 guard let movieResult = movieResult else { return }
-                completion(.success(movieResult.results))
+                let movies = movieResult.results.map { $0.asDomain() }
+                completion(.success(movies))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -33,11 +34,11 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
     }
     
     func getMovieDetail(with movieId: Int,
-                        completion: @escaping (Result<Movie, Error>) -> Void) {
+                        completion: @escaping (Result<UpcomingMoviesDomain.Movie, Error>) -> Void) {
         client.getMovieDetail(with: movieId, completion: { result in
             switch result {
             case .success(let movieDetailResult):
-                let movie = movieDetailResult.asMovie()
+                let movie = movieDetailResult.asMovie().asDomain()
                 completion(.success(movie))
             case .failure(let error):
                 completion(.failure(error))
@@ -45,12 +46,13 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         })
     }
     
-    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         client.searchMovies(searchText: searchText, completion: { result in
             switch result {
             case .success(let movieResult):
                 guard let movieResult = movieResult else { return }
-                completion(.success(movieResult.results))
+                let movies = movieResult.results.map { $0.asDomain() }
+                completion(.success(movies))
             case .failure(let error):
                 completion(.failure(error))
             }
