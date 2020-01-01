@@ -89,8 +89,8 @@ final class MockMovieUseCase: MovieUseCaseProtocol {
         completion(isInWatchlist!)
     }
     
-    var reviews: Result<[Review], Error>?
-    func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[Review], Error>) -> Void) {
+    var reviews: Result<[UpcomingMoviesDomain.Review], Error>?
+    func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Review], Error>) -> Void) {
         completion(reviews!)
     }
     

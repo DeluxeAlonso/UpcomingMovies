@@ -65,12 +65,12 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
         })
     }
     
-    func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void) {
+    func getAccountDetail(completion: @escaping (Result<UpcomingMoviesDomain.User, Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
         client.getAccountDetail(with: account.sessionId, completion: { result in
             switch result {
             case .success(let user):
-                completion(.success(user))
+                completion(.success(user.asDomain()))
             case .failure(let error):
                 completion(.failure(error))
             }

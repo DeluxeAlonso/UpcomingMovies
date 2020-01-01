@@ -36,7 +36,7 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
         }
     }
     
-    func signInUser(completion: @escaping (Result<User, Error>) -> Void) {
+    func signInUser(completion: @escaping (Result<UpcomingMoviesDomain.User, Error>) -> Void) {
         let readAccessToken = authManager.readAccessToken
         guard let requestToken = authManager.requestToken else { return }
         authClient.getAccessToken(with: readAccessToken, requestToken: requestToken) { result in
@@ -52,7 +52,7 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
     }
     
     private func createSessionId(with accessToken: String,
-                                 completion: @escaping (Result<User, Error>) -> Void) {
+                                 completion: @escaping (Result<UpcomingMoviesDomain.User, Error>) -> Void) {
         authClient.createSessionId(with: accessToken) { result in
             switch result {
             case .success(let sessionResult):
@@ -65,13 +65,13 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
     }
     
     private func getAccountDetails(_ sessionId: String,
-                                   completion: @escaping (Result<User, Error>) -> Void) {
+                                   completion: @escaping (Result<UpcomingMoviesDomain.User, Error>) -> Void) {
         accountClient.getAccountDetail(with: sessionId) { result in
             switch result {
             case .success(let user):
                 self.authManager.saveCurrentUser(sessionId,
                                                  accountId: user.id)
-                completion(.success(user))
+                completion(.success(user.asDomain()))
             case .failure(let error):
                 completion(.failure(error))
             }

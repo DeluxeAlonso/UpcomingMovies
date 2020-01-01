@@ -8,20 +8,13 @@
 
 import Foundation
 
-public struct User: Decodable {
+public struct User {
     
     public let id: Int
     public let name: String
     public let username: String
     public let includeAdult: Bool
-    
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case username
-        case includeAdult = "include_adult"
-    }
-    
+
     public init(id: Int, name: String, username: String, includeAdult: Bool) {
         self.id = id
         self.name = name

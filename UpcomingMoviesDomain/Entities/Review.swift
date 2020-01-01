@@ -8,16 +8,16 @@
 
 import Foundation
 
-public struct Review: Decodable, Equatable {
+public struct Review: Equatable {
     
     public let id: String
     public let authorName: String
     public let content: String
     
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case authorName = "author"
-        case content
+    public init(id: String, authorName: String, content: String) {
+        self.id = id
+        self.authorName = authorName
+        self.content = content
     }
     
 }
