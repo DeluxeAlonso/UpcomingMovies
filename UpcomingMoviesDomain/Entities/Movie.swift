@@ -44,8 +44,12 @@ public struct Movie: Equatable {
 
 extension Movie {
     
-    static func with(id: Int = 1, title: String = "Movie 1", genreIds: [Int] = [],
-                     overview: String = "Overview", posterURL: URL? = nil, backdropURL: URL? = nil,
+    static func with(id: Int = 1,
+                     title: String = "Movie 1",
+                     genreIds: [Int] = [],
+                     overview: String = "Overview",
+                     posterURL: URL? = URL(string: "https://image.tmdb.org/t/p/w185/poster.jpg"),
+                     backdropURL: URL? = URL(string: "https://image.tmdb.org/t/p/w185/backdrop.jpg"),
                      releaseDate: String = "02-21-2019", voteAverage: Double = 5.0) -> Movie {
         return Movie(id: id, title: title, genreIds: genreIds,
                      overview: overview, posterURL: posterURL,
