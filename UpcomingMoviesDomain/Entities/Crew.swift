@@ -8,27 +8,18 @@
 
 import Foundation
 
-public struct Crew: Decodable {
+public struct Crew {
     
     public let id: Int
     public let job: String
     public let name: String
-    public let profilePath: String?
- 
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case job
-        case name
-        case profilePath = "profile_path"
-    }
-    
-}
+    public let profileURL: URL?
 
-extension Crew {
-    
-    public var profileURL: URL? {
-        guard let profilePath = profilePath else { return nil }
-        return URL(string: URLConfiguration.mediaPath + profilePath)
+    public init(id: Int, job: String, name: String, profileURL: URL?) {
+        self.id = id
+        self.job = job
+        self.name = name
+        self.profileURL = profileURL
     }
     
 }

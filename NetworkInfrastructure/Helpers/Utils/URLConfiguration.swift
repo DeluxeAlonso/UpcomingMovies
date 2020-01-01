@@ -1,9 +1,9 @@
 //
 //  URLConfiguration.swift
-//  UpcomingMovies
+//  NetworkInfrastructure
 //
-//  Created by Alonso on 11/7/18.
-//  Copyright © 2018 Alonso. All rights reserved.
+//  Created by Alonso on 1/1/20.
+//  Copyright © 2020 Alonso. All rights reserved.
 //
 
 import Foundation

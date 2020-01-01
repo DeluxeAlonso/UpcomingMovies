@@ -88,8 +88,9 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             switch result {
             case .success(let creditResult):
                 guard let creditResult = creditResult else { return }
-                let movieCredits = MovieCredits(cast: creditResult.cast,
-                                                crew: creditResult.crew)
+                let cast = creditResult.cast.map { $0.asDomain() }
+                let crew = creditResult.crew.map { $0.asDomain() }
+                let movieCredits = MovieCredits(cast: cast, crew: crew)
                 completion(.success(movieCredits))
             case .failure(let error):
                 completion(.failure(error))

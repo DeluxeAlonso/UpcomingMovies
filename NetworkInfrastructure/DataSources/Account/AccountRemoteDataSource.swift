@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 import UpcomingMoviesData
 
 final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
-    
+  
     private let client: AccountClient
     private let authManager: AuthenticationManager
     
@@ -34,7 +34,7 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
         })
     }
     
-    func getCustomLists(groupOption: ProfileGroupOption, page: Int?, completion: @escaping (Result<[List], Error>) -> Void) {
+    func getCustomLists(groupOption: ProfileGroupOption, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.List], Error>) -> Void) {
         guard let accountId = authManager.accessToken?.accountId,
             let accessToken = authManager.accessToken?.token else {
             return
@@ -43,7 +43,8 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
             switch result {
             case .success(let listResult):
                 guard let listResult = listResult else { return }
-                completion(.success(listResult.results))
+                let lists = listResult.results.map { $0.asDomain() }
+                completion(.success(lists))
             case .failure(let error):
                 completion(.failure(error))
             }

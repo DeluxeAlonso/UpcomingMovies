@@ -15,7 +15,7 @@ final class VisitedMovieCellViewModel {
     
     init(movieVisit: MovieVisit) {
         let posterPath = movieVisit.posterPath
-        posterURL = URL(string: URLConfiguration.mediaPath + posterPath)
+        posterURL = URL(string: posterPath)
     }
     
 }
