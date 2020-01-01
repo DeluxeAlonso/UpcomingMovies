@@ -71,12 +71,13 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         })
     }
     
-    func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[Video], Error>) -> Void) {
+    func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Video], Error>) -> Void) {
         client.getMovieVideos(with: movieId, completion: { result in
             switch result {
             case .success(let videoResult):
                 guard let videoResult = videoResult else { return }
-                completion(.success(videoResult.results))
+                let videos = videoResult.results.map { $0.asDomain() }
+                completion(.success(videos))
             case .failure(let error):
                 completion(.failure(error))
             }

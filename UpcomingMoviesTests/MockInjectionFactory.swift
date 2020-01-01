@@ -69,8 +69,8 @@ final class MockMovieUseCase: MovieUseCaseProtocol {
         completion(searchedMovies!)
     }
     
-    var videos: Result<[Video], Error>?
-    func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[Video], Error>) -> Void) {
+    var videos: Result<[UpcomingMoviesDomain.Video], Error>?
+    func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Video], Error>) -> Void) {
         completion(videos!)
     }
     
@@ -109,12 +109,12 @@ final class MockGenreUseCase: GenreUseCaseProtocol {
     
     var didUpdateGenre: (() -> Void)?
     
-    func find(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void) {
+    func find(with id: Int, completion: @escaping (Result<UpcomingMoviesDomain.Genre?, Error>) -> Void) {
         completion(.success(Genre.with(id: 1, name: "Genre 1")))
     }
     
-    var genres: Result<[Genre], Error>?
-    func fetchAll(completion: @escaping (Result<[Genre], Error>) -> Void) {
+    var genres: Result<[UpcomingMoviesDomain.Genre], Error>?
+    func fetchAll(completion: @escaping (Result<[UpcomingMoviesDomain.Genre], Error>) -> Void) {
         completion(genres!)
     }
     
