@@ -54,18 +54,18 @@ final class MockMovieUseCase: MovieUseCaseProtocol {
         self.remoteDataSource = remoteDataSource
     }
     
-    var movies: Result<[Movie], Error>?
-    func getMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    var movies: Result<[UpcomingMoviesDomain.Movie], Error>?
+    func getMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         completion(movies!)
     }
     
-    var movieDetail: Result<Movie, Error>?
-    func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void) {
+    var movieDetail: Result<UpcomingMoviesDomain.Movie, Error>?
+    func getMovieDetail(for movieId: Int, completion: @escaping (Result<UpcomingMoviesDomain.Movie, Error>) -> Void) {
         completion(movieDetail!)
     }
     
-    var searchedMovies: Result<[Movie], Error>?
-    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    var searchedMovies: Result<[UpcomingMoviesDomain.Movie], Error>?
+    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         completion(searchedMovies!)
     }
     
