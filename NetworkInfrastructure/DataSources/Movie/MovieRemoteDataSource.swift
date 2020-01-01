@@ -20,12 +20,13 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         self.authManager = authManager
     }
     
-    func getMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func getMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         client.getMovies(page: page, filter: movieListFilter, completion: { result in
             switch result {
             case .success(let movieResult):
                 guard let movieResult = movieResult else { return }
-                completion(.success(movieResult.results))
+                let movies = movieResult.results.map { $0.asDomain() }
+                completion(.success(movies))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -33,11 +34,11 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
     }
     
     func getMovieDetail(with movieId: Int,
-                        completion: @escaping (Result<Movie, Error>) -> Void) {
+                        completion: @escaping (Result<UpcomingMoviesDomain.Movie, Error>) -> Void) {
         client.getMovieDetail(with: movieId, completion: { result in
             switch result {
             case .success(let movieDetailResult):
-                let movie = movieDetailResult.asMovie()
+                let movie = movieDetailResult.asMovie().asDomain()
                 completion(.success(movie))
             case .failure(let error):
                 completion(.failure(error))
@@ -45,36 +46,39 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         })
     }
     
-    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         client.searchMovies(searchText: searchText, completion: { result in
             switch result {
             case .success(let movieResult):
                 guard let movieResult = movieResult else { return }
-                completion(.success(movieResult.results))
+                let movies = movieResult.results.map { $0.asDomain() }
+                completion(.success(movies))
             case .failure(let error):
                 completion(.failure(error))
             }
         })
     }
     
-    func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[Review], Error>) -> Void) {
+    func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Review], Error>) -> Void) {
         client.getMovieReviews(page: page ?? 1, with: movieId, completion: { result in
             switch result {
             case .success(let reviewResult):
                 guard let reviewResult = reviewResult else { return }
-                completion(.success(reviewResult.results))
+                let reviews = reviewResult.results.map { $0.asDomain() }
+                completion(.success(reviews))
             case .failure(let error):
                 completion(.failure(error))
             }
         })
     }
     
-    func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[Video], Error>) -> Void) {
+    func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Video], Error>) -> Void) {
         client.getMovieVideos(with: movieId, completion: { result in
             switch result {
             case .success(let videoResult):
                 guard let videoResult = videoResult else { return }
-                completion(.success(videoResult.results))
+                let videos = videoResult.results.map { $0.asDomain() }
+                completion(.success(videos))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -86,8 +90,9 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             switch result {
             case .success(let creditResult):
                 guard let creditResult = creditResult else { return }
-                let movieCredits = MovieCredits(cast: creditResult.cast,
-                                                crew: creditResult.crew)
+                let cast = creditResult.cast.map { $0.asDomain() }
+                let crew = creditResult.crew.map { $0.asDomain() }
+                let movieCredits = MovieCredits(cast: cast, crew: crew)
                 completion(.success(movieCredits))
             case .failure(let error):
                 completion(.failure(error))

@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 import UpcomingMoviesData
 
 final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
-    
+  
     private let client: AccountClient
     private let authManager: AuthenticationManager
     
@@ -20,20 +20,21 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
         self.authManager = authManager
     }
     
-    func getCollectionList(option: ProfileCollectionOption, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func getCollectionList(option: ProfileCollectionOption, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
         client.getCollectionList(page: page ?? 1, option: option, sessionId: account.sessionId, accountId: account.accountId, completion: { result in
             switch result {
             case .success(let movieResult):
                 guard let movieResult = movieResult else { return }
-                completion(.success(movieResult.results))
+                let movies = movieResult.results.map { $0.asDomain() }
+                completion(.success(movies))
             case .failure(let error):
                 completion(.failure(error))
             }
         })
     }
     
-    func getCustomLists(groupOption: ProfileGroupOption, page: Int?, completion: @escaping (Result<[List], Error>) -> Void) {
+    func getCustomLists(groupOption: ProfileGroupOption, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.List], Error>) -> Void) {
         guard let accountId = authManager.accessToken?.accountId,
             let accessToken = authManager.accessToken?.token else {
             return
@@ -42,32 +43,34 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
             switch result {
             case .success(let listResult):
                 guard let listResult = listResult else { return }
-                completion(.success(listResult.results))
+                let lists = listResult.results.map { $0.asDomain() }
+                completion(.success(lists))
             case .failure(let error):
                 completion(.failure(error))
             }
         })
     }
     
-    func getCustomListMovies(listId: String, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func getCustomListMovies(listId: String, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         guard let accessToken = authManager.accessToken?.token else { return }
         client.getCustomListMovies(with: accessToken, listId: listId, completion: { result in
             switch result {
             case .success(let movieResult):
                 guard let movieResult = movieResult else { return }
-                completion(.success(movieResult.results))
+                let movies = movieResult.results.map { $0.asDomain() }
+                completion(.success(movies))
             case .failure(let error):
                 completion(.failure(error))
             }
         })
     }
     
-    func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void) {
+    func getAccountDetail(completion: @escaping (Result<UpcomingMoviesDomain.User, Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
         client.getAccountDetail(with: account.sessionId, completion: { result in
             switch result {
             case .success(let user):
-                completion(.success(user))
+                completion(.success(user.asDomain()))
             case .failure(let error):
                 completion(.failure(error))
             }

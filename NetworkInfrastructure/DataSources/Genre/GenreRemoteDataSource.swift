@@ -18,11 +18,12 @@ final class GenreRemoteDataSource: GenreRemoteDataSourceProtocol {
         self.client = client
     }
     
-    func getAllGenres(completion: @escaping (Result<[Genre], Error>) -> Void) {
+    func getAllGenres(completion: @escaping (Result<[UpcomingMoviesDomain.Genre], Error>) -> Void) {
         client.getAllGenres(completion: { result in
             switch result {
             case .success(let genreResult):
-                completion(.success(genreResult.genres))
+                let genres = genreResult.genres.map { $0.asDomain() }
+                completion(.success(genres))
             case .failure(let error):
                 completion(.failure(error))
                 print(error.description)

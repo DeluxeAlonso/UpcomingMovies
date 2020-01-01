@@ -54,23 +54,23 @@ final class MockMovieUseCase: MovieUseCaseProtocol {
         self.remoteDataSource = remoteDataSource
     }
     
-    var movies: Result<[Movie], Error>?
-    func getMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    var movies: Result<[UpcomingMoviesDomain.Movie], Error>?
+    func getMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         completion(movies!)
     }
     
-    var movieDetail: Result<Movie, Error>?
-    func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void) {
+    var movieDetail: Result<UpcomingMoviesDomain.Movie, Error>?
+    func getMovieDetail(for movieId: Int, completion: @escaping (Result<UpcomingMoviesDomain.Movie, Error>) -> Void) {
         completion(movieDetail!)
     }
     
-    var searchedMovies: Result<[Movie], Error>?
-    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    var searchedMovies: Result<[UpcomingMoviesDomain.Movie], Error>?
+    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         completion(searchedMovies!)
     }
     
-    var videos: Result<[Video], Error>?
-    func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[Video], Error>) -> Void) {
+    var videos: Result<[UpcomingMoviesDomain.Video], Error>?
+    func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Video], Error>) -> Void) {
         completion(videos!)
     }
     
@@ -89,8 +89,8 @@ final class MockMovieUseCase: MovieUseCaseProtocol {
         completion(isInWatchlist!)
     }
     
-    var reviews: Result<[Review], Error>?
-    func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[Review], Error>) -> Void) {
+    var reviews: Result<[UpcomingMoviesDomain.Review], Error>?
+    func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Review], Error>) -> Void) {
         completion(reviews!)
     }
     
@@ -109,12 +109,12 @@ final class MockGenreUseCase: GenreUseCaseProtocol {
     
     var didUpdateGenre: (() -> Void)?
     
-    func find(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void) {
+    func find(with id: Int, completion: @escaping (Result<UpcomingMoviesDomain.Genre?, Error>) -> Void) {
         completion(.success(Genre.with(id: 1, name: "Genre 1")))
     }
     
-    var genres: Result<[Genre], Error>?
-    func fetchAll(completion: @escaping (Result<[Genre], Error>) -> Void) {
+    var genres: Result<[UpcomingMoviesDomain.Genre], Error>?
+    func fetchAll(completion: @escaping (Result<[UpcomingMoviesDomain.Genre], Error>) -> Void) {
         completion(genres!)
     }
     

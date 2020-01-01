@@ -23,9 +23,7 @@ final class MovieDetailViewModel {
     var releaseDate: String?
     var overview: String?
     var voteAverage: Double?
-    var posterPath: String?
     var posterURL: URL?
-    var backdropPath: String?
     var backdropURL: URL?
     
     var updateMovieDetail: (() -> Void)?
@@ -74,9 +72,7 @@ final class MovieDetailViewModel {
         releaseDate = movie.releaseDate
         voteAverage = movie.voteAverage
         overview = movie.overview
-        posterPath = movie.posterPath
         posterURL = movie.posterURL
-        backdropPath = movie.backdropPath
         backdropURL = movie.backdropURL
         
         getMovieGenreName(for: movie.genreIds?.first)
@@ -123,7 +119,7 @@ final class MovieDetailViewModel {
     }
     
     func saveVisitedMovie() {
-        movieVisitUseCase.save(with: id, title: title, posterPath: posterPath)
+        movieVisitUseCase.save(with: id, title: title, posterPath: posterURL?.absoluteString)
     }
     
     // MARK: - User Authentication

@@ -8,27 +8,25 @@
 
 import Foundation
 
-public struct Video: Decodable {
+public struct Video {
     
     public let id: String
     public let key: String
     public let name: String
     public let site: String
+    public let browserURL: URL?
+    public let deepLinkURL: URL?
+    public let thumbnailURL: URL?
     
-}
-
-extension Video {
-    
-    public var browserURL: URL? {
-        return URL(string: "https://www.youtube.com/watch?v=\(key)")
-    }
-    
-    public var deepLinkURL: URL? {
-        return URL(string: "youtube://\(key)")
-    }
-    
-    public var thumbnailURL: URL? {
-        return URL(string: "https://img.youtube.com/vi/\(key)/mqdefault.jpg")
+    public init(id: String, key: String, name: String, site: String,
+                browserURL: URL?, deepLinkURL: URL?, thumbnailURL: URL?) {
+        self.id = id
+        self.key = key
+        self.name = name
+        self.site = site
+        self.browserURL = browserURL
+        self.deepLinkURL = deepLinkURL
+        self.thumbnailURL = thumbnailURL
     }
     
 }
@@ -48,8 +46,12 @@ extension Video {
     static func with(id: String = "1",
                      key: String = "ABC",
                      name: String = "Video1",
-                     site: String = "youtube123" ) -> Video {
-        return Video(id: id, key: key, name: name, site: site)
+                     site: String = "youtube123",
+                     browserURL: URL? = URL(string: "https://www.youtube.com/watch?v=ABC"),
+                     deepLinkURL: URL? = URL(string: "youtube://ABC"),
+                     thumnailURL: URL? = URL(string: "https://img.youtube.com/vi/ABC/mqdefault.jpg")) -> Video {
+        return Video(id: id, key: key, name: name, site: site,
+                     browserURL: browserURL, deepLinkURL: deepLinkURL, thumbnailURL: thumnailURL)
     }
     
 }

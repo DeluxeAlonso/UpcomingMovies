@@ -8,27 +8,18 @@
 
 import Foundation
 
-public struct Cast: Decodable {
+public struct Cast {
     
     public let id: Int
     public let character: String
     public let name: String
-    public let profilePath: String?
+    public let profileURL: URL?
     
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case character
-        case name
-        case profilePath = "profile_path"
-    }
-    
-}
-
-extension Cast {
-    
-    public var profileURL: URL? {
-        guard let profilePath = profilePath else { return nil }
-        return URL(string: URLConfiguration.mediaPath + profilePath)
+    public init(id: Int, character: String, name: String, profileURL: URL?) {
+        self.id = id
+        self.character = character
+        self.name = name
+        self.profileURL = profileURL
     }
     
 }

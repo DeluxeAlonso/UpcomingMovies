@@ -8,69 +8,34 @@
 
 import Foundation
 
-public struct Movie: Decodable, Equatable {
+public struct Movie: Equatable {
     
     public let id: Int
     public let title: String
     public let genreIds: [Int]?
     public let overview: String
-    public let posterPath: String?
-    public let backdropPath: String?
+    //public let posterPath: String?
+    //public let backdropPath: String?
+    public let posterURL: URL?
+    public let backdropURL: URL?
     public let releaseDate: String
     public let voteAverage: Double?
     
     public static let posterAspectRatio: Double = 1.5
     
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case title
-        case overview
-        case genreIds = "genre_ids"
-        case posterPath = "poster_path"
-        case backdropPath = "backdrop_path"
-        case releaseDate = "release_date"
-        case voteAverage = "vote_average"
-    }
-    
     // MARK: - Initializers
     
     public init(id: Int, title: String, genreIds: [Int]?,
-                overview: String, posterPath: String?, backdropPath: String?,
+                overview: String, posterURL: URL?, backdropURL: URL?,
                 releaseDate: String, voteAverage: Double?) {
         self.id = id
         self.title = title
         self.genreIds = genreIds
         self.overview = overview
-        self.posterPath = posterPath
-        self.backdropPath = backdropPath
+        self.posterURL = posterURL
+        self.backdropURL = backdropURL
         self.releaseDate = releaseDate
         self.voteAverage = voteAverage
-    }
-    
-}
-
-// MARK: - Computed Properties
-
-extension Movie {
-
-    public var posterURL: URL? {
-        guard let posterPath = posterPath else { return nil }
-        return URL(string: URLConfiguration.mediaPath + posterPath)
-    }
-    
-    public var backdropURL: URL? {
-        guard let backdropPath = backdropPath else { return nil }
-        return URL(string: URLConfiguration.mediaBackdropPath + backdropPath)
-    }
-    
-}
-
-// MARK: - Constants
-
-extension Movie {
-    
-    struct Constants {
-        static let emptyGenreTitle = "-"
     }
     
 }
@@ -79,14 +44,16 @@ extension Movie {
 
 extension Movie {
     
-    static func with(id: Int = 1, title: String = "Movie 1", genreIds: [Int] = [],
-                     overview: String = "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
-                     posterPath: String = "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
-                     backdropPath: String = "path2", releaseDate: String = "02-21-2019",
-                     voteAverage: Double = 5.0) -> Movie {
+    static func with(id: Int = 1,
+                     title: String = "Movie 1",
+                     genreIds: [Int] = [],
+                     overview: String = "Overview",
+                     posterURL: URL? = URL(string: "https://image.tmdb.org/t/p/w185/poster.jpg"),
+                     backdropURL: URL? = URL(string: "https://image.tmdb.org/t/p/w185/backdrop.jpg"),
+                     releaseDate: String = "02-21-2019", voteAverage: Double = 5.0) -> Movie {
         return Movie(id: id, title: title, genreIds: genreIds,
-                     overview: overview, posterPath: posterPath,
-                     backdropPath: backdropPath, releaseDate: releaseDate,
+                     overview: overview, posterURL: posterURL,
+                     backdropURL: backdropURL, releaseDate: releaseDate,
                      voteAverage: voteAverage)
     }
     

@@ -1,6 +1,6 @@
 //
 //  MovieVisit.swift
-//  UpcomingMoviesDomainv
+//  UpcomingMoviesDomain
 //
 //  Created by Alonso on 1/15/19.
 //  Copyright © 2019 Alonso. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct MovieVisit: Decodable {
+public struct MovieVisit {
     
     public let id: Int
     public let title: String

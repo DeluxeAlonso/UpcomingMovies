@@ -68,20 +68,27 @@ class UpcomingMoviesTests: XCTestCase {
     func testSelectedMovieCell() {
         //Arrange
         let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider)
-        viewModel.viewState.value = .populated([Movie.with(id: 1), Movie.with(id: 2)])
+        viewModel.viewState.value = .populated([Movie.with(id: 1, title: "M1"), Movie.with(id: 2, title: "M2")])
         //Act
-        viewModel.setSelectedMovie(at: 0)
+        viewModel.setSelectedMovie(at: 1)
         let selectedMovieCell = viewModel.selectedMovieCell
-        let movieFullPosterPath = selectedMovieCell?.posterURL
+        let movieTitle = selectedMovieCell?.title
         //Assert
-        XCTAssertEqual(movieFullPosterPath, URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
+        XCTAssertEqual(movieTitle, "M2")
     }
     
-    func testUpcomingMovieCellPosterPath() {
+    func testUpcomingMovieCellPosterURL() {
         //Act
-        let posterPath = upcomingMovieCellViewModelToTest.posterURL
+        let posterURL = upcomingMovieCellViewModelToTest.posterURL
         //Assert
-        XCTAssertEqual(posterPath, URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
+        XCTAssertEqual(posterURL, URL(string: "https://image.tmdb.org/t/p/w185/poster.jpg"))
+    }
+    
+    func testUpcomingMovieCellBackdropURL() {
+        //Act
+        let backdropURL = upcomingMovieCellViewModelToTest.backdropURL
+        //Assert
+        XCTAssertEqual(backdropURL, URL(string: "https://image.tmdb.org/t/p/w185/backdrop.jpg"))
     }
 
 }
