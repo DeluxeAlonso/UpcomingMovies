@@ -17,17 +17,18 @@ public final class AccountRepository: AccountUseCaseProtocol {
         self.remoteDataSource = remoteDataSource
     }
     
-    public func getCollectionList(option: ProfileCollectionOption, page: Int?,
-                                  completion: @escaping (Result<[Movie], Error>) -> Void) {
-        remoteDataSource.getCollectionList(option: option,
-                                           page: page,
-                                           completion: completion)
+    public func getFavoriteList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.getFavoriteList(page: page,
+                                         completion: completion)
     }
     
-    public func getCustomLists(groupOption: ProfileGroupOption, page: Int?,
-                               completion: @escaping (Result<[List], Error>) -> Void) {
-        remoteDataSource.getCustomLists(groupOption: groupOption,
-                                        page: page,
+    public func getWatchList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.getWatchList(page: page,
+                                      completion: completion)
+    }
+    
+    public func getCustomLists(page: Int?, completion: @escaping (Result<[List], Error>) -> Void) {
+        remoteDataSource.getCustomLists(page: page,
                                         completion: completion)
     }
     

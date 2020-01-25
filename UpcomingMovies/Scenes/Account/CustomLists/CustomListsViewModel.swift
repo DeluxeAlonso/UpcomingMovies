@@ -64,15 +64,18 @@ final class CustomListsViewModel {
     
     private func fetchCustomLists(currentPage: Int, showLoader: Bool) {
         startLoading.value = showLoader
-        accountUseCase.getCustomLists(groupOption: groupOption, page: currentPage, completion: { result in
-            self.startLoading.value = false
-            switch result {
-            case .success(let lists):
-                self.processListResult(lists, currentPage: currentPage)
-            case .failure(let error):
-                self.viewState.value = .error(error)
-            }
-        })
+        switch groupOption {
+        case .customLists:
+            accountUseCase.getCustomLists(page: currentPage, completion: { result in
+                self.startLoading.value = false
+                switch result {
+                case .success(let lists):
+                    self.processListResult(lists, currentPage: currentPage)
+                case .failure(let error):
+                    self.viewState.value = .error(error)
+                }
+            })
+        }
     }
     
     private func processListResult(_ lists: [List], currentPage: Int) {

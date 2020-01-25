@@ -20,9 +20,9 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
         self.authManager = authManager
     }
     
-    func getCollectionList(option: ProfileCollectionOption, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+    func getFavoriteList(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
-        client.getCollectionList(page: page ?? 1, option: option, sessionId: account.sessionId, accountId: account.accountId, completion: { result in
+        client.getFavoriteList(page: page ?? 1, sessionId: account.sessionId, accountId: account.accountId, completion: { result in
             switch result {
             case .success(let movieResult):
                 guard let movieResult = movieResult else { return }
@@ -34,12 +34,26 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
         })
     }
     
-    func getCustomLists(groupOption: ProfileGroupOption, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.List], Error>) -> Void) {
+    func getWatchList(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+        guard let account = authManager.userAccount else { return }
+        client.getWatchList(page: page ?? 1, sessionId: account.sessionId, accountId: account.accountId, completion: { result in
+            switch result {
+            case .success(let movieResult):
+                guard let movieResult = movieResult else { return }
+                let movies = movieResult.results.map { $0.asDomain() }
+                completion(.success(movies))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
+    }
+    
+    func getCustomLists(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.List], Error>) -> Void) {
         guard let accountId = authManager.accessToken?.accountId,
             let accessToken = authManager.accessToken?.token else {
             return
         }
-        client.getCustomLists(page: page ?? 1, groupOption: groupOption, accessToken: accessToken, accountId: accountId, completion: { result in
+        client.getCustomLists(page: page ?? 1, accessToken: accessToken, accountId: accountId, completion: { result in
             switch result {
             case .success(let listResult):
                 guard let listResult = listResult else { return }

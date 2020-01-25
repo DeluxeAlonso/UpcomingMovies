@@ -97,7 +97,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         detailLayout = VerticalFlowLayout(width: detailLayoutWidth,
                                           height: Constants.detailCellHeight)
         
-        let previewLayoutWidth = Constants.previewCellHeight / Movie.posterAspectRatio
+        let previewLayoutWidth = Constants.previewCellHeight / UIConstants.posterAspectRatio
         previewLayout = VerticalFlowLayout(width: previewLayoutWidth, height: Constants.previewCellHeight)
         
         collectionView.collectionViewLayout = presentationMode == .preview ? previewLayout : detailLayout

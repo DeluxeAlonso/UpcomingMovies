@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UpcomingMoviesDomain
 
 protocol RecentlyVisitedMoviesTableViewCellDelegate: class {
     
@@ -93,7 +92,7 @@ extension RecentlyVisitedMoviesTableViewCell: UICollectionViewDelegateFlowLayout
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let posterHeight: Double = Double(contentView.frame.height) - Constants.cellHeightOffset
-        let posterWidth: Double = posterHeight / Movie.posterAspectRatio
+        let posterWidth: Double = posterHeight / UIConstants.posterAspectRatio
         return CGSize(width: posterWidth, height: posterHeight)
     }
     

@@ -62,7 +62,28 @@ final class CollectionListViewModel {
     
     func fetchCollectionList(page: Int, option: ProfileCollectionOption, showLoader: Bool) {
         startLoading.value = showLoader
-        accountUseCase.getCollectionList(option: option, page: page, completion: { result in
+        switch option {
+        case .favorites:
+            fetchFavoriteList(page: page)
+        case .watchlist:
+            fetchWatchList(page: page)
+        }
+    }
+    
+    private func fetchFavoriteList(page: Int) {
+        accountUseCase.getFavoriteList(page: page, completion: { result in
+            self.startLoading.value = false
+            switch result {
+            case .success(let movies):
+                self.processMovieResult(movies, currentPage: self.viewState.value.currentPage)
+            case .failure(let error):
+                self.viewState.value = .error(error)
+            }
+        })
+    }
+    
+    private func fetchWatchList(page: Int) {
+        accountUseCase.getWatchList(page: page, completion: { result in
             self.startLoading.value = false
             switch result {
             case .success(let movies):
