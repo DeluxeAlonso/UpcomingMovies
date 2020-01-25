@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UpcomingMoviesDomain
 
 protocol ProfileViewControllerDelegate: class {
 

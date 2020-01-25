@@ -1,9 +1,9 @@
 //
 //  ProfileCollectionOption.swift
-//  UpcomingMoviesDomain
+//  UpcomingMovies
 //
-//  Created by Alonso on 11/17/19.
-//  Copyright © 2019 Alonso. All rights reserved.
+//  Created by Alonso on 1/25/20.
+//  Copyright © 2020 Alonso. All rights reserved.
 //
 
 import Foundation
@@ -15,11 +15,11 @@ import Foundation
  * or a Configuration which represents account configurable settings by the user.
  */
 public struct ProfileOptions {
-    
+
     public let collectionOptions: [ProfileCollectionOption]
     public let groupOptions: [ProfileGroupOption]
     public let configurationOptions: [ProfileConfigurationOption]
-    
+
     public init(collectionOptions: [ProfileCollectionOption],
                 groupOptions: [ProfileGroupOption],
                 configurationOptions: [ProfileConfigurationOption]) {
@@ -27,19 +27,19 @@ public struct ProfileOptions {
         self.groupOptions = groupOptions
         self.configurationOptions = configurationOptions
     }
-    
+
 }
 
 public protocol ProfileOption {
-    
+
     var title: String? { get }
-    
+
 }
 
 public enum ProfileCollectionOption: ProfileOption {
-    
+
     case favorites, watchlist
-    
+
     public var title: String? {
         switch self {
         case .favorites:
@@ -48,31 +48,31 @@ public enum ProfileCollectionOption: ProfileOption {
             return NSLocalizedString("watchlistCollectionOption", comment: "")
         }
     }
-    
+
 }
 
 public enum ProfileGroupOption: ProfileOption {
-    
+
     case customLists
-    
+
     public var title: String? {
         switch self {
         case .customLists:
             return NSLocalizedString("customListGroupOption", comment: "")
         }
     }
-    
+
 }
 
 public enum ProfileConfigurationOption: ProfileOption {
-    
+
     case includeAdult
-    
+
     public var title: String? {
         switch self {
         case .includeAdult:
             return NSLocalizedString("includeAdults", comment: "")
         }
     }
-    
+
 }

@@ -11,11 +11,11 @@ import UpcomingMoviesDomain
 
 public protocol AccountRemoteDataSourceProtocol {
     
-    func getCollectionList(option: ProfileCollectionOption, page: Int?,
-                           completion: @escaping (Result<[Movie], Error>) -> Void)
+    func getFavoriteList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
     
-    func getCustomLists(groupOption: ProfileGroupOption, page: Int?,
-                        completion: @escaping (Result<[List], Error>) -> Void)
+    func getWatchList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
+    
+    func getCustomLists(page: Int?, completion: @escaping (Result<[List], Error>) -> Void)
     
     func getCustomListMovies(listId: String,
                              completion: @escaping (Result<[Movie], Error>) -> Void)

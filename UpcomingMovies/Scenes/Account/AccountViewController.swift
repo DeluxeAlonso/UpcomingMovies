@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UpcomingMoviesDomain
 
 class AccountViewController: UIViewController, Storyboarded, SegueHandler {
     
