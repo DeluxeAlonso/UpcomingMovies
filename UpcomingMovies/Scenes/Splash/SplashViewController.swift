@@ -11,10 +11,6 @@ import UIKit
 class SplashViewController: UIViewController {
     
     private var viewModel = SplashViewModel()
-    
-    deinit {
-        print("SplashViewController")
-    }
 
     // MARK: - Lifecycle
     
