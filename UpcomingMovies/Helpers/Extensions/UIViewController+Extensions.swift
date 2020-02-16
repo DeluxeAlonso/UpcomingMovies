@@ -10,13 +10,6 @@ import UIKit
 
 extension UIViewController {
     
-    var appDelegate: AppDelegate? {
-        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
-            return nil
-        }
-        return delegate
-    }
-    
     func add(asChildViewController viewController: UIViewController) {
         addChild(viewController)
         

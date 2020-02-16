@@ -29,19 +29,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarController.selectedIndex = 1
         }
     }
-
-    // MARK: - Transitions
-    
-    func initialTransition() {
-        guard let window = window else { return }
-        UIView.transition(with: window,
-                          duration: 0.5,
-                          options: [UIView.AnimationOptions.curveEaseOut,
-                                    UIView.AnimationOptions.transitionCrossDissolve],
-                          animations: {},
-                          completion: { _ in
-                            window.rootViewController = MainTabBarController()
-        })
-    }
     
 }
