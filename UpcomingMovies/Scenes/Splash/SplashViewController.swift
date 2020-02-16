@@ -12,8 +12,16 @@ class SplashViewController: UIViewController {
     
     private var viewModel = SplashViewModel()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    deinit {
+        print("SplashViewController")
+    }
+
+    // MARK: - Lifecycle
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // We can only get the window and scene of this view controller
+        // only after it has been added to the window hierarchy
         setupBindables()
         viewModel.getMovieGenres()
     }
@@ -22,7 +30,8 @@ class SplashViewController: UIViewController {
     
     private func setupBindables() {
         viewModel.genresFetched = { [weak self] in
-            self?.appDelegate?.initialTransition()
+            guard let strongSelf = self else { return }
+            NavigationHandler.initialTransition(from: strongSelf.view.window)
         }
     }
 
