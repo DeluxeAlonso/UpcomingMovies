@@ -11,12 +11,24 @@ import UIKit
 class MovieCreditCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var overlayView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     
     var viewModel: MovieCreditCellViewModel? {
         didSet {
             setupBindables()
+        }
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            guard oldValue != isSelected else { return }
+            if isSelected {
+                overlayView.fadeOut(Constants.fadeAnimationDuration)
+            } else {
+                overlayView.fadeIn(Constants.fadeAnimationDuration, to: 0.6)
+            }
         }
     }
     
@@ -52,4 +64,8 @@ class MovieCreditCollectionViewCell: UICollectionViewCell {
         subtitleLabel.text = viewModel.role
     }
     
+}
+
+struct Constants {
+    static let fadeAnimationDuration: Double = 0.25
 }

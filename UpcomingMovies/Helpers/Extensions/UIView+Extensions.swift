@@ -36,6 +36,24 @@ extension UIView {
         self.layer.add(animation, forKey: nil)
     }
     
+    /**
+     * Fade in animation.
+     */
+    func fadeIn(_ duration: TimeInterval, to alpha: CGFloat = 1.0) {
+      UIView.animate(withDuration: duration, animations: {
+        self.alpha = alpha
+      })
+    }
+    
+    /**
+     * Fade out animation.
+     */
+    func fadeOut(_ duration: TimeInterval) {
+      UIView.animate(withDuration: duration, animations: {
+        self.alpha = 0.0
+      })
+    }
+    
     // MARK: - Overlay
     
     func addOverlay(with backgroundColor: UIColor = .black, and alpha: CGFloat = 0.35) {

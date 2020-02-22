@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
-                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vBN-8C-DsX" userLabel="Overlay View">
+                    <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vBN-8C-DsX" userLabel="Overlay View">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="h9G-Na-OHP">
@@ -68,6 +68,7 @@
             <size key="customSize" width="100" height="200"/>
             <connections>
                 <outlet property="nameLabel" destination="aDF-ws-OMT" id="bFM-pl-DGi"/>
+                <outlet property="overlayView" destination="vBN-8C-DsX" id="v5j-SJ-SDB"/>
                 <outlet property="profileImageView" destination="S92-dd-54z" id="L0j-FA-h6T"/>
                 <outlet property="subtitleLabel" destination="hdT-lf-RRv" id="P94-nw-tno"/>
             </connections>
