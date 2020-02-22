@@ -29,18 +29,7 @@ class MovieTableViewCell: UITableViewCell {
         super.prepareForReuse()
         posterImageView.image = nil
     }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupUI()
-    }
     
-    // MARK: - Private
-    
-    private func setupUI() {
-        
-    }
-
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
