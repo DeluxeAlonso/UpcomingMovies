@@ -28,6 +28,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="t6G-YF-8J4">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="591"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <viewLayoutGuide key="safeArea" id="P0a-Zo-oZP"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tDJ-KK-hnl">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="50" height="60"/>
@@ -35,7 +36,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="CollapsibleCollectionHeaderView" id="Bk2-oD-YYu" customClass="CollapsibleCollectionHeaderView" customModule="UpcomingMovies" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollapsibleCollectionHeaderView" id="Bk2-oD-YYu" customClass="CollapsibleCollectionHeaderView" customModule="UpcomingMovies" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -55,13 +56,14 @@
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="GKJ-Cl-bvG" firstAttribute="top" secondItem="Bk2-oD-YYu" secondAttribute="topMargin" constant="8" id="79b-4U-yMI"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="GKJ-Cl-bvG" secondAttribute="trailing" constant="8" id="AjE-mo-jvQ"/>
-                                        <constraint firstItem="joB-oD-goD" firstAttribute="leading" secondItem="Bk2-oD-YYu" secondAttribute="leadingMargin" constant="8" id="DsB-SM-uR9"/>
+                                        <constraint firstItem="xsF-hL-Iz8" firstAttribute="trailing" secondItem="GKJ-Cl-bvG" secondAttribute="trailing" constant="16" id="AjE-mo-jvQ"/>
+                                        <constraint firstItem="joB-oD-goD" firstAttribute="leading" secondItem="xsF-hL-Iz8" secondAttribute="leading" constant="16" id="DsB-SM-uR9"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="GKJ-Cl-bvG" secondAttribute="bottom" constant="8" id="GUP-qV-3eL"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="joB-oD-goD" secondAttribute="bottom" constant="8" id="YpY-TO-hsG"/>
                                         <constraint firstItem="joB-oD-goD" firstAttribute="top" secondItem="Bk2-oD-YYu" secondAttribute="topMargin" constant="8" id="kCI-3S-ZiY"/>
                                         <constraint firstItem="GKJ-Cl-bvG" firstAttribute="leading" secondItem="joB-oD-goD" secondAttribute="trailing" constant="8" id="xEV-h8-9uT"/>
                                     </constraints>
+                                    <viewLayoutGuide key="safeArea" id="xsF-hL-Iz8"/>
                                     <connections>
                                         <outlet property="arrowImageView" destination="GKJ-Cl-bvG" id="aWS-QT-sjc"/>
                                         <outlet property="titleLabel" destination="joB-oD-goD" id="cqH-jH-BbR"/>
@@ -73,8 +75,8 @@
                         <constraints>
                             <constraint firstItem="t6G-YF-8J4" firstAttribute="top" secondItem="0Ow-Af-evW" secondAttribute="top" id="GrB-QH-fQk"/>
                             <constraint firstItem="0Ow-Af-evW" firstAttribute="bottom" secondItem="t6G-YF-8J4" secondAttribute="bottom" id="KEP-1j-n7z"/>
-                            <constraint firstItem="0Ow-Af-evW" firstAttribute="trailing" secondItem="t6G-YF-8J4" secondAttribute="trailing" id="Lzc-Us-FRC"/>
-                            <constraint firstItem="t6G-YF-8J4" firstAttribute="leading" secondItem="0Ow-Af-evW" secondAttribute="leading" id="xZe-jf-rYP"/>
+                            <constraint firstAttribute="trailing" secondItem="t6G-YF-8J4" secondAttribute="trailing" id="Lzc-Us-FRC"/>
+                            <constraint firstItem="t6G-YF-8J4" firstAttribute="leading" secondItem="fyu-GJ-OYn" secondAttribute="leading" id="xZe-jf-rYP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0Ow-Af-evW"/>
                     </view>

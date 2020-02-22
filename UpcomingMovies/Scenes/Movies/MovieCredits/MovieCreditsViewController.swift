@@ -41,6 +41,9 @@ class MovieCreditsViewController: UIViewController, PlaceholderDisplayable, Load
         collectionView.allowsMultipleSelection = false
         collectionView.registerNib(cellType: MovieCreditCollectionViewCell.self)
         collectionView.backgroundView = LoadingFooterView()
+        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.sectionInsetReference = .fromSafeArea
+        }
     }
     
     private func configureView(with state: MovieCreditsViewModel.ViewState) {
@@ -113,10 +116,6 @@ extension MovieCreditsViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension MovieCreditsViewController: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-    }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if !displayedCellsIndexPaths.contains(indexPath) {
