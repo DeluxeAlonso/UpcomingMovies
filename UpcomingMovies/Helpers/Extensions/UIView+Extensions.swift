@@ -28,6 +28,11 @@ extension UIView {
     }
     
     func rotate(_ toValue: CGFloat, duration: CFTimeInterval = 0.2) {
+        guard duration != .zero else {
+            self.layer.removeAllAnimations()
+            self.transform = CGAffineTransform(rotationAngle: toValue)
+            return
+        }
         let animation = CABasicAnimation(keyPath: "transform.rotation")
         animation.toValue = toValue
         animation.duration = duration
