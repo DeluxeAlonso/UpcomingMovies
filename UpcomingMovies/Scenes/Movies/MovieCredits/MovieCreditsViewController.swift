@@ -38,8 +38,12 @@ class MovieCreditsViewController: UIViewController, PlaceholderDisplayable, Load
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.allowsMultipleSelection = false
         collectionView.registerNib(cellType: MovieCreditCollectionViewCell.self)
         collectionView.backgroundView = LoadingFooterView()
+        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.sectionInsetReference = .fromSafeArea
+        }
     }
     
     private func configureView(with state: MovieCreditsViewModel.ViewState) {
@@ -129,7 +133,7 @@ extension MovieCreditsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let posterHeight: Double = 200.0
+        let posterHeight: Double = 150.0
         let posterWidth: Double = 100.0
         return CGSize(width: posterWidth, height: posterHeight)
     }
