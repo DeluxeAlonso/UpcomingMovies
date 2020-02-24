@@ -71,6 +71,7 @@ final class MovieCreditsViewModel {
                                           title: section.type.title)
     }
     
+    @discardableResult
     func toggleSection(_ section: Int) -> Bool {
         sections[section].opened = !sections[section].opened
         return sections[section].opened

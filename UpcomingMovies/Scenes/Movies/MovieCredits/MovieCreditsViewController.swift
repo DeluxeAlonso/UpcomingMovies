@@ -13,6 +13,7 @@ class MovieCreditsViewController: UIViewController, PlaceholderDisplayable, Load
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var displayedCellsIndexPaths = Set<IndexPath>()
+    private var wasSectionManuallyToggled = false
     
     var loaderView: RadarView!
     
@@ -40,7 +41,6 @@ class MovieCreditsViewController: UIViewController, PlaceholderDisplayable, Load
         collectionView.dataSource = self
         collectionView.allowsMultipleSelection = false
         collectionView.registerNib(cellType: MovieCreditCollectionViewCell.self)
-        collectionView.backgroundView = LoadingFooterView()
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.sectionInsetReference = .fromSafeArea
         }
@@ -50,7 +50,6 @@ class MovieCreditsViewController: UIViewController, PlaceholderDisplayable, Load
         switch state {
         case .populated, .initial:
             hideDisplayedPlaceholderView()
-            collectionView.backgroundView = nil
         case .empty:
             presentEmptyView(with: "No credits to show")
         case .error(let error):
@@ -74,7 +73,9 @@ class MovieCreditsViewController: UIViewController, PlaceholderDisplayable, Load
             }
         })
         viewModel.startLoading.bind({ [weak self] start in
-            start ? self?.showLoader() : self?.hideLoader()
+            DispatchQueue.main.async {
+                start ? self?.showLoader() : self?.hideLoader()
+            }
         })
         viewModel.getMovieCredits(showLoader: true)
     }
@@ -108,6 +109,8 @@ extension MovieCreditsViewController: UICollectionViewDataSource {
                                                                      for: indexPath) as! CollapsibleCollectionHeaderView
         header.viewModel = viewModel.headerModel(for: indexPath.section)
         header.delegate = self
+        header.updateArrowImageView(animated: wasSectionManuallyToggled)
+        if wasSectionManuallyToggled { wasSectionManuallyToggled.toggle() }
         return header
     }
     
@@ -154,8 +157,8 @@ extension MovieCreditsViewController: CollapsibleHeaderViewViewDelegate {
     
     func collapsibleHeaderView(sectionHeaderView: CollapsibleCollectionHeaderView, sectionToggled section: Int) {
         guard let viewModel = viewModel else { return }
-        let opened = viewModel.toggleSection(section)
-        sectionHeaderView.updateArrowImageView(opened: opened, animated: true)
+        viewModel.toggleSection(section)
+        wasSectionManuallyToggled = true
         collectionView.performBatchUpdates({
             self.collectionView.reloadSections(IndexSet(integer: section))
         }, completion: nil)

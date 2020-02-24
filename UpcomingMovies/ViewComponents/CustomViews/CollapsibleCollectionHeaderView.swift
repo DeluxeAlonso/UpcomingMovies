@@ -19,11 +19,13 @@ final class CollapsibleHeaderViewModel {
     var opened: Bool
     var section: Int
     var title: String
+    var shouldAnimate: Bool
     
-    init(opened: Bool, section: Int, title: String) {
+    init(opened: Bool, section: Int, title: String, shouldAnimate: Bool = false) {
         self.opened = opened
         self.section = section
         self.title = title
+        self.shouldAnimate = shouldAnimate
     }
     
 }
@@ -64,12 +66,12 @@ class CollapsibleCollectionHeaderView: UICollectionReusableView {
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
         titleLabel.text = viewModel.title
-        updateArrowImageView(opened: viewModel.opened, animated: false)
     }
     
-    func updateArrowImageView(opened: Bool, animated: Bool) {
+    func updateArrowImageView(animated: Bool) {
+        guard let viewModel = viewModel else { return }
         let animationDuration = animated ? 0.3 : 0.0
-        arrowImageView.rotate(opened ? .pi / 2 : 0, duration: animationDuration)
+        arrowImageView.rotate(viewModel.opened ? .pi / 2 : 0, duration: animationDuration)
     }
     
     // MARK: - Selector
