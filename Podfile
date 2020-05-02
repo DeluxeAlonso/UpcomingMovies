@@ -6,7 +6,7 @@ target 'UpcomingMovies' do
   use_frameworks!
 
   # Pods for UpcomingMovies
-  pod 'Kingfisher', '5.3.0'
+  pod 'Kingfisher', '5.13.4'
   pod 'CollectionViewSlantedLayout', '~> 3.1'
   
   target 'NetworkInfrastructure' do
