@@ -65,7 +65,7 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Lo
     private func setupNavigationBar() {
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
-        navigationItem.rightBarButtonItems = [shareBarButtonItem, favoriteBarButtonItem]
+        navigationItem.rightBarButtonItems = [shareBarButtonItem]
     }
     
     private func configureNavigationBar(isFavorite: Bool?) {
