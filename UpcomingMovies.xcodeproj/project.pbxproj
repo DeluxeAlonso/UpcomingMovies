@@ -306,6 +306,7 @@
 		E2B49B7823BD1669005EC676 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B49B7723BD1669005EC676 /* Video.swift */; };
 		E2B49B7A23BD1B55005EC676 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B49B7923BD1B55005EC676 /* Review.swift */; };
 		E2B49B7C23BD1E1A005EC676 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B49B7B23BD1E1A005EC676 /* User.swift */; };
+		E2B63AC8246762F700C0BB13 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B63AC7246762F700C0BB13 /* URL+Extensions.swift */; };
 		E2BE1B34239DE9C200FC47FF /* MovieDetailOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE1B33239DE9C200FC47FF /* MovieDetailOption.swift */; };
 		E2BE1B37239DEA6500FC47FF /* TrailersMovieDetailOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE1B36239DEA6500FC47FF /* TrailersMovieDetailOption.swift */; };
 		E2BE1B39239DEAA000FC47FF /* ReviewsMovieDetailOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE1B38239DEAA000FC47FF /* ReviewsMovieDetailOption.swift */; };
@@ -825,6 +826,7 @@
 		E2B49B7B23BD1E1A005EC676 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E2B4F50723664AF0003B89A9 /* CDUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDUser.swift; sourceTree = "<group>"; };
 		E2B4F50923664BDE003B89A9 /* UserUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCaseProtocol.swift; sourceTree = "<group>"; };
+		E2B63AC7246762F700C0BB13 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		E2BE1B33239DE9C200FC47FF /* MovieDetailOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailOption.swift; sourceTree = "<group>"; };
 		E2BE1B36239DEA6500FC47FF /* TrailersMovieDetailOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailersMovieDetailOption.swift; sourceTree = "<group>"; };
 		E2BE1B38239DEAA000FC47FF /* ReviewsMovieDetailOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsMovieDetailOption.swift; sourceTree = "<group>"; };
@@ -2023,6 +2025,7 @@
 			isa = PBXGroup;
 			children = (
 				E26F03BA21E462E2009859DF /* NSManagedObjectContext+Extensions.swift */,
+				E2B63AC7246762F700C0BB13 /* URL+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2957,6 +2960,7 @@
 				E229A547236BF283006FF112 /* CoreDataStack.swift in Sources */,
 				E229A558236BF34C006FF112 /* CDUser+PersistenceStore.swift in Sources */,
 				E21E8E4E236E4193006E2DEF /* MovieVisitLocalDataSource.swift in Sources */,
+				E2B63AC8246762F700C0BB13 /* URL+Extensions.swift in Sources */,
 				E229A548236BF283006FF112 /* PersistenceStore.swift in Sources */,
 				E229A550236BF32E006FF112 /* Managed.swift in Sources */,
 			);
@@ -3429,6 +3433,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = UpcomingMovies/UpcomingMovies.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95KU8J3PN;
@@ -3452,6 +3457,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = UpcomingMovies/UpcomingMovies.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95KU8J3PN;

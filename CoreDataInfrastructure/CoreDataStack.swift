@@ -21,6 +21,12 @@ public class CoreDataStack {
         }
         
         let container = NSPersistentContainer(name: "Model", managedObjectModel: model)
+        
+        // Creates a presistent store description to share the container with the today widget extension
+        let storeURL = URL.storeURL(for: "group.movies.extension", databaseName: "UpcomingMovies")
+        let storeDescription = NSPersistentStoreDescription(url: storeURL)
+        container.persistentStoreDescriptions = [storeDescription]
+        
         container.loadPersistentStores { _, error in
             guard error == nil else { fatalError() }
         }
