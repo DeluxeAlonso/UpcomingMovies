@@ -30,4 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        if url.scheme == "extension" {
+            guard let tabBarController = window?.rootViewController as? UITabBarController else {
+                return false
+            }
+            tabBarController.selectedIndex = 1
+        }
+        return true
+    }
+    
 }

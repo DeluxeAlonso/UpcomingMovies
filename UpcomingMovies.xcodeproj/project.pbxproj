@@ -4016,6 +4016,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4F2EF8F9671B6A8C765A02CB /* Pods-UpcomingMovies-UpcomingMoviesWidget.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_ENTITLEMENTS = UpcomingMoviesWidget/Movies.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -4039,6 +4040,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9F674E3A3C0951584E5C5F69 /* Pods-UpcomingMovies-UpcomingMoviesWidget.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_ENTITLEMENTS = UpcomingMoviesWidget/Movies.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

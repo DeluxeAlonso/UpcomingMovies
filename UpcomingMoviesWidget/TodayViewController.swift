@@ -50,6 +50,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     private func setupBackgroundView() {
         view.addSubview(backgroundVibrancyView)
         backgroundVibrancyView.fillSuperview()
+        
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(openHostApp))
+        backgroundVibrancyView.addGestureRecognizer(tapGesture)
     }
     
     private func setupMoviePosters() {
@@ -91,6 +95,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 imageView.setImage(with: posterURL)
             }
         }
+    }
+    
+    // MARK: - Selectors
+    
+    @objc private func openHostApp() {
+        guard let url = URL(string: "extension://") else { return }
+        self.extensionContext?.open(url, completionHandler: nil)
     }
     
 }

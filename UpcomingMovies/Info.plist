@@ -18,6 +18,17 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>extension</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -26,6 +37,32 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>TheMovieDb</key>
+	<dict>
+		<key>ApiKey</key>
+		<string>0141e6d543b187f0b7e6bb3a1902209a</string>
+		<key>ReadAccessToken</key>
+		<string>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTQxZTZkNTQzYjE4N2YwYjdlNmJiM2ExOTAyMjA5YSIsInN1YiI6IjVjNDkwZjlhYzNhMzY4NDc3Nzg5ZjYzMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5LmQZ0jl7xA7QsREDm8FecIKq9yP0hSZ3x2MDTEn5dU</string>
+	</dict>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<true/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>Default Configuration</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+					<key>UISceneStoryboardFile</key>
+					<string>Main</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
@@ -68,31 +105,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>TheMovieDb</key>
-	<dict>
-		<key>ReadAccessToken</key>
-		<string>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTQxZTZkNTQzYjE4N2YwYjdlNmJiM2ExOTAyMjA5YSIsInN1YiI6IjVjNDkwZjlhYzNhMzY4NDc3Nzg5ZjYzMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5LmQZ0jl7xA7QsREDm8FecIKq9yP0hSZ3x2MDTEn5dU</string>
-		<key>ApiKey</key>
-		<string>0141e6d543b187f0b7e6bb3a1902209a</string>
-	</dict>
-    <key>UIApplicationSceneManifest</key>
-    <dict>
-        <key>UIApplicationSupportsMultipleScenes</key>
-        <true/>
-        <key>UISceneConfigurations</key>
-        <dict>
-            <key>UIWindowSceneSessionRoleApplication</key>
-            <array>
-                <dict>
-                    <key>UISceneConfigurationName</key>
-                    <string>Default Configuration</string>
-                    <key>UISceneDelegateClassName</key>
-                    <string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-                    <key>UISceneStoryboardFile</key>
-                    <string>Main</string>
-                </dict>
-            </array>
-        </dict>
-    </dict>
 </dict>
 </plist>
