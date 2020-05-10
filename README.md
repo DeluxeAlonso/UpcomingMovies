@@ -6,7 +6,11 @@
 
 Movies app written in Swift 5 using the TMDb API.
 
-# Screenshots
+## Demo
+
+<img src="Demo.gif" width="200" height="433" />
+
+## Screenshots
 
 <img src="Screenshots/Home.png" width=200 height=433> <img src="Screenshots/Detail.png" width=200 height=433>
 <img src="Screenshots/Search.png" width=200 height=433> <img src="Screenshots/SearchResult.png" width=200 height=433>
