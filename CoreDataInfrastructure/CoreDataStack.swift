@@ -13,14 +13,22 @@ public class CoreDataStack {
     
     public static let shared = CoreDataStack()
     
+    private var todayExtensionStoreDescription: NSPersistentStoreDescription {
+        let storeURL = URL.storeURL(for: "group.movies.extension", databaseName: Constants.containerName)
+        let storeDescription = NSPersistentStoreDescription(url: storeURL)
+        return storeDescription
+    }
+    
     lazy var persistentContainer: NSPersistentContainer = {
         let bundle = Bundle(for: CoreDataStack.self)
-        guard let url = bundle.url(forResource: "Model", withExtension: "momd"),
+        guard let url = bundle.url(forResource: Constants.containerName, withExtension: "momd"),
               let model = NSManagedObjectModel(contentsOf: url) else {
             fatalError()
         }
         
-        let container = NSPersistentContainer(name: "Model", managedObjectModel: model)
+        let container = NSPersistentContainer(name: Constants.containerName, managedObjectModel: model)
+        container.persistentStoreDescriptions = [todayExtensionStoreDescription]
+        
         container.loadPersistentStores { _, error in
             guard error == nil else { fatalError() }
         }
@@ -38,12 +46,12 @@ public class CoreDataStack {
     
     lazy var mockPersistantContainer: NSPersistentContainer = {
         let bundle = Bundle(for: CoreDataStack.self)
-        guard let url = bundle.url(forResource: "Model", withExtension: "momd"),
+        guard let url = bundle.url(forResource: Constants.containerName, withExtension: "momd"),
               let model = NSManagedObjectModel(contentsOf: url) else {
             fatalError()
         }
         
-        let container = NSPersistentContainer(name: "Model", managedObjectModel: model)
+        let container = NSPersistentContainer(name: Constants.containerName, managedObjectModel: model)
         let description = NSPersistentStoreDescription()
         description.type = NSInMemoryStoreType
         description.shouldAddStoreAsynchronously = false
@@ -64,6 +72,16 @@ public class CoreDataStack {
     
     private func isTesting() -> Bool {
         return NSClassFromString("XCTest") != nil
+    }
+    
+}
+
+// MARK: - Constants
+
+extension CoreDataStack {
+    
+    struct Constants {
+        static let containerName = "Model"
     }
     
 }

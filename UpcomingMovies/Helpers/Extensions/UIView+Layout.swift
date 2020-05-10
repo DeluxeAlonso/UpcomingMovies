@@ -104,14 +104,24 @@ extension UIView {
         }
     }
     
-    func constrainWidth(constant: CGFloat) {
+    func constraintWidth(constant: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         widthAnchor.constraint(equalToConstant: constant).isActive = true
     }
     
-    func constrainHeight(constant: CGFloat) {
+    func constraintHeight(constant: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: constant).isActive = true
+    }
+    
+    func constraintWidthAspectRatio(constant: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        widthAnchor.constraint(equalTo: heightAnchor, multiplier: constant).isActive = true
+    }
+    
+    func constraintHeightAspectRatio(constant: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        heightAnchor.constraint(equalTo: widthAnchor, multiplier: constant).isActive = true
     }
 }
 

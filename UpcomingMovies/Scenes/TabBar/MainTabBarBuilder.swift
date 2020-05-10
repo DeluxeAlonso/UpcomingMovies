@@ -24,7 +24,7 @@ class MainTabBarBuilder {
         accountVC.viewModel = AccountViewModel(useCaseProvider: useCaseProvider)
         
         return [
-            createNavigationController(upcomingMoviesVC, title: "Upcoming movies", image: #imageLiteral(resourceName: "Movies")),
+            createNavigationController(upcomingMoviesVC, title: "Upcoming", image: #imageLiteral(resourceName: "Movies")),
             createNavigationController(searchMoviesVC, title: "Search", image: #imageLiteral(resourceName: "Search")),
             createNavigationController(accountVC, title: "Account", image: #imageLiteral(resourceName: "Account"))
         ]
