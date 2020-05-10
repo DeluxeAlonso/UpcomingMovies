@@ -82,7 +82,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         posterPaths.forEach { posterPath in
             let imageView = UIImageView()
-            imageView.constrainHeight(constant: 100)
+            imageView.constraintHeight(constant: 100)
             imageView.constraintWidthAspectRatio(constant: 1/1.5)
 
             postersStackView.addArrangedSubview(imageView)
