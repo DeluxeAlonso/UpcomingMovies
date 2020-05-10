@@ -133,20 +133,16 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
             showNavigationBar()
             setTitleAnimated(viewModel?.name)
         } else if shouldHideTitle && contentOffsetY <= headerHeight {
-            hideNavigationBar()
+            setClearNavigationBar()
             setTitleAnimated(nil)
         }
     }
 
     private func showNavigationBar() {
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.tintColor = self.view.tintColor
-        restoreClearNavigationBar(with: ColorPalette.navigationBarBackgroundColor)
+        restoreNavigationBar(with: ColorPalette.navigationBarBackgroundColor)
     }
     
     private func hideNavigationBar() {
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.tintColor = .white
         setClearNavigationBar()
     }
     

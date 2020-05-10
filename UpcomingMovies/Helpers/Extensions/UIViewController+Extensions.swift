@@ -65,7 +65,7 @@ extension UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-    func restoreClearNavigationBar(with barTintColor: UIColor) {
+    func restoreNavigationBar(with barTintColor: UIColor) {
         navigationController?.navigationBar.barTintColor = barTintColor
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
