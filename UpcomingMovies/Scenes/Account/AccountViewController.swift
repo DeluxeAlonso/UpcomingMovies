@@ -40,7 +40,7 @@ class AccountViewController: UIViewController, Storyboarded, SegueHandler {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barStyle = .default
         navigationController?.navigationBar.tintColor = view.tintColor
-        restoreClearNavigationBar(with: ColorPalette.navigationBarBackgroundColor)
+        restoreNavigationBar(with: ColorPalette.navigationBarBackgroundColor)
     }
     
     // MARK: - Private
