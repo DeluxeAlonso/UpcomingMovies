@@ -22,4 +22,17 @@ class NavigationHandler {
         })
     }
     
+    class func handleUrlOpeningNavigation(for urlString: String, and window: UIWindow?) {
+        if urlString.contains("extension") {
+            changeTabBarToSelectedIndex(1, from: window)
+        }
+    }
+    
+    class func changeTabBarToSelectedIndex(_ index: Int, from window: UIWindow?) {
+        guard let tabBarController = window?.rootViewController as? UITabBarController else {
+            return
+        }
+        tabBarController.selectedIndex = index
+    }
+    
 }
