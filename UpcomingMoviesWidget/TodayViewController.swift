@@ -54,8 +54,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     private func setupMoviePosters() {
         let localDataSource = LocalDataSource()
-        let posters = localDataSource.movieVisitDataSource().getMovieVisits().compactMap { $0.posterPath }
-        posters.isEmpty ? setupEmptyView() : setupPostersStackView(with: posters)
+        let movieVisits = localDataSource.movieVisitDataSource().getMovieVisits()
+        // We only take the 3 latest visited movies
+        let posterPaths = Array(movieVisits.compactMap { $0.posterPath }.prefix(3))
+        posterPaths.isEmpty ? setupEmptyView() : setupPostersStackView(with: posterPaths)
     }
     
     private func setupEmptyView() {
@@ -68,7 +70,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         emptyLabel.fillSuperview()
     }
     
-    private func setupPostersStackView(with posters: [String]) {
+    private func setupPostersStackView(with posterPaths: [String]) {
         backgroundVibrancyView.contentView.addSubview(postersStackView)
 
         NSLayoutConstraint.activate([
@@ -78,14 +80,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         postersStackView.centerInSuperview()
         
-        posters.forEach { poster in
+        posterPaths.forEach { posterPath in
             let imageView = UIImageView()
             imageView.constrainHeight(constant: 100)
             imageView.constraintWidthAspectRatio(constant: 1/1.5)
 
             postersStackView.addArrangedSubview(imageView)
             
-            if let posterURL = URL(string: poster) {
+            if let posterURL = URL(string: posterPath) {
                 imageView.setImage(with: posterURL)
             }
         }
