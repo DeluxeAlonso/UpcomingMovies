@@ -14,6 +14,11 @@ target 'UpcomingMovies' do
     pod 'KeychainSwift', '~> 14.0'
     inherit! :search_paths
   end
+  
+  target 'UpcomingMoviesWidget' do
+     use_frameworks!
+     pod 'Kingfisher', '5.13.4'
+  end
 
   target 'UpcomingMoviesTests' do
     inherit! :search_paths

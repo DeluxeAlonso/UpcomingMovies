@@ -113,6 +113,16 @@ extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: constant).isActive = true
     }
+    
+    func constraintWidthAspectRatio(constant: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        widthAnchor.constraint(equalTo: heightAnchor, multiplier: constant).isActive = true
+    }
+    
+    func constraintHeightAspectRatio(constant: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        heightAnchor.constraint(equalTo: widthAnchor, multiplier: constant).isActive = true
+    }
 }
 
 struct AnchoredConstraints {
