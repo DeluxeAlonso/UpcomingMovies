@@ -65,7 +65,8 @@ final class MockMovieUseCase: MovieUseCaseProtocol {
     }
     
     var searchedMovies: Result<[UpcomingMoviesDomain.Movie], Error>?
-    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+    func searchMovies(searchText: String, includeAdult: Bool,
+                      page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         completion(searchedMovies!)
     }
     

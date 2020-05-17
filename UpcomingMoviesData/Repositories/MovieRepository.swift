@@ -27,8 +27,10 @@ public class MovieRepository: MovieUseCaseProtocol {
         remoteDataSource.getMovieDetail(with: movieId, completion: completion)
     }
     
-    public func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        remoteDataSource.searchMovies(searchText: searchText, page: page,
+    public func searchMovies(searchText: String, includeAdult: Bool, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.searchMovies(searchText: searchText,
+                                      includeAdult: includeAdult,
+                                      page: page,
                                       completion: completion)
     }
     

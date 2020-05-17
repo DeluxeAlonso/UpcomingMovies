@@ -17,6 +17,8 @@ final class SearchMoviesResultViewModel {
     private let movieUseCase: MovieUseCaseProtocol
     private var movieSearchUseCase: MovieSearchUseCaseProtocol
     
+    private var authHandler: AuthenticationHandler
+    
     private var movies: [Movie] = []
     
     let viewState: Bindable<ViewState> = Bindable(.initial)
@@ -36,8 +38,10 @@ final class SearchMoviesResultViewModel {
     
     // MARK: - Initilalizers
     
-    init(useCaseProvider: UseCaseProviderProtocol) {
+    init(useCaseProvider: UseCaseProviderProtocol,
+         authHandler: AuthenticationHandler = AuthenticationHandler.shared) {
         self.useCaseProvider = useCaseProvider
+        self.authHandler = authHandler
         self.movieUseCase = self.useCaseProvider.movieUseCase()
         self.movieSearchUseCase = self.useCaseProvider.movieSearchUseCase()
         self.movieSearchUseCase.didUpdateMovieSearch = { [weak self] in
@@ -50,7 +54,11 @@ final class SearchMoviesResultViewModel {
     func searchMovies(withSearchText searchText: String) {
         viewState.value = .searching
         movieSearchUseCase.save(with: searchText)
-        movieUseCase.searchMovies(searchText: searchText, page: nil, completion: { result in
+        let includeAdult = authHandler.currentUser()?.includeAdult ?? false
+        movieUseCase.searchMovies(searchText: searchText,
+                                  includeAdult: includeAdult,
+                                  page: nil,
+                                  completion: { result in
             switch result {
             case .success(let movies):
                 self.processMovieResult(movies)
