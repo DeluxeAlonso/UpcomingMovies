@@ -46,8 +46,11 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         })
     }
     
-    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
-        client.searchMovies(searchText: searchText, completion: { result in
+    func searchMovies(searchText: String,
+                      includeAdult: Bool,
+                      page: Int?,
+                      completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+        client.searchMovies(searchText: searchText, includeAdult: includeAdult, completion: { result in
             switch result {
             case .success(let movieResult):
                 guard let movieResult = movieResult else { return }

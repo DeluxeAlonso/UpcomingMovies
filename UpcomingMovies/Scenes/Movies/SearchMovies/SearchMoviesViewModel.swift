@@ -23,9 +23,8 @@ final class SearchMoviesViewModel: NSObject {
         return SearchOptionsViewModel(useCaseProvider: useCaseProvider)
     }
     
-    func prepareSearchResultController() -> SearchMoviesResultController {
-        let viewModel = SearchMoviesResultViewModel(useCaseProvider: useCaseProvider)
-        return SearchMoviesResultController(viewModel: viewModel)
+    func searchResultViewModel() -> SearchMoviesResultViewModel {
+        return SearchMoviesResultViewModel(useCaseProvider: useCaseProvider)
     }
     
     // MARK: - Default search options

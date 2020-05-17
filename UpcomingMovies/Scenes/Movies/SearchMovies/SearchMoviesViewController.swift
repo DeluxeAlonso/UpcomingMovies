@@ -38,7 +38,8 @@ class SearchMoviesViewController: UIViewController, Storyboarded, SegueHandler {
     }
     
     private func setupSearchController() {
-        let searchResultController = viewModel.prepareSearchResultController()
+        let searchResultViewModel = viewModel.searchResultViewModel()
+        let searchResultController = SearchMoviesResultController(viewModel: searchResultViewModel)
         searchController = DefaultSearchController(searchResultsController: searchResultController)
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self

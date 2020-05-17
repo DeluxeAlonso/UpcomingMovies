@@ -18,7 +18,7 @@ public protocol MovieRemoteDataSourceProtocol {
     func getMovieDetail(with movieId: Int,
                         completion: @escaping (Result<Movie, Error>) -> Void)
     
-    func searchMovies(searchText: String, page: Int?,
+    func searchMovies(searchText: String, includeAdult: Bool, page: Int?,
                       completion: @escaping (Result<[Movie], Error>) -> Void)
     
     func getMovieReviews(for movieId: Int, page: Int?,

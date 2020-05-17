@@ -14,7 +14,7 @@ enum MovieProvider {
     case getPopular(page: Int)
     case getTopRated(page: Int)
     case getByGenreId(page: Int, genreId: Int)
-    case search(searchText: String)
+    case search(searchText: String, includeAdult: Bool)
     case getDetail(id: Int)
     case getVideos(id: Int)
     case getReviews(page: Int, id: Int)
@@ -75,8 +75,8 @@ extension MovieProvider: Endpoint {
             return ["page": page,
                     "with_genres": genreId,
                     "sort_by": "release_date.desc"]
-        case .search(let searchText):
-            return ["query": searchText]
+        case .search(let searchText, let includeAdult):
+            return ["query": searchText, "include_adult": includeAdult]
         case .getDetail, .getVideos, .getCredits:
             return nil
         case .getReviews(let page, _):
