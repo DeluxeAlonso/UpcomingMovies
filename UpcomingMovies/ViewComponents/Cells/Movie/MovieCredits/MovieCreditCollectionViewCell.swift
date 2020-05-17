@@ -24,7 +24,7 @@ class MovieCreditCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             guard oldValue != isSelected else { return }
-            if isSelected {
+            if isSelected && !profileImageView.isEmpty {
                 overlayView.fadeOut(Constants.fadeAnimationDuration)
             } else {
                 overlayView.fadeIn(Constants.fadeAnimationDuration, to: 0.6)
