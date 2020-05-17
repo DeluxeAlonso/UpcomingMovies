@@ -31,6 +31,9 @@ Custom UICollectionViewLayout to display slanted content. In the app, it is used
 ### KeychainSwift (https://github.com/evgenyneu/keychain-swift)
 Helper functions for saving text in Keychain securely for iOS, OS X, tvOS and watchOS. In the app, it is used to save the Session Id and Account Id of the signed in user.
 
+### SwiftLint (https://github.com/realm/SwiftLint)
+A tool to enforce Swift style and conventions.
+
 ## Contributing
 
 Feel free to open an issue or submit a pull request if you have any improvement or feedback.
