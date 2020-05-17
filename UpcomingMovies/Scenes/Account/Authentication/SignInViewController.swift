@@ -20,23 +20,6 @@ class SignInViewController: UIViewController {
     
     weak var delegate: SignInViewControllerDelegate?
     
-    // MARK: - Lifecycle
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-    }
-    
-    // MARK: - Private
-    
-    private func setupUI() {
-        setupButtons()
-    }
-    
-    private func setupButtons() {
-        signInButton.layer.cornerRadius = 5
-    }
-    
     // MARK: - Public
     
     func startLoading() {
