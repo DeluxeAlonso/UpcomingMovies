@@ -116,7 +116,7 @@ extension ErrorPlaceholderView {
     static func show<T: ErrorPlaceholderView>(
         fromViewController viewController: UIViewController,
         animated: Bool = true,
-        completion: ((Bool) -> Swift.Void)? = nil) -> T {
+        completion: ((Bool) -> Void)? = nil) -> T {
         
         guard let subview = loadFromNib() as? T else {
             fatalError("The subview is expected to be of type \(T.self)")
@@ -138,7 +138,7 @@ extension ErrorPlaceholderView {
         fromView view: UIView,
         insets: UIEdgeInsets = UIEdgeInsets.zero,
         animated: Bool = true,
-        completion: ((Bool) -> Swift.Void)? = nil) -> T {
+        completion: ((Bool) -> Void)? = nil) -> T {
         guard let subview = loadFromNib() as? T else {
             fatalError("The subview is expected to be of type \(T.self)")
         }
