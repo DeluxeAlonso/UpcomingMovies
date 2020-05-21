@@ -8,13 +8,14 @@
 
 import UIKit
 
-class EmptyPlaceholderView: UIView, NibLoadable, ViewDisplayable {
+class EmptyPlaceholderView: UIView, NibLoadable, Placeholderable {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
     
     var animationDuration = 0.3
     var isPresented: Bool = false
+    var retry: (() -> Void)?
     
     var messageText: String? {
         didSet {

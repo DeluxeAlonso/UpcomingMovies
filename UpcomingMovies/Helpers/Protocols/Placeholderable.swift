@@ -1,8 +1,8 @@
 //
-//  Displayable.swift
+//  Placeholderable.swift
 //  UpcomingMovies
 //
-//  Created by Alonso on 5/19/20.
+//  Created by Alonso on 5/20/20.
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
@@ -19,7 +19,7 @@ protocol Placeholderable: UIView {
 
 extension Placeholderable {
     
-    func show(animated: Bool = true, completion: ((Bool) -> Swift.Void)? = nil) {
+    func show(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
         self.superview?.bringSubviewToFront(self)
         if animated {
             UIView.animate(withDuration: self.animationDuration, animations: { self.alpha = 1 }, completion: completion)

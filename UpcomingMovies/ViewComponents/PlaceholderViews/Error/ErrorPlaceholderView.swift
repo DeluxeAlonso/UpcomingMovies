@@ -19,7 +19,7 @@ protocol ErrorPlaceholderViewDelegate: class {
     
 }
 
-class ErrorPlaceholderView: UIView, NibLoadable, ViewDisplayable {
+class ErrorPlaceholderView: UIView, NibLoadable, Placeholderable {
     
     @IBOutlet weak var errorTitleLabel: UILabel!
     @IBOutlet weak var errorDetailLabel: UILabel!
