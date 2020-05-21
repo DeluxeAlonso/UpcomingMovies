@@ -19,14 +19,13 @@ protocol ErrorPlaceholderViewDelegate: class {
     
 }
 
-class ErrorPlaceholderView: UIView, NibLoadable {
+class ErrorPlaceholderView: UIView, NibLoadable, Placeholderable {
     
     @IBOutlet weak var errorTitleLabel: UILabel!
     @IBOutlet weak var errorDetailLabel: UILabel!
     @IBOutlet weak var retryButton: ShrinkingButton!
     
-    private var animationDuration = 0.3
-    
+    var animationDuration = 0.3
     var isPresented: Bool = false
     var retry: (() -> Void)?
     
@@ -76,16 +75,6 @@ class ErrorPlaceholderView: UIView, NibLoadable {
         retryButton.addTarget(self, action: #selector(retryAction), for: .touchUpInside)
     }
     
-    private func show(animated: Bool = true, completion: ((Bool) -> Swift.Void)? = nil) {
-        self.superview?.bringSubviewToFront(self)
-        if animated {
-            UIView.animate(withDuration: self.animationDuration, animations: { self.alpha = 1 }, completion: completion)
-        } else {
-            self.alpha = 1
-            completion?(true)
-        }
-    }
-    
     // MARK: - Selectors
     
     @objc private func retryAction() {
@@ -116,7 +105,7 @@ extension ErrorPlaceholderView {
     static func show<T: ErrorPlaceholderView>(
         fromViewController viewController: UIViewController,
         animated: Bool = true,
-        completion: ((Bool) -> Swift.Void)? = nil) -> T {
+        completion: ((Bool) -> Void)? = nil) -> T {
         
         guard let subview = loadFromNib() as? T else {
             fatalError("The subview is expected to be of type \(T.self)")
@@ -132,48 +121,6 @@ extension ErrorPlaceholderView {
         subview.show(animated: animated) { _ in
         }
         return subview
-    }
-    
-    static func show<T: ErrorPlaceholderView>(
-        fromView view: UIView,
-        insets: UIEdgeInsets = UIEdgeInsets.zero,
-        animated: Bool = true,
-        completion: ((Bool) -> Swift.Void)? = nil) -> T {
-        guard let subview = loadFromNib() as? T else {
-            fatalError("The subview is expected to be of type \(T.self)")
-        }
-        
-        view.addSubview(subview)
-        
-        // Configure constraints if needed
-        
-        subview.alpha = 0
-        subview.isPresented = true
-        subview.superview?.sendSubviewToBack(subview)
-        subview.show(animated: animated) { _ in
-        }
-        return subview
-    }
-    
-    func hide(animated: Bool = true, completion: ((Bool) -> Swift.Void)? = nil) {
-        self.isPresented = false
-        let closure: (Bool) -> Void = { (finished) in
-            if finished {
-                self.removeFromSuperview()
-            }
-        }
-        if animated {
-            UIView.animate(withDuration: self.animationDuration,
-                           delay: 0.25,
-                           animations: { self.alpha = 0 }, completion: { (finished) in
-                            closure(finished)
-                            completion?(finished)
-            })
-        } else {
-            self.alpha = 0
-            closure(true)
-            completion?(true)
-        }
     }
     
 }
