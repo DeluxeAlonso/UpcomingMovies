@@ -1,8 +1,8 @@
 //
-//  Placeholderable.swift
+//  Displayable.swift
 //  UpcomingMovies
 //
-//  Created by Alonso on 5/20/20.
+//  Created by Alonso on 5/22/20.
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
@@ -12,22 +12,14 @@ protocol Displayable: UIView {
     var isPresented: Bool { get set }
     
     static func show(fromViewController viewController: UIViewController,
-                     animated: Bool, completion: ((Bool) -> Void)?) -> Placeholderable
+                     animated: Bool, completion: ((Bool) -> Void)?) -> Self
+    
     func hide(animated: Bool, completion: ((Bool) -> Void)?)
 }
 
-protocol RetryActionable {
-     var retry: (() -> Void)? { get set }
-}
-
-protocol Placeholderable: Displayable, RetryActionable {
-    var detailText: String? { get set }
-}
-
-extension Placeholderable where Self: NibLoadable {
-    
+extension Displayable where Self: NibLoadable {
     static func show(fromViewController viewController: UIViewController,
-                     animated: Bool, completion: ((Bool) -> Void)?) -> Placeholderable {
+                     animated: Bool, completion: ((Bool) -> Void)?) -> Self {
         
         let subview = loadFromNib()
         viewController.view.addSubview(subview)
@@ -68,5 +60,4 @@ extension Placeholderable where Self: NibLoadable {
             completion?(true)
         }
     }
-    
 }

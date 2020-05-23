@@ -14,7 +14,6 @@ class EmptyPlaceholderView: UIView, NibLoadable, Placeholderable {
     @IBOutlet weak var messageLabel: UILabel!
     
     var isPresented: Bool = false
-    var retry: (() -> Void)?
     
     var detailText: String? {
         didSet {

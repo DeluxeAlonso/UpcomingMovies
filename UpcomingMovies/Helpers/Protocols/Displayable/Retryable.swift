@@ -9,16 +9,16 @@
 import UIKit
 
 private struct AssociatedKeys {
-    static var retryView: Placeholderable?
+    static var retryView: RetryPlaceHolderable?
 }
 
 protocol Retryable: class { }
 
 extension Retryable where Self: UIViewController {
     
-    private(set) var retryView: Placeholderable? {
+    private(set) var retryView: RetryPlaceHolderable? {
         get {
-            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.retryView) as? Placeholderable else {
+            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.retryView) as? RetryPlaceHolderable else {
                 return nil
             }
             return value
@@ -31,7 +31,7 @@ extension Retryable where Self: UIViewController {
     func presentRetryView(with errorMessage: String?, errorHandler: @escaping () -> Void) {
         let isPresented = retryView?.isPresented ?? false
         if isPresented {
-           //self.errorView.stopAnimation()
+            self.retryView?.resetState()
         } else {
             self.retryView = ErrorPlaceholderView.show(fromViewController: self, animated: true, completion: nil)
         }

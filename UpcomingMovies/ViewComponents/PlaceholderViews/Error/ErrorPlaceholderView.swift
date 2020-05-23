@@ -14,7 +14,7 @@ protocol ErrorPlaceholderViewDelegate: class {
     
 }
 
-class ErrorPlaceholderView: UIView, NibLoadable, Placeholderable {
+class ErrorPlaceholderView: UIView, NibLoadable, RetryPlaceHolderable {
     
     @IBOutlet weak var errorTitleLabel: UILabel!
     @IBOutlet weak var errorDetailLabel: UILabel!
@@ -69,20 +69,22 @@ class ErrorPlaceholderView: UIView, NibLoadable, Placeholderable {
         retryButton.addTarget(self, action: #selector(retryAction), for: .touchUpInside)
     }
     
-    private func playAnimation() {
-        retryButton.startAnimation()
-    }
-    
-    private func stopAnimation() {
-        retryButton.stopAnimation()
-    }
-    
     // MARK: - Selectors
     
     @objc private func retryAction() {
-        playAnimation()
+        retryButton.startAnimation()
         retry?()
     }
+    
+}
+
+// MARK: - RetryPlaceHolderable
+
+extension ErrorPlaceholderView {
+    
+    func resetState() {
+         retryButton.stopAnimation()
+     }
     
 }
 
