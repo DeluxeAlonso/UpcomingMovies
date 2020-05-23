@@ -9,17 +9,17 @@
 import UIKit
 
 private struct AssociatedKeys {
-    static var errorView: ErrorPlaceholderView = ErrorPlaceholderView()
+    static var errorView: Placeholderable?
 }
 
 protocol Retryable: class { }
 
 extension Retryable where Self: UIViewController {
     
-    private(set) var errorView: ErrorPlaceholderView {
+    private(set) var errorView: Placeholderable? {
         get {
-            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.errorView) as? ErrorPlaceholderView else {
-                return ErrorPlaceholderView()
+            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.errorView) as? Placeholderable else {
+                return nil
             }
             return value
         }
@@ -29,21 +29,19 @@ extension Retryable where Self: UIViewController {
     }
     
     func presentErrorView(with errorMessage: String?, errorHandler: @escaping () -> Void) {
-        let isPresented = errorView.isPresented
+        let isPresented = errorView?.isPresented ?? false
         if isPresented {
-            errorView.stopAnimation()
+           //self.errorView.stopAnimation()
         } else {
-            errorView = ErrorPlaceholderView.show(fromViewController: self,
-                                                  animated: true,
-                                                  completion: nil)
+            self.errorView = ErrorPlaceholderView.show(fromViewController: self, animated: true, completion: nil)
         }
-        errorView.retry = errorHandler
-        errorView.frame = self.view.bounds
-        errorView.detailText = errorMessage
+        errorView?.retry = errorHandler
+        errorView?.frame = self.view.bounds
+        errorView?.detailText = errorMessage
     }
     
     func hideErrorView() {
-        errorView.hide()
+        errorView?.hide(animated: true, completion: nil)
     }
     
 }

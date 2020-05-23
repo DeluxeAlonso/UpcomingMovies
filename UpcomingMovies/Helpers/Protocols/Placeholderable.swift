@@ -8,21 +8,40 @@
 
 import UIKit
 
-protocol Placeholderable: UIView {
+protocol Displayable: UIView {
     var isPresented: Bool { get set }
-    var animationDuration: Double { get set }
-    var retry: (() -> Void)? { get set }
     
-    func show(animated: Bool, completion: ((Bool) -> Void)?)
+    static func show(fromViewController viewController: UIViewController,
+                     animated: Bool, completion: ((Bool) -> Void)?) -> Placeholderable
     func hide(animated: Bool, completion: ((Bool) -> Void)?)
 }
 
-extension Placeholderable {
+protocol RetryActionable {
+     var retry: (() -> Void)? { get set }
+}
+
+protocol Placeholderable: Displayable, RetryActionable {
+    var detailText: String? { get set }
+}
+
+extension Placeholderable where Self: NibLoadable {
     
-    func show(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
+    static func show(fromViewController viewController: UIViewController,
+                     animated: Bool, completion: ((Bool) -> Void)?) -> Placeholderable {
+        
+        let subview = loadFromNib()
+        viewController.view.addSubview(subview)
+        subview.alpha = 0
+        subview.isPresented = true
+        subview.superview?.sendSubviewToBack(subview)
+        subview.show(animated: animated) { _ in }
+        return subview
+    }
+    
+    fileprivate func show(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
         self.superview?.bringSubviewToFront(self)
         if animated {
-            UIView.animate(withDuration: self.animationDuration, animations: { self.alpha = 1 }, completion: completion)
+            UIView.animate(withDuration: 0.3, animations: { self.alpha = 1 }, completion: completion)
         } else {
             self.alpha = 1
             completion?(true)
@@ -37,7 +56,7 @@ extension Placeholderable {
             }
         }
         if animated {
-            UIView.animate(withDuration: self.animationDuration,
+            UIView.animate(withDuration: 0.3,
                            delay: 0.25,
                            animations: { self.alpha = 0 }, completion: { (finished) in
                             closure(finished)
