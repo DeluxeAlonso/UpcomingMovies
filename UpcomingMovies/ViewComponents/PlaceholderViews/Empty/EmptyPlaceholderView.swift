@@ -13,14 +13,12 @@ class EmptyPlaceholderView: UIView, NibLoadable, Placeholderable {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
     
-    var animationDuration = 0.3
     var isPresented: Bool = false
-    var retry: (() -> Void)?
     
-    var messageText: String? {
+    var detailText: String? {
         didSet {
-            guard let messageText = messageText else { return }
-            messageLabel.text = messageText
+            guard let detailText = detailText else { return }
+            messageLabel.text = detailText
         }
     }
     
@@ -39,31 +37,4 @@ class EmptyPlaceholderView: UIView, NibLoadable, Placeholderable {
         messageLabel.textColor = ColorPalette.lightBlueColor
     }
 
-}
-
-// MARK: - EmptyDisplayable
-
-extension EmptyPlaceholderView {
-    
-    static func show<T: EmptyPlaceholderView>(
-        fromViewController viewController: UIViewController,
-        animated: Bool = true,
-        completion: ((Bool) -> Swift.Void)? = nil) -> T {
-        
-        guard let subview = loadFromNib() as? T else {
-            fatalError("The subview is expected to be of type \(T.self)")
-        }
-        
-        viewController.view.addSubview(subview)
-        
-        // Configure constraints if needed
-        
-        subview.alpha = 0
-        subview.isPresented = true
-        subview.superview?.sendSubviewToBack(subview)
-        subview.show(animated: animated) { _ in
-        }
-        return subview
-    }
-    
 }

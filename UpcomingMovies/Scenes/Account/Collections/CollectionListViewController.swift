@@ -93,7 +93,7 @@ class CollectionListViewController: UIViewController, PlaceholderDisplayable, Se
         case .empty:
             presentEmptyView(with: "No movies to show")
         case .error(let error):
-            presentErrorView(with: error.localizedDescription,
+            presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
                                         self?.viewModel?.refreshCollectionList()
             })

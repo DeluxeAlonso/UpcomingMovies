@@ -53,7 +53,7 @@ class MovieCreditsViewController: UIViewController, PlaceholderDisplayable, Load
         case .empty:
             presentEmptyView(with: "No credits to show")
         case .error(let error):
-            presentErrorView(with: error.localizedDescription,
+            presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
                                self?.viewModel?.getMovieCredits()
             })

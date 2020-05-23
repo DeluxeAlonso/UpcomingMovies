@@ -8,24 +8,18 @@
 
 import UIKit
 
-protocol ErrorAnimatable {
-    func playAnimation()
-    func stopAnimation()
-}
-
 protocol ErrorPlaceholderViewDelegate: class {
     
     func errorPlaceholderView(_ errorPlaceholderView: ErrorPlaceholderView, didRetry sender: UIButton)
     
 }
 
-class ErrorPlaceholderView: UIView, NibLoadable, Placeholderable {
+class ErrorPlaceholderView: UIView, NibLoadable, RetryPlaceHolderable {
     
     @IBOutlet weak var errorTitleLabel: UILabel!
     @IBOutlet weak var errorDetailLabel: UILabel!
     @IBOutlet weak var retryButton: ShrinkingButton!
     
-    var animationDuration = 0.3
     var isPresented: Bool = false
     var retry: (() -> Void)?
     
@@ -47,26 +41,26 @@ class ErrorPlaceholderView: UIView, NibLoadable, Placeholderable {
     
     // MARK: - Private
     
-    fileprivate func setupUI() {
+    private func setupUI() {
         alpha = 0.0
         setupErrorTitleLabel()
         setupErrorDetailLabel()
         setupRetryButton()
     }
     
-    fileprivate func setupErrorTitleLabel() {
+    private func setupErrorTitleLabel() {
         errorTitleLabel.text = Constants.errorTitle
         errorTitleLabel.textColor = ColorPalette.darkGray
         errorTitleLabel.font = FontHelper.regular(withSize: 24.0)
     }
     
-    fileprivate func setupErrorDetailLabel() {
+    private func setupErrorDetailLabel() {
         errorDetailLabel.text = Constants.errorDetail
         errorDetailLabel.textColor = ColorPalette.lightGray
         errorDetailLabel.font = FontHelper.light(withSize: 15.0)
     }
     
-    fileprivate func setupRetryButton() {
+    private func setupRetryButton() {
         retryButton.setTitle(Constants.retryButtonTitle, for: .normal)
         retryButton.layer.cornerRadius = 5
         retryButton.backgroundColor = ColorPalette.lightBlueColor
@@ -78,50 +72,19 @@ class ErrorPlaceholderView: UIView, NibLoadable, Placeholderable {
     // MARK: - Selectors
     
     @objc private func retryAction() {
-        playAnimation()
+        retryButton.startAnimation()
         retry?()
     }
     
 }
 
-// MARK: - ErrorAnimatable
-
-extension ErrorPlaceholderView: ErrorAnimatable {
-    
-    func playAnimation() {
-        retryButton.startAnimation()
-    }
-    
-    func stopAnimation() {
-        retryButton.stopAnimation()
-    }
-    
-}
-
-// MARK: - ErrorDisplayable
+// MARK: - RetryPlaceHolderable
 
 extension ErrorPlaceholderView {
     
-    static func show<T: ErrorPlaceholderView>(
-        fromViewController viewController: UIViewController,
-        animated: Bool = true,
-        completion: ((Bool) -> Void)? = nil) -> T {
-        
-        guard let subview = loadFromNib() as? T else {
-            fatalError("The subview is expected to be of type \(T.self)")
-        }
-        
-        viewController.view.addSubview(subview)
-        
-        // Configure constraints if needed
-        
-        subview.alpha = 0
-        subview.isPresented = true
-        subview.superview?.sendSubviewToBack(subview)
-        subview.show(animated: animated) { _ in
-        }
-        return subview
-    }
+    func resetState() {
+         retryButton.stopAnimation()
+     }
     
 }
 
