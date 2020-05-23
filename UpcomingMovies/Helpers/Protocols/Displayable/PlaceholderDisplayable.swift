@@ -14,7 +14,7 @@ extension PlaceholderDisplayable where Self: UIViewController {
     
     func hideDisplayedPlaceholderView() {
         hideEmptyView()
-        hideErrorView()
+        hideRetryView()
     }
     
 }

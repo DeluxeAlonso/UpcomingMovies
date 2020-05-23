@@ -9,39 +9,39 @@
 import UIKit
 
 private struct AssociatedKeys {
-    static var errorView: Placeholderable?
+    static var retryView: Placeholderable?
 }
 
 protocol Retryable: class { }
 
 extension Retryable where Self: UIViewController {
     
-    private(set) var errorView: Placeholderable? {
+    private(set) var retryView: Placeholderable? {
         get {
-            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.errorView) as? Placeholderable else {
+            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.retryView) as? Placeholderable else {
                 return nil
             }
             return value
         }
         set(newValue) {
-            objc_setAssociatedObject(self, &AssociatedKeys.errorView, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &AssociatedKeys.retryView, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
-    func presentErrorView(with errorMessage: String?, errorHandler: @escaping () -> Void) {
-        let isPresented = errorView?.isPresented ?? false
+    func presentRetryView(with errorMessage: String?, errorHandler: @escaping () -> Void) {
+        let isPresented = retryView?.isPresented ?? false
         if isPresented {
            //self.errorView.stopAnimation()
         } else {
-            self.errorView = ErrorPlaceholderView.show(fromViewController: self, animated: true, completion: nil)
+            self.retryView = ErrorPlaceholderView.show(fromViewController: self, animated: true, completion: nil)
         }
-        errorView?.retry = errorHandler
-        errorView?.frame = self.view.bounds
-        errorView?.detailText = errorMessage
+        retryView?.retry = errorHandler
+        retryView?.frame = self.view.bounds
+        retryView?.detailText = errorMessage
     }
     
-    func hideErrorView() {
-        errorView?.hide(animated: true, completion: nil)
+    func hideRetryView() {
+        retryView?.hide(animated: true, completion: nil)
     }
     
 }
