@@ -84,8 +84,8 @@ final class AccountViewModel {
         return ProfileViewModel(useCaseProvider: useCaseProvider, userAccount: currentUser, options: options)
     }
 
-    func buildCollectionListViewModel(_ option: ProfileCollectionOption) -> CollectionListViewModel {
-        return CollectionListViewModel(useCaseProvider: useCaseProvider,
+    func buildCollectionListViewModel(_ option: ProfileCollectionOption) -> SavedMoviesViewModel {
+        return SavedMoviesViewModel(useCaseProvider: useCaseProvider,
                                        collectionOption: option)
     }
     

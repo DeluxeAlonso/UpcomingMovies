@@ -116,8 +116,8 @@ class AccountViewController: UIViewController, Storyboarded, SegueHandler {
             viewController.delegate = self
             viewController.viewModel = viewModel.buildAuthPermissionViewModel()
         case .collectionList:
-            guard let viewController = segue.destination as? CollectionListViewController else { fatalError() }
-            guard let viewModel = sender as? CollectionListViewModel else { return }
+            guard let viewController = segue.destination as? SavedMoviesViewController else { fatalError() }
+            guard let viewModel = sender as? SavedMoviesViewModel else { return }
             _ = viewController.view
             viewController.viewModel = viewModel
         case.customLists:

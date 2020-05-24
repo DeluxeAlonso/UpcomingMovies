@@ -1,5 +1,5 @@
 //
-//  CollectionListViewModel.swift
+//  SavedMoviesViewModel.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 3/3/19.
@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class CollectionListViewModel {
+final class SavedMoviesViewModel {
     
     private let useCaseProvider: UseCaseProviderProtocol
     private let accountUseCase: AccountUseCaseProtocol
@@ -23,8 +23,8 @@ final class CollectionListViewModel {
         return viewState.value.currentEntities
     }
     
-    var movieCells: [ProfileMovieCellViewModel] {
-        return movies.compactMap { ProfileMovieCellViewModel($0) }
+    var movieCells: [SavedMovieCellViewModel] {
+        return movies.compactMap { SavedMovieCellViewModel($0) }
     }
     
     let title: String?
