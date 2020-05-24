@@ -1,5 +1,5 @@
 //
-//  ProfileMovieCellViewModel.swift
+//  SavedMovieCellViewModel.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 3/3/19.
@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class ProfileMovieCellViewModel {
+final class SavedMovieCellViewModel {
     
     let title: String
     let backdropURL: URL?

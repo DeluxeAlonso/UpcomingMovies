@@ -1,5 +1,5 @@
 //
-//  CollectionListViewController.swift
+//  SavedMoviesViewController.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 11/7/18.
@@ -10,15 +10,15 @@ import UIKit
 import CollectionViewSlantedLayout
 import UpcomingMoviesDomain
 
-class CollectionListViewController: UIViewController, PlaceholderDisplayable, SegueHandler, Loadable {
+class SavedMoviesViewController: UIViewController, PlaceholderDisplayable, SegueHandler, Loadable {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var dataSource: SimpleCollectionViewDataSource<ProfileMovieCellViewModel>!
+    private var dataSource: SimpleCollectionViewDataSource<SavedMovieCellViewModel>!
     
     var loaderView: RadarView!
     
-    var viewModel: CollectionListViewModel? {
+    var viewModel: SavedMoviesViewModel? {
         didSet {
             setupBindables()
         }
@@ -49,7 +49,7 @@ class CollectionListViewController: UIViewController, PlaceholderDisplayable, Se
     
     private func setupCollectionView() {
         collectionView.delegate = self
-        collectionView.registerNib(cellType: ProfileMovieCollectionViewCell.self)
+        collectionView.registerNib(cellType: SavedMovieCollectionViewCell.self)
         setupCollectionViewLayout()
     }
     
@@ -135,7 +135,7 @@ class CollectionListViewController: UIViewController, PlaceholderDisplayable, Se
 
 // MARK: - UICollectionViewDelegate
 
-extension CollectionListViewController: UICollectionViewDelegate {
+extension SavedMoviesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue,
@@ -146,7 +146,7 @@ extension CollectionListViewController: UICollectionViewDelegate {
 
 // MARK: - Segue Identifiers
 
-extension CollectionListViewController {
+extension SavedMoviesViewController {
     
     enum SegueIdentifier: String {
         case movieDetail = "MovieDetailSegue"
