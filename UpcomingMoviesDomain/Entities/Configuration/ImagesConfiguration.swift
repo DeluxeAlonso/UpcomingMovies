@@ -9,7 +9,13 @@
 import Foundation
 
 public struct ImagesConfiguration {
-    let baseURLString: String
-    let backdropSizes: [String]
-    let posterSizes: [String]
+    public let baseURLString: String
+    public let backdropSizes: [String]
+    public let posterSizes: [String]
+    
+    public init(baseURLString: String, backdropSizes: [String], posterSizes: [String]) {
+        self.baseURLString = baseURLString
+        self.backdropSizes = backdropSizes
+        self.posterSizes = posterSizes
+    }
 }

@@ -57,4 +57,9 @@ public class UseCaseProvider: UseCaseProviderProtocol {
         return AuthRepository(remoteDataSource: remoteDataSource)
     }
     
+    public func configurationUseCase() -> ConfigurationUseCaseProtocol {
+        let remoteDataSource = self.remoteDataSource.configurationDataSource()
+        return ConfigurationRepository(remoteDataSource: remoteDataSource)
+    }
+
 }

@@ -17,5 +17,6 @@ public protocol UseCaseProviderProtocol {
     func userUseCase() -> UserUseCaseProtocol
     func accountUseCase() -> AccountUseCaseProtocol
     func authUseCase() -> AuthUseCaseProtocol
+    func configurationUseCase() -> ConfigurationUseCaseProtocol
     
 }

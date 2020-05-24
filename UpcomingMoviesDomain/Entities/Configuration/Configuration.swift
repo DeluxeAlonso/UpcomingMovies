@@ -9,5 +9,9 @@
 import Foundation
 
 public struct Configuration {
-    let imagesConfiguration: ImagesConfiguration
+    public let imagesConfiguration: ImagesConfiguration
+    
+    public init(imagesConfiguration: ImagesConfiguration) {
+        self.imagesConfiguration = imagesConfiguration
+    }
 }

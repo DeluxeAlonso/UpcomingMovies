@@ -243,6 +243,11 @@
 		E26DB219236C73250054CC95 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26DB218236C73250054CC95 /* Storyboarded.swift */; };
 		E26DB21B236C7DBF0054CC95 /* InjectionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26DB21A236C7DBF0054CC95 /* InjectionFactory.swift */; };
 		E270961B247B2C2A00AE694E /* ImagesConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270961A247B2C2A00AE694E /* ImagesConfiguration.swift */; };
+		E270961E247B2E3300AE694E /* ConfigurationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270961D247B2E3300AE694E /* ConfigurationClient.swift */; };
+		E2709620247B2E3B00AE694E /* ConfigurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270961F247B2E3B00AE694E /* ConfigurationProvider.swift */; };
+		E2709623247B32E400AE694E /* ConfigurationRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709622247B32E400AE694E /* ConfigurationRemoteDataSourceProtocol.swift */; };
+		E2709625247B334900AE694E /* ConfigurationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709624247B334900AE694E /* ConfigurationRepository.swift */; };
+		E2709627247B341A00AE694E /* ConfigurationRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709626247B341A00AE694E /* ConfigurationRemoteDataSource.swift */; };
 		E2709800220FA4F2007F18A2 /* MovieVideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27097FF220FA4F2007F18A2 /* MovieVideosViewController.swift */; };
 		E2709802220FA508007F18A2 /* MovieVideosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2709801220FA508007F18A2 /* MovieVideosViewModel.swift */; };
 		E270980B220FAF99007F18A2 /* MovieVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270980A220FAF99007F18A2 /* MovieVideoTableViewCell.swift */; };
@@ -818,6 +823,11 @@
 		E26F03B821E461D6009859DF /* Managed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managed.swift; sourceTree = "<group>"; };
 		E26F03BA21E462E2009859DF /* NSManagedObjectContext+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extensions.swift"; sourceTree = "<group>"; };
 		E270961A247B2C2A00AE694E /* ImagesConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesConfiguration.swift; sourceTree = "<group>"; };
+		E270961D247B2E3300AE694E /* ConfigurationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationClient.swift; sourceTree = "<group>"; };
+		E270961F247B2E3B00AE694E /* ConfigurationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationProvider.swift; sourceTree = "<group>"; };
+		E2709622247B32E400AE694E /* ConfigurationRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationRemoteDataSourceProtocol.swift; sourceTree = "<group>"; };
+		E2709624247B334900AE694E /* ConfigurationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationRepository.swift; sourceTree = "<group>"; };
+		E2709626247B341A00AE694E /* ConfigurationRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationRemoteDataSource.swift; sourceTree = "<group>"; };
 		E27097FF220FA4F2007F18A2 /* MovieVideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideosViewController.swift; sourceTree = "<group>"; };
 		E2709801220FA508007F18A2 /* MovieVideosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideosViewModel.swift; sourceTree = "<group>"; };
 		E2709803220FAB06007F18A2 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
@@ -1184,6 +1194,7 @@
 			children = (
 				E268AB3223823DA30069E2A9 /* Auth */,
 				E273CDC82381162E0018464B /* Account */,
+				E270961C247B2E0B00AE694E /* Configuration */,
 				E2963EDA23785E1200C36E16 /* Movie */,
 				E2020972236F285C00EBDC5E /* Genre */,
 			);
@@ -1244,6 +1255,7 @@
 			children = (
 				E268AB2F23823D670069E2A9 /* Auth */,
 				E273CDCF238117AF0018464B /* Account */,
+				E2709628247B341F00AE694E /* Configuration */,
 				E2963EF5237864F500C36E16 /* Movie */,
 				E2020992236F508000EBDC5E /* Genre */,
 				E2020990236F419200EBDC5E /* RemoteDataSource.swift */,
@@ -2019,6 +2031,31 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		E270961C247B2E0B00AE694E /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				E270961D247B2E3300AE694E /* ConfigurationClient.swift */,
+				E270961F247B2E3B00AE694E /* ConfigurationProvider.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		E2709621247B32D100AE694E /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				E2709622247B32E400AE694E /* ConfigurationRemoteDataSourceProtocol.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		E2709628247B341F00AE694E /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				E2709626247B341A00AE694E /* ConfigurationRemoteDataSource.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		E27097FE220FA4D2007F18A2 /* MovieVideos */ = {
 			isa = PBXGroup;
 			children = (
@@ -2090,6 +2127,7 @@
 				E2963EF823786CF100C36E16 /* MovieRepository.swift */,
 				E273CDD5238118600018464B /* AccountRepository.swift */,
 				E268AB2A23823C090069E2A9 /* AuthRepository.swift */,
+				E2709624247B334900AE694E /* ConfigurationRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -2101,6 +2139,7 @@
 				E21E8E3E236E3A24006E2DEF /* RemoteDataSourceProtocol.swift */,
 				E268AB2C23823C230069E2A9 /* Auth */,
 				E273CDD2238117CC0018464B /* Account */,
+				E2709621247B32D100AE694E /* Configuration */,
 				E2CB9C1423785CC9008131DB /* Movie */,
 				E2020920236F213000EBDC5E /* MovieSearch */,
 				E202091F236F212A00EBDC5E /* MovieVisit */,
@@ -2927,6 +2966,7 @@
 				E2963EEB23785EAD00C36E16 /* RequestTokenResult.swift in Sources */,
 				E268AB3423823DB30069E2A9 /* AuthClient.swift in Sources */,
 				E2963EE923785EAD00C36E16 /* AccessToken.swift in Sources */,
+				E270961E247B2E3300AE694E /* ConfigurationClient.swift in Sources */,
 				E2B49B7023BD0305005EC676 /* URLConfiguration.swift in Sources */,
 				E2963EF223785EAD00C36E16 /* VideoResult.swift in Sources */,
 				E2B49B6E23BCFBEC005EC676 /* List.swift in Sources */,
@@ -2943,10 +2983,12 @@
 				E202097C236F3E5000EBDC5E /* Endpoint.swift in Sources */,
 				E268AB3A23823F570069E2A9 /* AuthenticationManager.swift in Sources */,
 				E2020994236F508C00EBDC5E /* GenreRemoteDataSource.swift in Sources */,
+				E2709627247B341A00AE694E /* ConfigurationRemoteDataSource.swift in Sources */,
 				E2B49B7A23BD1B55005EC676 /* Review.swift in Sources */,
 				E2020976236F286F00EBDC5E /* GenreProvider.swift in Sources */,
 				E202098C236F3FDF00EBDC5E /* Descriptable.swift in Sources */,
 				E268AB3923823F540069E2A9 /* KeychainStorage.swift in Sources */,
+				E2709620247B2E3B00AE694E /* ConfigurationProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3209,6 +3251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2709625247B334900AE694E /* ConfigurationRepository.swift in Sources */,
 				E21E8E33236E377E006E2DEF /* MovieSearchLocalDataSourceProtocol.swift in Sources */,
 				E2CB9C1623785CE4008131DB /* MovieRemoteDataSourceProtocol.swift in Sources */,
 				E21E8E37236E393F006E2DEF /* MovieVisitRepository.swift in Sources */,
@@ -3230,6 +3273,7 @@
 				E21E8E3B236E39DD006E2DEF /* MovieSearchRemoteDataSourceProtocol.swift in Sources */,
 				E2727DD1236DEF31004BDC5B /* GenreLocalDataSourceProtocol.swift in Sources */,
 				E21E8E39236E39CA006E2DEF /* MovieVisitRemoteDataSourceProtocol.swift in Sources */,
+				E2709623247B32E400AE694E /* ConfigurationRemoteDataSourceProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
