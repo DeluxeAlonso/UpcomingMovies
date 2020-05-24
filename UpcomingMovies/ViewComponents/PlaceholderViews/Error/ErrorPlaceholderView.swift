@@ -75,15 +75,11 @@ class ErrorPlaceholderView: UIView, NibLoadable, RetryPlaceHolderable {
         retry?()
     }
     
-}
-
-// MARK: - RetryPlaceHolderable
-
-extension ErrorPlaceholderView {
+    // MARK: - RetryPlaceHolderable
     
     func resetState() {
-         retryButton.stopAnimation()
-     }
+        retryButton.stopAnimation()
+    }
     
 }
 
