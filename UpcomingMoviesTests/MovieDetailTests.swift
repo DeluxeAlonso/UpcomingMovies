@@ -34,8 +34,8 @@ class MovieDetailTests: XCTestCase {
                             title: "Test 1",
                             genreIds: [1, 2],
                             overview: "Overview",
-                            posterURL: URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"),
-                            backdropURL: URL(string: "https://image.tmdb.org/t/p/w500/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg"),
+                            posterPath: "pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
+                            backdropPath: "2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg",
                             releaseDate: "2019-02-01", voteAverage: 4.5)
         viewModelToTest = MovieDetailViewModel(movieToTest, useCaseProvider: useCaseProvider)
     }

@@ -13,13 +13,13 @@ public struct Crew {
     public let id: Int
     public let job: String
     public let name: String
-    public let profileURL: URL?
+    public let photoPath: String?
 
-    public init(id: Int, job: String, name: String, profileURL: URL?) {
+    public init(id: Int, job: String, name: String, photoPath: String?) {
         self.id = id
         self.job = job
         self.name = name
-        self.profileURL = profileURL
+        self.photoPath = photoPath
     }
     
 }

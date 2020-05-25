@@ -48,28 +48,12 @@ public struct Movie: Decodable, Equatable {
     
 }
 
-// MARK: - Computed Properties
-
-extension Movie {
-
-    public var posterURL: URL? {
-        guard let posterPath = posterPath else { return nil }
-        return URL(string: URLConfiguration.mediaPath + posterPath)
-    }
-    
-    public var backdropURL: URL? {
-        guard let backdropPath = backdropPath else { return nil }
-        return URL(string: URLConfiguration.mediaBackdropPath + backdropPath)
-    }
-    
-}
-
 extension Movie: DomainConvertible {
     
     func asDomain() -> UpcomingMoviesDomain.Movie {
         return UpcomingMoviesDomain.Movie(id: id, title: title,
                                           genreIds: genreIds, overview: overview,
-                                          posterURL: posterURL, backdropURL: backdropURL,
+                                          posterPath: posterPath, backdropPath: backdropPath,
                                           releaseDate: releaseDate, voteAverage: voteAverage)
     }
     

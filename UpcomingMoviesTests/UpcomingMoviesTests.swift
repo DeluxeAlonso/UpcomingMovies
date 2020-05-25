@@ -88,7 +88,7 @@ class UpcomingMoviesTests: XCTestCase {
         //Act
         let backdropURL = upcomingMovieCellViewModelToTest.backdropURL
         //Assert
-        XCTAssertEqual(backdropURL, URL(string: "https://image.tmdb.org/t/p/w185/backdrop.jpg"))
+        XCTAssertEqual(backdropURL, URL(string: "https://image.tmdb.org/t/p/w500/backdrop.jpg"))
     }
 
 }

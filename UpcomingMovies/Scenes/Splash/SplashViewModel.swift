@@ -29,13 +29,17 @@ final class SplashViewModel {
         DispatchQueue.global(qos: .userInitiated).async {
             self.getAppConfiguration()
             self.getMovieGenres()
+            
             self.dispatchGroup.wait()
             DispatchQueue.main.async {
                 self.initialDownloadsEnded?()
             }
         }
     }
-    
+
+    /**
+    * Fetch API configurations.
+    */
     private func getAppConfiguration() {
         dispatchGroup.enter()
         configurationUseCase.getConfiguration { [weak self] result in
