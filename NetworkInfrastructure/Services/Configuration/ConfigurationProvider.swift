@@ -25,7 +25,6 @@ extension ConfigurationProvider: Endpoint {
         case .getAPIConfiguration:
             return "/3/configuration"
         }
-        
     }
     
     var headers: [String: String]? {

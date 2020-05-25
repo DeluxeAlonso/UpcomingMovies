@@ -19,13 +19,13 @@ class SplashViewController: UIViewController {
         // We can only get the window and scene of this view controller
         // only after it has been added to the window hierarchy
         setupBindables()
-        viewModel.getMovieGenres()
+        viewModel.startInitialDownloads()
     }
 
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        viewModel.genresFetched = { [weak self] in
+        viewModel.initialDownloadsEnded = { [weak self] in
             guard let strongSelf = self else { return }
             NavigationHandler.initialTransition(from: strongSelf.view.window)
         }
