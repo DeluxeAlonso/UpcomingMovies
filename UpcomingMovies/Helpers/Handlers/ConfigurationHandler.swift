@@ -13,7 +13,7 @@ class ConfigurationHandler {
     
     static let shared: ConfigurationHandler = ConfigurationHandler()
     
-    private var imageConfiguration: ImageConfigurationHandler!
+    private var imageConfiguration: ImageConfigurationHandler?
     
     init() {}
     
@@ -24,23 +24,17 @@ class ConfigurationHandler {
     // MARK: - Images Configuration
     
     var regularImageBaseURLString: String {
-        guard !isTesting else {
-            return ImageConfigurationHandler.Constants.mockRegularImageBaseURLString
+        guard let imageConfiguration = imageConfiguration else {
+            return ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString
         }
         return imageConfiguration.regularImageBaseURLString
     }
     
     var backdropImageBaseURLString: String {
-        guard !isTesting else {
-            return ImageConfigurationHandler.Constants.mockBackdropImageBaseURLString
+        guard let imageConfiguration = imageConfiguration else {
+            return ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
         }
         return imageConfiguration.backdropImageBaseURLString
-    }
-    
-    // MARK: - XCTest
-    
-    var isTesting: Bool {
-        return NSClassFromString("XCTest") != nil
     }
     
 }
