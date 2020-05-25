@@ -32,7 +32,7 @@ class ConfigurationHandler {
     
     var backdropImageBaseURLString: String {
         guard !isTesting() else {
-            return ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString
+            return ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
         }
         return imageConfiguration?.backdropImageBaseURLString ??  ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
     }
