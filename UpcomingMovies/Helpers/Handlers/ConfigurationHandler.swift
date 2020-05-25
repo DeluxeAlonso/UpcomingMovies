@@ -24,17 +24,23 @@ class ConfigurationHandler {
     // MARK: - Images Configuration
     
     var regularImageBaseURLString: String {
-        guard let imageConfiguration = imageConfiguration else {
+        guard !isTesting() else {
             return ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString
         }
-        return imageConfiguration.regularImageBaseURLString
+        return imageConfiguration?.regularImageBaseURLString ?? ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString
     }
     
     var backdropImageBaseURLString: String {
-        guard let imageConfiguration = imageConfiguration else {
-            return ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
+        guard !isTesting() else {
+            return ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString
         }
-        return imageConfiguration.backdropImageBaseURLString
+        return imageConfiguration?.backdropImageBaseURLString ??  ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
+    }
+    
+    // MARK: - XCTest
+    
+    private func isTesting() -> Bool {
+        return NSClassFromString("XCTest") != nil
     }
     
 }

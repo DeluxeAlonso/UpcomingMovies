@@ -44,8 +44,8 @@ extension Movie {
                      title: String = "Movie 1",
                      genreIds: [Int] = [],
                      overview: String = "Overview",
-                     posterPath: String? = "poster.jpg",
-                     backdropPath: String? = "backdrop.jpg",
+                     posterPath: String? = "/poster.jpg",
+                     backdropPath: String? = "/backdrop.jpg",
                      releaseDate: String = "02-21-2019", voteAverage: Double = 5.0) -> Movie {
         return Movie(id: id, title: title, genreIds: genreIds,
                      overview: overview, posterPath: posterPath,
