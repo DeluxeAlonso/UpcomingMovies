@@ -50,23 +50,12 @@ public struct List: Decodable, Equatable {
     
 }
 
-// MARK: - Computed Properties
-
-extension List {
-
-    public var backdropURL: URL? {
-        guard let posterPath = backdropPath else { return nil }
-        return URL(string: URLConfiguration.mediaPath + posterPath)
-    }
-    
-}
-
 extension List: DomainConvertible {
     
     func asDomain() -> UpcomingMoviesDomain.List {
         let movies = self.movies?.map { $0.asDomain() }
         return UpcomingMoviesDomain.List(id: id, name: name, description: description,
-                                         backdropURL: backdropURL, averageRating: averageRating,
+                                         backdropPath: backdropPath, averageRating: averageRating,
                                          runtime: runtime, movieCount: movieCount, movies: movies)
     }
     

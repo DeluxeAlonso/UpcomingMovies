@@ -34,4 +34,9 @@ final public class RemoteDataSource: RemoteDataSourceProtocol {
         return AuthRemoteDataSource(authClient: authClient, accountClient: accountClient)
     }
     
+    public func configurationDataSource() -> ConfigurationRemoteDataSourceProtocol {
+        let configurationClient = ConfigurationClient()
+        return ConfigurationRemoteDataSource(client: configurationClient)
+    }
+    
 }

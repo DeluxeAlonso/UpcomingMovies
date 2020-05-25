@@ -13,13 +13,13 @@ public struct Cast {
     public let id: Int
     public let character: String
     public let name: String
-    public let profileURL: URL?
+    public let photoPath: String?
     
-    public init(id: Int, character: String, name: String, profileURL: URL?) {
+    public init(id: Int, character: String, name: String, photoPath: String?) {
         self.id = id
         self.character = character
         self.name = name
-        self.profileURL = profileURL
+        self.photoPath = photoPath
     }
     
 }
