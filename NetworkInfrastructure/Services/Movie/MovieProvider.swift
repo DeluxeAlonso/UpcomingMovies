@@ -29,7 +29,7 @@ enum MovieProvider {
 extension MovieProvider: Endpoint {
     
     var base: String {
-        return "https://api.themoviedb.org"
+        return BaseParametersHelper.shared.baseAPIURLString
     }
     
     var path: String {

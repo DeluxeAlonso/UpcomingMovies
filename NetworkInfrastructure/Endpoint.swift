@@ -22,7 +22,7 @@ protocol Endpoint {
 extension Endpoint {
     
     var apiKey: String {
-        return KeysManager.retrieveKeys().apiKey
+        return BaseParametersHelper.shared.apiKey
     }
     
     var urlComponents: URLComponents {

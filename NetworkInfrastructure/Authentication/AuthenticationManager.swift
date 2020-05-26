@@ -14,13 +14,11 @@ class AuthenticationManager {
     static let shared = AuthenticationManager()
     
     lazy var readAccessToken: String = {
-        let keys = KeysManager.retrieveKeys()
-        return keys.readAccessToken
+        return BaseParametersHelper.shared.readAccessToken
     }()
     
     lazy var apiKey: String = {
-        let keys = KeysManager.retrieveKeys()
-        return keys.apiKey
+        return BaseParametersHelper.shared.apiKey
     }()
     
     @KeychainStorage(key: Constants.sessionIdKey)

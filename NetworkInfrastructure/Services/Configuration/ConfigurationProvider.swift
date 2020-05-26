@@ -9,7 +9,9 @@
 import Foundation
 
 enum ConfigurationProvider {
+    
     case getAPIConfiguration
+    
 }
 
 // MARK: - Endpoint
@@ -17,7 +19,7 @@ enum ConfigurationProvider {
 extension ConfigurationProvider: Endpoint {
     
     var base: String {
-        return "https://api.themoviedb.org"
+        return BaseParametersHelper.shared.baseAPIURLString
     }
     
     var path: String {
