@@ -22,12 +22,12 @@ struct ImageConfigurationHandler {
     }
     
     var regularImageBaseURLString: String {
-        let posterSize = configuration.imagesConfiguration.posterSizes.first ?? Constants.defaultRegularSize
+        let posterSize = configuration.imagesConfiguration.posterSizes.mid ?? Constants.defaultRegularSize
         return baseURLString + posterSize
     }
     
     var backdropImageBaseURLString: String {
-        let backdropSize = configuration.imagesConfiguration.backdropSizes.first ?? Constants.defaultBackdropSize
+        let backdropSize = configuration.imagesConfiguration.backdropSizes.mid ?? Constants.defaultBackdropSize
         return baseURLString + backdropSize
     }
     
