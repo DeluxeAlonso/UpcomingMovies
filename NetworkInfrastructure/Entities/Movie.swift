@@ -17,7 +17,7 @@ public struct Movie: Decodable, Equatable {
     public let overview: String
     public let posterPath: String?
     public let backdropPath: String?
-    public let releaseDate: String
+    public let releaseDate: String?
     public let voteAverage: Double?
     
     private enum CodingKeys: String, CodingKey {

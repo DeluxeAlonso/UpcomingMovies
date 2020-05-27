@@ -16,14 +16,14 @@ public struct Movie: Equatable {
     public let overview: String
     public let posterPath: String?
     public let backdropPath: String?
-    public let releaseDate: String
+    public let releaseDate: String?
     public let voteAverage: Double?
     
     // MARK: - Initializers
     
     public init(id: Int, title: String, genreIds: [Int]?,
                 overview: String, posterPath: String?, backdropPath: String?,
-                releaseDate: String, voteAverage: Double?) {
+                releaseDate: String?, voteAverage: Double?) {
         self.id = id
         self.title = title
         self.genreIds = genreIds
@@ -46,7 +46,7 @@ extension Movie {
                      overview: String = "Overview",
                      posterPath: String? = "/poster.jpg",
                      backdropPath: String? = "/backdrop.jpg",
-                     releaseDate: String = "02-21-2019", voteAverage: Double = 5.0) -> Movie {
+                     releaseDate: String? = "02-21-2019", voteAverage: Double = 5.0) -> Movie {
         return Movie(id: id, title: title, genreIds: genreIds,
                      overview: overview, posterPath: posterPath,
                      backdropPath: backdropPath, releaseDate: releaseDate,

@@ -25,15 +25,6 @@ public struct Cast: Decodable {
     
 }
 
-extension Cast {
-    
-//    public var profileURL: URL? {
-//        guard let profilePath = profilePath else { return nil }
-//        return URL(string: URLConfiguration.mediaPath + profilePath)
-//    }
-    
-}
-
 extension Cast: DomainConvertible {
     
     func asDomain() -> UpcomingMoviesDomain.Cast {
