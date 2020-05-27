@@ -27,6 +27,10 @@ final class SavedMoviesViewModel {
         return movies.compactMap { SavedMovieCellViewModel($0) }
     }
     
+    var needsPrefetch: Bool {
+        return viewState.value.needsPrefetch
+    }
+    
     let title: String?
     
     // MARK: - Initializers
@@ -60,7 +64,7 @@ final class SavedMoviesViewModel {
         fetchCollectionList(page: 1, option: collectionOption, showLoader: false)
     }
     
-    func fetchCollectionList(page: Int, option: ProfileCollectionOption, showLoader: Bool) {
+    private func fetchCollectionList(page: Int, option: ProfileCollectionOption, showLoader: Bool) {
         startLoading.value = showLoader
         switch option {
         case .favorites:

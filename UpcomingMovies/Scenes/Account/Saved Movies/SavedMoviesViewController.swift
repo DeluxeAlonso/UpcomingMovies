@@ -15,6 +15,7 @@ class SavedMoviesViewController: UIViewController, PlaceholderDisplayable, Segue
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var dataSource: SimpleCollectionViewDataSource<SavedMovieCellViewModel>!
+    private var prefetchDataSource: CollectionViewDataSourcePrefetching!
     
     var loaderView: RadarView!
     
@@ -77,7 +78,16 @@ class SavedMoviesViewController: UIViewController, PlaceholderDisplayable, Segue
     private func reloadCollectionView() {
         guard let viewModel = viewModel else { return }
         dataSource = SimpleCollectionViewDataSource.make(for: viewModel.movieCells)
+        
+        prefetchDataSource = CollectionViewDataSourcePrefetching(cellCount: viewModel.movieCells.count,
+                                                       needsPrefetch: viewModel.needsPrefetch,
+                                                       prefetchHandler: { [weak self] in
+                                                        self?.viewModel?.getCollectionList()
+        })
+        
         collectionView.dataSource = dataSource
+        collectionView.prefetchDataSource = prefetchDataSource
+        
         collectionView.reloadData()
         collectionView.refreshControl?.endRefreshing()
     }
