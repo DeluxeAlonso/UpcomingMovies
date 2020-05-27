@@ -19,7 +19,7 @@ class URLGenerationTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testURLRequestSetJsonContentType() throws {
+    func testURLRequestSetJsonContentType() {
         //Arrange
         var urlRequest = URLRequest(url: URL(string: "https://api.themoviedb.org")!)
         //Act
@@ -29,13 +29,41 @@ class URLGenerationTests: XCTestCase {
         XCTAssertNotNil(allHeaderFields!["Content-Type"])
     }
     
-    func testURLRequestSetJsonContentTypeNil() throws {
+    func testURLRequestSetJsonContentTypeNil() {
         //Arrange
         let urlRequest = URLRequest(url: URL(string: "https://api.themoviedb.org")!)
         //Act
         let allHeaderFields = urlRequest.allHTTPHeaderFields
         //Assert
         XCTAssertNil(allHeaderFields)
+    }
+    
+    func testPercentEscapedEmptyParamters() {
+        //Arrange
+        let parametersDictionary: [String: Any] = [:]
+        //Act
+        let percentEscapedParameters = parametersDictionary.percentEscaped()
+        //Assert
+        XCTAssertTrue(percentEscapedParameters.isEmpty)
+    }
+    
+    func testPercentEscapedSingleParameters() {
+        //Arrange
+        let parametersDictionary: [String: Any] = ["Param1": "A"]
+        //Act
+        let percentEscapedParameters = parametersDictionary.percentEscaped()
+        //Assert
+        XCTAssertEqual(percentEscapedParameters, "Param1=A")
+    }
+    
+    func testPercentEscapedMultipleParameters() {
+        //Arrange
+        let parametersDictionary: [String: Any] = ["Param1": "A", "Param2": "B"]
+        //Act
+        let percentEscapedParameters = parametersDictionary.percentEscaped()
+        let possibleEscapedParameters = ["Param1=A&Param2=B", "Param2=B&Param1=A"]
+        //Assert
+        XCTAssertTrue(possibleEscapedParameters.contains(percentEscapedParameters))
     }
 
 }
