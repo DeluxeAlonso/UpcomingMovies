@@ -21,7 +21,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     }
     
     private var dataSource: SimpleCollectionViewDataSource<UpcomingMovieCellViewModel>!
-    private var prefetchDataSource: CollectionViewPrefetching!
+    private var prefetchDataSource: CollectionViewDataSourcePrefetching!
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
     private var previewLayout: VerticalFlowLayout!
@@ -116,7 +116,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         dataSource = SimpleCollectionViewDataSource.make(for: viewModel.movieCells,
                                                          presentationMode: presentationMode)
         
-        prefetchDataSource = CollectionViewPrefetching(cellCount: viewModel.movieCells.count,
+        prefetchDataSource = CollectionViewDataSourcePrefetching(cellCount: viewModel.movieCells.count,
                                                        needsPrefetch: viewModel.needsPrefetch,
                                                        prefetchHandler: { [weak self] in
                                                         self?.viewModel?.getMovies()

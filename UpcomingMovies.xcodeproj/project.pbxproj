@@ -152,6 +152,7 @@
 		E22588A22243121F00E1327E /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A12243121F00E1327E /* AccountViewModel.swift */; };
 		E22588A62243280600E1327E /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A52243280600E1327E /* SignInViewController.swift */; };
 		E22588A92243281F00E1327E /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A82243281F00E1327E /* ProfileTableViewController.swift */; };
+		E2266506247E13D900E12326 /* DataSourcePrefetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2266505247E13D900E12326 /* DataSourcePrefetching.swift */; };
 		E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */; };
 		E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64A21FFA099004AA771 /* UIView+Extensions.swift */; };
 		E229A532236BF242006FF112 /* CoreDataInfrastructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E229A529236BF241006FF112 /* CoreDataInfrastructure.framework */; };
@@ -358,7 +359,7 @@
 		E2EB923B221375190067F011 /* SimpleTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB9235221375190067F011 /* SimpleTableViewDataSource.swift */; };
 		E2EB923C221375190067F011 /* TableViewDataSourcePrefetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB9236221375190067F011 /* TableViewDataSourcePrefetching.swift */; };
 		E2EB923D221375190067F011 /* SimpleCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB9238221375190067F011 /* SimpleCollectionViewDataSource.swift */; };
-		E2EB923E221375190067F011 /* CollectionViewPrefetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB9239221375190067F011 /* CollectionViewPrefetching.swift */; };
+		E2EB923E221375190067F011 /* CollectionViewDataSourcePrefetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB9239221375190067F011 /* CollectionViewDataSourcePrefetching.swift */; };
 		E2EB923F221375190067F011 /* SectionedCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB923A221375190067F011 /* SectionedCollectionViewDataSource.swift */; };
 		E2EB92452213D9700067F011 /* Dequeuable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB92442213D9700067F011 /* Dequeuable.swift */; };
 		E2EB92472213E52F0067F011 /* MovieReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2EB92462213E52E0067F011 /* MovieReviewTableViewCell.xib */; };
@@ -759,6 +760,7 @@
 		E22588A12243121F00E1327E /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		E22588A52243280600E1327E /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		E22588A82243281F00E1327E /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		E2266505247E13D900E12326 /* DataSourcePrefetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourcePrefetching.swift; sourceTree = "<group>"; };
 		E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailBackdropView.swift; sourceTree = "<group>"; };
 		E226C64A21FFA099004AA771 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		E229A529236BF241006FF112 /* CoreDataInfrastructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreDataInfrastructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -952,7 +954,7 @@
 		E2EB9235221375190067F011 /* SimpleTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTableViewDataSource.swift; sourceTree = "<group>"; };
 		E2EB9236221375190067F011 /* TableViewDataSourcePrefetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSourcePrefetching.swift; sourceTree = "<group>"; };
 		E2EB9238221375190067F011 /* SimpleCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCollectionViewDataSource.swift; sourceTree = "<group>"; };
-		E2EB9239221375190067F011 /* CollectionViewPrefetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewPrefetching.swift; sourceTree = "<group>"; };
+		E2EB9239221375190067F011 /* CollectionViewDataSourcePrefetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSourcePrefetching.swift; sourceTree = "<group>"; };
 		E2EB923A221375190067F011 /* SectionedCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionedCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		E2EB92442213D9700067F011 /* Dequeuable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dequeuable.swift; sourceTree = "<group>"; };
 		E2EB92462213E52E0067F011 /* MovieReviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieReviewTableViewCell.xib; sourceTree = "<group>"; };
@@ -2337,6 +2339,7 @@
 			children = (
 				E2EB9234221375190067F011 /* TableView Data Sources */,
 				E2EB9237221375190067F011 /* CollectionView Data Sources */,
+				E2266505247E13D900E12326 /* DataSourcePrefetching.swift */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -2354,7 +2357,7 @@
 			isa = PBXGroup;
 			children = (
 				E2EB9238221375190067F011 /* SimpleCollectionViewDataSource.swift */,
-				E2EB9239221375190067F011 /* CollectionViewPrefetching.swift */,
+				E2EB9239221375190067F011 /* CollectionViewDataSourcePrefetching.swift */,
 				E2EB923A221375190067F011 /* SectionedCollectionViewDataSource.swift */,
 			);
 			path = "CollectionView Data Sources";
@@ -3071,6 +3074,7 @@
 				E21F37882193EC8100D6BFB6 /* SearchMoviesResultController.swift in Sources */,
 				E222DC202192AAB900A2EDF4 /* SearchMoviesViewController.swift in Sources */,
 				E26011672193870800E53095 /* ErrorPlaceholderView.swift in Sources */,
+				E2266506247E13D900E12326 /* DataSourcePrefetching.swift in Sources */,
 				E222B95B21FA0F49008BA816 /* UpcomingMovieCellViewModel.swift in Sources */,
 				E222DC262192AF9700A2EDF4 /* MovieTableViewCell.swift in Sources */,
 				E26911772478D7690039F144 /* RetryActionable.swift in Sources */,
@@ -3086,7 +3090,7 @@
 				E221168021914E4B0039F8C9 /* AppDelegate.swift in Sources */,
 				E22116B4219157020039F8C9 /* Bindable.swift in Sources */,
 				E21F37922193F38300D6BFB6 /* RecentSearchCellViewModel.swift in Sources */,
-				E2EB923E221375190067F011 /* CollectionViewPrefetching.swift in Sources */,
+				E2EB923E221375190067F011 /* CollectionViewDataSourcePrefetching.swift in Sources */,
 				E2EB923D221375190067F011 /* SimpleCollectionViewDataSource.swift in Sources */,
 				E225468D226A3BD500E9042C /* CustomListsViewController.swift in Sources */,
 				E2EB923B221375190067F011 /* SimpleTableViewDataSource.swift in Sources */,
