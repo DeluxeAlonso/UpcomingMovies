@@ -20,10 +20,6 @@ class TableViewDataSourcePrefetching: NSObject, UITableViewDataSourcePrefetching
         self.prefetchHandler = prefetchHandler
     }
     
-    func updateCellCount(_ cellCount: Int) {
-        self.cellCount = cellCount
-    }
-    
     private func isLoadingCell(for indexPath: IndexPath) -> Bool {
         return indexPath.row >= cellCount - 1
     }

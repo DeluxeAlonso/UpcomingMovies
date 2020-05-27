@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 final class UpcomingMovieCellViewModel {
     
     var title: String
-    var releaseDate: String
+    var releaseDate: String?
     var posterURL: URL?
     var backdropURL: URL?
     
