@@ -27,7 +27,7 @@ class SplashViewController: UIViewController {
     private func setupBindables() {
         viewModel.initialDownloadsEnded = { [weak self] in
             guard let strongSelf = self else { return }
-            NavigationHandler.initialTransition(from: strongSelf.view.window)
+            NavigationHandler.shared.initialTransition(from: strongSelf.view.window)
         }
     }
 

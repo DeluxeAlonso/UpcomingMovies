@@ -14,11 +14,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     @IBOutlet weak var toggleGridBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var viewModel: UpcomingMoviesViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    var viewModel: UpcomingMoviesViewModel!
     
     private var dataSource: SimpleCollectionViewDataSource<UpcomingMovieCellViewModel>!
     private var prefetchDataSource: CollectionViewDataSourcePrefetching!
@@ -49,6 +45,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -159,7 +156,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        viewModel?.viewState.bindAndFire({ [weak self] state in
+        viewModel?.viewState.bind({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 strongSelf.configureView(withState: state)
