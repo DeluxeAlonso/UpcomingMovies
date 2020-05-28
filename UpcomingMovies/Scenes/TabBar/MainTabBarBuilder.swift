@@ -12,7 +12,6 @@ import UpcomingMoviesDomain
 class MainTabBarBuilder {
     
     class func buildViewControllers(with useCaseProvider: UseCaseProviderProtocol) -> [UIViewController] {
-        
         let upcomingMoviesVC = UpcomingMoviesViewController.instantiate()
         upcomingMoviesVC.viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider)
         

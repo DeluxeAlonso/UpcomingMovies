@@ -10,7 +10,11 @@ import UIKit
 
 class NavigationHandler {
     
-    class func initialTransition(from window: UIWindow?) {
+    static let shared = NavigationHandler()
+    
+    private var currentSelectedIndex: Int = 0
+    
+    func initialTransition(from window: UIWindow?) {
         guard let window = window else { return }
         UIView.transition(with: window,
                           duration: 0.5,
@@ -18,21 +22,32 @@ class NavigationHandler {
                                     UIView.AnimationOptions.transitionCrossDissolve],
                           animations: {},
                           completion: { _ in
-                            window.rootViewController = MainTabBarController()
+                            let mainTabBarController = MainTabBarController()
+                            mainTabBarController.setSelectedIndex(self.currentSelectedIndex)
+                            window.rootViewController = mainTabBarController
         })
     }
     
-    class func handleUrlOpeningNavigation(for urlString: String, and window: UIWindow?) {
+    func handleUrlOpeningNavigation(for urlString: String, and window: UIWindow?) {
         if urlString.contains("extension") {
             changeTabBarToSelectedIndex(1, from: window)
         }
     }
     
-    class func changeTabBarToSelectedIndex(_ index: Int, from window: UIWindow?) {
+    func handleShortcutItem(_ shortcutItem: UIApplicationShortcutItem, and window: UIWindow?) {
+        guard let shorcut = AppShortcutItem(rawValue: shortcutItem.type) else { return }
+        switch shorcut {
+        case .searchMovies:
+            changeTabBarToSelectedIndex(1, from: window)
+        }
+    }
+    
+    func changeTabBarToSelectedIndex(_ index: Int, from window: UIWindow?) {
+        currentSelectedIndex = index
         guard let tabBarController = window?.rootViewController as? UITabBarController else {
             return
         }
-        tabBarController.selectedIndex = index
+        tabBarController.selectedIndex = currentSelectedIndex
     }
     
 }
