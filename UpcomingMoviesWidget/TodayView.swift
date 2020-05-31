@@ -10,12 +10,6 @@ import UIKit
 
 class TodayView: UIView {
     
-    lazy var backgroundVibrancyView: UIVisualEffectView = {
-        let visualEffectView = UIVisualEffectView()
-        visualEffectView.effect = UIVibrancyEffect.widgetPrimary()
-        return visualEffectView
-    }()
-    
     lazy var postersStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -41,12 +35,18 @@ class TodayView: UIView {
     // MARK: - Private
     
     private func setupUI() {
-        setupBackgroundView()
+        setupPostersStackView()
     }
     
-    private func setupBackgroundView() {
-        addSubview(backgroundVibrancyView)
-        backgroundVibrancyView.fillSuperview()
+    private func setupPostersStackView() {
+        addSubview(postersStackView)
+
+        NSLayoutConstraint.activate([
+            postersStackView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 8),
+            postersStackView.trailingAnchor.constraint(greaterThanOrEqualTo: trailingAnchor, constant: 8)
+        ])
+        
+        postersStackView.centerInSuperview()
     }
     
     // MARK: - Public
@@ -56,20 +56,9 @@ class TodayView: UIView {
         emptyLabel.text = "No recent movies to show"
         emptyLabel.textAlignment = .center
         
-        backgroundVibrancyView.contentView.addSubview(emptyLabel)
+        addSubview(emptyLabel)
         
         emptyLabel.fillSuperview()
-    }
-    
-    func setupPostersStackView() {
-        backgroundVibrancyView.contentView.addSubview(postersStackView)
-
-        NSLayoutConstraint.activate([
-            postersStackView.leadingAnchor.constraint(greaterThanOrEqualTo: backgroundVibrancyView.contentView.leadingAnchor, constant: 8),
-            postersStackView.trailingAnchor.constraint(greaterThanOrEqualTo: backgroundVibrancyView.contentView.trailingAnchor, constant: 8)
-        ])
-        
-        postersStackView.centerInSuperview()
     }
     
     func addPoster(with posterPath: String) {

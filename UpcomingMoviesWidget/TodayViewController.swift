@@ -48,7 +48,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     private func configurePostersStackView(with posterPaths: [String]) {
-        todayView.setupPostersStackView()
         posterPaths.forEach { posterPath in
             todayView.addPoster(with: posterPath)
         }
