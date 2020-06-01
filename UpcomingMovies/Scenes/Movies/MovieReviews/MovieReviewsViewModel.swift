@@ -40,13 +40,11 @@ final class MovieReviewsViewModel {
         self.movieUseCase = self.useCaseProvider.movieUseCase()
     }
     
-    func shouldPrefetch() -> Bool {
-        switch viewState.value {
-        case .paging:
-            return true
-        case .empty, .populated, .error, .initial:
-            return false
-        }
+    // MARK: - Public
+    
+    func buildReviewDetailViewModel(at index: Int) -> MovieReviewDetailViewModel {
+        let review = viewState.value.currentEntities[index]
+        return MovieReviewDetailViewModel(review: review)
     }
     
     // MARK: - Networking

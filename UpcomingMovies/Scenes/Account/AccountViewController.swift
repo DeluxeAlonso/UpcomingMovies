@@ -108,8 +108,8 @@ class AccountViewController: UIViewController, Storyboarded, SegueHandler {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segueIdentifier(for: segue) {
         case .authPermission:
-            guard let navController = segue.destination as? UINavigationController,
-                let viewController = navController.topViewController as? AuthPermissionViewController else {
+            guard let navigationController = segue.destination as? UINavigationController,
+                let viewController = navigationController.topViewController as? AuthPermissionViewController else {
                     fatalError()
             }
             _ = viewController.view

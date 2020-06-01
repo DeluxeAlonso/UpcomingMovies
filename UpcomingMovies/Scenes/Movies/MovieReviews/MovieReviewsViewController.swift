@@ -9,8 +9,8 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class MovieReviewsViewController: UIViewController, PlaceholderDisplayable, Loadable {
-    
+class MovieReviewsViewController: UIViewController, PlaceholderDisplayable, Loadable, SegueHandler {
+
     @IBOutlet weak var tableView: UITableView!
     
     var viewModel: MovieReviewsViewModel? {
@@ -91,6 +91,21 @@ class MovieReviewsViewController: UIViewController, PlaceholderDisplayable, Load
         })
         viewModel?.getMovieReviews()
     }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segueIdentifier(for: segue) {
+        case .reviewDetail:
+            guard let navigationController = segue.destination as? UINavigationController,
+                let viewController = navigationController.topViewController as? MovieReviewDetailViewController else {
+                fatalError()
+            }
+            guard let indexPath = sender as? IndexPath else { return }
+            _ = viewController.view
+            viewController.viewModel = viewModel?.buildReviewDetailViewModel(at: indexPath.row)
+        }
+    }
 
 }
 
@@ -100,6 +115,17 @@ extension MovieReviewsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: SegueIdentifier.reviewDetail.rawValue, sender: indexPath)
+    }
+    
+}
+
+// MARK: - Segue Identifiers
+
+extension MovieReviewsViewController {
+    
+    enum SegueIdentifier: String {
+        case reviewDetail = "MovieReviewDetailSegue"
     }
     
 }
