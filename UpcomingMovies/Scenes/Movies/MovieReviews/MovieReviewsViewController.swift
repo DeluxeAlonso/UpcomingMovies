@@ -21,8 +21,7 @@ class MovieReviewsViewController: UIViewController, PlaceholderDisplayable, Load
     
     private var dataSource: SimpleTableViewDataSource<MovieReviewCellViewModel>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
-    
-    private var displayedCellsIndexPaths = Set<IndexPath>()
+    private var scaleTransitioningDelegate: ScaleTransitioningDelegate!
     
     var loaderView: RadarView!
     
@@ -75,6 +74,10 @@ class MovieReviewsViewController: UIViewController, PlaceholderDisplayable, Load
         }
     }
     
+    private func configureTransitioningDelegate(with view: UIView) {
+        scaleTransitioningDelegate = ScaleTransitioningDelegate(viewToScale: view)
+    }
+    
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
@@ -103,6 +106,7 @@ class MovieReviewsViewController: UIViewController, PlaceholderDisplayable, Load
             }
             guard let indexPath = sender as? IndexPath else { return }
             _ = viewController.view
+            navigationController.transitioningDelegate = scaleTransitioningDelegate
             viewController.viewModel = viewModel?.buildReviewDetailViewModel(at: indexPath.row)
         }
     }
@@ -115,6 +119,8 @@ extension MovieReviewsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        guard let selectedCell = tableView.cellForRow(at: indexPath) else { return }
+        configureTransitioningDelegate(with: selectedCell)
         performSegue(withIdentifier: SegueIdentifier.reviewDetail.rawValue, sender: indexPath)
     }
     
