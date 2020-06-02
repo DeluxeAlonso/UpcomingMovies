@@ -10,14 +10,13 @@ import UIKit
 
 class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    let duration = 0.8
-    var presenting = true
+    var isPresenting = true
     var originFrame = CGRect.zero
     
     // MARK: - UIViewControllerAnimatedTransitioning
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return duration
+        return 0.8
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -26,22 +25,22 @@ class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             let toView = transitionContext.view(forKey: .to) else {
                 return
         }
-        let scaleView = presenting ? toView : fromView
+        let scaleView = isPresenting ? toView : fromView
         
-        let initialFrame = presenting ? originFrame : scaleView.frame
-        let finalFrame = presenting ? scaleView.frame : originFrame
+        let initialFrame = isPresenting ? originFrame : scaleView.frame
+        let finalFrame = isPresenting ? scaleView.frame : originFrame
         
-        let scaleX = presenting ?
+        let scaleX = isPresenting ?
             initialFrame.width / finalFrame.width :
             finalFrame.width / initialFrame.width
         
-        let scaleY = presenting ?
+        let scaleY = isPresenting ?
             initialFrame.height / finalFrame.height :
             finalFrame.height / initialFrame.height
         
         let scaleTransform = CGAffineTransform(scaleX: scaleX, y: scaleY)
         
-        if presenting {
+        if isPresenting {
             scaleView.transform = scaleTransform
             scaleView.center = CGPoint(x: initialFrame.midX, y: initialFrame.midY)
             scaleView.clipsToBounds = true
@@ -52,7 +51,8 @@ class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         containerView.addSubview(toView)
         containerView.bringSubviewToFront(scaleView)
         
-        let dampingRatio: CGFloat = presenting ? 0.5 : 0.8
+        let dampingRatio: CGFloat = isPresenting ? 0.5 : 0.9
+        let duration: TimeInterval = isPresenting ? 0.8 : 0.5
         let velocity: CGFloat = 0.2
         
         UIView.animate(
@@ -61,7 +61,7 @@ class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             usingSpringWithDamping: dampingRatio,
             initialSpringVelocity: velocity,
             animations: {
-                scaleView.transform = self.presenting ? .identity : CGAffineTransform(scaleX: 0.001, y: 0.001)
+                scaleView.transform = self.isPresenting ? .identity : CGAffineTransform(scaleX: 0.001, y: 0.001)
                 scaleView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
         }, completion: { _ in
             transitionContext.completeTransition(true)

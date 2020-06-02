@@ -28,13 +28,13 @@ class ScaleTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegat
                                         width: superviewFrame.size.width - 40,
                                         height: superviewFrame.size.height - 40)
         
-        scaleTransition.presenting = true
+        scaleTransition.isPresenting = true
         
         return scaleTransition
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        scaleTransition.presenting = false
+        scaleTransition.isPresenting = false
         return scaleTransition
     }
     

@@ -2233,13 +2233,13 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		E28677092485E6EE006685F8 /* Scale Transition */ = {
+		E28677092485E6EE006685F8 /* ScaleTransition */ = {
 			isa = PBXGroup;
 			children = (
 				E286770A2485E714006685F8 /* ScaleAnimator.swift */,
 				E286770C2485F9FF006685F8 /* ScaleTransitioningDelegate.swift */,
 			);
-			path = "Scale Transition";
+			path = ScaleTransition;
 			sourceTree = "<group>";
 		};
 		E2940801220A150900A74F68 /* TabBar */ = {
@@ -2388,7 +2388,7 @@
 		E2F9F71D2201FBE600C62089 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
-				E28677092485E6EE006685F8 /* Scale Transition */,
+				E28677092485E6EE006685F8 /* ScaleTransition */,
 				E2F9F71F2201FC1100C62089 /* Transitionable.swift */,
 				E2F9F7212202787E00C62089 /* TransitioningAnimator.swift */,
 				E2F9F7162201F3C300C62089 /* TransitioningInteractor.swift */,
