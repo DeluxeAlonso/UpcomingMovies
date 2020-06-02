@@ -14,8 +14,6 @@ class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     var presenting = true
     var originFrame = CGRect.zero
     
-    var dismissCompletion: (() -> Void)?
-    
     // MARK: - UIViewControllerAnimatedTransitioning
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -66,7 +64,6 @@ class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 scaleView.transform = self.presenting ? .identity : CGAffineTransform(scaleX: 0.001, y: 0.001)
                 scaleView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
         }, completion: { _ in
-            if !self.presenting { self.dismissCompletion?() }
             transitionContext.completeTransition(true)
         })
     }

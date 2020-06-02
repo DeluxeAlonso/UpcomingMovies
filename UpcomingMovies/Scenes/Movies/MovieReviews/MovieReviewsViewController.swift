@@ -119,6 +119,7 @@ extension MovieReviewsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        // We retrieve the cell which we are going to use for our scale transition
         guard let selectedCell = tableView.cellForRow(at: indexPath) else { return }
         configureTransitioningDelegate(with: selectedCell)
         performSegue(withIdentifier: SegueIdentifier.reviewDetail.rawValue, sender: indexPath)
