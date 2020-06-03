@@ -26,9 +26,9 @@ class UpcomingMovieDetailCollectionViewCell: UICollectionViewCell, UpcomingMovie
     override func prepareForReuse() {
         super.prepareForReuse()
         backdropImageView.image = nil
+        posterImageView.image = nil
         titleLabel.text = nil
         releaseDateLabel.text = nil
-        posterImageView.image = nil
     }
     
     override func awakeFromNib() {
