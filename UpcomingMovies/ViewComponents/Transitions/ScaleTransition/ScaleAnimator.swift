@@ -21,10 +21,15 @@ class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
-        guard let fromView = transitionContext.view(forKey: .from),
-            let toView = transitionContext.view(forKey: .to) else {
+        guard let fromViewController = transitionContext.viewController(forKey: .from),
+            let toViewController = transitionContext.viewController(forKey: .to),
+            let fromView = fromViewController.view,
+            let toView = toViewController.view else {
                 return
         }
+        
+        isPresenting ? containerView.addSubview(toView) : containerView.insertSubview(toView, belowSubview: fromView)
+        
         let scaleView = isPresenting ? toView : fromView
         
         let initialFrame = isPresenting ? originFrame : scaleView.frame
@@ -48,8 +53,7 @@ class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         scaleView.layer.masksToBounds = true
         
-        containerView.addSubview(toView)
-        containerView.bringSubviewToFront(scaleView)
+        toView.frame = isPresenting ? toView.frame : fromView.frame
         
         let dampingRatio: CGFloat = isPresenting ? 0.5 : 0.9
         let duration: TimeInterval = isPresenting ? 0.8 : 0.5
@@ -65,6 +69,7 @@ class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 scaleView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
         }, completion: { _ in
             transitionContext.completeTransition(true)
+           
         })
     }
     
