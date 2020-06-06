@@ -21,7 +21,7 @@ class SignInViewController: UIViewController {
     
     weak var delegate: SignInViewControllerDelegate?
     
-    ///Images we are going to display animated  above the sign in button.
+    /// Images we are going to display animated  above the sign in button.
     private let transitionImages: [UIImage] = [#imageLiteral(resourceName: "SignInLogoFirst"), #imageLiteral(resourceName: "SignInLogoSecond"), #imageLiteral(resourceName: "SignInLogoThird")]
     private var currentSliderImageIndex = 1
     weak var sliderTimer: Timer?

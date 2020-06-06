@@ -92,7 +92,19 @@
                                         <color key="tintColor" name="SignInGradientColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="4Sl-ak-WMh"/>
+                                            <constraint firstAttribute="height" constant="150" id="ck3-ZC-M3g"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="ck3-ZC-M3g"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=compact">
+                                            <mask key="constraints">
+                                                <exclude reference="4Sl-ak-WMh"/>
+                                                <include reference="ck3-ZC-M3g"/>
+                                            </mask>
+                                        </variation>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLN-uI-D6w" customClass="ShrinkingButton" customModule="UpcomingMovies" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="225" width="366" height="52"/>
