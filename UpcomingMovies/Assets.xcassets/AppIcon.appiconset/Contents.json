@@ -1,116 +1,116 @@
 {
   "images" : [
     {
-      "size" : "20x20",
+      "filename" : "App_40-2.png",
       "idiom" : "iphone",
-      "filename" : "Icon copy-5.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "20x20"
     },
     {
-      "size" : "20x20",
+      "filename" : "App_60.png",
       "idiom" : "iphone",
-      "filename" : "Icon copy 2-4.png",
-      "scale" : "3x"
+      "scale" : "3x",
+      "size" : "20x20"
     },
     {
-      "size" : "29x29",
+      "filename" : "App_58-2.png",
       "idiom" : "iphone",
-      "filename" : "Icon copy 2-5.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "29x29"
     },
     {
-      "size" : "29x29",
+      "filename" : "App_87.png",
       "idiom" : "iphone",
-      "filename" : "Icon copy 2-3.png",
-      "scale" : "3x"
+      "scale" : "3x",
+      "size" : "29x29"
     },
     {
-      "size" : "40x40",
+      "filename" : "App_80.png",
       "idiom" : "iphone",
-      "filename" : "Icon.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "40x40"
     },
     {
-      "size" : "40x40",
+      "filename" : "App_120.png",
       "idiom" : "iphone",
-      "filename" : "Icon copy 2-1.png",
-      "scale" : "3x"
+      "scale" : "3x",
+      "size" : "40x40"
     },
     {
-      "size" : "60x60",
+      "filename" : "App_120-1.png",
       "idiom" : "iphone",
-      "filename" : "Icon copy 2-2.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "60x60"
     },
     {
-      "size" : "60x60",
+      "filename" : "App_180.png",
       "idiom" : "iphone",
-      "filename" : "Icon copy 2.png",
-      "scale" : "3x"
+      "scale" : "3x",
+      "size" : "60x60"
     },
     {
-      "size" : "20x20",
+      "filename" : "App_20.png",
       "idiom" : "ipad",
-      "filename" : "Icon copy 2-9.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "20x20"
     },
     {
-      "size" : "20x20",
+      "filename" : "App_40-1.png",
       "idiom" : "ipad",
-      "filename" : "Icon copy-6.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "20x20"
     },
     {
-      "size" : "29x29",
+      "filename" : "App_29.png",
       "idiom" : "ipad",
-      "filename" : "Icon copy 2-8.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "29x29"
     },
     {
-      "size" : "29x29",
+      "filename" : "App_58-1.png",
       "idiom" : "ipad",
-      "filename" : "Icon copy 2-6.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "29x29"
     },
     {
-      "size" : "40x40",
+      "filename" : "App_40.png",
       "idiom" : "ipad",
-      "filename" : "Icon copy-4.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "40x40"
     },
     {
-      "size" : "40x40",
+      "filename" : "App_80-1.png",
       "idiom" : "ipad",
-      "filename" : "Icon copy-2.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "40x40"
     },
     {
-      "size" : "76x76",
+      "filename" : "App_76.png",
       "idiom" : "ipad",
-      "filename" : "Icon copy-3.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "76x76"
     },
     {
-      "size" : "76x76",
+      "filename" : "App_152.png",
       "idiom" : "ipad",
-      "filename" : "Icon copy-1.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "76x76"
     },
     {
-      "size" : "83.5x83.5",
+      "filename" : "App_167.png",
       "idiom" : "ipad",
-      "filename" : "Icon copy.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "83.5x83.5"
     },
     {
-      "size" : "1024x1024",
+      "filename" : "App.png",
       "idiom" : "ios-marketing",
-      "filename" : "iconfinder_Windows_Media_Player_alt_99042 copy.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "1024x1024"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
