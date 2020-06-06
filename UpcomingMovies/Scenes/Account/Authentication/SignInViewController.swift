@@ -14,10 +14,12 @@ protocol SignInViewControllerDelegate: class {
     
 }
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, Storyboarded {
     
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var signInButton: ShrinkingButton!
+    
+    static var storyboardName: String = "Account"
     
     weak var delegate: SignInViewControllerDelegate?
     
@@ -29,6 +31,7 @@ class SignInViewController: UIViewController {
     // MARK: - Lifecycle
     
     deinit {
+        print("SignInViewController")
         sliderTimer?.invalidate()
         sliderTimer = nil
     }
@@ -40,10 +43,11 @@ class SignInViewController: UIViewController {
     // MARK: - Private
     
     private func setupSliderTimer() {
-        sliderTimer = Timer.scheduledTimer(timeInterval: 2.0,
-                                           target: self,
-                                           selector: #selector(startSliderIconTransition),
-                                           userInfo: nil, repeats: true)
+        sliderTimer = Timer.scheduledTimer(withTimeInterval: 2.0,
+                                           repeats: true,
+                                           block: { [weak self] _ in
+            self?.startSliderIconTransition()
+        })
     }
     
     @objc private func startSliderIconTransition() {

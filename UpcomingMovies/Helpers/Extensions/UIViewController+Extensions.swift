@@ -10,7 +10,9 @@ import UIKit
 
 extension UIViewController {
     
-    func add(asChildViewController viewController: UIViewController) {
+    func add(asChildViewController viewController: UIViewController?) {
+        guard let viewController = viewController else { return }
+        
         addChild(viewController)
         
         view.addSubview(viewController.view)
@@ -21,7 +23,9 @@ extension UIViewController {
         viewController.didMove(toParent: self)
     }
     
-    func remove(asChildViewController viewController: UIViewController) {
+    func remove(asChildViewController viewController: UIViewController?) {
+        guard let viewController = viewController else { return }
+        
         viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
         viewController.removeFromParent()

@@ -8,21 +8,17 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, Storyboarded, SegueHandler {
+protocol AccountViewControllerProtocol: SignInViewControllerDelegate, ProfileViewControllerDelegate {
     
-    private lazy var signInViewController: SignInViewController = {
-        var viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! SignInViewController
-        viewController.delegate = self
-        self.add(asChildViewController: viewController)
-        return viewController
-    }()
+    var viewModel: AccountViewModel! { get set }
     
-    private lazy var profileViewController: ProfileTableViewController = {
-        var viewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileTableViewController") as! ProfileTableViewController
-        viewController.delegate = self
-        self.add(asChildViewController: viewController)
-        return viewController
-    }()
+}
+
+class AccountViewController: UIViewController, AccountViewControllerProtocol, Storyboarded, SegueHandler {
+    
+    private var accountViewFactory: AccountViewFactory!
+    private var signInViewController: SignInViewController?
+    private var profileViewController: ProfileTableViewController?
     
     var viewModel: AccountViewModel!
     
@@ -47,6 +43,8 @@ class AccountViewController: UIViewController, Storyboarded, SegueHandler {
     
     private func setupUI() {
         title = Constants.Title
+        accountViewFactory = AccountViewFactory(self)
+        
         setupContainerView()
         setupNavigationBar()
     }
@@ -61,21 +59,30 @@ class AccountViewController: UIViewController, Storyboarded, SegueHandler {
     
     private func showSignInView(withAnimatedNavigationBar animated: Bool = false) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        remove(asChildViewController: profileViewController)
-        add(asChildViewController: signInViewController)
+        
+        removeChildViewController(&profileViewController)
+        
+        self.signInViewController = accountViewFactory.makeSignInViewController()
+        add(asChildViewController: self.signInViewController)
     }
     
     private func showProfileView(withAnimatedNavigationBar animated: Bool = false) {
         navigationController?.setNavigationBarHidden(false, animated: animated)
-        remove(asChildViewController: signInViewController)
-        // Rebuild the profile view model to show an up to date profile.
-        profileViewController.viewModel = viewModel.buildProfileViewModel()
+        
+        removeChildViewController(&signInViewController)
+        
+        profileViewController = accountViewFactory.makeProfileViewController()
         add(asChildViewController: profileViewController)
+    }
+    
+    private func removeChildViewController<T: UIViewController>(_ viewController: inout T?) {
+        remove(asChildViewController: viewController)
+        viewController = nil
     }
     
     private func didSignIn() {
         showProfileView(withAnimatedNavigationBar: true)
-        signInViewController.stopLoading()
+        signInViewController?.stopLoading()
     }
     
     private func didSignOut() {
@@ -98,7 +105,7 @@ class AccountViewController: UIViewController, Storyboarded, SegueHandler {
         viewModel.didReceiveError = { [weak self] in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
-                strongSelf.signInViewController.stopLoading()
+                strongSelf.signInViewController?.stopLoading()
             }
         }
     }
@@ -132,7 +139,7 @@ class AccountViewController: UIViewController, Storyboarded, SegueHandler {
 
 // MARK: - SignInViewControllerDelegate
 
-extension AccountViewController: SignInViewControllerDelegate {
+extension AccountViewController {
     
     func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
         signInViewController.startLoading()
@@ -143,7 +150,7 @@ extension AccountViewController: SignInViewControllerDelegate {
 
 // MARK: - ProfileViewControllerDelegate
 
-extension AccountViewController: ProfileViewControllerDelegate {
+extension AccountViewController {
     
     func profileViewController(didTapCollection collection: ProfileCollectionOption) {
         let segueIdentifier = SegueIdentifier.collectionList.rawValue

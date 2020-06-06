@@ -18,7 +18,9 @@ protocol ProfileViewControllerDelegate: class {
     
 }
 
-class ProfileTableViewController: UITableViewController {
+class ProfileTableViewController: UITableViewController, Storyboarded {
+    
+    static var storyboardName: String = "Account"
     
     private var dataSource: ProfileDataSource!
     
@@ -28,6 +30,10 @@ class ProfileTableViewController: UITableViewController {
         didSet {
             setupBindables()
         }
+    }
+    
+    deinit {
+        print("ProfileTableViewController")
     }
     
     // MARK: - Lifecycle
