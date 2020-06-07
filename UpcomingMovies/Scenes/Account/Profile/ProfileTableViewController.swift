@@ -32,10 +32,6 @@ class ProfileTableViewController: UITableViewController, Storyboarded {
         }
     }
     
-    deinit {
-        print("ProfileTableViewController")
-    }
-    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {

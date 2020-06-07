@@ -313,6 +313,7 @@
 		E2963EF423785EC500C36E16 /* Paginable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2963EF323785EC500C36E16 /* Paginable.swift */; };
 		E2963EF7237864FF00C36E16 /* MovieRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2963EF6237864FF00C36E16 /* MovieRemoteDataSource.swift */; };
 		E2963EF923786CF100C36E16 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2963EF823786CF100C36E16 /* MovieRepository.swift */; };
+		E297A766248C6C5700AC89B9 /* ImageTransitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297A765248C6C5700AC89B9 /* ImageTransitionHandler.swift */; };
 		E298BB302392FDC800451479 /* CDGenreStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298BB2F2392FDC800451479 /* CDGenreStoreTests.swift */; };
 		E298BB322393022600451479 /* CDMovieSearchStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298BB312393022600451479 /* CDMovieSearchStoreTests.swift */; };
 		E298BB34239309A600451479 /* CDMovieVisitStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298BB33239309A600451479 /* CDMovieVisitStoreTests.swift */; };
@@ -910,6 +911,7 @@
 		E29779BD2365456F0053A45D /* UseCaseProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProviderProtocol.swift; sourceTree = "<group>"; };
 		E29779C3236549F90053A45D /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		E29779C6236554270053A45D /* DomainConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertible.swift; sourceTree = "<group>"; };
+		E297A765248C6C5700AC89B9 /* ImageTransitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTransitionHandler.swift; sourceTree = "<group>"; };
 		E298BB2F2392FDC800451479 /* CDGenreStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDGenreStoreTests.swift; sourceTree = "<group>"; };
 		E298BB312393022600451479 /* CDMovieSearchStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDMovieSearchStoreTests.swift; sourceTree = "<group>"; };
 		E298BB33239309A600451479 /* CDMovieVisitStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDMovieVisitStoreTests.swift; sourceTree = "<group>"; };
@@ -1565,6 +1567,7 @@
 				E2634D0923AFA28D00857DD8 /* GenresHandler.swift */,
 				E2709629247B3DC300AE694E /* ConfigurationHandler.swift */,
 				E270962D247B65D800AE694E /* ImageConfigurationHandler.swift */,
+				E297A765248C6C5700AC89B9 /* ImageTransitionHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -3172,6 +3175,7 @@
 				E22588A22243121F00E1327E /* AccountViewModel.swift in Sources */,
 				E26DB217236C71C90054CC95 /* MainTabBarBuilder.swift in Sources */,
 				E270962A247B3DC300AE694E /* ConfigurationHandler.swift in Sources */,
+				E297A766248C6C5700AC89B9 /* ImageTransitionHandler.swift in Sources */,
 				E2143DBA22571EC2003E939F /* ProfileAccountInfoCellViewModel.swift in Sources */,
 				E270980B220FAF99007F18A2 /* MovieVideoTableViewCell.swift in Sources */,
 				E22546A3226AE39900E9042C /* CustomListDetailHeaderView.swift in Sources */,
