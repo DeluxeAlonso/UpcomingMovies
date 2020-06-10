@@ -95,7 +95,10 @@ import UIKit
         let delayToRevert = max(delay, 0.2)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + delayToRevert) {
-            self.setOriginalState(completion: completion)
+            self.setOriginalState { [weak self] in
+                self?.layer.removeAllAnimations()
+                completion?()
+            }
         }
     }
     
