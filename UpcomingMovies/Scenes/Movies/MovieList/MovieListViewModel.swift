@@ -12,9 +12,7 @@ import UpcomingMoviesDomain
 final class MovieListViewModel: MoviesViewModel {
     
     var useCaseProvider: UseCaseProviderProtocol
-    var movieUseCase: MovieUseCaseProtocol
-    
-    var filter: MovieListFilter
+    var contentHandler: MoviesContentHandlerProtocol
     
     var startLoading: Bindable<Bool> = Bindable(false)
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
@@ -27,10 +25,9 @@ final class MovieListViewModel: MoviesViewModel {
     
     // MARK: - Initializers
     
-    init(filter: MovieListFilter = .upcoming, useCaseProvider: UseCaseProviderProtocol) {
-        self.filter = filter
+    init(useCaseProvider: UseCaseProviderProtocol, contentHandler: MoviesContentHandlerProtocol) {
         self.useCaseProvider = useCaseProvider
-        self.movieUseCase = useCaseProvider.movieUseCase()
+        self.contentHandler = contentHandler
     }
     
 }

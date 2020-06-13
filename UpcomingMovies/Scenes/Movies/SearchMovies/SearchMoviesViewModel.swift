@@ -30,18 +30,21 @@ final class SearchMoviesViewModel: NSObject {
     // MARK: - Default search options
     
     func popularMoviesViewModel() -> MovieListViewModel {
-        return MovieListViewModel(filter: .popular,
-                                  useCaseProvider: useCaseProvider)
+        let contentHandler = PopularMoviesContentHandler(movieUseCase: useCaseProvider.movieUseCase())
+        return MovieListViewModel(useCaseProvider: useCaseProvider,
+                                  contentHandler: contentHandler)
     }
     
     func topRatedMoviesViewModel() -> MovieListViewModel {
-        return MovieListViewModel(filter: .topRated,
-                                  useCaseProvider: useCaseProvider)
+        let contentHandler = TopRatedMoviesContentHandler(movieUseCase: useCaseProvider.movieUseCase())
+        return MovieListViewModel(useCaseProvider: useCaseProvider,
+                                  contentHandler: contentHandler)
     }
     
     func moviesByGenreViewModel(genreId: Int, genreName: String) -> MovieListViewModel {
-        return MovieListViewModel(filter: .byGenre(genreId: genreId, genreName: genreName),
-                                  useCaseProvider: useCaseProvider)
+        let contentHandler = MoviesByGenreContentHandler(movieUseCase: useCaseProvider.movieUseCase(),
+                                                       genreId: genreId, genreName: genreName)
+        return MovieListViewModel(useCaseProvider: useCaseProvider, contentHandler: contentHandler)
     }
     
     func recentlyVisitedMovieViewModel(id: Int, title: String) -> MovieDetailViewModel {

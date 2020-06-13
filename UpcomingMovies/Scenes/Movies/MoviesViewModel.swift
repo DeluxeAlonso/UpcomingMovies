@@ -14,15 +14,15 @@ protocol MoviesViewModel {
     associatedtype MovieCellViewModel
     
     var useCaseProvider: UseCaseProviderProtocol { get set }
-    var movieUseCase: MovieUseCaseProtocol { get set }
     
     var viewState: Bindable<SimpleViewState<Movie>> { get set }
-    var filter: MovieListFilter { get set }
     
     var movieCells: [MovieCellViewModel] { get }
     var movies: [Movie] { get }
     
     var startLoading: Bindable<Bool> { get set }
+    
+    var contentHandler: MoviesContentHandlerProtocol { get set }
     
 }
 
@@ -43,16 +43,16 @@ extension MoviesViewModel {
     
     func getMovies() {
         let showLoader = viewState.value.isInitialPage
-        fetchMovies(currentPage: viewState.value.currentPage, filter: filter, showLoader: showLoader)
+        fetchMovies(currentPage: viewState.value.currentPage, showLoader: showLoader)
     }
     
     func refreshMovies() {
-        self.fetchMovies(currentPage: 1, filter: self.filter, showLoader: false)
+        self.fetchMovies(currentPage: 1, showLoader: false)
     }
     
-    private func fetchMovies(currentPage: Int, filter: MovieListFilter, showLoader: Bool = false) {
+    private func fetchMovies(currentPage: Int, showLoader: Bool = false) {
         startLoading.value = showLoader
-        movieUseCase.getMovies(page: currentPage, movieListFilter: filter, completion: { result in
+        contentHandler.getMovies(page: currentPage, completion: { result in
             self.startLoading.value = false
             switch result {
             case .success(let movies):

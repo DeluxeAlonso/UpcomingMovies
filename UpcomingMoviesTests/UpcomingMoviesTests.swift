@@ -36,8 +36,9 @@ class UpcomingMoviesTests: XCTestCase {
     
     func testGetMoviesEmpty() {
         //Arrange
-        movieUseCase.movies = Result.success([])
-        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider)
+        movieUseCase.upcomingMovies = Result.success([])
+        let contentHandler = UpcomingMoviesContentHandler(movieUseCase: movieUseCase)
+        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider, contentHandler: contentHandler)
         //Act
         viewModel.getMovies()
         //Assert
@@ -46,8 +47,10 @@ class UpcomingMoviesTests: XCTestCase {
     
     func testGetMoviesPaging() {
         //Arrange
-        movieUseCase.movies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
-        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider)
+        movieUseCase.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
+        let contentHandler = UpcomingMoviesContentHandler(movieUseCase: movieUseCase)
+        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider,
+                                                contentHandler: contentHandler)
         //Act
         viewModel.getMovies()
         //Assert
@@ -57,8 +60,10 @@ class UpcomingMoviesTests: XCTestCase {
     
     func testGetMoviesError() {
         //Arrange
-        movieUseCase.movies = Result.failure(APIError.badRequest)
-        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider)
+        movieUseCase.upcomingMovies = Result.failure(APIError.badRequest)
+        let contentHandler = UpcomingMoviesContentHandler(movieUseCase: movieUseCase)
+        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider,
+                                                contentHandler: contentHandler)
         //Act
         viewModel.getMovies()
         //Assert
@@ -67,7 +72,8 @@ class UpcomingMoviesTests: XCTestCase {
     
     func testSelectedMovieCell() {
         //Arrange
-        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider)
+        let contentHandler = UpcomingMoviesContentHandler(movieUseCase: movieUseCase)
+        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider, contentHandler: contentHandler)
         viewModel.viewState.value = .populated([Movie.with(id: 1, title: "M1"), Movie.with(id: 2, title: "M2")])
         //Act
         viewModel.setSelectedMovie(at: 1)

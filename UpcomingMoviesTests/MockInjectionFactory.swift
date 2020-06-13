@@ -54,9 +54,34 @@ final class MockMovieUseCase: MovieUseCaseProtocol {
         self.remoteDataSource = remoteDataSource
     }
     
-    var movies: Result<[UpcomingMoviesDomain.Movie], Error>?
-    func getMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
-        completion(movies!)
+    var upcomingMovies: Result<[UpcomingMoviesDomain.Movie], Error>?
+    func getUpcomingMovies(page: Int,
+                           completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+        completion(upcomingMovies!)
+    }
+    
+    var popularMovies: Result<[UpcomingMoviesDomain.Movie], Error>?
+    func getPopularMovies(page: Int,
+                          completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+        completion(popularMovies!)
+    }
+    
+    var topRatedMovies: Result<[UpcomingMoviesDomain.Movie], Error>?
+    func getTopRatedMovies(page: Int,
+                           completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+        completion(topRatedMovies!)
+    }
+    
+    var moviesbyGenre: Result<[UpcomingMoviesDomain.Movie], Error>?
+    func getMoviesByGenre(page: Int, genreId: Int,
+                          completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+        completion(moviesbyGenre!)
+    }
+    
+    var similarmovies: Result<[UpcomingMoviesDomain.Movie], Error>?
+    func getSimilarMovies(page: Int, movieId: Int,
+                          completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+        completion(similarmovies!)
     }
     
     var movieDetail: Result<UpcomingMoviesDomain.Movie, Error>?

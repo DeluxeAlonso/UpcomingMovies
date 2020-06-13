@@ -23,28 +23,47 @@ class MovieClient: APIClient {
     }
     
     // MARK: - Movie list
-    
-    func getMovies(page: Int, filter: MovieListFilter, completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
-        let request = getMovieListRequest(with: filter, page: page)
+
+    func getUpcomingMovies(page: Int, completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
+        let request = MovieProvider.getUpcoming(page: page).request
         fetch(with: request, decode: { json -> MovieResult? in
             guard let movieResult = json as? MovieResult else { return  nil }
             return movieResult
         }, completion: completion)
     }
     
-    private func getMovieListRequest(with filter: MovieListFilter, page: Int) -> URLRequest {
-        switch filter {
-        case .upcoming:
-            return MovieProvider.getUpcoming(page: page).request
-        case .popular:
-            return MovieProvider.getPopular(page: page).request
-        case .topRated:
-            return MovieProvider.getTopRated(page: page).request
-        case .byGenre(let genreId, _):
-            return MovieProvider.getByGenreId(page: page, genreId: genreId).request
-        case .similar(let movieId):
-            return MovieProvider.getSimilars(page: page, id: movieId).request
-        }
+    func getPopularMovies(page: Int, completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
+        let request = MovieProvider.getPopular(page: page).request
+        fetch(with: request, decode: { json -> MovieResult? in
+            guard let movieResult = json as? MovieResult else { return  nil }
+            return movieResult
+        }, completion: completion)
+    }
+    
+    func getTopRatedMovies(page: Int, completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
+        let request = MovieProvider.getTopRated(page: page).request
+        fetch(with: request, decode: { json -> MovieResult? in
+            guard let movieResult = json as? MovieResult else { return  nil }
+            return movieResult
+        }, completion: completion)
+    }
+    
+    func getSimilarMovies(page: Int, movieId: Int,
+                          completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
+        let request = MovieProvider.getSimilars(page: page, id: movieId).request
+        fetch(with: request, decode: { json -> MovieResult? in
+            guard let movieResult = json as? MovieResult else { return  nil }
+            return movieResult
+        }, completion: completion)
+    }
+    
+    func getMoviesByGenre(page: Int, genreId: Int,
+                          completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
+        let request = MovieProvider.getByGenreId(page: page, genreId: genreId).request
+        fetch(with: request, decode: { json -> MovieResult? in
+            guard let movieResult = json as? MovieResult else { return  nil }
+            return movieResult
+        }, completion: completion)
     }
     
     // MARK: - Movie search

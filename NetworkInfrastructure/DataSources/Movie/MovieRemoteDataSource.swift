@@ -20,8 +20,60 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         self.authManager = authManager
     }
     
-    func getMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
-        client.getMovies(page: page, filter: movieListFilter, completion: { result in
+    func getUpcomingMovies(page: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+        client.getUpcomingMovies(page: page, completion: { result in
+            switch result {
+            case .success(let movieResult):
+                guard let movieResult = movieResult else { return }
+                let movies = movieResult.results.map { $0.asDomain() }
+                completion(.success(movies))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
+    }
+    
+    func getPopularMovies(page: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+        client.getPopularMovies(page: page, completion: { result in
+            switch result {
+            case .success(let movieResult):
+                guard let movieResult = movieResult else { return }
+                let movies = movieResult.results.map { $0.asDomain() }
+                completion(.success(movies))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
+    }
+    
+    func getTopRatedMovies(page: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+        client.getTopRatedMovies(page: page, completion: { result in
+            switch result {
+            case .success(let movieResult):
+                guard let movieResult = movieResult else { return }
+                let movies = movieResult.results.map { $0.asDomain() }
+                completion(.success(movies))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
+    }
+    
+    func getSimilarMovies(page: Int, movieId: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+        client.getSimilarMovies(page: page, movieId: movieId, completion: { result in
+            switch result {
+            case .success(let movieResult):
+                guard let movieResult = movieResult else { return }
+                let movies = movieResult.results.map { $0.asDomain() }
+                completion(.success(movies))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
+    }
+    
+    func getMoviesByGenre(page: Int, genreId: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+        client.getMoviesByGenre(page: page, genreId: genreId, completion: { result in
             switch result {
             case .success(let movieResult):
                 guard let movieResult = movieResult else { return }

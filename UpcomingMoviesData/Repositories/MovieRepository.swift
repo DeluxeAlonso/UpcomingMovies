@@ -17,10 +17,24 @@ public class MovieRepository: MovieUseCaseProtocol {
         self.remoteDataSource = remoteDataSource
     }
     
-    public func getMovies(page: Int, movieListFilter: MovieListFilter, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        remoteDataSource.getMovies(page: page,
-                                   movieListFilter: movieListFilter,
-                                   completion: completion)
+    public func getUpcomingMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.getUpcomingMovies(page: page, completion: completion)
+    }
+    
+    public func getPopularMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.getPopularMovies(page: page, completion: completion)
+    }
+    
+    public func getTopRatedMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.getTopRatedMovies(page: page, completion: completion)
+    }
+    
+    public func getMoviesByGenre(page: Int, genreId: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.getMoviesByGenre(page: page, genreId: genreId, completion: completion)
+    }
+    
+    public func getSimilarMovies(page: Int, movieId: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.getSimilarMovies(page: page, movieId: movieId, completion: completion)
     }
     
     public func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void) {
