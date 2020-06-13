@@ -14,7 +14,6 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     // MARK: - Properties
     
     var useCaseProvider: UseCaseProviderProtocol
-    var movieUseCase: MovieUseCaseProtocol
     var contentHandler: MoviesContentHandlerProtocol
     
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
@@ -36,7 +35,6 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     
     init(useCaseProvider: UseCaseProviderProtocol, contentHandler: MoviesContentHandlerProtocol) {
         self.useCaseProvider = useCaseProvider
-        self.movieUseCase = self.useCaseProvider.movieUseCase()
         self.contentHandler = contentHandler
     }
     

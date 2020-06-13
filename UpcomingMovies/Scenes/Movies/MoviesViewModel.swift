@@ -14,7 +14,6 @@ protocol MoviesViewModel {
     associatedtype MovieCellViewModel
     
     var useCaseProvider: UseCaseProviderProtocol { get set }
-    var movieUseCase: MovieUseCaseProtocol { get set }
     
     var viewState: Bindable<SimpleViewState<Movie>> { get set }
     
