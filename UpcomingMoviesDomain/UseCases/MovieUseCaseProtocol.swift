@@ -10,9 +10,26 @@ import Foundation
 
 public protocol MovieUseCaseProtocol {
     
-    func getMovies(page: Int,
-                   movieListFilter: MovieListFilter,
-                   completion: @escaping (Result<[Movie], Error>) -> Void)
+//    func getMovies(page: Int,
+//                   movieListFilter: MovieListFilter,
+//                   completion: @escaping (Result<[Movie], Error>) -> Void)
+    
+    func getUpcomingMovies(page: Int,
+                           completion: @escaping (Result<[Movie], Error>) -> Void)
+    
+    func getPopularMovies(page: Int,
+                          completion: @escaping (Result<[Movie], Error>) -> Void)
+    
+    func getTopRatedMovies(page: Int,
+                           completion: @escaping (Result<[Movie], Error>) -> Void)
+    
+    func getMoviesByGenre(page: Int,
+                          genreId: Int,
+                          completion: @escaping (Result<[Movie], Error>) -> Void)
+    
+    func getSimilarMovies(page: Int,
+                          movieId: Int,
+                          completion: @escaping (Result<[Movie], Error>) -> Void)
     
     func getMovieDetail(for movieId: Int,
                         completion: @escaping (Result<Movie, Error>) -> Void)

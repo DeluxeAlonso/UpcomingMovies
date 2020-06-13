@@ -10,13 +10,13 @@ import Foundation
 import UpcomingMoviesDomain
 
 final class UpcomingMoviesViewModel: MoviesViewModel {
-    
+
     // MARK: - Properties
     
     var useCaseProvider: UseCaseProviderProtocol
     var movieUseCase: MovieUseCaseProtocol
+    var movieFetchHandler: MovieFetchHandlerProtocol
     
-    var filter: MovieListFilter = .upcoming
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
     var selectedMovieCell: UpcomingMovieCellViewModel?
     
@@ -34,9 +34,10 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol) {
+    init(useCaseProvider: UseCaseProviderProtocol, movieFetchHandler: MovieFetchHandlerProtocol) {
         self.useCaseProvider = useCaseProvider
         self.movieUseCase = self.useCaseProvider.movieUseCase()
+        self.movieFetchHandler = movieFetchHandler
     }
     
     // MARK: - Public
@@ -44,5 +45,5 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     func setSelectedMovie(at index: Int) {
         selectedMovieCell = movieCells[index]
     }
-
+    
 }

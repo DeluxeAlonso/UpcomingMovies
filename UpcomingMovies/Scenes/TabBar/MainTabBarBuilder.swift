@@ -13,7 +13,9 @@ class MainTabBarBuilder {
     
     class func buildViewControllers(with useCaseProvider: UseCaseProviderProtocol) -> [UIViewController] {
         let upcomingMoviesVC = UpcomingMoviesViewController.instantiate()
-        upcomingMoviesVC.viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider)
+        let fetchHandler = UpcomingMoviesFetchHandler(movieUseCase: useCaseProvider.movieUseCase())
+        upcomingMoviesVC.viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider,
+                                                             movieFetchHandler: fetchHandler)
         
         let searchMoviesVC = SearchMoviesViewController.instantiate()
         searchMoviesVC.viewModel = SearchMoviesViewModel(useCaseProvider: useCaseProvider)
