@@ -15,7 +15,7 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     
     var useCaseProvider: UseCaseProviderProtocol
     var movieUseCase: MovieUseCaseProtocol
-    var movieFetchHandler: MovieFetchHandlerProtocol
+    var contentHandler: MoviesContentHandlerProtocol
     
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
     var selectedMovieCell: UpcomingMovieCellViewModel?
@@ -34,10 +34,10 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol, movieFetchHandler: MovieFetchHandlerProtocol) {
+    init(useCaseProvider: UseCaseProviderProtocol, contentHandler: MoviesContentHandlerProtocol) {
         self.useCaseProvider = useCaseProvider
         self.movieUseCase = self.useCaseProvider.movieUseCase()
-        self.movieFetchHandler = movieFetchHandler
+        self.contentHandler = contentHandler
     }
     
     // MARK: - Public

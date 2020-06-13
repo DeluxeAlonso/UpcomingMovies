@@ -180,9 +180,9 @@ final class MovieDetailViewModel {
     }
     
     func buildSimilarsViewModel() -> MovieListViewModel {
-        let fetchHandler = SimilarMoviesFetchHandler(movieUseCase: useCaseProvider.movieUseCase(),
+        let fetchHandler = SimilarMoviesContentHandler(movieUseCase: useCaseProvider.movieUseCase(),
                                                      movieId: id)
-        return MovieListViewModel(useCaseProvider: useCaseProvider, movieFetchHandler: fetchHandler)
+        return MovieListViewModel(useCaseProvider: useCaseProvider, contentHandler: fetchHandler)
     }
     
 }

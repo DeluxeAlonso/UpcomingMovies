@@ -23,7 +23,7 @@ protocol MoviesViewModel {
     
     var startLoading: Bindable<Bool> { get set }
     
-    var movieFetchHandler: MovieFetchHandlerProtocol { get set }
+    var contentHandler: MoviesContentHandlerProtocol { get set }
     
 }
 
@@ -53,7 +53,7 @@ extension MoviesViewModel {
     
     private func fetchMovies(currentPage: Int, showLoader: Bool = false) {
         startLoading.value = showLoader
-        movieFetchHandler.getMovies(page: currentPage, completion: { result in
+        contentHandler.getMovies(page: currentPage, completion: { result in
             self.startLoading.value = false
             switch result {
             case .success(let movies):

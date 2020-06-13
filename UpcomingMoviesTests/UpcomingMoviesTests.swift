@@ -37,8 +37,8 @@ class UpcomingMoviesTests: XCTestCase {
     func testGetMoviesEmpty() {
         //Arrange
         movieUseCase.upcomingMovies = Result.success([])
-        let fetchHandler = UpcomingMoviesFetchHandler(movieUseCase: movieUseCase)
-        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider, movieFetchHandler: fetchHandler)
+        let fetchHandler = UpcomingMoviesContentHandler(movieUseCase: movieUseCase)
+        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider, contentHandler: fetchHandler)
         //Act
         viewModel.getMovies()
         //Assert
@@ -48,9 +48,9 @@ class UpcomingMoviesTests: XCTestCase {
     func testGetMoviesPaging() {
         //Arrange
         movieUseCase.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
-        let fetchHandler = UpcomingMoviesFetchHandler(movieUseCase: movieUseCase)
+        let fetchHandler = UpcomingMoviesContentHandler(movieUseCase: movieUseCase)
         let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider,
-                                                movieFetchHandler: fetchHandler)
+                                                contentHandler: fetchHandler)
         //Act
         viewModel.getMovies()
         //Assert
@@ -61,9 +61,9 @@ class UpcomingMoviesTests: XCTestCase {
     func testGetMoviesError() {
         //Arrange
         movieUseCase.upcomingMovies = Result.failure(APIError.badRequest)
-        let fetchHandler = UpcomingMoviesFetchHandler(movieUseCase: movieUseCase)
+        let fetchHandler = UpcomingMoviesContentHandler(movieUseCase: movieUseCase)
         let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider,
-                                                movieFetchHandler: fetchHandler)
+                                                contentHandler: fetchHandler)
         //Act
         viewModel.getMovies()
         //Assert
@@ -72,8 +72,8 @@ class UpcomingMoviesTests: XCTestCase {
     
     func testSelectedMovieCell() {
         //Arrange
-        let fetchHandler = UpcomingMoviesFetchHandler(movieUseCase: movieUseCase)
-        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider, movieFetchHandler: fetchHandler)
+        let fetchHandler = UpcomingMoviesContentHandler(movieUseCase: movieUseCase)
+        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider, contentHandler: fetchHandler)
         viewModel.viewState.value = .populated([Movie.with(id: 1, title: "M1"), Movie.with(id: 2, title: "M2")])
         //Act
         viewModel.setSelectedMovie(at: 1)
