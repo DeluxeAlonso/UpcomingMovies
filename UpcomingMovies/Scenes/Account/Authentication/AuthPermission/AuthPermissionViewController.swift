@@ -23,6 +23,8 @@ class AuthPermissionViewController: UIViewController {
     @IBOutlet weak var forwardButton: UIBarButtonItem!
     @IBOutlet weak var reloadButton: UIBarButtonItem!
     
+    private var webKitNavigationDelegate: AuthPermissionWebKitNavigationDelegate!
+    
     weak var delegate: AuthPermissionViewControllerDelegate?
     
     var viewModel: AuthPermissionViewModel? {
@@ -30,7 +32,7 @@ class AuthPermissionViewController: UIViewController {
             setupBindables()
         }
     }
-    
+
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -53,7 +55,17 @@ class AuthPermissionViewController: UIViewController {
     }
     
     private func setupWebView() {
-        webView.navigationDelegate = self
+        let didValidateCallback = { [unowned self] in
+            self.dismiss()
+        }
+        
+        let didFinishNavigation = { [unowned self] in
+            self.checkNavigationButtonsState()
+        }
+        
+        webKitNavigationDelegate = AuthPermissionWebKitNavigation(didValidateCallback: didValidateCallback,
+                                                                  didFinishNavigation: didFinishNavigation)
+        webView.navigationDelegate = webKitNavigationDelegate
         webView.allowsBackForwardNavigationGestures = true
     }
     
@@ -69,13 +81,21 @@ class AuthPermissionViewController: UIViewController {
         webView.load(request)
     }
     
+    private func dismiss() {
+        dismiss(animated: true, completion: {
+            self.delegate?.authPermissionViewController(self, didSignedIn: true)
+        })
+    }
+    
+    private func checkNavigationButtonsState() {
+        backButton.isEnabled = webView.canGoBack
+        forwardButton.isEnabled = webView.canGoForward
+    }
+    
     // MARK: - Selectors
     
     @objc func closeBarButtonAction() {
-        dismiss(animated: true, completion: { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.delegate?.authPermissionViewController(strongSelf, didSignedIn: true)
-        })
+        dismiss()
     }
     
     // MARK: - Actions
@@ -90,31 +110,6 @@ class AuthPermissionViewController: UIViewController {
     
     @IBAction func reloadButtonAction(_ sender: Any) {
         loadURL()
-    }
-    
-}
-
-// MARK: - WKNavigationDelegate
-
-extension AuthPermissionViewController: WKNavigationDelegate {
-    
-    func webView(_ webView: WKWebView,
-                 decidePolicyFor navigationResponse: WKNavigationResponse,
-                 decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        if let response = navigationResponse.response as? HTTPURLResponse,
-            let headers = response.allHeaderFields as? [String: Any],
-            let callback = headers["authentication-callback"] as? String {
-            print(callback)
-            dismiss(animated: true) {
-                self.delegate?.authPermissionViewController(self, didSignedIn: true)
-            }
-        }
-        decisionHandler(.allow)
-    }
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        self.backButton.isEnabled = webView.canGoBack
-        self.forwardButton.isEnabled = webView.canGoForward
     }
     
 }
