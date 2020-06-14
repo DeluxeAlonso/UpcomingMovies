@@ -23,7 +23,7 @@ class AuthPermissionViewController: UIViewController {
     @IBOutlet weak var forwardButton: UIBarButtonItem!
     @IBOutlet weak var reloadButton: UIBarButtonItem!
     
-    private var webKitNavigationDelegate: AuthPermissionWebKitNavigationDelegate!
+    private var webViewNavigationDelegate: AuthPermissionWebViewNavigationDelegate!
     
     weak var delegate: AuthPermissionViewControllerDelegate?
     
@@ -63,9 +63,9 @@ class AuthPermissionViewController: UIViewController {
             self.checkNavigationButtonsState()
         }
         
-        webKitNavigationDelegate = AuthPermissionWebKitNavigation(didValidateCallback: didValidateCallback,
-                                                                  didFinishNavigation: didFinishNavigation)
-        webView.navigationDelegate = webKitNavigationDelegate
+        webViewNavigationDelegate = AuthPermissionWebViewNavigation(didValidateCallback: didValidateCallback,
+                                                                   didFinishNavigation: didFinishNavigation)
+        webView.navigationDelegate = webViewNavigationDelegate
         webView.allowsBackForwardNavigationGestures = true
     }
     

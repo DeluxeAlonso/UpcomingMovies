@@ -1,5 +1,5 @@
 //
-//  AuthPermissionWKNavigation.swift
+//  AuthPermissionWebViewNavigation.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 6/13/20.
@@ -9,7 +9,7 @@
 import Foundation
 import WebKit
 
-protocol AuthPermissionWebKitNavigationDelegate: class, WKNavigationDelegate {
+protocol AuthPermissionWebViewNavigationDelegate: class, WKNavigationDelegate {
     
     var didValidateCallback: () -> Void { get  set }
     var didFinishNavigation: () -> Void { get set }
@@ -18,7 +18,7 @@ protocol AuthPermissionWebKitNavigationDelegate: class, WKNavigationDelegate {
     
 }
 
-class AuthPermissionWebKitNavigation: NSObject, AuthPermissionWebKitNavigationDelegate {
+class AuthPermissionWebViewNavigation: NSObject, AuthPermissionWebViewNavigationDelegate {
     
     var didValidateCallback: () -> Void
     var didFinishNavigation: () -> Void
