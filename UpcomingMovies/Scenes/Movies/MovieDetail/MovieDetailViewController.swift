@@ -8,8 +8,8 @@
 
 import UIKit
 
-class MovieDetailViewController: UIViewController, Retryable, Transitionable, Loadable {
-    
+class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Transitionable, Loadable {
+
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backdropImageView: UIImageView!
     @IBOutlet weak var transitionContainerView: UIView!
@@ -20,6 +20,10 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Lo
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var optionsStackView: UIStackView!
+    
+    static var storyboardName: String = "MovieDetail"
+    
+    weak var coordinator: MovieDetailCoordinator?
     
     lazy var shareBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareBarButtonAction(_:)))
@@ -33,17 +37,14 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Lo
     
     var loaderView: RadarView!
     
-    var viewModel: MovieDetailViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    var viewModel: MovieDetailViewModel?
     
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
     
     override func viewWillAppear(_ animated: Bool) {

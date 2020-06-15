@@ -1,5 +1,5 @@
 //
-//  UpcomingMoviesNavigationManager.swift
+//  UpcomingMoviesNavigationDelegate.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 3/19/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpcomingMoviesNavigationManager: NSObject, UINavigationControllerDelegate {
+class UpcomingMoviesNavigationDelegate: NSObject, UINavigationControllerDelegate {
     
     private var transitionInteractor: TransitioningInteractor?
     
@@ -18,7 +18,7 @@ class UpcomingMoviesNavigationManager: NSObject, UINavigationControllerDelegate 
     
     // MARK: - Initializers
     
-    init(verticalSafeAreaOffset: CGFloat) {
+    init(verticalSafeAreaOffset: CGFloat = .zero) {
         self.verticalSafeAreaOffset = verticalSafeAreaOffset
     }
     
