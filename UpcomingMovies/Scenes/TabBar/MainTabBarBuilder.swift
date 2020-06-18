@@ -23,10 +23,10 @@ class MainTabBarBuilder {
         let accountVC = AccountViewController.instantiate()
         accountVC.viewModel = AccountViewModel(useCaseProvider: useCaseProvider)
         
-        let upcomingMoviesCoordinator = UpcomingMoviesCoordinator(navigationController: UINavigationController())
+        let upcomingMoviesNavigationController = createNavigationController(title: "Upcoming", image: #imageLiteral(resourceName: "Movies"))
+        let upcomingMoviesCoordinator = UpcomingMoviesCoordinator(navigationController: upcomingMoviesNavigationController)
         upcomingMoviesCoordinator.start()
         return [
-            //createNavigationController(upcomingMoviesVC, title: "Upcoming", image: #imageLiteral(resourceName: "Movies")),
             upcomingMoviesCoordinator.navigationController,
             createNavigationController(searchMoviesVC, title: "Search", image: #imageLiteral(resourceName: "Search")),
             createNavigationController(accountVC, title: "Account", image: #imageLiteral(resourceName: "Account"))
@@ -41,4 +41,11 @@ class MainTabBarBuilder {
         return navController
     }
     
+    class func createNavigationController(title: String, image: UIImage) -> UINavigationController {
+        let navController = UINavigationController()
+        navController.tabBarItem.title = title
+        navController.tabBarItem.image = image
+        
+        return navController
+    }
 }
