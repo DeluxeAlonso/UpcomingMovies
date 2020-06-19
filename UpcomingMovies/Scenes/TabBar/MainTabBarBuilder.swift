@@ -12,23 +12,20 @@ import UpcomingMoviesDomain
 class MainTabBarBuilder {
     
     class func buildViewControllers(with useCaseProvider: UseCaseProviderProtocol) -> [UIViewController] {
-        let upcomingMoviesVC = UpcomingMoviesViewController.instantiate()
-        let contentHandler = UpcomingMoviesContentHandler(movieUseCase: useCaseProvider.movieUseCase())
-        upcomingMoviesVC.viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider,
-                                                             contentHandler: contentHandler)
-        
-        let searchMoviesVC = SearchMoviesViewController.instantiate()
-        searchMoviesVC.viewModel = SearchMoviesViewModel(useCaseProvider: useCaseProvider)
-        
         let accountVC = AccountViewController.instantiate()
         accountVC.viewModel = AccountViewModel(useCaseProvider: useCaseProvider)
         
         let upcomingMoviesNavigationController = createNavigationController(title: "Upcoming", image: #imageLiteral(resourceName: "Movies"))
         let upcomingMoviesCoordinator = UpcomingMoviesCoordinator(navigationController: upcomingMoviesNavigationController)
         upcomingMoviesCoordinator.start()
+        
+        let searchMoviesNavigationController = createNavigationController(title: "Search", image: #imageLiteral(resourceName: "Search"))
+        let searchMoviesCoordinator = SearchMoviesCoordinator(navigationController: searchMoviesNavigationController)
+        searchMoviesCoordinator.start()
+        
         return [
             upcomingMoviesCoordinator.navigationController,
-            createNavigationController(searchMoviesVC, title: "Search", image: #imageLiteral(resourceName: "Search")),
+            searchMoviesCoordinator.navigationController,
             createNavigationController(accountVC, title: "Account", image: #imageLiteral(resourceName: "Account"))
         ]
     }

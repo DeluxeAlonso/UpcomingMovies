@@ -17,6 +17,8 @@ class SearchMoviesViewController: UIViewController, Storyboarded, SegueHandler {
     
     static var storyboardName: String = "SearchMovies"
     
+    var coordinator: SearchMoviesCoordinator?
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
