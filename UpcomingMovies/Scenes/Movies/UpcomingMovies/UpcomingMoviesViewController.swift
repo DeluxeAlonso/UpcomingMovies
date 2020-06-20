@@ -205,12 +205,11 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
         let selectedFrame = collectionView.convert(cellAttributes.frame,
                                                to: collectionView.superview)
         
-        coordinator?.configureNavigationDelegate(with: selectedFrame,
-                                                 and: imageToTransition,
-                                                 transitionOffset: view.safeAreaInsets.left)
+        let navigationConfiguration = NavigationConfiguration(selectedFrame: selectedFrame,
+                                                              imageToTransition: imageToTransition,
+                                                              transitionOffset: view.safeAreaInsets.left)
         
-        viewModel?.setSelectedMovie(at: indexPath.row)
-        coordinator?.showDetail(for: viewModel.movies[indexPath.row])
+        coordinator?.showDetail(for: viewModel.movie(for: indexPath.row), with: navigationConfiguration)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

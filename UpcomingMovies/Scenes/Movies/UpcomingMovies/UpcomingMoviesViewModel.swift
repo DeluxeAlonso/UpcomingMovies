@@ -40,8 +40,8 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     
     // MARK: - Public
     
-    func setSelectedMovie(at index: Int) {
-        selectedMovieCell = movieCells[index]
+    func movie(for index: Int) -> Movie {
+        return movies[index]
     }
     
 }
