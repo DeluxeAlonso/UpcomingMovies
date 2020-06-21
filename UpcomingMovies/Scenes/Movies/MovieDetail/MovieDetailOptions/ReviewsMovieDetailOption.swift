@@ -18,14 +18,8 @@ class ReviewsMovieDetailOption: MovieDetailOption {
         return #imageLiteral(resourceName: "Reviews")
     }
     
-    var identifier: String {
-        return "MovieReviewsSegue"
-    }
-    
-    func prepare(viewController: inout UIViewController, with viewModel: MovieDetailViewModel) {
-        guard let viewController = viewController as? MovieReviewsViewController else { fatalError() }
-        _ = viewController.view
-        viewController.viewModel = viewModel.buildReviewsViewModel()
+    func prepare(coordinator: MovieDetailCoordinator?) {
+        
     }
     
 }

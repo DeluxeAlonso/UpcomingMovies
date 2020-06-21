@@ -18,7 +18,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
-        coordinators = MainTabBarBuilder.buildViewControllers()
+        coordinators = MainTabBarBuilder.buildViewCoordinators()
         viewControllers = coordinators.map { $0.navigationController }
     }
     

@@ -29,8 +29,8 @@ class PopularMoviesCoordinator: MovieListCoordinator {
         let contentHandler = PopularMoviesContentHandler(movieUseCase: useCaseProvider.movieUseCase())
         let viewModel = MovieListViewModel(useCaseProvider: useCaseProvider, contentHandler: contentHandler)
         
-        viewController.coordinator = self
         viewController.viewModel = viewModel
+        viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
     }

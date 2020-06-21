@@ -38,10 +38,6 @@ class MovieDetailOptionView: UIView {
 
     var option: MovieDetailOption
     
-    var identifier: String? {
-        return option.identifier
-    }
-    
     // MARK: - Initializers
     
     init(option: MovieDetailOption) {

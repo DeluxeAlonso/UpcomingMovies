@@ -43,8 +43,8 @@ class UpcomingMoviesCoordinator: NSObject, Coordinator {
         let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider,
                                                 contentHandler: contentHandler)
         
-        viewController.coordinator = self
         viewController.viewModel = viewModel
+        viewController.coordinator = self
         
         setupNavigationDelegate()
         
@@ -56,9 +56,9 @@ class UpcomingMoviesCoordinator: NSObject, Coordinator {
         
         let coordinator = MovieDetailCoordinator(navigationController: navigationController)
         coordinator.movieInfo = .complete(movie: movie)
-        coordinator.parentCoordinator = self
+        coordinator.parentCoordinator = unwrappedParentCoordinator
         
-        childCoordinators.append(coordinator)
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
     

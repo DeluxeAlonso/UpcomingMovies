@@ -25,8 +25,9 @@ class SearchMoviesCoordinator: Coordinator {
         let useCaseProvider = InjectionFactory.useCaseProvider()
         let viewModel = SearchMoviesViewModel(useCaseProvider: useCaseProvider)
         
-        viewController.coordinator = self
         viewController.viewModel = viewModel
+        viewController.coordinator = self
+        
         navigationController.pushViewController(viewController, animated: true)
     }
     
@@ -68,34 +69,34 @@ class SearchMoviesCoordinator: Coordinator {
     func showDetail(for movie: Movie) {
         let coordinator = MovieDetailCoordinator(navigationController: navigationController)
         coordinator.movieInfo = .complete(movie: movie)
-        coordinator.parentCoordinator = self
+        coordinator.parentCoordinator = unwrappedParentCoordinator
         
-        childCoordinators.append(coordinator)
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
     
     func showDetail(for movieId: Int, and movieTitle: String) {
         let coordinator = MovieDetailCoordinator(navigationController: navigationController)
         coordinator.movieInfo = .partial(movieId: movieId, movieTitle: movieTitle)
-        coordinator.parentCoordinator = self
+        coordinator.parentCoordinator = unwrappedParentCoordinator
         
-        childCoordinators.append(coordinator)
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
     
     func showPopularMovies() {
         let coordinator = PopularMoviesCoordinator(navigationController: navigationController)
-        coordinator.parentCoordinator = self
+        coordinator.parentCoordinator = unwrappedParentCoordinator
         
-        childCoordinators.append(coordinator)
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
     
     func showTopRatedMovies() {
         let coordinator = TopRatedMoviesCoordinator(navigationController: navigationController)
-        coordinator.parentCoordinator = self
+        coordinator.parentCoordinator = unwrappedParentCoordinator
         
-        childCoordinators.append(coordinator)
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
     
@@ -103,10 +104,9 @@ class SearchMoviesCoordinator: Coordinator {
         let coordinator = MoviesByGenreCoordinator(navigationController: navigationController)
         coordinator.genreId = genreId
         coordinator.genreName = genreName
+        coordinator.parentCoordinator = unwrappedParentCoordinator
         
-        coordinator.parentCoordinator = self
-        
-        childCoordinators.append(coordinator)
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
     

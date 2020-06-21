@@ -9,18 +9,17 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class MovieVideosViewController: UIViewController, PlaceholderDisplayable, Loadable {
+class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel: MovieVideosViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    static var storyboardName = "MovieDetail"
     
     private var dataSource: SimpleTableViewDataSource<MovieVideoCellViewModel>!
     private var displayedCellsIndexPaths = Set<IndexPath>()
+    
+    var viewModel: MovieVideosViewModel?
+    weak var coordinator: MovieVideosCoordinator?
     
     var loaderView: RadarView!
     
@@ -29,6 +28,7 @@ class MovieVideosViewController: UIViewController, PlaceholderDisplayable, Loada
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
     
     // MARK: - Private

@@ -148,26 +148,12 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         })
     }
     
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        navigationController?.delegate = nil
-        guard let option = sender as? MovieDetailOption,
-            let viewModel = viewModel else {
-            return
-        }
-        var viewController = segue.destination
-        option.prepare(viewController: &viewController, with: viewModel)
-    }
-    
     // MARK: - Selectors
     
     @objc func optionAction(_ sender: UITapGestureRecognizer) {
-        guard let sender = sender.view as? MovieDetailOptionView,
-            let segueIdentifier = sender.identifier else {
-                return
-        }
-        performSegue(withIdentifier: segueIdentifier, sender: sender.option)
+        guard let sender = sender.view as? MovieDetailOptionView else { return }
+        let movieDetailOption = sender.option
+        movieDetailOption.prepare(coordinator: coordinator)
     }
     
     // MARK: - Actions
