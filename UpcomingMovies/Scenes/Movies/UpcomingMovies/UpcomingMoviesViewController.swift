@@ -9,12 +9,15 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, SegueHandler, Loadable {
+class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
 
     @IBOutlet weak var toggleGridBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    static var storyboardName: String = "UpcomingMovies"
+    
     var viewModel: UpcomingMoviesViewModel!
+    weak var coordinator: UpcomingMoviesCoordinator?
     
     private var dataSource: SimpleCollectionViewDataSource<UpcomingMovieCellViewModel>!
     private var prefetchDataSource: CollectionViewDataSourcePrefetching!
@@ -22,10 +25,6 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     
     private var previewLayout: VerticalFlowLayout!
     private var detailLayout: VerticalFlowLayout!
-    
-    private var navigationManager: UpcomingMoviesNavigationManager!
-    
-    static var storyboardName: String = "UpcomingMovies"
     
     var loaderView: RadarView!
     
@@ -48,11 +47,6 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         setupBindables()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.delegate = navigationManager
-    }
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         guard let selectedViewController = tabBarController?.selectedViewController,
@@ -62,10 +56,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         coordinator.animate(alongsideTransition: { _ in
             self.detailLayout.itemSize.width = self.collectionView.frame.width - Constants.detailCellOffset
             self.collectionView.collectionViewLayout.invalidateLayout()
-        }, completion: { _ in
-            self.navigationManager.updateOffset(self.view.safeAreaInsets.left)
-        })
-        
+        }, completion: nil)
     }
     
     // MARK: - Private
@@ -78,7 +69,6 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     }
     
     private func setupNavigationBar() {
-        navigationManager = UpcomingMoviesNavigationManager(verticalSafeAreaOffset: view.safeAreaInsets.left)
         navigationItem.title = Constants.NavigationItemTitle
     }
     
@@ -169,18 +159,6 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         viewModel?.getMovies()
     }
     
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifier(for: segue) {
-        case .movieDetail:
-            guard let viewController = segue.destination as? MovieDetailViewController else { fatalError() }
-            guard let indexPath = sender as? IndexPath else { return }
-            _ = viewController.view
-            viewController.viewModel = viewModel?.buildDetailViewModel(atIndex: indexPath.row)
-        }
-    }
-    
     // MARK: - Actions
     
     @IBAction func toggleGridAction(_ sender: Any) {
@@ -221,10 +199,11 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
         let selectedFrame = collectionView.convert(cellAttributes.frame,
                                                to: collectionView.superview)
         
-        navigationManager.configure(selectedFrame: selectedFrame, with: imageToTransition)
+        let navigationConfiguration = NavigationConfiguration(selectedFrame: selectedFrame,
+                                                              imageToTransition: imageToTransition,
+                                                              transitionOffset: view.safeAreaInsets.left)
         
-        viewModel?.setSelectedMovie(at: indexPath.row)
-        performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue, sender: indexPath)
+        coordinator?.showDetail(for: viewModel.movie(for: indexPath.row), with: navigationConfiguration)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -232,16 +211,6 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
             displayedCellsIndexPaths.insert(indexPath)
             CollectionViewCellAnimator.fadeAnimate(cell: cell)
         }
-    }
-    
-}
-
-// MARK: - Segue Identifiers
-
-extension UpcomingMoviesViewController {
-    
-    enum SegueIdentifier: String {
-        case movieDetail = "MovieDetailSegue"
     }
     
 }

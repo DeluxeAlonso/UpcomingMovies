@@ -83,6 +83,10 @@ final class SearchMoviesResultViewModel {
     
     // MARK: - Movie detail builder
     
+    func searchedMovie(at index: Int) -> Movie {
+        return movies[index]
+    }
+    
     func buildDetailViewModel(at index: Int) -> MovieDetailViewModel {
         return MovieDetailViewModel(movies[index], useCaseProvider: useCaseProvider)
     }

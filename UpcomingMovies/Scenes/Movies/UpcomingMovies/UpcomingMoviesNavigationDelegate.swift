@@ -1,5 +1,5 @@
 //
-//  UpcomingMoviesNavigationManager.swift
+//  UpcomingMoviesNavigationDelegate.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 3/19/19.
@@ -8,17 +8,18 @@
 
 import UIKit
 
-class UpcomingMoviesNavigationManager: NSObject, UINavigationControllerDelegate {
+class UpcomingMoviesNavigationDelegate: NSObject, UINavigationControllerDelegate {
     
     private var transitionInteractor: TransitioningInteractor?
-    
     private var verticalSafeAreaOffset: CGFloat
     private var selectedFrame: CGRect?
     private var imageToTransition: UIImage?
     
+    weak var parentCoordinator: Coordinator?
+    
     // MARK: - Initializers
     
-    init(verticalSafeAreaOffset: CGFloat) {
+    init(verticalSafeAreaOffset: CGFloat = .zero) {
         self.verticalSafeAreaOffset = verticalSafeAreaOffset
     }
     
@@ -63,6 +64,25 @@ class UpcomingMoviesNavigationManager: NSObject, UINavigationControllerDelegate 
         -> UIViewControllerInteractiveTransitioning? {
             guard let transitionInteractor = transitionInteractor else { return nil }
             return transitionInteractor.transitionInProgress ? transitionInteractor : nil
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
+            return
+        }
+
+        // Check whether our view controller array already contains that view controller.
+        //If it does it means we’re pushing a different view controller on top rather than popping it, so exit.
+        if navigationController.viewControllers.contains(fromViewController) {
+            return
+        }
+
+        // We’re still here – it means we’re popping the view controller, so we can check whether it’s a buy view controller
+        if let buyViewController = fromViewController as? MovieDetailViewController,
+            let coordinator = buyViewController.coordinator {
+            // We're popping a buy view controller; end its coordinator
+            parentCoordinator?.childDidFinish(coordinator)
+        }
     }
     
 }

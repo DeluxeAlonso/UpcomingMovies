@@ -11,13 +11,15 @@ import UIKit
 class MainTabBarController: UITabBarController {
     
     private var currentSelectedItemIndex: Int!
+    private var coordinators: [Coordinator]!
     
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
-        viewControllers = MainTabBarBuilder.buildViewControllers(with: InjectionFactory.useCaseProvider())
+        coordinators = MainTabBarBuilder.buildViewControllers()
+        viewControllers = coordinators.map { $0.navigationController }
     }
     
     // MARK: - Public

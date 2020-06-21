@@ -1,0 +1,86 @@
+//
+//  UpcomingMoviesCoordinator.swift
+//  UpcomingMovies
+//
+//  Created by Alonso on 6/13/20.
+//  Copyright © 2020 Alonso. All rights reserved.
+//
+
+import UIKit
+import UpcomingMoviesDomain
+
+struct NavigationConfiguration {
+    
+    let selectedFrame: CGRect
+    let imageToTransition: UIImage?
+    let transitionOffset: CGFloat
+    
+    init(selectedFrame: CGRect, imageToTransition: UIImage?, transitionOffset: CGFloat) {
+        self.selectedFrame = selectedFrame
+        self.imageToTransition = imageToTransition
+        self.transitionOffset = transitionOffset
+    }
+    
+}
+
+class UpcomingMoviesCoordinator: NSObject, Coordinator {
+    
+    var childCoordinators: [Coordinator] = []
+    var parentCoordinator: Coordinator?
+    var navigationController: UINavigationController
+    
+    var navigationDelegate: UpcomingMoviesNavigationDelegate!
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    func start() {
+        let viewController = UpcomingMoviesViewController.instantiate()
+        
+        let useCaseProvider = InjectionFactory.useCaseProvider()
+        let contentHandler = UpcomingMoviesContentHandler(movieUseCase: useCaseProvider.movieUseCase())
+        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider,
+                                                contentHandler: contentHandler)
+        
+        viewController.coordinator = self
+        viewController.viewModel = viewModel
+        
+        setupNavigationDelegate()
+        
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func showDetail(for movie: Movie, with navigationConfiguration: NavigationConfiguration?) {
+        configureNavigationDelegate(with: navigationConfiguration)
+        
+        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
+        coordinator.movieInfo = .complete(movie: movie)
+        coordinator.parentCoordinator = self
+        
+        childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    // MARK: - Navigation Configuration
+    
+    private func setupNavigationDelegate() {
+        // We only configure the delegate if it is needed.
+        guard navigationController.delegate == nil else { return }
+        
+        navigationDelegate = UpcomingMoviesNavigationDelegate()
+        navigationDelegate.parentCoordinator = self
+        
+        navigationController.delegate = navigationDelegate
+    }
+    
+    private func configureNavigationDelegate(with navigationConfiguration: NavigationConfiguration?) {
+        guard let navigationConfiguration = navigationConfiguration else { return }
+        setupNavigationDelegate()
+        
+        navigationDelegate.configure(selectedFrame: navigationConfiguration.selectedFrame,
+                                     with: navigationConfiguration.imageToTransition)
+        navigationDelegate.updateOffset(navigationConfiguration.transitionOffset)
+    }
+    
+}

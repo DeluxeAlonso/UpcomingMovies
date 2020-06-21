@@ -11,22 +11,24 @@ import UpcomingMoviesDomain
 
 class MainTabBarBuilder {
     
-    class func buildViewControllers(with useCaseProvider: UseCaseProviderProtocol) -> [UIViewController] {
-        let upcomingMoviesVC = UpcomingMoviesViewController.instantiate()
-        let contentHandler = UpcomingMoviesContentHandler(movieUseCase: useCaseProvider.movieUseCase())
-        upcomingMoviesVC.viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider,
-                                                             contentHandler: contentHandler)
+    class func buildViewControllers() -> [Coordinator] {
+
+        let upcomingMoviesNavigationController = createNavigationController(title: "Upcoming", image: #imageLiteral(resourceName: "Movies"))
+        let upcomingMoviesCoordinator = UpcomingMoviesCoordinator(navigationController: upcomingMoviesNavigationController)
+        upcomingMoviesCoordinator.start()
         
-        let searchMoviesVC = SearchMoviesViewController.instantiate()
-        searchMoviesVC.viewModel = SearchMoviesViewModel(useCaseProvider: useCaseProvider)
+        let searchMoviesNavigationController = createNavigationController(title: "Search", image: #imageLiteral(resourceName: "Search"))
+        let searchMoviesCoordinator = SearchMoviesCoordinator(navigationController: searchMoviesNavigationController)
+        searchMoviesCoordinator.start()
         
-        let accountVC = AccountViewController.instantiate()
-        accountVC.viewModel = AccountViewModel(useCaseProvider: useCaseProvider)
+        let accountNavigationController = createNavigationController(title: "Account", image: #imageLiteral(resourceName: "Account"))
+        let accountCoordinator = AccountCoordinator(navigationController: accountNavigationController)
+        accountCoordinator.start()
         
         return [
-            createNavigationController(upcomingMoviesVC, title: "Upcoming", image: #imageLiteral(resourceName: "Movies")),
-            createNavigationController(searchMoviesVC, title: "Search", image: #imageLiteral(resourceName: "Search")),
-            createNavigationController(accountVC, title: "Account", image: #imageLiteral(resourceName: "Account"))
+            upcomingMoviesCoordinator,
+            searchMoviesCoordinator,
+            accountCoordinator
         ]
     }
     
@@ -38,4 +40,11 @@ class MainTabBarBuilder {
         return navController
     }
     
+    class func createNavigationController(title: String, image: UIImage) -> UINavigationController {
+        let navController = UINavigationController()
+        navController.tabBarItem.title = title
+        navController.tabBarItem.image = image
+        
+        return navController
+    }
 }

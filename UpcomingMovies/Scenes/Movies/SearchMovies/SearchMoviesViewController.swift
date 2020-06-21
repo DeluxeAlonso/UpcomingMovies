@@ -8,14 +8,17 @@
 
 import UIKit
 
-class SearchMoviesViewController: UIViewController, Storyboarded, SegueHandler {
+class SearchMoviesViewController: UIViewController, Storyboarded {
     
-    var viewModel: SearchMoviesViewModel!
+    @IBOutlet weak var containerView: UIView!
+    
+    static var storyboardName: String = "SearchMovies"
     
     private var searchController: DefaultSearchController!
     private var searchOptionsContainerView: SearchOptionsTableViewController!
     
-    static var storyboardName: String = "SearchMovies"
+    var viewModel: SearchMoviesViewModel!
+    weak var coordinator: SearchMoviesCoordinator?
     
     // MARK: - Lifecycle
 
@@ -29,6 +32,7 @@ class SearchMoviesViewController: UIViewController, Storyboarded, SegueHandler {
     private func setupUI() {
         title = Constants.Title
         setupNavigationBar()
+        setupContainerView()
         setupSearchController()
     }
     
@@ -37,44 +41,27 @@ class SearchMoviesViewController: UIViewController, Storyboarded, SegueHandler {
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
+    private func setupContainerView() {
+        guard let coordinator = coordinator else { return }
+        searchOptionsContainerView = coordinator.embedSearchOptions(on: self, in: containerView)
+        searchOptionsContainerView.delegate = self
+    }
+    
     private func setupSearchController() {
-        let searchResultViewModel = viewModel.searchResultViewModel()
-        let searchResultController = SearchMoviesResultController(viewModel: searchResultViewModel)
-        searchController = DefaultSearchController(searchResultsController: searchResultController)
+        guard let coordinator = coordinator else { return }
+        
+        searchController = coordinator.embedSearchController(with: self)
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
+
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        searchResultController.delegate = self
     }
     
     private func startSearch(_ resultController: SearchMoviesResultController, withSearchText searchText: String) {
         resultController.startSearch(withSearchText: searchText)
     }
     
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifier(for: segue) {
-        case .movieList:
-            guard let viewController = segue.destination as? MovieListViewController else { fatalError() }
-            guard let viewModel = sender as? MovieListViewModel else { return }
-            _ = viewController.view
-            viewController.viewModel = viewModel
-        case .movieDetail:
-            guard let viewController = segue.destination as? MovieDetailViewController else { fatalError() }
-            guard let viewModel = sender as? MovieDetailViewModel else { return }
-            _ = viewController.view
-            viewController.viewModel = viewModel
-        case .searchOption:
-            guard let viewController = segue.destination as? SearchOptionsTableViewController else { fatalError() }
-            _ = viewController.view
-            viewController.delegate = self
-            viewController.viewModel = viewModel.buildSearchOptionsViewModel()
-            searchOptionsContainerView = viewController
-        }
-    }
-
 }
 
 // MARK: - TabBarScrollable
@@ -129,12 +116,7 @@ extension SearchMoviesViewController: UISearchBarDelegate {
 // MARK: - SearchMoviesResultControllerDelegate
 
 extension SearchMoviesViewController: SearchMoviesResultControllerDelegate {
-    
-    func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectMovie movie: MovieDetailViewModel) {
-        performSegue(withIdentifier: "MovieDetailSegue",
-                     sender: movie)
-    }
-    
+
     func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectRecentSearch searchText: String) {
         searchController.searchBar.text = searchText
         guard let searchText = searchController.searchBar.text,
@@ -154,40 +136,22 @@ extension SearchMoviesViewController: SearchOptionsTableViewControllerDelegate {
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
                                           didSelectPopularMovies selected: Bool) {
-        performSegue(withIdentifier: SegueIdentifier.movieList.rawValue,
-                     sender: viewModel.popularMoviesViewModel())
+        coordinator?.showPopularMovies()
     }
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
                                           didSelectTopRatedMovies selected: Bool) {
-        performSegue(withIdentifier: SegueIdentifier.movieList.rawValue,
-                     sender: viewModel.topRatedMoviesViewModel())
+        coordinator?.showTopRatedMovies()
     }
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
                                           didSelectMovieGenreWithId genreId: Int, andGenreName genreName: String) {
-        let viewModel = self.viewModel.moviesByGenreViewModel(genreId: genreId, genreName: genreName)
-        performSegue(withIdentifier: SegueIdentifier.movieList.rawValue,
-                     sender: viewModel)
+        coordinator?.showMoviesByGenre(genreId, genreName: genreName)
     }
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
                                           didSelectRecentlyVisitedMovie id: Int, title: String) {
-        let viewModel = self.viewModel.recentlyVisitedMovieViewModel(id: id, title: title)
-        performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue,
-                     sender: viewModel)
-    }
-    
-}
-
-// MARK: - Segue Identifiers
-
-extension SearchMoviesViewController {
-    
-    enum SegueIdentifier: String {
-        case movieDetail = "MovieDetailSegue"
-        case movieList = "MovieListSegue"
-        case searchOption = "SearchOptionSegue"
+        coordinator?.showDetail(for: id, and: title)
     }
     
 }
