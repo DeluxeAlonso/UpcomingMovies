@@ -70,19 +70,6 @@ class UpcomingMoviesTests: XCTestCase {
         XCTAssertEqual(viewModel.viewState.value, .error(APIError.badRequest))
     }
     
-    func testSelectedMovieCell() {
-        //Arrange
-        let contentHandler = UpcomingMoviesContentHandler(movieUseCase: movieUseCase)
-        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider, contentHandler: contentHandler)
-        viewModel.viewState.value = .populated([Movie.with(id: 1, title: "M1"), Movie.with(id: 2, title: "M2")])
-        //Act
-        viewModel.setSelectedMovie(at: 1)
-        let selectedMovieCell = viewModel.selectedMovieCell
-        let movieTitle = selectedMovieCell?.title
-        //Assert
-        XCTAssertEqual(movieTitle, "M2")
-    }
-    
     func testUpcomingMovieCellPosterURL() {
         //Act
         let posterURL = upcomingMovieCellViewModelToTest.posterURL

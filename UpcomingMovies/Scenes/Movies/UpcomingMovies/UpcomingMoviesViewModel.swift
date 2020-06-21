@@ -17,7 +17,6 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     var contentHandler: MoviesContentHandlerProtocol
     
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
-    var selectedMovieCell: UpcomingMovieCellViewModel?
     
     var startLoading: Bindable<Bool> = Bindable(false)
     
