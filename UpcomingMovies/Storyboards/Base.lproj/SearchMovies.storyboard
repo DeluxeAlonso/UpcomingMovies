@@ -8,16 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--MovieListViewController-->
-        <scene sceneID="TEz-h1-bro">
-            <objects>
-                <viewControllerPlaceholder storyboardName="MovieList" referencedIdentifier="MovieListViewController" id="goR-Jk-cJY" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="NZV-kW-vIJ"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XhQ-wL-0ei" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1814" y="-786"/>
-        </scene>
         <!--Search-->
         <scene sceneID="UzA-XT-ygR">
             <objects>
@@ -28,9 +18,6 @@
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LhR-s0-Tff">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                                <connections>
-                                    <segue destination="2gm-qj-p6l" kind="embed" identifier="SearchOptionSegue" id="Ryo-Lv-lCN"/>
-                                </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -47,28 +34,19 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="CfN-SO-eWY" kind="show" identifier="MovieDetailSegue" id="Pid-Xm-PyO"/>
-                        <segue destination="goR-Jk-cJY" kind="show" identifier="MovieListSegue" id="nNB-Lv-gbA"/>
+                        <outlet property="containerView" destination="LhR-s0-Tff" id="J0j-Tv-hTg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mhw-R1-a3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1006" y="-564"/>
         </scene>
-        <!--MovieDetailViewController-->
-        <scene sceneID="3bs-kq-wio">
-            <objects>
-                <viewControllerPlaceholder storyboardName="MovieDetail" referencedIdentifier="MovieDetailViewController" id="CfN-SO-eWY" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZY4-u7-E0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1824" y="-372"/>
-        </scene>
         <!--Search Options Table View Controller-->
         <scene sceneID="B4z-0t-kzA">
             <objects>
-                <tableViewController id="2gm-qj-p6l" customClass="SearchOptionsTableViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SearchOptionsTableViewController" id="2gm-qj-p6l" customClass="SearchOptionsTableViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="gCe-Xq-zQs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <connections>

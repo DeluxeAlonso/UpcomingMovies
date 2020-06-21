@@ -9,13 +9,18 @@
 import UIKit
 import UpcomingMoviesDomain
 
+enum MovieDetailInfo {
+    case complete(movie: Movie)
+    case partial(movieId: Int, movieTitle: String)
+}
+
 class MovieDetailCoordinator: Coordinator {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
     
-    var movie: Movie!
+    var movieInfo: MovieDetailInfo!
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -23,12 +28,26 @@ class MovieDetailCoordinator: Coordinator {
     
     func start() {
         let viewController = MovieDetailViewController.instantiate()
-        let viewModel = MovieDetailViewModel(movie, useCaseProvider: InjectionFactory.useCaseProvider())
+        
+        let useCaseProvider = InjectionFactory.useCaseProvider()
         
         viewController.coordinator = self
-        viewController.viewModel = viewModel
+        viewController.viewModel = viewModel(for: movieInfo, and: useCaseProvider)
         
         navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    private func viewModel(for movieInfo: MovieDetailInfo,
+                           and useCaseProvider: UseCaseProviderProtocol) -> MovieDetailViewModel {
+        let viewModel: MovieDetailViewModel
+        switch movieInfo {
+        case .complete(let movie):
+            viewModel = MovieDetailViewModel(movie, useCaseProvider: useCaseProvider)
+        case .partial(let movieId, let movieTitle):
+            viewModel = MovieDetailViewModel(id: movieId, title: movieTitle, useCaseProvider: useCaseProvider)
+        }
+        
+        return viewModel
     }
     
 }

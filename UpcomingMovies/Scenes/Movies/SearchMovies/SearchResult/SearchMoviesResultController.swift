@@ -7,11 +7,8 @@
 //
 
 import UIKit
-import UpcomingMoviesDomain
 
 protocol SearchMoviesResultControllerDelegate: class {
-    
-    func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectMovie movie: MovieDetailViewModel)
     
     func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectRecentSearch searchText: String)
     
@@ -23,6 +20,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
     private var dataSource: SearchMoviesResultDataSource!
     
     weak var delegate: SearchMoviesResultControllerDelegate?
+    var coordinator: SearchMoviesCoordinator?
     
     var searchMoviesResultView = SearchMoviesResultView()
     
@@ -149,8 +147,7 @@ extension SearchMoviesResultController: UITableViewDelegate {
             let searchText = viewModel.recentSearchCells[indexPath.row].searchText
             delegate?.searchMoviesResultController(self, didSelectRecentSearch: searchText)
         case .populated:
-            let detailViewModel = viewModel.buildDetailViewModel(at: indexPath.row)
-            delegate?.searchMoviesResultController(self, didSelectMovie: detailViewModel)
+            coordinator?.showDetail(for: viewModel.searchedMovie(at: indexPath.row))
         case .empty, .error, .searching:
             return
         }

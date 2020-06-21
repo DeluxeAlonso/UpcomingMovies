@@ -46,27 +46,28 @@ class UpcomingMoviesCoordinator: NSObject, Coordinator {
         viewController.coordinator = self
         viewController.viewModel = viewModel
         
-        setNavigationDelegate()
+        setupNavigationDelegate()
         
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    // MARK: - Navigation
-    
     func showDetail(for movie: Movie, with navigationConfiguration: NavigationConfiguration?) {
         configureNavigationDelegate(with: navigationConfiguration)
         
-        let movieDetailCoordinator = MovieDetailCoordinator(navigationController: navigationController)
-        movieDetailCoordinator.movie = movie
-        movieDetailCoordinator.parentCoordinator = self
+        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
+        coordinator.movieInfo = .complete(movie: movie)
+        coordinator.parentCoordinator = self
         
-        childCoordinators.append(movieDetailCoordinator)
-        movieDetailCoordinator.start()
+        childCoordinators.append(coordinator)
+        coordinator.start()
     }
     
     // MARK: - Navigation Configuration
     
-    func setNavigationDelegate() {
+    private func setupNavigationDelegate() {
+        // We only configure the delegate if it is needed.
+        guard navigationController.delegate == nil else { return }
+        
         navigationDelegate = UpcomingMoviesNavigationDelegate()
         navigationDelegate.parentCoordinator = self
         
@@ -75,6 +76,7 @@ class UpcomingMoviesCoordinator: NSObject, Coordinator {
     
     private func configureNavigationDelegate(with navigationConfiguration: NavigationConfiguration?) {
         guard let navigationConfiguration = navigationConfiguration else { return }
+        setupNavigationDelegate()
         
         navigationDelegate.configure(selectedFrame: navigationConfiguration.selectedFrame,
                                      with: navigationConfiguration.imageToTransition)

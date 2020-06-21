@@ -48,11 +48,6 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         setupBindables()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        coordinator?.setNavigationDelegate()
-    }
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         guard let selectedViewController = tabBarController?.selectedViewController,
