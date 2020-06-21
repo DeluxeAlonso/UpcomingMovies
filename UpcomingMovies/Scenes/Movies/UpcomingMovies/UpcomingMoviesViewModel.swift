@@ -17,7 +17,6 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     var contentHandler: MoviesContentHandlerProtocol
     
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
-    var selectedMovieCell: UpcomingMovieCellViewModel?
     
     var startLoading: Bindable<Bool> = Bindable(false)
     
@@ -40,8 +39,8 @@ final class UpcomingMoviesViewModel: MoviesViewModel {
     
     // MARK: - Public
     
-    func setSelectedMovie(at index: Int) {
-        selectedMovieCell = movieCells[index]
+    func movie(for index: Int) -> Movie {
+        return movies[index]
     }
     
 }

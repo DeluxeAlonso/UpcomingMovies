@@ -9,13 +9,17 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class MovieListViewController: UIViewController, PlaceholderDisplayable, SegueHandler, Loadable {
+class MovieListViewController: UIViewController, Storyboarded, PlaceholderDisplayable, SegueHandler, Loadable {
     
     @IBOutlet weak var tableView: UITableView!
     
     private var dataSource: SimpleTableViewDataSource<MovieCellViewModel>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
     private var displayedCellsIndexPaths = Set<IndexPath>()
+    
+    static var storyboardName: String = "MovieList"
+    
+    weak var coordinator: MovieListCoordinator?
 
     var loaderView: RadarView!
     

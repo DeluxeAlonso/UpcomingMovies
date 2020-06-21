@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SearchOptionsTableViewControllerDelegate: class {
+protocol SearchOptionsTableViewControllerDelegate: UIViewController {
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectPopularMovies selected: Bool)
     
@@ -24,7 +24,9 @@ protocol SearchOptionsTableViewControllerDelegate: class {
     
 }
 
-class SearchOptionsTableViewController: UITableViewController {
+class SearchOptionsTableViewController: UITableViewController, Storyboarded {
+    
+    static var storyboardName = "SearchMovies"
     
     private var dataSource: SearchOptionsDataSource!
     

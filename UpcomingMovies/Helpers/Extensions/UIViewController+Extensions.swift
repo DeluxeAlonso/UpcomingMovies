@@ -23,6 +23,22 @@ extension UIViewController {
         viewController.didMove(toParent: self)
     }
     
+    func add(asChildViewController viewController: UIViewController?, containerView: UIView) {
+        guard let viewController = viewController,
+            containerView.isDescendant(of: view) else {
+            return
+        }
+        
+        addChild(viewController)
+        
+        containerView.addSubview(viewController.view)
+        
+        viewController.view.frame = containerView.bounds
+        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        viewController.didMove(toParent: self)
+    }
+    
     func remove(asChildViewController viewController: UIViewController?) {
         guard let viewController = viewController else { return }
         
