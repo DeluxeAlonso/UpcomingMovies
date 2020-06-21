@@ -23,8 +23,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     static var storyboardName: String = "MovieDetail"
     
-    weak var coordinator: MovieDetailCoordinator?
-    
     lazy var shareBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareBarButtonAction(_:)))
         return barButtonItem
@@ -38,6 +36,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     var loaderView: RadarView!
     
     var viewModel: MovieDetailViewModel?
+    weak var coordinator: MovieDetailCoordinator?
     
     // MARK: - Lifecycle
 

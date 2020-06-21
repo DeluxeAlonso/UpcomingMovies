@@ -20,7 +20,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
     private var dataSource: SearchMoviesResultDataSource!
     
     weak var delegate: SearchMoviesResultControllerDelegate?
-    var coordinator: SearchMoviesCoordinator?
+    weak var coordinator: SearchMoviesCoordinator?
     
     var searchMoviesResultView = SearchMoviesResultView()
     

@@ -18,7 +18,7 @@ class SearchMoviesViewController: UIViewController, Storyboarded {
     private var searchOptionsContainerView: SearchOptionsTableViewController!
     
     var viewModel: SearchMoviesViewModel!
-    var coordinator: SearchMoviesCoordinator?
+    weak var coordinator: SearchMoviesCoordinator?
     
     // MARK: - Lifecycle
 

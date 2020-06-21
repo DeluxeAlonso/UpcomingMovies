@@ -21,6 +21,7 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     private var profileViewController: ProfileTableViewController?
     
     var viewModel: AccountViewModel!
+    weak var coordinator: AccountCoordinator?
     
     static var storyboardName: String = "Account"
     

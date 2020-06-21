@@ -11,10 +11,8 @@ import UpcomingMoviesDomain
 
 class MainTabBarBuilder {
     
-    class func buildViewControllers(with useCaseProvider: UseCaseProviderProtocol) -> [UIViewController] {
-        let accountVC = AccountViewController.instantiate()
-        accountVC.viewModel = AccountViewModel(useCaseProvider: useCaseProvider)
-        
+    class func buildViewControllers() -> [Coordinator] {
+
         let upcomingMoviesNavigationController = createNavigationController(title: "Upcoming", image: #imageLiteral(resourceName: "Movies"))
         let upcomingMoviesCoordinator = UpcomingMoviesCoordinator(navigationController: upcomingMoviesNavigationController)
         upcomingMoviesCoordinator.start()
@@ -23,10 +21,14 @@ class MainTabBarBuilder {
         let searchMoviesCoordinator = SearchMoviesCoordinator(navigationController: searchMoviesNavigationController)
         searchMoviesCoordinator.start()
         
+        let accountNavigationController = createNavigationController(title: "Account", image: #imageLiteral(resourceName: "Account"))
+        let accountCoordinator = AccountCoordinator(navigationController: accountNavigationController)
+        accountCoordinator.start()
+        
         return [
-            upcomingMoviesCoordinator.navigationController,
-            searchMoviesCoordinator.navigationController,
-            createNavigationController(accountVC, title: "Account", image: #imageLiteral(resourceName: "Account"))
+            upcomingMoviesCoordinator,
+            searchMoviesCoordinator,
+            accountCoordinator
         ]
     }
     

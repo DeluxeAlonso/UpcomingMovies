@@ -14,7 +14,10 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     @IBOutlet weak var toggleGridBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    static var storyboardName: String = "UpcomingMovies"
+    
     var viewModel: UpcomingMoviesViewModel!
+    weak var coordinator: UpcomingMoviesCoordinator?
     
     private var dataSource: SimpleCollectionViewDataSource<UpcomingMovieCellViewModel>!
     private var prefetchDataSource: CollectionViewDataSourcePrefetching!
@@ -23,11 +26,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     private var previewLayout: VerticalFlowLayout!
     private var detailLayout: VerticalFlowLayout!
     
-    static var storyboardName: String = "UpcomingMovies"
-    
     var loaderView: RadarView!
-    
-    var coordinator: UpcomingMoviesCoordinator?
     
     private var isAnimatingPresentation: Bool = false
     private var presentationMode: PresentationMode = .preview {
