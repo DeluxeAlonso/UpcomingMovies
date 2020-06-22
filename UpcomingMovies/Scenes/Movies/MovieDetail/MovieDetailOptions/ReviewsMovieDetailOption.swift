@@ -19,7 +19,7 @@ class ReviewsMovieDetailOption: MovieDetailOption {
     }
     
     func prepare(coordinator: MovieDetailCoordinator?) {
-        
+        coordinator?.showMovieReviews()
     }
     
 }

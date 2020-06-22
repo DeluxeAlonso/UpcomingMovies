@@ -9,15 +9,14 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class MovieReviewsViewController: UIViewController, PlaceholderDisplayable, Loadable, SegueHandler {
+class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable, SegueHandler {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel: MovieReviewsViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    static var storyboardName = "MovieDetail"
+    
+    var viewModel: MovieReviewsViewModel?
+    weak var coordinator: MovieReviewsCoordinator?
     
     private var dataSource: SimpleTableViewDataSource<MovieReviewCellViewModel>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
@@ -30,6 +29,7 @@ class MovieReviewsViewController: UIViewController, PlaceholderDisplayable, Load
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
     
     private func setupUI() {

@@ -37,6 +37,57 @@ class MovieDetailCoordinator: Coordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
     
+    func showMovieVideos() {
+        let coordinator = MovieVideosCoordinator(navigationController: navigationController)
+        
+        let movieInfo = getMoviePartialInfo(for: self.movieInfo)
+        
+        coordinator.movieId = movieInfo.id
+        coordinator.movieTitle = movieInfo.title
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    func showMovieCredits() {
+        let coordinator = MovieCreditsCoordinator(navigationController: navigationController)
+        
+        let movieInfo = getMoviePartialInfo(for: self.movieInfo)
+        
+        coordinator.movieId = movieInfo.id
+        coordinator.movieTitle = movieInfo.title
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    func showMovieReviews() {
+        let coordinator = MovieReviewsCoordinator(navigationController: navigationController)
+        
+        let movieInfo = getMoviePartialInfo(for: self.movieInfo)
+        
+        coordinator.movieId = movieInfo.id
+        coordinator.movieTitle = movieInfo.title
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    func showSimilarMovies() {
+        let coordinator = SimilarMoviesCoordinator(navigationController: navigationController)
+        
+        let movieInfo = getMoviePartialInfo(for: self.movieInfo)
+        
+        coordinator.movieId = movieInfo.id
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
     private func viewModel(for movieInfo: MovieDetailInfo,
                            and useCaseProvider: UseCaseProviderProtocol) -> MovieDetailViewModel {
         let viewModel: MovieDetailViewModel
@@ -50,68 +101,13 @@ class MovieDetailCoordinator: Coordinator {
         return viewModel
     }
     
-    func showMovieVideos() {
-        let coordinator = MovieVideosCoordinator(navigationController: navigationController)
-        
-        let movieId: Int
-        let movieTitle: String
-        
-        switch movieInfo! {
+    private func getMoviePartialInfo(for movieInfo: MovieDetailInfo) -> (id: Int, title: String) {
+        switch movieInfo {
         case .complete(let movie):
-            movieId = movie.id
-            movieTitle = movie.title
-        case .partial(let id, let title):
-            movieId = id
-            movieTitle = title
+            return (movie.id, movie.title)
+        case .partial(let movieId, let movieTitle):
+            return (movieId, movieTitle)
         }
-        
-        coordinator.movieId = movieId
-        coordinator.movieTitle = movieTitle
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
-    }
-    
-    func showMovieCredits() {
-        let coordinator = MovieCreditsCoordinator(navigationController: navigationController)
-        
-        let movieId: Int
-        let movieTitle: String
-        
-        switch movieInfo! {
-        case .complete(let movie):
-            movieId = movie.id
-            movieTitle = movie.title
-        case .partial(let id, let title):
-            movieId = id
-            movieTitle = title
-        }
-        
-        coordinator.movieId = movieId
-        coordinator.movieTitle = movieTitle
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
-    }
-    
-    func showSimilarMovies() {
-        let coordinator = SimilarMoviesCoordinator(navigationController: navigationController)
-        
-        let movieId: Int
-        switch movieInfo! {
-        case .complete(let movie):
-            movieId = movie.id
-        case .partial(let id, _):
-            movieId = id
-        }
-        
-        coordinator.movieId = movieId
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
     }
     
 }
