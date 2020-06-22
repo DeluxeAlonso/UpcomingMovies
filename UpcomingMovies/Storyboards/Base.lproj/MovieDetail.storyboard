@@ -20,13 +20,13 @@
         <!--Movie Credits View Controller-->
         <scene sceneID="bLQ-MW-xmD">
             <objects>
-                <viewController id="dIV-7j-Rhb" customClass="MovieCreditsViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieCreditsViewController" id="dIV-7j-Rhb" customClass="MovieCreditsViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fyu-GJ-OYn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="591"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="t6G-YF-8J4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="591"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="safeArea" id="P0a-Zo-oZP"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tDJ-KK-hnl">
@@ -370,7 +370,6 @@
                         <outlet property="voteAverageView" destination="Tar-Cz-6l1" id="atM-cI-oWs"/>
                         <segue destination="tJd-Cb-tNf" kind="show" identifier="MovieReviewsSegue" id="01W-O1-qgM"/>
                         <segue destination="8kV-EH-Iqr" kind="show" identifier="MovieSimilarsSegue" id="j7M-Fl-jcH"/>
-                        <segue destination="dIV-7j-Rhb" kind="show" identifier="MovieCreditsSegue" id="GIN-c7-Gcw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSa-lq-OS1" userLabel="First Responder" sceneMemberID="firstResponder"/>

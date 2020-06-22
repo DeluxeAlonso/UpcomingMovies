@@ -19,6 +19,7 @@ class CreditsMovieDetailOption: MovieDetailOption {
     }
     
     func prepare(coordinator: MovieDetailCoordinator?) {
+        coordinator?.showMovieCredits()
     }
     
 }

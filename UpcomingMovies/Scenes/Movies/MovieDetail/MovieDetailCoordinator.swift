@@ -73,4 +73,27 @@ class MovieDetailCoordinator: Coordinator {
         coordinator.start()
     }
     
+    func showMovieCredits() {
+        let coordinator = MovieCreditsCoordinator(navigationController: navigationController)
+        
+        let movieId: Int
+        let movieTitle: String
+        
+        switch movieInfo! {
+        case .complete(let movie):
+            movieId = movie.id
+            movieTitle = movie.title
+        case .partial(let id, let title):
+            movieId = id
+            movieTitle = title
+        }
+        
+        coordinator.movieId = movieId
+        coordinator.movieTitle = movieTitle
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
 }
