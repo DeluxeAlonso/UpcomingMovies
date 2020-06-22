@@ -36,9 +36,8 @@ extension MoviesViewModel {
         return viewState.value.needsPrefetch
     }
     
-    func buildDetailViewModel(atIndex index: Int) -> MovieDetailViewModel? {
-        guard index < movies.count else { return nil }
-        return MovieDetailViewModel(movies[index], useCaseProvider: useCaseProvider)
+    func selectedMovie(at index: Int) -> Movie {
+        return movies[index]
     }
     
     func getMovies() {

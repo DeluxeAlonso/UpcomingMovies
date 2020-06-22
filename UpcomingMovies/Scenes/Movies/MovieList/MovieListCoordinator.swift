@@ -7,8 +7,20 @@
 //
 
 import UIKit
+import UpcomingMoviesDomain
 
-protocol MovieListCoordinator: Coordinator {
+protocol MovieListCoordinator: Coordinator {}
+
+extension MovieListCoordinator {
+    
+    func showDetail(for movie: Movie) {
+        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
+        coordinator.movieInfo = .complete(movie: movie)
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
     
 }
 
@@ -62,7 +74,7 @@ class TopRatedMoviesCoordinator: MovieListCoordinator {
     
 }
 
-class SimilarMoviesCoordinator: MovieListCoordinator {
+class SimilarMoviesCoordinator: NSObject, MovieListCoordinator, UINavigationControllerDelegate {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
@@ -84,7 +96,20 @@ class SimilarMoviesCoordinator: MovieListCoordinator {
         viewController.coordinator = self
         viewController.viewModel = viewModel
         
+        navigationController.delegate = self
         navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
+            return
+        }
+        // Check whether our view controller array already contains that view controller.
+        // If it does it means we’re pushing a different view controller on top rather than popping it, so exit.
+        if navigationController.viewControllers.contains(fromViewController) {
+            return
+        }
+        unwrappedParentCoordinator.childDidFinish()
     }
     
 }
