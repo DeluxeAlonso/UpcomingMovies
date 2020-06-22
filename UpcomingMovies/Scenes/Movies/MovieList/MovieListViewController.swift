@@ -19,15 +19,10 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
     
     static var storyboardName: String = "MovieList"
     
-    weak var coordinator: MovieListCoordinator?
-
     var loaderView: RadarView!
     
-    var viewModel: MovieListViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    var viewModel: MovieListViewModel?
+    weak var coordinator: MovieListCoordinator?
     
     // MARK: - Lifcycle
     

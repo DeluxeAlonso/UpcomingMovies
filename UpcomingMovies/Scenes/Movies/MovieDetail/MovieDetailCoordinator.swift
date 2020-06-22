@@ -96,4 +96,22 @@ class MovieDetailCoordinator: Coordinator {
         coordinator.start()
     }
     
+    func showSimilarMovies() {
+        let coordinator = SimilarMoviesCoordinator(navigationController: navigationController)
+        
+        let movieId: Int
+        switch movieInfo! {
+        case .complete(let movie):
+            movieId = movie.id
+        case .partial(let id, _):
+            movieId = id
+        }
+        
+        coordinator.movieId = movieId
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
 }
