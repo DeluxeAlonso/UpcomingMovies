@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 class MainTabBarBuilder {
     
-    class func buildViewControllers() -> [Coordinator] {
+    class func buildViewCoordinators() -> [Coordinator] {
 
         let upcomingMoviesNavigationController = createNavigationController(title: "Upcoming", image: #imageLiteral(resourceName: "Movies"))
         let upcomingMoviesCoordinator = UpcomingMoviesCoordinator(navigationController: upcomingMoviesNavigationController)

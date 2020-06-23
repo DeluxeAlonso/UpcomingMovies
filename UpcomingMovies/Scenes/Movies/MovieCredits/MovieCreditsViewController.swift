@@ -8,26 +8,26 @@
 
 import UIKit
 
-class MovieCreditsViewController: UIViewController, PlaceholderDisplayable, Loadable {
+class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    static var storyboardName = "MovieDetail"
     
     private var displayedCellsIndexPaths = Set<IndexPath>()
     private var wasSectionManuallyToggled = false
     
     var loaderView: RadarView!
     
-    var viewModel: MovieCreditsViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    var viewModel: MovieCreditsViewModel?
+    weak var coordinator: MovieCreditsCoordinator?
     
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
     
     // MARK: - Private

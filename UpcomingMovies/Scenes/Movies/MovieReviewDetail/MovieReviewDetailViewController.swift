@@ -8,21 +8,25 @@
 
 import UIKit
 
-class MovieReviewDetailViewController: UIViewController {
+class MovieReviewDetailViewController: UIViewController, Storyboarded {
     
     @IBOutlet weak var contentLabel: UILabel!
     
-    var viewModel: MovieReviewDetailViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    static var storyboardName = "MovieDetail"
+    
+    var viewModel: MovieReviewDetailViewModel?
+    weak var coordinator: MovieReviewDetailCoordinator?
     
     // MARK: - Lifecycle
+    
+    deinit {
+        print("MovieReviewDetailViewController")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
     
     // MARK: - Private
@@ -45,7 +49,7 @@ class MovieReviewDetailViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func closeAction(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        coordinator?.dismiss()
     }
     
 }

@@ -161,28 +161,4 @@ final class MovieDetailViewModel {
         })
     }
     
-    // MARK: - View Models Building
-    
-    func buildVideosViewModel() -> MovieVideosViewModel {
-        return MovieVideosViewModel(movieId: id, movieTitle: title,
-                                    useCaseProvider: useCaseProvider)
-    }
-    
-    func buildReviewsViewModel() -> MovieReviewsViewModel {
-        return MovieReviewsViewModel(movieId: id,
-                                     movieTitle: title,
-                                     useCaseProvider: useCaseProvider)
-    }
-    
-    func buildCreditsViewModel() -> MovieCreditsViewModel {
-        return MovieCreditsViewModel(movieId: id, movieTitle: title,
-                                     useCaseProvider: useCaseProvider)
-    }
-    
-    func buildSimilarsViewModel() -> MovieListViewModel {
-        let contentHandler = SimilarMoviesContentHandler(movieUseCase: useCaseProvider.movieUseCase(),
-                                                     movieId: id)
-        return MovieListViewModel(useCaseProvider: useCaseProvider, contentHandler: contentHandler)
-    }
-    
 }

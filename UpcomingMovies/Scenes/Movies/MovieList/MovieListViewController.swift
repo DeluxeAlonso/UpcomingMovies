@@ -19,22 +19,12 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
     
     static var storyboardName: String = "MovieList"
     
-    weak var coordinator: MovieListCoordinator?
-
     var loaderView: RadarView!
     
-    var viewModel: MovieListViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    var viewModel: MovieListViewModel?
+    weak var coordinator: MovieListCoordinator?
     
     // MARK: - Lifcycle
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        setupForceTouchSupport()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,14 +53,7 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
                                                 self?.viewModel?.refreshMovies()
         })
     }
-    
-    private func setupForceTouchSupport() {
-        if traitCollection.forceTouchCapability == .available {
-            registerForPreviewing(with: self,
-                                  sourceView: tableView)
-        }
-    }
-    
+
     private func reloadTableView() {
         guard let viewModel = viewModel else { return }
         dataSource = SimpleTableViewDataSource.make(for: viewModel.movieCells)
@@ -122,18 +105,6 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
         })
         viewModel?.getMovies()
     }
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifier(for: segue) {
-        case .movieDetail:
-            guard let viewController = segue.destination as? MovieDetailViewController else { fatalError() }
-            guard let indexPath = sender as? IndexPath else { return }
-            _ = viewController.view
-            viewController.viewModel = viewModel?.buildDetailViewModel(atIndex: indexPath.row)
-        }
-    }
 
 }
 
@@ -143,7 +114,8 @@ extension MovieListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue, sender: indexPath)
+        guard let viewModel = viewModel else { return }
+        coordinator?.showDetail(for: viewModel.selectedMovie(at: indexPath.row))
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -151,30 +123,6 @@ extension MovieListViewController: UITableViewDelegate {
             displayedCellsIndexPaths.insert(indexPath)
             TableViewCellAnimator.fadeAnimate(cell: cell)
         }
-    }
-    
-}
-
-// MARK: - UIViewControllerPreviewingDelegate
-
-extension MovieListViewController: UIViewControllerPreviewingDelegate {
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let indexPath = tableView.indexPathForRow(at: location),
-            let cell = tableView.cellForRow(at: indexPath) else {
-            return nil
-        }
-        let storyboard = UIStoryboard(name: "MovieDetail", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
-        _ = viewController.view
-        viewController.viewModel = viewModel?.buildDetailViewModel(atIndex: indexPath.row)
-        viewController.preferredContentSize = CGSize(width: 0.0, height: 450)
-        previewingContext.sourceRect = cell.frame
-        return viewController
-    }
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        show(viewControllerToCommit, sender: nil)
     }
     
 }

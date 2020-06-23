@@ -10,8 +10,6 @@ import UIKit
 
 class TrailersMovieDetailOption: MovieDetailOption {
     
-    typealias ViewModel = MovieVideosViewModel
-    
     var title: String {
         return NSLocalizedString("trailersDetailOptions", comment: "")
     }
@@ -20,14 +18,9 @@ class TrailersMovieDetailOption: MovieDetailOption {
         return #imageLiteral(resourceName: "PlayVideo")
     }
     
-    var identifier: String {
-        return "MovieVideosSegue"
-    }
-    
-    func prepare(viewController: inout UIViewController, with viewModel: MovieDetailViewModel) {
-        guard let viewController = viewController as? MovieVideosViewController else { fatalError() }
-        _ = viewController.view
-        viewController.viewModel = viewModel.buildVideosViewModel()
+    func prepare(coordinator: MovieDetailCoordinator?) {
+        guard let coordinator = coordinator else { fatalError() }
+        coordinator.showMovieVideos()
     }
     
 }

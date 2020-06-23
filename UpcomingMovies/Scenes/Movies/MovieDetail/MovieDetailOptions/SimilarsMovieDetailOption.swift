@@ -18,14 +18,8 @@ class SimilarsMovieDetailOption: MovieDetailOption {
         return #imageLiteral(resourceName: "SimilarMovies")
     }
     
-    var identifier: String {
-        return "MovieSimilarsSegue"
-    }
-    
-    func prepare(viewController: inout UIViewController, with viewModel: MovieDetailViewModel) {
-        guard let viewController = viewController as? MovieListViewController else { fatalError() }
-        _ = viewController.view
-        viewController.viewModel = viewModel.buildSimilarsViewModel()
+    func prepare(coordinator: MovieDetailCoordinator?) {
+        coordinator?.showSimilarMovies()
     }
 
 }

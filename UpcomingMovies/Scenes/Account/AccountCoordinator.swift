@@ -24,8 +24,8 @@ class AccountCoordinator: Coordinator {
         let useCaseProvider = InjectionFactory.useCaseProvider()
         let viewModel = AccountViewModel(useCaseProvider: useCaseProvider)
         
-        viewController.coordinator = self
         viewController.viewModel = viewModel
+        viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
     }

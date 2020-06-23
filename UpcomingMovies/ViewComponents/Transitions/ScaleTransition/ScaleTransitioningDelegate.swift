@@ -13,7 +13,8 @@ class ScaleTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegat
     private let scaleTransition = ScaleAnimator()
     private let viewToScale: UIView
     
-    init(viewToScale: UIView) {
+    init?(viewToScale: UIView?) {
+        guard let viewToScale = viewToScale else { return nil }
         self.viewToScale = viewToScale
     }
     

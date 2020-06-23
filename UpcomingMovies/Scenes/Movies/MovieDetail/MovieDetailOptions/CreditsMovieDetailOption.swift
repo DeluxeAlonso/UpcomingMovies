@@ -18,14 +18,8 @@ class CreditsMovieDetailOption: MovieDetailOption {
         return #imageLiteral(resourceName: "Cast")
     }
     
-    var identifier: String {
-        return "MovieCreditsSegue"
-    }
-    
-    func prepare(viewController: inout UIViewController, with viewModel: MovieDetailViewModel) {
-        guard let viewController = viewController as? MovieCreditsViewController else { fatalError() }
-        _ = viewController.view
-        viewController.viewModel = viewModel.buildCreditsViewModel()
+    func prepare(coordinator: MovieDetailCoordinator?) {
+        coordinator?.showMovieCredits()
     }
     
 }
