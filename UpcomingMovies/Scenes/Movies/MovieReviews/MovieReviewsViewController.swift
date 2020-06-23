@@ -24,6 +24,10 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
     
     var loaderView: RadarView!
     
+    deinit {
+        print("MovieReviewsViewController")
+    }
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -74,10 +78,6 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
         }
     }
     
-    private func configureTransitioningDelegate(with view: UIView) {
-        scaleTransitioningDelegate = ScaleTransitioningDelegate(viewToScale: view)
-    }
-    
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
@@ -94,22 +94,6 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
         })
         viewModel?.getMovieReviews()
     }
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifier(for: segue) {
-        case .reviewDetail:
-            guard let navigationController = segue.destination as? UINavigationController,
-                let viewController = navigationController.topViewController as? MovieReviewDetailViewController else {
-                fatalError()
-            }
-            guard let indexPath = sender as? IndexPath else { return }
-            _ = viewController.view
-            navigationController.transitioningDelegate = scaleTransitioningDelegate
-            viewController.viewModel = viewModel?.buildReviewDetailViewModel(at: indexPath.row)
-        }
-    }
 
 }
 
@@ -120,9 +104,9 @@ extension MovieReviewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         // We retrieve the cell which we are going to use for our scale transition
+        guard let viewModel = viewModel else { return }
         guard let selectedCell = tableView.cellForRow(at: indexPath) else { return }
-        configureTransitioningDelegate(with: selectedCell)
-        performSegue(withIdentifier: SegueIdentifier.reviewDetail.rawValue, sender: indexPath)
+        coordinator?.showDetail(for: viewModel.selectedReview(at: indexPath.row), transitionView: selectedCell)
     }
     
 }

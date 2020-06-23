@@ -412,7 +412,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="1LO-1f-yqK" id="ROJ-iX-uKa"/>
-                        <segue destination="aGS-iE-eFW" kind="presentation" identifier="MovieReviewDetailSegue" modalPresentationStyle="fullScreen" id="5i0-n2-sGJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1NG-Sk-iCY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -422,13 +421,13 @@
         <!--Movie Review Detail View Controller-->
         <scene sceneID="ZlC-2w-HdG">
             <objects>
-                <viewController id="sT0-0A-avl" customClass="MovieReviewDetailViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieReviewDetailViewController" id="sT0-0A-avl" customClass="MovieReviewDetailViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3K0-qP-RZM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uh-Sf-xxO">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0TG-Mw-oHB">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
@@ -481,7 +480,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g6B-VJ-URa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5839.1999999999998" y="301.79910044977515"/>
+            <point key="canvasLocation" x="4998" y="302"/>
         </scene>
         <!--Movie Videos View Controller-->
         <scene sceneID="2bO-TR-wtB">
@@ -513,24 +512,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jUf-hX-NAu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4066" y="-526"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Ul7-OU-3Tk">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aGS-iE-eFW" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eot-j2-UoS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="sT0-0A-avl" kind="relationship" relationship="rootViewController" id="2ki-cL-j2G"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sU0-Kc-8KX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4900" y="301.79910044977515"/>
         </scene>
     </scenes>
     <resources>

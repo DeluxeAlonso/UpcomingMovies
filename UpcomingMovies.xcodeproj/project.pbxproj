@@ -52,6 +52,7 @@
 		E2143DB822571EB1003E939F /* ProfileAccountInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2143DB722571EB1003E939F /* ProfileAccountInfoTableViewCell.swift */; };
 		E2143DBA22571EC2003E939F /* ProfileAccountInfoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2143DB922571EC2003E939F /* ProfileAccountInfoCellViewModel.swift */; };
 		E2143DBC22571FAF003E939F /* ProfileAccountInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2143DBB22571FAF003E939F /* ProfileAccountInfoTableViewCell.xib */; };
+		E21AA45424A1B19B00A67337 /* MovieReviewDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21AA45324A1B19B00A67337 /* MovieReviewDetailCoordinator.swift */; };
 		E21E8E2D236E3698006E2DEF /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E8E2C236E3698006E2DEF /* UseCaseProvider.swift */; };
 		E21E8E2F236E3707006E2DEF /* LocalDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E8E2E236E3707006E2DEF /* LocalDataSourceProtocol.swift */; };
 		E21E8E31236E3773006E2DEF /* MovieVisitLocalDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E8E30236E3773006E2DEF /* MovieVisitLocalDataSourceProtocol.swift */; };
@@ -670,6 +671,7 @@
 		E2143DB922571EC2003E939F /* ProfileAccountInfoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAccountInfoCellViewModel.swift; sourceTree = "<group>"; };
 		E2143DBB22571FAF003E939F /* ProfileAccountInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileAccountInfoTableViewCell.xib; sourceTree = "<group>"; };
 		E218ADA922F92E210061570C /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E21AA45324A1B19B00A67337 /* MovieReviewDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewDetailCoordinator.swift; sourceTree = "<group>"; };
 		E21E8E2C236E3698006E2DEF /* UseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
 		E21E8E2E236E3707006E2DEF /* LocalDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSourceProtocol.swift; sourceTree = "<group>"; };
 		E21E8E30236E3773006E2DEF /* MovieVisitLocalDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVisitLocalDataSourceProtocol.swift; sourceTree = "<group>"; };
@@ -1372,6 +1374,16 @@
 			path = Options;
 			sourceTree = "<group>";
 		};
+		E21AA45224A1B17900A67337 /* MovieReviewDetail */ = {
+			isa = PBXGroup;
+			children = (
+				E28D78A024847DED00D86F66 /* MovieReviewDetailViewController.swift */,
+				E28D78A224847E0200D86F66 /* MovieReviewDetailViewModel.swift */,
+				E21AA45324A1B19B00A67337 /* MovieReviewDetailCoordinator.swift */,
+			);
+			path = MovieReviewDetail;
+			sourceTree = "<group>";
+		};
 		E21E8E44236E3EB4006E2DEF /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1523,6 +1535,7 @@
 				E220B1E1220BD5B900A5D054 /* MoviesViewModel.swift */,
 				E2251B112214ECD800EE7A51 /* MovieCredits */,
 				E2638082221281760038AD00 /* MovieReviews */,
+				E21AA45224A1B17900A67337 /* MovieReviewDetail */,
 				E22116AC219156120039F8C9 /* UpcomingMovies */,
 				E26AB92E21F8C09F00D9FEAA /* MovieList */,
 				E222DC1E2192AAA000A2EDF4 /* SearchMovies */,
@@ -2046,8 +2059,6 @@
 			children = (
 				E2638083221281B80038AD00 /* MovieReviewsViewController.swift */,
 				E2638085221281E50038AD00 /* MovieReviewsViewModel.swift */,
-				E28D78A024847DED00D86F66 /* MovieReviewDetailViewController.swift */,
-				E28D78A224847E0200D86F66 /* MovieReviewDetailViewModel.swift */,
 				E2BCD6F624A068CB00FA4A1C /* MovieReviewsCoordinator.swift */,
 			);
 			path = MovieReviews;
@@ -3232,6 +3243,7 @@
 				E2A65E5321FECC2200485B4E /* Utils.swift in Sources */,
 				E223773821EEA2D8000400B7 /* GenreSearchOptionTableViewCell.swift in Sources */,
 				E225469E226AC79C00E9042C /* CustomListDetailViewModel.swift in Sources */,
+				E21AA45424A1B19B00A67337 /* MovieReviewDetailCoordinator.swift in Sources */,
 				E25F5DBD2495E25E00DF791C /* Coordinator.swift in Sources */,
 				E20B7160249C5F8B00E88439 /* SearchMoviesCoordinator.swift in Sources */,
 				E2D4DD7221F018980004B7BF /* RecentlyVisitedMoviesCellViewModel.swift in Sources */,

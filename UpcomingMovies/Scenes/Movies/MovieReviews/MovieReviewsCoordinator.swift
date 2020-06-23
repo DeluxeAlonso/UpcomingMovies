@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UpcomingMoviesDomain
 
 class MovieReviewsCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     
@@ -34,6 +35,21 @@ class MovieReviewsCoordinator: NSObject, Coordinator, UINavigationControllerDele
         navigationController.delegate = self
         navigationController.pushViewController(viewController, animated: true)
     }
+    
+    func showDetail(for review: Review, transitionView: UIView? = nil) {
+        let navigationController = UINavigationController()
+        let coordinator = MovieReviewDetailCoordinator(navigationController: navigationController)
+
+        coordinator.review = review
+        coordinator.presentingViewController = self.navigationController.topViewController
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        coordinator.transitioningDelegate = ScaleTransitioningDelegate(viewToScale: transitionView)
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    // MARK: - UINavigationControllerDelegate
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {

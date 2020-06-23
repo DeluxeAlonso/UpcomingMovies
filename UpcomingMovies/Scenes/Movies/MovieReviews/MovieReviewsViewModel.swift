@@ -47,6 +47,10 @@ final class MovieReviewsViewModel {
         return MovieReviewDetailViewModel(review: review)
     }
     
+    func selectedReview(at index: Int) -> Review {
+        return viewState.value.currentEntities[index]
+    }
+    
     // MARK: - Networking
     
     func getMovieReviews() {
