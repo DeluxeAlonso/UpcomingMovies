@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AccountViewControllerProtocol: SignInViewControllerDelegate, ProfileViewControllerDelegate {
+protocol AccountViewControllerProtocol: UIViewController, SignInViewControllerDelegate, ProfileViewControllerDelegate {
     
     var viewModel: AccountViewModel! { get set }
     
@@ -59,31 +59,21 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     }
     
     private func showSignInView(withAnimatedNavigationBar animated: Bool = false) {
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-        
-        removeChildViewController(&profileViewController)
-        
-        self.signInViewController = accountViewFactory.makeSignInViewController()
-        add(asChildViewController: self.signInViewController)
+        signInViewController = coordinator?.embedSignInViewController(on: self)
+        coordinator?.removeChildViewController(&profileViewController, from: self)
     }
     
     private func showProfileView(withAnimatedNavigationBar animated: Bool = false) {
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        guard let viewModel = viewModel else { return }
+        profileViewController = coordinator?.embedProfileViewController(on: self,
+                                                                        for: viewModel.currentUserAccount(),
+                                                                        and: viewModel.profileOptions())
         
-        removeChildViewController(&signInViewController)
-        
-        profileViewController = accountViewFactory.makeProfileViewController()
-        add(asChildViewController: profileViewController)
-    }
-    
-    private func removeChildViewController<T: UIViewController>(_ viewController: inout T?) {
-        remove(asChildViewController: viewController)
-        viewController = nil
+        coordinator?.removeChildViewController(&signInViewController, from: self)
     }
     
     private func didSignIn() {
         showProfileView(withAnimatedNavigationBar: true)
-        signInViewController?.stopLoading()
     }
     
     private func didSignOut() {

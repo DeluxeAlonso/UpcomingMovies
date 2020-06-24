@@ -72,6 +72,16 @@ final class AccountViewModel {
     
     // MARK: - View model building
     
+    func currentUserAccount() -> User? {
+        return authHandler.currentUser()
+    }
+    
+    func profileOptions() -> ProfileOptions {
+        return ProfileOptions(collectionOptions: [.favorites, .watchlist],
+                              groupOptions: [.customLists],
+                              configurationOptions: [])
+    }
+    
     func buildAuthPermissionViewModel() -> AuthPermissionViewModel? {
         return AuthPermissionViewModel(authPermissionURL: authPermissionURL)
     }

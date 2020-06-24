@@ -30,13 +30,13 @@ public struct ProfileOptions {
 
 }
 
-public protocol ProfileOption {
+public protocol ProfileOptionProtocol {
 
     var title: String? { get }
 
 }
 
-public enum ProfileCollectionOption: ProfileOption {
+public enum ProfileCollectionOption: ProfileOptionProtocol {
 
     case favorites, watchlist
 
@@ -51,7 +51,7 @@ public enum ProfileCollectionOption: ProfileOption {
 
 }
 
-public enum ProfileGroupOption: ProfileOption {
+public enum ProfileGroupOption: ProfileOptionProtocol {
 
     case customLists
 
@@ -64,7 +64,7 @@ public enum ProfileGroupOption: ProfileOption {
 
 }
 
-public enum ProfileConfigurationOption: ProfileOption {
+public enum ProfileConfigurationOption: ProfileOptionProtocol {
 
     case includeAdult
 

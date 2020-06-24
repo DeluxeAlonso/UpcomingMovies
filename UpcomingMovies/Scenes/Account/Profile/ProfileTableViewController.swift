@@ -33,7 +33,7 @@ class ProfileTableViewController: UITableViewController, Storyboarded {
     }
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()

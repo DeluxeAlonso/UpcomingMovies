@@ -24,10 +24,6 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
     
     var loaderView: RadarView!
     
-    deinit {
-        print("MovieReviewsViewController")
-    }
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {

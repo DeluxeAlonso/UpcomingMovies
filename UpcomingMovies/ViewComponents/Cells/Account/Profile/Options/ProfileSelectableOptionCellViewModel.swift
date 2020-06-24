@@ -13,7 +13,7 @@ final class ProfileSelectableOptionCellViewModel {
     
     let title: String?
     
-    init(_ profileCollectionOption: ProfileOption) {
+    init(_ profileCollectionOption: ProfileOptionProtocol) {
         self.title = profileCollectionOption.title
     }
     

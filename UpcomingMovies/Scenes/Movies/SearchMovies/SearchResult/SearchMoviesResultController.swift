@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SearchMoviesResultControllerDelegate: class {
+protocol SearchMoviesResultControllerDelegate: UIViewController {
     
     func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectRecentSearch searchText: String)
     
