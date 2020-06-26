@@ -22,7 +22,6 @@
                     <navigationItem key="navigationItem" title="Account" id="PHb-rS-IvZ"/>
                     <connections>
                         <segue destination="4Wg-PQ-5Ue" kind="presentation" identifier="AuthPermissionSegue" id="WEl-7i-CoI"/>
-                        <segue destination="0Fw-wE-eJ0" kind="show" identifier="CollectionListSegue" id="NK0-Gf-nSd"/>
                         <segue destination="4Qt-BS-1Ob" kind="show" identifier="CustomListsSegue" id="iag-yk-3d5"/>
                     </connections>
                 </viewController>
@@ -33,13 +32,13 @@
         <!--Saved Movies View Controller-->
         <scene sceneID="VFJ-zz-NAQ">
             <objects>
-                <viewController id="0Fw-wE-eJ0" customClass="SavedMoviesViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SavedMoviesViewController" id="0Fw-wE-eJ0" customClass="SavedMoviesViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qah-C1-uMy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2NL-u2-bAS">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ij9-Pn-ZYU">
                                     <size key="itemSize" width="50" height="50"/>

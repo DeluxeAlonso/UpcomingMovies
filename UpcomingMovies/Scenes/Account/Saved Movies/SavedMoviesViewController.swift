@@ -10,26 +10,26 @@ import UIKit
 import CollectionViewSlantedLayout
 import UpcomingMoviesDomain
 
-class SavedMoviesViewController: UIViewController, PlaceholderDisplayable, SegueHandler, Loadable {
+class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, SegueHandler, Loadable {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    static var storyboardName = "Account"
     
     private var dataSource: SimpleCollectionViewDataSource<SavedMovieCellViewModel>!
     private var prefetchDataSource: CollectionViewDataSourcePrefetching!
     
     var loaderView: RadarView!
     
-    var viewModel: SavedMoviesViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    var viewModel: SavedMoviesViewModel?
+    weak var coordinator: SavedMoviesCoordinator?
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

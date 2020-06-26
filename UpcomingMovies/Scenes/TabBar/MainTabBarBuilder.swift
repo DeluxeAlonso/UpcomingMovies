@@ -32,14 +32,6 @@ class MainTabBarBuilder {
         ]
     }
     
-    class func createNavigationController(_ viewController: UIViewController, title: String, image: UIImage) -> UINavigationController {
-        let navController = UINavigationController(rootViewController: viewController)
-        navController.tabBarItem.title = title
-        navController.tabBarItem.image = image
-        
-        return navController
-    }
-    
     class func createNavigationController(title: String, image: UIImage) -> UINavigationController {
         let navController = UINavigationController()
         navController.tabBarItem.title = title

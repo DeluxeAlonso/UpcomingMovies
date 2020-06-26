@@ -113,11 +113,6 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
             _ = viewController.view
             viewController.delegate = self
             viewController.viewModel = viewModel.buildAuthPermissionViewModel()
-        case .collectionList:
-            guard let viewController = segue.destination as? SavedMoviesViewController else { fatalError() }
-            guard let viewModel = sender as? SavedMoviesViewModel else { return }
-            _ = viewController.view
-            viewController.viewModel = viewModel
         case.customLists:
             guard let viewController = segue.destination as? CustomListsViewController else { fatalError() }
             guard let viewModel = sender as? CustomListsViewModel else { return }
@@ -144,9 +139,7 @@ extension AccountViewController {
 extension AccountViewController {
     
     func profileViewController(didTapCollection collection: ProfileCollectionOption) {
-        let segueIdentifier = SegueIdentifier.collectionList.rawValue
-        performSegue(withIdentifier: segueIdentifier,
-                     sender: viewModel.buildCollectionListViewModel(collection))
+        coordinator?.showSavedMovies(for: collection)
     }
     
     func profileViewController(didTapGroup group: ProfileGroupOption) {
@@ -178,7 +171,6 @@ extension AccountViewController {
     
     enum SegueIdentifier: String {
         case authPermission = "AuthPermissionSegue"
-        case collectionList = "CollectionListSegue"
         case customLists = "CustomListsSegue"
     }
     

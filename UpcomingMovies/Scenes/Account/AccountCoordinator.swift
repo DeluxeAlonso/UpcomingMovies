@@ -68,4 +68,14 @@ class AccountCoordinator: Coordinator {
         viewController = nil
     }
     
+    func showSavedMovies(for collectionOption: ProfileCollectionOption) {
+        let coordinator = SavedMoviesCoordinator(navigationController: navigationController)
+        
+        coordinator.collectionOption = collectionOption
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
 }
