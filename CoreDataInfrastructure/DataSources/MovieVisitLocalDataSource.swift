@@ -18,7 +18,7 @@ final class MovieVisitLocalDataSource: MovieVisitLocalDataSourceProtocol {
     
     init(store: PersistenceStore<CDMovieVisit>) {
         self.store = store
-        self.store.configureResultsContoller(sortDescriptors: CDMovieVisit.defaultSortDescriptors)
+        self.store.configureResultsContoller(limit: 10, sortDescriptors: CDMovieVisit.defaultSortDescriptors)
         self.store.delegate = self
     }
     
