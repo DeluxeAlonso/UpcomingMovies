@@ -39,6 +39,10 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     weak var coordinator: MovieDetailCoordinator?
     
     // MARK: - Lifecycle
+    
+    deinit {
+        print("MovieDetailViewController")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

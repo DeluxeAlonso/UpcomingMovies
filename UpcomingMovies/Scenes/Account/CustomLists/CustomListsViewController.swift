@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, SegueHandler, Loadable {
+class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -32,12 +32,10 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         let textAttributes: [NSAttributedString.Key: UIColor]
-        if #available(iOS 13.0, *) {
-            textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
-        } else {
-            textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        }
+        textAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.Label.defaultColor]
+        
         navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
@@ -103,18 +101,6 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
         })
         viewModel?.getCustomLists()
     }
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifier(for: segue) {
-        case .customListDetail:
-            guard let viewController = segue.destination as? CustomListDetailViewController else { fatalError() }
-            guard let indexPath = sender as? IndexPath else { return }
-            _ = viewController.view
-            viewController.viewModel = viewModel?.buildDetailViewModel(atIndex: indexPath.row)
-        }
-    }
 
 }
 
@@ -124,18 +110,8 @@ extension CustomListsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: SegueIdentifier.customListDetail.rawValue,
-                     sender: indexPath)
-    }
-    
-}
-
-// MARK: - Segue Identifiers
-
-extension CustomListsViewController {
-    
-    enum SegueIdentifier: String {
-        case customListDetail = "CustomListDetailSegue"
+        guard let viewModel = viewModel else { return }
+        coordinator?.showDetail(for: viewModel.list(at: indexPath.row))
     }
     
 }

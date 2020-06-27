@@ -10,7 +10,7 @@ import UIKit
 import CollectionViewSlantedLayout
 import UpcomingMoviesDomain
 
-class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, SegueHandler, Loadable {
+class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -128,19 +128,6 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
         viewModel?.getCollectionList()
     }
     
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        navigationController?.delegate = nil
-        switch segueIdentifier(for: segue) {
-        case .movieDetail:
-            guard let viewController = segue.destination as? MovieDetailViewController,
-                let index = sender as? Int else { fatalError() }
-            _ = viewController.view
-            viewController.viewModel = viewModel?.buildDetailViewModel(atIndex: index)
-        }
-    }
-    
 }
 
 // MARK: - UICollectionViewDelegate
@@ -148,18 +135,8 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
 extension SavedMoviesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue,
-                     sender: indexPath.row)
-    }
-    
-}
-
-// MARK: - Segue Identifiers
-
-extension SavedMoviesViewController {
-    
-    enum SegueIdentifier: String {
-        case movieDetail = "MovieDetailSegue"
+        guard let viewModel = viewModel else { return }
+        coordinator?.showMovieDetail(for: viewModel.movie(at: indexPath.row))
     }
     
 }

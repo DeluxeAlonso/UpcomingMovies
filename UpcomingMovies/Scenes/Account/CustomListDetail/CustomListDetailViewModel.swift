@@ -64,9 +64,8 @@ final class CustomListDetailViewModel {
         return CustomListDetailSectionViewModel(movieCount: movieCount, rating: rating, runtime: runtime)
     }
     
-    func buildDetailViewModel(at index: Int) -> MovieDetailViewModel? {
-        guard index < movies.count else { return nil }
-        return MovieDetailViewModel(movies[index], useCaseProvider: useCaseProvider)
+    func movie(at index: Int) -> Movie {
+        return movies[index]
     }
     
     // MARK: - Networking

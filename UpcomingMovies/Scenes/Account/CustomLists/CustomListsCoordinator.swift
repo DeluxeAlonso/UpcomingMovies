@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UpcomingMoviesDomain
 
 class CustomListsCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
@@ -29,6 +30,16 @@ class CustomListsCoordinator: Coordinator {
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func showDetail(for customList: List) {
+        let coordinator = CustomListDetailCoordinator(navigationController: navigationController)
+        
+        coordinator.customList = customList
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
     }
     
 }

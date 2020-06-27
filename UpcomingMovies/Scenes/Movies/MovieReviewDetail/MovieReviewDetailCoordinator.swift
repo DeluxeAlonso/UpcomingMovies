@@ -33,6 +33,7 @@ final class MovieReviewDetailCoordinator: Coordinator {
         navigationController.pushViewController(viewController, animated: false)
         navigationController.modalPresentationStyle = .fullScreen
         navigationController.transitioningDelegate = transitioningDelegate
+        
         presentingViewController.present(navigationController, animated: true, completion: nil)
     }
     
