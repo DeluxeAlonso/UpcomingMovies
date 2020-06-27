@@ -20,9 +20,6 @@
                         <viewLayoutGuide key="safeArea" id="gnK-bP-C0C"/>
                     </view>
                     <navigationItem key="navigationItem" title="Account" id="PHb-rS-IvZ"/>
-                    <connections>
-                        <segue destination="4Wg-PQ-5Ue" kind="presentation" identifier="AuthPermissionSegue" id="WEl-7i-CoI"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GrE-o3-lT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -166,13 +163,13 @@
         <!--Auth Permission View Controller-->
         <scene sceneID="qHV-bc-VVu">
             <objects>
-                <viewController id="gLm-ei-Jyy" customClass="AuthPermissionViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthPermissionViewController" id="gLm-ei-Jyy" customClass="AuthPermissionViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ka7-4u-VNh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPL-PY-RdK">
-                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -180,7 +177,7 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmq-Bw-6Mp">
-                                <rect key="frame" x="0.0" y="759" width="414" height="49"/>
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
                                     <barButtonItem image="Back" id="Q2P-q1-WON" userLabel="Back Bar Button Item">
                                         <connections>
@@ -225,24 +222,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKD-KS-sjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2230" y="1698"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="5gv-0b-L87">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4Wg-PQ-5Ue" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LbW-2k-X6E">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="gLm-ei-Jyy" kind="relationship" relationship="rootViewController" id="HYC-s7-hpk"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lik-Dv-354" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1325.5999999999999" y="1697.9010494752624"/>
         </scene>
         <!--Profile Table View Controller-->
         <scene sceneID="eWF-S1-xlP">

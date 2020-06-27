@@ -8,22 +8,17 @@
 
 import UIKit
 
-protocol AccountViewControllerProtocol: UIViewController, SignInViewControllerDelegate, ProfileViewControllerDelegate {
-    
-    var viewModel: AccountViewModel! { get set }
-    
-}
+protocol AccountViewControllerProtocol: UIViewController, SignInViewControllerDelegate, ProfileViewControllerDelegate {}
 
-class AccountViewController: UIViewController, AccountViewControllerProtocol, Storyboarded, SegueHandler {
+class AccountViewController: UIViewController, AccountViewControllerProtocol, Storyboarded {
     
-    private var accountViewFactory: AccountViewFactory!
     private var signInViewController: SignInViewController?
     private var profileViewController: ProfileTableViewController?
     
+    static var storyboardName: String = "Account"
+    
     var viewModel: AccountViewModel!
     weak var coordinator: AccountCoordinator?
-    
-    static var storyboardName: String = "Account"
     
     // MARK: - Lifecycle
 
@@ -44,8 +39,6 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     
     private func setupUI() {
         title = Constants.Title
-        accountViewFactory = AccountViewFactory(self)
-        
         setupContainerView()
         setupNavigationBar()
     }
@@ -85,7 +78,9 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     private func setupBindables() {
         viewModel.showAuthPermission = { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.performSegue(withIdentifier: .authPermission)
+            let authPermissionURL = strongSelf.viewModel.authPermissionURL
+            strongSelf.coordinator?.showAuthPermission(for: authPermissionURL,
+                                                       and: strongSelf)
         }
         viewModel.didSignIn = { [weak self] in
             guard let strongSelf = self else { return }
@@ -98,21 +93,6 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
             DispatchQueue.main.async {
                 strongSelf.signInViewController?.stopLoading()
             }
-        }
-    }
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifier(for: segue) {
-        case .authPermission:
-            guard let navigationController = segue.destination as? UINavigationController,
-                let viewController = navigationController.topViewController as? AuthPermissionViewController else {
-                    fatalError()
-            }
-            _ = viewController.view
-            viewController.delegate = self
-            viewController.viewModel = viewModel.buildAuthPermissionViewModel()
         }
     }
     
@@ -155,16 +135,6 @@ extension AccountViewController: AuthPermissionViewControllerDelegate {
     func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
                                       didSignedIn signedIn: Bool) {
         if signedIn { viewModel.getAccessToken() }
-    }
-    
-}
-
-// MARK: - Segue Identifiers
-
-extension AccountViewController {
-    
-    enum SegueIdentifier: String {
-        case authPermission = "AuthPermissionSegue"
     }
     
 }

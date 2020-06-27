@@ -86,11 +86,6 @@ final class SearchMoviesResultViewModel {
     func searchedMovie(at index: Int) -> Movie {
         return movies[index]
     }
-    
-    func buildDetailViewModel(at index: Int) -> MovieDetailViewModel {
-        return MovieDetailViewModel(movies[index], useCaseProvider: useCaseProvider)
-    }
-
 }
 
 // MARK: - View states
