@@ -48,20 +48,18 @@ class SearchMoviesCoordinator: Coordinator {
     }
     
     @discardableResult
-    func embedSearchController(with searchResultDelegate: SearchMoviesResultControllerDelegate?) -> DefaultSearchController {
-        guard let viewController = navigationController.topViewController else { fatalError() }
-        
+    func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController {
         let useCaseProvider = InjectionFactory.useCaseProvider()
         let searchResultViewModel = SearchMoviesResultViewModel(useCaseProvider: useCaseProvider)
         let searchResultController = SearchMoviesResultController(viewModel: searchResultViewModel)
         
         let searchController = DefaultSearchController(searchResultsController: searchResultController)
         
-        searchResultController.delegate = searchResultDelegate
+        searchResultController.delegate = parentViewController
         searchResultController.coordinator = self
         
-        viewController.navigationItem.searchController = searchController
-        viewController.definesPresentationContext = true
+        parentViewController.navigationItem.searchController = searchController
+        parentViewController.definesPresentationContext = true
         
         return searchController
     }

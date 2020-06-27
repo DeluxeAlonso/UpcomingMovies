@@ -18,7 +18,7 @@ final class AccountViewModel {
     
     private var authHandler: AuthenticationHandler
     
-    private var authPermissionURL: URL?
+    private(set) var authPermissionURL: URL?
     
     var showAuthPermission: (() -> Void)?
     var didSignIn: (() -> Void)?
@@ -72,26 +72,14 @@ final class AccountViewModel {
     
     // MARK: - View model building
     
-    func buildAuthPermissionViewModel() -> AuthPermissionViewModel? {
-        return AuthPermissionViewModel(authPermissionURL: authPermissionURL)
+    func currentUserAccount() -> User? {
+        return authHandler.currentUser()
     }
     
-    func buildProfileViewModel() -> ProfileViewModel {
-        let currentUser = authHandler.currentUser()
-        let options = ProfileOptions(collectionOptions: [.favorites, .watchlist],
-                                     groupOptions: [.customLists],
-                                     configurationOptions: [])
-        return ProfileViewModel(useCaseProvider: useCaseProvider, userAccount: currentUser, options: options)
+    func profileOptions() -> ProfileOptions {
+        return ProfileOptions(collectionOptions: [.favorites, .watchlist],
+                              groupOptions: [.customLists],
+                              configurationOptions: [])
     }
 
-    func buildCollectionListViewModel(_ option: ProfileCollectionOption) -> SavedMoviesViewModel {
-        return SavedMoviesViewModel(useCaseProvider: useCaseProvider,
-                                       collectionOption: option)
-    }
-    
-    func buildCrearedListsViewModel(_ group: ProfileGroupOption) -> CustomListsViewModel {
-        return CustomListsViewModel(useCaseProvider: useCaseProvider,
-                                            groupOption: group)
-    }
-    
 }

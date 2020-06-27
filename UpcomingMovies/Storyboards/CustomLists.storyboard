@@ -33,7 +33,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="Xbc-tF-QPY" id="t9b-pu-dWW"/>
-                        <segue destination="Vbt-3z-z1P" kind="show" identifier="CustomListDetailSegue" id="reo-a4-RXM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EhR-dM-8Kf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -43,7 +42,7 @@
         <!--Custom List Detail View Controller-->
         <scene sceneID="AXA-hr-po3">
             <objects>
-                <viewController id="Vbt-3z-z1P" customClass="CustomListDetailViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CustomListDetailViewController" id="Vbt-3z-z1P" customClass="CustomListDetailViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bH0-Xx-Nm0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -75,20 +74,11 @@
                     <connections>
                         <outlet property="navigationBarPlaceholderView" destination="bmA-K2-KqE" id="OqD-us-Ks8"/>
                         <outlet property="tableView" destination="E5x-HP-pCl" id="6Gn-A6-Mb0"/>
-                        <segue destination="S81-bR-NK0" kind="show" identifier="MovieDetailSegue" id="dZ8-kf-dfm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xEG-cW-oEr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1387" y="1698"/>
-        </scene>
-        <!--MovieDetailViewController-->
-        <scene sceneID="YXy-1z-aig">
-            <objects>
-                <viewControllerPlaceholder storyboardName="MovieDetail" referencedIdentifier="MovieDetailViewController" id="S81-bR-NK0" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="C17-Pu-uqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2122" y="1698"/>
         </scene>
     </scenes>
 </document>

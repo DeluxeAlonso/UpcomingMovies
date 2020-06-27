@@ -8,22 +8,17 @@
 
 import UIKit
 
-protocol AccountViewControllerProtocol: SignInViewControllerDelegate, ProfileViewControllerDelegate {
-    
-    var viewModel: AccountViewModel! { get set }
-    
-}
+protocol AccountViewControllerProtocol: UIViewController, SignInViewControllerDelegate, ProfileViewControllerDelegate {}
 
-class AccountViewController: UIViewController, AccountViewControllerProtocol, Storyboarded, SegueHandler {
+class AccountViewController: UIViewController, AccountViewControllerProtocol, Storyboarded {
     
-    private var accountViewFactory: AccountViewFactory!
     private var signInViewController: SignInViewController?
     private var profileViewController: ProfileTableViewController?
     
+    static var storyboardName: String = "Account"
+    
     var viewModel: AccountViewModel!
     weak var coordinator: AccountCoordinator?
-    
-    static var storyboardName: String = "Account"
     
     // MARK: - Lifecycle
 
@@ -44,8 +39,6 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     
     private func setupUI() {
         title = Constants.Title
-        accountViewFactory = AccountViewFactory(self)
-        
         setupContainerView()
         setupNavigationBar()
     }
@@ -59,31 +52,21 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     }
     
     private func showSignInView(withAnimatedNavigationBar animated: Bool = false) {
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-        
-        removeChildViewController(&profileViewController)
-        
-        self.signInViewController = accountViewFactory.makeSignInViewController()
-        add(asChildViewController: self.signInViewController)
+        signInViewController = coordinator?.embedSignInViewController(on: self)
+        coordinator?.removeChildViewController(&profileViewController, from: self)
     }
     
     private func showProfileView(withAnimatedNavigationBar animated: Bool = false) {
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        guard let viewModel = viewModel else { return }
+        profileViewController = coordinator?.embedProfileViewController(on: self,
+                                                                        for: viewModel.currentUserAccount(),
+                                                                        and: viewModel.profileOptions())
         
-        removeChildViewController(&signInViewController)
-        
-        profileViewController = accountViewFactory.makeProfileViewController()
-        add(asChildViewController: profileViewController)
-    }
-    
-    private func removeChildViewController<T: UIViewController>(_ viewController: inout T?) {
-        remove(asChildViewController: viewController)
-        viewController = nil
+        coordinator?.removeChildViewController(&signInViewController, from: self)
     }
     
     private func didSignIn() {
         showProfileView(withAnimatedNavigationBar: true)
-        signInViewController?.stopLoading()
     }
     
     private func didSignOut() {
@@ -95,7 +78,9 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     private func setupBindables() {
         viewModel.showAuthPermission = { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.performSegue(withIdentifier: .authPermission)
+            let authPermissionURL = strongSelf.viewModel.authPermissionURL
+            strongSelf.coordinator?.showAuthPermission(for: authPermissionURL,
+                                                       and: strongSelf)
         }
         viewModel.didSignIn = { [weak self] in
             guard let strongSelf = self else { return }
@@ -108,31 +93,6 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
             DispatchQueue.main.async {
                 strongSelf.signInViewController?.stopLoading()
             }
-        }
-    }
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifier(for: segue) {
-        case .authPermission:
-            guard let navigationController = segue.destination as? UINavigationController,
-                let viewController = navigationController.topViewController as? AuthPermissionViewController else {
-                    fatalError()
-            }
-            _ = viewController.view
-            viewController.delegate = self
-            viewController.viewModel = viewModel.buildAuthPermissionViewModel()
-        case .collectionList:
-            guard let viewController = segue.destination as? SavedMoviesViewController else { fatalError() }
-            guard let viewModel = sender as? SavedMoviesViewModel else { return }
-            _ = viewController.view
-            viewController.viewModel = viewModel
-        case.customLists:
-            guard let viewController = segue.destination as? CustomListsViewController else { fatalError() }
-            guard let viewModel = sender as? CustomListsViewModel else { return }
-            _ = viewController.view
-            viewController.viewModel = viewModel
         }
     }
     
@@ -154,14 +114,11 @@ extension AccountViewController {
 extension AccountViewController {
     
     func profileViewController(didTapCollection collection: ProfileCollectionOption) {
-        let segueIdentifier = SegueIdentifier.collectionList.rawValue
-        performSegue(withIdentifier: segueIdentifier,
-                     sender: viewModel.buildCollectionListViewModel(collection))
+        coordinator?.showSavedMovies(for: collection)
     }
     
     func profileViewController(didTapGroup group: ProfileGroupOption) {
-        performSegue(withIdentifier: SegueIdentifier.customLists.rawValue,
-                     sender: viewModel.buildCrearedListsViewModel(group))
+        coordinator?.showCustomLists(for: group)
     }
     
     func profileViewController(didTapSignOutButton tapped: Bool) {
@@ -178,18 +135,6 @@ extension AccountViewController: AuthPermissionViewControllerDelegate {
     func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
                                       didSignedIn signedIn: Bool) {
         if signedIn { viewModel.getAccessToken() }
-    }
-    
-}
-
-// MARK: - Segue Identifiers
-
-extension AccountViewController {
-    
-    enum SegueIdentifier: String {
-        case authPermission = "AuthPermissionSegue"
-        case collectionList = "CollectionListSegue"
-        case customLists = "CustomListsSegue"
     }
     
 }

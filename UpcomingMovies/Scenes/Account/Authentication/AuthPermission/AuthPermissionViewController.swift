@@ -16,29 +16,31 @@ protocol AuthPermissionViewControllerDelegate: class {
     
 }
 
-class AuthPermissionViewController: UIViewController {
+class AuthPermissionViewController: UIViewController, Storyboarded {
     
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var forwardButton: UIBarButtonItem!
     @IBOutlet weak var reloadButton: UIBarButtonItem!
     
+    static var storyboardName = "Account"
+    
     private var webViewNavigationDelegate: AuthPermissionWebViewNavigationDelegate!
     
+    var viewModel: AuthPermissionViewModel?
+    weak var coordinator: AuthPermissionCoordinator?
     weak var delegate: AuthPermissionViewControllerDelegate?
-    
-    var viewModel: AuthPermissionViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
 
     // MARK: - Lifecycle
     
+    deinit {
+        print("AuthPermissionViewController")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.presentationController?.delegate = self
         setupUI()
+        setupBindables()
     }
     
     // MARK: - Private
@@ -49,6 +51,8 @@ class AuthPermissionViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
+        navigationController?.presentationController?.delegate = self
+        
         let closeBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop,
                                                  target: self, action: #selector(closeBarButtonAction))
         navigationItem.leftBarButtonItem = closeBarButtonItem
@@ -82,7 +86,7 @@ class AuthPermissionViewController: UIViewController {
     }
     
     private func dismiss() {
-        dismiss(animated: true, completion: {
+        coordinator?.dismiss(completion: {
             self.delegate?.authPermissionViewController(self, didSignedIn: true)
         })
     }
@@ -119,6 +123,7 @@ class AuthPermissionViewController: UIViewController {
 extension AuthPermissionViewController: UIAdaptivePresentationControllerDelegate {
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        coordinator?.didDismiss()
         delegate?.authPermissionViewController(self, didSignedIn: true)
     }
     

@@ -1,47 +1,50 @@
 //
-//  MovieReviewDetailCoordinator.swift
+//  AuthPermissionCoordinator.swift
 //  UpcomingMovies
 //
-//  Created by Alonso on 6/22/20.
+//  Created by Alonso on 6/27/20.
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
 import UIKit
-import UpcomingMoviesDomain
 
-final class MovieReviewDetailCoordinator: Coordinator {
+class AuthPermissionCoordinator: Coordinator {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
     
-    var review: Review!
+    var authPermissionURL: URL?
     var presentingViewController: UIViewController!
-    var transitioningDelegate: UIViewControllerTransitioningDelegate?
+    var authPermissionDelegate: AuthPermissionViewControllerDelegate?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
     func start() {
-        let viewController = MovieReviewDetailViewController.instantiate()
-        let viewModel = MovieReviewDetailViewModel(review: review)
+        let viewController = AuthPermissionViewController.instantiate()
+        let viewModel = AuthPermissionViewModel(authPermissionURL: authPermissionURL)
         
         viewController.viewModel = viewModel
+        viewController.delegate = authPermissionDelegate
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: false)
-        navigationController.modalPresentationStyle = .fullScreen
-        navigationController.transitioningDelegate = transitioningDelegate
         
         presentingViewController.present(navigationController, animated: true, completion: nil)
     }
     
-    func dismiss() {
+    func dismiss(completion: (() -> Void)? = nil) {
         let presentedViewController = navigationController.topViewController
         presentedViewController?.dismiss(animated: true) { [weak self] in
+            completion?()
             self?.parentCoordinator?.childDidFinish()
         }
+    }
+    
+    func didDismiss() {
+        parentCoordinator?.childDidFinish()
     }
     
 }

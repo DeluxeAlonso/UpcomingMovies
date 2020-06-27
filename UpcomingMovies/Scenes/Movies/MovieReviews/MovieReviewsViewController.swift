@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable, SegueHandler {
+class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,10 +23,6 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
     private var scaleTransitioningDelegate: ScaleTransitioningDelegate!
     
     var loaderView: RadarView!
-    
-    deinit {
-        print("MovieReviewsViewController")
-    }
     
     // MARK: - Lifecycle
     
@@ -107,16 +103,6 @@ extension MovieReviewsViewController: UITableViewDelegate {
         guard let viewModel = viewModel else { return }
         guard let selectedCell = tableView.cellForRow(at: indexPath) else { return }
         coordinator?.showDetail(for: viewModel.selectedReview(at: indexPath.row), transitionView: selectedCell)
-    }
-    
-}
-
-// MARK: - Segue Identifiers
-
-extension MovieReviewsViewController {
-    
-    enum SegueIdentifier: String {
-        case reviewDetail = "MovieReviewDetailSegue"
     }
     
 }

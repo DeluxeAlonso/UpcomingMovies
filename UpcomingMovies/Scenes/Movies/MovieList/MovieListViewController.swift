@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class MovieListViewController: UIViewController, Storyboarded, PlaceholderDisplayable, SegueHandler, Loadable {
+class MovieListViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -123,16 +123,6 @@ extension MovieListViewController: UITableViewDelegate {
             displayedCellsIndexPaths.insert(indexPath)
             TableViewCellAnimator.fadeAnimate(cell: cell)
         }
-    }
-    
-}
-
-// MARK: - Segue Identifiers
-
-extension MovieListViewController {
-    
-    enum SegueIdentifier: String {
-        case movieDetail = "MovieDetailSegue"
     }
     
 }

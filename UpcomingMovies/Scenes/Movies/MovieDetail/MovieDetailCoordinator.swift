@@ -30,9 +30,8 @@ class MovieDetailCoordinator: Coordinator {
         let viewController = MovieDetailViewController.instantiate()
         
         let useCaseProvider = InjectionFactory.useCaseProvider()
-        
-        viewController.coordinator = self
         viewController.viewModel = viewModel(for: movieInfo, and: useCaseProvider)
+        viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
     }

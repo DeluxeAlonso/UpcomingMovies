@@ -8,10 +8,12 @@
 
 import UIKit
 
-class CustomListDetailViewController: UIViewController, SegueHandler {
+class CustomListDetailViewController: UIViewController, Storyboarded {
     
     @IBOutlet weak var navigationBarPlaceholderView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    
+    static var storyboardName = "CustomLists"
     
     private var headerView: CustomListDetailHeaderView!
     
@@ -23,17 +25,15 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
     
     private var isNavigationBarConfigured: Bool = false
     
-    var viewModel: CustomListDetailViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    var viewModel: CustomListDetailViewModel?
+    weak var coordinator: CustomListDetailCoordinator?
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -158,18 +158,6 @@ class CustomListDetailViewController: UIViewController, SegueHandler {
         })
         viewModel?.getListMovies()
     }
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifier(for: segue) {
-        case .movieDetail:
-            guard let viewController = segue.destination as? MovieDetailViewController else { fatalError() }
-            guard let indexPath = sender as? IndexPath else { return }
-            _ = viewController.view
-            viewController.viewModel = viewModel?.buildDetailViewModel(at: indexPath.row)
-        }
-    }
 
 }
 
@@ -179,8 +167,8 @@ extension CustomListDetailViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: SegueIdentifier.movieDetail.rawValue,
-                     sender: indexPath)
+        guard let viewModel = viewModel else { return }
+        coordinator?.showMovieDetail(for: viewModel.movie(at: indexPath.row))
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -235,16 +223,6 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
         configureNavigationBar(for: tableView, and: tableViewContentOffsetY, forceUpdate: forceUpdate)
         
         tableViewContentOffsetY = scrollView.contentOffset.y
-    }
-    
-}
-
-// MARK: - Segue Identifiers
-
-extension CustomListDetailViewController {
-    
-    enum SegueIdentifier: String {
-        case movieDetail = "MovieDetailSegue"
     }
     
 }

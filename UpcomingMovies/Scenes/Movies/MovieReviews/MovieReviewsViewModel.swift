@@ -42,11 +42,6 @@ final class MovieReviewsViewModel {
     
     // MARK: - Public
     
-    func buildReviewDetailViewModel(at index: Int) -> MovieReviewDetailViewModel {
-        let review = viewState.value.currentEntities[index]
-        return MovieReviewDetailViewModel(review: review)
-    }
-    
     func selectedReview(at index: Int) -> Review {
         return viewState.value.currentEntities[index]
     }

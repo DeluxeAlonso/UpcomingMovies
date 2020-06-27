@@ -50,7 +50,7 @@ class SearchMoviesViewController: UIViewController, Storyboarded {
     private func setupSearchController() {
         guard let coordinator = coordinator else { return }
         
-        searchController = coordinator.embedSearchController(with: self)
+        searchController = coordinator.embedSearchController(on: self)
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
 

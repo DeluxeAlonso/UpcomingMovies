@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UpcomingMoviesDomain
 
 class AccountCoordinator: Coordinator {
     
@@ -28,6 +29,77 @@ class AccountCoordinator: Coordinator {
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    @discardableResult
+    func embedSignInViewController(on parentViewController: AccountViewControllerProtocol) -> SignInViewController {
+        navigationController.setNavigationBarHidden(true, animated: true)
+        
+        let viewController = SignInViewController.instantiate()
+        viewController.delegate = parentViewController
+        
+        parentViewController.add(asChildViewController: viewController)
+        
+        return viewController
+    }
+    
+    @discardableResult
+    func embedProfileViewController(on parentViewController: AccountViewControllerProtocol,
+                                    for user: User?,
+                                    and profileOptions: ProfileOptions) -> ProfileTableViewController {
+        navigationController.setNavigationBarHidden(false, animated: true)
+        
+        let viewController = ProfileTableViewController.instantiate()
+        let useCaseProvider = InjectionFactory.useCaseProvider()
+        let viewModel = ProfileViewModel(useCaseProvider: useCaseProvider,
+                                         userAccount: user,
+                                         options: profileOptions)
+        viewController.viewModel = viewModel
+        viewController.delegate = parentViewController
+        
+        parentViewController.add(asChildViewController: viewController)
+        
+        return viewController
+    }
+    
+    func removeChildViewController<T: UIViewController>(_ viewController: inout T?,
+                                                        from parentViewController: UIViewController) {
+        parentViewController.remove(asChildViewController: viewController)
+        viewController = nil
+    }
+    
+    func showSavedMovies(for collectionOption: ProfileCollectionOption) {
+        let coordinator = SavedMoviesCoordinator(navigationController: navigationController)
+        
+        coordinator.collectionOption = collectionOption
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    func showCustomLists(for groupOption: ProfileGroupOption) {
+        let coordinator = CustomListsCoordinator(navigationController: navigationController)
+        
+        coordinator.groupOption = groupOption
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    func showAuthPermission(for authPermissionURL: URL?,
+                            and authPermissionDelegate: AuthPermissionViewControllerDelegate) {
+        let navigationController = UINavigationController()
+        let coordinator = AuthPermissionCoordinator(navigationController: navigationController)
+
+        coordinator.authPermissionURL = authPermissionURL
+        coordinator.authPermissionDelegate = authPermissionDelegate
+        coordinator.presentingViewController = self.navigationController.topViewController
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
     }
     
 }

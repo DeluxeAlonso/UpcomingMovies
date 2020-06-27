@@ -64,7 +64,7 @@ struct ColorPalette {
             if #available(iOS 13.0, *) {
                 return UIColor.label
             } else {
-                return UIColor(white: 40 / 255, alpha: 1)
+                return ColorPalette.blackColor
             }
         }
     }

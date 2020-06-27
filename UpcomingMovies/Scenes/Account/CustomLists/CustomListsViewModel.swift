@@ -45,10 +45,8 @@ final class CustomListsViewModel {
     
     // MARK: - Public
     
-    func buildDetailViewModel(atIndex index: Int) -> CustomListDetailViewModel? {
-        guard index < lists.count else { return nil }
-        return CustomListDetailViewModel(lists[index],
-                                         useCaseProvider: useCaseProvider)
+    func list(at index: Int) -> List {
+        return lists[index]
     }
     
     // MARK: - Networking

@@ -45,12 +45,8 @@ final class SavedMoviesViewModel {
     
     // MARK: - Public
     
-    func buildDetailViewModel(atIndex index: Int) -> MovieDetailViewModel? {
-        guard index < movies.count else { return nil }
-        let movie = movies[index]
-        return MovieDetailViewModel(id: movie.id,
-                                    title: movie.title,
-                                    useCaseProvider: useCaseProvider)
+    func movie(at index: Int) -> Movie {
+        return movies[index]
     }
     
     // MARK: - Networking
