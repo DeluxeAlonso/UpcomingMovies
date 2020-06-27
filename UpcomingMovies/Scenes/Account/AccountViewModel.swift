@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class AccountViewModel {
+final class AccountViewModel: AccountViewModelProtocol {
     
     private let useCaseProvider: UseCaseProviderProtocol
     private let userUseCase: UserUseCaseProtocol

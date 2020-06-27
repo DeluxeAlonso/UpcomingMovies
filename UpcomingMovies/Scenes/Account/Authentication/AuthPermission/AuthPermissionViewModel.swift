@@ -8,12 +8,17 @@
 
 import Foundation
 
-final class AuthPermissionViewModel {
+final class AuthPermissionViewModel: AuthPermissionViewModelProtocol {
 
-    var authPermissionURL: URL?
+    private var authPermissionURL: URL?
     
     init(authPermissionURL: URL?) {
         self.authPermissionURL = authPermissionURL
+    }
+    
+    var authPermissionURLRequest: URLRequest? {
+        guard let authPermissionURL = authPermissionURL else { return nil }
+        return URLRequest(url: authPermissionURL)
     }
     
 }
