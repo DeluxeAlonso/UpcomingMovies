@@ -9,25 +9,25 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class CustomListsViewController: UIViewController, PlaceholderDisplayable, SegueHandler, Loadable {
+class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, SegueHandler, Loadable {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    static var storyboardName = "CustomLists"
     
     private var dataSource: SimpleTableViewDataSource<CustomListCellViewModel>!
     
     var loaderView: RadarView!
     
-    var viewModel: CustomListsViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    var viewModel: CustomListsViewModel?
+    weak var coordinator: CustomListsCoordinator?
     
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
     
     override func viewWillAppear(_ animated: Bool) {

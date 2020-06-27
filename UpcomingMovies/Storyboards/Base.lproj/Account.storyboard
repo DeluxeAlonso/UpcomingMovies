@@ -22,7 +22,6 @@
                     <navigationItem key="navigationItem" title="Account" id="PHb-rS-IvZ"/>
                     <connections>
                         <segue destination="4Wg-PQ-5Ue" kind="presentation" identifier="AuthPermissionSegue" id="WEl-7i-CoI"/>
-                        <segue destination="4Qt-BS-1Ob" kind="show" identifier="CustomListsSegue" id="iag-yk-3d5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GrE-o3-lT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -262,14 +261,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jtI-KP-cQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2230" y="81"/>
-        </scene>
-        <!--CustomListsViewController-->
-        <scene sceneID="uGh-Wd-Pgo">
-            <objects>
-                <viewControllerPlaceholder storyboardName="CustomLists" referencedIdentifier="CustomListsViewController" id="4Qt-BS-1Ob" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B2W-Vc-zd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="451" y="1509"/>
         </scene>
     </scenes>
     <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

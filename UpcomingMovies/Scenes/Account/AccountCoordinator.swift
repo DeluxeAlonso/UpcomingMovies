@@ -78,4 +78,14 @@ class AccountCoordinator: Coordinator {
         coordinator.start()
     }
     
+    func showCustomLists(for groupOption: ProfileGroupOption) {
+        let coordinator = CustomListsCoordinator(navigationController: navigationController)
+        
+        coordinator.groupOption = groupOption
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
 }

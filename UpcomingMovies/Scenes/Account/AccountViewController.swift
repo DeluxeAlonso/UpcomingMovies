@@ -113,11 +113,6 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
             _ = viewController.view
             viewController.delegate = self
             viewController.viewModel = viewModel.buildAuthPermissionViewModel()
-        case.customLists:
-            guard let viewController = segue.destination as? CustomListsViewController else { fatalError() }
-            guard let viewModel = sender as? CustomListsViewModel else { return }
-            _ = viewController.view
-            viewController.viewModel = viewModel
         }
     }
     
@@ -143,8 +138,7 @@ extension AccountViewController {
     }
     
     func profileViewController(didTapGroup group: ProfileGroupOption) {
-        performSegue(withIdentifier: SegueIdentifier.customLists.rawValue,
-                     sender: viewModel.buildCrearedListsViewModel(group))
+        coordinator?.showCustomLists(for: group)
     }
     
     func profileViewController(didTapSignOutButton tapped: Bool) {
@@ -171,7 +165,6 @@ extension AccountViewController {
     
     enum SegueIdentifier: String {
         case authPermission = "AuthPermissionSegue"
-        case customLists = "CustomListsSegue"
     }
     
 }
