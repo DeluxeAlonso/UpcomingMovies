@@ -19,8 +19,8 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
     
     var loaderView: RadarView!
     
-    var viewModel: MovieCreditsViewModel?
-    weak var coordinator: MovieCreditsCoordinator?
+    var viewModel: MovieCreditsViewModelProtocol?
+    weak var coordinator: MovieCreditsCoordinatorProtocol?
     
     // MARK: - Lifecycle
 
@@ -46,7 +46,7 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
         }
     }
     
-    private func configureView(with state: MovieCreditsViewModel.ViewState) {
+    private func configureView(with state: MovieCreditsViewState) {
         switch state {
         case .populated, .initial:
             hideDisplayedPlaceholderView()
@@ -55,7 +55,7 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
-                               self?.viewModel?.getMovieCredits()
+                                        self?.viewModel?.getMovieCredits(showLoader: false)
             })
         }
     }
@@ -86,7 +86,7 @@ extension MovieCreditsViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         guard let viewModel = viewModel else { return 0 }
-        return viewModel.sections.count
+        return viewModel.numberOfSections()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
