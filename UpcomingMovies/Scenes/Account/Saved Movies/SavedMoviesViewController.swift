@@ -21,8 +21,8 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
     
     var loaderView: RadarView!
     
-    var viewModel: SavedMoviesViewModel?
-    weak var coordinator: SavedMoviesCoordinator?
+    var viewModel: SavedMoviesViewModelProtocol?
+    weak var coordinator: SavedMoviesCoordinatorProtocol?
     
     // MARK: - Lifecycle
     

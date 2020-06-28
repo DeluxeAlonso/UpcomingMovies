@@ -201,6 +201,7 @@
 		E229A590236BF518006FF112 /* UserUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B4F50923664BDE003B89A9 /* UserUseCaseProtocol.swift */; };
 		E229AFA724A83A0B002AB427 /* ProfileProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFA624A83A0B002AB427 /* ProfileProtocols.swift */; };
 		E229AFA924A84259002AB427 /* ProfileSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFA824A84259002AB427 /* ProfileSection.swift */; };
+		E229AFAB24A8451F002AB427 /* SavedMoviesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFAA24A8451F002AB427 /* SavedMoviesProtocols.swift */; };
 		E22E5CF823BAE82800D00BB0 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22E5CF723BAE82800D00BB0 /* Movie.swift */; };
 		E22E5CFA23BAE89300D00BB0 /* DomainConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22E5CF923BAE89300D00BB0 /* DomainConvertible.swift */; };
 		E22FA8EE247CB0DA0034DE43 /* BaseParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FA8ED247CB0DA0034DE43 /* BaseParameters.swift */; };
@@ -810,6 +811,7 @@
 		E229A571236BF44E006FF112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E229AFA624A83A0B002AB427 /* ProfileProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProtocols.swift; sourceTree = "<group>"; };
 		E229AFA824A84259002AB427 /* ProfileSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSection.swift; sourceTree = "<group>"; };
+		E229AFAA24A8451F002AB427 /* SavedMoviesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMoviesProtocols.swift; sourceTree = "<group>"; };
 		E22E5CF723BAE82800D00BB0 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		E22E5CF923BAE89300D00BB0 /* DomainConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertible.swift; sourceTree = "<group>"; };
 		E22FA8ED247CB0DA0034DE43 /* BaseParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseParameters.swift; sourceTree = "<group>"; };
@@ -1757,6 +1759,7 @@
 				E221F768222B9FA3008DFF87 /* SavedMoviesViewController.swift */,
 				E221F764222B9C7A008DFF87 /* SavedMoviesViewModel.swift */,
 				E2825DCC24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift */,
+				E229AFAA24A8451F002AB427 /* SavedMoviesProtocols.swift */,
 			);
 			path = "Saved Movies";
 			sourceTree = "<group>";
@@ -3198,6 +3201,7 @@
 				E28D78A124847DED00D86F66 /* MovieReviewDetailViewController.swift in Sources */,
 				E222B95B21FA0F49008BA816 /* UpcomingMovieCellViewModel.swift in Sources */,
 				E222DC262192AF9700A2EDF4 /* MovieTableViewCell.swift in Sources */,
+				E229AFAB24A8451F002AB427 /* SavedMoviesProtocols.swift in Sources */,
 				E26911772478D7690039F144 /* RetryActionable.swift in Sources */,
 				E223773A21EEA317000400B7 /* GenreSearchOptionCellViewModel.swift in Sources */,
 				E270980D220FAFA7007F18A2 /* MovieVideoCellViewModel.swift in Sources */,
