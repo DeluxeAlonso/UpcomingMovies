@@ -25,8 +25,8 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
     
     private var isNavigationBarConfigured: Bool = false
     
-    var viewModel: CustomListDetailViewModel?
-    weak var coordinator: CustomListDetailCoordinator?
+    var viewModel: CustomListDetailViewModelProtocol?
+    weak var coordinator: CustomListDetailCoordinatorProtocol?
     
     // MARK: - Lifecycle
     

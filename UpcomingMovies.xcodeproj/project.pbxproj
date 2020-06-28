@@ -205,6 +205,7 @@
 		E229AFAD24A846FC002AB427 /* CustomListsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFAC24A846FC002AB427 /* CustomListsProtocols.swift */; };
 		E229AFAF24A84968002AB427 /* ProfileViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFAE24A84968002AB427 /* ProfileViewState.swift */; };
 		E229AFB324A84A87002AB427 /* CustomListDetailViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFB224A84A87002AB427 /* CustomListDetailViewState.swift */; };
+		E229AFB524A84CBE002AB427 /* CustomListDetailProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFB424A84CBE002AB427 /* CustomListDetailProtocols.swift */; };
 		E22E5CF823BAE82800D00BB0 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22E5CF723BAE82800D00BB0 /* Movie.swift */; };
 		E22E5CFA23BAE89300D00BB0 /* DomainConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22E5CF923BAE89300D00BB0 /* DomainConvertible.swift */; };
 		E22FA8EE247CB0DA0034DE43 /* BaseParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FA8ED247CB0DA0034DE43 /* BaseParameters.swift */; };
@@ -818,6 +819,7 @@
 		E229AFAC24A846FC002AB427 /* CustomListsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListsProtocols.swift; sourceTree = "<group>"; };
 		E229AFAE24A84968002AB427 /* ProfileViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewState.swift; sourceTree = "<group>"; };
 		E229AFB224A84A87002AB427 /* CustomListDetailViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailViewState.swift; sourceTree = "<group>"; };
+		E229AFB424A84CBE002AB427 /* CustomListDetailProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailProtocols.swift; sourceTree = "<group>"; };
 		E22E5CF723BAE82800D00BB0 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		E22E5CF923BAE89300D00BB0 /* DomainConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertible.swift; sourceTree = "<group>"; };
 		E22FA8ED247CB0DA0034DE43 /* BaseParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseParameters.swift; sourceTree = "<group>"; };
@@ -1791,6 +1793,7 @@
 				E20FBDBA226D4A52002E5596 /* CustomListDetailDataSource.swift */,
 				E2CF112224A7F4D60048AFC0 /* CustomListDetailCoordinator.swift */,
 				E229AFB224A84A87002AB427 /* CustomListDetailViewState.swift */,
+				E229AFB424A84CBE002AB427 /* CustomListDetailProtocols.swift */,
 			);
 			path = CustomListDetail;
 			sourceTree = "<group>";
@@ -3215,6 +3218,7 @@
 				E26911772478D7690039F144 /* RetryActionable.swift in Sources */,
 				E223773A21EEA317000400B7 /* GenreSearchOptionCellViewModel.swift in Sources */,
 				E270980D220FAFA7007F18A2 /* MovieVideoCellViewModel.swift in Sources */,
+				E229AFB524A84CBE002AB427 /* CustomListDetailProtocols.swift in Sources */,
 				E2058B6E247F6BBD00A6AB52 /* NavigationHandler.swift in Sources */,
 				E2940803220A152700A74F68 /* MainTabBarController.swift in Sources */,
 				E21F37A321941D3900D6BFB6 /* SplashViewModel.swift in Sources */,

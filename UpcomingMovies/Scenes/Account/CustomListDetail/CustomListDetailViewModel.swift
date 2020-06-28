@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class CustomListDetailViewModel {
+final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
     
     private let useCaseProvider: UseCaseProviderProtocol
     private let accountUseCase: AccountUseCaseProtocol

@@ -15,7 +15,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     private var userUseCase: UserUseCaseProtocol
     private let accountUseCase: AccountUseCaseProtocol
     
-    var viewState: Bindable<ProfileViewState> = Bindable(.initial)
+    let viewState: Bindable<ProfileViewState> = Bindable(.initial)
     
     var reloadAccountInfo: (() -> Void)?
     

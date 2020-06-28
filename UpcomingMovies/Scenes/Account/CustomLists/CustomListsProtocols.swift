@@ -13,8 +13,8 @@ protocol CustomListsViewModelProtocol {
     
     var title: String? { get set }
     
-    var startLoading: Bindable<Bool> { get set }
-    var viewState: Bindable<SimpleViewState<List>> { get set }
+    var startLoading: Bindable<Bool> { get }
+    var viewState: Bindable<SimpleViewState<List>> { get }
     
     var lists: [List] { get }
     var listCells: [CustomListCellViewModel] { get }

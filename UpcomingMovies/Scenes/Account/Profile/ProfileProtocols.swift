@@ -15,7 +15,7 @@ protocol ProfileViewModelProtocol {
     var collectionOptionsCells: [ProfileSelectableOptionCellViewModel] { get }
     var groupOptionsCells: [ProfileSelectableOptionCellViewModel] { get }
     
-    var viewState: Bindable<ProfileViewState> { get set }
+    var viewState: Bindable<ProfileViewState> { get }
     var reloadAccountInfo: (() -> Void)? { get set }
     
     func collectionOption(at index: Int) -> ProfileCollectionOption
