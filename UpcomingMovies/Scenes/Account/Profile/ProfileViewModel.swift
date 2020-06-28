@@ -9,13 +9,13 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class ProfileViewModel {
+final class ProfileViewModel: ProfileViewModelProtocol {
     
     private let useCaseProvider: UseCaseProviderProtocol
     private var userUseCase: UserUseCaseProtocol
     private let accountUseCase: AccountUseCaseProtocol
     
-    let viewState: Bindable<ProfileViewState> = Bindable(.initial)
+    var viewState: Bindable<ProfileViewStateProtocol> = Bindable(ProfileViewState.initial)
     
     var reloadAccountInfo: (() -> Void)?
     
@@ -71,6 +71,10 @@ final class ProfileViewModel {
         return groupOptions[index]
     }
     
+    func section(at index: Int) -> ProfileSection {
+        return viewState.value.sections[index]
+    }
+    
     // MARK: - Networking
     
     // TODO: - Change this method to get the account detail given the id of a user account
@@ -87,35 +91,11 @@ final class ProfileViewModel {
     
 }
 
-// MARK: - View sections
-
-extension ProfileViewModel {
-    
-    enum ProfileSection {
-        /// Section to show the profile user info
-        case accountInfo
-        
-        /// Shows the user's collections like favorites
-        case collections
-        
-        /// Shows the user's created lists
-        case groups
-        
-        /// Shows the sign out Button
-        case signOut
-    }
-    
-    func section(at index: Int) -> ProfileSection {
-        return viewState.value.sections[index]
-    }
-    
-}
-
 // MARK: - View states
 
 extension ProfileViewModel {
     
-    enum ProfileViewState {
+    enum ProfileViewState: ProfileViewStateProtocol {
         case initial
         
         var sections: [ProfileSection] {

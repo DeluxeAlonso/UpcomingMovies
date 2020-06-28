@@ -8,35 +8,21 @@
 
 import UIKit
 
-protocol ProfileViewControllerDelegate: class {
-
-    func profileViewController(didTapCollection collection: ProfileCollectionOption)
-    
-    func profileViewController(didTapGroup group: ProfileGroupOption)
-    
-    func profileViewController(didTapSignOutButton tapped: Bool)
-    
-}
-
 class ProfileTableViewController: UITableViewController, Storyboarded {
     
     static var storyboardName: String = "Account"
     
     private var dataSource: ProfileDataSource!
     
+    var viewModel: ProfileViewModelProtocol?
     weak var delegate: ProfileViewControllerDelegate?
-    
-    var viewModel: ProfileViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
     
     // MARK: - Private

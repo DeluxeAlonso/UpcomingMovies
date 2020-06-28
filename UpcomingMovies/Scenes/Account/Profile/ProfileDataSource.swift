@@ -10,9 +10,9 @@ import UIKit
 
 class ProfileDataSource: NSObject, UITableViewDataSource {
     
-    private var viewModel: ProfileViewModel?
+    private var viewModel: ProfileViewModelProtocol?
     
-    init(viewModel: ProfileViewModel?) {
+    init(viewModel: ProfileViewModelProtocol?) {
         self.viewModel = viewModel
     }
     
