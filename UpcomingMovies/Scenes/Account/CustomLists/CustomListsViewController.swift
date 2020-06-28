@@ -19,8 +19,8 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
     
     var loaderView: RadarView!
     
-    var viewModel: CustomListsViewModel?
-    weak var coordinator: CustomListsCoordinator?
+    var viewModel: CustomListsViewModelProtocol?
+    weak var coordinator: CustomListsCoordinatorProtocol?
     
     // MARK: - Lifecycle
 

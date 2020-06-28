@@ -104,7 +104,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
         tableView.reloadData()
     }
     
-    private func configureView(with state: CustomListDetailViewModel.ViewState) {
+    private func configureView(with state: CustomListDetailViewState) {
         switch state {
         case .empty:
             tableView.tableFooterView = CustomFooterView(message: "No movies to show")

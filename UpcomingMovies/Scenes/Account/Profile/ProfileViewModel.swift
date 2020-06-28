@@ -15,7 +15,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     private var userUseCase: UserUseCaseProtocol
     private let accountUseCase: AccountUseCaseProtocol
     
-    var viewState: Bindable<ProfileViewStateProtocol> = Bindable(ProfileViewState.initial)
+    var viewState: Bindable<ProfileViewState> = Bindable(.initial)
     
     var reloadAccountInfo: (() -> Void)?
     
@@ -87,23 +87,6 @@ final class ProfileViewModel: ProfileViewModelProtocol {
                 break
             }
         })
-    }
-    
-}
-
-// MARK: - View states
-
-extension ProfileViewModel {
-    
-    enum ProfileViewState: ProfileViewStateProtocol {
-        case initial
-        
-        var sections: [ProfileSection] {
-            switch self {
-            case .initial:
-                return [.accountInfo, .collections, .groups, .signOut]
-            }
-        }
     }
     
 }

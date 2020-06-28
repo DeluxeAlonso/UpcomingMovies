@@ -9,19 +9,13 @@
 import Foundation
 import UpcomingMoviesDomain
 
-protocol ProfileViewStateProtocol {
-    
-    var sections: [ProfileSection] { get }
-    
-}
-
 protocol ProfileViewModelProtocol {
     
     var userInfoCell: ProfileAccountInforCellViewModel? { get }
     var collectionOptionsCells: [ProfileSelectableOptionCellViewModel] { get }
     var groupOptionsCells: [ProfileSelectableOptionCellViewModel] { get }
     
-    var viewState: Bindable<ProfileViewStateProtocol> { get set }
+    var viewState: Bindable<ProfileViewState> { get set }
     var reloadAccountInfo: (() -> Void)? { get set }
     
     func collectionOption(at index: Int) -> ProfileCollectionOption
