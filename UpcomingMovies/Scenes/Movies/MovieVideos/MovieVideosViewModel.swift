@@ -9,10 +9,10 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class MovieVideosViewModel {
+final class MovieVideosViewModel: MovieVideosViewModelProtocol {
     
-    let movieId: Int
-    let movieTitle: String
+    var movieId: Int
+    var movieTitle: String
     
     private let useCaseProvider: UseCaseProviderProtocol
     private let movieUseCase: MovieUseCaseProtocol
