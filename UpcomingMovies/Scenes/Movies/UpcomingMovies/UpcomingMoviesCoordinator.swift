@@ -23,7 +23,7 @@ struct NavigationConfiguration {
     
 }
 
-class UpcomingMoviesCoordinator: NSObject, Coordinator {
+class UpcomingMoviesCoordinator: NSObject, Coordinator, UpcomingMoviesCoordinatorProtocol {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
@@ -68,7 +68,7 @@ class UpcomingMoviesCoordinator: NSObject, Coordinator {
         // We only configure the delegate if it is needed.
         guard navigationController.delegate == nil else { return }
         
-        navigationDelegate = UpcomingMoviesNavigationDelegate()
+        navigationDelegate = UpcomingMoviesNavigation()
         navigationDelegate.parentCoordinator = self
         
         navigationController.delegate = navigationDelegate

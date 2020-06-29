@@ -1,5 +1,5 @@
 //
-//  UpcomingMoviesNavigationDelegate.swift
+//  UpcomingMoviesNavigation.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 3/19/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpcomingMoviesNavigationDelegate: NSObject, UINavigationControllerDelegate {
+class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate {
     
     private var transitionInteractor: TransitioningInteractor?
     private var verticalSafeAreaOffset: CGFloat

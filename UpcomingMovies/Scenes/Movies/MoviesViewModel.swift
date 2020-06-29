@@ -10,14 +10,11 @@ import Foundation
 import UpcomingMoviesDomain
 
 protocol MoviesViewModel {
-    
-    associatedtype MovieCellViewModel
-    
+
     var useCaseProvider: UseCaseProviderProtocol { get set }
     
     var viewState: Bindable<SimpleViewState<Movie>> { get set }
     
-    var movieCells: [MovieCellViewModel] { get }
     var movies: [Movie] { get }
     
     var startLoading: Bindable<Bool> { get set }
