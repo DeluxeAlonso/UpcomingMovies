@@ -9,21 +9,6 @@
 import UIKit
 import UpcomingMoviesDomain
 
-protocol MovieListCoordinatorProtocol: Coordinator {}
-
-extension MovieListCoordinatorProtocol {
-    
-    func showDetail(for movie: Movie) {
-        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
-        coordinator.movieInfo = .complete(movie: movie)
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
-    }
-    
-}
-
 class PopularMoviesCoordinator: MovieListCoordinatorProtocol {
     
     var childCoordinators: [Coordinator] = []
