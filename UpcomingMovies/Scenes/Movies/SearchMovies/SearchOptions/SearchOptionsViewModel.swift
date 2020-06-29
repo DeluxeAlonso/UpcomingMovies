@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class SearchOptionsViewModel {
+final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     
     private var useCaseProvider: UseCaseProviderProtocol
     private var movieVisitUseCase: MovieVisitUseCaseProtocol
@@ -35,7 +35,7 @@ final class SearchOptionsViewModel {
         return genres.map { GenreSearchOptionCellViewModel(genre: $0) }
     }
     
-    let defaultSearchOptions: [DefaultSearchOption] = [.popular, .topRated]
+    private let defaultSearchOptions: [DefaultSearchOption] = [.popular, .topRated]
     var defaultSearchOptionsCells: [DefaultSearchOptionCellViewModel] {
         return defaultSearchOptions.map { DefaultSearchOptionCellViewModel(defaultSearchOption: $0) }
     }
@@ -94,6 +94,10 @@ final class SearchOptionsViewModel {
         })
     }
     
+    func section(at index: Int) -> SearchOptionsSection {
+        return viewState.value.sections[index]
+    }
+    
     func sectionIndex(for section: SearchOptionsSection) -> Int? {
         let sections = viewState.value.sections
         return sections.firstIndex(of: section)
@@ -118,54 +122,7 @@ final class SearchOptionsViewModel {
         let selectedVisitedMovie = visitedMovies[index]
         selectedRecentlyVisitedMovie?(selectedVisitedMovie.id, selectedVisitedMovie.title)
     }
-    
-}
 
-// MARK: - View sections
-
-extension SearchOptionsViewModel {
-    
-    enum SearchOptionsSection {
-        case recentlyVisited, defaultSearches, genres
-        
-        var title: String? {
-            switch self {
-            case .recentlyVisited:
-                return "Recently visited"
-            case .defaultSearches:
-                return nil
-            case .genres:
-                return "Movie genres"
-            }
-        }
-        
-    }
-    
-    func section(at index: Int) -> SearchOptionsSection {
-        return viewState.value.sections[index]
-    }
-    
-}
-
-// MARK: - View states
-
-extension SearchOptionsViewModel {
-    
-    enum SearchOptionsViewState {
-        case emptyMovieVisits
-        case populatedMovieVisits
-        
-        var sections: [SearchOptionsSection] {
-            switch self {
-            case .emptyMovieVisits:
-                return [.defaultSearches, .genres]
-            case .populatedMovieVisits:
-                return [.recentlyVisited, .defaultSearches, .genres]
-            }
-        }
-        
-    }
-    
 }
 
 // MARK: - Constants

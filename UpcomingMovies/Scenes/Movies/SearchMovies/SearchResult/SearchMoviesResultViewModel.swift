@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class SearchMoviesResultViewModel {
+final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
     
     // MARK: - Properties
     
@@ -21,7 +21,7 @@ final class SearchMoviesResultViewModel {
     
     private var movies: [Movie] = []
     
-    let viewState: Bindable<ViewState> = Bindable(.initial)
+    let viewState: Bindable<SearchMoviesResultViewState> = Bindable(.initial)
 
     var updateRecentSearches: (() -> Void)?
     
@@ -77,6 +77,11 @@ final class SearchMoviesResultViewModel {
         }
     }
     
+    func resetViewState() {
+        clearMovies()
+        viewState.value = .initial
+    }
+    
     func clearMovies() {
         movies = []
     }
@@ -86,40 +91,4 @@ final class SearchMoviesResultViewModel {
     func searchedMovie(at index: Int) -> Movie {
         return movies[index]
     }
-}
-
-// MARK: - View states
-
-extension SearchMoviesResultViewModel {
-    
-    enum ViewState {
-        
-        case initial
-        case empty
-        case searching
-        case populated([Movie])
-        case error(Error)
-        
-        var sections: [SearchMoviesResultSections]? {
-            switch self {
-            case .populated:
-                return [.searchedMovies]
-            case .initial:
-                return [.recentSearches]
-            case .searching, .empty, .error:
-                return nil
-            }
-        }
-        
-    }
-    
-    enum SearchMoviesResultSections {
-        case recentSearches, searchedMovies
-    }
-    
-    func resetViewState() {
-        clearMovies()
-        viewState.value = .initial
-    }
-    
 }

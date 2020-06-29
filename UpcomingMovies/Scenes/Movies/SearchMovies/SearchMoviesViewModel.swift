@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class SearchMoviesViewModel: NSObject {
+final class SearchMoviesViewModel: SearchMoviesViewModelProtocol {
     
     private var useCaseProvider: UseCaseProviderProtocol
     private var genreUseCase: GenreUseCaseProtocol

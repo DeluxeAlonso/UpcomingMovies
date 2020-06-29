@@ -10,9 +10,9 @@ import UIKit
 
 class SearchOptionsDataSource: NSObject, UITableViewDataSource {
     
-    private var viewModel: SearchOptionsViewModel?
+    private var viewModel: SearchOptionsViewModelProtocol?
     
-    init(viewModel: SearchOptionsViewModel?) {
+    init(viewModel: SearchOptionsViewModelProtocol?) {
         self.viewModel = viewModel
     }
     
