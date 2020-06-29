@@ -13,6 +13,6 @@ protocol MovieDetailOption: class {
     var title: String { get }
     var icon: UIImage { get }
     
-   func prepare(coordinator: MovieDetailCoordinator?)
+   func prepare(coordinator: MovieDetailCoordinatorProtocol?)
     
 }

@@ -35,8 +35,8 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     var loaderView: RadarView!
     
-    var viewModel: MovieDetailViewModel?
-    weak var coordinator: MovieDetailCoordinator?
+    var viewModel: MovieDetailViewModelProtocol?
+    weak var coordinator: MovieDetailCoordinatorProtocol?
     
     // MARK: - Lifecycle
     

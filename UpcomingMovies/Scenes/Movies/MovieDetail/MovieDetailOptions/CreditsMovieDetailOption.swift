@@ -18,7 +18,7 @@ class CreditsMovieDetailOption: MovieDetailOption {
         return #imageLiteral(resourceName: "Cast")
     }
     
-    func prepare(coordinator: MovieDetailCoordinator?) {
+    func prepare(coordinator: MovieDetailCoordinatorProtocol?) {
         coordinator?.showMovieCredits()
     }
     

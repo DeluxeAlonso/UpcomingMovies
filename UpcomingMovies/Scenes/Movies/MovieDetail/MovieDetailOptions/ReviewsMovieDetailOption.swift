@@ -18,7 +18,7 @@ class ReviewsMovieDetailOption: MovieDetailOption {
         return #imageLiteral(resourceName: "Reviews")
     }
     
-    func prepare(coordinator: MovieDetailCoordinator?) {
+    func prepare(coordinator: MovieDetailCoordinatorProtocol?) {
         coordinator?.showMovieReviews()
     }
     

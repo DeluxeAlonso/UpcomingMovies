@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class MovieDetailViewModel {
+final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     private let useCaseProvider: UseCaseProviderProtocol
     private let movieUseCase: MovieUseCaseProtocol
