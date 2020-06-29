@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-struct MovieReviewDetailViewModel {
+struct MovieReviewDetailViewModel: MovieReviewDetailViewModelProtocol {
     
     let author: String
     let content: String
