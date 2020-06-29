@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class MovieReviewsCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+class MovieReviewsCoordinator: NSObject, Coordinator, MovieReviewsCoordinatorProtocol {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
@@ -49,7 +49,11 @@ class MovieReviewsCoordinator: NSObject, Coordinator, UINavigationControllerDele
         coordinator.start()
     }
     
-    // MARK: - UINavigationControllerDelegate
+}
+
+// MARK: - UINavigationControllerDelegate
+
+extension MovieReviewsCoordinator: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
