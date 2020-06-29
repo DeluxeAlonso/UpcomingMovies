@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AuthPermissionCoordinator: Coordinator {
+class AuthPermissionCoordinator: Coordinator, AuthPermissionCoordinatorProtocol {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?

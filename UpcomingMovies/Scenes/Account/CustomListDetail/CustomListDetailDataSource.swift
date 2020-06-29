@@ -10,11 +10,11 @@ import UIKit
 
 class CustomListDetailDataSource: NSObject, UITableViewDataSource {
     
-    let viewModel: CustomListDetailViewModel
+    let viewModel: CustomListDetailViewModelProtocol
 
     // MARK: - Initializers
     
-    init(viewModel: CustomListDetailViewModel) {
+    init(viewModel: CustomListDetailViewModelProtocol) {
         self.viewModel = viewModel
     }
     

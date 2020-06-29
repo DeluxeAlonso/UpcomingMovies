@@ -9,14 +9,14 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class CustomListsViewModel {
-    
+final class CustomListsViewModel: CustomListsViewModelProtocol {
+
     private let useCaseProvider: UseCaseProviderProtocol
     private let accountUseCase: AccountUseCaseProtocol
     
     private let groupOption: ProfileGroupOption
     
-    let title: String?
+    var title: String?
     
     // MARK: - Reactive properties
     

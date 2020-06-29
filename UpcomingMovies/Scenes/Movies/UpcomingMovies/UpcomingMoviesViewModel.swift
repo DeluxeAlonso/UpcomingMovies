@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class UpcomingMoviesViewModel: MoviesViewModel {
+final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol {
 
     // MARK: - Properties
     

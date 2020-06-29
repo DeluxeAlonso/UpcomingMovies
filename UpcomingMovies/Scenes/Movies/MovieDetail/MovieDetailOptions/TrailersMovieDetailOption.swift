@@ -18,7 +18,7 @@ class TrailersMovieDetailOption: MovieDetailOption {
         return #imageLiteral(resourceName: "PlayVideo")
     }
     
-    func prepare(coordinator: MovieDetailCoordinator?) {
+    func prepare(coordinator: MovieDetailCoordinatorProtocol?) {
         guard let coordinator = coordinator else { fatalError() }
         coordinator.showMovieVideos()
     }

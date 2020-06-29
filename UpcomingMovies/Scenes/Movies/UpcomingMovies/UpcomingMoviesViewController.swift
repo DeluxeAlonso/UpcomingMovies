@@ -16,8 +16,8 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     
     static var storyboardName: String = "UpcomingMovies"
     
-    var viewModel: UpcomingMoviesViewModel!
-    weak var coordinator: UpcomingMoviesCoordinator?
+    var viewModel: UpcomingMoviesViewModelProtocol!
+    weak var coordinator: UpcomingMoviesCoordinatorProtocol?
     
     private var dataSource: SimpleCollectionViewDataSource<UpcomingMovieCellViewModel>!
     private var prefetchDataSource: CollectionViewDataSourcePrefetching!

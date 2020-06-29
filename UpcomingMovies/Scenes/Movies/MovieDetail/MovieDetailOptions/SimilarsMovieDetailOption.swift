@@ -18,7 +18,7 @@ class SimilarsMovieDetailOption: MovieDetailOption {
         return #imageLiteral(resourceName: "SimilarMovies")
     }
     
-    func prepare(coordinator: MovieDetailCoordinator?) {
+    func prepare(coordinator: MovieDetailCoordinatorProtocol?) {
         coordinator?.showSimilarMovies()
     }
 

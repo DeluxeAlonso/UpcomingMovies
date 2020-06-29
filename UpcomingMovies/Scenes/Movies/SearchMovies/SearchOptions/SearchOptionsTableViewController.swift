@@ -8,41 +8,21 @@
 
 import UIKit
 
-protocol SearchOptionsTableViewControllerDelegate: UIViewController {
-    
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectPopularMovies selected: Bool)
-    
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectTopRatedMovies selected: Bool)
-    
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectMovieGenreWithId genreId: Int, andGenreName genreName: String)
-    
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectRecentlyVisitedMovie id: Int,
-                                          title: String)
-    
-}
-
 class SearchOptionsTableViewController: UITableViewController, Storyboarded {
     
     static var storyboardName = "SearchMovies"
     
     private var dataSource: SearchOptionsDataSource!
     
+    var viewModel: SearchOptionsViewModelProtocol?
     weak var delegate: SearchOptionsTableViewControllerDelegate?
-    
-    var viewModel: SearchOptionsViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
     
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
     
     // MARK: - Private

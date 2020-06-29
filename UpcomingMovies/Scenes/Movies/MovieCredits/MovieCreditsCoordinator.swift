@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieCreditsCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+class MovieCreditsCoordinator: NSObject, Coordinator, MovieCreditsCoordinatorProtocol {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
@@ -34,6 +34,12 @@ class MovieCreditsCoordinator: NSObject, Coordinator, UINavigationControllerDele
         navigationController.delegate = self
         navigationController.pushViewController(viewController, animated: true)
     }
+    
+}
+
+// MARK: - UINavigationControllerDelegate
+
+extension MovieCreditsCoordinator: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {

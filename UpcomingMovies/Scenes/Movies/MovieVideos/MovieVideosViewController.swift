@@ -18,10 +18,10 @@ class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisp
     private var dataSource: SimpleTableViewDataSource<MovieVideoCellViewModel>!
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
-    var viewModel: MovieVideosViewModel?
-    weak var coordinator: MovieVideosCoordinator?
-    
     var loaderView: RadarView!
+    
+    var viewModel: MovieVideosViewModelProtocol?
+    weak var coordinator: MovieVideosCoordinatorProtocol?
     
     // MARK: - Lifecycle
     
@@ -67,7 +67,7 @@ class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisp
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
-                                        self?.viewModel?.getMovieVideos()
+                                        self?.viewModel?.getMovieVideos(showLoader: false)
             })
         }
     }

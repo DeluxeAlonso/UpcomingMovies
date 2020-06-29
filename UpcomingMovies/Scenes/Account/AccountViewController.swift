@@ -8,8 +8,6 @@
 
 import UIKit
 
-protocol AccountViewControllerProtocol: UIViewController, SignInViewControllerDelegate, ProfileViewControllerDelegate {}
-
 class AccountViewController: UIViewController, AccountViewControllerProtocol, Storyboarded {
     
     private var signInViewController: SignInViewController?
@@ -17,8 +15,8 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     
     static var storyboardName: String = "Account"
     
-    var viewModel: AccountViewModel!
-    weak var coordinator: AccountCoordinator?
+    var viewModel: AccountViewModelProtocol!
+    weak var coordinator: AccountCoordinatorProtocol?
     
     // MARK: - Lifecycle
 

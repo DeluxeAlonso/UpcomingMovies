@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class CustomListDetailViewModel {
+final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
     
     private let useCaseProvider: UseCaseProviderProtocol
     private let accountUseCase: AccountUseCaseProtocol
@@ -25,7 +25,7 @@ final class CustomListDetailViewModel {
     
     // MARK: - Reactive properties
     
-    let viewState: Bindable<ViewState> = Bindable(.loading)
+    let viewState: Bindable<CustomListDetailViewState> = Bindable(.loading)
     
     // MARK: - Computed properties
     
@@ -87,29 +87,6 @@ final class CustomListDetailViewModel {
             return
         }
         viewState.value = .populated(movies)
-    }
-    
-}
-
-// MARK: - View State
-
-extension CustomListDetailViewModel {
-    
-    enum ViewState {
-        case loading
-        case empty
-        case populated([Movie])
-        case error(Error)
-        
-        var currentMovies: [Movie] {
-            switch self {
-            case .loading, .empty, .error:
-                return []
-            case .populated(let movies):
-                return movies
-            }
-        }
-        
     }
     
 }

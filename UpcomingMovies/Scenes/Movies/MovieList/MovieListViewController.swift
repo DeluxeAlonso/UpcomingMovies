@@ -21,8 +21,8 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
     
     var loaderView: RadarView!
     
-    var viewModel: MovieListViewModel?
-    weak var coordinator: MovieListCoordinator?
+    var viewModel: MovieListViewModelProtocol?
+    weak var coordinator: MovieListCoordinatorProtocol?
     
     // MARK: - Lifcycle
 

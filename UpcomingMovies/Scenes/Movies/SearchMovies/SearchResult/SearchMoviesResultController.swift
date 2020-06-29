@@ -16,7 +16,7 @@ protocol SearchMoviesResultControllerDelegate: UIViewController {
 
 class SearchMoviesResultController: UIViewController, Keyboardable {
     
-    private var viewModel: SearchMoviesResultViewModel
+    private var viewModel: SearchMoviesResultViewModelProtocol
     private var dataSource: SearchMoviesResultDataSource!
     
     weak var delegate: SearchMoviesResultControllerDelegate?
@@ -26,7 +26,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
     
     // MARK: - Initializers
     
-    init(viewModel: SearchMoviesResultViewModel) {
+    init(viewModel: SearchMoviesResultViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -88,7 +88,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         searchMoviesResultView.tableView.reloadData()
     }
     
-    private func configureView(with state: SearchMoviesResultViewModel.ViewState) {
+    private func configureView(with state: SearchMoviesResultViewState) {
         let tableView = searchMoviesResultView.tableView
         tableView.separatorStyle = .none
         switch state {

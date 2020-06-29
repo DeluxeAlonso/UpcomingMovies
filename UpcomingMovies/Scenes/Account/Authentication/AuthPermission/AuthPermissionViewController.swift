@@ -27,16 +27,12 @@ class AuthPermissionViewController: UIViewController, Storyboarded {
     
     private var webViewNavigationDelegate: AuthPermissionWebViewNavigationDelegate!
     
-    var viewModel: AuthPermissionViewModel?
-    weak var coordinator: AuthPermissionCoordinator?
+    var viewModel: AuthPermissionViewModelProtocol?
+    weak var coordinator: AuthPermissionCoordinatorProtocol?
     weak var delegate: AuthPermissionViewControllerDelegate?
 
     // MARK: - Lifecycle
-    
-    deinit {
-        print("AuthPermissionViewController")
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -80,9 +76,8 @@ class AuthPermissionViewController: UIViewController, Storyboarded {
     }
     
     private func loadURL() {
-        guard let url = viewModel?.authPermissionURL else { return }
-        let request = URLRequest(url: url)
-        webView.load(request)
+        guard let urlRequest = viewModel?.authPermissionURLRequest else { return }
+        webView.load(urlRequest)
     }
     
     private func dismiss() {

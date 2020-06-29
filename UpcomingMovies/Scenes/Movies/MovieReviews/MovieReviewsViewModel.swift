@@ -9,10 +9,10 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class MovieReviewsViewModel {
+final class MovieReviewsViewModel: MovieReviewsViewModelProtocol {
     
-    let movieId: Int
-    let movieTitle: String
+    var movieId: Int
+    var movieTitle: String
     
     private let useCaseProvider: UseCaseProviderProtocol
     private let movieUseCase: MovieUseCaseProtocol

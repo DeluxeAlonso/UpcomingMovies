@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieVideosCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+class MovieVideosCoordinator: NSObject, Coordinator, MovieVideosCoordinatorProtocol {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
@@ -35,7 +35,13 @@ class MovieVideosCoordinator: NSObject, Coordinator, UINavigationControllerDeleg
         navigationController.delegate = self
         navigationController.pushViewController(viewController, animated: true)
     }
-    
+
+}
+
+// MARK: - UINavigationControllerDelegate
+
+extension MovieVideosCoordinator: UINavigationControllerDelegate {
+ 
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
             return
@@ -47,5 +53,5 @@ class MovieVideosCoordinator: NSObject, Coordinator, UINavigationControllerDeleg
         }
         unwrappedParentCoordinator.childDidFinish()
     }
-
+    
 }

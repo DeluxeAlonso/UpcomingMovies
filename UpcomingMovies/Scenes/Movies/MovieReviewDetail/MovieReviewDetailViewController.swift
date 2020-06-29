@@ -14,8 +14,8 @@ class MovieReviewDetailViewController: UIViewController, Storyboarded {
     
     static var storyboardName = "MovieDetail"
     
-    var viewModel: MovieReviewDetailViewModel?
-    weak var coordinator: MovieReviewDetailCoordinator?
+    var viewModel: MovieReviewDetailViewModelProtocol?
+    weak var coordinator: MovieReviewDetailCoordinatorProtocol?
     
     // MARK: - Lifecycle
     

@@ -25,8 +25,8 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
     
     private var isNavigationBarConfigured: Bool = false
     
-    var viewModel: CustomListDetailViewModel?
-    weak var coordinator: CustomListDetailCoordinator?
+    var viewModel: CustomListDetailViewModelProtocol?
+    weak var coordinator: CustomListDetailCoordinatorProtocol?
     
     // MARK: - Lifecycle
     
@@ -104,7 +104,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
         tableView.reloadData()
     }
     
-    private func configureView(with state: CustomListDetailViewModel.ViewState) {
+    private func configureView(with state: CustomListDetailViewState) {
         switch state {
         case .empty:
             tableView.tableFooterView = CustomFooterView(message: "No movies to show")

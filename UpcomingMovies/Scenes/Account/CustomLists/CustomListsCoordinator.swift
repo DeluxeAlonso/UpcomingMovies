@@ -9,7 +9,8 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class CustomListsCoordinator: Coordinator {
+class CustomListsCoordinator: Coordinator, CustomListsCoordinatorProtocol {
+    
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController

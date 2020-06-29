@@ -9,12 +9,14 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class SavedMoviesViewModel {
+final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
     
     private let useCaseProvider: UseCaseProviderProtocol
     private let accountUseCase: AccountUseCaseProtocol
     
     private let collectionOption: ProfileCollectionOption
+    
+    var title: String?
     
     var startLoading: Bindable<Bool> = Bindable(false)
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
@@ -30,8 +32,6 @@ final class SavedMoviesViewModel {
     var needsPrefetch: Bool {
         return viewState.value.needsPrefetch
     }
-    
-    let title: String?
     
     // MARK: - Initializers
     

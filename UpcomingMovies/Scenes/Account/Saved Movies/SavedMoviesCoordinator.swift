@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class SavedMoviesCoordinator: Coordinator {
+class SavedMoviesCoordinator: Coordinator, SavedMoviesCoordinatorProtocol {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?

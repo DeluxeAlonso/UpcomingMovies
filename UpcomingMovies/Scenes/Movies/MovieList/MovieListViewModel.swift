@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class MovieListViewModel: MoviesViewModel {
+final class MovieListViewModel: MovieListViewModelProtocol {
     
     var useCaseProvider: UseCaseProviderProtocol
     var contentHandler: MoviesContentHandlerProtocol

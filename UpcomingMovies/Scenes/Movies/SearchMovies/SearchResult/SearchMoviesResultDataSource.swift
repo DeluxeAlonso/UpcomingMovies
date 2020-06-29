@@ -10,9 +10,9 @@ import UIKit
 
 class SearchMoviesResultDataSource: NSObject, UITableViewDataSource {
     
-    private let viewModel: SearchMoviesResultViewModel
+    private let viewModel: SearchMoviesResultViewModelProtocol
     
-    init(viewModel: SearchMoviesResultViewModel) {
+    init(viewModel: SearchMoviesResultViewModelProtocol) {
         self.viewModel = viewModel
     }
     

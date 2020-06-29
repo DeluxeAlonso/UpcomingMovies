@@ -15,14 +15,14 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
     
     static var storyboardName = "MovieDetail"
     
-    var viewModel: MovieReviewsViewModel?
-    weak var coordinator: MovieReviewsCoordinator?
-    
     private var dataSource: SimpleTableViewDataSource<MovieReviewCellViewModel>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
     private var scaleTransitioningDelegate: ScaleTransitioningDelegate!
     
     var loaderView: RadarView!
+    
+    var viewModel: MovieReviewsViewModelProtocol?
+    weak var coordinator: MovieReviewsCoordinatorProtocol?
     
     // MARK: - Lifecycle
     
