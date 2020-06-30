@@ -17,7 +17,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
     
     private var headerView: CustomListDetailHeaderView!
     
-    private var dataSource: CustomListDetailDataSource!
+    private var dataSource: SimpleTableViewDataSource<MovieCellViewModel>!
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
     /// Used to determinate if the header view is being presented or not.
@@ -99,7 +99,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
     
     private func reloadTableView() {
         guard let viewModel = viewModel else { return }
-        dataSource = CustomListDetailDataSource(viewModel: viewModel)
+        dataSource = SimpleTableViewDataSource.make(for: viewModel.movieCells)
         tableView.dataSource = dataSource
         tableView.reloadData()
     }
