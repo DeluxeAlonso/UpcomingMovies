@@ -8,25 +8,15 @@
 
 import UIKit
 
-class MovieCreditsDataSource: NSObject, UICollectionViewDataSource {
-    
+class MovieCreditsDataSource: NSObject, UICollectionViewDataSource, CollapsibleHeaderViewDelegate {
+        
     private let viewModel: MovieCreditsViewModelProtocol
-    private let collapsibleHeaderDelegate: CollapsibleHeaderViewDelegate
-    
     private var isAnimationEnabled = false
     
     // MARK: - Initializers
     
-    init(viewModel: MovieCreditsViewModelProtocol,
-         collapsibleHeaderDelegate: CollapsibleHeaderViewDelegate) {
+    init(viewModel: MovieCreditsViewModelProtocol) {
         self.viewModel = viewModel
-        self.collapsibleHeaderDelegate = collapsibleHeaderDelegate
-    }
-    
-    // MARK: - Public
-    
-    func enableAnimation() {
-        isAnimationEnabled = true
     }
     
     // MARK: - UICollectionViewDataSource
@@ -36,12 +26,12 @@ class MovieCreditsDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.rowCount(for: section)
+        return viewModel.numberOfItems(for: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(with: MovieCreditCollectionViewCell.self, for: indexPath)
-        cell.viewModel = viewModel.credit(for: indexPath.section, and: indexPath.row)
+        cell.viewModel = viewModel.creditModel(for: indexPath.section, and: indexPath.row)
         return cell
     }
     
@@ -51,10 +41,17 @@ class MovieCreditsDataSource: NSObject, UICollectionViewDataSource {
                                                                      withReuseIdentifier: "CollapsibleCollectionHeaderView",
                                                                      for: indexPath) as! CollapsibleCollectionHeaderView
         header.viewModel = viewModel.headerModel(for: indexPath.section)
-        header.delegate = collapsibleHeaderDelegate
+        header.delegate = self
         header.updateArrowImageView(animated: isAnimationEnabled)
         if isAnimationEnabled { isAnimationEnabled.toggle() }
         return header
+    }
+    
+    // MARK: - CollapsibleHeaderViewDelegate
+    
+    func collapsibleHeaderView(sectionHeaderView: CollapsibleCollectionHeaderView, sectionToggled section: Int) {
+        isAnimationEnabled = true
+        viewModel.toggleSection(section)
     }
     
 }

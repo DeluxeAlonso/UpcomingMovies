@@ -28,6 +28,8 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
         super.viewDidLoad()
         setupUI()
         setupBindables()
+        
+        viewModel?.getMovieCredits(showLoader: true)
     }
     
     // MARK: - Private
@@ -61,8 +63,8 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
     
     private func reloadCollectionView() {
         guard let viewModel = viewModel else { return }
-        dataSource = MovieCreditsDataSource(viewModel: viewModel,
-                                            collapsibleHeaderDelegate: self)
+        dataSource = MovieCreditsDataSource(viewModel: viewModel)
+        
         collectionView.dataSource = dataSource
         collectionView.reloadData()
     }
@@ -80,12 +82,19 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
                 strongSelf.reloadCollectionView()
             }
         })
+        
+        viewModel.didToggleSection.bind({ [weak self] sectionToggled in
+            guard let strongSelf = self else { return }
+            strongSelf.collectionView.performBatchUpdates({
+                strongSelf.collectionView.reloadSections(IndexSet(integer: sectionToggled))
+            }, completion: nil)
+        })
+        
         viewModel.startLoading.bind({ [weak self] start in
             DispatchQueue.main.async {
                 start ? self?.showLoader() : self?.hideLoader()
             }
         })
-        viewModel.getMovieCredits(showLoader: true)
     }
 
 }
@@ -110,32 +119,17 @@ extension MovieCreditsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let posterHeight: Double = 150.0
-        let posterWidth: Double = 100.0
-        return CGSize(width: posterWidth, height: posterHeight)
+        return CGSize(width: 100.0, height: 150.0)
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         guard let viewModel = viewModel,
-            viewModel.rowCount(for: section) != 0 else {
+            viewModel.numberOfItems(for: section) != 0 else {
                 return .zero
         }
         return UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
     }
 
-}
-
-extension MovieCreditsViewController: CollapsibleHeaderViewDelegate {
-    
-    func collapsibleHeaderView(sectionHeaderView: CollapsibleCollectionHeaderView, sectionToggled section: Int) {
-        guard let viewModel = viewModel else { return }
-        viewModel.toggleSection(section)
-        dataSource.enableAnimation()
-        collectionView.performBatchUpdates({
-            self.collectionView.reloadSections(IndexSet(integer: section))
-        }, completion: nil)
-    }
-    
 }
