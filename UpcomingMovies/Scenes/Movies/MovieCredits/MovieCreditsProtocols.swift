@@ -13,20 +13,16 @@ protocol MovieCreditsViewModelProtocol {
     var movieTitle: String { get set }
     
     var viewState: Bindable<MovieCreditsViewState> { get }
+    var didToggleSection: Bindable<Int> { get }
     var startLoading: Bindable<Bool> { get }
-    
-    var castCells: [MovieCreditCellViewModel] { get }
-    var crewCells: [MovieCreditCellViewModel] { get }
  
     func numberOfSections() -> Int
-    func rowCount(for section: Int) -> Int
+    func numberOfItems(for section: Int) -> Int
     
-    func credit(for section: Int, and index: Int) -> MovieCreditCellViewModel
+    func creditModel(for section: Int, and index: Int) -> MovieCreditCellViewModel
     func headerModel(for index: Int) -> CollapsibleHeaderViewModel
     
-    @discardableResult
-    func toggleSection(_ section: Int) -> Bool
-
+    func toggleSection(_ section: Int)
     func getMovieCredits(showLoader: Bool)
     
 }

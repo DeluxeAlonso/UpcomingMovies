@@ -11,35 +11,24 @@ import UpcomingMoviesDomain
 
 final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     
-    private let movieId: Int
-    var movieTitle: String
-    
-    private let useCaseProvider: UseCaseProviderProtocol
     private let movieUseCase: MovieUseCaseProtocol
-    
-    private var sections = [MovieCreditsCollapsibleSection(type: .cast,
-                                                           opened: true),
+    private var sections = [MovieCreditsCollapsibleSection(type: .cast, opened: true),
                             MovieCreditsCollapsibleSection(type: .crew, opened: false)]
     
+    var movieId: Int
+    var movieTitle: String
+    
     var viewState: Bindable<MovieCreditsViewState> = Bindable(.initial)
+    var didToggleSection: Bindable<Int> = Bindable(0)
     var startLoading: Bindable<Bool> = Bindable(false)
-    
-    var castCells: [MovieCreditCellViewModel] {
-        return viewState.value.currentCast.map { MovieCreditCellViewModel(cast: $0) }
-    }
-    
-    var crewCells: [MovieCreditCellViewModel] {
-        return viewState.value.currentCrew.map { MovieCreditCellViewModel(crew: $0) }
-    }
     
     // MARK: - Initializers
     
     init(movieId: Int, movieTitle: String, useCaseProvider: UseCaseProviderProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
-        
-        self.useCaseProvider = useCaseProvider
-        self.movieUseCase = self.useCaseProvider.movieUseCase()
+
+        self.movieUseCase = useCaseProvider.movieUseCase()
     }
     
     // MARK: - Public
@@ -48,23 +37,25 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
         return sections.count
     }
     
-    func rowCount(for section: Int) -> Int {
+    func numberOfItems(for section: Int) -> Int {
         let section = sections[section]
         guard section.opened else { return 0 }
         switch section.type {
         case .cast:
-            return castCells.count
+            return viewState.value.currentCast.count
         case .crew:
-            return crewCells.count
+            return viewState.value.currentCrew.count
         }
     }
     
-    func credit(for section: Int, and index: Int) -> MovieCreditCellViewModel {
+    func creditModel(for section: Int, and index: Int) -> MovieCreditCellViewModel {
         switch sections[section].type {
         case .cast:
-            return castCells[index]
+            let cast = viewState.value.currentCast[index]
+            return MovieCreditCellViewModel(cast: cast)
         case .crew:
-            return crewCells[index]
+            let crew = viewState.value.currentCrew[index]
+            return MovieCreditCellViewModel(crew: crew)
         }
     }
     
@@ -75,10 +66,9 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
                                           title: section.type.title)
     }
     
-    @discardableResult
-    func toggleSection(_ section: Int) -> Bool {
-        sections[section].opened = !sections[section].opened
-        return sections[section].opened
+    func toggleSection(_ section: Int) {
+        sections[section].opened.toggle()
+        didToggleSection.value = section
     }
     
     // MARK: - Networking
