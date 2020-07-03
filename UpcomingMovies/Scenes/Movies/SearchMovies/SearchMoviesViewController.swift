@@ -165,8 +165,6 @@ extension SearchMoviesViewController {
         static let Title = NSLocalizedString("searchMoviesTabBarTitle", comment: "")
         static let NavigationItemTitle = NSLocalizedString("searchMoviesTitle", comment: "")
         
-        static let noRecentSearchText = "No recent searches to show."
-        
     }
     
 }
