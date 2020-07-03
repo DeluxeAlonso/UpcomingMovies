@@ -30,6 +30,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     lazy var favoriteBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "FavoriteOff"), style: .plain, target: self, action: #selector(favoriteButtonAction(_:)))
+        barButtonItem.accessibilityLabel = "Favorite button"
         return barButtonItem
     }()
     
@@ -40,10 +41,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     // MARK: - Lifecycle
     
-    deinit {
-        print("MovieDetailViewController")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -63,6 +60,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     private func setupUI() {
         title = "Movie detail"
         setupNavigationBar()
+        setupAccessibility()
         transitionContainerView.setShadowBorder()
     }
     
@@ -72,12 +70,19 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         navigationItem.rightBarButtonItems = [shareBarButtonItem]
     }
     
+    private func setupAccessibility() {
+        posterImageView.isAccessibilityElement = true
+        posterImageView.accessibilityLabel = "Movie Poster"
+    }
+    
     private func configureNavigationBar(isFavorite: Bool?) {
         if let isFavorite = isFavorite {
             favoriteBarButtonItem.image = isFavorite ? #imageLiteral(resourceName: "FavoriteOn") : #imageLiteral(resourceName: "FavoriteOff")
+            favoriteBarButtonItem.accessibilityHint = "Tap to remove this movie from your favorites"
             navigationItem.rightBarButtonItems = [shareBarButtonItem, favoriteBarButtonItem]
         } else {
             navigationItem.rightBarButtonItems = [shareBarButtonItem]
+            favoriteBarButtonItem.accessibilityHint = "Tap to add this movie to your favorites"
         }
     }
     
