@@ -30,7 +30,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     lazy var favoriteBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "FavoriteOff"), style: .plain, target: self, action: #selector(favoriteButtonAction(_:)))
-        barButtonItem.accessibilityLabel = "Favorite button"
         return barButtonItem
     }()
     
@@ -71,18 +70,17 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     }
     
     private func setupAccessibility() {
+        UIAccessibility.post(notification: .screenChanged, argument: self.title)
         posterImageView.isAccessibilityElement = true
-        posterImageView.accessibilityLabel = "Movie Poster"
     }
     
     private func configureNavigationBar(isFavorite: Bool?) {
         if let isFavorite = isFavorite {
             favoriteBarButtonItem.image = isFavorite ? #imageLiteral(resourceName: "FavoriteOn") : #imageLiteral(resourceName: "FavoriteOff")
-            favoriteBarButtonItem.accessibilityHint = "Tap to remove this movie from your favorites"
+            favoriteBarButtonItem.accessibilityLabel = isFavorite ? Constants.favoriteOnButtonAccessibilityLabel : Constants.favoriteOfButtonAccessibilityLabel
             navigationItem.rightBarButtonItems = [shareBarButtonItem, favoriteBarButtonItem]
         } else {
             navigationItem.rightBarButtonItems = [shareBarButtonItem]
-            favoriteBarButtonItem.accessibilityHint = "Tap to add this movie to your favorites"
         }
     }
     
@@ -112,6 +110,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         
         backdropImageView.setImage(with: viewModel.backdropURL)
         posterImageView.setImage(with: viewModel.posterURL)
+        posterImageView.accessibilityLabel = "\(String(describing: viewModel.title)) poster"
         
         voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview
@@ -177,6 +176,15 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     @IBAction func favoriteButtonAction(_ sender: Any) {
         viewModel?.handleFavoriteMovie()
+    }
+    
+}
+
+extension MovieDetailViewController {
+    
+    struct Constants {
+        static let favoriteOnButtonAccessibilityLabel = "Remove from favorites"
+        static let favoriteOfButtonAccessibilityLabel = "Add from favorites"
     }
     
 }

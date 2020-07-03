@@ -33,8 +33,10 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         didSet {
             if presentationMode == .preview {
                 toggleGridBarButtonItem.image = #imageLiteral(resourceName: "List")
+                toggleGridBarButtonItem.accessibilityLabel = "Expand movie cells button"
             } else {
                 toggleGridBarButtonItem.image = #imageLiteral(resourceName: "Grid")
+                toggleGridBarButtonItem.accessibilityLabel = "Collapse movie cells"
             }
         }
     }
@@ -66,16 +68,22 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         setupNavigationBar()
         setupCollectionView()
         setupRefreshControl()
+        setupAccessibility()
     }
     
     private func setupNavigationBar() {
         navigationItem.title = Constants.NavigationItemTitle
     }
     
+    private func setupAccessibility() {
+        UIAccessibility.post(notification: .screenChanged, argument: self.navigationItem.title)
+        toggleGridBarButtonItem.accessibilityLabel = "Expand movie cells button"
+    }
+    
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.registerNib(cellType: UpcomingMoviePreviewCollectionViewCell.self)
-        collectionView.registerNib(cellType: UpcomingMovieDetailCollectionViewCell.self)
+        collectionView.registerNib(cellType: UpcomingMovieExpandedCollectionViewCell.self)
         setupCollectionViewLayout()
     }
     
@@ -228,7 +236,7 @@ extension UpcomingMoviesViewController {
             case .preview:
                 return UpcomingMoviePreviewCollectionViewCell.dequeuIdentifier
             case .detail:
-                return UpcomingMovieDetailCollectionViewCell.dequeuIdentifier
+                return UpcomingMovieExpandedCollectionViewCell.dequeuIdentifier
             }
         }
     }

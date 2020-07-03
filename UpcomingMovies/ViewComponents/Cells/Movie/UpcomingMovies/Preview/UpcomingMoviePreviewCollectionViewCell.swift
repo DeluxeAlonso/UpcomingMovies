@@ -39,12 +39,15 @@ class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, UpcomingMovi
         titleLabel.numberOfLines = 0
         titleLabel.font = FontHelper.semiBold(withSize: 18.0)
         titleLabel.text = ""
+        
+        isAccessibilityElement = true
     }
     
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
+        accessibilityLabel = viewModel.title
         if let posterURL = viewModel.posterURL {
             posterImageView.setImage(with: posterURL)
         } else {
