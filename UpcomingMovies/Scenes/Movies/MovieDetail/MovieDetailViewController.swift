@@ -59,7 +59,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     private func setupUI() {
         title = "Movie detail"
         setupNavigationBar()
-        setupAccessibility()
         transitionContainerView.setShadowBorder()
     }
     
@@ -67,11 +66,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
         navigationItem.rightBarButtonItems = [shareBarButtonItem]
-    }
-    
-    private func setupAccessibility() {
-        UIAccessibility.post(notification: .screenChanged, argument: self.title)
-        posterImageView.isAccessibilityElement = true
     }
     
     private func configureNavigationBar(isFavorite: Bool?) {
