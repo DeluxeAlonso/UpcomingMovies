@@ -33,10 +33,10 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         didSet {
             if presentationMode == .preview {
                 toggleGridBarButtonItem.image = #imageLiteral(resourceName: "List")
-                toggleGridBarButtonItem.accessibilityLabel = "Expand movie cells button"
+                toggleGridBarButtonItem.accessibilityLabel = Constants.expandButtonAccessibilityLabel
             } else {
                 toggleGridBarButtonItem.image = #imageLiteral(resourceName: "Grid")
-                toggleGridBarButtonItem.accessibilityLabel = "Collapse movie cells"
+                toggleGridBarButtonItem.accessibilityLabel = Constants.collapseButtonAccessibilityLabel
             }
         }
     }
@@ -77,7 +77,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     
     private func setupAccessibility() {
         UIAccessibility.post(notification: .screenChanged, argument: self.navigationItem.title)
-        toggleGridBarButtonItem.accessibilityLabel = "Expand movie cells button"
+        toggleGridBarButtonItem.accessibilityLabel = Constants.expandButtonAccessibilityLabel
     }
     
     private func setupCollectionView() {
@@ -251,6 +251,9 @@ extension UpcomingMoviesViewController {
         
         static let Title = NSLocalizedString("upcomingMoviesTabBarTitle", comment: "")
         static let NavigationItemTitle = NSLocalizedString("upcomingMoviesTitle", comment: "")
+        
+        static let expandButtonAccessibilityLabel = "Expand movie cells button"
+        static let collapseButtonAccessibilityLabel = "Collapse movie cells"
 
         static let previewCellHeight: Double = 150.0
         
