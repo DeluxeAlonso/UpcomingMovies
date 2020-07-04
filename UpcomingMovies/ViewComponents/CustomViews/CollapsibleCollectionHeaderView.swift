@@ -54,6 +54,8 @@ class CollapsibleCollectionHeaderView: UICollectionReusableView {
     
     private func setupUI() {
         backgroundColor = ColorPalette.defaultGrayBackgroundColor
+        isAccessibilityElement = true
+        
         setupTapGesture()
     }
     
@@ -65,6 +67,7 @@ class CollapsibleCollectionHeaderView: UICollectionReusableView {
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
+        accessibilityLabel = viewModel.title
         titleLabel.text = viewModel.title
     }
     

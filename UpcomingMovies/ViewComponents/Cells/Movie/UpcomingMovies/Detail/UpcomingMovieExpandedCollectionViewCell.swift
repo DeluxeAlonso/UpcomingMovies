@@ -40,6 +40,7 @@ class UpcomingMovieExpandedCollectionViewCell: UICollectionViewCell, UpcomingMov
     
     private func setupUI() {
         isAccessibilityElement = true
+        
         titleLabel.font = FontHelper.bold(withSize: 21.0)
         releaseDateLabel.font = FontHelper.regular(withSize: 17.0)
     }
