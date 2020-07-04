@@ -57,7 +57,8 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     // MARK: - Private
     
     private func setupUI() {
-        title = "Movie detail"
+        title = LocalizedStrings.movieDetailTitle.localized
+        
         setupNavigationBar()
         transitionContainerView.setShadowBorder()
     }
@@ -71,7 +72,11 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     private func configureNavigationBar(isFavorite: Bool?) {
         if let isFavorite = isFavorite {
             favoriteBarButtonItem.image = isFavorite ? #imageLiteral(resourceName: "FavoriteOn") : #imageLiteral(resourceName: "FavoriteOff")
-            favoriteBarButtonItem.accessibilityLabel = isFavorite ? Constants.favoriteOnButtonAccessibilityLabel : Constants.favoriteOfButtonAccessibilityLabel
+            if isFavorite {
+                favoriteBarButtonItem.accessibilityLabel = LocalizedStrings.removeFromFavoritesHint.localized
+            } else {
+                favoriteBarButtonItem.accessibilityLabel = LocalizedStrings.addToFavoritesHint.localized
+            }
             navigationItem.rightBarButtonItems = [shareBarButtonItem, favoriteBarButtonItem]
         } else {
             navigationItem.rightBarButtonItems = [shareBarButtonItem]
@@ -104,7 +109,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         
         backdropImageView.setImage(with: viewModel.backdropURL)
         posterImageView.setImage(with: viewModel.posterURL)
-        posterImageView.accessibilityLabel = "\(String(describing: viewModel.title)) poster"
         
         voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview
@@ -162,7 +166,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     @IBAction func shareBarButtonAction(_ sender: Any) {
         guard let movieTitle = viewModel?.title else { return }
-        let shareText = "Come with me to watch \(movieTitle)!"
+        let shareText = String(format: LocalizedStrings.movieDetailShareText.localized, movieTitle)
         let activityViewController = UIActivityViewController(activityItems: [shareText],
                                                               applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
@@ -170,15 +174,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     @IBAction func favoriteButtonAction(_ sender: Any) {
         viewModel?.handleFavoriteMovie()
-    }
-    
-}
-
-extension MovieDetailViewController {
-    
-    struct Constants {
-        static let favoriteOnButtonAccessibilityLabel = "Remove from favorites"
-        static let favoriteOfButtonAccessibilityLabel = "Add from favorites"
     }
     
 }

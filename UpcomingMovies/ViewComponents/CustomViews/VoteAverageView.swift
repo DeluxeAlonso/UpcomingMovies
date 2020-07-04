@@ -73,9 +73,9 @@ class VoteAverageView: UIView {
     // MARK: - Private
     
     private func setupUI() {
+        isAccessibilityElement = true
         setupLabels()
         setupShapeLayers()
-        setupAccessibility()
     }
     
     private func setupLabels() {
@@ -97,11 +97,6 @@ class VoteAverageView: UIView {
         layer.addSublayer(loadedLayer)
         
         updateVoteValue()
-    }
-    
-    private func setupAccessibility() {
-        voteAverageLabel.isAccessibilityElement = false
-        isAccessibilityElement = true
     }
     
     private func setupShapeLayerPath(_ shapeLayer: CAShapeLayer) {

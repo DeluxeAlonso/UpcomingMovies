@@ -34,7 +34,16 @@
 "emptyVideoResults" = "No hay trailers que mostrar.";
 
 "movieDetailTitle" = "Detalle";
+"movieDetailShareText" = "Te invito a ver %@";
 "reviewsDetailOptions" = "Reviews";
 "trailersDetailOptions" = "Trailers";
 "creditsDetailOptions" = "Créditos";
 "similarsDetailOptions" = "Similares";
+
+"movieCreditAccessibility" = "%@ como %@";
+
+"addToFavoritesHint" = "Añadir a favoritos";
+"removeFromFavoritesHint" = "Remover de favoritos";
+
+"expandMovieCellsHint" = "Expandir películas";
+"collapseMovieCellsHint" = "Colapsar películas";

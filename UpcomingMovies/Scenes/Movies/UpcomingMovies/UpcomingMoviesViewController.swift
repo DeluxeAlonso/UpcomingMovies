@@ -33,10 +33,10 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         didSet {
             if presentationMode == .preview {
                 toggleGridBarButtonItem.image = #imageLiteral(resourceName: "List")
-                toggleGridBarButtonItem.accessibilityLabel = Constants.expandButtonAccessibilityLabel
+                toggleGridBarButtonItem.accessibilityLabel = LocalizedStrings.expandMovieCellsHint.localized
             } else {
                 toggleGridBarButtonItem.image = #imageLiteral(resourceName: "Grid")
-                toggleGridBarButtonItem.accessibilityLabel = Constants.collapseButtonAccessibilityLabel
+                toggleGridBarButtonItem.accessibilityLabel = LocalizedStrings.collapseMovieCellsHint.localized
             }
         }
     }
@@ -65,22 +65,18 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     
     private func setupUI() {
         title = LocalizedStrings.upcomingMoviesTabBarTitle.localized
+        UIAccessibility.post(notification: .screenChanged, argument: self.navigationItem.title)
         
         setupNavigationBar()
         setupCollectionView()
         setupRefreshControl()
-        setupAccessibility()
     }
     
     private func setupNavigationBar() {
         navigationItem.title = LocalizedStrings.upcomingMoviesTitle.localized
+        toggleGridBarButtonItem.accessibilityLabel = LocalizedStrings.expandMovieCellsHint.localized
     }
-    
-    private func setupAccessibility() {
-        UIAccessibility.post(notification: .screenChanged, argument: self.navigationItem.title)
-        toggleGridBarButtonItem.accessibilityLabel = Constants.expandButtonAccessibilityLabel
-    }
-    
+
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.registerNib(cellType: UpcomingMoviePreviewCollectionViewCell.self)
@@ -250,9 +246,6 @@ extension UpcomingMoviesViewController {
     
     struct Constants {
         
-        static let expandButtonAccessibilityLabel = "Expand movie cells button"
-        static let collapseButtonAccessibilityLabel = "Collapse movie cells"
-
         static let previewCellHeight: Double = 150.0
         
         static let detailCellHeight: Double = 200.0

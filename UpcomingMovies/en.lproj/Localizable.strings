@@ -34,7 +34,16 @@
 "emptyVideoResults" = "There are no trailers to show right now.";
 
 "movieDetailTitle" = "Movie detail";
+"movieDetailShareText" = "Come with me to watch %@!";
 "reviewsDetailOptions" = "Reviews";
 "trailersDetailOptions" = "Trailers";
 "creditsDetailOptions" = "Credits";
 "similarsDetailOptions" = "Similars";
+
+"movieCreditAccessibility" = "%@ as %@";
+
+"addToFavoritesHint" = "Add to favorites";
+"removeFromFavoritesHint" = "Remove from favorites";
+
+"expandMovieCellsHint" = "Expand movies";
+"collapseMovieCellsHint" = "Collapse movies";

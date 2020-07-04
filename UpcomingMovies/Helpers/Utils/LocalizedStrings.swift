@@ -53,10 +53,19 @@ enum LocalizedStrings: String, Localizable {
     case emptyVideoResults
     
     case movieDetailTitle
+    case movieDetailShareText
     case reviewsDetailOptions
     case trailersDetailOptions
     case creditsDetailOptions
     case similarsDetailOptions
+    
+    case movieCreditAccessibility
+    
+    case addToFavoritesHint
+    case removeFromFavoritesHint
+    
+    case expandMovieCellsHint
+    case collapseMovieCellsHint
     
     var tableName: String {
         return "Localizable"

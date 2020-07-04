@@ -34,22 +34,16 @@ class UpcomingMovieExpandedCollectionViewCell: UICollectionViewCell, UpcomingMov
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
-        setupAccessibility()
     }
     
     // MARK: - Private
     
     private func setupUI() {
+        isAccessibilityElement = true
         titleLabel.font = FontHelper.bold(withSize: 21.0)
         releaseDateLabel.font = FontHelper.regular(withSize: 17.0)
     }
-    
-    private func setupAccessibility() {
-        titleLabel.isAccessibilityElement = false
-        releaseDateLabel.isAccessibilityElement = false
-        isAccessibilityElement = true
-    }
-    
+
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
