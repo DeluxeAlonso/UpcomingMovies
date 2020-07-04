@@ -73,6 +73,7 @@ class VoteAverageView: UIView {
     // MARK: - Private
     
     private func setupUI() {
+        isAccessibilityElement = true
         setupLabels()
         setupShapeLayers()
     }
@@ -123,9 +124,10 @@ class VoteAverageView: UIView {
             loadedLayer.strokeEnd = 0.0
             return
         }
-        voteAverageLabel.text = String(voteValue)
         let toValue = voteValue / 10.0
         loadedLayer.strokeEnd = CGFloat(toValue)
+        voteAverageLabel.text = String(voteValue)
+        accessibilityLabel = "Rating of \(voteValue)"
     }
     
 }

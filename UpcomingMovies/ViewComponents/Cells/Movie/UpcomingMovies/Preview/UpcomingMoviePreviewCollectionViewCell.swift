@@ -35,6 +35,8 @@ class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, UpcomingMovi
     // MARK: - Private
     
     private func setupUI() {
+        isAccessibilityElement = true
+        
         titleLabel.textColor = ColorPalette.whiteColor
         titleLabel.numberOfLines = 0
         titleLabel.font = FontHelper.semiBold(withSize: 18.0)
@@ -45,6 +47,7 @@ class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, UpcomingMovi
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
+        accessibilityLabel = viewModel.title
         if let posterURL = viewModel.posterURL {
             posterImageView.setImage(with: posterURL)
         } else {

@@ -49,8 +49,11 @@ class MovieCreditCollectionViewCell: UICollectionViewCell {
     // MARK: - Private
     
     private func setupUI() {
+        isAccessibilityElement = true
+        
         nameLabel.font = FontHelper.bold(withSize: 15.0)
         nameLabel.textColor = .white
+        
         subtitleLabel.font = FontHelper.regular(withSize: 13.0)
         subtitleLabel.textColor = .white
     }
@@ -59,6 +62,10 @@ class MovieCreditCollectionViewCell: UICollectionViewCell {
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
+        
+        let creditLabelFormat = LocalizedStrings.movieCreditAccessibility.localized
+        accessibilityLabel = String(format: creditLabelFormat, viewModel.name, viewModel.role)
+        
         profileImageView.setImage(with: viewModel.profileURL)
         nameLabel.text = viewModel.name
         subtitleLabel.text = viewModel.role

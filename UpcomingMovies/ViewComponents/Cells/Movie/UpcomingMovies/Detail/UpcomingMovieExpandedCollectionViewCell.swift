@@ -1,5 +1,5 @@
 //
-//  UpcomingMovieDetailCollectionViewCell.swift
+//  UpcomingMovieExpandedCollectionViewCell.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 3/9/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpcomingMovieDetailCollectionViewCell: UICollectionViewCell, UpcomingMovieCollectionViewCell {
+class UpcomingMovieExpandedCollectionViewCell: UICollectionViewCell, UpcomingMovieCollectionViewCell {
     
     @IBOutlet weak var backdropImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -39,16 +39,20 @@ class UpcomingMovieDetailCollectionViewCell: UICollectionViewCell, UpcomingMovie
     // MARK: - Private
     
     private func setupUI() {
+        isAccessibilityElement = true
+        
         titleLabel.font = FontHelper.bold(withSize: 21.0)
         releaseDateLabel.font = FontHelper.regular(withSize: 17.0)
     }
-    
+
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
         
         titleLabel.text = viewModel.title
+        accessibilityLabel = viewModel.title
+        
         releaseDateLabel.text = viewModel.releaseDate
         
         backdropImageView.setImage(with: viewModel.backdropURL)

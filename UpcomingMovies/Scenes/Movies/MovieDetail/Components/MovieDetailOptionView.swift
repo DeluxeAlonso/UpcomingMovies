@@ -43,8 +43,6 @@ class MovieDetailOptionView: UIView {
     init(option: MovieDetailOption) {
         self.option = option
         super.init(frame: .zero)
-        optionTitleLabel.text = self.option.title
-        optionImageView.image = self.option.icon
         setupUI()
     }
     
@@ -68,6 +66,13 @@ class MovieDetailOptionView: UIView {
     
     private func setupUI() {
         backgroundColor = ColorPalette.navigationBarBackgroundColor
+        
+        isAccessibilityElement = true
+        accessibilityLabel = option.title
+        
+        optionTitleLabel.text = self.option.title
+        optionImageView.image = self.option.icon
+        
         setupStackView()
     }
     

@@ -10,6 +10,7 @@ import Foundation
 import UpcomingMoviesDomain
 
 extension Movie {
+    
     var posterURL: URL? {
         guard let posterPath = posterPath else { return nil }
         let urlString = ConfigurationHandler.shared.regularImageBaseURLString + posterPath
@@ -21,28 +22,35 @@ extension Movie {
         let urlString = ConfigurationHandler.shared.backdropImageBaseURLString + backdropPath
         return URL(string: urlString)
     }
+
 }
 
 extension Cast {
+    
     var profileURL: URL? {
         guard let photoPath = photoPath else { return nil }
         let urlString = ConfigurationHandler.shared.regularImageBaseURLString + photoPath
         return URL(string: urlString)
     }
+    
 }
 
 extension Crew {
+    
     var profileURL: URL? {
         guard let photoPath = photoPath else { return nil }
         let urlString = ConfigurationHandler.shared.regularImageBaseURLString + photoPath
         return URL(string: urlString)
     }
+    
 }
 
 extension List {
+
     var backdropURL: URL? {
         guard let backdropPath = backdropPath else { return nil }
         let urlString = ConfigurationHandler.shared.backdropImageBaseURLString + backdropPath
         return URL(string: urlString)
     }
+
 }

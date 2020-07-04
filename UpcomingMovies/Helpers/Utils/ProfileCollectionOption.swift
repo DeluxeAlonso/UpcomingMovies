@@ -43,9 +43,9 @@ public enum ProfileCollectionOption: ProfileOptionProtocol {
     public var title: String? {
         switch self {
         case .favorites:
-            return NSLocalizedString("favoritesCollectionOption", comment: "")
+            return LocalizedStrings.favoritesCollectionOption.localized
         case .watchlist:
-            return NSLocalizedString("watchlistCollectionOption", comment: "")
+            return LocalizedStrings.watchlistCollectionOption.localized
         }
     }
 
@@ -58,7 +58,7 @@ public enum ProfileGroupOption: ProfileOptionProtocol {
     public var title: String? {
         switch self {
         case .customLists:
-            return NSLocalizedString("customListGroupOption", comment: "")
+            return LocalizedStrings.customListGroupOption.localized
         }
     }
 
@@ -71,7 +71,7 @@ public enum ProfileConfigurationOption: ProfileOptionProtocol {
     public var title: String? {
         switch self {
         case .includeAdult:
-            return NSLocalizedString("includeAdults", comment: "")
+            return LocalizedStrings.includeAdults.localized
         }
     }
 

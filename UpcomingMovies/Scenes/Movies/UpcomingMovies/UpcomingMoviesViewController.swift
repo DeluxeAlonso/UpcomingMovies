@@ -33,8 +33,10 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         didSet {
             if presentationMode == .preview {
                 toggleGridBarButtonItem.image = #imageLiteral(resourceName: "List")
+                toggleGridBarButtonItem.accessibilityLabel = LocalizedStrings.expandMovieCellsHint.localized
             } else {
                 toggleGridBarButtonItem.image = #imageLiteral(resourceName: "Grid")
+                toggleGridBarButtonItem.accessibilityLabel = LocalizedStrings.collapseMovieCellsHint.localized
             }
         }
     }
@@ -62,20 +64,23 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     // MARK: - Private
     
     private func setupUI() {
-        title = Constants.Title
+        title = LocalizedStrings.upcomingMoviesTabBarTitle.localized
+        UIAccessibility.post(notification: .screenChanged, argument: self.navigationItem.title)
+        
         setupNavigationBar()
         setupCollectionView()
         setupRefreshControl()
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = Constants.NavigationItemTitle
+        navigationItem.title = LocalizedStrings.upcomingMoviesTitle.localized
+        toggleGridBarButtonItem.accessibilityLabel = LocalizedStrings.expandMovieCellsHint.localized
     }
-    
+
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.registerNib(cellType: UpcomingMoviePreviewCollectionViewCell.self)
-        collectionView.registerNib(cellType: UpcomingMovieDetailCollectionViewCell.self)
+        collectionView.registerNib(cellType: UpcomingMovieExpandedCollectionViewCell.self)
         setupCollectionViewLayout()
     }
     
@@ -134,7 +139,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
              hideDisplayedPlaceholderView()
             collectionView.backgroundView = UIView(frame: .zero)
         case .empty:
-            presentEmptyView(with: "No movies to show")
+            presentEmptyView(with: LocalizedStrings.emptyMovieResults.localized)
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
@@ -228,7 +233,7 @@ extension UpcomingMoviesViewController {
             case .preview:
                 return UpcomingMoviePreviewCollectionViewCell.dequeuIdentifier
             case .detail:
-                return UpcomingMovieDetailCollectionViewCell.dequeuIdentifier
+                return UpcomingMovieExpandedCollectionViewCell.dequeuIdentifier
             }
         }
     }
@@ -241,9 +246,6 @@ extension UpcomingMoviesViewController {
     
     struct Constants {
         
-        static let Title = NSLocalizedString("upcomingMoviesTabBarTitle", comment: "")
-        static let NavigationItemTitle = NSLocalizedString("upcomingMoviesTitle", comment: "")
-
         static let previewCellHeight: Double = 150.0
         
         static let detailCellHeight: Double = 200.0
