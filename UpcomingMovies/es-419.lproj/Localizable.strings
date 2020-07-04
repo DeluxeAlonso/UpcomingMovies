@@ -30,6 +30,7 @@
 
 "signOut" = "Cerrar sesión";
 
+"emptyMovieResults" = "No hay películas que mostrar.";
 "emptyVideoResults" = "No hay trailers que mostrar.";
 
 "movieDetailTitle" = "Detalle";

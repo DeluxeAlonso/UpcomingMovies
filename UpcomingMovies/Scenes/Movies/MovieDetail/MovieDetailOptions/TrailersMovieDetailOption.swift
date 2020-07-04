@@ -11,7 +11,7 @@ import UIKit
 class TrailersMovieDetailOption: MovieDetailOption {
     
     var title: String {
-        return NSLocalizedString("trailersDetailOptions", comment: "")
+        return LocalizedStrings.trailersDetailOptions.localized
     }
     
     var icon: UIImage {

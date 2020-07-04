@@ -64,7 +64,8 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     // MARK: - Private
     
     private func setupUI() {
-        title = Constants.Title
+        title = LocalizedStrings.upcomingMoviesTabBarTitle.localized
+        
         setupNavigationBar()
         setupCollectionView()
         setupRefreshControl()
@@ -72,7 +73,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = Constants.NavigationItemTitle
+        navigationItem.title = LocalizedStrings.upcomingMoviesTitle.localized
     }
     
     private func setupAccessibility() {
@@ -142,7 +143,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
              hideDisplayedPlaceholderView()
             collectionView.backgroundView = UIView(frame: .zero)
         case .empty:
-            presentEmptyView(with: "No movies to show")
+            presentEmptyView(with: LocalizedStrings.emptyMovieResults.localized)
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
@@ -248,9 +249,6 @@ extension UpcomingMoviesViewController {
 extension UpcomingMoviesViewController {
     
     struct Constants {
-        
-        static let Title = NSLocalizedString("upcomingMoviesTabBarTitle", comment: "")
-        static let NavigationItemTitle = NSLocalizedString("upcomingMoviesTitle", comment: "")
         
         static let expandButtonAccessibilityLabel = "Expand movie cells button"
         static let collapseButtonAccessibilityLabel = "Collapse movie cells"

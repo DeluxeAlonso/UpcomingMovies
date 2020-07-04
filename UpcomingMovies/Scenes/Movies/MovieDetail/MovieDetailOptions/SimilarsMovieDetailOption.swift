@@ -11,7 +11,7 @@ import UIKit
 class SimilarsMovieDetailOption: MovieDetailOption {
     
     var title: String {
-        return NSLocalizedString("similarsDetailOptions", comment: "")
+        return LocalizedStrings.similarsDetailOptions.localized
     }
     
     var icon: UIImage {

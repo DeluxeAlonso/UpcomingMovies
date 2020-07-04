@@ -36,7 +36,7 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     // MARK: - Private
     
     private func setupUI() {
-        title = Constants.Title
+        title = LocalizedStrings.accountTabBarTitle.localized
         setupContainerView()
         setupNavigationBar()
     }
@@ -46,7 +46,7 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = Constants.NavigationItemTitle
+        navigationItem.title = LocalizedStrings.accountTitle.localized
     }
     
     private func showSignInView(withAnimatedNavigationBar animated: Bool = false) {
@@ -133,19 +133,6 @@ extension AccountViewController: AuthPermissionViewControllerDelegate {
     func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
                                       didSignedIn signedIn: Bool) {
         if signedIn { viewModel.getAccessToken() }
-    }
-    
-}
-
-// MARK: - Constants
-
-extension AccountViewController {
-    
-    struct Constants {
-        
-        static let Title = NSLocalizedString("accountTabBarTitle", comment: "")
-        static let NavigationItemTitle = NSLocalizedString("accountTitle", comment: "")
-        
     }
     
 }

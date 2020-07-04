@@ -30,10 +30,10 @@
 
 "signOut" = "Sign out";
 
+"emptyMovieResults" = "There are no movies to show right now.";
 "emptyVideoResults" = "There are no trailers to show right now.";
 
 "movieDetailTitle" = "Movie detail";
-
 "reviewsDetailOptions" = "Reviews";
 "trailersDetailOptions" = "Trailers";
 "creditsDetailOptions" = "Credits";

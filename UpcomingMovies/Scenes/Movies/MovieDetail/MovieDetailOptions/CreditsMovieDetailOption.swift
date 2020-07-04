@@ -11,7 +11,7 @@ import UIKit
 class CreditsMovieDetailOption: MovieDetailOption {
     
     var title: String {
-        return NSLocalizedString("creditsDetailOptions", comment: "")
+        return LocalizedStrings.creditsDetailOptions.localized
     }
     
     var icon: UIImage {

@@ -30,14 +30,15 @@ class SearchMoviesViewController: UIViewController, Storyboarded {
     // MARK: - Private
     
     private func setupUI() {
-        title = Constants.Title
+        title = LocalizedStrings.searchMoviesTabBarTitle.localized
+        
         setupNavigationBar()
         setupContainerView()
         setupSearchController()
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = Constants.NavigationItemTitle
+        navigationItem.title = LocalizedStrings.searchMoviesTabBarTitle.localized
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
@@ -152,19 +153,6 @@ extension SearchMoviesViewController: SearchOptionsTableViewControllerDelegate {
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
                                           didSelectRecentlyVisitedMovie id: Int, title: String) {
         coordinator?.showDetail(for: id, and: title)
-    }
-    
-}
-
-// MARK: - Constants
-
-extension SearchMoviesViewController {
-    
-    struct Constants {
-        
-        static let Title = NSLocalizedString("searchMoviesTabBarTitle", comment: "")
-        static let NavigationItemTitle = NSLocalizedString("searchMoviesTitle", comment: "")
-        
     }
     
 }

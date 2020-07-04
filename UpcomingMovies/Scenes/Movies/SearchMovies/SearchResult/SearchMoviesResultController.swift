@@ -93,7 +93,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         tableView.separatorStyle = .none
         switch state {
         case .empty:
-            tableView.tableFooterView = CustomFooterView(message: Constants.emptyResultsTitle)
+            tableView.tableFooterView = CustomFooterView(message: LocalizedStrings.emptySearchResults.localized)
         case .populated, .initial:
             tableView.tableFooterView = UIView()
             tableView.separatorStyle = .singleLine
@@ -158,7 +158,7 @@ extension SearchMoviesResultController: UITableViewDelegate {
         switch viewState {
         case .initial:
             let headerView = SimpleHeaderView()
-            headerView.headerTitle = Constants.recentSearchesHeaderTitle
+            headerView.headerTitle = LocalizedStrings.recentSearches.localized
             return headerView
         case .populated:
             let view = UIView()
@@ -177,17 +177,6 @@ extension SearchMoviesResultController: UITableViewDelegate {
         case .searching, .error, .empty, .populated:
             return 0
         }
-    }
-    
-}
-
-// MARK: - Constants
-
-extension SearchMoviesResultController {
-    
-    struct Constants {
-        static let recentSearchesHeaderTitle = NSLocalizedString("recentSearches", comment: "")
-        static let emptyResultsTitle = NSLocalizedString("emptySearchResults", comment: "")
     }
     
 }
