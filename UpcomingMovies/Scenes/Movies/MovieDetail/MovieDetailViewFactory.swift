@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieDetailViewFactory {
+final class MovieDetailViewFactory {
     
     class func makeFavoriteBarButtonItem() -> ToggleBarButtonItem {
         let favoriteOff = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "FavoriteOff")),

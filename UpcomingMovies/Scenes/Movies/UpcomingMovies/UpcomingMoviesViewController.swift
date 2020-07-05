@@ -67,15 +67,9 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     private func setupNavigationBar() {
         navigationItem.title = LocalizedStrings.upcomingMoviesTitle.localized
         
-        let previewContent = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "List")),
-                                                        accessibilityLabel: LocalizedStrings.expandMovieCellsHint.localized)
-        let detailContent = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "Grid")),
-                                                       accessibilityLabel: LocalizedStrings.collapseMovieCellsHint.localized)
-        
-        toggleGridBarButtonItem = ToggleBarButtonItem(contents: [previewContent, detailContent])
+        toggleGridBarButtonItem = UpcomingMoviesViewFactory.makeGridBarButtonItem()
         toggleGridBarButtonItem.target = self
         toggleGridBarButtonItem.action = #selector(toggleGridAction)
-        
         navigationItem.leftBarButtonItem = toggleGridBarButtonItem
     }
 
