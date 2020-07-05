@@ -12,10 +12,10 @@ struct ToggleBarButtonItemContent {
     
     let display: ToggleBarButtonItemDisplay
     let accessibilityLabel: String?
-    let accessibilityHint: String? = nil
+    let accessibilityHint: String?
     
     init(display: ToggleBarButtonItemDisplay,
-         accessibilityLabel: String = nil,
+         accessibilityLabel: String? = nil,
          accessibilityHint: String? = nil) {
         self.display = display
         self.accessibilityLabel = accessibilityLabel

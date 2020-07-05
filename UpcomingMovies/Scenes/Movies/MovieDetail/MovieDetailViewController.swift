@@ -28,8 +28,16 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         return barButtonItem
     }()
     
-    lazy var favoriteBarButtonItem: UIBarButtonItem = {
-        let barButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "FavoriteOff"), style: .plain, target: self, action: #selector(favoriteButtonAction(_:)))
+    lazy var favoriteBarButtonItem: ToggleBarButtonItem = {
+        let favoriteOff = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "FavoriteOff")),
+                                                     accessibilityLabel: LocalizedStrings.addToFavoritesHint.localized)
+        let favoriteOn = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "FavoriteOn")),
+                                                    accessibilityLabel: LocalizedStrings.removeFromFavoritesHint.localized)
+        
+        let barButtonItem = ToggleBarButtonItem(contents: [favoriteOff, favoriteOn])
+        barButtonItem.target = self
+        barButtonItem.action = #selector(favoriteButtonAction(_:))
+        
         return barButtonItem
     }()
     
@@ -71,12 +79,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     private func configureNavigationBar(isFavorite: Bool?) {
         if let isFavorite = isFavorite {
-            favoriteBarButtonItem.image = isFavorite ? #imageLiteral(resourceName: "FavoriteOn") : #imageLiteral(resourceName: "FavoriteOff")
-            if isFavorite {
-                favoriteBarButtonItem.accessibilityLabel = LocalizedStrings.removeFromFavoritesHint.localized
-            } else {
-                favoriteBarButtonItem.accessibilityLabel = LocalizedStrings.addToFavoritesHint.localized
-            }
+            favoriteBarButtonItem.toggle(to: isFavorite.intValue)
             navigationItem.rightBarButtonItems = [shareBarButtonItem, favoriteBarButtonItem]
         } else {
             navigationItem.rightBarButtonItems = [shareBarButtonItem]

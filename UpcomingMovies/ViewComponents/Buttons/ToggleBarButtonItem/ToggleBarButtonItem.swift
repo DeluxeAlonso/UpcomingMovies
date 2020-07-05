@@ -56,4 +56,10 @@ class ToggleBarButtonItem: UIBarButtonItem {
         configure(for: currentContentIndex)
     }
     
+    func toggle(to index: Int) {
+        currentContentIndex = index
+        
+        configure(for: currentContentIndex)
+    }
+    
 }
