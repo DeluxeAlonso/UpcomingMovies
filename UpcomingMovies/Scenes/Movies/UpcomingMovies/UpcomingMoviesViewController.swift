@@ -11,7 +11,6 @@ import UpcomingMoviesDomain
 
 class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
 
-    @IBOutlet weak var toggleGridBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
     static var storyboardName: String = "UpcomingMovies"
@@ -27,19 +26,10 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     private var detailLayout: VerticalFlowLayout!
     
     var loaderView: RadarView!
+    var toggleGridBarButtonItem: ToggleBarButtonItem!
     
     private var isAnimatingPresentation: Bool = false
-    private var presentationMode: PresentationMode = .preview {
-        didSet {
-            if presentationMode == .preview {
-                toggleGridBarButtonItem.image = #imageLiteral(resourceName: "List")
-                toggleGridBarButtonItem.accessibilityLabel = LocalizedStrings.expandMovieCellsHint.localized
-            } else {
-                toggleGridBarButtonItem.image = #imageLiteral(resourceName: "Grid")
-                toggleGridBarButtonItem.accessibilityLabel = LocalizedStrings.collapseMovieCellsHint.localized
-            }
-        }
-    }
+    private var presentationMode: PresentationMode = .preview
     
     // MARK: - Lifecycle
     
@@ -47,6 +37,8 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         super.viewDidLoad()
         setupUI()
         setupBindables()
+        
+        viewModel?.getMovies()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -74,7 +66,17 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     
     private func setupNavigationBar() {
         navigationItem.title = LocalizedStrings.upcomingMoviesTitle.localized
-        toggleGridBarButtonItem.accessibilityLabel = LocalizedStrings.expandMovieCellsHint.localized
+        
+        let previewContent = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "List")),
+                                                        accessibilityLabel: LocalizedStrings.expandMovieCellsHint.localized)
+        let detailContent = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "Grid")),
+                                                       accessibilityLabel: LocalizedStrings.collapseMovieCellsHint.localized)
+        
+        toggleGridBarButtonItem = ToggleBarButtonItem(contents: [previewContent, detailContent])
+        toggleGridBarButtonItem.target = self
+        toggleGridBarButtonItem.action = #selector(toggleGridAction)
+        
+        navigationItem.leftBarButtonItem = toggleGridBarButtonItem
     }
 
     private func setupCollectionView() {
@@ -161,13 +163,13 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
         })
-        viewModel?.getMovies()
     }
     
     // MARK: - Actions
     
-    @IBAction func toggleGridAction(_ sender: Any) {
+    @objc func toggleGridAction(_ sender: Any) {
         guard !isAnimatingPresentation else { return }
+        toggleGridBarButtonItem.toggle()
         switch presentationMode {
         case .preview:
             presentationMode = .detail
