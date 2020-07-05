@@ -29,12 +29,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     }()
     
     lazy var favoriteBarButtonItem: ToggleBarButtonItem = {
-        let favoriteOff = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "FavoriteOff")),
-                                                     accessibilityLabel: LocalizedStrings.addToFavoritesHint.localized)
-        let favoriteOn = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "FavoriteOn")),
-                                                    accessibilityLabel: LocalizedStrings.removeFromFavoritesHint.localized)
-        
-        let barButtonItem = ToggleBarButtonItem(contents: [favoriteOff, favoriteOn])
+        let barButtonItem = MovieDetailViewFactory.makeFavoriteBarButtonItem()
         barButtonItem.target = self
         barButtonItem.action = #selector(favoriteButtonAction(_:))
         
