@@ -30,7 +30,10 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     var needsFetch = false
     
     var options: [MovieDetailOption] {
-        return MovieDetailFactory.getOptions()
+        return [ReviewsMovieDetailOption(),
+                TrailersMovieDetailOption(),
+                CreditsMovieDetailOption(),
+                SimilarsMovieDetailOption()]
     }
     
     var startLoading: Bindable<Bool> = Bindable(false)

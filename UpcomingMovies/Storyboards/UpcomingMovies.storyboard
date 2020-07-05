@@ -39,15 +39,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Upcoming movies" id="FBi-9u-wKu">
                         <barButtonItem key="backBarButtonItem" title=" " id="1uH-Ge-Gt9"/>
-                        <barButtonItem key="leftBarButtonItem" image="List" id="JjA-67-2z8" userLabel="Toggle Grid Bar Button Item">
-                            <connections>
-                                <action selector="toggleGridAction:" destination="EZU-as-DXw" id="TFH-xz-Jth"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" image="List" id="JjA-67-2z8" userLabel="Toggle Grid Bar Button Item"/>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="EKd-qK-aII" id="2u5-5u-0xh"/>
-                        <outlet property="toggleGridBarButtonItem" destination="JjA-67-2z8" id="fnW-wt-Fdj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JXE-16-sg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
