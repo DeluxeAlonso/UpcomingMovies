@@ -1,5 +1,5 @@
 //
-//  MovieVideosTest.swift
+//  MovieVideosTests.swift
 //  UpcomingMoviesTests
 //
 //  Created by Alonso Alvarez on 2/19/19.
@@ -11,7 +11,7 @@ import XCTest
 @testable import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
-class MovieVideosTest: XCTestCase {
+class MovieVideosTests: XCTestCase {
     
     private var useCaseProvider: MockUseCaseProvider!
     private var movieUseCase: MockMovieUseCase!
