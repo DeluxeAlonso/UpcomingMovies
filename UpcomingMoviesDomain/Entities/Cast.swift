@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Cast {
+public struct Cast: Equatable {
     
     public let id: Int
     public let character: String

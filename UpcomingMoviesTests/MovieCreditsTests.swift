@@ -39,5 +39,36 @@ class MovieCreditsTests: XCTestCase {
         //Assert
         XCTAssertEqual(title, "Movie 1")
     }
-
+    
+    func testGetMovieCreditsEmpty() {
+        //Arrange
+        movieUseCase.credits = Result.success(MovieCredits.with())
+        let viewModel = MovieCreditsViewModel(movieId: 1, movieTitle: "Movie 1", useCaseProvider: useCaseProvider)
+        //Act
+        viewModel.getMovieCredits()
+        //Assert
+        XCTAssertEqual(viewModel.viewState.value, .empty)
+    }
+    
+    func testGetMovieCreditsPopulated() {
+        //Arrange
+        let crew = MovieCredits(cast: [Cast.with()], crew: [Crew.with()])
+        movieUseCase.credits = Result.success(crew)
+        let viewModel = MovieCreditsViewModel(movieId: 1, movieTitle: "Movie 1", useCaseProvider: useCaseProvider)
+        //Act
+        viewModel.getMovieCredits()
+        //Assert
+        XCTAssertEqual(viewModel.viewState.value, .populated([Cast.with()], [Crew.with()]))
+    }
+    
+    func testGetMovieCreditsError() {
+        //Arrange
+        movieUseCase.credits = Result.failure(APIError.badRequest)
+        let viewModel = MovieCreditsViewModel(movieId: 1, movieTitle: "Movie 1", useCaseProvider: useCaseProvider)
+        //Act
+        viewModel.getMovieCredits()
+        //Assert
+        XCTAssertEqual(viewModel.viewState.value, .error(APIError.badRequest))
+    }
+    
 }
