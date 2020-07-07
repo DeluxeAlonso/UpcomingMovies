@@ -49,6 +49,18 @@ class MovieReviewsTests: XCTestCase {
         XCTAssertEqual(viewModel.viewState.value, .empty)
     }
     
+    func testGetReviewsPopulated() {
+        //Arrange
+        movieUseCase.reviews = Result.success([Review.with(id: "1"), Review.with(id: "2")])
+        let viewModel = MovieReviewsViewModel(movieId: 1, movieTitle: "Movie 1", useCaseProvider: useCaseProvider)
+        //Act
+        viewModel.getMovieReviews()
+        movieUseCase.reviews = Result.success([])
+        viewModel.getMovieReviews()
+        //Assert
+        XCTAssertEqual(viewModel.viewState.value, .populated([Review.with(id: "1"), Review.with(id: "2")]))
+    }
+    
     func testGetReviewsPaging() {
         //Arrange
         movieUseCase.reviews = Result.success([Review.with(id: "1"), Review.with(id: "2")])
@@ -56,8 +68,7 @@ class MovieReviewsTests: XCTestCase {
         //Act
         viewModel.getMovieReviews()
         //Assert
-        XCTAssertEqual(viewModel.viewState.value,
-                       .paging([Review.with(id: "1"), Review.with(id: "2")], next: 2))
+        XCTAssertEqual(viewModel.viewState.value, .paging([Review.with(id: "1"), Review.with(id: "2")], next: 2))
     }
     
     func testGetReviewsError() {
