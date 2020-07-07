@@ -45,6 +45,20 @@ class UpcomingMoviesTests: XCTestCase {
         XCTAssertEqual(viewModel.viewState.value, .empty)
     }
     
+    func testGetMoviesPopulated() {
+        //Arrange
+        movieUseCase.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
+        let contentHandler = UpcomingMoviesContentHandler(movieUseCase: movieUseCase)
+        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider,
+                                                contentHandler: contentHandler)
+        //Act
+        viewModel.getMovies()
+        movieUseCase.upcomingMovies = Result.success([])
+        viewModel.getMovies()
+        //Assert
+        XCTAssertEqual(viewModel.viewState.value, .populated([Movie.with(id: 1), Movie.with(id: 2)]))
+    }
+    
     func testGetMoviesPaging() {
         //Arrange
         movieUseCase.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])

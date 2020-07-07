@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Crew {
+public struct Crew: Equatable {
     
     public let id: Int
     public let job: String
