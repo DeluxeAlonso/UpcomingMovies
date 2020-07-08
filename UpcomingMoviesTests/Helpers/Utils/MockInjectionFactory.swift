@@ -136,7 +136,7 @@ final class MockGenreUseCase: GenreUseCaseProtocol {
     var didUpdateGenre: (() -> Void)?
     
     func find(with id: Int, completion: @escaping (Result<UpcomingMoviesDomain.Genre?, Error>) -> Void) {
-        completion(.success(Genre.with(id: 1, name: "Genre 1")))
+        completion(.success(Genre(id: 1, name: "Genre 1")))
     }
     
     var genres: Result<[UpcomingMoviesDomain.Genre], Error>?
