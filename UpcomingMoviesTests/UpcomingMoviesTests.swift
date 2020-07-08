@@ -13,27 +13,24 @@ import XCTest
 
 class UpcomingMoviesTests: XCTestCase {
     
-    private var movieUseCase: MockMovieUseCase!
+    private var mockInteractor: MockUpcomingMoviesInteractor!
     private var viewModelToTest: UpcomingMoviesViewModelProtocol!
 
     override func setUp() {
         super.setUp()
-        movieUseCase = MockMovieUseCase(remoteDataSource: MockInjectionFactory.makeRemoteDataSource().movieDataSource())
-        let useCaseProvider = (MockInjectionFactory.useCaseProvider() as! MockUseCaseProvider)
-        useCaseProvider.mockMovieUseCase = self.movieUseCase
-        let interactor = UpcomingMoviesInteractor(useCaseProvider: useCaseProvider)
-        viewModelToTest = UpcomingMoviesViewModel(interactor: interactor)
+        mockInteractor = MockUpcomingMoviesInteractor()
+        viewModelToTest = UpcomingMoviesViewModel(interactor: mockInteractor)
     }
 
     override func tearDown() {
-        movieUseCase = nil
+        mockInteractor = nil
         viewModelToTest = nil
         super.tearDown()
     }
     
     func testGetMoviesEmpty() {
         //Arrange
-        movieUseCase.upcomingMovies = Result.success([])
+        mockInteractor.upcomingMovies = Result.success([])
         //Act
         viewModelToTest.getMovies()
         //Assert
@@ -42,10 +39,10 @@ class UpcomingMoviesTests: XCTestCase {
     
     func testGetMoviesPopulated() {
         //Arrange
-        movieUseCase.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
+        mockInteractor.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
         //Act
         viewModelToTest.getMovies()
-        movieUseCase.upcomingMovies = Result.success([])
+        mockInteractor.upcomingMovies = Result.success([])
         viewModelToTest.getMovies()
         //Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .populated([Movie.with(id: 1), Movie.with(id: 2)]))
@@ -53,7 +50,7 @@ class UpcomingMoviesTests: XCTestCase {
     
     func testGetMoviesPaging() {
         //Arrange
-        movieUseCase.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
+        mockInteractor.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
         //Act
         viewModelToTest.getMovies()
         //Assert
@@ -63,7 +60,7 @@ class UpcomingMoviesTests: XCTestCase {
     
     func testGetMoviesError() {
         //Arrange
-        movieUseCase.upcomingMovies = Result.failure(APIError.badRequest)
+        mockInteractor.upcomingMovies = Result.failure(APIError.badRequest)
         //Act
         viewModelToTest.getMovies()
         //Assert

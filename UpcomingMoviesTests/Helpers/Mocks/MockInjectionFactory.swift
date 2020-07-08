@@ -7,6 +7,7 @@
 //
 
 import Foundation
+@testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 @testable import UpcomingMoviesData
 @testable import CoreDataInfrastructure
@@ -31,7 +32,7 @@ final class MockInjectionFactory {
     
 }
 
-class MockUseCaseProvider: UseCaseProvider {
+final class MockUseCaseProvider: UseCaseProvider {
     
     var mockMovieUseCase: MockMovieUseCase!
     var mockGenreUseCase: MockGenreUseCase!
