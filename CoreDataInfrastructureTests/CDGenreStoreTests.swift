@@ -26,7 +26,7 @@ class CDGenreStoreTests: XCTestCase {
 
     func testSaveGenre() {
         //Arrange
-        let genreToTest = Genre.with(id: 1, name: "Action")
+        let genreToTest = Genre(id: 1, name: "Action")
         let saveExpectation = XCTestExpectation(description: "Save genre")
         //Act
         storeToTest.saveGenre(genreToTest) { _ in
@@ -40,7 +40,7 @@ class CDGenreStoreTests: XCTestCase {
     
     func testFindAllGenres() {
         //Arrange
-        let genreToTest = Genre.with(id: 2, name: "Comedy")
+        let genreToTest = Genre(id: 2, name: "Comedy")
         let saveExpectation = XCTestExpectation(description: "Save genre")
         //Act
         storeToTest.saveGenre(genreToTest) { _ in

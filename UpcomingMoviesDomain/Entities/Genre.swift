@@ -19,14 +19,3 @@ public struct Genre: Equatable {
     }
     
 }
-
-// MARK: - Test mockups
-
-public extension Genre {
-    
-    static func with(id: Int = 1,
-                     name: String = "Genre 1") -> Genre {
-        return Genre(id: id, name: name)
-    }
-    
-}

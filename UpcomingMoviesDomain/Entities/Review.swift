@@ -21,15 +21,3 @@ public struct Review: Equatable {
     }
     
 }
-
-// MARK: - Test mockups
-
-extension Review {
-    
-    static func with(id: String = "1",
-                     authorName: String = "ABC",
-                     content: String = "Video1") -> Review {
-        return Review(id: id, authorName: authorName, content: content)
-    }
-    
-}
