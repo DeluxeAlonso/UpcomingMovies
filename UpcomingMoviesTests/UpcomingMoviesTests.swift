@@ -38,7 +38,7 @@ class UpcomingMoviesTests: XCTestCase {
         //Arrange
         movieUseCase.upcomingMovies = Result.success([])
         let contentHandler = UpcomingMoviesContentHandler(movieUseCase: movieUseCase)
-        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider, contentHandler: contentHandler)
+        let viewModel = UpcomingMoviesViewModel(contentHandler: contentHandler)
         //Act
         viewModel.getMovies()
         //Assert
@@ -49,8 +49,7 @@ class UpcomingMoviesTests: XCTestCase {
         //Arrange
         movieUseCase.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
         let contentHandler = UpcomingMoviesContentHandler(movieUseCase: movieUseCase)
-        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider,
-                                                contentHandler: contentHandler)
+        let viewModel = UpcomingMoviesViewModel(contentHandler: contentHandler)
         //Act
         viewModel.getMovies()
         movieUseCase.upcomingMovies = Result.success([])
@@ -63,8 +62,7 @@ class UpcomingMoviesTests: XCTestCase {
         //Arrange
         movieUseCase.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
         let contentHandler = UpcomingMoviesContentHandler(movieUseCase: movieUseCase)
-        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider,
-                                                contentHandler: contentHandler)
+        let viewModel = UpcomingMoviesViewModel(contentHandler: contentHandler)
         //Act
         viewModel.getMovies()
         //Assert
@@ -76,8 +74,7 @@ class UpcomingMoviesTests: XCTestCase {
         //Arrange
         movieUseCase.upcomingMovies = Result.failure(APIError.badRequest)
         let contentHandler = UpcomingMoviesContentHandler(movieUseCase: movieUseCase)
-        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider,
-                                                contentHandler: contentHandler)
+        let viewModel = UpcomingMoviesViewModel(contentHandler: contentHandler)
         //Act
         viewModel.getMovies()
         //Assert

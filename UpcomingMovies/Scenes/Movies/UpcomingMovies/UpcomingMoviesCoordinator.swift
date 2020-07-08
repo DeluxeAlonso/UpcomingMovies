@@ -40,8 +40,7 @@ class UpcomingMoviesCoordinator: NSObject, Coordinator, UpcomingMoviesCoordinato
         
         let useCaseProvider = InjectionFactory.useCaseProvider()
         let contentHandler = UpcomingMoviesContentHandler(movieUseCase: useCaseProvider.movieUseCase())
-        let viewModel = UpcomingMoviesViewModel(useCaseProvider: useCaseProvider,
-                                                contentHandler: contentHandler)
+        let viewModel = UpcomingMoviesViewModel(contentHandler: contentHandler)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self
