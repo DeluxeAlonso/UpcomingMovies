@@ -13,7 +13,7 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol {
 
     // MARK: - Properties
     
-    var contentHandler: MoviesContentHandlerProtocol
+    var interactor: MoviesInteractorProtocol
     
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
     
@@ -31,8 +31,8 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(contentHandler: MoviesContentHandlerProtocol) {
-        self.contentHandler = contentHandler
+    init(interactor: MoviesInteractorProtocol) {
+        self.interactor = interactor
     }
     
     // MARK: - Public

@@ -9,9 +9,13 @@
 import Foundation
 import UpcomingMoviesDomain
 
-struct UpcomingMoviesContentHandler: MoviesContentHandlerProtocol {
+struct UpcomingMoviesInteractor: MoviesInteractorProtocol {
     
     let movieUseCase: MovieUseCaseProtocol
+    
+    init(useCaseProvider: UseCaseProviderProtocol) {
+        self.movieUseCase = movieUseCase
+    }
     
     var displayTitle: String {
         return "Upcoming Movies"

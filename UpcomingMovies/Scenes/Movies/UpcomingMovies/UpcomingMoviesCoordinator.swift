@@ -38,9 +38,8 @@ class UpcomingMoviesCoordinator: NSObject, Coordinator, UpcomingMoviesCoordinato
     func start() {
         let viewController = UpcomingMoviesViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let contentHandler = UpcomingMoviesContentHandler(movieUseCase: useCaseProvider.movieUseCase())
-        let viewModel = UpcomingMoviesViewModel(contentHandler: contentHandler)
+        let interactor = UpcomingMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
+        let viewModel = UpcomingMoviesViewModel(interactor: interactor)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self

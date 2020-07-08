@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-struct PopularMoviesContentHandler: MoviesContentHandlerProtocol {
+struct PopularMoviesContentHandler: MoviesInteractorProtocol {
     
     let movieUseCase: MovieUseCaseProtocol
     

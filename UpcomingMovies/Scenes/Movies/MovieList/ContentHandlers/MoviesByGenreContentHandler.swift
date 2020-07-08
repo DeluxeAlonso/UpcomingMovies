@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-struct MoviesByGenreContentHandler: MoviesContentHandlerProtocol {
+struct MoviesByGenreContentHandler: MoviesInteractorProtocol {
     let movieUseCase: MovieUseCaseProtocol
     let genreId: Int
     let genreName: String

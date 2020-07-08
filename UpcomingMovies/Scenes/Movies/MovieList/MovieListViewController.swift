@@ -92,7 +92,7 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        title = viewModel?.contentHandler.displayTitle
+        title = viewModel?.interactor.displayTitle
         viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {

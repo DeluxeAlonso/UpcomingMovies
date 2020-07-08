@@ -1,5 +1,5 @@
 //
-//  SimilarMoviesContentHandler.swift
+//  UpcomingMoviesInteractor.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 6/13/20.
@@ -9,15 +9,20 @@
 import Foundation
 import UpcomingMoviesDomain
 
-struct SimilarMoviesContentHandler: MoviesInteractorProtocol {
+struct UpcomingMoviesInteractor: MoviesInteractorProtocol {
+    
     let movieUseCase: MovieUseCaseProtocol
-    let movieId: Int
+    
+    init(useCaseProvider: UseCaseProviderProtocol) {
+        self.movieUseCase = useCaseProvider.movieUseCase()
+    }
     
     var displayTitle: String {
-        return "Similar Movies"
+        return "Upcoming Movies"
     }
     
     func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        movieUseCase.getSimilarMovies(page: page, movieId: movieId, completion: completion)
+        movieUseCase.getUpcomingMovies(page: page, completion: completion)
     }
+    
 }
