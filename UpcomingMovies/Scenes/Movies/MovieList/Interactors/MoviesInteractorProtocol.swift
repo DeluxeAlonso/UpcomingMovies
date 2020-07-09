@@ -1,5 +1,5 @@
 //
-//  MoviesContentHandlerProtocol.swift
+//  MoviesInteractorProtocol.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 6/13/20.
@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-protocol MoviesContentHandlerProtocol {
+protocol MoviesInteractorProtocol {
     
     var displayTitle: String { get }
     

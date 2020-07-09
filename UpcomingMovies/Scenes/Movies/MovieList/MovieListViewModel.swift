@@ -11,8 +11,7 @@ import UpcomingMoviesDomain
 
 final class MovieListViewModel: MovieListViewModelProtocol {
     
-    var useCaseProvider: UseCaseProviderProtocol
-    var contentHandler: MoviesContentHandlerProtocol
+    var interactor: MoviesInteractorProtocol
     
     var startLoading: Bindable<Bool> = Bindable(false)
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
@@ -25,9 +24,8 @@ final class MovieListViewModel: MovieListViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol, contentHandler: MoviesContentHandlerProtocol) {
-        self.useCaseProvider = useCaseProvider
-        self.contentHandler = contentHandler
+    init(interactor: MoviesInteractorProtocol) {
+        self.interactor = interactor
     }
     
 }

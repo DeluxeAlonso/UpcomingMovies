@@ -1,5 +1,5 @@
 //
-//  TopRatedMoviesContentHandler.swift
+//  UpcomingMoviesContentHandler.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 6/13/20.
@@ -9,16 +9,20 @@
 import Foundation
 import UpcomingMoviesDomain
 
-struct TopRatedMoviesContentHandler: MoviesContentHandlerProtocol {
+struct UpcomingMoviesInteractor: MoviesInteractorProtocol {
     
     let movieUseCase: MovieUseCaseProtocol
     
+    init(useCaseProvider: UseCaseProviderProtocol) {
+        self.movieUseCase = movieUseCase
+    }
+    
     var displayTitle: String {
-        return "Top Rated Movies"
+        return "Upcoming Movies"
     }
     
     func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        movieUseCase.getTopRatedMovies(page: page, completion: completion)
+        movieUseCase.getUpcomingMovies(page: page, completion: completion)
     }
     
 }

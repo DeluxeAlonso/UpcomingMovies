@@ -1,5 +1,5 @@
 //
-//  PopularMoviesContentHandler.swift
+//  PopularMoviesInteractor.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 6/13/20.
@@ -9,9 +9,13 @@
 import Foundation
 import UpcomingMoviesDomain
 
-struct PopularMoviesContentHandler: MoviesContentHandlerProtocol {
+struct PopularMoviesInteractor: MoviesInteractorProtocol {
     
     let movieUseCase: MovieUseCaseProtocol
+    
+    init(useCaseProvider: UseCaseProviderProtocol) {
+        self.movieUseCase = useCaseProvider.movieUseCase()
+    }
     
     var displayTitle: String {
         return "Popular Movies"

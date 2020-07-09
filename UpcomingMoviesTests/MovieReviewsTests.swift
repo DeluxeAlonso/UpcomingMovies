@@ -14,27 +14,28 @@ import XCTest
 
 class MovieReviewsTests: XCTestCase {
     
-    private var useCaseProvider: MockUseCaseProvider!
     private var movieUseCase: MockMovieUseCase!
+    private var viewModelToTest: MovieReviewsViewModelProtocol!
     
     override func setUp() {
         super.setUp()
         movieUseCase = MockMovieUseCase(remoteDataSource: MockInjectionFactory.makeRemoteDataSource().movieDataSource())
-        useCaseProvider = (MockInjectionFactory.useCaseProvider() as! MockUseCaseProvider)
+        
+        let useCaseProvider = (MockInjectionFactory.useCaseProvider() as! MockUseCaseProvider)
         useCaseProvider.mockMovieUseCase = self.movieUseCase
+        
+        viewModelToTest = MovieReviewsViewModel(movieId: 1, movieTitle: "Movie 1", useCaseProvider: useCaseProvider)
     }
     
     override func tearDown() {
-        useCaseProvider = nil
         movieUseCase = nil
+        viewModelToTest = nil
         super.tearDown()
     }
     
     func testMovieReviewsTitle() {
-        //Arrange
-        let viewModel = MovieReviewsViewModel(movieId: 1, movieTitle: "Movie 1", useCaseProvider: useCaseProvider)
         //Act
-        let title = viewModel.movieTitle
+        let title = viewModelToTest.movieTitle
         //Assert
         XCTAssertEqual(title, "Movie 1")
     }
@@ -42,43 +43,39 @@ class MovieReviewsTests: XCTestCase {
     func testGetReviewsEmpty() {
         //Arrange
         movieUseCase.reviews = Result.success([])
-        let viewModel = MovieReviewsViewModel(movieId: 1, movieTitle: "Movie 1", useCaseProvider: useCaseProvider)
         //Act
-        viewModel.getMovieReviews()
+        viewModelToTest.getMovieReviews()
         //Assert
-        XCTAssertEqual(viewModel.viewState.value, .empty)
+        XCTAssertEqual(viewModelToTest.viewState.value, .empty)
     }
     
     func testGetReviewsPopulated() {
         //Arrange
         movieUseCase.reviews = Result.success([Review.with(id: "1"), Review.with(id: "2")])
-        let viewModel = MovieReviewsViewModel(movieId: 1, movieTitle: "Movie 1", useCaseProvider: useCaseProvider)
         //Act
-        viewModel.getMovieReviews()
+        viewModelToTest.getMovieReviews()
         movieUseCase.reviews = Result.success([])
-        viewModel.getMovieReviews()
+        viewModelToTest.getMovieReviews()
         //Assert
-        XCTAssertEqual(viewModel.viewState.value, .populated([Review.with(id: "1"), Review.with(id: "2")]))
+        XCTAssertEqual(viewModelToTest.viewState.value, .populated([Review.with(id: "1"), Review.with(id: "2")]))
     }
     
     func testGetReviewsPaging() {
         //Arrange
         movieUseCase.reviews = Result.success([Review.with(id: "1"), Review.with(id: "2")])
-        let viewModel = MovieReviewsViewModel(movieId: 1, movieTitle: "Movie 1", useCaseProvider: useCaseProvider)
         //Act
-        viewModel.getMovieReviews()
+        viewModelToTest.getMovieReviews()
         //Assert
-        XCTAssertEqual(viewModel.viewState.value, .paging([Review.with(id: "1"), Review.with(id: "2")], next: 2))
+        XCTAssertEqual(viewModelToTest.viewState.value, .paging([Review.with(id: "1"), Review.with(id: "2")], next: 2))
     }
     
     func testGetReviewsError() {
         //Arrange
         movieUseCase.reviews = Result.failure(APIError.badRequest)
-        let viewModel = MovieReviewsViewModel(movieId: 1, movieTitle: "Movie 1", useCaseProvider: useCaseProvider)
         //Act
-        viewModel.getMovieReviews()
+        viewModelToTest.getMovieReviews()
         //Assert
-        XCTAssertEqual(viewModel.viewState.value, .error(APIError.badRequest))
+        XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
     }
 
 }

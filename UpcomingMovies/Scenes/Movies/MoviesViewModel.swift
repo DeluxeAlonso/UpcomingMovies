@@ -11,15 +11,12 @@ import UpcomingMoviesDomain
 
 protocol MoviesViewModel {
 
-    var useCaseProvider: UseCaseProviderProtocol { get set }
-    
     var viewState: Bindable<SimpleViewState<Movie>> { get set }
+    var startLoading: Bindable<Bool> { get set }
     
     var movies: [Movie] { get }
     
-    var startLoading: Bindable<Bool> { get set }
-    
-    var contentHandler: MoviesContentHandlerProtocol { get set }
+    var interactor: MoviesInteractorProtocol { get set }
     
 }
 
@@ -48,7 +45,7 @@ extension MoviesViewModel {
     
     private func fetchMovies(currentPage: Int, showLoader: Bool = false) {
         startLoading.value = showLoader
-        contentHandler.getMovies(page: currentPage, completion: { result in
+        interactor.getMovies(page: currentPage, completion: { result in
             self.startLoading.value = false
             switch result {
             case .success(let movies):
