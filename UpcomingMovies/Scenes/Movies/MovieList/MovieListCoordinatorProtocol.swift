@@ -22,9 +22,8 @@ class PopularMoviesCoordinator: MovieListCoordinatorProtocol {
     func start() {
         let viewController = MovieListViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let contentHandler = PopularMoviesContentHandler(movieUseCase: useCaseProvider.movieUseCase())
-        let viewModel = MovieListViewModel(useCaseProvider: useCaseProvider, contentHandler: contentHandler)
+        let interactor = PopularMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
+        let viewModel = MovieListViewModel(interactor: interactor)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self
@@ -47,9 +46,8 @@ class TopRatedMoviesCoordinator: MovieListCoordinatorProtocol {
     func start() {
         let viewController = MovieListViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let contentHandler = TopRatedMoviesContentHandler(movieUseCase: useCaseProvider.movieUseCase())
-        let viewModel = MovieListViewModel(useCaseProvider: useCaseProvider, contentHandler: contentHandler)
+        let interactor = TopRatedMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
+        let viewModel = MovieListViewModel(interactor: interactor)
         
         viewController.coordinator = self
         viewController.viewModel = viewModel
@@ -74,9 +72,8 @@ class SimilarMoviesCoordinator: NSObject, MovieListCoordinatorProtocol, UINaviga
     func start() {
         let viewController = MovieListViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let contentHandler = SimilarMoviesContentHandler(movieUseCase: useCaseProvider.movieUseCase(), movieId: movieId)
-        let viewModel = MovieListViewModel(useCaseProvider: useCaseProvider, contentHandler: contentHandler)
+        let interactor = SimilarMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider(), movieId: movieId)
+        let viewModel = MovieListViewModel(interactor: interactor)
         
         viewController.coordinator = self
         viewController.viewModel = viewModel
@@ -116,10 +113,10 @@ class MoviesByGenreCoordinator: MovieListCoordinatorProtocol {
         let viewController = MovieListViewController.instantiate()
         
         let useCaseProvider = InjectionFactory.useCaseProvider()
-        let contentHandler = MoviesByGenreContentHandler(movieUseCase: useCaseProvider.movieUseCase(),
-                                                         genreId: genreId,
-                                                         genreName: genreName)
-        let viewModel = MovieListViewModel(useCaseProvider: useCaseProvider, contentHandler: contentHandler)
+        let interactor = MoviesByGenreInteractor(useCaseProvider: useCaseProvider,
+                                                     genreId: genreId,
+                                                     genreName: genreName)
+        let viewModel = MovieListViewModel(interactor: interactor)
         
         viewController.coordinator = self
         viewController.viewModel = viewModel

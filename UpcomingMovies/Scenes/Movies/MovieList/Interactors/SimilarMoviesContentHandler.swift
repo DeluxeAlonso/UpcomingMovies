@@ -9,9 +9,15 @@
 import Foundation
 import UpcomingMoviesDomain
 
-struct SimilarMoviesContentHandler: MoviesInteractorProtocol {
+struct SimilarMoviesInteractor: MoviesInteractorProtocol {
+    
     let movieUseCase: MovieUseCaseProtocol
     let movieId: Int
+    
+    init(useCaseProvider: UseCaseProviderProtocol, movieId: Int) {
+        self.movieUseCase = useCaseProvider.movieUseCase()
+        self.movieId = movieId
+    }
     
     var displayTitle: String {
         return "Similar Movies"
