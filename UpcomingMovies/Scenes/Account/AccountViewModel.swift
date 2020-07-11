@@ -36,7 +36,7 @@ final class AccountViewModel: AccountViewModelProtocol {
         authHandler.deleteCurrentUser()
     }
     
-    func getRequestToken() {
+    func startAuthorizationProcess() {
         interactor.getAuthPermissionURL { result in
             switch result {
             case .success(let url):
@@ -47,7 +47,7 @@ final class AccountViewModel: AccountViewModelProtocol {
         }
     }
     
-    func getAccessToken() {
+    func signInUser() {
         interactor.signInUser { result in
             switch result {
             case .success:

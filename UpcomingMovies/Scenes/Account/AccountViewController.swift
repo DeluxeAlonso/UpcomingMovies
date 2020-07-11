@@ -101,7 +101,7 @@ extension AccountViewController {
     
     func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
         signInViewController.startLoading()
-        viewModel.getRequestToken()
+        viewModel.startAuthorizationProcess()
     }
     
 }
@@ -130,8 +130,8 @@ extension AccountViewController {
 extension AccountViewController: AuthPermissionViewControllerDelegate {
     
     func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
-                                      didSignedIn signedIn: Bool) {
-        if signedIn { viewModel.getAccessToken() }
+                                      didReceiveAuthorization authorized: Bool) {
+        if authorized { viewModel.signInUser() }
     }
     
 }

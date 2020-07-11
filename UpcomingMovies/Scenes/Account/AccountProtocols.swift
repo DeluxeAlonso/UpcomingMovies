@@ -19,8 +19,8 @@ protocol AccountViewModelProtocol {
     func isUserSignedIn() -> Bool
     func signOutCurrentUser()
     
-    func getRequestToken()
-    func getAccessToken()
+    func startAuthorizationProcess()
+    func signInUser()
     
     func currentUserAccount() -> User?
     func profileOptions() -> ProfileOptions

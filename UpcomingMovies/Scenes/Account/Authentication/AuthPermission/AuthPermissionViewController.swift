@@ -12,7 +12,7 @@ import WebKit
 protocol AuthPermissionViewControllerDelegate: class {
     
     func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
-                                      didSignedIn signedIn: Bool)
+                                      didReceiveAuthorization authorized: Bool)
     
 }
 
@@ -82,7 +82,7 @@ class AuthPermissionViewController: UIViewController, Storyboarded {
     
     private func dismiss() {
         coordinator?.dismiss(completion: {
-            self.delegate?.authPermissionViewController(self, didSignedIn: true)
+            self.delegate?.authPermissionViewController(self, didReceiveAuthorization: true)
         })
     }
     
@@ -119,7 +119,7 @@ extension AuthPermissionViewController: UIAdaptivePresentationControllerDelegate
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         coordinator?.didDismiss()
-        delegate?.authPermissionViewController(self, didSignedIn: true)
+        delegate?.authPermissionViewController(self, didReceiveAuthorization: true)
     }
     
 }
