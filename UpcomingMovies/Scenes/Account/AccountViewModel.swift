@@ -11,12 +11,8 @@ import UpcomingMoviesDomain
 
 final class AccountViewModel: AccountViewModelProtocol {
     
-    private let useCaseProvider: UseCaseProviderProtocol
-    private let userUseCase: UserUseCaseProtocol
-    private let accountUseCase: AccountUseCaseProtocol
-    private let authUseCase: AuthUseCaseProtocol
-    
-    private var authHandler: AuthenticationHandler
+    private let interactor: AccountInteractorProtocol
+    private let authHandler: AuthenticationHandler
     
     var showAuthPermission: Bindable<URL?> = Bindable(nil)
     var didSignIn: (() -> Void)?
@@ -24,13 +20,9 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol,
+    init(interactor: AccountInteractorProtocol,
          authHandler: AuthenticationHandler = AuthenticationHandler.shared) {
-        self.useCaseProvider = useCaseProvider
-        self.userUseCase = self.useCaseProvider.userUseCase()
-        self.accountUseCase = self.useCaseProvider.accountUseCase()
-        self.authUseCase = self.useCaseProvider.authUseCase()
-        
+        self.interactor = interactor
         self.authHandler = authHandler
     }
     
@@ -45,26 +37,25 @@ final class AccountViewModel: AccountViewModelProtocol {
     }
     
     func getRequestToken() {
-        authUseCase.getAuthURL(completion: { result in
+        interactor.getAuthPermissionURL { result in
             switch result {
             case .success(let url):
                 self.showAuthPermission.value = url
             case .failure:
                 self.didReceiveError?()
             }
-        })
+        }
     }
     
     func getAccessToken() {
-        authUseCase.signInUser(completion: { result in
+        interactor.signInUser { result in
             switch result {
-            case .success(let user):
-                self.userUseCase.saveUser(user)
+            case .success:
                 self.didSignIn?()
             case .failure:
                 self.didReceiveError?()
             }
-        })
+        }
     }
     
     // MARK: - View model building

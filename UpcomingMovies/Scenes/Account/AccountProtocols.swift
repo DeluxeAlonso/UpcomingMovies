@@ -29,7 +29,8 @@ protocol AccountViewModelProtocol {
 
 protocol AccountInteractorProtocol {
     
-    
+    func getAuthPermissionURL(completion: @escaping (Result<URL, Error>) -> Void)
+    func signInUser(completion: @escaping (Result<User, Error>) -> Void)
     
 }
 
