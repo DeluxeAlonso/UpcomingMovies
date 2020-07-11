@@ -1,0 +1,13 @@
+setup_travis
+
+default_platform(:ios)
+
+platform :ios do
+
+  	lane :tests do
+  	run_tests(workspace: "UpcomingMovies.xcworkspace",
+            	devices: ["iPhone 8"],
+           		 scheme: "UpcomingMovies")
+	end
+
+end
