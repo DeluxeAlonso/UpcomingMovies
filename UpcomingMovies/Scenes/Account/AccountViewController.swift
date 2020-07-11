@@ -74,9 +74,8 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        viewModel.showAuthPermission = { [weak self] in
+        viewModel.showAuthPermission.bind { [weak self] authPermissionURL in
             guard let strongSelf = self else { return }
-            let authPermissionURL = strongSelf.viewModel.authPermissionURL
             strongSelf.coordinator?.showAuthPermission(for: authPermissionURL,
                                                        and: strongSelf)
         }

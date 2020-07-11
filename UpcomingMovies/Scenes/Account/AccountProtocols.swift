@@ -11,9 +11,8 @@ import UpcomingMoviesDomain
 
 protocol AccountViewModelProtocol {
     
-    var authPermissionURL: URL? { get }
+    var showAuthPermission: Bindable<URL?> { get }
     
-    var showAuthPermission: (() -> Void)? { get set }
     var didSignIn: (() -> Void)? { get set }
     var didReceiveError: (() -> Void)? { get set }
     
@@ -25,6 +24,12 @@ protocol AccountViewModelProtocol {
     
     func currentUserAccount() -> User?
     func profileOptions() -> ProfileOptions
+    
+}
+
+protocol AccountInteractorProtocol {
+    
+    
     
 }
 

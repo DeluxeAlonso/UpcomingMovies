@@ -18,9 +18,7 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     private var authHandler: AuthenticationHandler
     
-    private(set) var authPermissionURL: URL?
-    
-    var showAuthPermission: (() -> Void)?
+    var showAuthPermission: Bindable<URL?> = Bindable(nil)
     var didSignIn: (() -> Void)?
     var didReceiveError: (() -> Void)?
     
@@ -50,8 +48,7 @@ final class AccountViewModel: AccountViewModelProtocol {
         authUseCase.getAuthURL(completion: { result in
             switch result {
             case .success(let url):
-                self.authPermissionURL = url
-                self.showAuthPermission?()
+                self.showAuthPermission.value = url
             case .failure:
                 self.didReceiveError?()
             }
