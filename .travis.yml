@@ -9,5 +9,6 @@ before_install:
 install:
   - bundle install
   - pod repo update
+  - pod install
 scripts:
   - fastlane tests
