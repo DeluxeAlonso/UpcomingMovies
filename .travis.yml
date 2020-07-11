@@ -7,4 +7,5 @@ before_install:
 install:
   - pod install
 scripts:
+  - fastlane lint
   - fastlane tests
