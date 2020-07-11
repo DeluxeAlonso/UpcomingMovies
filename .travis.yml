@@ -8,7 +8,6 @@ before_install:
   - brew update
 install:
   - bundle install
-  - pod repo update
   - pod install
 scripts:
   - fastlane tests
