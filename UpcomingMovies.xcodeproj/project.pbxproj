@@ -387,6 +387,7 @@
 		E2BE1B3B239DEAB200FC47FF /* CreditsMovieDetailOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE1B3A239DEAB200FC47FF /* CreditsMovieDetailOption.swift */; };
 		E2BE1B3D239DEABD00FC47FF /* SimilarsMovieDetailOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE1B3C239DEABD00FC47FF /* SimilarsMovieDetailOption.swift */; };
 		E2C03B26222502AB00A4C47A /* MovieReviewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C03B25222502AB00A4C47A /* MovieReviewsTests.swift */; };
+		E2C39A2624BA558F007938BC /* AccountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C39A2524BA558F007938BC /* AccountInteractor.swift */; };
 		E2CB9C1623785CE4008131DB /* MovieRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CB9C1523785CE4008131DB /* MovieRemoteDataSourceProtocol.swift */; };
 		E2CF112124A7F2C10048AFC0 /* CustomListsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF112024A7F2C10048AFC0 /* CustomListsCoordinator.swift */; };
 		E2CF112324A7F4D60048AFC0 /* CustomListDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF112224A7F4D60048AFC0 /* CustomListDetailCoordinator.swift */; };
@@ -1040,6 +1041,7 @@
 		E2BE1B3A239DEAB200FC47FF /* CreditsMovieDetailOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsMovieDetailOption.swift; sourceTree = "<group>"; };
 		E2BE1B3C239DEABD00FC47FF /* SimilarsMovieDetailOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarsMovieDetailOption.swift; sourceTree = "<group>"; };
 		E2C03B25222502AB00A4C47A /* MovieReviewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewsTests.swift; sourceTree = "<group>"; };
+		E2C39A2524BA558F007938BC /* AccountInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInteractor.swift; sourceTree = "<group>"; };
 		E2CB9C1523785CE4008131DB /* MovieRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRemoteDataSourceProtocol.swift; sourceTree = "<group>"; };
 		E2CF112024A7F2C10048AFC0 /* CustomListsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListsCoordinator.swift; sourceTree = "<group>"; };
 		E2CF112224A7F4D60048AFC0 /* CustomListDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailCoordinator.swift; sourceTree = "<group>"; };
@@ -1901,6 +1903,7 @@
 				E22588A12243121F00E1327E /* AccountViewModel.swift */,
 				E2337729249EFA280061D90D /* AccountCoordinator.swift */,
 				E225889F2243120000E1327E /* AccountViewController.swift */,
+				E2C39A2524BA558F007938BC /* AccountInteractor.swift */,
 				E2CF112724A809270048AFC0 /* AccountProtocols.swift */,
 				E22588A32243269600E1327E /* Authentication */,
 				E22588A72243280B00E1327E /* Profile */,
@@ -3417,6 +3420,7 @@
 				E270962A247B3DC300AE694E /* ConfigurationHandler.swift in Sources */,
 				E297A766248C6C5700AC89B9 /* ImageTransitionHandler.swift in Sources */,
 				E2143DBA22571EC2003E939F /* ProfileAccountInfoCellViewModel.swift in Sources */,
+				E2C39A2624BA558F007938BC /* AccountInteractor.swift in Sources */,
 				E2CF112324A7F4D60048AFC0 /* CustomListDetailCoordinator.swift in Sources */,
 				E270980B220FAF99007F18A2 /* MovieVideoTableViewCell.swift in Sources */,
 				E22546A3226AE39900E9042C /* CustomListDetailHeaderView.swift in Sources */,

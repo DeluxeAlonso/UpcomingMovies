@@ -23,7 +23,9 @@ class AccountCoordinator: Coordinator, AccountCoordinatorProtocol {
         let viewController = AccountViewController.instantiate()
         
         let useCaseProvider = InjectionFactory.useCaseProvider()
-        let viewModel = AccountViewModel(useCaseProvider: useCaseProvider)
+        let interactor = AccountInteractor(useCaseProvider: useCaseProvider,
+                                           authHandler: AuthenticationHandler.shared)
+        let viewModel = AccountViewModel(interactor: interactor)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self

@@ -11,20 +11,28 @@ import UpcomingMoviesDomain
 
 protocol AccountViewModelProtocol {
     
-    var authPermissionURL: URL? { get }
+    var showAuthPermission: Bindable<URL?> { get }
     
-    var showAuthPermission: (() -> Void)? { get set }
     var didSignIn: (() -> Void)? { get set }
     var didReceiveError: (() -> Void)? { get set }
     
-    func isUserSignedIn() -> Bool
+    func startAuthorizationProcess()
+    func signInUser()
     func signOutCurrentUser()
     
-    func getRequestToken()
-    func getAccessToken()
+    func isUserSignedIn() -> Bool
+    func currentUser() -> User?
     
-    func currentUserAccount() -> User?
     func profileOptions() -> ProfileOptions
+    
+}
+
+protocol AccountInteractorProtocol {
+    
+    func getAuthPermissionURL(completion: @escaping (Result<URL, Error>) -> Void)
+    func signInUser(completion: @escaping (Result<User, Error>) -> Void)
+    func signOutUser()
+    func currentUser() -> User?
     
 }
 

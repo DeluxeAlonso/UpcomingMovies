@@ -11,69 +11,52 @@ import UpcomingMoviesDomain
 
 final class AccountViewModel: AccountViewModelProtocol {
     
-    private let useCaseProvider: UseCaseProviderProtocol
-    private let userUseCase: UserUseCaseProtocol
-    private let accountUseCase: AccountUseCaseProtocol
-    private let authUseCase: AuthUseCaseProtocol
+    private let interactor: AccountInteractorProtocol
     
-    private var authHandler: AuthenticationHandler
-    
-    private(set) var authPermissionURL: URL?
-    
-    var showAuthPermission: (() -> Void)?
+    var showAuthPermission: Bindable<URL?> = Bindable(nil)
     var didSignIn: (() -> Void)?
     var didReceiveError: (() -> Void)?
     
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol,
-         authHandler: AuthenticationHandler = AuthenticationHandler.shared) {
-        self.useCaseProvider = useCaseProvider
-        self.userUseCase = self.useCaseProvider.userUseCase()
-        self.accountUseCase = self.useCaseProvider.accountUseCase()
-        self.authUseCase = self.useCaseProvider.authUseCase()
-        
-        self.authHandler = authHandler
+    init(interactor: AccountInteractorProtocol) {
+        self.interactor = interactor
     }
     
     // MARK: - Authentication
     
-    func isUserSignedIn() -> Bool {
-        return authHandler.isUserSignedIn()
-    }
-    
-    func signOutCurrentUser() {
-        authHandler.deleteCurrentUser()
-    }
-    
-    func getRequestToken() {
-        authUseCase.getAuthURL(completion: { result in
+    func startAuthorizationProcess() {
+        interactor.getAuthPermissionURL { result in
             switch result {
             case .success(let url):
-                self.authPermissionURL = url
-                self.showAuthPermission?()
+                self.showAuthPermission.value = url
             case .failure:
                 self.didReceiveError?()
             }
-        })
+        }
     }
     
-    func getAccessToken() {
-        authUseCase.signInUser(completion: { result in
+    func signInUser() {
+        interactor.signInUser { result in
             switch result {
-            case .success(let user):
-                self.userUseCase.saveUser(user)
+            case .success:
                 self.didSignIn?()
             case .failure:
                 self.didReceiveError?()
             }
-        })
+        }
     }
     
-    // MARK: - View model building
+    func signOutCurrentUser() {
+        interactor.signOutUser()
+    }
     
-    func currentUserAccount() -> User? {
-        return authHandler.currentUser()
+    func isUserSignedIn() -> Bool {
+        return currentUser() != nil
+    }
+    
+    func currentUser() -> User? {
+        return interactor.currentUser()
     }
     
     func profileOptions() -> ProfileOptions {

@@ -57,33 +57,24 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     private func showProfileView(withAnimatedNavigationBar animated: Bool = false) {
         guard let viewModel = viewModel else { return }
         profileViewController = coordinator?.embedProfileViewController(on: self,
-                                                                        for: viewModel.currentUserAccount(),
+                                                                        for: viewModel.currentUser(),
                                                                         and: viewModel.profileOptions())
         
         coordinator?.removeChildViewController(&signInViewController, from: self)
     }
     
-    private func didSignIn() {
-        showProfileView(withAnimatedNavigationBar: true)
-    }
-    
-    private func didSignOut() {
-        showSignInView(withAnimatedNavigationBar: true)
-    }
-    
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        viewModel.showAuthPermission = { [weak self] in
+        viewModel.showAuthPermission.bind { [weak self] authPermissionURL in
             guard let strongSelf = self else { return }
-            let authPermissionURL = strongSelf.viewModel.authPermissionURL
             strongSelf.coordinator?.showAuthPermission(for: authPermissionURL,
                                                        and: strongSelf)
         }
         viewModel.didSignIn = { [weak self] in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
-                strongSelf.didSignIn()
+                strongSelf.showProfileView(withAnimatedNavigationBar: true)
             }
         }
         viewModel.didReceiveError = { [weak self] in
@@ -102,7 +93,7 @@ extension AccountViewController {
     
     func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
         signInViewController.startLoading()
-        viewModel.getRequestToken()
+        viewModel.startAuthorizationProcess()
     }
     
 }
@@ -121,7 +112,7 @@ extension AccountViewController {
     
     func profileViewController(didTapSignOutButton tapped: Bool) {
         viewModel.signOutCurrentUser()
-        didSignOut()
+        showSignInView(withAnimatedNavigationBar: true)
     }
     
 }
@@ -131,8 +122,8 @@ extension AccountViewController {
 extension AccountViewController: AuthPermissionViewControllerDelegate {
     
     func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
-                                      didSignedIn signedIn: Bool) {
-        if signedIn { viewModel.getAccessToken() }
+                                      didReceiveAuthorization authorized: Bool) {
+        if authorized { viewModel.signInUser() }
     }
     
 }
