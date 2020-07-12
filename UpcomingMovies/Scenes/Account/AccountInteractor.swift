@@ -12,13 +12,17 @@ import UpcomingMoviesDomain
 class AccountInteractor: AccountInteractorProtocol {
     
     private let userUseCase: UserUseCaseProtocol
-    private let accountUseCase: AccountUseCaseProtocol
     private let authUseCase: AuthUseCaseProtocol
+    private let accountUseCase: AccountUseCaseProtocol
     
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        userUseCase = useCaseProvider.userUseCase()
-        accountUseCase = useCaseProvider.accountUseCase()
-        authUseCase = useCaseProvider.authUseCase()
+    private let authHandler: AuthenticationHandlerProtocol
+    
+    init(useCaseProvider: UseCaseProviderProtocol,
+         authHandler: AuthenticationHandlerProtocol) {
+        self.userUseCase = useCaseProvider.userUseCase()
+        self.accountUseCase = useCaseProvider.accountUseCase()
+        self.authUseCase = useCaseProvider.authUseCase()
+        self.authHandler = authHandler
     }
     
     func getAuthPermissionURL(completion: @escaping (Result<URL, Error>) -> Void) {
@@ -35,6 +39,14 @@ class AccountInteractor: AccountInteractorProtocol {
                 completion(.failure(error))
             }
         }
+    }
+    
+    func signOutUser() {
+        authHandler.deleteCurrentUser()
+    }
+    
+    func currentUser() -> User? {
+        authHandler.currentUser()
     }
     
 }

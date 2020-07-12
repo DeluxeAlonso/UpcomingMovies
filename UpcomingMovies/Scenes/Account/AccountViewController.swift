@@ -57,18 +57,10 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     private func showProfileView(withAnimatedNavigationBar animated: Bool = false) {
         guard let viewModel = viewModel else { return }
         profileViewController = coordinator?.embedProfileViewController(on: self,
-                                                                        for: viewModel.currentUserAccount(),
+                                                                        for: viewModel.currentUser(),
                                                                         and: viewModel.profileOptions())
         
         coordinator?.removeChildViewController(&signInViewController, from: self)
-    }
-    
-    private func didSignIn() {
-        showProfileView(withAnimatedNavigationBar: true)
-    }
-    
-    private func didSignOut() {
-        showSignInView(withAnimatedNavigationBar: true)
     }
     
     // MARK: - Reactive Behaviour
@@ -82,7 +74,7 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
         viewModel.didSignIn = { [weak self] in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
-                strongSelf.didSignIn()
+                strongSelf.showProfileView(withAnimatedNavigationBar: true)
             }
         }
         viewModel.didReceiveError = { [weak self] in
@@ -120,7 +112,7 @@ extension AccountViewController {
     
     func profileViewController(didTapSignOutButton tapped: Bool) {
         viewModel.signOutCurrentUser()
-        didSignOut()
+        showSignInView(withAnimatedNavigationBar: true)
     }
     
 }

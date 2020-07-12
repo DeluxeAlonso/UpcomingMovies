@@ -9,7 +9,15 @@
 import Foundation
 import UpcomingMoviesDomain
 
-class AuthenticationHandler {
+protocol AuthenticationHandlerProtocol {
+    
+    func currentUser() -> User?
+    func isUserSignedIn() -> Bool
+    func deleteCurrentUser()
+    
+}
+
+class AuthenticationHandler: AuthenticationHandlerProtocol {
     
     static let shared = AuthenticationHandler()
     

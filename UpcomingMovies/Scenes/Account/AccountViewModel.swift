@@ -12,7 +12,6 @@ import UpcomingMoviesDomain
 final class AccountViewModel: AccountViewModelProtocol {
     
     private let interactor: AccountInteractorProtocol
-    private let authHandler: AuthenticationHandler
     
     var showAuthPermission: Bindable<URL?> = Bindable(nil)
     var didSignIn: (() -> Void)?
@@ -20,21 +19,11 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(interactor: AccountInteractorProtocol,
-         authHandler: AuthenticationHandler = AuthenticationHandler.shared) {
+    init(interactor: AccountInteractorProtocol) {
         self.interactor = interactor
-        self.authHandler = authHandler
     }
     
     // MARK: - Authentication
-    
-    func isUserSignedIn() -> Bool {
-        return authHandler.isUserSignedIn()
-    }
-    
-    func signOutCurrentUser() {
-        authHandler.deleteCurrentUser()
-    }
     
     func startAuthorizationProcess() {
         interactor.getAuthPermissionURL { result in
@@ -58,10 +47,16 @@ final class AccountViewModel: AccountViewModelProtocol {
         }
     }
     
-    // MARK: - View model building
+    func signOutCurrentUser() {
+        interactor.signOutUser()
+    }
     
-    func currentUserAccount() -> User? {
-        return authHandler.currentUser()
+    func isUserSignedIn() -> Bool {
+        return currentUser() != nil
+    }
+    
+    func currentUser() -> User? {
+        return interactor.currentUser()
     }
     
     func profileOptions() -> ProfileOptions {
