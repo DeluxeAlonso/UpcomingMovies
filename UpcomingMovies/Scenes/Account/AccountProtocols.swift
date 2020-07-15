@@ -12,7 +12,6 @@ import UpcomingMoviesDomain
 protocol AccountViewModelProtocol {
     
     var showAuthPermission: Bindable<URL?> { get }
-    
     var didSignIn: (() -> Void)? { get set }
     var didReceiveError: (() -> Void)? { get set }
     
