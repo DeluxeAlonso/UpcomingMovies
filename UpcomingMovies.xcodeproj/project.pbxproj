@@ -88,6 +88,8 @@
 		E21F37A321941D3900D6BFB6 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37A221941D3900D6BFB6 /* SplashViewModel.swift */; };
 		E21F37B12194241B00D6BFB6 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37B02194241B00D6BFB6 /* UIViewController+Extensions.swift */; };
 		E21F93BB2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F93BA2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift */; };
+		E220250024BEBFD500465316 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22024FF24BEBFD500465316 /* AccountTests.swift */; };
+		E220250224BEBFEA00465316 /* AccountMockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E220250124BEBFEA00465316 /* AccountMockFactory.swift */; };
 		E220B1E2220BD5B900A5D054 /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E220B1E1220BD5B900A5D054 /* MoviesViewModel.swift */; };
 		E221168021914E4B0039F8C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221167F21914E4B0039F8C9 /* AppDelegate.swift */; };
 		E221168721914E4B0039F8C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221168521914E4B0039F8C9 /* Main.storyboard */; };
@@ -746,6 +748,8 @@
 		E21F37B02194241B00D6BFB6 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		E21F93BA2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSignOutTableViewCell.swift; sourceTree = "<group>"; };
 		E21F93BC2269AD24009666B1 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		E22024FF24BEBFD500465316 /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
+		E220250124BEBFEA00465316 /* AccountMockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMockFactory.swift; sourceTree = "<group>"; };
 		E220B1E1220BD5B900A5D054 /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		E221167C21914E4B0039F8C9 /* UpcomingMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UpcomingMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E221167F21914E4B0039F8C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1583,6 +1587,7 @@
 				782DBD66221CACC800191FCA /* MovieVideosTests.swift */,
 				E2C03B25222502AB00A4C47A /* MovieReviewsTests.swift */,
 				E25AE2FA24B2DB5800DD1EE0 /* MovieCreditsTests.swift */,
+				E22024FF24BEBFD500465316 /* AccountTests.swift */,
 			);
 			path = UpcomingMoviesTests;
 			sourceTree = "<group>";
@@ -2034,6 +2039,7 @@
 			children = (
 				E26A10DC2383A6A50019CC60 /* MockInjectionFactory.swift */,
 				E2554E5D24B5898C0043C3EB /* UpcomingMoviesMockFactory.swift */,
+				E220250124BEBFEA00465316 /* AccountMockFactory.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -3494,6 +3500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E221169721914E4D0039F8C9 /* UpcomingMoviesTests.swift in Sources */,
+				E220250024BEBFD500465316 /* AccountTests.swift in Sources */,
 				E26A10DD2383A6A50019CC60 /* MockInjectionFactory.swift in Sources */,
 				782DBD67221CACC800191FCA /* MovieVideosTests.swift in Sources */,
 				E25AE2FB24B2DB5800DD1EE0 /* MovieCreditsTests.swift in Sources */,
@@ -3503,6 +3510,7 @@
 				E279B75524B2DFAB00AECFCC /* Credits+MockInitializer.swift in Sources */,
 				E2554E5E24B5898C0043C3EB /* UpcomingMoviesMockFactory.swift in Sources */,
 				E2554E5B24B572EB0043C3EB /* Review+MockInitializer.swift in Sources */,
+				E220250224BEBFEA00465316 /* AccountMockFactory.swift in Sources */,
 				E2554E5924B5728B0043C3EB /* Movie+MockInitializer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
