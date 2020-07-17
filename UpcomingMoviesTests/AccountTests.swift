@@ -57,11 +57,7 @@ class AccountTests: XCTestCase {
     
     func testSignInUserSuccess() {
         //Arrange
-        let user = UpcomingMoviesDomain.User(id: 1,
-                                             name: "Test",
-                                             username: "Test",
-                                             includeAdult: true)
-        mockInteractor.signInUserResult = Result.success(user)
+        mockInteractor.signInUserResult = Result.success(User.with())
         let expectation = XCTestExpectation(description: "Sign in user")
         //Act
         viewModelToTest.didSignIn = {
@@ -83,6 +79,42 @@ class AccountTests: XCTestCase {
         viewModelToTest.signInUser()
         //Assert
         wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testCurrentUserNotNil() {
+        //Arrange
+        mockInteractor.currentUserResult = User.with()
+        //Act
+        let user = viewModelToTest.currentUser()
+        //Assert
+        XCTAssertNotNil(user)
+    }
+    
+    func testCurrentUserNil() {
+        //Arrange
+        mockInteractor.currentUserResult = nil
+        //Act
+        let user = viewModelToTest.currentUser()
+        //Assert
+        XCTAssertNil(user)
+    }
+    
+    func testIsUserSignedInTrue() {
+        //Arrange
+        mockInteractor.currentUserResult = User.with()
+        //Act
+        let isUserSignedIn = viewModelToTest.isUserSignedIn()
+        //Assert
+        XCTAssertTrue(isUserSignedIn)
+    }
+    
+    func testIsUserSignedInFalse() {
+        //Arrange
+        mockInteractor.currentUserResult = nil
+        //Act
+        let isUserSignedIn = viewModelToTest.isUserSignedIn()
+        //Assert
+        XCTAssertFalse(isUserSignedIn)
     }
     
 }
