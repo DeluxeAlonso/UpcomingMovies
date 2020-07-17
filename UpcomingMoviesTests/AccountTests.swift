@@ -57,11 +57,7 @@ class AccountTests: XCTestCase {
     
     func testSignInUserSuccess() {
         //Arrange
-        let user = UpcomingMoviesDomain.User(id: 1,
-                                             name: "Test",
-                                             username: "Test",
-                                             includeAdult: true)
-        mockInteractor.signInUserResult = Result.success(user)
+        mockInteractor.signInUserResult = Result.success(User.with())
         let expectation = XCTestExpectation(description: "Sign in user")
         //Act
         viewModelToTest.didSignIn = {
