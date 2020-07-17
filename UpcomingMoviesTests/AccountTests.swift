@@ -81,4 +81,40 @@ class AccountTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
     
+    func testCurrentUserNotNil() {
+        //Arrange
+        mockInteractor.currentUserResult = User.with()
+        //Act
+        let user = viewModelToTest.currentUser()
+        //Assert
+        XCTAssertNotNil(user)
+    }
+    
+    func testCurrentUserNil() {
+        //Arrange
+        mockInteractor.currentUserResult = nil
+        //Act
+        let user = viewModelToTest.currentUser()
+        //Assert
+        XCTAssertNil(user)
+    }
+    
+    func testIsUserSignedInTrue() {
+        //Arrange
+        mockInteractor.currentUserResult = User.with()
+        //Act
+        let isUserSignedIn = viewModelToTest.isUserSignedIn()
+        //Assert
+        XCTAssertTrue(isUserSignedIn)
+    }
+    
+    func testIsUserSignedInFalse() {
+        //Arrange
+        mockInteractor.currentUserResult = nil
+        //Act
+        let isUserSignedIn = viewModelToTest.isUserSignedIn()
+        //Assert
+        XCTAssertFalse(isUserSignedIn)
+    }
+    
 }
