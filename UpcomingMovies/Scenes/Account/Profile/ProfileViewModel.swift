@@ -11,12 +11,9 @@ import UpcomingMoviesDomain
 
 final class ProfileViewModel: ProfileViewModelProtocol {
     
-    private let useCaseProvider: UseCaseProviderProtocol
-    private var userUseCase: UserUseCaseProtocol
-    private let accountUseCase: AccountUseCaseProtocol
+    private let interactor: ProfileInteractorProtocol
     
     let viewState: Bindable<ProfileViewState> = Bindable(.initial)
-    
     var reloadAccountInfo: (() -> Void)?
     
     private var userAccount: User?
@@ -37,28 +34,12 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol, userAccount: User?, options: ProfileOptions) {
+    init(interactor: ProfileInteractorProtocol, userAccount: User?, options: ProfileOptions) {
+        self.interactor = interactor
+        
         self.userAccount = userAccount
         self.collectionOptions = options.collectionOptions
         self.groupOptions = options.groupOptions
-        
-        self.useCaseProvider = useCaseProvider
-        self.accountUseCase = self.useCaseProvider.accountUseCase()
-        self.userUseCase = self.useCaseProvider.userUseCase()
-        self.userUseCase.didUpdateUser = { [weak self] in
-            self?.updateUserAccount()
-            self?.reloadAccountInfo?()
-        }
-    }
-    
-    // MARK: - Private
-    
-    private func updateUserAccount() {
-        guard let userAccountId = userAccount?.id,
-            let updatedUserAccount = userUseCase.find(with: userAccountId) else {
-                return
-        }
-        userAccount = updatedUserAccount
     }
     
     // MARK: - Public
@@ -77,16 +58,16 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     // MARK: - Networking
     
-    // TODO: - Change this method to get the account detail given the id of a user account
     func getAccountDetails() {
-        accountUseCase.getAccountDetail(completion: { result in
-            switch result {
-            case .success(let user):
-                self.userUseCase.saveUser(user)
-            case .failure:
-                break
+        interactor.getAccountDetail { result in
+            guard let user = try? result.get() else { return }
+            
+            // If there is no update to display we don't reload user account info
+            if self.userAccount != user {
+                self.userAccount = user
+                self.reloadAccountInfo?()
             }
-        })
+        }
     }
     
 }

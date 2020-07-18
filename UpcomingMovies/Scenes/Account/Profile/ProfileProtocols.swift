@@ -27,6 +27,12 @@ protocol ProfileViewModelProtocol {
     
 }
 
+protocol ProfileInteractorProtocol {
+    
+    func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void)
+    
+}
+
 protocol ProfileViewControllerDelegate: class {
 
     func profileViewController(didTapCollection collection: ProfileCollectionOption)

@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-public struct List: Decodable, Equatable {
+public struct List: Decodable {
     
     public let id: String
     public let name: String
