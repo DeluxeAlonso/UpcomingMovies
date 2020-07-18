@@ -27,6 +27,15 @@ protocol ProfileViewModelProtocol {
     
 }
 
+protocol ProfileInteractorProtocol {
+    
+    var didUpdateUser: (() -> Void)? { get set }
+    
+    func getUser(with id: Int?) -> User?
+    func getAccountDetail()
+    
+}
+
 protocol ProfileViewControllerDelegate: class {
 
     func profileViewController(didTapCollection collection: ProfileCollectionOption)

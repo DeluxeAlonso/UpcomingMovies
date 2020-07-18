@@ -52,8 +52,8 @@ class AccountCoordinator: Coordinator, AccountCoordinatorProtocol {
         navigationController.setNavigationBarHidden(false, animated: true)
         
         let viewController = ProfileTableViewController.instantiate()
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let viewModel = ProfileViewModel(useCaseProvider: useCaseProvider,
+        let interactor = ProfileInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
+        let viewModel = ProfileViewModel(interactor: interactor,
                                          userAccount: user,
                                          options: profileOptions)
         viewController.viewModel = viewModel

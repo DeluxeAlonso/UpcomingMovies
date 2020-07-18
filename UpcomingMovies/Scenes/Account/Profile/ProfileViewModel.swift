@@ -11,12 +11,9 @@ import UpcomingMoviesDomain
 
 final class ProfileViewModel: ProfileViewModelProtocol {
     
-    private let useCaseProvider: UseCaseProviderProtocol
-    private var userUseCase: UserUseCaseProtocol
-    private let accountUseCase: AccountUseCaseProtocol
+    private var interactor: ProfileInteractorProtocol
     
     let viewState: Bindable<ProfileViewState> = Bindable(.initial)
-    
     var reloadAccountInfo: (() -> Void)?
     
     private var userAccount: User?
@@ -37,26 +34,23 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol, userAccount: User?, options: ProfileOptions) {
+    init(interactor: ProfileInteractorProtocol, userAccount: User?, options: ProfileOptions) {
         self.userAccount = userAccount
         self.collectionOptions = options.collectionOptions
         self.groupOptions = options.groupOptions
         
-        self.useCaseProvider = useCaseProvider
-        self.accountUseCase = self.useCaseProvider.accountUseCase()
-        self.userUseCase = self.useCaseProvider.userUseCase()
-        self.userUseCase.didUpdateUser = { [weak self] in
-            self?.updateUserAccount()
+        self.interactor = interactor
+        self.interactor.didUpdateUser = { [weak self] in
+            self?.updateUserInfo()
             self?.reloadAccountInfo?()
         }
     }
     
     // MARK: - Private
     
-    private func updateUserAccount() {
-        guard let userAccountId = userAccount?.id,
-            let updatedUserAccount = userUseCase.find(with: userAccountId) else {
-                return
+    private func updateUserInfo() {
+        guard let updatedUserAccount = interactor.getUser(with: userAccount?.id) else {
+            return
         }
         userAccount = updatedUserAccount
     }
@@ -77,16 +71,8 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     // MARK: - Networking
     
-    // TODO: - Change this method to get the account detail given the id of a user account
     func getAccountDetails() {
-        accountUseCase.getAccountDetail(completion: { result in
-            switch result {
-            case .success(let user):
-                self.userUseCase.saveUser(user)
-            case .failure:
-                break
-            }
-        })
+        interactor.getAccountDetail()
     }
     
 }
