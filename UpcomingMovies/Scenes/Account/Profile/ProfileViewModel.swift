@@ -62,8 +62,11 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         interactor.getAccountDetail { result in
             guard let user = try? result.get() else { return }
             
-            self.userAccount = user
-            self.reloadAccountInfo?()
+            // If there is no update to display we don't reload user account info
+            if self.userAccount != user {
+                self.userAccount = user
+                self.reloadAccountInfo?()
+            }
         }
     }
     
