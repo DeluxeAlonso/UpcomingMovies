@@ -14,30 +14,20 @@ class ProfileInteractor: ProfileInteractorProtocol {
     private var userUseCase: UserUseCaseProtocol
     private let accountUseCase: AccountUseCaseProtocol
     
-    var didUpdateUser: (() -> Void)?
-    
     init(useCaseProvider: UseCaseProviderProtocol) {
         self.userUseCase = useCaseProvider.userUseCase()
         self.accountUseCase = useCaseProvider.accountUseCase()
-        
-        self.didUpdateUser = self.userUseCase.didUpdateUser
     }
-    
-    func getUser(with id: Int?) -> User? {
-        guard let id = id, let user = userUseCase.find(with: id) else {
-            return nil
-        }
-        return user
-    }
-    
+
     // TODO: - Change this method to get the account detail given the id of a user account
-    func getAccountDetail() {
+    func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void) {
         accountUseCase.getAccountDetail(completion: { result in
             switch result {
             case .success(let user):
                 self.userUseCase.saveUser(user)
-            case .failure:
-                break
+                completion(.success(user))
+            case .failure(let error):
+                completion(.failure(error))
             }
         })
     }

@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 final class ProfileViewModel: ProfileViewModelProtocol {
     
-    private var interactor: ProfileInteractorProtocol
+    private let interactor: ProfileInteractorProtocol
     
     let viewState: Bindable<ProfileViewState> = Bindable(.initial)
     var reloadAccountInfo: (() -> Void)?
@@ -35,24 +35,11 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     // MARK: - Initializers
     
     init(interactor: ProfileInteractorProtocol, userAccount: User?, options: ProfileOptions) {
+        self.interactor = interactor
+        
         self.userAccount = userAccount
         self.collectionOptions = options.collectionOptions
         self.groupOptions = options.groupOptions
-        
-        self.interactor = interactor
-        self.interactor.didUpdateUser = { [weak self] in
-            self?.updateUserInfo()
-            self?.reloadAccountInfo?()
-        }
-    }
-    
-    // MARK: - Private
-    
-    private func updateUserInfo() {
-        guard let updatedUserAccount = interactor.getUser(with: userAccount?.id) else {
-            return
-        }
-        userAccount = updatedUserAccount
     }
     
     // MARK: - Public
@@ -72,7 +59,12 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     // MARK: - Networking
     
     func getAccountDetails() {
-        interactor.getAccountDetail()
+        interactor.getAccountDetail { result in
+            guard let user = try? result.get() else { return }
+            
+            self.userAccount = user
+            self.reloadAccountInfo?()
+        }
     }
     
 }

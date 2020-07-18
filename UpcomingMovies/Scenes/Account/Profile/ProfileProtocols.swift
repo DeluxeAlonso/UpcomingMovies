@@ -29,10 +29,7 @@ protocol ProfileViewModelProtocol {
 
 protocol ProfileInteractorProtocol {
     
-    var didUpdateUser: (() -> Void)? { get set }
-    
-    func getUser(with id: Int?) -> User?
-    func getAccountDetail()
+    func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void)
     
 }
 
