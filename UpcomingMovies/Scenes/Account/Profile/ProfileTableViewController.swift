@@ -23,6 +23,8 @@ class ProfileTableViewController: UITableViewController, Storyboarded {
         super.viewDidLoad()
         setupUI()
         setupBindables()
+        
+        viewModel?.getAccountDetails()
     }
     
     // MARK: - Private
@@ -36,6 +38,8 @@ class ProfileTableViewController: UITableViewController, Storyboarded {
         tableView.registerNib(cellType: ProfileAccountInfoTableViewCell.self)
         tableView.registerNib(cellType: ProfileSelectableOptionTableViewCell.self)
         tableView.register(cellType: ProfileSignOutTableViewCell.self)
+        
+        setupDataSource()
     }
     
     private func setupDataSource() {
@@ -51,11 +55,11 @@ class ProfileTableViewController: UITableViewController, Storyboarded {
     }
     
     private func showSignOutActionSheet() {
-        let signOutAction = UIAlertAction(title: "Sign out",
+        let signOutAction = UIAlertAction(title: LocalizedStrings.signOut.localized,
                                           style: .destructive) { _ in
             self.delegate?.profileViewController(didTapSignOutButton: true)
         }
-        showSimpleActionSheet(title: "Are you sure you want to sign out?",
+        showSimpleActionSheet(title: LocalizedStrings.signOutConfirmationTitle.localized,
                               message: nil, action: signOutAction)
     }
     
@@ -66,8 +70,6 @@ class ProfileTableViewController: UITableViewController, Storyboarded {
             guard let strongSelf = self else { return }
             strongSelf.reloadAccountInfo()
         }
-        setupDataSource()
-        viewModel?.getAccountDetails()
     }
     
     // MARK: - Actions
