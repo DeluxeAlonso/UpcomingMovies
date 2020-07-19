@@ -12,8 +12,8 @@ import UpcomingMoviesDomain
 final class ProfileViewModel: ProfileViewModelProtocol {
     
     private let interactor: ProfileInteractorProtocol
+    private let factory: ProfileViewFactoryProtocol
     
-    let viewState: Bindable<ProfileViewState> = Bindable(.initial)
     var reloadAccountInfo: (() -> Void)?
     
     private var userAccount: User?
@@ -22,38 +22,40 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         return ProfileAccountInforCellViewModel(userAccount: userAccount)
     }
     
-    private let collectionOptions: [ProfileCollectionOption]
     var collectionOptionsCells: [ProfileSelectableOptionCellViewModel] {
-        return collectionOptions.map { ProfileSelectableOptionCellViewModel($0) }
+        return factory.collectionOptions.map { ProfileSelectableOptionCellViewModel($0) }
     }
     
-    private let groupOptions: [ProfileGroupOption]
     var groupOptionsCells: [ProfileSelectableOptionCellViewModel] {
-        return groupOptions.map { ProfileSelectableOptionCellViewModel($0) }
+        return factory.groupOptions.map { ProfileSelectableOptionCellViewModel($0) }
     }
     
     // MARK: - Initializers
     
-    init(interactor: ProfileInteractorProtocol, userAccount: User?, options: ProfileOptions) {
-        self.interactor = interactor
-        
+    init(userAccount: User?,
+         interactor: ProfileInteractorProtocol,
+         factory: ProfileViewFactoryProtocol) {
         self.userAccount = userAccount
-        self.collectionOptions = options.collectionOptions
-        self.groupOptions = options.groupOptions
+        self.interactor = interactor
+        self.factory = factory
     }
     
-    // MARK: - Public
+    // MARK: - Factory
     
     func collectionOption(at index: Int) -> ProfileCollectionOption {
-        return collectionOptions[index]
+        return factory.collectionOptions[index]
     }
     
     func groupOption(at index: Int) -> ProfileGroupOption {
-        return groupOptions[index]
+        return factory.groupOptions[index]
     }
     
     func section(at index: Int) -> ProfileSection {
-        return viewState.value.sections[index]
+        return factory.sections[index]
+    }
+    
+    func numberOfSections() -> Int {
+        return factory.sections.count
     }
     
     // MARK: - Networking

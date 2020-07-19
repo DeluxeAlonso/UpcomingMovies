@@ -58,11 +58,5 @@ final class AccountViewModel: AccountViewModelProtocol {
     func currentUser() -> User? {
         return interactor.currentUser()
     }
-    
-    func profileOptions() -> ProfileOptions {
-        return ProfileOptions(collectionOptions: [.favorites, .watchlist],
-                              groupOptions: [.customLists],
-                              configurationOptions: [])
-    }
 
 }

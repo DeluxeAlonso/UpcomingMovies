@@ -57,8 +57,7 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     private func showProfileView(withAnimatedNavigationBar animated: Bool = false) {
         guard let viewModel = viewModel else { return }
         profileViewController = coordinator?.embedProfileViewController(on: self,
-                                                                        for: viewModel.currentUser(),
-                                                                        and: viewModel.profileOptions())
+                                                                        for: viewModel.currentUser())
         
         coordinator?.removeChildViewController(&signInViewController, from: self)
     }

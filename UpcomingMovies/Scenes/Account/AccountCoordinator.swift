@@ -47,15 +47,17 @@ class AccountCoordinator: Coordinator, AccountCoordinatorProtocol {
     
     @discardableResult
     func embedProfileViewController(on parentViewController: AccountViewControllerProtocol,
-                                    for user: User?,
-                                    and profileOptions: ProfileOptions) -> ProfileTableViewController {
+                                    for user: User?) -> ProfileTableViewController {
         navigationController.setNavigationBarHidden(false, animated: true)
         
         let viewController = ProfileTableViewController.instantiate()
+        
         let interactor = ProfileInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let viewModel = ProfileViewModel(interactor: interactor,
-                                         userAccount: user,
-                                         options: profileOptions)
+        let factory = ProfileViewFactory()
+        let viewModel = ProfileViewModel(userAccount: user,
+                                         interactor: interactor,
+                                         factory: factory)
+        
         viewController.viewModel = viewModel
         viewController.delegate = parentViewController
         
