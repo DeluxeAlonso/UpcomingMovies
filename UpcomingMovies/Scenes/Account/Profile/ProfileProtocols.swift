@@ -15,13 +15,13 @@ protocol ProfileViewModelProtocol {
     var collectionOptionsCells: [ProfileSelectableOptionCellViewModel] { get }
     var groupOptionsCells: [ProfileSelectableOptionCellViewModel] { get }
     
-    var viewState: Bindable<ProfileViewState> { get }
     var reloadAccountInfo: (() -> Void)? { get set }
     
     func collectionOption(at index: Int) -> ProfileCollectionOption
     func groupOption(at index: Int) -> ProfileGroupOption
     
     func section(at index: Int) -> ProfileSection
+    func numberOfSections() -> Int
     
     func getAccountDetails()
     
@@ -30,6 +30,15 @@ protocol ProfileViewModelProtocol {
 protocol ProfileInteractorProtocol {
     
     func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void)
+    
+}
+
+protocol ProfileViewFactoryProtocol {
+    
+    var sections: [ProfileSection] { get }
+    var collectionOptions: [ProfileCollectionOption] { get }
+    var groupOptions: [ProfileGroupOption] { get }
+    var configurationOptions: [ProfileConfigurationOption] { get }
     
 }
 

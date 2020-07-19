@@ -22,8 +22,6 @@ protocol AccountViewModelProtocol {
     func isUserSignedIn() -> Bool
     func currentUser() -> User?
     
-    func profileOptions() -> ProfileOptions
-    
 }
 
 protocol AccountInteractorProtocol {
@@ -39,8 +37,7 @@ protocol AccountCoordinatorProtocol: class {
     
     func embedSignInViewController(on parentViewController: AccountViewControllerProtocol) -> SignInViewController
     func embedProfileViewController(on parentViewController: AccountViewControllerProtocol,
-                                    for user: User?,
-                                    and profileOptions: ProfileOptions) -> ProfileTableViewController
+                                    for user: User?) -> ProfileTableViewController
     func removeChildViewController<T: UIViewController>(_ viewController: inout T?,
                                                         from parentViewController: UIViewController)
     
