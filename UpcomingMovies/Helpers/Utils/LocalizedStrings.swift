@@ -47,6 +47,7 @@ enum LocalizedStrings: String, Localizable {
     case customListGroupOption
     case includeAdults
     
+    case signOutConfirmationTitle
     case signOut
     
     case emptyMovieResults

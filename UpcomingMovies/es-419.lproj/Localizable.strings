@@ -28,6 +28,7 @@
 "customListGroupOption" = "Listas";
 "includeAdults" = "Incluir películas para adultos";
 
+"signOutConfirmationTitle" = "¿Estás seguro de que deseas cerrar sesión?";
 "signOut" = "Cerrar sesión";
 
 "emptyMovieResults" = "No hay películas que mostrar.";
