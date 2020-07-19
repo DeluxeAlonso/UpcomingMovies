@@ -23,6 +23,8 @@ class ProfileTableViewController: UITableViewController, Storyboarded {
         super.viewDidLoad()
         setupUI()
         setupBindables()
+        
+        viewModel?.getAccountDetails()
     }
     
     // MARK: - Private
@@ -36,6 +38,8 @@ class ProfileTableViewController: UITableViewController, Storyboarded {
         tableView.registerNib(cellType: ProfileAccountInfoTableViewCell.self)
         tableView.registerNib(cellType: ProfileSelectableOptionTableViewCell.self)
         tableView.register(cellType: ProfileSignOutTableViewCell.self)
+        
+        setupDataSource()
     }
     
     private func setupDataSource() {
@@ -66,8 +70,6 @@ class ProfileTableViewController: UITableViewController, Storyboarded {
             guard let strongSelf = self else { return }
             strongSelf.reloadAccountInfo()
         }
-        setupDataSource()
-        viewModel?.getAccountDetails()
     }
     
     // MARK: - Actions
