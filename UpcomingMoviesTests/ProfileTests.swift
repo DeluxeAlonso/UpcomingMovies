@@ -77,31 +77,34 @@ class ProfileTests: XCTestCase {
     func testCollectionOptionIndex() {
         //Arrange
         let collectionOptionsToTest: [ProfileCollectionOption] = [.favorites, .watchlist]
+        let indexToTest = Int.random(in: 0...collectionOptionsToTest.count - 1)
         mockFactory.collectionOptions = collectionOptionsToTest
         //Act
-        let firstCollectionOption = viewModelToTest.collectionOption(at: 0)
+        let firstCollectionOption = viewModelToTest.collectionOption(at: indexToTest)
         //Assert
-        XCTAssertEqual(firstCollectionOption.title, collectionOptionsToTest.first?.title)
+        XCTAssertEqual(firstCollectionOption.title, collectionOptionsToTest[indexToTest].title)
     }
     
     func testGroupOtionIndex() {
         //Arrange
         let groupOptionsToTest: [ProfileGroupOption] = [.customLists]
+        let indexToTest = Int.random(in: 0...groupOptionsToTest.count - 1)
         mockFactory.groupOptions = groupOptionsToTest
         //Act
-        let firstGroupOption = viewModelToTest.groupOption(at: 0)
+        let firstGroupOption = viewModelToTest.groupOption(at: indexToTest)
         //Assert
-        XCTAssertEqual(firstGroupOption.title, groupOptionsToTest.first?.title)
+        XCTAssertEqual(firstGroupOption.title, groupOptionsToTest[indexToTest].title)
     }
     
     func testSectionIndex() {
         //Arrange
         let sectionsToTest: [ProfileSection] = [.accountInfo, .collections, .groups, .signOut]
+        let indexToTest = Int.random(in: 0...sectionsToTest.count - 1)
         mockFactory.sections = sectionsToTest
         //Act
-        let section = viewModelToTest.section(at: 0)
+        let section = viewModelToTest.section(at: indexToTest)
         //Assert
-        XCTAssertEqual(section, sectionsToTest.first)
+        XCTAssertEqual(section, sectionsToTest[indexToTest])
     }
     
     func testNumberOfSections() {
