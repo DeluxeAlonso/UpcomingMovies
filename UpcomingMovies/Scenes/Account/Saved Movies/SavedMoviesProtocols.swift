@@ -13,7 +13,6 @@ protocol SavedMoviesViewModelProtocol {
     
     var title: String? { get set }
     
-    var movies: [Movie] { get }
     var movieCells: [SavedMovieCellViewModel] { get }
     var needsPrefetch: Bool { get }
     
@@ -24,6 +23,13 @@ protocol SavedMoviesViewModelProtocol {
     func refreshCollectionList()
     
     func movie(at index: Int) -> Movie
+    
+}
+
+protocol SavedMoviesInteractorProtocol {
+    
+    func getFavoriteList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
+    func getWatchList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
     
 }
 

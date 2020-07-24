@@ -11,17 +11,15 @@ import UpcomingMoviesDomain
 
 final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
     
-    private let useCaseProvider: UseCaseProviderProtocol
-    private let accountUseCase: AccountUseCaseProtocol
-    
     private let collectionOption: ProfileCollectionOption
+    private let interactor: SavedMoviesInteractorProtocol
     
     var title: String?
     
     var startLoading: Bindable<Bool> = Bindable(false)
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
     
-    var movies: [Movie] {
+    private var movies: [Movie] {
         return viewState.value.currentEntities
     }
     
@@ -35,11 +33,10 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol, collectionOption: ProfileCollectionOption) {
-        self.useCaseProvider = useCaseProvider
-        self.accountUseCase = self.useCaseProvider.accountUseCase()
-        
+    init(collectionOption: ProfileCollectionOption, interactor: SavedMoviesInteractorProtocol) {
         self.collectionOption = collectionOption
+        self.interactor = interactor
+        
         self.title = collectionOption.title
     }
     
@@ -71,41 +68,37 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
     }
     
     private func fetchFavoriteList(page: Int) {
-        accountUseCase.getFavoriteList(page: page, completion: { result in
+        interactor.getFavoriteList(page: page, completion: { result in
             self.startLoading.value = false
-            switch result {
-            case .success(let movies):
-                self.processMovieResult(movies, currentPage: self.viewState.value.currentPage)
-            case .failure(let error):
-                self.viewState.value = .error(error)
-            }
+            self.viewState.value = self.processResult(result)
         })
     }
     
     private func fetchWatchList(page: Int) {
-        accountUseCase.getWatchList(page: page, completion: { result in
+        interactor.getWatchList(page: page, completion: { result in
             self.startLoading.value = false
-            switch result {
-            case .success(let movies):
-                self.processMovieResult(movies, currentPage: self.viewState.value.currentPage)
-            case .failure(let error):
-                self.viewState.value = .error(error)
-            }
+            self.viewState.value = self.processResult(result)
         })
     }
     
-    private func processMovieResult(_ movies: [Movie], currentPage: Int) {
-        var allMovies = currentPage == 1 ? [] : viewState.value.currentEntities
+    private func processResult(_ result: Result<[Movie], Error>) -> SimpleViewState<Movie> {
+        switch result {
+        case .success(let movies):
+            return self.viewState(for: movies,
+                                  currentPage: self.viewState.value.currentPage,
+                                  currentMovies: self.movies)
+        case .failure(let error):
+            return .error(error)
+        }
+    }
+    
+    private func viewState(for movies: [Movie], currentPage: Int,
+                           currentMovies: [Movie]) -> SimpleViewState<Movie> {
+        var allMovies = currentPage == 1 ? [] : currentMovies
         allMovies.append(contentsOf: movies)
-        guard !allMovies.isEmpty else {
-            viewState.value = .empty
-            return
-        }
-        if movies.isEmpty {
-            viewState.value = .populated(allMovies)
-        } else {
-            viewState.value = .paging(allMovies, next: currentPage + 1)
-        }
+        guard !allMovies.isEmpty else { return .empty }
+        
+        return movies.isEmpty ? .populated(allMovies) : .paging(allMovies, next: currentPage + 1)
     }
     
 }
