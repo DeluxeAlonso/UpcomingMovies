@@ -11,10 +11,7 @@ import UpcomingMoviesDomain
 
 final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
     
-    private let collectionOption: ProfileCollectionOption
     private let interactor: SavedMoviesInteractorProtocol
-    
-    var title: String?
     
     var startLoading: Bindable<Bool> = Bindable(false)
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
@@ -31,13 +28,14 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
         return viewState.value.needsPrefetch
     }
     
+    var title: String? {
+        return interactor.displayTitle
+    }
+    
     // MARK: - Initializers
     
-    init(collectionOption: ProfileCollectionOption, interactor: SavedMoviesInteractorProtocol) {
-        self.collectionOption = collectionOption
+    init(interactor: SavedMoviesInteractorProtocol) {
         self.interactor = interactor
-        
-        self.title = collectionOption.title
     }
     
     // MARK: - Public
@@ -50,35 +48,19 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
     
     func getCollectionList() {
         let showLoader = viewState.value.isInitialPage
-        fetchCollectionList(page: viewState.value.currentPage, option: collectionOption, showLoader: showLoader)
+        fetchCollectionList(page: viewState.value.currentPage, showLoader: showLoader)
     }
     
     func refreshCollectionList() {
-        fetchCollectionList(page: 1, option: collectionOption, showLoader: false)
+        fetchCollectionList(page: 1, showLoader: false)
     }
     
-    private func fetchCollectionList(page: Int, option: ProfileCollectionOption, showLoader: Bool) {
+    private func fetchCollectionList(page: Int, showLoader: Bool) {
         startLoading.value = showLoader
-        switch option {
-        case .favorites:
-            fetchFavoriteList(page: page)
-        case .watchlist:
-            fetchWatchList(page: page)
+        interactor.getSavedMovies(page: page) { result in
+            self.startLoading.value = false
+            self.viewState.value = self.processResult(result)
         }
-    }
-    
-    private func fetchFavoriteList(page: Int) {
-        interactor.getFavoriteList(page: page, completion: { result in
-            self.startLoading.value = false
-            self.viewState.value = self.processResult(result)
-        })
-    }
-    
-    private func fetchWatchList(page: Int) {
-        interactor.getWatchList(page: page, completion: { result in
-            self.startLoading.value = false
-            self.viewState.value = self.processResult(result)
-        })
     }
     
     private func processResult(_ result: Result<[Movie], Error>) -> SimpleViewState<Movie> {

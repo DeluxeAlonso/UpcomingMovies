@@ -24,9 +24,9 @@ class SavedMoviesCoordinator: Coordinator, SavedMoviesCoordinatorProtocol {
     func start() {
         let viewController = SavedMoviesViewController.instantiate()
         
-        let interactor = SavedMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let viewModel = SavedMoviesViewModel(collectionOption: collectionOption,
-                                             interactor: interactor)
+        let interactor = SavedMoviesInteractor(collectionOption: collectionOption,
+                                               useCaseProvider: InjectionFactory.useCaseProvider())
+        let viewModel = SavedMoviesViewModel(interactor: interactor)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self

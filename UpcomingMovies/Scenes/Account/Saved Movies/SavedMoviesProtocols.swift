@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 protocol SavedMoviesViewModelProtocol {
     
-    var title: String? { get set }
+    var title: String? { get }
     
     var movieCells: [SavedMovieCellViewModel] { get }
     var needsPrefetch: Bool { get }
@@ -28,8 +28,9 @@ protocol SavedMoviesViewModelProtocol {
 
 protocol SavedMoviesInteractorProtocol {
     
-    func getFavoriteList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
-    func getWatchList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
+    var displayTitle: String? { get }
+    
+    func getSavedMovies(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
     
 }
 

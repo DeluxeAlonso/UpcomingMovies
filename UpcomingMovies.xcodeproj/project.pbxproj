@@ -1852,9 +1852,9 @@
 			children = (
 				E221F768222B9FA3008DFF87 /* SavedMoviesViewController.swift */,
 				E221F764222B9C7A008DFF87 /* SavedMoviesViewModel.swift */,
+				E28BA95324CA812500E1C3AA /* SavedMoviesInteractor.swift */,
 				E2825DCC24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift */,
 				E229AFAA24A8451F002AB427 /* SavedMoviesProtocols.swift */,
-				E28BA95324CA812500E1C3AA /* SavedMoviesInteractor.swift */,
 			);
 			path = "Saved Movies";
 			sourceTree = "<group>";

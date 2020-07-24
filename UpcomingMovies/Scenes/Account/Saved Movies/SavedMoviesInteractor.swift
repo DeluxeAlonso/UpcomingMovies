@@ -11,18 +11,25 @@ import UpcomingMoviesDomain
 
 final class SavedMoviesInteractor: SavedMoviesInteractorProtocol {
     
+    private let collectionOption: ProfileCollectionOption
     private let accountUseCase: AccountUseCaseProtocol
     
-    init(useCaseProvider: UseCaseProviderProtocol) {
+    init(collectionOption: ProfileCollectionOption, useCaseProvider: UseCaseProviderProtocol) {
+        self.collectionOption = collectionOption
         self.accountUseCase = useCaseProvider.accountUseCase()
     }
     
-    func getFavoriteList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        accountUseCase.getFavoriteList(page: page, completion: completion)
+    var displayTitle: String? {
+        return collectionOption.title
     }
     
-    func getWatchList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        accountUseCase.getWatchList(page: page, completion: completion)
+    func getSavedMovies(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        switch collectionOption {
+        case .favorites:
+            accountUseCase.getFavoriteList(page: page, completion: completion)
+        case .watchlist:
+            accountUseCase.getWatchList(page: page, completion: completion)
+        }
     }
     
 }

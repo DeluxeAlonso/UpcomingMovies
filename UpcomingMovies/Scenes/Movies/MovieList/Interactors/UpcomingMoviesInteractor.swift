@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 struct UpcomingMoviesInteractor: MoviesInteractorProtocol {
     
-    let movieUseCase: MovieUseCaseProtocol
+    private let movieUseCase: MovieUseCaseProtocol
     
     init(useCaseProvider: UseCaseProviderProtocol) {
         self.movieUseCase = useCaseProvider.movieUseCase()
