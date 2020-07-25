@@ -11,17 +11,12 @@ import UpcomingMoviesDomain
 
 final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
     
-    private let useCaseProvider: UseCaseProviderProtocol
-    private let accountUseCase: AccountUseCaseProtocol
-    
-    private let collectionOption: ProfileCollectionOption
-    
-    var title: String?
+    private let interactor: SavedMoviesInteractorProtocol
     
     var startLoading: Bindable<Bool> = Bindable(false)
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
     
-    var movies: [Movie] {
+    private var movies: [Movie] {
         return viewState.value.currentEntities
     }
     
@@ -33,14 +28,14 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
         return viewState.value.needsPrefetch
     }
     
+    var title: String? {
+        return interactor.displayTitle
+    }
+    
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol, collectionOption: ProfileCollectionOption) {
-        self.useCaseProvider = useCaseProvider
-        self.accountUseCase = self.useCaseProvider.accountUseCase()
-        
-        self.collectionOption = collectionOption
-        self.title = collectionOption.title
+    init(interactor: SavedMoviesInteractorProtocol) {
+        self.interactor = interactor
     }
     
     // MARK: - Public
@@ -53,59 +48,39 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
     
     func getCollectionList() {
         let showLoader = viewState.value.isInitialPage
-        fetchCollectionList(page: viewState.value.currentPage, option: collectionOption, showLoader: showLoader)
+        fetchCollectionList(page: viewState.value.currentPage, showLoader: showLoader)
     }
     
     func refreshCollectionList() {
-        fetchCollectionList(page: 1, option: collectionOption, showLoader: false)
+        fetchCollectionList(page: 1, showLoader: false)
     }
     
-    private func fetchCollectionList(page: Int, option: ProfileCollectionOption, showLoader: Bool) {
+    private func fetchCollectionList(page: Int, showLoader: Bool) {
         startLoading.value = showLoader
-        switch option {
-        case .favorites:
-            fetchFavoriteList(page: page)
-        case .watchlist:
-            fetchWatchList(page: page)
+        interactor.getSavedMovies(page: page) { result in
+            self.startLoading.value = false
+            self.viewState.value = self.processResult(result)
         }
     }
     
-    private func fetchFavoriteList(page: Int) {
-        accountUseCase.getFavoriteList(page: page, completion: { result in
-            self.startLoading.value = false
-            switch result {
-            case .success(let movies):
-                self.processMovieResult(movies, currentPage: self.viewState.value.currentPage)
-            case .failure(let error):
-                self.viewState.value = .error(error)
-            }
-        })
+    private func processResult(_ result: Result<[Movie], Error>) -> SimpleViewState<Movie> {
+        switch result {
+        case .success(let movies):
+            return self.viewState(for: movies,
+                                  currentPage: self.viewState.value.currentPage,
+                                  currentMovies: self.movies)
+        case .failure(let error):
+            return .error(error)
+        }
     }
     
-    private func fetchWatchList(page: Int) {
-        accountUseCase.getWatchList(page: page, completion: { result in
-            self.startLoading.value = false
-            switch result {
-            case .success(let movies):
-                self.processMovieResult(movies, currentPage: self.viewState.value.currentPage)
-            case .failure(let error):
-                self.viewState.value = .error(error)
-            }
-        })
-    }
-    
-    private func processMovieResult(_ movies: [Movie], currentPage: Int) {
-        var allMovies = currentPage == 1 ? [] : viewState.value.currentEntities
+    private func viewState(for movies: [Movie], currentPage: Int,
+                           currentMovies: [Movie]) -> SimpleViewState<Movie> {
+        var allMovies = currentPage == 1 ? [] : currentMovies
         allMovies.append(contentsOf: movies)
-        guard !allMovies.isEmpty else {
-            viewState.value = .empty
-            return
-        }
-        if movies.isEmpty {
-            viewState.value = .populated(allMovies)
-        } else {
-            viewState.value = .paging(allMovies, next: currentPage + 1)
-        }
+        guard !allMovies.isEmpty else { return .empty }
+        
+        return movies.isEmpty ? .populated(allMovies) : .paging(allMovies, next: currentPage + 1)
     }
     
 }

@@ -11,12 +11,12 @@ import UpcomingMoviesDomain
 
 final class ProfileViewModel: ProfileViewModelProtocol {
     
+    private var userAccount: User?
     private let interactor: ProfileInteractorProtocol
     private let factory: ProfileViewFactoryProtocol
     
     var reloadAccountInfo: (() -> Void)?
     
-    private var userAccount: User?
     var userInfoCell: ProfileAccountInforCellViewModel? {
         guard let userAccount = userAccount else { return nil }
         return ProfileAccountInforCellViewModel(userAccount: userAccount)

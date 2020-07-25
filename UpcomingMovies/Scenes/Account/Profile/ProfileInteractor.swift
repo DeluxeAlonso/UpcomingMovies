@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 class ProfileInteractor: ProfileInteractorProtocol {
     
-    private var userUseCase: UserUseCaseProtocol
+    private let userUseCase: UserUseCaseProtocol
     private let accountUseCase: AccountUseCaseProtocol
     
     init(useCaseProvider: UseCaseProviderProtocol) {
