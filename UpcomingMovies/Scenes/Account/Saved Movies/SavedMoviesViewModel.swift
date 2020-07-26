@@ -59,16 +59,21 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
         startLoading.value = showLoader
         interactor.getSavedMovies(page: page) { result in
             self.startLoading.value = false
-            self.viewState.value = self.processResult(result)
+            
+            let currentPage = self.viewState.value.currentPage
+            self.viewState.value = self.processResult(result,
+                                                      currentPage: currentPage,
+                                                      currentMovies: self.movies)
         }
     }
     
-    private func processResult(_ result: Result<[Movie], Error>) -> SimpleViewState<Movie> {
+    private func processResult(_ result: Result<[Movie], Error>, currentPage: Int,
+                               currentMovies: [Movie]) -> SimpleViewState<Movie> {
         switch result {
         case .success(let movies):
             return self.viewState(for: movies,
-                                  currentPage: self.viewState.value.currentPage,
-                                  currentMovies: self.movies)
+                                  currentPage: currentPage,
+                                  currentMovies: currentMovies)
         case .failure(let error):
             return .error(error)
         }
