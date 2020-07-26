@@ -10,13 +10,8 @@ import Foundation
 import UpcomingMoviesDomain
 
 final class CustomListsViewModel: CustomListsViewModelProtocol {
-
-    private let useCaseProvider: UseCaseProviderProtocol
-    private let accountUseCase: AccountUseCaseProtocol
     
-    private let groupOption: ProfileGroupOption
-    
-    var title: String?
+    private let interactor: CustomListsInteractorProtocol
     
     // MARK: - Reactive properties
     
@@ -35,12 +30,8 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol, groupOption: ProfileGroupOption) {
-        self.useCaseProvider = useCaseProvider
-        self.accountUseCase = self.useCaseProvider.accountUseCase()
-        
-        self.groupOption = groupOption
-        self.title = groupOption.title
+    init(interactor: CustomListsInteractorProtocol) {
+        self.interactor = interactor
     }
     
     // MARK: - Public
@@ -62,17 +53,14 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
     
     private func fetchCustomLists(currentPage: Int, showLoader: Bool) {
         startLoading.value = showLoader
-        switch groupOption {
-        case .customLists:
-            accountUseCase.getCustomLists(page: currentPage, completion: { result in
-                self.startLoading.value = false
-                
-                let currentPage = self.viewState.value.currentPage
-                self.viewState.value = self.processResult(result,
-                                                          currentPage: currentPage,
-                                                          currentLists: self.lists)
-            })
-        }
+        interactor.getCustomLists(page: currentPage, completion: { result in
+            self.startLoading.value = false
+            
+            let currentPage = self.viewState.value.currentPage
+            self.viewState.value = self.processResult(result,
+                                                      currentPage: currentPage,
+                                                      currentLists: self.lists)
+        })
     }
     
     private func processResult(_ result: Result<[List], Error>, currentPage: Int,
