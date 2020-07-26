@@ -10,13 +10,8 @@ import Foundation
 import UpcomingMoviesDomain
 
 final class CustomListsViewModel: CustomListsViewModelProtocol {
-
-    private let useCaseProvider: UseCaseProviderProtocol
-    private let accountUseCase: AccountUseCaseProtocol
     
-    private let groupOption: ProfileGroupOption
-    
-    var title: String?
+    private let interactor: CustomListsInteractorProtocol
     
     // MARK: - Reactive properties
     
@@ -35,12 +30,8 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol, groupOption: ProfileGroupOption) {
-        self.useCaseProvider = useCaseProvider
-        self.accountUseCase = self.useCaseProvider.accountUseCase()
-        
-        self.groupOption = groupOption
-        self.title = groupOption.title
+    init(interactor: CustomListsInteractorProtocol) {
+        self.interactor = interactor
     }
     
     // MARK: - Public
@@ -62,32 +53,35 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
     
     private func fetchCustomLists(currentPage: Int, showLoader: Bool) {
         startLoading.value = showLoader
-        switch groupOption {
-        case .customLists:
-            accountUseCase.getCustomLists(page: currentPage, completion: { result in
-                self.startLoading.value = false
-                switch result {
-                case .success(let lists):
-                    self.processListResult(lists, currentPage: currentPage)
-                case .failure(let error):
-                    self.viewState.value = .error(error)
-                }
-            })
+        interactor.getCustomLists(page: currentPage, completion: { result in
+            self.startLoading.value = false
+            
+            let currentPage = self.viewState.value.currentPage
+            self.viewState.value = self.processResult(result,
+                                                      currentPage: currentPage,
+                                                      currentLists: self.lists)
+        })
+    }
+    
+    private func processResult(_ result: Result<[List], Error>, currentPage: Int,
+                               currentLists: [List]) -> SimpleViewState<List> {
+        switch result {
+        case .success(let lists):
+            return self.viewState(for: lists,
+                                  currentPage: currentPage,
+                                  currentLists: currentLists)
+        case .failure(let error):
+            return .error(error)
         }
     }
     
-    private func processListResult(_ lists: [List], currentPage: Int) {
-        var allLists = currentPage == 1 ? [] : viewState.value.currentEntities
+    private func viewState(for lists: [List], currentPage: Int,
+                           currentLists: [List]) -> SimpleViewState<List> {
+        var allLists = currentPage == 1 ? [] : currentLists
         allLists.append(contentsOf: lists)
-        guard !allLists.isEmpty else {
-            viewState.value = .empty
-            return
-        }
-        if lists.isEmpty {
-            viewState.value = .populated(allLists)
-        } else {
-            viewState.value = .paging(allLists, next: currentPage + 1)
-        }
+        guard !allLists.isEmpty else { return .empty }
+        
+        return lists.isEmpty ? .populated(allLists) : .paging(allLists, next: currentPage + 1)
     }
     
 }

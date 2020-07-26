@@ -11,8 +11,6 @@ import UpcomingMoviesDomain
 
 protocol CustomListsViewModelProtocol {
     
-    var title: String? { get set }
-    
     var startLoading: Bindable<Bool> { get }
     var viewState: Bindable<SimpleViewState<List>> { get }
     
@@ -23,6 +21,12 @@ protocol CustomListsViewModelProtocol {
     
     func getCustomLists()
     func refreshCustomLists()
+    
+}
+
+protocol CustomListsInteractorProtocol {
+    
+    func getCustomLists(page: Int?, completion: @escaping (Result<[List], Error>) -> Void)
     
 }
 

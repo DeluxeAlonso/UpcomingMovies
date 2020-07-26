@@ -42,6 +42,8 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
     // MARK: - Private
     
     private func setupUI() {
+        title = LocalizedStrings.customListGroupOption.localized
+        
         setupNavigationBar()
         setupTableView()
     }
@@ -88,7 +90,6 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        title = viewModel?.title
         viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {

@@ -82,16 +82,6 @@ class AccountCoordinator: Coordinator, AccountCoordinatorProtocol {
         coordinator.start()
     }
     
-    func showCustomLists(for groupOption: ProfileGroupOption) {
-        let coordinator = CustomListsCoordinator(navigationController: navigationController)
-        
-        coordinator.groupOption = groupOption
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
-    }
-    
     func showAuthPermission(for authPermissionURL: URL?,
                             and authPermissionDelegate: AuthPermissionViewControllerDelegate) {
         let navigationController = UINavigationController()
@@ -100,6 +90,24 @@ class AccountCoordinator: Coordinator, AccountCoordinatorProtocol {
         coordinator.authPermissionURL = authPermissionURL
         coordinator.authPermissionDelegate = authPermissionDelegate
         coordinator.presentingViewController = self.navigationController.topViewController
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    // MARK: - Profile Group Options
+    
+    func showGroupOption(_ groupOption: ProfileGroupOption) {
+        switch groupOption {
+        case .customLists:
+            showCustomLists()
+        }
+    }
+    
+    private func showCustomLists() {
+        let coordinator = CustomListsCoordinator(navigationController: navigationController)
+
         coordinator.parentCoordinator = unwrappedParentCoordinator
         
         unwrappedParentCoordinator.childCoordinators.append(coordinator)

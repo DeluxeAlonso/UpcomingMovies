@@ -106,7 +106,7 @@ extension AccountViewController {
     }
     
     func profileViewController(didTapGroup group: ProfileGroupOption) {
-        coordinator?.showCustomLists(for: group)
+        coordinator?.showGroupOption(group)
     }
     
     func profileViewController(didTapSignOutButton tapped: Bool) {

@@ -15,8 +15,6 @@ class CustomListsCoordinator: Coordinator, CustomListsCoordinatorProtocol {
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
     
-    var groupOption: ProfileGroupOption!
-    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
@@ -24,8 +22,8 @@ class CustomListsCoordinator: Coordinator, CustomListsCoordinatorProtocol {
     func start() {
         let viewController = CustomListsViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let viewModel = CustomListsViewModel(useCaseProvider: useCaseProvider, groupOption: groupOption)
+        let interactor = CustomListsInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
+        let viewModel = CustomListsViewModel(interactor: interactor)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self

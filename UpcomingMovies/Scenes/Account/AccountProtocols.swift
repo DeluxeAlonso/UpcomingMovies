@@ -42,9 +42,9 @@ protocol AccountCoordinatorProtocol: class {
                                                         from parentViewController: UIViewController)
     
     func showSavedMovies(for collectionOption: ProfileCollectionOption)
-    func showCustomLists(for groupOption: ProfileGroupOption)
     func showAuthPermission(for authPermissionURL: URL?,
                             and authPermissionDelegate: AuthPermissionViewControllerDelegate)
+    func showGroupOption(_ groupOption: ProfileGroupOption)
     
 }
 
