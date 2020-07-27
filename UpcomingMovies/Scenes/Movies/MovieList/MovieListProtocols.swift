@@ -25,6 +25,7 @@ extension MovieListCoordinatorProtocol {
     
     func showDetail(for movie: Movie) {
         let coordinator = MovieDetailCoordinator(navigationController: navigationController)
+        
         coordinator.movieInfo = .complete(movie: movie)
         coordinator.parentCoordinator = unwrappedParentCoordinator
         

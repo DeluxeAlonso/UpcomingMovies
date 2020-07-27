@@ -30,7 +30,7 @@ class SavedMoviesTests: XCTestCase {
     
     func testSavedMoviesTitle() {
         //Arrange
-        mockInteractor.displayTitle = "Test title"
+        viewModelToTest.title = "Test title"
         //Act
         let title = viewModelToTest.title
         //Assert

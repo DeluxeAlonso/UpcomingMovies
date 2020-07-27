@@ -32,6 +32,16 @@ class FavoritesSavedMoviesCoordinator: Coordinator, SavedMoviesCoordinatorProtoc
         navigationController.pushViewController(viewController, animated: true)
     }
     
+    func showMovieDetail(for movie: Movie) {
+        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
+        
+        coordinator.movieInfo = .complete(movie: movie)
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
 }
 
 class WatchListSavedMoviesCoordinator: Coordinator, SavedMoviesCoordinatorProtocol {
@@ -55,6 +65,16 @@ class WatchListSavedMoviesCoordinator: Coordinator, SavedMoviesCoordinatorProtoc
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func showMovieDetail(for movie: Movie) {
+        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
+        
+        coordinator.movieInfo = .complete(movie: movie)
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
     }
     
 }

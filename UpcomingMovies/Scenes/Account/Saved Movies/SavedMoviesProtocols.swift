@@ -32,22 +32,8 @@ protocol SavedMoviesInteractorProtocol {
     
 }
 
-protocol SavedMoviesCoordinatorProtocol: Coordinator {
+protocol SavedMoviesCoordinatorProtocol: class {
     
     func showMovieDetail(for movie: Movie)
-    
-}
-
-extension SavedMoviesCoordinatorProtocol {
-    
-    func showMovieDetail(for movie: Movie) {
-        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
-        
-        coordinator.movieInfo = .complete(movie: movie)
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
-    }
     
 }
