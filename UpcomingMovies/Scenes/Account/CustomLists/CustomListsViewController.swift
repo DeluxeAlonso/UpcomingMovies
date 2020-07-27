@@ -112,7 +112,7 @@ extension CustomListsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let viewModel = viewModel else { return }
-        coordinator?.showDetail(for: viewModel.list(at: indexPath.row))
+        coordinator?.showListDetail(for: viewModel.list(at: indexPath.row))
     }
     
 }

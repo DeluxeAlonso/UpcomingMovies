@@ -23,7 +23,7 @@ struct NavigationConfiguration {
     
 }
 
-class UpcomingMoviesCoordinator: NSObject, Coordinator, UpcomingMoviesCoordinatorProtocol {
+class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
@@ -49,15 +49,10 @@ class UpcomingMoviesCoordinator: NSObject, Coordinator, UpcomingMoviesCoordinato
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func showDetail(for movie: Movie, with navigationConfiguration: NavigationConfiguration?) {
+    func showMovieDetail(for movie: Movie, with navigationConfiguration: NavigationConfiguration?) {
         configureNavigationDelegate(with: navigationConfiguration)
         
-        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
-        coordinator.movieInfo = .complete(movie: movie)
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        showMovieDetail(for: movie)
     }
     
     // MARK: - Navigation Configuration

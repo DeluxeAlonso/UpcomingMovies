@@ -12,8 +12,6 @@ import Foundation
 
 class MockSavedMoviesInteractor: SavedMoviesInteractorProtocol {
     
-    var displayTitle: String?
-    
     var getSavedMoviesResult: Result<[Movie], Error>?
     func getSavedMovies(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
         completion(getSavedMoviesResult!)

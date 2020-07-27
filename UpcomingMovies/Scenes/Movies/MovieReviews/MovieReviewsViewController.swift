@@ -102,7 +102,7 @@ extension MovieReviewsViewController: UITableViewDelegate {
         // We retrieve the cell which we are going to use for our scale transition
         guard let viewModel = viewModel else { return }
         guard let selectedCell = tableView.cellForRow(at: indexPath) else { return }
-        coordinator?.showDetail(for: viewModel.selectedReview(at: indexPath.row), transitionView: selectedCell)
+        coordinator?.showReviewDetail(for: viewModel.selectedReview(at: indexPath.row), transitionView: selectedCell)
     }
     
 }

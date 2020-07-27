@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class SearchMoviesCoordinator: Coordinator, SearchMoviesCoordinatorProtocol {
+class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
@@ -63,17 +63,8 @@ class SearchMoviesCoordinator: Coordinator, SearchMoviesCoordinatorProtocol {
         
         return searchController
     }
-
-    func showDetail(for movie: Movie) {
-        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
-        coordinator.movieInfo = .complete(movie: movie)
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
-    }
     
-    func showDetail(for movieId: Int, and movieTitle: String) {
+    func showMovieDetail(for movieId: Int, and movieTitle: String) {
         let coordinator = MovieDetailCoordinator(navigationController: navigationController)
         coordinator.movieInfo = .partial(movieId: movieId, movieTitle: movieTitle)
         coordinator.parentCoordinator = unwrappedParentCoordinator

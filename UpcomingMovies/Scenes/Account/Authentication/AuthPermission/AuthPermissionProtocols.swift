@@ -15,7 +15,7 @@ protocol AuthPermissionViewModelProtocol {
     
 }
 
-protocol AuthPermissionCoordinatorProtocol: class {
+protocol AuthPermissionCoordinatorProtocol: Coordinator {
     
     func dismiss(completion: (() -> Void)?)
     func didDismiss()

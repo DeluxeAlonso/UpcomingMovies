@@ -36,7 +36,7 @@ class MovieReviewsCoordinator: NSObject, Coordinator, MovieReviewsCoordinatorPro
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func showDetail(for review: Review, transitionView: UIView? = nil) {
+    func showReviewDetail(for review: Review, transitionView: UIView? = nil) {
         let navigationController = UINavigationController()
         let coordinator = MovieReviewDetailCoordinator(navigationController: navigationController)
 

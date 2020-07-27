@@ -102,7 +102,7 @@ extension AccountViewController {
 extension AccountViewController {
     
     func profileViewController(didTapCollection collection: ProfileCollectionOption) {
-        coordinator?.showSavedMovies(for: collection)
+        coordinator?.showCollectionOption(collection)
     }
     
     func profileViewController(didTapGroup group: ProfileGroupOption) {

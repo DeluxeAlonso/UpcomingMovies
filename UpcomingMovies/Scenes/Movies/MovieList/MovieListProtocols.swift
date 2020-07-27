@@ -15,17 +15,8 @@ protocol MovieListViewModelProtocol: MoviesViewModel {
     
 }
 
-protocol MovieListCoordinatorProtocol: Coordinator {}
-
-extension MovieListCoordinatorProtocol {
+protocol MovieListCoordinatorProtocol: class {
     
-    func showDetail(for movie: Movie) {
-        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
-        coordinator.movieInfo = .complete(movie: movie)
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
-    }
+    func showMovieDetail(for movie: Movie)
     
 }

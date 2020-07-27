@@ -9,13 +9,11 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class SavedMoviesCoordinator: Coordinator, SavedMoviesCoordinatorProtocol {
+class FavoritesSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
-    
-    var collectionOption: ProfileCollectionOption!
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -24,24 +22,39 @@ class SavedMoviesCoordinator: Coordinator, SavedMoviesCoordinatorProtocol {
     func start() {
         let viewController = SavedMoviesViewController.instantiate()
         
-        let interactor = SavedMoviesInteractor(collectionOption: collectionOption,
-                                               useCaseProvider: InjectionFactory.useCaseProvider())
+        let interactor = FavoritesSavedMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
         let viewModel = SavedMoviesViewModel(interactor: interactor)
+        viewModel.title = ProfileCollectionOption.favorites.title
         
         viewController.viewModel = viewModel
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
     }
+    
+}
 
-    func showMovieDetail(for movie: Movie) {
-        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
+class WatchListSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
+    
+    var childCoordinators: [Coordinator] = []
+    var parentCoordinator: Coordinator?
+    var navigationController: UINavigationController
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    func start() {
+        let viewController = SavedMoviesViewController.instantiate()
         
-        coordinator.movieInfo = .complete(movie: movie)
-        coordinator.parentCoordinator = unwrappedParentCoordinator
+        let interactor = WatchListSavedMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
+        let viewModel = SavedMoviesViewModel(interactor: interactor)
+        viewModel.title = ProfileCollectionOption.watchlist.title
         
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        viewController.viewModel = viewModel
+        viewController.coordinator = self
+        
+        navigationController.pushViewController(viewController, animated: true)
     }
     
 }

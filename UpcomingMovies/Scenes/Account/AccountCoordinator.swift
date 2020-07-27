@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class AccountCoordinator: Coordinator, AccountCoordinatorProtocol {
+class AccountCoordinator: AccountCoordinatorProtocol {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
@@ -72,16 +72,6 @@ class AccountCoordinator: Coordinator, AccountCoordinatorProtocol {
         viewController = nil
     }
     
-    func showSavedMovies(for collectionOption: ProfileCollectionOption) {
-        let coordinator = SavedMoviesCoordinator(navigationController: navigationController)
-        
-        coordinator.collectionOption = collectionOption
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
-    }
-    
     func showAuthPermission(for authPermissionURL: URL?,
                             and authPermissionDelegate: AuthPermissionViewControllerDelegate) {
         let navigationController = UINavigationController()
@@ -90,6 +80,35 @@ class AccountCoordinator: Coordinator, AccountCoordinatorProtocol {
         coordinator.authPermissionURL = authPermissionURL
         coordinator.authPermissionDelegate = authPermissionDelegate
         coordinator.presentingViewController = self.navigationController.topViewController
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    // MARK: - Saved Collection Options
+    
+    func showCollectionOption(_ collectionOption: ProfileCollectionOption) {
+        switch collectionOption {
+        case .favorites:
+            showFavoritesSavedMovies()
+        case .watchlist:
+            showWatchListSavedMovies()
+        }
+    }
+    
+    private func showFavoritesSavedMovies() {
+        let coordinator = FavoritesSavedMoviesCoordinator(navigationController: navigationController)
+        
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    private func showWatchListSavedMovies() {
+        let coordinator = WatchListSavedMoviesCoordinator(navigationController: navigationController)
+        
         coordinator.parentCoordinator = unwrappedParentCoordinator
         
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
