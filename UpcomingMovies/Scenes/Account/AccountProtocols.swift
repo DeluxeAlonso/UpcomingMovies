@@ -41,9 +41,10 @@ protocol AccountCoordinatorProtocol: class {
     func removeChildViewController<T: UIViewController>(_ viewController: inout T?,
                                                         from parentViewController: UIViewController)
     
-    func showSavedMovies(for collectionOption: ProfileCollectionOption)
     func showAuthPermission(for authPermissionURL: URL?,
                             and authPermissionDelegate: AuthPermissionViewControllerDelegate)
+    
+    func showCollectionOption(_ collectionOption: ProfileCollectionOption)
     func showGroupOption(_ groupOption: ProfileGroupOption)
     
 }

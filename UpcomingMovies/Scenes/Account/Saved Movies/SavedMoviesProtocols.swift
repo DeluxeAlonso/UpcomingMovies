@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 protocol SavedMoviesViewModelProtocol {
     
-    var title: String? { get }
+    var title: String? { get set }
     
     var movieCells: [SavedMovieCellViewModel] { get }
     var needsPrefetch: Bool { get }
@@ -28,14 +28,26 @@ protocol SavedMoviesViewModelProtocol {
 
 protocol SavedMoviesInteractorProtocol {
     
-    var displayTitle: String? { get }
-    
     func getSavedMovies(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
     
 }
 
-protocol SavedMoviesCoordinatorProtocol: class {
+protocol SavedMoviesCoordinatorProtocol: Coordinator {
     
     func showMovieDetail(for movie: Movie)
+    
+}
+
+extension SavedMoviesCoordinatorProtocol {
+    
+    func showMovieDetail(for movie: Movie) {
+        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
+        
+        coordinator.movieInfo = .complete(movie: movie)
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
     
 }

@@ -15,7 +15,11 @@ protocol MovieListViewModelProtocol: MoviesViewModel {
     
 }
 
-protocol MovieListCoordinatorProtocol: Coordinator {}
+protocol MovieListCoordinatorProtocol: Coordinator {
+    
+    func showDetail(for movie: Movie)
+    
+}
 
 extension MovieListCoordinatorProtocol {
     
