@@ -204,7 +204,7 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
                                                               imageToTransition: imageToTransition,
                                                               transitionOffset: view.safeAreaInsets.left)
         
-        coordinator?.showDetail(for: viewModel.movie(for: indexPath.row), with: navigationConfiguration)
+        coordinator?.showMovieDetail(for: viewModel.movie(for: indexPath.row), with: navigationConfiguration)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

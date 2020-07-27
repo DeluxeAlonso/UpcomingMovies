@@ -64,8 +64,8 @@ protocol SearchMoviesCoordinatorProtocol: class {
     @discardableResult
     func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController
 
-    func showDetail(for movie: Movie)
-    func showDetail(for movieId: Int, and movieTitle: String)
+    func showMovieDetail(for movie: Movie)
+    func showMovieDetail(for movieId: Int, and movieTitle: String)
     func showPopularMovies()
     func showTopRatedMovies()
     func showMoviesByGenre(_ genreId: Int, genreName: String)

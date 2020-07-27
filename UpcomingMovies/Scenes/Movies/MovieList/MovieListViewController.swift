@@ -115,7 +115,7 @@ extension MovieListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let viewModel = viewModel else { return }
-        coordinator?.showDetail(for: viewModel.selectedMovie(at: indexPath.row))
+        coordinator?.showMovieDetail(for: viewModel.selectedMovie(at: indexPath.row))
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

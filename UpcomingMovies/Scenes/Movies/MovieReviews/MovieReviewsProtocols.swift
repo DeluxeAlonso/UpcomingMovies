@@ -29,6 +29,6 @@ protocol MovieReviewsViewModelProtocol {
 
 protocol MovieReviewsCoordinatorProtocol: class {
     
-    func showDetail(for review: Review, transitionView: UIView?)
+    func showReviewDetail(for review: Review, transitionView: UIView?)
     
 }

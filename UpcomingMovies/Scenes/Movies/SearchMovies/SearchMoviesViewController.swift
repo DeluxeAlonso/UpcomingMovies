@@ -152,7 +152,7 @@ extension SearchMoviesViewController: SearchOptionsTableViewControllerDelegate {
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
                                           didSelectRecentlyVisitedMovie id: Int, title: String) {
-        coordinator?.showDetail(for: id, and: title)
+        coordinator?.showMovieDetail(for: id, and: title)
     }
     
 }

@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class PopularMoviesCoordinator: MovieListCoordinatorProtocol {
+class PopularMoviesCoordinator: MovieListCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
@@ -33,7 +33,7 @@ class PopularMoviesCoordinator: MovieListCoordinatorProtocol {
     
 }
 
-class TopRatedMoviesCoordinator: MovieListCoordinatorProtocol {
+class TopRatedMoviesCoordinator: MovieListCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
@@ -57,7 +57,7 @@ class TopRatedMoviesCoordinator: MovieListCoordinatorProtocol {
     
 }
 
-class SimilarMoviesCoordinator: NSObject, MovieListCoordinatorProtocol, UINavigationControllerDelegate {
+class SimilarMoviesCoordinator: NSObject, MovieListCoordinatorProtocol, Coordinator, MovieDetailCoordinable, UINavigationControllerDelegate {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
@@ -96,7 +96,7 @@ class SimilarMoviesCoordinator: NSObject, MovieListCoordinatorProtocol, UINaviga
     
 }
 
-class MoviesByGenreCoordinator: MovieListCoordinatorProtocol {
+class MoviesByGenreCoordinator: MovieListCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?

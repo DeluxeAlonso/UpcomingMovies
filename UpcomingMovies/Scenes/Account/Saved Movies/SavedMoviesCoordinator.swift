@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class FavoritesSavedMoviesCoordinator: Coordinator, SavedMoviesCoordinatorProtocol {
+class FavoritesSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
@@ -32,19 +32,9 @@ class FavoritesSavedMoviesCoordinator: Coordinator, SavedMoviesCoordinatorProtoc
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func showMovieDetail(for movie: Movie) {
-        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
-        
-        coordinator.movieInfo = .complete(movie: movie)
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
-    }
-    
 }
 
-class WatchListSavedMoviesCoordinator: Coordinator, SavedMoviesCoordinatorProtocol {
+class WatchListSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
@@ -65,16 +55,6 @@ class WatchListSavedMoviesCoordinator: Coordinator, SavedMoviesCoordinatorProtoc
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    func showMovieDetail(for movie: Movie) {
-        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
-        
-        coordinator.movieInfo = .complete(movie: movie)
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
     }
     
 }

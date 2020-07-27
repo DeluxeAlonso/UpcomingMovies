@@ -147,7 +147,7 @@ extension SearchMoviesResultController: UITableViewDelegate {
             let searchText = viewModel.recentSearchCells[indexPath.row].searchText
             delegate?.searchMoviesResultController(self, didSelectRecentSearch: searchText)
         case .populated:
-            coordinator?.showDetail(for: viewModel.searchedMovie(at: indexPath.row))
+            coordinator?.showMovieDetail(for: viewModel.searchedMovie(at: indexPath.row))
         case .empty, .error, .searching:
             return
         }

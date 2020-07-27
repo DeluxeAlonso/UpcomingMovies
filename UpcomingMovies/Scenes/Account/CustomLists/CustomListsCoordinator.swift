@@ -31,7 +31,7 @@ class CustomListsCoordinator: Coordinator, CustomListsCoordinatorProtocol {
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func showDetail(for customList: List) {
+    func showListDetail(for customList: List) {
         let coordinator = CustomListDetailCoordinator(navigationController: navigationController)
         
         coordinator.customList = customList
