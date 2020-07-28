@@ -55,28 +55,20 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
         startLoading.value = showLoader
         interactor.getCustomLists(page: currentPage, completion: { result in
             self.startLoading.value = false
-            
-            let currentPage = self.viewState.value.currentPage
-            self.viewState.value = self.processResult(result,
-                                                      currentPage: currentPage,
-                                                      currentLists: self.lists)
+            switch result {
+            case .success(let lists):
+                let currentPage = self.viewState.value.currentPage
+                self.viewState.value = self.processResult(lists,
+                                                          currentPage: currentPage,
+                                                          currentLists: self.lists)
+            case .failure(let error):
+                self.viewState.value = .error(error)
+            }
         })
     }
     
-    private func processResult(_ result: Result<[List], Error>, currentPage: Int,
+    private func processResult(_ lists: [List], currentPage: Int,
                                currentLists: [List]) -> SimpleViewState<List> {
-        switch result {
-        case .success(let lists):
-            return self.viewState(for: lists,
-                                  currentPage: currentPage,
-                                  currentLists: currentLists)
-        case .failure(let error):
-            return .error(error)
-        }
-    }
-    
-    private func viewState(for lists: [List], currentPage: Int,
-                           currentLists: [List]) -> SimpleViewState<List> {
         var allLists = currentPage == 1 ? [] : currentLists
         allLists.append(contentsOf: lists)
         guard !allLists.isEmpty else { return .empty }
