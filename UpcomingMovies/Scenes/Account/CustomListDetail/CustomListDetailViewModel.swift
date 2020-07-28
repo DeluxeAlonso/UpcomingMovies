@@ -57,18 +57,19 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
     
     func getListMovies() {
         interactor.getCustomListMovies(listId: list.id, completion: { result in
-            self.viewState.value = self.processResult(result)
+            switch result {
+            case .success(let movies):
+                self.viewState.value = self.processResult(movies)
+            case .failure(let error):
+                self.viewState.value = .error(error)
+            }
         })
     }
     
-    private func processResult(_ result: Result<[Movie], Error>) -> CustomListDetailViewState {
-        switch result {
-        case .success(let movies):
-            guard !movies.isEmpty else { return .empty }
-            return .populated(movies)
-        case .failure(let error):
-            return .error(error)
-        }
+    private func processResult(_ movies: [Movie]) -> CustomListDetailViewState {
+        guard !movies.isEmpty else { return .empty }
+        
+        return .populated(movies)
     }
 
 }

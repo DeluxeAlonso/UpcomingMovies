@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 protocol MovieCreditsViewModelProtocol {
     
-    var movieTitle: String { get set }
+    var movieTitle: String { get }
     
     var viewState: Bindable<MovieCreditsViewState> { get }
     var didToggleSection: Bindable<Int> { get }
@@ -37,7 +37,7 @@ protocol MovieCreditsInteractorProtocol {
 
 protocol MovieCreditsViewFactoryProtocol {
     
-    var sections: [MovieCreditsCollapsibleSection] { get }
+    var sections: [MovieCreditsCollapsibleSection] { get set }
     
 }
 
