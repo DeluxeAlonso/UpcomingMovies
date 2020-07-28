@@ -11,18 +11,22 @@ import UpcomingMoviesDomain
 
 protocol CustomListDetailViewModelProtocol {
  
-    var name: String { get }
-    
+    var listName: String? { get }
     var viewState: Bindable<CustomListDetailViewState> { get }
-    
     var movieCells: [MovieCellViewModel] { get }
     
-    func buildHeaderViewModel() -> CustomListDetailHeaderViewModel
+    func buildHeaderViewModel() -> CustomListDetailHeaderViewModelProtocol
     func buildSectionViewModel() -> CustomListDetailSectionViewModel
     
     func movie(at index: Int) -> Movie
     
     func getListMovies()
+    
+}
+
+protocol CustomListDetailInteractorProtocol {
+    
+    func getCustomListMovies(listId: String, completion: @escaping (Result<[Movie], Error>) -> Void)
     
 }
 

@@ -10,18 +10,9 @@ import Foundation
 import UpcomingMoviesDomain
 
 final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
-    
-    private let useCaseProvider: UseCaseProviderProtocol
-    private let accountUseCase: AccountUseCaseProtocol
-    
-    private let id: String
-    private let description: String?
-    private let movieCount: Int
-    private let rating: Double?
-    private let runtime: Int?
-    private var backdropURL: URL?
-    
-    let name: String
+
+    private let list: List
+    private let interactor: CustomListDetailInteractorProtocol
     
     // MARK: - Reactive properties
     
@@ -37,31 +28,25 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
         return movies.map { MovieCellViewModel($0) }
     }
     
+    var listName: String? {
+        return self.list.name
+    }
+    
     // MARK: - Initializers
     
-    init(_ list: List, useCaseProvider: UseCaseProviderProtocol) {
-        id = list.id
-        name = list.name
-        description = list.description
-        movieCount = list.movieCount
-        rating = list.averageRating
-        runtime = list.runtime
-        backdropURL = list.backdropURL
-        
-        self.useCaseProvider = useCaseProvider
-        self.accountUseCase = self.useCaseProvider.accountUseCase()
+    init(_ list: List, interactor: CustomListDetailInteractorProtocol) {
+        self.list = list
+        self.interactor = interactor
     }
     
     // MARK: - Public
     
-    func buildHeaderViewModel() -> CustomListDetailHeaderViewModel {
-        return CustomListDetailHeaderViewModel(name: name,
-                                               description: description,
-                                               posterURL: backdropURL)
+    func buildHeaderViewModel() -> CustomListDetailHeaderViewModelProtocol {
+        return CustomListDetailHeaderViewModel(list: list)
     }
     
     func buildSectionViewModel() -> CustomListDetailSectionViewModel {
-        return CustomListDetailSectionViewModel(movieCount: movieCount, rating: rating, runtime: runtime)
+        return CustomListDetailSectionViewModel(list: list)
     }
     
     func movie(at index: Int) -> Movie {
@@ -71,22 +56,19 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
     // MARK: - Networking
     
     func getListMovies() {
-        accountUseCase.getCustomListMovies(listId: id, completion: { result in
-            switch result {
-            case .success(let movies):
-                self.processListMovies(movies)
-            case .failure(let error):
-                self.viewState.value = .error(error)
-            }
+        interactor.getCustomListMovies(listId: list.id, completion: { result in
+            self.viewState.value = self.processResult(result)
         })
     }
     
-    private func processListMovies(_ movies: [Movie]?) {
-        guard let movies = movies, !movies.isEmpty else {
-            viewState.value = .empty
-            return
+    private func processResult(_ result: Result<[Movie], Error>) -> CustomListDetailViewState {
+        switch result {
+        case .success(let movies):
+            guard !movies.isEmpty else { return .empty }
+            return .populated(movies)
+        case .failure(let error):
+            return .error(error)
         }
-        viewState.value = .populated(movies)
     }
-    
+
 }

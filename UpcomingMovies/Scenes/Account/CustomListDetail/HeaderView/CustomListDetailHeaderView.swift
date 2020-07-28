@@ -20,7 +20,7 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
     var initialHeightConstraintConstant: CGFloat!
     var initialTopContstraintConstant: CGFloat!
     
-    var viewModel: CustomListDetailHeaderViewModel? {
+    var viewModel: CustomListDetailHeaderViewModelProtocol? {
         didSet {
             setupBindables()
         }
