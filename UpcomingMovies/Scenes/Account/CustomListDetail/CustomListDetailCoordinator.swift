@@ -24,8 +24,8 @@ class CustomListDetailCoordinator: CustomListDetailCoordinatorProtocol, Coordina
     func start() {
         let viewController = CustomListDetailViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let viewModel = CustomListDetailViewModel(customList, useCaseProvider: useCaseProvider)
+        let interactor = CustomListDetailInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
+        let viewModel = CustomListDetailViewModel(customList, interactor: interactor)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self

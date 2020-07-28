@@ -431,6 +431,7 @@
 		E2E518B224A9A8D100CC3FA5 /* MovieVideosProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E518B124A9A8D100CC3FA5 /* MovieVideosProtocols.swift */; };
 		E2EAEC5024CFC67100D89F04 /* CustomListsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EAEC4F24CFC67100D89F04 /* CustomListsTests.swift */; };
 		E2EAEC5224CFC6CC00D89F04 /* CustomListsMockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EAEC5124CFC6CC00D89F04 /* CustomListsMockFactory.swift */; };
+		E2EAEC5424CFCCDA00D89F04 /* CustomListDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EAEC5324CFCCDA00D89F04 /* CustomListDetailInteractor.swift */; };
 		E2EB923B221375190067F011 /* SimpleTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB9235221375190067F011 /* SimpleTableViewDataSource.swift */; };
 		E2EB923C221375190067F011 /* TableViewDataSourcePrefetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB9236221375190067F011 /* TableViewDataSourcePrefetching.swift */; };
 		E2EB923D221375190067F011 /* SimpleCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB9238221375190067F011 /* SimpleCollectionViewDataSource.swift */; };
@@ -1100,6 +1101,7 @@
 		E2E518B124A9A8D100CC3FA5 /* MovieVideosProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideosProtocols.swift; sourceTree = "<group>"; };
 		E2EAEC4F24CFC67100D89F04 /* CustomListsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListsTests.swift; sourceTree = "<group>"; };
 		E2EAEC5124CFC6CC00D89F04 /* CustomListsMockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListsMockFactory.swift; sourceTree = "<group>"; };
+		E2EAEC5324CFCCDA00D89F04 /* CustomListDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailInteractor.swift; sourceTree = "<group>"; };
 		E2EB9235221375190067F011 /* SimpleTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTableViewDataSource.swift; sourceTree = "<group>"; };
 		E2EB9236221375190067F011 /* TableViewDataSourcePrefetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSourcePrefetching.swift; sourceTree = "<group>"; };
 		E2EB9238221375190067F011 /* SimpleCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -1895,6 +1897,7 @@
 				E2CF112224A7F4D60048AFC0 /* CustomListDetailCoordinator.swift */,
 				E229AFB224A84A87002AB427 /* CustomListDetailViewState.swift */,
 				E229AFB424A84CBE002AB427 /* CustomListDetailProtocols.swift */,
+				E2EAEC5324CFCCDA00D89F04 /* CustomListDetailInteractor.swift */,
 			);
 			path = CustomListDetail;
 			sourceTree = "<group>";
@@ -3458,6 +3461,7 @@
 				E223B08A22482BAD0050277B /* ProfileDataSource.swift in Sources */,
 				E2A65E5321FECC2200485B4E /* Utils.swift in Sources */,
 				E223773821EEA2D8000400B7 /* GenreSearchOptionTableViewCell.swift in Sources */,
+				E2EAEC5424CFCCDA00D89F04 /* CustomListDetailInteractor.swift in Sources */,
 				E225469E226AC79C00E9042C /* CustomListDetailViewModel.swift in Sources */,
 				E21AA45424A1B19B00A67337 /* MovieReviewDetailCoordinator.swift in Sources */,
 				E2DB26E324B03C7F000DD01C /* LocalizedStrings.swift in Sources */,

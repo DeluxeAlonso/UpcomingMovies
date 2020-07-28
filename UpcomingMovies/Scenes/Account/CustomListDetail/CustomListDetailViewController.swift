@@ -66,7 +66,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
             self.configureScrollView(self.tableView, forceUpdate: true)
         })
     }
-
+    
     // MARK: - Private
     
     private func setupUI() {
@@ -107,7 +107,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
     private func configureView(with state: CustomListDetailViewState) {
         switch state {
         case .empty:
-            tableView.tableFooterView = CustomFooterView(message: "No movies to show")
+            tableView.tableFooterView = CustomFooterView(message: LocalizedStrings.emptyMovieResults.localized)
         case .populated:
             tableView.tableFooterView = UIView()
         case .loading:
@@ -131,7 +131,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
         
         if shouldShowTitle && contentOffsetY > headerHeight {
             showNavigationBar()
-            setTitleAnimated(viewModel?.name)
+            setTitleAnimated(viewModel?.listName)
         } else if shouldHideTitle && contentOffsetY <= headerHeight {
             setClearNavigationBar()
             setTitleAnimated(nil)

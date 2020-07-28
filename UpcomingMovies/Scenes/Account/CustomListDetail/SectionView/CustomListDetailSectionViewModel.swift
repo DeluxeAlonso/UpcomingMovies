@@ -7,17 +7,26 @@
 //
 
 import Foundation
+import UpcomingMoviesDomain
 
-final class CustomListDetailSectionViewModel {
+protocol CustomListDetailSectionViewModelProtocol {
+    
+    var movieCountText: String { get }
+    var ratingText: String { get }
+    var runtimeText: String { get }
+    
+}
+
+final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelProtocol {
     
     let movieCountText: String
     var ratingText: String = "-"
     var runtimeText: String = "-"
     
-    init(movieCount: Int, rating: Double?, runtime: Int?) {
-        movieCountText = "\(movieCount)"
-        if let rating = rating { ratingText = "\(rating)" }
-        if let runtime = runtime { runtimeText = getRuntimeText(for: runtime) }
+    init(list: List) {
+        movieCountText = "\(list.movieCount)"
+        if let rating = list.averageRating { ratingText = "\(rating)" }
+        if let runtime = list.runtime { runtimeText = getRuntimeText(for: runtime) }
     }
     
     func getRuntimeText(for runtime: Int) -> String {
