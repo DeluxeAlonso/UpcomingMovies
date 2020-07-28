@@ -97,28 +97,3 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     }
     
 }
-
-// MARK: - View sections
-
-extension MovieCreditsViewModel {
-    
-    struct MovieCreditsCollapsibleSection {
-        let type: MovieCreditsViewSection
-        var opened: Bool
-    }
-    
-    enum MovieCreditsViewSection {
-        case cast, crew
-        
-        var title: String {
-            switch self {
-            case .cast:
-                return "Cast"
-            case .crew:
-                return "Crew"
-            }
-        }
-        
-    }
-    
-}

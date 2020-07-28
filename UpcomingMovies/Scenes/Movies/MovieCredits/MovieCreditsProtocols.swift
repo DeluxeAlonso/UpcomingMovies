@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UpcomingMoviesDomain
 
 protocol MovieCreditsViewModelProtocol {
     
@@ -24,6 +25,19 @@ protocol MovieCreditsViewModelProtocol {
     
     func toggleSection(_ section: Int)
     func getMovieCredits(showLoader: Bool)
+    
+}
+
+protocol MovieCreditsInteractorProtocol {
+    
+    func getMovieCredits(for movieId: Int, page: Int?,
+                         completion: @escaping (Result<MovieCredits, Error>) -> Void)
+    
+}
+
+protocol MovieCreditsViewFactoryProtocol {
+    
+    var sections: [MovieCreditsCollapsibleSection] { get }
     
 }
 
