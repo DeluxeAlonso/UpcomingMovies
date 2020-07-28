@@ -50,7 +50,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
         }
     }
     
-    func creditModel(for section: Int, and index: Int) -> MovieCreditCellViewModel {
+    func creditModel(for section: Int, and index: Int) -> MovieCreditCellViewModelProtocol {
         switch factory.sections[section].type {
         case .cast:
             let cast = viewState.value.currentCast[index]

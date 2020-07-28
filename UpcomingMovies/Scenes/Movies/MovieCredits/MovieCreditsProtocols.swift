@@ -20,7 +20,7 @@ protocol MovieCreditsViewModelProtocol {
     func numberOfSections() -> Int
     func numberOfItems(for section: Int) -> Int
     
-    func creditModel(for section: Int, and index: Int) -> MovieCreditCellViewModel
+    func creditModel(for section: Int, and index: Int) -> MovieCreditCellViewModelProtocol
     func headerModel(for index: Int) -> CollapsibleHeaderViewModel
     
     func toggleSection(_ section: Int)
