@@ -13,23 +13,22 @@ import XCTest
 
 class MovieCreditsTests: XCTestCase {
 
-    private var movieUseCase: MockMovieUseCase!
+    private var mockInteractor: MockMovieCreditsInteractor!
+    private var mockFactory: MockMovieCreditsFactory!
     private var viewModelToTest: MovieCreditsViewModelProtocol!
     
     override func setUp() {
         super.setUp()
-        movieUseCase = MockMovieUseCase(remoteDataSource: MockInjectionFactory.makeRemoteDataSource().movieDataSource())
+        mockInteractor = MockMovieCreditsInteractor()
+        mockFactory = MockMovieCreditsFactory()
         
-        let useCaseProvider = (MockInjectionFactory.useCaseProvider() as! MockUseCaseProvider)
-        useCaseProvider.mockMovieUseCase = self.movieUseCase
-        
-        viewModelToTest = MovieCreditsViewModel(movieId: 1,
-                                                movieTitle: "Movie 1",
-                                                useCaseProvider: useCaseProvider)
+        viewModelToTest = MovieCreditsViewModel(movieId: 1, movieTitle: "Movie 1",
+                                                interactor: mockInteractor, factory: mockFactory)
     }
     
     override func tearDown() {
-        movieUseCase = nil
+        mockInteractor = nil
+        mockFactory = nil
         viewModelToTest = nil
         super.tearDown()
     }
@@ -43,7 +42,7 @@ class MovieCreditsTests: XCTestCase {
     
     func testGetMovieCreditsEmpty() {
         //Arrange
-        movieUseCase.credits = Result.success(MovieCredits.with())
+        mockInteractor.getMovieCreditsResult = Result.success(MovieCredits.withEmptyValues())
         //Act
         viewModelToTest.getMovieCredits(showLoader: false)
         //Assert
@@ -52,8 +51,7 @@ class MovieCreditsTests: XCTestCase {
     
     func testGetMovieCreditsPopulated() {
         //Arrange
-        let crew = MovieCredits(cast: [Cast.with()], crew: [Crew.with()])
-        movieUseCase.credits = Result.success(crew)
+        mockInteractor.getMovieCreditsResult = Result.success(MovieCredits.with())
         //Act
         viewModelToTest.getMovieCredits(showLoader: false)
         //Assert
@@ -62,7 +60,7 @@ class MovieCreditsTests: XCTestCase {
     
     func testGetMovieCreditsError() {
         //Arrange
-        movieUseCase.credits = Result.failure(APIError.badRequest)
+        mockInteractor.getMovieCreditsResult = Result.failure(APIError.badRequest)
         //Act
         viewModelToTest.getMovieCredits(showLoader: false)
         //Assert

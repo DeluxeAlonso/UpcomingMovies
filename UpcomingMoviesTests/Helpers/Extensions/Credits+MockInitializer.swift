@@ -11,8 +11,12 @@ import UpcomingMoviesDomain
 
 extension MovieCredits {
     
-    static func with(cast: [Cast] = [], crew: [Crew] = []) -> MovieCredits {
+    static func with(cast: [Cast] = [Cast.with()], crew: [Crew] = [Crew.with()]) -> MovieCredits {
         return MovieCredits(cast: cast, crew: crew)
+    }
+    
+    static func withEmptyValues() -> MovieCredits {
+        return MovieCredits(cast: [], crew: [])
     }
     
 }
