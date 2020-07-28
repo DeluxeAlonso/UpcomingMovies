@@ -28,6 +28,8 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
         super.viewDidLoad()
         setupUI()
         setupBindables()
+        
+        viewModel?.getCustomLists()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,7 +102,6 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
         viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
         })
-        viewModel?.getCustomLists()
     }
 
 }
