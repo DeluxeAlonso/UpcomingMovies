@@ -11,12 +11,11 @@ import UpcomingMoviesDomain
 
 final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     
-    private let movieUseCase: MovieUseCaseProtocol
-    private var sections = [MovieCreditsCollapsibleSection(type: .cast, opened: true),
-                            MovieCreditsCollapsibleSection(type: .crew, opened: false)]
+    private let movieId: Int
+    let movieTitle: String
     
-    var movieId: Int
-    var movieTitle: String
+    private let interactor: MovieCreditsInteractorProtocol
+    private var factory: MovieCreditsViewFactoryProtocol
     
     var viewState: Bindable<MovieCreditsViewState> = Bindable(.initial)
     var didToggleSection: Bindable<Int> = Bindable(0)
@@ -24,21 +23,24 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(movieId: Int, movieTitle: String, useCaseProvider: UseCaseProviderProtocol) {
+    init(movieId: Int, movieTitle: String,
+         interactor: MovieCreditsInteractorProtocol,
+         factory: MovieCreditsViewFactoryProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
 
-        self.movieUseCase = useCaseProvider.movieUseCase()
+        self.interactor = interactor
+        self.factory = factory
     }
     
     // MARK: - Public
     
     func numberOfSections() -> Int {
-        return sections.count
+        return factory.sections.count
     }
     
     func numberOfItems(for section: Int) -> Int {
-        let section = sections[section]
+        let section = factory.sections[section]
         guard section.opened else { return 0 }
         switch section.type {
         case .cast:
@@ -48,8 +50,8 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
         }
     }
     
-    func creditModel(for section: Int, and index: Int) -> MovieCreditCellViewModel {
-        switch sections[section].type {
+    func creditModel(for section: Int, and index: Int) -> MovieCreditCellViewModelProtocol {
+        switch factory.sections[section].type {
         case .cast:
             let cast = viewState.value.currentCast[index]
             return MovieCreditCellViewModel(cast: cast)
@@ -60,14 +62,14 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     }
     
     func headerModel(for index: Int) -> CollapsibleHeaderViewModel {
-        let section = sections[index]
+        let section = factory.sections[index]
         return CollapsibleHeaderViewModel(opened: section.opened,
                                           section: index,
                                           title: section.type.title)
     }
     
     func toggleSection(_ section: Int) {
-        sections[section].opened.toggle()
+        factory.sections[section].opened.toggle()
         didToggleSection.value = section
     }
     
@@ -75,50 +77,25 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     
     func getMovieCredits(showLoader: Bool = false) {
         startLoading.value = showLoader
-        movieUseCase.getMovieCredits(for: movieId, page: nil, completion: { result in
+        interactor.getMovieCredits(for: movieId, page: nil, completion: { result in
+            self.startLoading.value = false
             switch result {
             case .success(let movieCredits):
-                self.processCreditResult(movieCredits)
+                self.viewState.value = self.processResult(movieCredits)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
         })
     }
     
-    private func processCreditResult(_ movieCredits: MovieCredits) {
-        startLoading.value = false
+    private func processResult(_ movieCredits: MovieCredits) -> MovieCreditsViewState {
         let fetchedCast = movieCredits.cast
         let fetchedCrew = movieCredits.crew
         if fetchedCast.isEmpty && fetchedCrew.isEmpty {
-            viewState.value = .empty
+           return .empty
         } else {
-            viewState.value = .populated(fetchedCast, fetchedCrew)
+            return .populated(fetchedCast, fetchedCrew)
         }
-    }
-    
-}
-
-// MARK: - View sections
-
-extension MovieCreditsViewModel {
-    
-    struct MovieCreditsCollapsibleSection {
-        let type: MovieCreditsViewSection
-        var opened: Bool
-    }
-    
-    enum MovieCreditsViewSection {
-        case cast, crew
-        
-        var title: String {
-            switch self {
-            case .cast:
-                return "Cast"
-            case .crew:
-                return "Crew"
-            }
-        }
-        
     }
     
 }

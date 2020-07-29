@@ -24,9 +24,10 @@ class MovieCreditsCoordinator: NSObject, Coordinator, MovieCreditsCoordinatorPro
     func start() {
         let viewController = MovieCreditsViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
+        let interactor = MovieCreditsInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
+        let factory = MovieCreditsViewFactory()
         let viewModel = MovieCreditsViewModel(movieId: movieId, movieTitle: movieTitle,
-                                              useCaseProvider: useCaseProvider)
+                                              interactor: interactor, factory: factory)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self

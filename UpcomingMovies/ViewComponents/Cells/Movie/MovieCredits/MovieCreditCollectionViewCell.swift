@@ -15,7 +15,7 @@ class MovieCreditCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     
-    var viewModel: MovieCreditCellViewModel? {
+    var viewModel: MovieCreditCellViewModelProtocol? {
         didSet {
             setupBindables()
         }
