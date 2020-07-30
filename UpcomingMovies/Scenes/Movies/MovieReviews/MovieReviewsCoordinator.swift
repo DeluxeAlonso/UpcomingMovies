@@ -25,9 +25,10 @@ class MovieReviewsCoordinator: NSObject, Coordinator, MovieReviewsCoordinatorPro
     func start() {
         let viewController = MovieReviewsViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let viewModel = MovieReviewsViewModel(movieId: movieId, movieTitle: movieTitle,
-                                              useCaseProvider: useCaseProvider)
+        let interactor = MovieReviewsInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
+        let viewModel = MovieReviewsViewModel(movieId: movieId,
+                                              movieTitle: movieTitle,
+                                              interactor: interactor)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self

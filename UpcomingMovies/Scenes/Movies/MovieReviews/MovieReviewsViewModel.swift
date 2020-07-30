@@ -11,15 +11,18 @@ import UpcomingMoviesDomain
 
 final class MovieReviewsViewModel: MovieReviewsViewModelProtocol {
     
-    var movieId: Int
+    private var movieId: Int
     var movieTitle: String
     
-    private let useCaseProvider: UseCaseProviderProtocol
-    private let movieUseCase: MovieUseCaseProtocol
+    private let interactor: MovieReviewsInteractorProtocol
     
     let viewState: Bindable<SimpleViewState<Review>> = Bindable(.initial)
     
     var startLoading: Bindable<Bool> = Bindable(false)
+    
+    private var reviews: [Review] {
+        return viewState.value.currentEntities
+    }
     
     var reviewCells: [MovieReviewCellViewModel] {
         let reviews = viewState.value.currentEntities
@@ -32,18 +35,17 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(movieId: Int, movieTitle: String, useCaseProvider: UseCaseProviderProtocol) {
+    init(movieId: Int, movieTitle: String, interactor: MovieReviewsInteractorProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
         
-        self.useCaseProvider = useCaseProvider
-        self.movieUseCase = self.useCaseProvider.movieUseCase()
+        self.interactor = interactor
     }
     
     // MARK: - Public
     
     func selectedReview(at index: Int) -> Review {
-        return viewState.value.currentEntities[index]
+        return reviews[index]
     }
     
     // MARK: - Networking
@@ -59,29 +61,26 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol {
     
     private func fetchMovieReviews(currentPage: Int, showLoader: Bool = false) {
         startLoading.value = showLoader
-        movieUseCase.getMovieReviews(for: movieId, page: currentPage, completion: { result in
+        interactor.getMovieReviews(for: movieId, page: currentPage, completion: { result in
             self.startLoading.value = false
             switch result {
             case .success(let reviews):
-                self.processReviewResult(reviews, currentPage: currentPage)
+                self.viewState.value = self.processResult(reviews,
+                                                          currentPage: currentPage,
+                                                          currentReviews: self.reviews)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
         })
     }
     
-    private func processReviewResult(_ reviews: [Review], currentPage: Int) {
-        var allReviews = currentPage == 1 ? [] : viewState.value.currentEntities
+    private func processResult(_ reviews: [Review], currentPage: Int,
+                               currentReviews: [Review]) -> SimpleViewState<Review> {
+        var allReviews = currentPage == 1 ? [] : currentReviews
         allReviews.append(contentsOf: reviews)
-        guard !allReviews.isEmpty else {
-            viewState.value = .empty
-            return
-        }
-        if reviews.isEmpty {
-            viewState.value = .populated(allReviews)
-        } else {
-            viewState.value = .paging(allReviews, next: currentPage + 1)
-        }
+        guard !allReviews.isEmpty else { return .empty }
+        
+        return reviews.isEmpty ? .populated(allReviews) : .paging(allReviews, next: currentPage + 1)
     }
     
 }

@@ -11,7 +11,6 @@ import UpcomingMoviesDomain
 
 protocol MovieReviewsViewModelProtocol {
     
-    var movieId: Int { get set }
     var movieTitle: String { get set }
     
     var viewState: Bindable<SimpleViewState<Review>> { get }
@@ -24,6 +23,13 @@ protocol MovieReviewsViewModelProtocol {
     
     func getMovieReviews()
     func refreshMovieReviews()
+    
+}
+
+protocol MovieReviewsInteractorProtocol {
+    
+    func getMovieReviews(for movieId: Int, page: Int?,
+                         completion: @escaping (Result<[Review], Error>) -> Void)
     
 }
 
