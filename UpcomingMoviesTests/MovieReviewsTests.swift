@@ -14,21 +14,18 @@ import XCTest
 
 class MovieReviewsTests: XCTestCase {
     
-    private var movieUseCase: MockMovieUseCase!
+    private var interactor: MockMovieReviewsInteractor!
     private var viewModelToTest: MovieReviewsViewModelProtocol!
     
     override func setUp() {
         super.setUp()
-        movieUseCase = MockMovieUseCase(remoteDataSource: MockInjectionFactory.makeRemoteDataSource().movieDataSource())
-        
-        let useCaseProvider = (MockInjectionFactory.useCaseProvider() as! MockUseCaseProvider)
-        useCaseProvider.mockMovieUseCase = self.movieUseCase
-        
-        viewModelToTest = MovieReviewsViewModel(movieId: 1, movieTitle: "Movie 1", useCaseProvider: useCaseProvider)
+        interactor = MockMovieReviewsInteractor()
+        viewModelToTest = MovieReviewsViewModel(movieId: 1, movieTitle: "Movie 1",
+                                                interactor: interactor)
     }
     
     override func tearDown() {
-        movieUseCase = nil
+        interactor = nil
         viewModelToTest = nil
         super.tearDown()
     }
@@ -42,7 +39,7 @@ class MovieReviewsTests: XCTestCase {
     
     func testGetReviewsEmpty() {
         //Arrange
-        movieUseCase.reviews = Result.success([])
+        interactor.getMovieReviewsResult = Result.success([])
         //Act
         viewModelToTest.getMovieReviews()
         //Assert
@@ -51,10 +48,10 @@ class MovieReviewsTests: XCTestCase {
     
     func testGetReviewsPopulated() {
         //Arrange
-        movieUseCase.reviews = Result.success([Review.with(id: "1"), Review.with(id: "2")])
+        interactor.getMovieReviewsResult = Result.success([Review.with(id: "1"), Review.with(id: "2")])
         //Act
         viewModelToTest.getMovieReviews()
-        movieUseCase.reviews = Result.success([])
+        interactor.getMovieReviewsResult = Result.success([])
         viewModelToTest.getMovieReviews()
         //Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .populated([Review.with(id: "1"), Review.with(id: "2")]))
@@ -62,7 +59,7 @@ class MovieReviewsTests: XCTestCase {
     
     func testGetReviewsPaging() {
         //Arrange
-        movieUseCase.reviews = Result.success([Review.with(id: "1"), Review.with(id: "2")])
+        interactor.getMovieReviewsResult = Result.success([Review.with(id: "1"), Review.with(id: "2")])
         //Act
         viewModelToTest.getMovieReviews()
         //Assert
@@ -71,7 +68,7 @@ class MovieReviewsTests: XCTestCase {
     
     func testGetReviewsError() {
         //Arrange
-        movieUseCase.reviews = Result.failure(APIError.badRequest)
+        interactor.getMovieReviewsResult = Result.failure(APIError.badRequest)
         //Act
         viewModelToTest.getMovieReviews()
         //Assert
