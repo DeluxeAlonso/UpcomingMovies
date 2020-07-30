@@ -59,9 +59,8 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
             self.startLoading.value = false
             switch result {
             case .success(let movies):
-                let currentPage = self.viewState.value.currentPage
                 self.viewState.value = self.processResult(movies,
-                                                          currentPage: currentPage,
+                                                          currentPage: page,
                                                           currentMovies: self.movies)
             case .failure(let error):
                 self.viewState.value = .error(error)
