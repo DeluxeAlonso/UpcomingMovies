@@ -18,10 +18,6 @@ class MovieReviewDetailViewController: UIViewController, Storyboarded {
     weak var coordinator: MovieReviewDetailCoordinatorProtocol?
     
     // MARK: - Lifecycle
-    
-    deinit {
-        print("MovieReviewDetailViewController")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

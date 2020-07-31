@@ -17,10 +17,6 @@ struct PopularMoviesInteractor: MoviesInteractorProtocol {
         self.movieUseCase = useCaseProvider.movieUseCase()
     }
     
-    var displayTitle: String {
-        return "Popular Movies"
-    }
-    
     func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         movieUseCase.getPopularMovies(page: page, completion: completion)
     }

@@ -19,10 +19,6 @@ struct SimilarMoviesInteractor: MoviesInteractorProtocol {
         self.movieId = movieId
     }
     
-    var displayTitle: String {
-        return "Similar Movies"
-    }
-    
     func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         movieUseCase.getSimilarMovies(page: page, movieId: movieId, completion: completion)
     }

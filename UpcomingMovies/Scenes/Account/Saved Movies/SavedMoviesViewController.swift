@@ -113,7 +113,7 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        title = viewModel?.title
+        title = viewModel?.displayTitle
         viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {

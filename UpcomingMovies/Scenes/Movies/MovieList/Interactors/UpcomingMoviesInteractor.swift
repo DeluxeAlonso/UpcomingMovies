@@ -17,10 +17,6 @@ struct UpcomingMoviesInteractor: MoviesInteractorProtocol {
         self.movieUseCase = useCaseProvider.movieUseCase()
     }
     
-    var displayTitle: String {
-        return "Upcoming Movies"
-    }
-    
     func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         movieUseCase.getUpcomingMovies(page: page, completion: completion)
     }

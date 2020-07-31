@@ -24,6 +24,7 @@ class PopularMoviesCoordinator: MovieListCoordinatorProtocol, Coordinator, Movie
         
         let interactor = PopularMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
         let viewModel = MovieListViewModel(interactor: interactor)
+        viewModel.displayTitle = LocalizedStrings.popularMoviesTitle.localized
         
         viewController.viewModel = viewModel
         viewController.coordinator = self
@@ -48,6 +49,7 @@ class TopRatedMoviesCoordinator: MovieListCoordinatorProtocol, Coordinator, Movi
         
         let interactor = TopRatedMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
         let viewModel = MovieListViewModel(interactor: interactor)
+        viewModel.displayTitle = LocalizedStrings.topRatedMoviesTitle.localized
         
         viewController.coordinator = self
         viewController.viewModel = viewModel
@@ -74,6 +76,7 @@ class SimilarMoviesCoordinator: NSObject, MovieListCoordinatorProtocol, Coordina
         
         let interactor = SimilarMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider(), movieId: movieId)
         let viewModel = MovieListViewModel(interactor: interactor)
+        viewModel.displayTitle = LocalizedStrings.similarMoviesTitle.localized
         
         viewController.coordinator = self
         viewController.viewModel = viewModel
@@ -117,6 +120,7 @@ class MoviesByGenreCoordinator: MovieListCoordinatorProtocol, Coordinator, Movie
                                                      genreId: genreId,
                                                      genreName: genreName)
         let viewModel = MovieListViewModel(interactor: interactor)
+        viewModel.displayTitle = genreName
         
         viewController.coordinator = self
         viewController.viewModel = viewModel

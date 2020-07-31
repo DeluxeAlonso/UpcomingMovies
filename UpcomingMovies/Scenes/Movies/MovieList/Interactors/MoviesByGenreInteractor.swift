@@ -21,10 +21,6 @@ struct MoviesByGenreInteractor: MoviesInteractorProtocol {
         self.genreName = genreName
     }
     
-    var displayTitle: String {
-        return genreName
-    }
-    
     func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         movieUseCase.getMoviesByGenre(page: page, genreId: genreId, completion: completion)
     }

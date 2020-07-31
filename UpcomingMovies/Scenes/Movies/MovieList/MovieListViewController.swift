@@ -80,7 +80,7 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
             hideDisplayedPlaceholderView()
             tableView.tableFooterView = UIView()
         case .empty:
-            presentEmptyView(with: "No movies to show")
+            presentEmptyView(with: LocalizedStrings.emptyMovieResults.localized)
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
@@ -92,7 +92,7 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        title = viewModel?.interactor.displayTitle
+        title = viewModel?.displayTitle
         viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {

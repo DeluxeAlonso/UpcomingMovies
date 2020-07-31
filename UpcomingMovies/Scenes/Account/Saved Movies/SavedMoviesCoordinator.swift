@@ -24,7 +24,7 @@ class FavoritesSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coordinat
         
         let interactor = FavoritesSavedMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
         let viewModel = SavedMoviesViewModel(interactor: interactor)
-        viewModel.title = ProfileCollectionOption.favorites.title
+        viewModel.displayTitle = ProfileCollectionOption.favorites.title
         
         viewController.viewModel = viewModel
         viewController.coordinator = self
@@ -49,7 +49,7 @@ class WatchListSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coordinat
         
         let interactor = WatchListSavedMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
         let viewModel = SavedMoviesViewModel(interactor: interactor)
-        viewModel.title = ProfileCollectionOption.watchlist.title
+        viewModel.displayTitle = ProfileCollectionOption.watchlist.title
         
         viewController.viewModel = viewModel
         viewController.coordinator = self

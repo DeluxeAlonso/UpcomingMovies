@@ -16,6 +16,8 @@ final class MovieListViewModel: MovieListViewModelProtocol {
     var startLoading: Bindable<Bool> = Bindable(false)
     var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
     
+    var displayTitle: String?
+    
     // MARK: - Computed Properties
     
     var movieCells: [MovieCellViewModel] {
