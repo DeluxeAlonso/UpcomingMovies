@@ -68,6 +68,10 @@ enum LocalizedStrings: String, Localizable {
     case expandMovieCellsHint
     case collapseMovieCellsHint
     
+    case topRatedMoviesTitle
+    case popularMoviesTitle
+    case similarMoviesTitle
+    
     var tableName: String {
         return "Localizable"
     }

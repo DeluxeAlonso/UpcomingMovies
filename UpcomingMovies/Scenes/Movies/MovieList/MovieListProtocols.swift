@@ -11,6 +11,7 @@ import UpcomingMoviesDomain
 
 protocol MovieListViewModelProtocol: MoviesViewModel {
         
+    var displayTitle: String? { get set }
     var movieCells: [MovieCellViewModel] { get }
     
 }

@@ -48,3 +48,7 @@
 
 "expandMovieCellsHint" = "Expand movies";
 "collapseMovieCellsHint" = "Collapse movies";
+
+"topRatedMoviesTitle" = "Top Rated Movies";
+"popularMoviesTitle" = "Popular Movies";
+"similarMoviesTitle" = "Similar Movies";

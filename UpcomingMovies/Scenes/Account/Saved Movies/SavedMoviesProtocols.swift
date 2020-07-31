@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 protocol SavedMoviesViewModelProtocol {
     
-    var title: String? { get set }
+    var displayTitle: String? { get set }
     
     var movieCells: [SavedMovieCellViewModel] { get }
     var needsPrefetch: Bool { get }

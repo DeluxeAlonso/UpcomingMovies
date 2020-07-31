@@ -16,11 +16,7 @@ struct TopRatedMoviesInteractor: MoviesInteractorProtocol {
     init(useCaseProvider: UseCaseProviderProtocol) {
         self.movieUseCase = useCaseProvider.movieUseCase()
     }
-    
-    var displayTitle: String {
-        return "Top Rated Movies"
-    }
-    
+
     func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         movieUseCase.getTopRatedMovies(page: page, completion: completion)
     }

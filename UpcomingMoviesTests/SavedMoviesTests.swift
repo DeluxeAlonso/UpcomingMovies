@@ -30,9 +30,9 @@ class SavedMoviesTests: XCTestCase {
     
     func testSavedMoviesTitle() {
         //Arrange
-        viewModelToTest.title = "Test title"
+        viewModelToTest.displayTitle = "Test title"
         //Act
-        let title = viewModelToTest.title
+        let title = viewModelToTest.displayTitle
         //Assert
         XCTAssertEqual(title, "Test title")
     }

@@ -11,8 +11,6 @@ import UpcomingMoviesDomain
 
 protocol MoviesInteractorProtocol {
     
-    var displayTitle: String { get }
-    
     func getMovies(page: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void)
     
 }

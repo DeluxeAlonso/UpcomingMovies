@@ -28,7 +28,7 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
         return viewState.value.needsPrefetch
     }
     
-    var title: String?
+    var displayTitle: String?
     
     // MARK: - Initializers
     
