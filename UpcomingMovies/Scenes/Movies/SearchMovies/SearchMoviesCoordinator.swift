@@ -22,10 +22,6 @@ class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinator, Mov
     func start() {
         let viewController = SearchMoviesViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let viewModel = SearchMoviesViewModel(useCaseProvider: useCaseProvider)
-        
-        viewController.viewModel = viewModel
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
@@ -49,8 +45,8 @@ class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinator, Mov
     
     @discardableResult
     func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController {
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let searchResultViewModel = SearchMoviesResultViewModel(useCaseProvider: useCaseProvider)
+        let interactor = SearchMoviesResultInteractor(useCaseProvider: InjectionFactory.useCaseProvider(), authHandler: AuthenticationHandler.shared)
+        let searchResultViewModel = SearchMoviesResultViewModel(interactor: interactor)
         let searchResultController = SearchMoviesResultController(viewModel: searchResultViewModel)
         
         let searchController = DefaultSearchController(searchResultsController: searchResultController)

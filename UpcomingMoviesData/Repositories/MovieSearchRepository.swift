@@ -23,8 +23,8 @@ public final class MovieSearchRepository: MovieSearchUseCaseProtocol {
         self.localDataSource = localDataSource
     }
     
-    public func getMovieSearchs() -> [MovieSearch] {
-        return localDataSource.getMovieSearchs()
+    public func getMovieSearches() -> [MovieSearch] {
+        return localDataSource.getMovieSearches()
     }
     
     public func save(with searchText: String) {

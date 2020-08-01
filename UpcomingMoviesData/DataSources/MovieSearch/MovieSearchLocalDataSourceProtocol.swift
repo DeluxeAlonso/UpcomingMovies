@@ -13,7 +13,7 @@ public protocol MovieSearchLocalDataSourceProtocol {
     
     var didUpdateMovieSearch: (() -> Void)? { get set }
     
-    func getMovieSearchs() -> [MovieSearch]
+    func getMovieSearches() -> [MovieSearch]
     func save(with searchText: String)
     
 }

@@ -23,7 +23,7 @@ final class MovieSearchLocalDataSource: MovieSearchLocalDataSourceProtocol {
         self.store.delegate = self
     }
     
-    func getMovieSearchs() -> [MovieSearch] {
+    func getMovieSearches() -> [MovieSearch] {
         return store.entities.map { $0.asDomain() }
     }
     

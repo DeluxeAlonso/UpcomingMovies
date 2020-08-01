@@ -9,6 +9,25 @@
 import UIKit
 import UpcomingMoviesDomain
 
+protocol SearchMoviesCoordinatorProtocol: class {
+    
+    @discardableResult
+    func embedSearchOptions(on parentViewController: UIViewController,
+                            in containerView: UIView) -> SearchOptionsTableViewController
+    
+    @discardableResult
+    func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController
+
+    func showMovieDetail(for movie: Movie)
+    func showMovieDetail(for movieId: Int, and movieTitle: String)
+    func showPopularMovies()
+    func showTopRatedMovies()
+    func showMoviesByGenre(_ genreId: Int, genreName: String)
+    
+}
+
+// MARK: - Search movies result
+
 protocol SearchMoviesResultViewModelProtocol {
     
     var viewState: Bindable<SearchMoviesResultViewState> { get }
@@ -24,6 +43,19 @@ protocol SearchMoviesResultViewModelProtocol {
     func clearMovies()
     
 }
+
+protocol SearchMoviesResultInteractorProtocol {
+    
+    var didUpdateMovieSearch: (() -> Void)? { get set }
+    
+    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
+    
+    func getMovieSearches() -> [MovieSearch]
+    func saveSearchText(_ searchText: String)
+    
+}
+
+// MARK: - Search options
 
 protocol SearchOptionsViewModelProtocol {
     
@@ -50,23 +82,6 @@ protocol SearchOptionsViewModelProtocol {
     func getDefaultSearchSelection(by index: Int)
     func getMovieGenreSelection(by index: Int)
     func getRecentlyVisitedMovieSelection(by index: Int)
-    
-}
-
-protocol SearchMoviesCoordinatorProtocol: class {
-    
-    @discardableResult
-    func embedSearchOptions(on parentViewController: UIViewController,
-                            in containerView: UIView) -> SearchOptionsTableViewController
-    
-    @discardableResult
-    func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController
-
-    func showMovieDetail(for movie: Movie)
-    func showMovieDetail(for movieId: Int, and movieTitle: String)
-    func showPopularMovies()
-    func showTopRatedMovies()
-    func showMoviesByGenre(_ genreId: Int, genreName: String)
     
 }
 
