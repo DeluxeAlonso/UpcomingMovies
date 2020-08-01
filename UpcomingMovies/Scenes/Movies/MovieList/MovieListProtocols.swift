@@ -9,10 +9,20 @@
 import UIKit
 import UpcomingMoviesDomain
 
-protocol MovieListViewModelProtocol: MoviesViewModel {
-        
+protocol MovieListViewModelProtocol {
+
+    var viewState: Bindable<SimpleViewState<Movie>> { get set }
+    var startLoading: Bindable<Bool> { get set }
+    
+    var needsPrefetch: Bool { get }
+    
     var displayTitle: String? { get set }
     var movieCells: [MovieCellViewModel] { get }
+
+    func getMovies()
+    func refreshMovies()
+    
+    func selectedMovie(at index: Int) -> Movie
     
 }
 

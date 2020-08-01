@@ -64,8 +64,8 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol {
         })
     }
     
-    func processMovieResult(_ movies: [Movie], currentPage: Int,
-                            currentMovies: [Movie]) -> SimpleViewState<Movie> {
+    private func processMovieResult(_ movies: [Movie], currentPage: Int,
+                                    currentMovies: [Movie]) -> SimpleViewState<Movie> {
         var allMovies = currentPage == 1 ? [] : currentMovies
         allMovies.append(contentsOf: movies)
         guard !allMovies.isEmpty else { return .empty }
