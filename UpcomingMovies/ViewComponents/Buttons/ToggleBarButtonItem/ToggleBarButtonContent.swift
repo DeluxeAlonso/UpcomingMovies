@@ -6,7 +6,7 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 struct ToggleBarButtonItemContent {
     

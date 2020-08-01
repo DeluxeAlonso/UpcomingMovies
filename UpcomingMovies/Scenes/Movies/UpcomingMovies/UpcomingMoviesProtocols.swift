@@ -9,10 +9,16 @@
 import UIKit
 import UpcomingMoviesDomain
 
-protocol UpcomingMoviesViewModelProtocol: MoviesViewModel {
+protocol UpcomingMoviesViewModelProtocol {
+    
+    var viewState: Bindable<SimpleViewState<Movie>> { get set }
+    var startLoading: Bindable<Bool> { get set }
     
     var movieCells: [UpcomingMovieCellViewModel] { get }
     var needsPrefetch: Bool { get }
+    
+    func getMovies()
+    func refreshMovies()
     
     func movie(for index: Int) -> Movie
     
