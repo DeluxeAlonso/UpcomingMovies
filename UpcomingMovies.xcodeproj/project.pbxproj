@@ -1678,6 +1678,7 @@
 			children = (
 				E22116C9219167B40039F8C9 /* UpcomingMoviesViewController.swift */,
 				E22116AF2191568E0039F8C9 /* UpcomingMoviesViewModel.swift */,
+				E265C258249538EA00712284 /* UpcomingMoviesInteractor.swift */,
 				E25C50D92241F0DC005639C5 /* UpcomingMoviesNavigation.swift */,
 				E25F5DBA2495E07000DF791C /* UpcomingMoviesCoordinator.swift */,
 				E2E518A124A9944300CC3FA5 /* UpcomingMoviesProtocols.swift */,
@@ -2270,7 +2271,6 @@
 			isa = PBXGroup;
 			children = (
 				E265C256249538CE00712284 /* MoviesInteractorProtocol.swift */,
-				E265C258249538EA00712284 /* UpcomingMoviesInteractor.swift */,
 				E265C25A2495390800712284 /* TopRatedMoviesInteractor.swift */,
 				E265C25C2495391400712284 /* PopularMoviesInteractor.swift */,
 				E265C25E2495391E00712284 /* SimilarMoviesInteractor.swift */,
