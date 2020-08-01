@@ -26,6 +26,12 @@ protocol MovieListViewModelProtocol {
     
 }
 
+protocol MoviesInteractorProtocol {
+    
+    func getMovies(page: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void)
+    
+}
+
 protocol MovieListCoordinatorProtocol: class {
     
     func showMovieDetail(for movie: Movie)
