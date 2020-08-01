@@ -9,8 +9,6 @@
 import UIKit
 import UpcomingMoviesDomain
 
-protocol SearchMoviesViewModelProtocol {}
-
 protocol SearchMoviesResultViewModelProtocol {
     
     var viewState: Bindable<SearchMoviesResultViewState> { get }
