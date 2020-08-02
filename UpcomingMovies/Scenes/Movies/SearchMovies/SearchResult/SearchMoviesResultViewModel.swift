@@ -12,25 +12,19 @@ import UpcomingMoviesDomain
 final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
     
     // MARK: - Properties
-    
-//    private let useCaseProvider: UseCaseProviderProtocol
-//    private let movieUseCase: MovieUseCaseProtocol
-//    private var movieSearchUseCase: MovieSearchUseCaseProtocol
-//
-//    private var authHandler: AuthenticationHandler
-    
-    private var interactor: SearchMoviesResultInteractorProtocol
-    
-    private var movies: [Movie] = []
+
+    private let interactor: SearchMoviesResultInteractorProtocol
     
     let viewState: Bindable<SearchMoviesResultViewState> = Bindable(.initial)
-
-    var updateRecentSearches: (() -> Void)?
     
     // MARK: - Computed Properties
     
+    private var movies: [Movie] {
+        return viewState.value.currentSearchedMovies
+    }
+    
     var recentSearchCells: [RecentSearchCellViewModel] {
-        let searches = interactor.getMovieSearches()
+        let searches = interactor.getMovieSearches().prefix(5)
         return searches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
     }
     
@@ -42,9 +36,6 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
     
     init(interactor: SearchMoviesResultInteractorProtocol) {
         self.interactor = interactor
-        self.interactor.didUpdateMovieSearch = { [weak self] in
-            self?.updateRecentSearches?()
-        }
     }
     
     // MARK: - Movies handling
@@ -56,29 +47,15 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
                                   page: nil, completion: { result in
             switch result {
             case .success(let movies):
-                self.processMovieResult(movies)
+                self.viewState.value = movies.isEmpty ? .empty : .populated(movies)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
         })
     }
     
-    private func processMovieResult(_ movies: [Movie]) {
-        self.movies = movies
-        if self.movies.isEmpty {
-            viewState.value = .empty
-        } else {
-            viewState.value = .populated(self.movies)
-        }
-    }
-    
-    func resetViewState() {
-        clearMovies()
-        viewState.value = .initial
-    }
-    
     func clearMovies() {
-        movies = []
+        viewState.value = .initial
     }
     
     // MARK: - Movie detail builder

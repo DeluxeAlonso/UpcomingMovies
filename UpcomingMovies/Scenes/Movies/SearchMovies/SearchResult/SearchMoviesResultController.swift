@@ -107,11 +107,6 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        viewModel.updateRecentSearches = { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.reloadTableView()
-        }
-        
         viewModel.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
@@ -129,7 +124,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
     }
     
     func resetSearch() {
-        viewModel.resetViewState()
+        viewModel.clearMovies()
     }
 
 }

@@ -15,14 +15,10 @@ class SearchMoviesResultInteractor: SearchMoviesResultInteractorProtocol {
     private let movieSearchUseCase: MovieSearchUseCaseProtocol
     private let authHandler: AuthenticationHandlerProtocol
     
-    var didUpdateMovieSearch: (() -> Void)?
-    
     init(useCaseProvider: UseCaseProviderProtocol, authHandler: AuthenticationHandlerProtocol) {
         self.movieUseCase = useCaseProvider.movieUseCase()
         self.movieSearchUseCase = useCaseProvider.movieSearchUseCase()
         self.authHandler = authHandler
-        
-        self.didUpdateMovieSearch = movieSearchUseCase.didUpdateMovieSearch
     }
     
     func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {

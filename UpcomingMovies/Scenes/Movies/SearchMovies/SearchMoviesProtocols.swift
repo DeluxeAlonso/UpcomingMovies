@@ -31,7 +31,6 @@ protocol SearchMoviesCoordinatorProtocol: class {
 protocol SearchMoviesResultViewModelProtocol {
     
     var viewState: Bindable<SearchMoviesResultViewState> { get }
-    var updateRecentSearches: (() -> Void)? { get set }
     
     var recentSearchCells: [RecentSearchCellViewModel] { get }
     var movieCells: [MovieCellViewModel] { get }
@@ -39,14 +38,11 @@ protocol SearchMoviesResultViewModelProtocol {
     func searchMovies(withSearchText searchText: String)
     func searchedMovie(at index: Int) -> Movie
     
-    func resetViewState()
     func clearMovies()
     
 }
 
 protocol SearchMoviesResultInteractorProtocol {
-    
-    var didUpdateMovieSearch: (() -> Void)? { get set }
     
     func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
     
