@@ -20,9 +20,8 @@ protocol SearchMoviesCoordinatorProtocol: class {
 
     func showMovieDetail(for movie: Movie)
     func showMovieDetail(for movieId: Int, and movieTitle: String)
-    func showPopularMovies()
-    func showTopRatedMovies()
     func showMoviesByGenre(_ genreId: Int, genreName: String)
+    func showDefaultSearchOption(_ option: DefaultSearchOption)
     
 }
 
@@ -94,10 +93,8 @@ protocol SearchOptionsInteractorProtocol {
 
 protocol SearchOptionsTableViewControllerDelegate: UIViewController {
     
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectPopularMovies selected: Bool)
-    
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectTopRatedMovies selected: Bool)
+                                          didSelectDefaultSearchOption option: DefaultSearchOption)
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
                                           didSelectMovieGenreWithId genreId: Int, andGenreName genreName: String)

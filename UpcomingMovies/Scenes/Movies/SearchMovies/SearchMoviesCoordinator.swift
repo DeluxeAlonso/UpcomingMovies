@@ -69,7 +69,26 @@ class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinator, Mov
         coordinator.start()
     }
     
-    func showPopularMovies() {
+    func showMoviesByGenre(_ genreId: Int, genreName: String) {
+        let coordinator = MoviesByGenreCoordinator(navigationController: navigationController)
+        coordinator.genreId = genreId
+        coordinator.genreName = genreName
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    func showDefaultSearchOption(_ option: DefaultSearchOption) {
+        switch option {
+        case .popular:
+            showPopularMovies()
+        case .topRated:
+            showTopRatedMovies()
+        }
+    }
+    
+    private func showPopularMovies() {
         let coordinator = PopularMoviesCoordinator(navigationController: navigationController)
         coordinator.parentCoordinator = unwrappedParentCoordinator
         
@@ -77,18 +96,8 @@ class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinator, Mov
         coordinator.start()
     }
     
-    func showTopRatedMovies() {
+    private func showTopRatedMovies() {
         let coordinator = TopRatedMoviesCoordinator(navigationController: navigationController)
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
-    }
-    
-    func showMoviesByGenre(_ genreId: Int, genreName: String) {
-        let coordinator = MoviesByGenreCoordinator(navigationController: navigationController)
-        coordinator.genreId = genreId
-        coordinator.genreName = genreName
         coordinator.parentCoordinator = unwrappedParentCoordinator
         
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
