@@ -20,6 +20,8 @@ protocol MovieDetailViewModelProtocol {
     var posterURL: URL? { get set }
     var backdropURL: URL? { get set }
     
+    var options: [MovieDetailOption] { get }
+    
     var updateMovieDetail: (() -> Void)? { get set }
     var needsFetch: Bool { get set }
     
@@ -48,6 +50,12 @@ protocol MovieDetailInteractorProtocol {
     func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
     
     func saveMovieVisit(with id: Int, title: String, posterPath: String?)
+    
+}
+
+protocol MovieDetailViewFactoryProtocol {
+    
+    var options: [MovieDetailOption] { get }
     
 }
 

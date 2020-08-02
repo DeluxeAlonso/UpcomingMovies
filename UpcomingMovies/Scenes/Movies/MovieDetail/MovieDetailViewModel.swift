@@ -12,6 +12,7 @@ import UpcomingMoviesDomain
 final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     private let interactor: MovieDetailInteractorProtocol
+    private let factory: MovieDetailViewFactoryProtocol
     
     var id: Int!
     var title: String!
@@ -32,19 +33,31 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     // MARK: - Initializers
 
-    init(_ movie: Movie, interactor: MovieDetailInteractorProtocol) {
+    init(_ movie: Movie,
+         interactor: MovieDetailInteractorProtocol,
+         factory: MovieDetailViewFactoryProtocol) {
         self.interactor = interactor
+        self.factory = factory
         
         setupMovie(movie)
         checkIfUserIsAuthenticated()
     }
     
-    init(id: Int, title: String, interactor: MovieDetailInteractorProtocol) {
+    init(id: Int, title: String,
+         interactor: MovieDetailInteractorProtocol,
+         factory: MovieDetailViewFactoryProtocol) {
         self.id = id
         self.title = title
         self.interactor = interactor
+        self.factory = factory
         
         self.needsFetch = true
+    }
+    
+    // MARK: - Computed properties
+    
+    var options: [MovieDetailOption] {
+        return factory.options
     }
     
     // MARK: - Private
