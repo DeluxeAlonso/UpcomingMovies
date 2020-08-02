@@ -32,8 +32,8 @@ class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinator, Mov
                             in containerView: UIView) -> SearchOptionsTableViewController {
         let viewController = SearchOptionsTableViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let viewModel = SearchOptionsViewModel(useCaseProvider: useCaseProvider)
+        let interactor = SearchOptionsInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
+        let viewModel = SearchOptionsViewModel(interactor: interactor)
         
         viewController.viewModel = viewModel
         

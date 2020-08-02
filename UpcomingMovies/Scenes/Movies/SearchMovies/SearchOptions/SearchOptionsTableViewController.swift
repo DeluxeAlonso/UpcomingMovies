@@ -23,6 +23,8 @@ class SearchOptionsTableViewController: UITableViewController, Storyboarded {
         super.viewDidLoad()
         setupUI()
         setupBindables()
+        
+        viewModel?.loadGenres()
     }
     
     // MARK: - Private
@@ -95,8 +97,6 @@ class SearchOptionsTableViewController: UITableViewController, Storyboarded {
             guard let strongSelf = self else { return }
             strongSelf.delegate?.searchOptionsTableViewController(strongSelf, didSelectRecentlyVisitedMovie: id, title: title)
         }
-        
-        viewModel?.load()
     }
     
     // MARK: - Table view delegate

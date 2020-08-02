@@ -11,9 +11,7 @@ import UpcomingMoviesDomain
 
 final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     
-    private var useCaseProvider: UseCaseProviderProtocol
-    private var movieVisitUseCase: MovieVisitUseCaseProtocol
-    private var genreUseCase: GenreUseCaseProtocol
+    private var interactor: SearchOptionsInteractorProtocol
     
     private var genres: [Genre] = []
     
@@ -27,7 +25,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     var selectedRecentlyVisitedMovie: ((Int, String) -> Void)?
     
     var visitedMovieCells: [VisitedMovieCellViewModel] {
-        let visited = movieVisitUseCase.getMovieVisits()
+        let visited = interactor.getMovieVisits()
         return visited.map { VisitedMovieCellViewModel(movieVisit: $0) }
     }
     
@@ -42,12 +40,10 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        self.useCaseProvider = useCaseProvider
-        self.genreUseCase = self.useCaseProvider.genreUseCase()
+    init(interactor: SearchOptionsInteractorProtocol) {
+        self.interactor = interactor
         
-        movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
-        movieVisitUseCase.didUpdateMovieVisit = { [weak self] in
+        self.interactor.didUpdateMovieVisit = { [weak self] in
             guard let strongSelf = self else { return }
             // If the state changed we reload the entire table view
             let viewStateChanged = strongSelf.configureViewState()
@@ -71,7 +67,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     @discardableResult
     private func configureViewState() -> Bool {
         let oldViewState = viewState.value
-        if movieVisitUseCase.hasMovieVisits() {
+        if interactor.hasMovieVisits() {
             viewState.value = .populatedMovieVisits
         } else {
             viewState.value = .emptyMovieVisits
@@ -81,8 +77,8 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     
     // MARK: - Public
     
-    func load() {
-        genreUseCase.fetchAll(completion: { [weak self] result in
+    func loadGenres() {
+        interactor.getGenres(completion: { [weak self] result in
             guard let strongSelf = self else { return }
             switch result {
             case .success(let genres):
@@ -118,7 +114,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     }
     
     func getRecentlyVisitedMovieSelection(by index: Int) {
-        let visitedMovies = movieVisitUseCase.getMovieVisits()
+        let visitedMovies = interactor.getMovieVisits()
         let selectedVisitedMovie = visitedMovies[index]
         selectedRecentlyVisitedMovie?(selectedVisitedMovie.id, selectedVisitedMovie.title)
     }

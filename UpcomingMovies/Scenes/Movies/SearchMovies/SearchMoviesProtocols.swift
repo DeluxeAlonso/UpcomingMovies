@@ -72,7 +72,7 @@ protocol SearchOptionsViewModelProtocol {
     
     var defaultSearchOptionsCells: [DefaultSearchOptionCellViewModel] { get }
     
-    func load()
+    func loadGenres()
     
     func section(at index: Int) -> SearchOptionsSection
     func sectionIndex(for section: SearchOptionsSection) -> Int?
@@ -82,6 +82,17 @@ protocol SearchOptionsViewModelProtocol {
     func getDefaultSearchSelection(by index: Int)
     func getMovieGenreSelection(by index: Int)
     func getRecentlyVisitedMovieSelection(by index: Int)
+    
+}
+
+protocol SearchOptionsInteractorProtocol {
+    
+    var didUpdateMovieVisit: (() -> Void)? { get set }
+    
+    func getGenres(completion: @escaping (Result<[Genre], Error>) -> Void)
+    
+    func getMovieVisits() -> [MovieVisit]
+    func hasMovieVisits() -> Bool
     
 }
 
