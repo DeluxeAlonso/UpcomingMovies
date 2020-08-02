@@ -22,10 +22,6 @@ class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinator, Mov
     func start() {
         let viewController = SearchMoviesViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let viewModel = SearchMoviesViewModel(useCaseProvider: useCaseProvider)
-        
-        viewController.viewModel = viewModel
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
@@ -36,8 +32,8 @@ class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinator, Mov
                             in containerView: UIView) -> SearchOptionsTableViewController {
         let viewController = SearchOptionsTableViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let viewModel = SearchOptionsViewModel(useCaseProvider: useCaseProvider)
+        let interactor = SearchOptionsInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
+        let viewModel = SearchOptionsViewModel(interactor: interactor)
         
         viewController.viewModel = viewModel
         
@@ -49,8 +45,8 @@ class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinator, Mov
     
     @discardableResult
     func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController {
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let searchResultViewModel = SearchMoviesResultViewModel(useCaseProvider: useCaseProvider)
+        let interactor = SearchMoviesResultInteractor(useCaseProvider: InjectionFactory.useCaseProvider(), authHandler: AuthenticationHandler.shared)
+        let searchResultViewModel = SearchMoviesResultViewModel(interactor: interactor)
         let searchResultController = SearchMoviesResultController(viewModel: searchResultViewModel)
         
         let searchController = DefaultSearchController(searchResultsController: searchResultController)
@@ -73,7 +69,26 @@ class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinator, Mov
         coordinator.start()
     }
     
-    func showPopularMovies() {
+    func showMoviesByGenre(_ genreId: Int, genreName: String) {
+        let coordinator = MoviesByGenreCoordinator(navigationController: navigationController)
+        coordinator.genreId = genreId
+        coordinator.genreName = genreName
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    func showDefaultSearchOption(_ option: DefaultSearchOption) {
+        switch option {
+        case .popular:
+            showPopularMovies()
+        case .topRated:
+            showTopRatedMovies()
+        }
+    }
+    
+    private func showPopularMovies() {
         let coordinator = PopularMoviesCoordinator(navigationController: navigationController)
         coordinator.parentCoordinator = unwrappedParentCoordinator
         
@@ -81,18 +96,8 @@ class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinator, Mov
         coordinator.start()
     }
     
-    func showTopRatedMovies() {
+    private func showTopRatedMovies() {
         let coordinator = TopRatedMoviesCoordinator(navigationController: navigationController)
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
-    }
-    
-    func showMoviesByGenre(_ genreId: Int, genreName: String) {
-        let coordinator = MoviesByGenreCoordinator(navigationController: navigationController)
-        coordinator.genreId = genreId
-        coordinator.genreName = genreName
         coordinator.parentCoordinator = unwrappedParentCoordinator
         
         unwrappedParentCoordinator.childCoordinators.append(coordinator)

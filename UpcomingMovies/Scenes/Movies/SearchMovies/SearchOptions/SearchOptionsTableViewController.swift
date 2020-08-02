@@ -23,6 +23,8 @@ class SearchOptionsTableViewController: UITableViewController, Storyboarded {
         super.viewDidLoad()
         setupUI()
         setupBindables()
+        
+        viewModel?.loadGenres()
     }
     
     // MARK: - Private
@@ -72,12 +74,7 @@ class SearchOptionsTableViewController: UITableViewController, Storyboarded {
         
         viewModel?.selectedDefaultSearchOption.bind({ [weak self] option in
             guard let strongSelf = self, let option = option else { return }
-            switch option {
-            case .popular:
-                strongSelf.delegate?.searchOptionsTableViewController(strongSelf, didSelectPopularMovies: true)
-            case .topRated:
-                strongSelf.delegate?.searchOptionsTableViewController(strongSelf, didSelectTopRatedMovies: true)
-            }
+            strongSelf.delegate?.searchOptionsTableViewController(strongSelf, didSelectDefaultSearchOption: option)
         })
         
         viewModel?.selectedMovieGenre.bind({ [weak self] (genreId, genreName) in
@@ -95,8 +92,6 @@ class SearchOptionsTableViewController: UITableViewController, Storyboarded {
             guard let strongSelf = self else { return }
             strongSelf.delegate?.searchOptionsTableViewController(strongSelf, didSelectRecentlyVisitedMovie: id, title: title)
         }
-        
-        viewModel?.load()
     }
     
     // MARK: - Table view delegate

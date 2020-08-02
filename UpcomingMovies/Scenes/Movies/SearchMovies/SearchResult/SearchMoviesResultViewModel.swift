@@ -12,23 +12,19 @@ import UpcomingMoviesDomain
 final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
     
     // MARK: - Properties
-    
-    private let useCaseProvider: UseCaseProviderProtocol
-    private let movieUseCase: MovieUseCaseProtocol
-    private var movieSearchUseCase: MovieSearchUseCaseProtocol
-    
-    private var authHandler: AuthenticationHandler
-    
-    private var movies: [Movie] = []
+
+    private let interactor: SearchMoviesResultInteractorProtocol
     
     let viewState: Bindable<SearchMoviesResultViewState> = Bindable(.initial)
-
-    var updateRecentSearches: (() -> Void)?
     
     // MARK: - Computed Properties
     
+    private var movies: [Movie] {
+        return viewState.value.currentSearchedMovies
+    }
+    
     var recentSearchCells: [RecentSearchCellViewModel] {
-        let searches = movieSearchUseCase.getMovieSearchs()
+        let searches = interactor.getMovieSearches().prefix(5)
         return searches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
     }
     
@@ -38,52 +34,28 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
     
     // MARK: - Initilalizers
     
-    init(useCaseProvider: UseCaseProviderProtocol,
-         authHandler: AuthenticationHandler = AuthenticationHandler.shared) {
-        self.useCaseProvider = useCaseProvider
-        self.authHandler = authHandler
-        self.movieUseCase = self.useCaseProvider.movieUseCase()
-        self.movieSearchUseCase = self.useCaseProvider.movieSearchUseCase()
-        self.movieSearchUseCase.didUpdateMovieSearch = { [weak self] in
-            self?.updateRecentSearches?()
-        }
+    init(interactor: SearchMoviesResultInteractorProtocol) {
+        self.interactor = interactor
     }
     
     // MARK: - Movies handling
     
     func searchMovies(withSearchText searchText: String) {
         viewState.value = .searching
-        movieSearchUseCase.save(with: searchText)
-        let includeAdult = authHandler.currentUser()?.includeAdult ?? false
-        movieUseCase.searchMovies(searchText: searchText,
-                                  includeAdult: includeAdult,
-                                  page: nil,
-                                  completion: { result in
+        interactor.saveSearchText(searchText)
+        interactor.searchMovies(searchText: searchText,
+                                  page: nil, completion: { result in
             switch result {
             case .success(let movies):
-                self.processMovieResult(movies)
+                self.viewState.value = movies.isEmpty ? .empty : .populated(movies)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
         })
     }
     
-    private func processMovieResult(_ movies: [Movie]) {
-        self.movies = movies
-        if self.movies.isEmpty {
-            viewState.value = .empty
-        } else {
-            viewState.value = .populated(self.movies)
-        }
-    }
-    
-    func resetViewState() {
-        clearMovies()
-        viewState.value = .initial
-    }
-    
     func clearMovies() {
-        movies = []
+        viewState.value = .initial
     }
     
     // MARK: - Movie detail builder

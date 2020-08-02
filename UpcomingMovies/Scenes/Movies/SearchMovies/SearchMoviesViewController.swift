@@ -17,7 +17,6 @@ class SearchMoviesViewController: UIViewController, Storyboarded {
     private var searchController: DefaultSearchController!
     private var searchOptionsContainerView: SearchOptionsTableViewController!
     
-    var viewModel: SearchMoviesViewModelProtocol!
     weak var coordinator: SearchMoviesCoordinatorProtocol?
     
     // MARK: - Lifecycle
@@ -136,13 +135,8 @@ extension SearchMoviesViewController: SearchMoviesResultControllerDelegate {
 extension SearchMoviesViewController: SearchOptionsTableViewControllerDelegate {
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectPopularMovies selected: Bool) {
-        coordinator?.showPopularMovies()
-    }
-    
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectTopRatedMovies selected: Bool) {
-        coordinator?.showTopRatedMovies()
+                                          didSelectDefaultSearchOption option: DefaultSearchOption) {
+        coordinator?.showDefaultSearchOption(option)
     }
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,

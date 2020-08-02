@@ -9,12 +9,27 @@
 import UIKit
 import UpcomingMoviesDomain
 
-protocol SearchMoviesViewModelProtocol {}
+protocol SearchMoviesCoordinatorProtocol: class {
+    
+    @discardableResult
+    func embedSearchOptions(on parentViewController: UIViewController,
+                            in containerView: UIView) -> SearchOptionsTableViewController
+    
+    @discardableResult
+    func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController
+
+    func showMovieDetail(for movie: Movie)
+    func showMovieDetail(for movieId: Int, and movieTitle: String)
+    func showMoviesByGenre(_ genreId: Int, genreName: String)
+    func showDefaultSearchOption(_ option: DefaultSearchOption)
+    
+}
+
+// MARK: - Search movies result
 
 protocol SearchMoviesResultViewModelProtocol {
     
     var viewState: Bindable<SearchMoviesResultViewState> { get }
-    var updateRecentSearches: (() -> Void)? { get set }
     
     var recentSearchCells: [RecentSearchCellViewModel] { get }
     var movieCells: [MovieCellViewModel] { get }
@@ -22,10 +37,20 @@ protocol SearchMoviesResultViewModelProtocol {
     func searchMovies(withSearchText searchText: String)
     func searchedMovie(at index: Int) -> Movie
     
-    func resetViewState()
     func clearMovies()
     
 }
+
+protocol SearchMoviesResultInteractorProtocol {
+    
+    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
+    
+    func getMovieSearches() -> [MovieSearch]
+    func saveSearchText(_ searchText: String)
+    
+}
+
+// MARK: - Search options
 
 protocol SearchOptionsViewModelProtocol {
     
@@ -42,7 +67,7 @@ protocol SearchOptionsViewModelProtocol {
     
     var defaultSearchOptionsCells: [DefaultSearchOptionCellViewModel] { get }
     
-    func load()
+    func loadGenres()
     
     func section(at index: Int) -> SearchOptionsSection
     func sectionIndex(for section: SearchOptionsSection) -> Int?
@@ -55,29 +80,21 @@ protocol SearchOptionsViewModelProtocol {
     
 }
 
-protocol SearchMoviesCoordinatorProtocol: class {
+protocol SearchOptionsInteractorProtocol {
     
-    @discardableResult
-    func embedSearchOptions(on parentViewController: UIViewController,
-                            in containerView: UIView) -> SearchOptionsTableViewController
+    var didUpdateMovieVisit: (() -> Void)? { get set }
     
-    @discardableResult
-    func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController
-
-    func showMovieDetail(for movie: Movie)
-    func showMovieDetail(for movieId: Int, and movieTitle: String)
-    func showPopularMovies()
-    func showTopRatedMovies()
-    func showMoviesByGenre(_ genreId: Int, genreName: String)
+    func getGenres(completion: @escaping (Result<[Genre], Error>) -> Void)
+    
+    func getMovieVisits() -> [MovieVisit]
+    func hasMovieVisits() -> Bool
     
 }
 
 protocol SearchOptionsTableViewControllerDelegate: UIViewController {
     
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController, didSelectPopularMovies selected: Bool)
-    
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectTopRatedMovies selected: Bool)
+                                          didSelectDefaultSearchOption option: DefaultSearchOption)
     
     func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
                                           didSelectMovieGenreWithId genreId: Int, andGenreName genreName: String)

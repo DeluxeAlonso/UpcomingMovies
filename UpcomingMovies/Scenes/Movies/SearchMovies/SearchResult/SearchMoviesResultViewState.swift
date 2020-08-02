@@ -28,4 +28,13 @@ enum SearchMoviesResultViewState {
         }
     }
     
+    var currentSearchedMovies: [Movie] {
+        switch self {
+        case .populated(let entities):
+            return entities
+        case .initial, .empty, .error, .searching:
+            return []
+        }
+    }
+    
 }
