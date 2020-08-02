@@ -28,8 +28,8 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         return barButtonItem
     }()
     
-    lazy var favoriteBarButtonItem: ToggleBarButtonItem = {
-        let barButtonItem = MovieDetailViewFactory.makeFavoriteBarButtonItem()
+    lazy var favoriteBarButtonItem: FavoriteToggleBarButtonItem = {
+        let barButtonItem = FavoriteToggleBarButtonItem()
         barButtonItem.target = self
         barButtonItem.action = #selector(favoriteButtonAction(_:))
         

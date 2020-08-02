@@ -9,16 +9,7 @@
 import UIKit
 
 final class MovieDetailViewFactory: MovieDetailViewFactoryProtocol {
-    
-    class func makeFavoriteBarButtonItem() -> ToggleBarButtonItem {
-        let favoriteOff = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "FavoriteOff")),
-                                                     accessibilityLabel: LocalizedStrings.addToFavoritesHint.localized)
-        let favoriteOn = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "FavoriteOn")),
-                                                    accessibilityLabel: LocalizedStrings.removeFromFavoritesHint.localized)
-        
-        return ToggleBarButtonItem(contents: [favoriteOff, favoriteOn])
-    }
-    
+
     var options: [MovieDetailOption] {
         return [ReviewsMovieDetailOption(),
                 TrailersMovieDetailOption(),
