@@ -19,4 +19,11 @@ final class MovieDetailViewFactory {
         return ToggleBarButtonItem(contents: [favoriteOff, favoriteOn])
     }
     
+    class func makeDetailOptions() -> [MovieDetailOption] {
+        return [ReviewsMovieDetailOption(),
+                TrailersMovieDetailOption(),
+                CreditsMovieDetailOption(),
+                SimilarsMovieDetailOption()]
+    }
+    
 }

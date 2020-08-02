@@ -89,12 +89,14 @@ class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol {
     
     private func viewModel(for movieInfo: MovieDetailInfo,
                            and useCaseProvider: UseCaseProviderProtocol) -> MovieDetailViewModel {
+        let interactor = MovieDetailInteractor(useCaseProvider: InjectionFactory.useCaseProvider(),
+                                               authHandler: AuthenticationHandler.shared)
         let viewModel: MovieDetailViewModel
         switch movieInfo {
         case .complete(let movie):
-            viewModel = MovieDetailViewModel(movie, useCaseProvider: useCaseProvider)
+            viewModel = MovieDetailViewModel(movie, interactor: interactor)
         case .partial(let movieId, let movieTitle):
-            viewModel = MovieDetailViewModel(id: movieId, title: movieTitle, useCaseProvider: useCaseProvider)
+            viewModel = MovieDetailViewModel(id: movieId, title: movieTitle, interactor: interactor)
         }
         
         return viewModel

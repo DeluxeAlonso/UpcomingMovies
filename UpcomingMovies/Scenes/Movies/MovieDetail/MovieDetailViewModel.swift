@@ -11,11 +11,7 @@ import UpcomingMoviesDomain
 
 final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
-    private let useCaseProvider: UseCaseProviderProtocol
-    private let movieUseCase: MovieUseCaseProtocol
-    private let movieVisitUseCase: MovieVisitUseCaseProtocol
-    private let genreUseCase: GenreUseCaseProtocol
-    private let accountUseCase: AccountUseCaseProtocol
+    private let interactor: MovieDetailInteractorProtocol
     
     var id: Int!
     var title: String!
@@ -29,13 +25,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     var updateMovieDetail: (() -> Void)?
     var needsFetch = false
     
-    var options: [MovieDetailOption] {
-        return [ReviewsMovieDetailOption(),
-                TrailersMovieDetailOption(),
-                CreditsMovieDetailOption(),
-                SimilarsMovieDetailOption()]
-    }
-    
     var startLoading: Bindable<Bool> = Bindable(false)
     var isFavorite: Bindable<Bool?> = Bindable(false)
     var showErrorView: Bindable<Error?> = Bindable(nil)
@@ -43,27 +32,19 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     // MARK: - Initializers
 
-    init(_ movie: Movie, useCaseProvider: UseCaseProviderProtocol) {
-        self.useCaseProvider = useCaseProvider
-        self.movieUseCase = self.useCaseProvider.movieUseCase()
-        self.movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
-        self.genreUseCase = self.useCaseProvider.genreUseCase()
-        self.accountUseCase = self.useCaseProvider.accountUseCase()
+    init(_ movie: Movie, interactor: MovieDetailInteractorProtocol) {
+        self.interactor = interactor
         
         setupMovie(movie)
         checkIfUserIsAuthenticated()
     }
     
-    init(id: Int, title: String, useCaseProvider: UseCaseProviderProtocol) {
+    init(id: Int, title: String, interactor: MovieDetailInteractorProtocol) {
         self.id = id
         self.title = title
-        self.needsFetch = true
+        self.interactor = interactor
         
-        self.useCaseProvider = useCaseProvider
-        self.movieUseCase = self.useCaseProvider.movieUseCase()
-        self.movieVisitUseCase = self.useCaseProvider.movieVisitUseCase()
-        self.genreUseCase = self.useCaseProvider.genreUseCase()
-        self.accountUseCase = self.useCaseProvider.accountUseCase()
+        self.needsFetch = true
     }
     
     // MARK: - Private
@@ -84,7 +65,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     private func getMovieGenreName(for genreId: Int?) {
         guard let genreId = genreId else { return }
-        genreUseCase.find(with: genreId, completion: { [weak self] result in
+        interactor.findGenre(with: genreId, completion: { [weak self] result in
             guard let strongSelf = self else { return }
             switch result {
             case .success(let genre):
@@ -108,7 +89,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private func fetchMovieDetail(showLoader: Bool = true) {
         guard needsFetch else { return }
         startLoading.value = showLoader
-        movieUseCase.getMovieDetail(for: id, completion: { result in
+        interactor.getMovieDetail(for: id, completion: { result in
             switch result {
             case .success(let movie):
                 self.setupMovie(movie)
@@ -122,7 +103,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     }
     
     func saveVisitedMovie() {
-        movieVisitUseCase.save(with: id, title: title, posterPath: posterURL?.absoluteString)
+        interactor.saveMovieVisit(with: id, title: title, posterPath: posterURL?.absoluteString)
     }
     
     // MARK: - User Authentication
@@ -140,7 +121,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     // MARK: - Favorites
     
     private func checkIfMovieIsFavorite() {
-        movieUseCase.isMovieInFavorites(for: id, completion: { result in
+        interactor.isMovieInFavorites(for: id, completion: { result in
             self.startLoading.value = false
             switch result {
             case .success(let isFavorite):
@@ -154,7 +135,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     func handleFavoriteMovie() {
         guard let isFavorite = isFavorite.value else { return }
-        accountUseCase.markMovieAsFavorite(movieId: id, favorite: !isFavorite, completion: { result in
+        interactor.markMovieAsFavorite(movieId: id, favorite: !isFavorite, completion: { result in
             switch result {
             case .success:
                 self.isFavorite.value = !isFavorite

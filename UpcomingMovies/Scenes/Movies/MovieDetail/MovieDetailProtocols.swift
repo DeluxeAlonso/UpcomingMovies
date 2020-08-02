@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UpcomingMoviesDomain
 
 protocol MovieDetailViewModelProtocol {
     
@@ -22,8 +23,6 @@ protocol MovieDetailViewModelProtocol {
     var updateMovieDetail: (() -> Void)? { get set }
     var needsFetch: Bool { get set }
     
-    var options: [MovieDetailOption] { get }
-    
     var startLoading: Bindable<Bool> { get }
     var isFavorite: Bindable<Bool?> { get }
     var showErrorView: Bindable<Error?> { get }
@@ -35,6 +34,20 @@ protocol MovieDetailViewModelProtocol {
     func saveVisitedMovie()
     func checkIfUserIsAuthenticated()
     func handleFavoriteMovie()
+    
+}
+
+protocol MovieDetailInteractorProtocol {
+    
+    func isUserSignedIn() -> Bool
+    
+    func findGenre(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void)
+    func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void)
+    
+    func markMovieAsFavorite(movieId: Int, favorite: Bool, completion: @escaping (Result<Bool, Error>) -> Void)
+    func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
+    
+    func saveMovieVisit(with id: Int, title: String, posterPath: String?)
     
 }
 
