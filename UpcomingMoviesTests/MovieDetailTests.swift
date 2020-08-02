@@ -14,22 +14,12 @@ import XCTest
 
 class MovieDetailTests: XCTestCase {
     
+    private var mockInteractor: MockMovieDetailInteractor!
+    private var mockFactory: MockMovieDetailViewFactory!
     private var viewModelToTest: MovieDetailViewModel!
-    private var useCaseProvider: MockUseCaseProvider!
-    private var movieUseCase: MockMovieUseCase!
-    private var genreUseCase: MockGenreUseCase!
 
     override func setUp() {
         super.setUp()
-        
-        movieUseCase = MockMovieUseCase(remoteDataSource: MockInjectionFactory.makeRemoteDataSource().movieDataSource())
-        genreUseCase = MockGenreUseCase(localDataSource: MockInjectionFactory.makeLocalDataSource().genreDataSource(),
-                                        remoteDataSource: MockInjectionFactory.makeRemoteDataSource().genreDataSource())
-        
-        useCaseProvider = (MockInjectionFactory.useCaseProvider() as! MockUseCaseProvider)
-        useCaseProvider.mockMovieUseCase = self.movieUseCase
-        useCaseProvider.mockGenreUseCase = self.genreUseCase
-        
         let movieToTest = Movie(id: 1,
                             title: "Test 1",
                             genreIds: [1, 2],
@@ -37,13 +27,17 @@ class MovieDetailTests: XCTestCase {
                             posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
                             backdropPath: "/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg",
                             releaseDate: "2019-02-01", voteAverage: 4.5)
-        viewModelToTest = MovieDetailViewModel(movieToTest, useCaseProvider: useCaseProvider)
+        mockInteractor = MockMovieDetailInteractor()
+        mockFactory = MockMovieDetailViewFactory()
+        viewModelToTest = MovieDetailViewModel(movieToTest,
+                                               interactor: mockInteractor,
+                                               factory: mockFactory)
     }
 
     override func tearDown() {
+        mockInteractor = nil
+        mockFactory = nil
         viewModelToTest = nil
-        useCaseProvider = nil
-        genreUseCase = nil
         super.tearDown()
     }
 
