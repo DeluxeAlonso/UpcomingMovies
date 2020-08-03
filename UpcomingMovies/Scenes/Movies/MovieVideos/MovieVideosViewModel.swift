@@ -38,17 +38,14 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol {
     }
     
     // MARK: - Public
-
-    func playVideo(at index: Int) {
-        let application = UIApplication.shared
-        let videoToPlay = videos[index]
-        guard let deepLinkURL = videoToPlay.deepLinkURL,
-            application.canOpenURL(deepLinkURL) else {
-                guard let browserURL = videoToPlay.browserURL else { return }
-                application.open(browserURL, options: [:], completionHandler: nil)
-                return
+    
+    func videoURL(at index: Int) -> URL? {
+        let video = videos[index]
+        if let url = video.deepLinkURL {
+            return url
+        } else {
+            return video.browserURL
         }
-        application.open(deepLinkURL, options: [:], completionHandler: nil)
     }
     
     // MARK: - Networking

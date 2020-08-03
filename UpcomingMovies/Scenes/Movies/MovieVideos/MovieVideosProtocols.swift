@@ -19,7 +19,7 @@ protocol MovieVideosViewModelProtocol {
     
     var videoCells: [MovieVideoCellViewModel] { get }
     
-    func playVideo(at index: Int)
+    func videoURL(at index: Int) -> URL?
     func getMovieVideos(showLoader: Bool)
     
 }
