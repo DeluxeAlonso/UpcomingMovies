@@ -11,11 +11,10 @@ import UpcomingMoviesDomain
 
 final class MovieVideosViewModel: MovieVideosViewModelProtocol {
     
+    private let interactor: MovieVideosInteractorProtocol
+    
     var movieId: Int
     var movieTitle: String
-    
-    private let useCaseProvider: UseCaseProviderProtocol
-    private let movieUseCase: MovieUseCaseProtocol
     
     let viewState: Bindable<SimpleViewState<Video>> = Bindable(.initial)
     
@@ -31,12 +30,11 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(movieId: Int, movieTitle: String, useCaseProvider: UseCaseProviderProtocol) {
+    init(movieId: Int, movieTitle: String, interactor: MovieVideosInteractorProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
         
-        self.useCaseProvider = useCaseProvider
-        self.movieUseCase = self.useCaseProvider.movieUseCase()
+        self.interactor = interactor
     }
     
     // MARK: - Public
@@ -57,7 +55,7 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol {
     
     func getMovieVideos(showLoader: Bool = false) {
         startLoading.value = showLoader
-        movieUseCase.getMovieVideos(for: movieId, page: nil, completion: { result in
+        interactor.getMovieVideos(for: movieId, page: nil, completion: { result in
             switch result {
             case .success(let videos):
                 self.processVideosResult(videos)
