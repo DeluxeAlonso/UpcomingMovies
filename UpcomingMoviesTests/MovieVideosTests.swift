@@ -13,24 +13,20 @@ import XCTest
 
 class MovieVideosTests: XCTestCase {
     
-    private var movieUseCase: MockMovieUseCase!
+    private var mockInteractor: MockMovieVideosInteractor!
     private var viewModelToTest: MovieVideosViewModelProtocol!
 
     override func setUp() {
         super.setUp()
-        movieUseCase = MockMovieUseCase(remoteDataSource: MockInjectionFactory.makeRemoteDataSource().movieDataSource())
-        
-        let useCaseProvider = (MockInjectionFactory.useCaseProvider() as! MockUseCaseProvider)
-        useCaseProvider.mockMovieUseCase = self.movieUseCase
-        
+        mockInteractor = MockMovieVideosInteractor()
         viewModelToTest = MovieVideosViewModel(movieId: 1,
                                                movieTitle: "Movie Test",
-                                               useCaseProvider: useCaseProvider)
+                                               interactor: mockInteractor)
         
     }
     
     override func tearDown() {
-        movieUseCase = nil
+        mockInteractor = nil
         viewModelToTest = nil
         super.tearDown()
     }
@@ -44,7 +40,7 @@ class MovieVideosTests: XCTestCase {
     
     func testGetVideosPopulated() {
         //Arrange
-        movieUseCase.videos = Result.success([Video.with(id: "1"), Video.with(id: "2")])
+        mockInteractor.getMovieVideosResult = Result.success([Video.with(id: "1"), Video.with(id: "2")])
         //Act
         viewModelToTest.getMovieVideos(showLoader: false)
         //Assert
@@ -53,7 +49,7 @@ class MovieVideosTests: XCTestCase {
     
     func testGetVideosEmpty() {
         //Arrange
-        movieUseCase.videos = Result.success([])
+        mockInteractor.getMovieVideosResult = Result.success([])
         //Act
         viewModelToTest.getMovieVideos(showLoader: false)
         //Assert
@@ -62,7 +58,7 @@ class MovieVideosTests: XCTestCase {
     
     func testGetVideosError() {
         //Arrange
-        movieUseCase.videos = Result.failure(APIError.badRequest)
+        mockInteractor.getMovieVideosResult = Result.failure(APIError.badRequest)
         //Act
         viewModelToTest.getMovieVideos(showLoader: false)
         //Assert
