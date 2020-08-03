@@ -24,10 +24,10 @@ class MovieVideosCoordinator: NSObject, Coordinator, MovieVideosCoordinatorProto
     func start() {
         let viewController = MovieVideosViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
+        let interactor = MovieVideosInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
         let viewModel = MovieVideosViewModel(movieId: movieId,
                                              movieTitle: movieTitle,
-                                             useCaseProvider: useCaseProvider)
+                                             interactor: interactor)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self

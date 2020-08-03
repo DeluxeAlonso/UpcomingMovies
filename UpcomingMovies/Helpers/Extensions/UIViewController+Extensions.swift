@@ -101,4 +101,12 @@ extension UIViewController {
         return navBarHeight
     }
     
+    // MARK: - Deep Link Handling
+    
+    func openDeepLinkURL(_ url: URL?) {
+        let application = UIApplication.shared
+        guard let url = url, application.canOpenURL(url) else { return }
+        application.open(url, options: [:], completionHandler: nil)
+    }
+    
 }

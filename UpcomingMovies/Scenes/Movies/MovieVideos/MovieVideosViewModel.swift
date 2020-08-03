@@ -11,11 +11,10 @@ import UpcomingMoviesDomain
 
 final class MovieVideosViewModel: MovieVideosViewModelProtocol {
     
+    private let interactor: MovieVideosInteractorProtocol
+    
     var movieId: Int
     var movieTitle: String
-    
-    private let useCaseProvider: UseCaseProviderProtocol
-    private let movieUseCase: MovieUseCaseProtocol
     
     let viewState: Bindable<SimpleViewState<Video>> = Bindable(.initial)
     
@@ -31,33 +30,29 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(movieId: Int, movieTitle: String, useCaseProvider: UseCaseProviderProtocol) {
+    init(movieId: Int, movieTitle: String, interactor: MovieVideosInteractorProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
         
-        self.useCaseProvider = useCaseProvider
-        self.movieUseCase = self.useCaseProvider.movieUseCase()
+        self.interactor = interactor
     }
     
     // MARK: - Public
-
-    func playVideo(at index: Int) {
-        let application = UIApplication.shared
-        let videoToPlay = videos[index]
-        guard let deepLinkURL = videoToPlay.deepLinkURL,
-            application.canOpenURL(deepLinkURL) else {
-                guard let browserURL = videoToPlay.browserURL else { return }
-                application.open(browserURL, options: [:], completionHandler: nil)
-                return
+    
+    func videoURL(at index: Int) -> URL? {
+        let video = videos[index]
+        if let url = video.deepLinkURL {
+            return url
+        } else {
+            return video.browserURL
         }
-        application.open(deepLinkURL, options: [:], completionHandler: nil)
     }
     
     // MARK: - Networking
     
     func getMovieVideos(showLoader: Bool = false) {
         startLoading.value = showLoader
-        movieUseCase.getMovieVideos(for: movieId, page: nil, completion: { result in
+        interactor.getMovieVideos(for: movieId, page: nil, completion: { result in
             switch result {
             case .success(let videos):
                 self.processVideosResult(videos)

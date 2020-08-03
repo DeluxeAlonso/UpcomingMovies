@@ -19,8 +19,15 @@ protocol MovieVideosViewModelProtocol {
     
     var videoCells: [MovieVideoCellViewModel] { get }
     
-    func playVideo(at index: Int)
+    func videoURL(at index: Int) -> URL?
     func getMovieVideos(showLoader: Bool)
+    
+}
+
+protocol MovieVideosInteractorProtocol {
+    
+    func getMovieVideos(for movieId: Int, page: Int?,
+                        completion: @escaping (Result<[Video], Error>) -> Void)
     
 }
 

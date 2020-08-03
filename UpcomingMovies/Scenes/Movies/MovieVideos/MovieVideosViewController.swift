@@ -97,7 +97,8 @@ extension MovieVideosViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel?.playVideo(at: indexPath.row)
+        let videoURL = viewModel?.videoURL(at: indexPath.row)
+        openDeepLinkURL(videoURL)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
