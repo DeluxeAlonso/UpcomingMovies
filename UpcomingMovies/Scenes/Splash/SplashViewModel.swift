@@ -9,19 +9,15 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class SplashViewModel {
+final class SplashViewModel: SplashViewModelProtocol {
     
-    private let genreUseCase: GenreUseCaseProtocol
-    private let configurationUseCase: ConfigurationUseCaseProtocol
-    
+    private let interactor: SplashInteractorProtocol
     private var dispatchGroup: DispatchGroup!
     
     var initialDownloadsEnded: (() -> Void)?
     
     init() {
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        self.genreUseCase = useCaseProvider.genreUseCase()
-        self.configurationUseCase = useCaseProvider.configurationUseCase()
+        self.interactor = SplashInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
     }
     
     func startInitialDownloads() {
@@ -42,7 +38,7 @@ final class SplashViewModel {
     */
     private func getAppConfiguration() {
         dispatchGroup.enter()
-        configurationUseCase.getConfiguration { [weak self] result in
+        interactor.getAppConfiguration { [weak self] result in
             _ = result.map { ConfigurationHandler.shared.setConfiguration($0) }
             self?.dispatchGroup.leave()
         }
@@ -53,7 +49,7 @@ final class SplashViewModel {
      */
     private func getMovieGenres() {
         dispatchGroup.enter()
-        genreUseCase.fetchAll { [weak self] result in
+        interactor.getAllGenres { [weak self] result in
             _ = result.map { GenreHandler.shared.setGenres($0) }
             self?.dispatchGroup.leave()
         }
