@@ -10,7 +10,7 @@ import UIKit
 
 class SplashViewController: UIViewController {
     
-    private var viewModel = SplashViewModel()
+    private var viewModel: SplashViewModelProtocol = SplashViewModel()
 
     // MARK: - Lifecycle
     
