@@ -17,7 +17,7 @@ protocol MovieVideosViewModelProtocol {
     var viewState: Bindable<SimpleViewState<Video>> { get }
     var startLoading: Bindable<Bool> { get }
     
-    var videoCells: [MovieVideoCellViewModel] { get }
+    var videoCells: [MovieVideoCellViewModelProtocol] { get }
     
     func videoURL(at index: Int) -> URL?
     func getMovieVideos(showLoader: Bool)

@@ -9,7 +9,15 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class MovieVideoCellViewModel {
+protocol MovieVideoCellViewModelProtocol {
+    
+    var name: String { get }
+    var key: String { get }
+    var thumbnailURL: URL? { get }
+    
+}
+
+final class MovieVideoCellViewModel: MovieVideoCellViewModelProtocol {
     
     let name: String
     let key: String
