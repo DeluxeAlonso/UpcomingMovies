@@ -66,7 +66,7 @@ extension SimpleTableViewDataSource where ViewModel == MovieVideoCellViewModel {
     
 }
 
-extension SimpleTableViewDataSource where ViewModel == MovieReviewCellViewModel {
+extension SimpleTableViewDataSource where ViewModel == MovieReviewCellViewModelProtocol {
     
     static func make(for cellViewModels: [ViewModel],
                      reuseIdentifier: String = MovieReviewTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {

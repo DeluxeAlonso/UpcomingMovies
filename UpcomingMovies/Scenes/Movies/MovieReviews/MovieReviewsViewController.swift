@@ -15,7 +15,7 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
     
     static var storyboardName = "MovieDetail"
     
-    private var dataSource: SimpleTableViewDataSource<MovieReviewCellViewModel>!
+    private var dataSource: SimpleTableViewDataSource<MovieReviewCellViewModelProtocol>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
     private var scaleTransitioningDelegate: ScaleTransitioningDelegate!
     
