@@ -38,7 +38,7 @@ class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSource {
     
 }
 
-extension SimpleTableViewDataSource where ViewModel == MovieCellViewModel {
+extension SimpleTableViewDataSource where ViewModel == MovieCellViewModelProtocol {
     
     static func make(for cellViewModels: [ViewModel],
                      reuseIdentifier: String = MovieTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {

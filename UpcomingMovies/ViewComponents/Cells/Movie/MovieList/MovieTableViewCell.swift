@@ -17,7 +17,7 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var voteAverageView: VoteAverageView!
     
-    var viewModel: MovieCellViewModel? {
+    var viewModel: MovieCellViewModelProtocol? {
         didSet {
             setupBindables()
         }

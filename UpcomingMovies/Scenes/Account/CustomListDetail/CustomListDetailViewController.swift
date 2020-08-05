@@ -17,7 +17,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
     
     private var headerView: CustomListDetailHeaderView!
     
-    private var dataSource: SimpleTableViewDataSource<MovieCellViewModel>!
+    private var dataSource: SimpleTableViewDataSource<MovieCellViewModelProtocol>!
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
     /// Used to determinate if the header view is being presented or not.

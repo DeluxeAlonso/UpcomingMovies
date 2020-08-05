@@ -28,7 +28,7 @@ final class MovieListViewModel: MovieListViewModelProtocol {
         return viewState.value.needsPrefetch
     }
     
-    var movieCells: [MovieCellViewModel] {
+    var movieCells: [MovieCellViewModelProtocol] {
         return movies.compactMap { MovieCellViewModel($0) }
     }
     
