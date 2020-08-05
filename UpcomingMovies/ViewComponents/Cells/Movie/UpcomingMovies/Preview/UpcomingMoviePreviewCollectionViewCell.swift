@@ -13,7 +13,7 @@ class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, UpcomingMovi
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var posterImageView: UIImageView!
     
-    var viewModel: UpcomingMovieCellViewModel? {
+    var viewModel: UpcomingMovieCellViewModelProtocol? {
         didSet {
             setupBindables()
         }

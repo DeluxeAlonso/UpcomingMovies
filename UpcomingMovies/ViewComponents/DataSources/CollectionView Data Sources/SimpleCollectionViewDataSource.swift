@@ -40,9 +40,9 @@ class SimpleCollectionViewDataSource<ViewModel>: NSObject, UICollectionViewDataS
 
 }
 
-extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellViewModel {
+extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellViewModelProtocol {
     
-    static func make(for cellViewModels: [UpcomingMovieCellViewModel],
+    static func make(for cellViewModels: [ViewModel],
                      presentationMode: UpcomingMoviesViewController.PresentationMode) -> SimpleCollectionViewDataSource {
         return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
                                               reuseIdentifier: presentationMode.cellIdentifier,

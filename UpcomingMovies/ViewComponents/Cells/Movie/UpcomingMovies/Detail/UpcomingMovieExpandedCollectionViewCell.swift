@@ -15,7 +15,7 @@ class UpcomingMovieExpandedCollectionViewCell: UICollectionViewCell, UpcomingMov
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var posterImageView: UIImageView!
     
-    var viewModel: UpcomingMovieCellViewModel? {
+    var viewModel: UpcomingMovieCellViewModelProtocol? {
         didSet {
             setupBindables()
         }

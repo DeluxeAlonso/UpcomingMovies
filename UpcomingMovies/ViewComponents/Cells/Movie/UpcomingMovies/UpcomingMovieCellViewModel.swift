@@ -9,12 +9,21 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class UpcomingMovieCellViewModel {
+protocol UpcomingMovieCellViewModelProtocol {
     
-    var title: String
-    var releaseDate: String?
-    var posterURL: URL?
-    var backdropURL: URL?
+    var title: String { get }
+    var releaseDate: String? { get }
+    var posterURL: URL? { get }
+    var backdropURL: URL? { get }
+    
+}
+
+final class UpcomingMovieCellViewModel: UpcomingMovieCellViewModelProtocol {
+    
+    let title: String
+    let releaseDate: String?
+    let posterURL: URL?
+    let backdropURL: URL?
     
     init(_ movie: Movie) {
         title = movie.title

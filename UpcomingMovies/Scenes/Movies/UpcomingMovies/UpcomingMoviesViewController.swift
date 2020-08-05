@@ -18,7 +18,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     var viewModel: UpcomingMoviesViewModelProtocol!
     weak var coordinator: UpcomingMoviesCoordinatorProtocol?
     
-    private var dataSource: SimpleCollectionViewDataSource<UpcomingMovieCellViewModel>!
+    private var dataSource: SimpleCollectionViewDataSource<UpcomingMovieCellViewModelProtocol>!
     private var prefetchDataSource: CollectionViewDataSourcePrefetching!
     private var displayedCellsIndexPaths = Set<IndexPath>()
     

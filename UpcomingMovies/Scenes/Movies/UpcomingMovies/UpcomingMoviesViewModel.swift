@@ -24,7 +24,7 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol {
         return viewState.value.currentEntities
     }
     
-    var movieCells: [UpcomingMovieCellViewModel] {
+    var movieCells: [UpcomingMovieCellViewModelProtocol] {
         return movies.compactMap { UpcomingMovieCellViewModel($0) }
     }
     
