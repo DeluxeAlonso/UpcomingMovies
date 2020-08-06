@@ -20,7 +20,7 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol {
     
     var startLoading: Bindable<Bool> = Bindable(false)
     
-    var videoCells: [MovieVideoCellViewModel] {
+    var videoCells: [MovieVideoCellViewModelProtocol] {
         return videos.map { MovieVideoCellViewModel($0) }
     }
     

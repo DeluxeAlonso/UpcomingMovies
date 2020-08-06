@@ -14,7 +14,7 @@ protocol UpcomingMoviesViewModelProtocol {
     var viewState: Bindable<SimpleViewState<Movie>> { get set }
     var startLoading: Bindable<Bool> { get set }
     
-    var movieCells: [UpcomingMovieCellViewModel] { get }
+    var movieCells: [UpcomingMovieCellViewModelProtocol] { get }
     var needsPrefetch: Bool { get }
     
     func getMovies()

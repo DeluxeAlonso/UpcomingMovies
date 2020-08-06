@@ -24,7 +24,7 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol {
         return viewState.value.currentEntities
     }
     
-    var reviewCells: [MovieReviewCellViewModel] {
+    var reviewCells: [MovieReviewCellViewModelProtocol] {
         let reviews = viewState.value.currentEntities
         return reviews.map { MovieReviewCellViewModel($0) }
     }

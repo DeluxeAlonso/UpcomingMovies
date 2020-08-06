@@ -16,7 +16,7 @@ protocol MovieReviewsViewModelProtocol {
     var viewState: Bindable<SimpleViewState<Review>> { get }
     var startLoading: Bindable<Bool> { get }
     
-    var reviewCells: [MovieReviewCellViewModel] { get }
+    var reviewCells: [MovieReviewCellViewModelProtocol] { get }
     var needsPrefetch: Bool { get }
     
     func selectedReview(at index: Int) -> Review

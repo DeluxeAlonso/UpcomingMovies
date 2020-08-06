@@ -17,7 +17,7 @@ protocol MovieListViewModelProtocol {
     var needsPrefetch: Bool { get }
     
     var displayTitle: String? { get set }
-    var movieCells: [MovieCellViewModel] { get }
+    var movieCells: [MovieCellViewModelProtocol] { get }
 
     func getMovies()
     func refreshMovies()

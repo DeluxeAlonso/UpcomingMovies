@@ -11,6 +11,6 @@ import UIKit
 protocol UpcomingMovieCollectionViewCell {
     
     var posterImageView: UIImageView! { get set }
-    var viewModel: UpcomingMovieCellViewModel? { get set }
+    var viewModel: UpcomingMovieCellViewModelProtocol? { get set }
     
 }

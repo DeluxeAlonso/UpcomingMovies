@@ -15,7 +15,7 @@ class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisp
     
     static var storyboardName = "MovieDetail"
     
-    private var dataSource: SimpleTableViewDataSource<MovieVideoCellViewModel>!
+    private var dataSource: SimpleTableViewDataSource<MovieVideoCellViewModelProtocol>!
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
     var loaderView: RadarView!
