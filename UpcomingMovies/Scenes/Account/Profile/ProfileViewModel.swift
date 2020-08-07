@@ -17,7 +17,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     var reloadAccountInfo: (() -> Void)?
     
-    var userInfoCell: ProfileAccountInforCellViewModel? {
+    var userInfoCell: ProfileAccountInforCellViewModelProtocol? {
         guard let userAccount = userAccount else { return nil }
         return ProfileAccountInforCellViewModel(userAccount: userAccount)
     }

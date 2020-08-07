@@ -13,7 +13,7 @@ class ProfileAccountInfoTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     
-    var viewModel: ProfileAccountInforCellViewModel? {
+    var viewModel: ProfileAccountInforCellViewModelProtocol? {
         didSet {
             setupBindables()
         }
