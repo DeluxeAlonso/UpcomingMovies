@@ -20,7 +20,7 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
         return viewState.value.currentEntities
     }
     
-    var movieCells: [SavedMovieCellViewModel] {
+    var movieCells: [SavedMovieCellViewModelProtocol] {
         return movies.compactMap { SavedMovieCellViewModel($0) }
     }
     

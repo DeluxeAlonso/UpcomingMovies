@@ -13,7 +13,7 @@ protocol SavedMoviesViewModelProtocol {
     
     var displayTitle: String? { get set }
     
-    var movieCells: [SavedMovieCellViewModel] { get }
+    var movieCells: [SavedMovieCellViewModelProtocol] { get }
     var needsPrefetch: Bool { get }
     
     var startLoading: Bindable<Bool> { get }
