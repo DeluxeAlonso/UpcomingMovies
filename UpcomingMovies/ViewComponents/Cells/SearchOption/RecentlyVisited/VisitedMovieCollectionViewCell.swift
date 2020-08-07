@@ -12,7 +12,7 @@ class VisitedMovieCollectionViewCell: UICollectionViewCell, Animatable {
     
     @IBOutlet weak var posterImageView: UIImageView!
     
-    var viewModel: VisitedMovieCellViewModel? {
+    var viewModel: VisitedMovieCellViewModelProtocol? {
         didSet {
             setupBindables()
         }

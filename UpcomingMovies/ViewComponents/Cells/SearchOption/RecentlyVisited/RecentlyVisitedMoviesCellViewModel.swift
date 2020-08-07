@@ -8,11 +8,17 @@
 
 import Foundation
 
-final class RecentlyVisitedMoviesCellViewModel {
+protocol RecentlyVisitedMoviesCellViewModelProtocol {
     
-    var visitedMovieCells: [VisitedMovieCellViewModel]
+    var visitedMovieCells: [VisitedMovieCellViewModelProtocol] { get }
     
-    init(visitedMovieCells: [VisitedMovieCellViewModel]) {
+}
+
+final class RecentlyVisitedMoviesCellViewModel: RecentlyVisitedMoviesCellViewModelProtocol {
+    
+    var visitedMovieCells: [VisitedMovieCellViewModelProtocol]
+    
+    init(visitedMovieCells: [VisitedMovieCellViewModelProtocol]) {
         self.visitedMovieCells = visitedMovieCells
     }
     

@@ -11,9 +11,9 @@ import UpcomingMoviesDomain
 
 protocol ProfileViewModelProtocol {
     
-    var userInfoCell: ProfileAccountInforCellViewModel? { get }
-    var collectionOptionsCells: [ProfileSelectableOptionCellViewModel] { get }
-    var groupOptionsCells: [ProfileSelectableOptionCellViewModel] { get }
+    var userInfoCell: ProfileAccountInforCellViewModelProtocol? { get }
+    var collectionOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] { get }
+    var groupOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] { get }
     
     var reloadAccountInfo: (() -> Void)? { get set }
     

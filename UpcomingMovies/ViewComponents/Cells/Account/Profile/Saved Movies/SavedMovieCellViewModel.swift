@@ -9,7 +9,14 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class SavedMovieCellViewModel {
+protocol SavedMovieCellViewModelProtocol {
+    
+    var title: String { get }
+    var backdropURL: URL? { get }
+    
+}
+
+final class SavedMovieCellViewModel: SavedMovieCellViewModelProtocol {
     
     let title: String
     let backdropURL: URL?

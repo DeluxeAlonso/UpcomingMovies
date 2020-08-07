@@ -16,7 +16,7 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
     
     static var storyboardName = "Account"
     
-    private var dataSource: SimpleCollectionViewDataSource<SavedMovieCellViewModel>!
+    private var dataSource: SimpleCollectionViewDataSource<SavedMovieCellViewModelProtocol>!
     private var prefetchDataSource: CollectionViewDataSourcePrefetching!
     
     var loaderView: RadarView!

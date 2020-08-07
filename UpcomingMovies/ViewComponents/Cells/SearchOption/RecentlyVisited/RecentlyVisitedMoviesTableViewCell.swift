@@ -21,7 +21,7 @@ class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
     
     weak var delegate: RecentlyVisitedMoviesTableViewCellDelegate?
     
-    var viewModel: RecentlyVisitedMoviesCellViewModel? {
+    var viewModel: RecentlyVisitedMoviesCellViewModelProtocol? {
         didSet {
             setupBindables()
         }

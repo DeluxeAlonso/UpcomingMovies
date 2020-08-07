@@ -15,7 +15,7 @@ protocol CustomListsViewModelProtocol {
     var viewState: Bindable<SimpleViewState<List>> { get }
     
     var lists: [List] { get }
-    var listCells: [CustomListCellViewModel] { get }
+    var listCells: [CustomListCellViewModelProtocol] { get }
     
     func list(at index: Int) -> List
     

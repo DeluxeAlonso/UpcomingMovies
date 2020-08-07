@@ -12,7 +12,7 @@ class ProfileSelectableOptionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titlelabel: UILabel!
     
-    var viewModel: ProfileSelectableOptionCellViewModel? {
+    var viewModel: ProfileSelectableOptionCellViewModelProtocol? {
         didSet {
             setupBindables()
         }

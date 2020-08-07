@@ -17,16 +17,16 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     var reloadAccountInfo: (() -> Void)?
     
-    var userInfoCell: ProfileAccountInforCellViewModel? {
+    var userInfoCell: ProfileAccountInforCellViewModelProtocol? {
         guard let userAccount = userAccount else { return nil }
         return ProfileAccountInforCellViewModel(userAccount: userAccount)
     }
     
-    var collectionOptionsCells: [ProfileSelectableOptionCellViewModel] {
+    var collectionOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] {
         return factory.collectionOptions.map { ProfileSelectableOptionCellViewModel($0) }
     }
     
-    var groupOptionsCells: [ProfileSelectableOptionCellViewModel] {
+    var groupOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] {
         return factory.groupOptions.map { ProfileSelectableOptionCellViewModel($0) }
     }
     

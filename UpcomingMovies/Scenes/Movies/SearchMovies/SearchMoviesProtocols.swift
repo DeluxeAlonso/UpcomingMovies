@@ -31,7 +31,7 @@ protocol SearchMoviesResultViewModelProtocol {
     
     var viewState: Bindable<SearchMoviesResultViewState> { get }
     
-    var recentSearchCells: [RecentSearchCellViewModel] { get }
+    var recentSearchCells: [RecentSearchCellViewModelProtocol] { get }
     var movieCells: [MovieCellViewModelProtocol] { get }
     
     func searchMovies(withSearchText searchText: String)
@@ -62,17 +62,17 @@ protocol SearchOptionsViewModelProtocol {
     var selectedMovieGenre: Bindable<(Int?, String?)> { get }
     var selectedRecentlyVisitedMovie: ((Int, String) -> Void)? { get set }
     
-    var visitedMovieCells: [VisitedMovieCellViewModel] { get }
-    var genreCells: [GenreSearchOptionCellViewModel] { get }
+    var visitedMovieCells: [VisitedMovieCellViewModelProtocol] { get }
+    var genreCells: [GenreSearchOptionCellViewModelProtocol] { get }
     
-    var defaultSearchOptionsCells: [DefaultSearchOptionCellViewModel] { get }
+    var defaultSearchOptionsCells: [DefaultSearchOptionCellViewModelProtocol] { get }
     
     func loadGenres()
     
     func section(at index: Int) -> SearchOptionsSection
     func sectionIndex(for section: SearchOptionsSection) -> Int?
     
-    func buildRecentlyVisitedMoviesCell() -> RecentlyVisitedMoviesCellViewModel
+    func buildRecentlyVisitedMoviesCell() -> RecentlyVisitedMoviesCellViewModelProtocol
     
     func getDefaultSearchSelection(by index: Int)
     func getMovieGenreSelection(by index: Int)

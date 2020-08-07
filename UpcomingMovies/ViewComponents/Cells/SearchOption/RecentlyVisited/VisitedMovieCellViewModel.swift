@@ -9,7 +9,13 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class VisitedMovieCellViewModel {
+protocol VisitedMovieCellViewModelProtocol {
+    
+    var posterURL: URL? { get }
+    
+}
+
+final class VisitedMovieCellViewModel: VisitedMovieCellViewModelProtocol {
     
     var posterURL: URL?
     

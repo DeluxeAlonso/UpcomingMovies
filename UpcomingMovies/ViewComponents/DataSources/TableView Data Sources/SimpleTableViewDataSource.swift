@@ -80,7 +80,7 @@ extension SimpleTableViewDataSource where ViewModel == MovieReviewCellViewModelP
     
 }
 
-extension SimpleTableViewDataSource where ViewModel == CustomListCellViewModel {
+extension SimpleTableViewDataSource where ViewModel == CustomListCellViewModelProtocol {
     
     static func make(for cellViewModels: [ViewModel],
                      reuseIdentifier: String = CustomListTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {

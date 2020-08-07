@@ -10,7 +10,7 @@ import Foundation
 import UpcomingMoviesDomain
 
 final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
-    
+
     private var interactor: SearchOptionsInteractorProtocol
     
     private var genres: [Genre] = []
@@ -24,17 +24,17 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     var selectedMovieGenre: Bindable<(Int?, String?)> = Bindable((nil, nil))
     var selectedRecentlyVisitedMovie: ((Int, String) -> Void)?
     
-    var visitedMovieCells: [VisitedMovieCellViewModel] {
+    var visitedMovieCells: [VisitedMovieCellViewModelProtocol] {
         let visited = interactor.getMovieVisits()
         return visited.map { VisitedMovieCellViewModel(movieVisit: $0) }
     }
     
-    var genreCells: [GenreSearchOptionCellViewModel] {
+    var genreCells: [GenreSearchOptionCellViewModelProtocol] {
         return genres.map { GenreSearchOptionCellViewModel(genre: $0) }
     }
     
     private let defaultSearchOptions: [DefaultSearchOption] = [.popular, .topRated]
-    var defaultSearchOptionsCells: [DefaultSearchOptionCellViewModel] {
+    var defaultSearchOptionsCells: [DefaultSearchOptionCellViewModelProtocol] {
         return defaultSearchOptions.map { DefaultSearchOptionCellViewModel(defaultSearchOption: $0) }
     }
     
@@ -99,7 +99,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
         return sections.firstIndex(of: section)
     }
     
-    func buildRecentlyVisitedMoviesCell() -> RecentlyVisitedMoviesCellViewModel {
+    func buildRecentlyVisitedMoviesCell() -> RecentlyVisitedMoviesCellViewModelProtocol {
         return RecentlyVisitedMoviesCellViewModel(visitedMovieCells: visitedMovieCells)
     }
     

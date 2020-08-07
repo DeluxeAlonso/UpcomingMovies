@@ -14,7 +14,7 @@ class SavedMovieCollectionViewCell: CollectionViewSlantedCell {
     @IBOutlet weak var backdropImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    var viewModel: SavedMovieCellViewModel? {
+    var viewModel: SavedMovieCellViewModelProtocol? {
         didSet {
             setupBindables()
         }

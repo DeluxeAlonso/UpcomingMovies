@@ -14,7 +14,7 @@ class RecentSearchTableViewCell: UITableViewCell {
     
     static let identifier = "RecentSearchCell"
     
-    var viewModel: RecentSearchCellViewModel? {
+    var viewModel: RecentSearchCellViewModelProtocol? {
         didSet {
             setupBindables()
         }

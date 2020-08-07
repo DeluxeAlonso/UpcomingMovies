@@ -24,7 +24,7 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
         return viewState.value.currentEntities
     }
     
-    var listCells: [CustomListCellViewModel] {
+    var listCells: [CustomListCellViewModelProtocol] {
         return lists.map { CustomListCellViewModel($0) }
     }
     

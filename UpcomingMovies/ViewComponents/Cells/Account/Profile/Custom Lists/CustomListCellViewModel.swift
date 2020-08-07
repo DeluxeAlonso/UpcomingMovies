@@ -9,7 +9,15 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class CustomListCellViewModel {
+protocol CustomListCellViewModelProtocol {
+    
+    var name: String { get }
+    var description: String? { get }
+    var movieCount: Int { get }
+    
+}
+
+final class CustomListCellViewModel: CustomListCellViewModelProtocol {
     
     let name: String
     let description: String?

@@ -9,7 +9,14 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class GenreSearchOptionCellViewModel {
+protocol GenreSearchOptionCellViewModelProtocol {
+    
+    var id: Int { get }
+    var name: String? { get }
+    
+}
+
+final class GenreSearchOptionCellViewModel: GenreSearchOptionCellViewModelProtocol {
     
     var id: Int
     var name: String?
