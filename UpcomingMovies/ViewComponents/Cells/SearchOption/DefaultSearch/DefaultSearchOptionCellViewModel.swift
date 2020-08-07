@@ -8,7 +8,14 @@
 
 import Foundation
 
-final class DefaultSearchOptionCellViewModel {
+protocol DefaultSearchOptionCellViewModelProtocol {
+    
+    var title: String? { get }
+    var subtitle: String? { get }
+    
+}
+
+final class DefaultSearchOptionCellViewModel: DefaultSearchOptionCellViewModelProtocol {
     
     var title: String?
     var subtitle: String?

@@ -63,9 +63,9 @@ protocol SearchOptionsViewModelProtocol {
     var selectedRecentlyVisitedMovie: ((Int, String) -> Void)? { get set }
     
     var visitedMovieCells: [VisitedMovieCellViewModel] { get }
-    var genreCells: [GenreSearchOptionCellViewModel] { get }
+    var genreCells: [GenreSearchOptionCellViewModelProtocol] { get }
     
-    var defaultSearchOptionsCells: [DefaultSearchOptionCellViewModel] { get }
+    var defaultSearchOptionsCells: [DefaultSearchOptionCellViewModelProtocol] { get }
     
     func loadGenres()
     

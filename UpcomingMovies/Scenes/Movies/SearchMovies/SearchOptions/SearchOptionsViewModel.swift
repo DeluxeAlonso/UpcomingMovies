@@ -29,12 +29,12 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
         return visited.map { VisitedMovieCellViewModel(movieVisit: $0) }
     }
     
-    var genreCells: [GenreSearchOptionCellViewModel] {
+    var genreCells: [GenreSearchOptionCellViewModelProtocol] {
         return genres.map { GenreSearchOptionCellViewModel(genre: $0) }
     }
     
     private let defaultSearchOptions: [DefaultSearchOption] = [.popular, .topRated]
-    var defaultSearchOptionsCells: [DefaultSearchOptionCellViewModel] {
+    var defaultSearchOptionsCells: [DefaultSearchOptionCellViewModelProtocol] {
         return defaultSearchOptions.map { DefaultSearchOptionCellViewModel(defaultSearchOption: $0) }
     }
     
