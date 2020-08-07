@@ -15,7 +15,7 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
     
     static var storyboardName = "CustomLists"
     
-    private var dataSource: SimpleTableViewDataSource<CustomListCellViewModel>!
+    private var dataSource: SimpleTableViewDataSource<CustomListCellViewModelProtocol>!
     
     var loaderView: RadarView!
     
