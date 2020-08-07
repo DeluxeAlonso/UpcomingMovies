@@ -23,7 +23,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
         return viewState.value.currentSearchedMovies
     }
     
-    var recentSearchCells: [RecentSearchCellViewModel] {
+    var recentSearchCells: [RecentSearchCellViewModelProtocol] {
         let searches = interactor.getMovieSearches().prefix(5)
         return searches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
     }
