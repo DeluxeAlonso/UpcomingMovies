@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -198,9 +198,13 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MtO-yo-IcQ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="2"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="MtO-yo-IcQ" firstAttribute="leading" secondItem="ka7-4u-VNh" secondAttribute="leading" id="4uA-LL-xgX"/>
                             <constraint firstItem="bmq-Bw-6Mp" firstAttribute="top" secondItem="hPL-PY-RdK" secondAttribute="bottom" id="7zd-rM-Gnd"/>
                             <constraint firstItem="bmq-Bw-6Mp" firstAttribute="leading" secondItem="ka7-4u-VNh" secondAttribute="leading" id="GiH-p5-cSJ"/>
                             <constraint firstItem="hPL-PY-RdK" firstAttribute="top" secondItem="Ig2-Lo-J6s" secondAttribute="top" id="KaN-yt-Ml7"/>
@@ -208,6 +212,8 @@
                             <constraint firstItem="bmq-Bw-6Mp" firstAttribute="bottom" secondItem="Ig2-Lo-J6s" secondAttribute="bottom" id="Zs5-dK-FRn"/>
                             <constraint firstItem="bmq-Bw-6Mp" firstAttribute="trailing" secondItem="ka7-4u-VNh" secondAttribute="trailing" id="Zww-kz-iAA"/>
                             <constraint firstAttribute="trailing" secondItem="hPL-PY-RdK" secondAttribute="trailing" id="aCG-hP-xao"/>
+                            <constraint firstAttribute="trailing" secondItem="MtO-yo-IcQ" secondAttribute="trailing" id="dvC-M5-2TU"/>
+                            <constraint firstItem="MtO-yo-IcQ" firstAttribute="top" secondItem="Ig2-Lo-J6s" secondAttribute="top" id="x3F-EO-2Er"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ig2-Lo-J6s"/>
                     </view>
@@ -215,6 +221,7 @@
                     <connections>
                         <outlet property="backButton" destination="Q2P-q1-WON" id="Ygh-y9-o9o"/>
                         <outlet property="forwardButton" destination="Mqd-ga-f3P" id="Y3O-FY-CBa"/>
+                        <outlet property="progressView" destination="MtO-yo-IcQ" id="p2e-6U-P2J"/>
                         <outlet property="reloadButton" destination="7vP-vD-1OC" id="Ry0-EB-V4h"/>
                         <outlet property="webView" destination="hPL-PY-RdK" id="KVC-Uo-hk0"/>
                     </connections>
