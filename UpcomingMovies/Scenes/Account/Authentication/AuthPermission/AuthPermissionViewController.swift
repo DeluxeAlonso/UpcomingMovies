@@ -18,6 +18,7 @@ protocol AuthPermissionViewControllerDelegate: class {
 
 class AuthPermissionViewController: UIViewController, Storyboarded {
     
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var forwardButton: UIBarButtonItem!
@@ -30,7 +31,7 @@ class AuthPermissionViewController: UIViewController, Storyboarded {
     var viewModel: AuthPermissionViewModelProtocol?
     weak var coordinator: AuthPermissionCoordinatorProtocol?
     weak var delegate: AuthPermissionViewControllerDelegate?
-
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
