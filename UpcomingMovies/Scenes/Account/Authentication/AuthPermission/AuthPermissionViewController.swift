@@ -26,6 +26,7 @@ class AuthPermissionViewController: UIViewController, Storyboarded {
     
     static var storyboardName = "Account"
     
+    private var estimatedProgressObserver: NSKeyValueObservation!
     private var webViewNavigationDelegate: AuthPermissionWebViewNavigationDelegate!
     
     var viewModel: AuthPermissionViewModelProtocol?
@@ -33,7 +34,7 @@ class AuthPermissionViewController: UIViewController, Storyboarded {
     weak var delegate: AuthPermissionViewControllerDelegate?
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -64,10 +65,16 @@ class AuthPermissionViewController: UIViewController, Storyboarded {
             self.checkNavigationButtonsState()
         }
         
+        let didUpdateProgress: (WKWebView, Any) -> Void = { [unowned self] webView, _ in
+            self.updateProgressView(with: webView.estimatedProgress)
+        }
+        
         webViewNavigationDelegate = AuthPermissionWebViewNavigation(didValidateCallback: didValidateCallback,
                                                                    didFinishNavigation: didFinishNavigation)
         webView.navigationDelegate = webViewNavigationDelegate
         webView.allowsBackForwardNavigationGestures = true
+        estimatedProgressObserver = webView.observe(\.estimatedProgress, options: [.new],
+                                                   changeHandler: didUpdateProgress)
     }
     
     // MARK: - Reactive Behaviour
@@ -90,6 +97,12 @@ class AuthPermissionViewController: UIViewController, Storyboarded {
     private func checkNavigationButtonsState() {
         backButton.isEnabled = webView.canGoBack
         forwardButton.isEnabled = webView.canGoForward
+    }
+    
+    private func updateProgressView(with value: Double) {
+        progressView.progress = Float(value)
+        
+        value == 1.0 ? progressView.fadeOut(0.5) : progressView.fadeIn(0.0)
     }
     
     // MARK: - Selectors
