@@ -57,7 +57,7 @@ extension TransitioningAnimator: UIViewControllerAnimatedTransitioning {
         }
         
         guard let transitionContainerView = transitionable.transitionContainerView,
-           var transitionContainerViewFrame = transitionContainerView.absoluteFrame else { return }
+            var transitionContainerViewFrame = transitionContainerView.absoluteFrame(relativeTo: transitionable.view) else { return }
         
         transitionContainerViewFrame.origin.x += verticalSafeAreaOffset
         

@@ -11,10 +11,10 @@ import UIKit
 extension UIView {
     
     /**
-     * Frame of the view relative to the app window.
+     * Frame of the view relative to another view.
      */
-    var absoluteFrame: CGRect? {
-        return self.superview?.convert(self.frame, to: nil)
+    func absoluteFrame(relativeTo view: UIView?) -> CGRect? {
+        return convert(bounds, to: view)
     }
     
     /**
