@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Transitionable: class {
+protocol Transitionable: UIViewController {
     
     var transitionContainerView: UIView! { get }
     
