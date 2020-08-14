@@ -27,5 +27,43 @@ class CustomListsTests: XCTestCase {
         mockInteractor = nil
         viewModelToTest = nil
     }
+    
+    func testGetCustomListsEmpty() {
+        //Arrange
+        mockInteractor.getCustomListsResult = Result.success([])
+        //Act
+        viewModelToTest.getCustomLists()
+        //Assert
+        XCTAssertEqual(viewModelToTest.viewState.value, .empty)
+    }
+    
+    func testGetCustomListsPopulated() {
+        //Arrange
+        mockInteractor.getCustomListsResult = Result.success([List.with(id: "1"), List.with(id: "2")])
+        //Act
+        viewModelToTest.getCustomLists()
+        mockInteractor.getCustomListsResult = Result.success([])
+        viewModelToTest.getCustomLists()
+        //Assert
+        XCTAssertEqual(viewModelToTest.viewState.value, .populated([List.with(id: "1"), List.with(id: "2")]))
+    }
+    
+    func testGetCustomListsPaging() {
+        //Arrange
+        mockInteractor.getCustomListsResult = Result.success([List.with(id: "1"), List.with(id: "2")])
+        //Act
+        viewModelToTest.getCustomLists()
+        //Assert
+        XCTAssertEqual(viewModelToTest.viewState.value, .paging([List.with(id: "1"), List.with(id: "2")], next: 2))
+    }
+    
+    func testGetCustomListsError() {
+        //Arrange
+        mockInteractor.getCustomListsResult = Result.failure(APIError.badRequest)
+        //Act
+        viewModelToTest.getCustomLists()
+        //Assert
+        XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
+    }
 
 }
