@@ -9,9 +9,9 @@
 import Foundation
 
 public struct ImagesConfiguration {
-    public let baseURLString: String
-    public let backdropSizes: [String]
-    public let posterSizes: [String]
+    public private(set) var baseURLString: String
+    public private(set) var backdropSizes: [String]
+    public private(set) var posterSizes: [String]
     
     public init(baseURLString: String, backdropSizes: [String], posterSizes: [String]) {
         self.baseURLString = baseURLString

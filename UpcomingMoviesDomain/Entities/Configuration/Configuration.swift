@@ -9,7 +9,7 @@
 import Foundation
 
 public struct Configuration {
-    public let imagesConfiguration: ImagesConfiguration
+    public private(set) var imagesConfiguration: ImagesConfiguration
     
     public init(imagesConfiguration: ImagesConfiguration) {
         self.imagesConfiguration = imagesConfiguration
