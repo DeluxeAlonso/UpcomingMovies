@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UpcomingMoviesDomain
 
 class ConfigurationClient: APIClient {
     let session: URLSession
@@ -21,9 +20,9 @@ class ConfigurationClient: APIClient {
         self.init(configuration: .default)
     }
     
-    func getAPIConfiguration(completion: @escaping (Result<Configuration, APIError>) -> Void) {
-        fetch(with: ConfigurationProvider.getAPIConfiguration.request, decode: { json -> Configuration? in
-            guard let configuration = json as? Configuration else { return nil }
+    func getImagesConfiguration(completion: @escaping (Result<ImagesConfigurationResult, APIError>) -> Void) {
+        fetch(with: ConfigurationProvider.getAPIConfiguration.request, decode: { json -> ImagesConfigurationResult? in
+            guard let configuration = json as? ImagesConfigurationResult else { return nil }
             return configuration
         }, completion: completion)
     }

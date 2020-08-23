@@ -21,17 +21,49 @@ struct ImagesConfiguration: Decodable {
     }
 }
 
-struct Configuration: Decodable {
-    let images: ImagesConfiguration
+struct ImagesConfigurationResult: Decodable {
+    let result: ImagesConfiguration
+    
+    private enum CodingKeys: String, CodingKey {
+        case result = "images"
+    }
+}
+
+struct SortConfigurationResult {
+    let movieSortKeys: [String]
+}
+
+struct Configuration {
+    let imagesConfiguration: ImagesConfigurationResult
+    let sortConfiguration: SortConfigurationResult
+    
+    var baseURLString: String {
+        return imagesConfiguration.result.baseURLString
+    }
+    
+    var backdropSizes: [String] {
+        return imagesConfiguration.result.backdropSizes
+    }
+    
+    var posterSizes: [String] {
+        return imagesConfiguration.result.posterSizes
+    }
+    
+    var movieSortKeys: [String] {
+        return sortConfiguration.movieSortKeys
+    }
 }
 
 extension Configuration: DomainConvertible {
     
     func asDomain() -> UpcomingMoviesDomain.Configuration {
-        let imagesConfiguration = UpcomingMoviesDomain.ImagesConfiguration(baseURLString: images.baseURLString,
-                                                                           backdropSizes: images.backdropSizes,
-                                                                           posterSizes: images.posterSizes)
-        return UpcomingMoviesDomain.Configuration(imagesConfiguration: imagesConfiguration)
+        let imagesConfiguration = UpcomingMoviesDomain.ImagesConfiguration(baseURLString: baseURLString,
+                                                                           backdropSizes: backdropSizes,
+                                                                           posterSizes: posterSizes)
+        let sortConfiguration = UpcomingMoviesDomain.SortConfiguration(movieSortKeys: movieSortKeys)
+        
+        return UpcomingMoviesDomain.Configuration(imagesConfiguration: imagesConfiguration,
+                                                  sortConfiguration: sortConfiguration)
     }
     
 }

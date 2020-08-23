@@ -10,10 +10,6 @@ import Foundation
 
 public protocol MovieUseCaseProtocol {
     
-//    func getMovies(page: Int,
-//                   movieListFilter: MovieListFilter,
-//                   completion: @escaping (Result<[Movie], Error>) -> Void)
-    
     func getUpcomingMovies(page: Int,
                            completion: @escaping (Result<[Movie], Error>) -> Void)
     

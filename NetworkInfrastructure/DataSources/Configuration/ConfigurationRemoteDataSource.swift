@@ -19,9 +19,12 @@ final class ConfigurationRemoteDataSource: ConfigurationRemoteDataSourceProtocol
     }
     
     func getConfiguration(completion: @escaping (Result<UpcomingMoviesDomain.Configuration, Error>) -> Void) {
-        client.getAPIConfiguration { result in
+        let sortConfigurationResult = SortConfigurationResult(movieSortKeys: [])
+        client.getImagesConfiguration { result in
             switch result {
-            case .success(let configuration):
+            case .success(let imagesConfigurationResult):
+                let configuration = Configuration(imagesConfiguration: imagesConfigurationResult,
+                                                  sortConfiguration: sortConfigurationResult)
                 completion(.success(configuration.asDomain()))
             case .failure(let error):
                 completion(.failure(error))
