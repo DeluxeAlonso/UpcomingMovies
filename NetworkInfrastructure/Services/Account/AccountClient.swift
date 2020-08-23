@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UpcomingMoviesDomain
 
 class AccountClient: APIClient {
     
