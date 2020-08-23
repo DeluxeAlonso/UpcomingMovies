@@ -29,8 +29,13 @@ struct ImagesConfigurationResult: Decodable {
     }
 }
 
+struct SortConfigurationResult {
+    let movieSortKeys: [String]
+}
+
 struct Configuration {
     let imagesConfiguration: ImagesConfigurationResult
+    let sortConfiguration: SortConfigurationResult
     
     var baseURLString: String {
         return imagesConfiguration.result.baseURLString
@@ -43,6 +48,10 @@ struct Configuration {
     var posterSizes: [String] {
         return imagesConfiguration.result.posterSizes
     }
+    
+    var movieSortKeys: [String] {
+        return sortConfiguration.movieSortKeys
+    }
 }
 
 extension Configuration: DomainConvertible {
@@ -51,8 +60,10 @@ extension Configuration: DomainConvertible {
         let imagesConfiguration = UpcomingMoviesDomain.ImagesConfiguration(baseURLString: baseURLString,
                                                                            backdropSizes: backdropSizes,
                                                                            posterSizes: posterSizes)
+        let sortConfiguration = UpcomingMoviesDomain.SortConfiguration(movieSortKeys: movieSortKeys)
+        
         return UpcomingMoviesDomain.Configuration(imagesConfiguration: imagesConfiguration,
-                                                  sortConfiguration: SortConfiguration(movieSortKeys: []))
+                                                  sortConfiguration: sortConfiguration)
     }
     
 }
