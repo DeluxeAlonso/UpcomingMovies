@@ -9,9 +9,13 @@
 import Foundation
 
 public struct Configuration {
-    public private(set) var imagesConfiguration: ImagesConfiguration
     
-    public init(imagesConfiguration: ImagesConfiguration) {
+    public private(set) var imagesConfiguration: ImagesConfiguration
+    public private(set) var sortConfiguration: SortConfiguration
+    
+    public init(imagesConfiguration: ImagesConfiguration, sortConfiguration: SortConfiguration) {
         self.imagesConfiguration = imagesConfiguration
+        self.sortConfiguration = sortConfiguration
     }
+    
 }

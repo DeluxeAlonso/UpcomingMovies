@@ -21,17 +21,38 @@ struct ImagesConfiguration: Decodable {
     }
 }
 
-struct Configuration: Decodable {
-    let images: ImagesConfiguration
+struct ImagesConfigurationResult: Decodable {
+    let result: ImagesConfiguration
+    
+    private enum CodingKeys: String, CodingKey {
+        case result = "images"
+    }
+}
+
+struct Configuration {
+    let imagesConfiguration: ImagesConfigurationResult
+    
+    var baseURLString: String {
+        return imagesConfiguration.result.baseURLString
+    }
+    
+    var backdropSizes: [String] {
+        return imagesConfiguration.result.backdropSizes
+    }
+    
+    var posterSizes: [String] {
+        return imagesConfiguration.result.posterSizes
+    }
 }
 
 extension Configuration: DomainConvertible {
     
     func asDomain() -> UpcomingMoviesDomain.Configuration {
-        let imagesConfiguration = UpcomingMoviesDomain.ImagesConfiguration(baseURLString: images.baseURLString,
-                                                                           backdropSizes: images.backdropSizes,
-                                                                           posterSizes: images.posterSizes)
-        return UpcomingMoviesDomain.Configuration(imagesConfiguration: imagesConfiguration)
+        let imagesConfiguration = UpcomingMoviesDomain.ImagesConfiguration(baseURLString: baseURLString,
+                                                                           backdropSizes: backdropSizes,
+                                                                           posterSizes: posterSizes)
+        return UpcomingMoviesDomain.Configuration(imagesConfiguration: imagesConfiguration,
+                                                  sortConfiguration: SortConfiguration(movieSortKeys: []))
     }
     
 }

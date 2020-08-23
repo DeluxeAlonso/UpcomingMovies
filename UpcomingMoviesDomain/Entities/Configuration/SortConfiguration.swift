@@ -10,7 +10,7 @@ import Foundation
 
 public struct SortConfiguration {
     
-    private let movieSortKeys: [String]
+    public private(set) var movieSortKeys: [String]
     
     public init(movieSortKeys: [String]) {
         self.movieSortKeys = movieSortKeys

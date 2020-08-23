@@ -9,6 +9,7 @@
 import Foundation
 
 public struct ImagesConfiguration {
+    
     public private(set) var baseURLString: String
     public private(set) var backdropSizes: [String]
     public private(set) var posterSizes: [String]
@@ -18,4 +19,5 @@ public struct ImagesConfiguration {
         self.backdropSizes = backdropSizes
         self.posterSizes = posterSizes
     }
+    
 }
