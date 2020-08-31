@@ -1,5 +1,5 @@
 //
-//  UpcomingMovieCollectionViewCell.swift
+//  UpcomingMovieCollectionViewCellProtocol.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 3/9/19.
