@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpcomingMovieExpandedCollectionViewCell: UICollectionViewCell, UpcomingMovieCollectionViewCell {
+class UpcomingMovieExpandedCollectionViewCell: UICollectionViewCell, UpcomingMovieCollectionViewCellProtocol {
     
     @IBOutlet weak var backdropImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

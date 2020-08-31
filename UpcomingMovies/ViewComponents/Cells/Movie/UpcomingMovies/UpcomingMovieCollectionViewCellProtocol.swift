@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol UpcomingMovieCollectionViewCell {
+protocol UpcomingMovieCollectionViewCellProtocol {
     
     var posterImageView: UIImageView! { get set }
     var viewModel: UpcomingMovieCellViewModelProtocol? { get set }

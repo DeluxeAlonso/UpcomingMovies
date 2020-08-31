@@ -47,7 +47,7 @@ extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellVie
         return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
                                               reuseIdentifier: presentationMode.cellIdentifier,
                                               cellConfigurator: { (viewModel, cell) in
-                                                var cell = cell as! UpcomingMovieCollectionViewCell
+                                                var cell = cell as! UpcomingMovieCollectionViewCellProtocol
                                                 cell.viewModel = viewModel
         })
     }
