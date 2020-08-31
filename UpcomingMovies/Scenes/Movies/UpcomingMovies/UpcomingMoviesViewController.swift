@@ -192,7 +192,7 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cellAttributes = collectionView.layoutAttributesForItem(at: indexPath),
-            let cell = collectionView.cellForItem(at: indexPath) as? UpcomingMovieCollectionViewCell else {
+            let cell = collectionView.cellForItem(at: indexPath) as? UpcomingMovieCollectionViewCellProtocol else {
                 return
         }
         
