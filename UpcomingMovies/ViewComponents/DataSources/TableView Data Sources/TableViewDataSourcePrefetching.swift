@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewDataSourcePrefetching: NSObject, DataSourcePrefetching, UITableViewDataSourcePrefetching {
+final class TableViewDataSourcePrefetching: NSObject, DataSourcePrefetching, UITableViewDataSourcePrefetching {
     
     var cellCount: Int
     var needsPrefetch: Bool

@@ -14,7 +14,7 @@ enum MovieDetailInfo {
     case partial(movieId: Int, movieTitle: String)
 }
 
-class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol {
+final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?

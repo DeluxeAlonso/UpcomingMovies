@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSource {
+final class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSource {
     
     typealias CellConfigurator = (ViewModel, UITableViewCell) -> Void
     
