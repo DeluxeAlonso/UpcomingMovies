@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SimpleCollectionViewDataSource<ViewModel>: NSObject, UICollectionViewDataSource {
+final class SimpleCollectionViewDataSource<ViewModel>: NSObject, UICollectionViewDataSource {
     
     typealias CellConfigurator = (ViewModel, UICollectionViewCell) -> Void
     

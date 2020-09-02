@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SectionedCollectionViewDataSource: NSObject {
+final class SectionedCollectionViewDataSource: NSObject {
     
     private let dataSources: [UICollectionViewDataSource]
     
