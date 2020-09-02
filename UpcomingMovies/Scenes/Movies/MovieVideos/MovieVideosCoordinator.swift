@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieVideosCoordinator: NSObject, Coordinator, MovieVideosCoordinatorProtocol {
+final class MovieVideosCoordinator: NSObject, Coordinator, MovieVideosCoordinatorProtocol {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?

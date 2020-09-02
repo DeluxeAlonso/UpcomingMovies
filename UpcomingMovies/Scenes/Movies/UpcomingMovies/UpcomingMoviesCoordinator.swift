@@ -23,7 +23,7 @@ struct NavigationConfiguration {
     
 }
 
-class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
+final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
