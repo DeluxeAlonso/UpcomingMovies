@@ -25,7 +25,7 @@ final class MovieCreditsCoordinator: NSObject, Coordinator, MovieCreditsCoordina
         let viewController = MovieCreditsViewController.instantiate()
         
         let interactor = MovieCreditsInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let factory = MovieCreditsViewFactory()
+        let factory = MovieCreditsFactory()
         let viewModel = MovieCreditsViewModel(movieId: movieId, movieTitle: movieTitle,
                                               interactor: interactor, factory: factory)
         

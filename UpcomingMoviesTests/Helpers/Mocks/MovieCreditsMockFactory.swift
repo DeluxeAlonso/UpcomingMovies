@@ -19,7 +19,7 @@ class MockMovieCreditsInteractor: MovieCreditsInteractorProtocol {
     
 }
 
-class MockMovieCreditsFactory: MovieCreditsViewFactoryProtocol {
+class MockMovieCreditsFactory: MovieCreditsFactoryProtocol {
     
     var sections: [MovieCreditsCollapsibleSection] = []
 

@@ -15,7 +15,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     let movieTitle: String
     
     private let interactor: MovieCreditsInteractorProtocol
-    private var factory: MovieCreditsViewFactoryProtocol
+    private var factory: MovieCreditsFactoryProtocol
     
     var viewState: Bindable<MovieCreditsViewState> = Bindable(.initial)
     var didToggleSection: Bindable<Int> = Bindable(0)
@@ -25,7 +25,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     
     init(movieId: Int, movieTitle: String,
          interactor: MovieCreditsInteractorProtocol,
-         factory: MovieCreditsViewFactoryProtocol) {
+         factory: MovieCreditsFactoryProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
 
