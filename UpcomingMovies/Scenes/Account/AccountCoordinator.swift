@@ -53,7 +53,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol {
         let viewController = ProfileTableViewController.instantiate()
         
         let interactor = ProfileInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let factory = ProfileViewFactory()
+        let factory = ProfileFactory()
         let viewModel = ProfileViewModel(userAccount: user,
                                          interactor: interactor,
                                          factory: factory)

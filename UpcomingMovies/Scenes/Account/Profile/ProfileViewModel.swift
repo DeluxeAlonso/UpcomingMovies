@@ -13,7 +13,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     private var userAccount: User?
     private let interactor: ProfileInteractorProtocol
-    private let factory: ProfileViewFactoryProtocol
+    private let factory: ProfileFactoryProtocol
     
     var reloadAccountInfo: (() -> Void)?
     
@@ -34,7 +34,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     init(userAccount: User?,
          interactor: ProfileInteractorProtocol,
-         factory: ProfileViewFactoryProtocol) {
+         factory: ProfileFactoryProtocol) {
         self.userAccount = userAccount
         self.interactor = interactor
         self.factory = factory

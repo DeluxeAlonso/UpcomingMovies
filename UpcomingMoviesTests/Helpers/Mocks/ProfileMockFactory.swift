@@ -19,7 +19,7 @@ class MockProfileInteractor: ProfileInteractorProtocol {
     
 }
 
-class MockProfileViewFactory: ProfileViewFactoryProtocol {
+class MockProfileViewFactory: ProfileFactoryProtocol {
     
     var sections: [ProfileSection] = []
     
