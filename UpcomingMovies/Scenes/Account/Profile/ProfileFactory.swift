@@ -1,5 +1,5 @@
 //
-//  ProfileViewFactory.swift
+//  ProfileFactory.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 7/18/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ProfileViewFactory: ProfileViewFactoryProtocol {
+final class ProfileFactory: ProfileFactoryProtocol {
     
     var sections: [ProfileSection] {
         return [

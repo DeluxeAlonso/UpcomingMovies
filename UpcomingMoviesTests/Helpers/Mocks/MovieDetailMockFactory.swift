@@ -41,7 +41,7 @@ class MockMovieDetailInteractor: MovieDetailInteractorProtocol {
     
 }
 
-class MockMovieDetailViewFactory: MovieDetailViewFactoryProtocol {
+class MockMovieDetailViewFactory: MovieDetailFactoryProtocol {
     
     var options: [MovieDetailOption] = []
     

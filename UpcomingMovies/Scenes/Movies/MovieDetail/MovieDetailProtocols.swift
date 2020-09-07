@@ -53,7 +53,7 @@ protocol MovieDetailInteractorProtocol {
     
 }
 
-protocol MovieDetailViewFactoryProtocol {
+protocol MovieDetailFactoryProtocol {
     
     var options: [MovieDetailOption] { get }
     

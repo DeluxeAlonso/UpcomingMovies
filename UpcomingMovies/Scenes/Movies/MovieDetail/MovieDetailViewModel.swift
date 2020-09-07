@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     private let interactor: MovieDetailInteractorProtocol
-    private let factory: MovieDetailViewFactoryProtocol
+    private let factory: MovieDetailFactoryProtocol
     
     var id: Int!
     var title: String!
@@ -35,7 +35,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     init(_ movie: Movie,
          interactor: MovieDetailInteractorProtocol,
-         factory: MovieDetailViewFactoryProtocol) {
+         factory: MovieDetailFactoryProtocol) {
         self.interactor = interactor
         self.factory = factory
         
@@ -45,7 +45,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     init(id: Int, title: String,
          interactor: MovieDetailInteractorProtocol,
-         factory: MovieDetailViewFactoryProtocol) {
+         factory: MovieDetailFactoryProtocol) {
         self.id = id
         self.title = title
         self.interactor = interactor

@@ -33,7 +33,7 @@ protocol ProfileInteractorProtocol {
     
 }
 
-protocol ProfileViewFactoryProtocol {
+protocol ProfileFactoryProtocol {
     
     var sections: [ProfileSection] { get }
     var collectionOptions: [ProfileCollectionOption] { get }

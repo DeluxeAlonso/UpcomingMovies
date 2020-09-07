@@ -91,7 +91,7 @@ final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol 
                            and useCaseProvider: UseCaseProviderProtocol) -> MovieDetailViewModel {
         let interactor = MovieDetailInteractor(useCaseProvider: InjectionFactory.useCaseProvider(),
                                                authHandler: AuthenticationHandler.shared)
-        let factory = MovieDetailViewFactory()
+        let factory = MovieDetailFactory()
         let viewModel: MovieDetailViewModel
         switch movieInfo {
         case .complete(let movie):
