@@ -1,5 +1,5 @@
 //
-//  MovieDetailViewFactory.swift
+//  MovieDetailFactory.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 12/10/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MovieDetailViewFactory: MovieDetailViewFactoryProtocol {
+final class MovieDetailFactory: MovieDetailFactoryProtocol {
 
     var options: [MovieDetailOption] {
         return [ReviewsMovieDetailOption(),
