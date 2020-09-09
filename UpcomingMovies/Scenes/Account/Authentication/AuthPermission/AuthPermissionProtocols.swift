@@ -24,9 +24,6 @@ protocol AuthPermissionCoordinatorProtocol: Coordinator {
 
 protocol AuthPermissionWebViewNavigationDelegate: class, WKNavigationDelegate {
     
-    var didValidateCallback: () -> Void { get set }
     var didFinishNavigation: () -> Void { get set }
-    
-    func isValidCallback(for urlResponse: URLResponse?) -> Bool
     
 }

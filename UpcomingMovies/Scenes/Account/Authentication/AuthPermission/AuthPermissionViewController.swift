@@ -57,10 +57,6 @@ class AuthPermissionViewController: UIViewController, Storyboarded {
     }
     
     private func setupWebView() {
-        let didValidateCallback = { [unowned self] in
-            self.dismiss()
-        }
-        
         let didFinishNavigation = { [unowned self] in
             self.checkNavigationButtonsState()
         }
@@ -69,12 +65,11 @@ class AuthPermissionViewController: UIViewController, Storyboarded {
             self.updateProgressView(with: webView.estimatedProgress)
         }
         
-        webViewNavigationDelegate = AuthPermissionWebViewNavigation(didValidateCallback: didValidateCallback,
-                                                                   didFinishNavigation: didFinishNavigation)
+        webViewNavigationDelegate = AuthPermissionWebViewNavigation(didFinishNavigation: didFinishNavigation)
         webView.navigationDelegate = webViewNavigationDelegate
         webView.allowsBackForwardNavigationGestures = true
         estimatedProgressObserver = webView.observe(\.estimatedProgress, options: [.new],
-                                                   changeHandler: didUpdateProgress)
+                                                    changeHandler: didUpdateProgress)
     }
     
     // MARK: - Reactive Behaviour
