@@ -11,34 +11,19 @@ import WebKit
 
 class AuthPermissionWebViewNavigation: NSObject, AuthPermissionWebViewNavigationDelegate {
     
-    var didValidateCallback: () -> Void
     var didFinishNavigation: () -> Void
     
     // MARK: - Initializers
     
-    init(didValidateCallback: @escaping () -> Void, didFinishNavigation: @escaping () -> Void) {
-        self.didValidateCallback = didValidateCallback
+    init(didFinishNavigation: @escaping () -> Void) {
         self.didFinishNavigation = didFinishNavigation
     }
     
     // MARK: - WKNavigationDelegate
     
-    func isValidCallback(for urlResponse: URLResponse?) -> Bool {
-        guard let response = urlResponse as? HTTPURLResponse,
-            let headers = response.allHeaderFields as? [String: Any],
-            let callback = headers["authentication-callback"] as? String else {
-                return false
-        }
-        print(callback)
-        return true
-    }
-    
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationResponse: WKNavigationResponse,
                  decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        if isValidCallback(for: navigationResponse.response) {
-            didValidateCallback()
-        }
         decisionHandler(.allow)
     }
     
