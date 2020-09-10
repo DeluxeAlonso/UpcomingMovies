@@ -29,8 +29,8 @@ final class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinato
     
     @discardableResult
     func embedSearchOptions(on parentViewController: UIViewController,
-                            in containerView: UIView) -> SearchOptionsTableViewController {
-        let viewController = SearchOptionsTableViewController.instantiate()
+                            in containerView: UIView) -> SearchOptionsViewController {
+        let viewController = SearchOptionsViewController.instantiate()
         
         let interactor = SearchOptionsInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
         let viewModel = SearchOptionsViewModel(interactor: interactor)

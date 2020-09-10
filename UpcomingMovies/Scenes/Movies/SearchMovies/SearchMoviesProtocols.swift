@@ -13,7 +13,7 @@ protocol SearchMoviesCoordinatorProtocol: class {
     
     @discardableResult
     func embedSearchOptions(on parentViewController: UIViewController,
-                            in containerView: UIView) -> SearchOptionsTableViewController
+                            in containerView: UIView) -> SearchOptionsViewController
     
     @discardableResult
     func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController
@@ -91,16 +91,16 @@ protocol SearchOptionsInteractorProtocol {
     
 }
 
-protocol SearchOptionsTableViewControllerDelegate: UIViewController {
+protocol SearchOptionsViewControllerDelegate: UIViewController {
     
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectDefaultSearchOption option: DefaultSearchOption)
+    func searchOptionsViewController(_ searchOptionsViewController: SearchOptionsViewController,
+                                     didSelectDefaultSearchOption option: DefaultSearchOption)
     
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectMovieGenreWithId genreId: Int, andGenreName genreName: String)
+    func searchOptionsViewController(_ searchOptionsViewController: SearchOptionsViewController,
+                                     didSelectMovieGenreWithId genreId: Int, andGenreName genreName: String)
     
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectRecentlyVisitedMovie id: Int,
-                                          title: String)
+    func searchOptionsViewController(_ searchOptionsViewController: SearchOptionsViewController,
+                                     didSelectRecentlyVisitedMovie id: Int,
+                                     title: String)
     
 }

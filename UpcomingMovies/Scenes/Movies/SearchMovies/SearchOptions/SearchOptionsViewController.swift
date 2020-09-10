@@ -1,5 +1,5 @@
 //
-//  SearchOptionsTableViewController.swift
+//  SearchOptionsViewController.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 1/15/19.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-class SearchOptionsTableViewController: UITableViewController, Storyboarded {
+class SearchOptionsViewController: UITableViewController, Storyboarded {
     
     static var storyboardName = "SearchMovies"
     
     private var dataSource: SearchOptionsDataSource!
     
     var viewModel: SearchOptionsViewModelProtocol?
-    weak var delegate: SearchOptionsTableViewControllerDelegate?
+    weak var delegate: SearchOptionsViewControllerDelegate?
     
     // MARK: - Lifecycle
 
@@ -74,7 +74,7 @@ class SearchOptionsTableViewController: UITableViewController, Storyboarded {
         
         viewModel?.selectedDefaultSearchOption.bind({ [weak self] option in
             guard let strongSelf = self, let option = option else { return }
-            strongSelf.delegate?.searchOptionsTableViewController(strongSelf, didSelectDefaultSearchOption: option)
+            strongSelf.delegate?.searchOptionsViewController(strongSelf, didSelectDefaultSearchOption: option)
         })
         
         viewModel?.selectedMovieGenre.bind({ [weak self] (genreId, genreName) in
@@ -83,14 +83,14 @@ class SearchOptionsTableViewController: UITableViewController, Storyboarded {
                 let genreName = genreName else {
                     return
             }
-            strongSelf.delegate?.searchOptionsTableViewController(strongSelf,
+            strongSelf.delegate?.searchOptionsViewController(strongSelf,
                                                                   didSelectMovieGenreWithId: genreId,
                                                                   andGenreName: genreName)
         })
         
         viewModel?.selectedRecentlyVisitedMovie = { [weak self] id, title in
             guard let strongSelf = self else { return }
-            strongSelf.delegate?.searchOptionsTableViewController(strongSelf, didSelectRecentlyVisitedMovie: id, title: title)
+            strongSelf.delegate?.searchOptionsViewController(strongSelf, didSelectRecentlyVisitedMovie: id, title: title)
         }
     }
     
