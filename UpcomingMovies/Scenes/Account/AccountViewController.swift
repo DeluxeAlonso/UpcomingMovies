@@ -11,7 +11,7 @@ import UIKit
 class AccountViewController: UIViewController, AccountViewControllerProtocol, Storyboarded {
     
     private var signInViewController: SignInViewController?
-    private var profileViewController: ProfileTableViewController?
+    private var profileViewController: ProfileViewController?
     
     static var storyboardName: String = "Account"
     
