@@ -47,10 +47,10 @@ final class AccountCoordinator: AccountCoordinatorProtocol {
     
     @discardableResult
     func embedProfileViewController(on parentViewController: AccountViewControllerProtocol,
-                                    for user: User?) -> ProfileTableViewController {
+                                    for user: User?) -> ProfileViewController {
         navigationController.setNavigationBarHidden(false, animated: true)
         
-        let viewController = ProfileTableViewController.instantiate()
+        let viewController = ProfileViewController.instantiate()
         
         let interactor = ProfileInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
         let factory = ProfileFactory()

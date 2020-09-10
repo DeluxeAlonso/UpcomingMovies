@@ -15,7 +15,7 @@ class SearchMoviesViewController: UIViewController, Storyboarded {
     static var storyboardName: String = "SearchMovies"
     
     private var searchController: DefaultSearchController!
-    private var searchOptionsContainerView: SearchOptionsTableViewController!
+    private var searchOptionsContainerView: SearchOptionsViewController!
     
     weak var coordinator: SearchMoviesCoordinatorProtocol?
     
@@ -130,22 +130,22 @@ extension SearchMoviesViewController: SearchMoviesResultControllerDelegate {
     
 }
 
-// MARK: - SearchOptionsTableViewControllerDelegate
+// MARK: - SearchOptionsViewControllerDelegate
 
-extension SearchMoviesViewController: SearchOptionsTableViewControllerDelegate {
+extension SearchMoviesViewController: SearchOptionsViewControllerDelegate {
     
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectDefaultSearchOption option: DefaultSearchOption) {
+    func searchOptionsViewController(_ searchOptionsViewController: SearchOptionsViewController,
+                                     didSelectDefaultSearchOption option: DefaultSearchOption) {
         coordinator?.showDefaultSearchOption(option)
     }
     
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectMovieGenreWithId genreId: Int, andGenreName genreName: String) {
+    func searchOptionsViewController(_ searchOptionsViewController: SearchOptionsViewController,
+                                     didSelectMovieGenreWithId genreId: Int, andGenreName genreName: String) {
         coordinator?.showMoviesByGenre(genreId, genreName: genreName)
     }
     
-    func searchOptionsTableViewController(_ searchOptionsTableViewController: SearchOptionsTableViewController,
-                                          didSelectRecentlyVisitedMovie id: Int, title: String) {
+    func searchOptionsViewController(_ searchOptionsViewController: SearchOptionsViewController,
+                                     didSelectRecentlyVisitedMovie id: Int, title: String) {
         coordinator?.showMovieDetail(for: id, and: title)
     }
     
