@@ -17,8 +17,8 @@ class ProviderAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(UseCaseProviderProtocol.self) { resolver in
-            return UseCaseProvider(localDataSource: resolver.resolve(LocalDataSourceProtocol.self)!,
-                                   remoteDataSource: resolver.resolve(RemoteDataSourceProtocol.self)!)
+            UseCaseProvider(localDataSource: resolver.resolve(LocalDataSourceProtocol.self)!,
+                            remoteDataSource: resolver.resolve(RemoteDataSourceProtocol.self)!)
         }
     }
     

@@ -22,8 +22,8 @@ final class FavoritesSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coo
     func start() {
         let viewController = SavedMoviesViewController.instantiate()
         
-        let interactor = FavoritesSavedMoviesInteractor(useCaseProvider: InjectionManager.shared.resolve(for: UseCaseProviderProtocol.self))
-        let viewModel = SavedMoviesViewModel(interactor: interactor)
+        var viewModel = InjectionManager.shared.resolve(for: SavedMoviesViewModelProtocol.self,
+                                                        argument: "Favorites")
         viewModel.displayTitle = ProfileCollectionOption.favorites.title
         
         viewController.viewModel = viewModel
@@ -47,8 +47,8 @@ class WatchListSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coordinat
     func start() {
         let viewController = SavedMoviesViewController.instantiate()
         
-        let interactor = WatchListSavedMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let viewModel = SavedMoviesViewModel(interactor: interactor)
+        var viewModel = InjectionManager.shared.resolve(for: SavedMoviesViewModelProtocol.self,
+                                                        argument: "Watchlist")
         viewModel.displayTitle = ProfileCollectionOption.watchlist.title
         
         viewController.viewModel = viewModel
