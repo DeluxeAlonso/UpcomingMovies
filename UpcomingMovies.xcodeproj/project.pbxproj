@@ -345,6 +345,7 @@
 		E290DF06249FB23E00BABBB8 /* MovieVideosCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DF05249FB23E00BABBB8 /* MovieVideosCoordinator.swift */; };
 		E2912672250DD20F007AD101 /* DataSourceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2912671250DD20F007AD101 /* DataSourceAssembly.swift */; };
 		E2912674250DD358007AD101 /* ProviderAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2912673250DD358007AD101 /* ProviderAssembly.swift */; };
+		E2912676250DE651007AD101 /* InjectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2912675250DE651007AD101 /* InjectionManager.swift */; };
 		E293AD27224B38480070F783 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E293AD26224B38480070F783 /* WebKit.framework */; };
 		E29407FE2209E83600A74F68 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */; };
 		E29408002209E85000A74F68 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */; };
@@ -1026,6 +1027,7 @@
 		E290DF05249FB23E00BABBB8 /* MovieVideosCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideosCoordinator.swift; sourceTree = "<group>"; };
 		E2912671250DD20F007AD101 /* DataSourceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceAssembly.swift; sourceTree = "<group>"; };
 		E2912673250DD358007AD101 /* ProviderAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderAssembly.swift; sourceTree = "<group>"; };
+		E2912675250DE651007AD101 /* InjectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionManager.swift; sourceTree = "<group>"; };
 		E293AD26224B38480070F783 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
@@ -2565,6 +2567,7 @@
 			children = (
 				E2912670250DD1D3007AD101 /* DependencyAssemblers */,
 				E26DB21A236C7DBF0054CC95 /* InjectionFactory.swift */,
+				E2912675250DE651007AD101 /* InjectionManager.swift */,
 			);
 			path = DependencyInjection;
 			sourceTree = "<group>";
@@ -3526,6 +3529,7 @@
 				E265C2612495392900712284 /* MoviesByGenreInteractor.swift in Sources */,
 				E22447742234BC3500A59FEF /* UpcomingMovieExpandedCollectionViewCell.swift in Sources */,
 				E2254693226A3D6500E9042C /* CustomListTableViewCell.swift in Sources */,
+				E2912676250DE651007AD101 /* InjectionManager.swift in Sources */,
 				E2DBF2F3220532C300CBB365 /* Animatable.swift in Sources */,
 				E2EAEC5A24CFF04100D89F04 /* MovieCreditsInteractor.swift in Sources */,
 				E2D5EB0724A03E3500F41EE5 /* MovieCreditsCoordinator.swift in Sources */,
