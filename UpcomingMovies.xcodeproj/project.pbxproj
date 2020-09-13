@@ -168,9 +168,9 @@
 		E2266506247E13D900E12326 /* DataSourcePrefetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2266505247E13D900E12326 /* DataSourcePrefetching.swift */; };
 		E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */; };
 		E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64A21FFA099004AA771 /* UIView+Extensions.swift */; };
-		E228430B250E78EB00F053DE /* InteractorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E228430A250E78EB00F053DE /* InteractorAssembly.swift */; };
-		E228430D250E7A9700F053DE /* ViewModelAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E228430C250E7A9700F053DE /* ViewModelAssembly.swift */; };
 		E228430F250ED1A900F053DE /* HandlerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E228430E250ED1A900F053DE /* HandlerAssembly.swift */; };
+		E2284312250EE2E300F053DE /* SavedMoviesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2284311250EE2E300F053DE /* SavedMoviesAssembly.swift */; };
+		E2284314250EE33A00F053DE /* SceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2284313250EE33A00F053DE /* SceneAssembly.swift */; };
 		E229A532236BF242006FF112 /* CoreDataInfrastructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E229A529236BF241006FF112 /* CoreDataInfrastructure.framework */; };
 		E229A53B236BF242006FF112 /* CoreDataInfraestructure.h in Headers */ = {isa = PBXBuildFile; fileRef = E229A52B236BF241006FF112 /* CoreDataInfraestructure.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E229A53E236BF242006FF112 /* CoreDataInfrastructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E229A529236BF241006FF112 /* CoreDataInfrastructure.framework */; };
@@ -874,9 +874,9 @@
 		E2266505247E13D900E12326 /* DataSourcePrefetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourcePrefetching.swift; sourceTree = "<group>"; };
 		E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailBackdropView.swift; sourceTree = "<group>"; };
 		E226C64A21FFA099004AA771 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		E228430A250E78EB00F053DE /* InteractorAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorAssembly.swift; sourceTree = "<group>"; };
-		E228430C250E7A9700F053DE /* ViewModelAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelAssembly.swift; sourceTree = "<group>"; };
 		E228430E250ED1A900F053DE /* HandlerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerAssembly.swift; sourceTree = "<group>"; };
+		E2284311250EE2E300F053DE /* SavedMoviesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMoviesAssembly.swift; sourceTree = "<group>"; };
+		E2284313250EE33A00F053DE /* SceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneAssembly.swift; sourceTree = "<group>"; };
 		E229A529236BF241006FF112 /* CoreDataInfrastructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreDataInfrastructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E229A52B236BF241006FF112 /* CoreDataInfraestructure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataInfraestructure.h; sourceTree = "<group>"; };
 		E229A52C236BF241006FF112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2034,6 +2034,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		E2284310250EE2CD00F053DE /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				E2284311250EE2E300F053DE /* SavedMoviesAssembly.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		E229A52A236BF241006FF112 /* CoreDataInfrastructure */ = {
 			isa = PBXGroup;
 			children = (
@@ -2581,11 +2589,11 @@
 		E2912670250DD1D3007AD101 /* DependencyAssemblers */ = {
 			isa = PBXGroup;
 			children = (
+				E2284310250EE2CD00F053DE /* Scenes */,
 				E2912671250DD20F007AD101 /* DataSourceAssembly.swift */,
 				E2912673250DD358007AD101 /* ProviderAssembly.swift */,
-				E228430A250E78EB00F053DE /* InteractorAssembly.swift */,
-				E228430C250E7A9700F053DE /* ViewModelAssembly.swift */,
 				E228430E250ED1A900F053DE /* HandlerAssembly.swift */,
+				E2284313250EE33A00F053DE /* SceneAssembly.swift */,
 			);
 			path = DependencyAssemblers;
 			sourceTree = "<group>";
@@ -3455,7 +3463,6 @@
 				E22351EE227EAB2000B2544E /* UIView+Layout.swift in Sources */,
 				E265C25B2495390800712284 /* TopRatedMoviesInteractor.swift in Sources */,
 				E223773C21EEAEFF000400B7 /* DefaultSearchOption.swift in Sources */,
-				E228430B250E78EB00F053DE /* InteractorAssembly.swift in Sources */,
 				E260117B21939A1B00E53095 /* MovieDetailViewController.swift in Sources */,
 				E2CF112524A7FB9A0048AFC0 /* AuthPermissionCoordinator.swift in Sources */,
 				E229AFB324A84A87002AB427 /* CustomListDetailViewState.swift in Sources */,
@@ -3558,6 +3565,7 @@
 				E26011642193823C00E53095 /* TableViewCellAnimator.swift in Sources */,
 				E25C50DA2241F0DC005639C5 /* UpcomingMoviesNavigation.swift in Sources */,
 				E26B4F7E24CE90AD00F9089E /* MovieDetailCoordinable.swift in Sources */,
+				E2284314250EE33A00F053DE /* SceneAssembly.swift in Sources */,
 				E2F9F7222202787F00C62089 /* TransitioningAnimator.swift in Sources */,
 				E223DA082217BD1900A3DC58 /* RadarView.swift in Sources */,
 				E263FAA224D52DDB00990638 /* MoviesByGenreCoordinator.swift in Sources */,
@@ -3620,6 +3628,7 @@
 				E2FD140C23F972EF00455495 /* SceneDelegate.swift in Sources */,
 				E26DB219236C73250054CC95 /* Storyboarded.swift in Sources */,
 				E22546A8226AE42600E9042C /* CustomListDetailHeaderViewModel.swift in Sources */,
+				E2284312250EE2E300F053DE /* SavedMoviesAssembly.swift in Sources */,
 				E222B95F21FA2759008BA816 /* CollectionViewCellAnimator.swift in Sources */,
 				E221F761222AF15B008DFF87 /* AppShortcutItem.swift in Sources */,
 				E2BE1B3D239DEABD00FC47FF /* SimilarsMovieDetailOption.swift in Sources */,
@@ -3641,7 +3650,6 @@
 				E28D78A324847E0200D86F66 /* MovieReviewDetailViewModel.swift in Sources */,
 				E21F379C2193FF1400D6BFB6 /* CustomFooterView.swift in Sources */,
 				E2EAEC5824CFEFC900D89F04 /* MovieCreditsFactory.swift in Sources */,
-				E228430D250E7A9700F053DE /* ViewModelAssembly.swift in Sources */,
 				E260117621938D6C00E53095 /* Retryable.swift in Sources */,
 				E200182821EE323200F29220 /* SearchOptionsViewController.swift in Sources */,
 				E2E518B224A9A8D100CC3FA5 /* MovieVideosProtocols.swift in Sources */,

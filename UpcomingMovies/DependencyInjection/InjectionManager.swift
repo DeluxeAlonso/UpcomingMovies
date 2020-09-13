@@ -22,8 +22,7 @@ class InjectionManager {
                 DataSourceAssembly(),
                 ProviderAssembly(),
                 HandlerAssembly(),
-                InteractorAssembly(),
-                ViewModelAssembly()
+                SceneAssembly()
             ],
             container: container)
     }
