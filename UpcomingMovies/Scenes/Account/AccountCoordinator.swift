@@ -24,7 +24,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol {
         
         let useCaseProvider = InjectionFactory.useCaseProvider()
         let interactor = AccountInteractor(useCaseProvider: useCaseProvider,
-                                           authHandler: AuthenticationHandler.shared)
+                                           authHandler: InjectionManager.shared.resolve(AuthenticationHandlerProtocol.self))
         let viewModel = AccountViewModel(interactor: interactor)
         
         viewController.viewModel = viewModel

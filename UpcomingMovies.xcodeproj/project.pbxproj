@@ -170,6 +170,7 @@
 		E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64A21FFA099004AA771 /* UIView+Extensions.swift */; };
 		E228430B250E78EB00F053DE /* InteractorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E228430A250E78EB00F053DE /* InteractorAssembly.swift */; };
 		E228430D250E7A9700F053DE /* ViewModelAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E228430C250E7A9700F053DE /* ViewModelAssembly.swift */; };
+		E228430F250ED1A900F053DE /* HandlerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E228430E250ED1A900F053DE /* HandlerAssembly.swift */; };
 		E229A532236BF242006FF112 /* CoreDataInfrastructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E229A529236BF241006FF112 /* CoreDataInfrastructure.framework */; };
 		E229A53B236BF242006FF112 /* CoreDataInfraestructure.h in Headers */ = {isa = PBXBuildFile; fileRef = E229A52B236BF241006FF112 /* CoreDataInfraestructure.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E229A53E236BF242006FF112 /* CoreDataInfrastructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E229A529236BF241006FF112 /* CoreDataInfrastructure.framework */; };
@@ -875,6 +876,7 @@
 		E226C64A21FFA099004AA771 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		E228430A250E78EB00F053DE /* InteractorAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorAssembly.swift; sourceTree = "<group>"; };
 		E228430C250E7A9700F053DE /* ViewModelAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelAssembly.swift; sourceTree = "<group>"; };
+		E228430E250ED1A900F053DE /* HandlerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerAssembly.swift; sourceTree = "<group>"; };
 		E229A529236BF241006FF112 /* CoreDataInfrastructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreDataInfrastructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E229A52B236BF241006FF112 /* CoreDataInfraestructure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataInfraestructure.h; sourceTree = "<group>"; };
 		E229A52C236BF241006FF112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2583,6 +2585,7 @@
 				E2912673250DD358007AD101 /* ProviderAssembly.swift */,
 				E228430A250E78EB00F053DE /* InteractorAssembly.swift */,
 				E228430C250E7A9700F053DE /* ViewModelAssembly.swift */,
+				E228430E250ED1A900F053DE /* HandlerAssembly.swift */,
 			);
 			path = DependencyAssemblers;
 			sourceTree = "<group>";
@@ -3541,6 +3544,7 @@
 				E2EAEC5A24CFF04100D89F04 /* MovieCreditsInteractor.swift in Sources */,
 				E2D5EB0724A03E3500F41EE5 /* MovieCreditsCoordinator.swift in Sources */,
 				E26911752478D7320039F144 /* Displayable.swift in Sources */,
+				E228430F250ED1A900F053DE /* HandlerAssembly.swift in Sources */,
 				E2709630247B686100AE694E /* Entities+ImageConfiguration.swift in Sources */,
 				E223B086224828FB0050277B /* ProfileSelectableOptionCellViewModel.swift in Sources */,
 				E284EF4D21F127FB004E705F /* VisitedMovieCellViewModel.swift in Sources */,

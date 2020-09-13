@@ -90,7 +90,7 @@ final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol 
     private func viewModel(for movieInfo: MovieDetailInfo,
                            and useCaseProvider: UseCaseProviderProtocol) -> MovieDetailViewModel {
         let interactor = MovieDetailInteractor(useCaseProvider: InjectionFactory.useCaseProvider(),
-                                               authHandler: AuthenticationHandler.shared)
+                                               authHandler: InjectionManager.shared.resolve(AuthenticationHandlerProtocol.self))
         let factory = MovieDetailFactory()
         let viewModel: MovieDetailViewModel
         switch movieInfo {
