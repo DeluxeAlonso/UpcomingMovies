@@ -13,11 +13,13 @@ import Swinject
 class InteractorAssembly: Assembly {
     
     func assemble(container: Container) {
-        container.register(SavedMoviesInteractorProtocol.self, name: "Favorites") { resolver in
-            FavoritesSavedMoviesInteractor(useCaseProvider: resolver.resolve(UseCaseProviderProtocol.self)!)
+        container.register(SavedMoviesInteractorProtocol.self,
+                           name: ProfileCollectionOption.favorites.title) { resolver in
+                            FavoritesSavedMoviesInteractor(useCaseProvider: resolver.resolve(UseCaseProviderProtocol.self)!)
         }
-        container.register(SavedMoviesInteractorProtocol.self, name: "Watchlist") { resolver in
-            WatchListSavedMoviesInteractor(useCaseProvider: resolver.resolve(UseCaseProviderProtocol.self)!)
+        container.register(SavedMoviesInteractorProtocol.self,
+                           name: ProfileCollectionOption.watchlist.title) { resolver in
+                            WatchListSavedMoviesInteractor(useCaseProvider: resolver.resolve(UseCaseProviderProtocol.self)!)
         }
     }
     

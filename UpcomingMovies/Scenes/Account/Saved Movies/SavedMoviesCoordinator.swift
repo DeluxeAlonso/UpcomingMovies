@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UpcomingMoviesDomain
 
 final class FavoritesSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
     
@@ -22,9 +21,8 @@ final class FavoritesSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coo
     func start() {
         let viewController = SavedMoviesViewController.instantiate()
         
-        var viewModel = InjectionManager.shared.resolve(for: SavedMoviesViewModelProtocol.self,
-                                                        argument: "Favorites")
-        viewModel.displayTitle = ProfileCollectionOption.favorites.title
+        let viewModel = InjectionManager.shared.resolve(for: SavedMoviesViewModelProtocol.self,
+                                                        argument: ProfileCollectionOption.favorites.title)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self
@@ -47,9 +45,8 @@ class WatchListSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coordinat
     func start() {
         let viewController = SavedMoviesViewController.instantiate()
         
-        var viewModel = InjectionManager.shared.resolve(for: SavedMoviesViewModelProtocol.self,
-                                                        argument: "Watchlist")
-        viewModel.displayTitle = ProfileCollectionOption.watchlist.title
+        let viewModel = InjectionManager.shared.resolve(for: SavedMoviesViewModelProtocol.self,
+                                                        argument: ProfileCollectionOption.watchlist.title)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self

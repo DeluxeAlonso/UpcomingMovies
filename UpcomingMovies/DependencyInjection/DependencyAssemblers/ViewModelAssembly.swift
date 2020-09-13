@@ -12,9 +12,13 @@ import Swinject
 class ViewModelAssembly: Assembly {
     
     func assemble(container: Container) {
-        container.register(SavedMoviesViewModelProtocol.self) { (resolver, name: String) in
-            let interactor = resolver.resolve(SavedMoviesInteractorProtocol.self, name: name)
-            return SavedMoviesViewModel(interactor: interactor!)
+        container.register(SavedMoviesViewModelProtocol.self) { (resolver, displayTitle: String?) in
+            let interactor = resolver.resolve(SavedMoviesInteractorProtocol.self, name: displayTitle)
+            
+            let viewModel = SavedMoviesViewModel(interactor: interactor!)
+            viewModel.displayTitle = displayTitle
+            
+            return viewModel
         }
     }
     
