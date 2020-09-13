@@ -6,9 +6,10 @@ target 'UpcomingMovies' do
   use_frameworks!
 
   # Pods for UpcomingMovies
+  pod 'SwiftLint'
+  pod 'Swinject'
   pod 'Kingfisher', '5.13.4'
   pod 'CollectionViewSlantedLayout', '~> 3.1'
-  pod 'SwiftLint'
   
   target 'NetworkInfrastructure' do
     use_frameworks!
