@@ -12,7 +12,7 @@ import Foundation
 
 class MockMovieDetailInteractor: MovieDetailInteractorProtocol {
     
-    var isUserSignedInResult: Bool?
+    var isUserSignedInResult: Bool? = false
     func isUserSignedIn() -> Bool {
         return isUserSignedInResult!
     }
