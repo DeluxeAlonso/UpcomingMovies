@@ -343,6 +343,8 @@
 		E28D78A324847E0200D86F66 /* MovieReviewDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D78A224847E0200D86F66 /* MovieReviewDetailViewModel.swift */; };
 		E28FF49B24B19A3E0015CB2F /* UpcomingMoviesViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FF49A24B19A3E0015CB2F /* UpcomingMoviesViewFactory.swift */; };
 		E290DF06249FB23E00BABBB8 /* MovieVideosCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DF05249FB23E00BABBB8 /* MovieVideosCoordinator.swift */; };
+		E2912672250DD20F007AD101 /* DataSourceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2912671250DD20F007AD101 /* DataSourceAssembly.swift */; };
+		E2912674250DD358007AD101 /* ProviderAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2912673250DD358007AD101 /* ProviderAssembly.swift */; };
 		E293AD27224B38480070F783 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E293AD26224B38480070F783 /* WebKit.framework */; };
 		E29407FE2209E83600A74F68 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */; };
 		E29408002209E85000A74F68 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */; };
@@ -1022,6 +1024,8 @@
 		E28D78A224847E0200D86F66 /* MovieReviewDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewDetailViewModel.swift; sourceTree = "<group>"; };
 		E28FF49A24B19A3E0015CB2F /* UpcomingMoviesViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesViewFactory.swift; sourceTree = "<group>"; };
 		E290DF05249FB23E00BABBB8 /* MovieVideosCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideosCoordinator.swift; sourceTree = "<group>"; };
+		E2912671250DD20F007AD101 /* DataSourceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceAssembly.swift; sourceTree = "<group>"; };
+		E2912673250DD358007AD101 /* ProviderAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderAssembly.swift; sourceTree = "<group>"; };
 		E293AD26224B38480070F783 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
@@ -2559,9 +2563,19 @@
 		E291266F250DD03F007AD101 /* DependencyInjection */ = {
 			isa = PBXGroup;
 			children = (
+				E2912670250DD1D3007AD101 /* DependencyAssemblers */,
 				E26DB21A236C7DBF0054CC95 /* InjectionFactory.swift */,
 			);
 			path = DependencyInjection;
+			sourceTree = "<group>";
+		};
+		E2912670250DD1D3007AD101 /* DependencyAssemblers */ = {
+			isa = PBXGroup;
+			children = (
+				E2912671250DD20F007AD101 /* DataSourceAssembly.swift */,
+				E2912673250DD358007AD101 /* ProviderAssembly.swift */,
+			);
+			path = DependencyAssemblers;
 			sourceTree = "<group>";
 		};
 		E2940801220A150900A74F68 /* TabBar */ = {
@@ -3414,6 +3428,7 @@
 				E2638084221281B80038AD00 /* MovieReviewsViewController.swift in Sources */,
 				E26AB93221F8C15800D9FEAA /* MovieListViewModel.swift in Sources */,
 				E229AFA724A83A0B002AB427 /* ProfileProtocols.swift in Sources */,
+				E2912672250DD20F007AD101 /* DataSourceAssembly.swift in Sources */,
 				E221F765222B9C7A008DFF87 /* SavedMoviesViewModel.swift in Sources */,
 				E263FAA024D52DBF00990638 /* SimilarMoviesCoordinator.swift in Sources */,
 				E2BCD6F724A068CB00FA4A1C /* MovieReviewsCoordinator.swift in Sources */,
@@ -3575,6 +3590,7 @@
 				E22052DE24C2AA18000F755E /* ProfileInteractor.swift in Sources */,
 				E2B47518227EAFCE0004F621 /* SpinerLayer.swift in Sources */,
 				E289DB9223DCAE04008B2163 /* UIConstants.swift in Sources */,
+				E2912674250DD358007AD101 /* ProviderAssembly.swift in Sources */,
 				E21F379A2193FEB000D6BFB6 /* LoadingFooterView.swift in Sources */,
 				E241FE0722434B9B00144FD3 /* AuthPermissionViewController.swift in Sources */,
 				E2CF112124A7F2C10048AFC0 /* CustomListsCoordinator.swift in Sources */,
