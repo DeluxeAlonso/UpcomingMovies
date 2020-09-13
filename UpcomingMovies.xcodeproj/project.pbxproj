@@ -1625,6 +1625,7 @@
 		E221167E21914E4B0039F8C9 /* UpcomingMovies */ = {
 			isa = PBXGroup;
 			children = (
+				E291266F250DD03F007AD101 /* DependencyInjection */,
 				E2FE24E0223E24A800E6E664 /* UpcomingMovies.entitlements */,
 				E222DC232192AF7A00A2EDF4 /* ViewComponents */,
 				E22116A221914EF00039F8C9 /* Scenes */,
@@ -1726,7 +1727,6 @@
 		E22116B2219156F10039F8C9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				E26DB21A236C7DBF0054CC95 /* InjectionFactory.swift */,
 				E260116D219388B700E53095 /* FontHelper.swift */,
 				E260116F219388C500E53095 /* ColorPalette.swift */,
 				E2A65E5221FECC2200485B4E /* Utils.swift */,
@@ -2554,6 +2554,14 @@
 				E286770C2485F9FF006685F8 /* ScaleTransitioningDelegate.swift */,
 			);
 			path = ScaleTransition;
+			sourceTree = "<group>";
+		};
+		E291266F250DD03F007AD101 /* DependencyInjection */ = {
+			isa = PBXGroup;
+			children = (
+				E26DB21A236C7DBF0054CC95 /* InjectionFactory.swift */,
+			);
+			path = DependencyInjection;
 			sourceTree = "<group>";
 		};
 		E2940801220A150900A74F68 /* TabBar */ = {
