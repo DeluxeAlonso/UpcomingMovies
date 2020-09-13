@@ -22,7 +22,7 @@ final class FavoritesSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coo
     func start() {
         let viewController = SavedMoviesViewController.instantiate()
         
-        let interactor = FavoritesSavedMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
+        let interactor = FavoritesSavedMoviesInteractor(useCaseProvider: InjectionManager.shared.resolve(for: UseCaseProviderProtocol.self))
         let viewModel = SavedMoviesViewModel(interactor: interactor)
         viewModel.displayTitle = ProfileCollectionOption.favorites.title
         

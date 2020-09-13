@@ -11,6 +11,8 @@ import Swinject
 
 class InjectionManager {
     
+    static let shared = InjectionManager()
+    
     let container: Container = Container()
     let assembler: Assembler
     
@@ -21,6 +23,13 @@ class InjectionManager {
                 ProviderAssembly()
             ],
             container: container)
+    }
+    
+    func resolve<T>(for type: T.Type) -> T {
+        guard let resolvedType = container.resolve(type) else {
+            fatalError()
+        }
+        return resolvedType
     }
     
 }
