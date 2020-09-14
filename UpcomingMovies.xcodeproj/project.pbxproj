@@ -171,6 +171,8 @@
 		E228430F250ED1A900F053DE /* HandlerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E228430E250ED1A900F053DE /* HandlerAssembly.swift */; };
 		E2284312250EE2E300F053DE /* SavedMoviesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2284311250EE2E300F053DE /* SavedMoviesAssembly.swift */; };
 		E2284314250EE33A00F053DE /* SceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2284313250EE33A00F053DE /* SceneAssembly.swift */; };
+		E2284316250EE57900F053DE /* AccountAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2284315250EE57900F053DE /* AccountAssembly.swift */; };
+		E2284318250EE70500F053DE /* InjectionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2284317250EE70500F053DE /* InjectionFactory.swift */; };
 		E229A532236BF242006FF112 /* CoreDataInfrastructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E229A529236BF241006FF112 /* CoreDataInfrastructure.framework */; };
 		E229A53B236BF242006FF112 /* CoreDataInfraestructure.h in Headers */ = {isa = PBXBuildFile; fileRef = E229A52B236BF241006FF112 /* CoreDataInfraestructure.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E229A53E236BF242006FF112 /* CoreDataInfrastructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E229A529236BF241006FF112 /* CoreDataInfrastructure.framework */; };
@@ -291,7 +293,6 @@
 		E26B4F7E24CE90AD00F9089E /* MovieDetailCoordinable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26B4F7D24CE90AD00F9089E /* MovieDetailCoordinable.swift */; };
 		E26DB217236C71C90054CC95 /* MainTabBarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26DB216236C71C90054CC95 /* MainTabBarBuilder.swift */; };
 		E26DB219236C73250054CC95 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26DB218236C73250054CC95 /* Storyboarded.swift */; };
-		E26DB21B236C7DBF0054CC95 /* InjectionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26DB21A236C7DBF0054CC95 /* InjectionFactory.swift */; };
 		E270961B247B2C2A00AE694E /* ImagesConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270961A247B2C2A00AE694E /* ImagesConfiguration.swift */; };
 		E270961E247B2E3300AE694E /* ConfigurationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270961D247B2E3300AE694E /* ConfigurationClient.swift */; };
 		E2709620247B2E3B00AE694E /* ConfigurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270961F247B2E3B00AE694E /* ConfigurationProvider.swift */; };
@@ -877,6 +878,8 @@
 		E228430E250ED1A900F053DE /* HandlerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerAssembly.swift; sourceTree = "<group>"; };
 		E2284311250EE2E300F053DE /* SavedMoviesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMoviesAssembly.swift; sourceTree = "<group>"; };
 		E2284313250EE33A00F053DE /* SceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneAssembly.swift; sourceTree = "<group>"; };
+		E2284315250EE57900F053DE /* AccountAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAssembly.swift; sourceTree = "<group>"; };
+		E2284317250EE70500F053DE /* InjectionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InjectionFactory.swift; sourceTree = "<group>"; };
 		E229A529236BF241006FF112 /* CoreDataInfrastructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreDataInfrastructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E229A52B236BF241006FF112 /* CoreDataInfraestructure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataInfraestructure.h; sourceTree = "<group>"; };
 		E229A52C236BF241006FF112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -973,7 +976,6 @@
 		E26CC8E12365CB2C00978CD1 /* GenreUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreUseCaseProtocol.swift; sourceTree = "<group>"; };
 		E26DB216236C71C90054CC95 /* MainTabBarBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarBuilder.swift; sourceTree = "<group>"; };
 		E26DB218236C73250054CC95 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
-		E26DB21A236C7DBF0054CC95 /* InjectionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionFactory.swift; sourceTree = "<group>"; };
 		E26F03B521E46159009859DF /* UpcomingMovies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UpcomingMovies.xcdatamodel; sourceTree = "<group>"; };
 		E26F03B821E461D6009859DF /* Managed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managed.swift; sourceTree = "<group>"; };
 		E26F03BA21E462E2009859DF /* NSManagedObjectContext+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extensions.swift"; sourceTree = "<group>"; };
@@ -2038,6 +2040,7 @@
 			isa = PBXGroup;
 			children = (
 				E2284311250EE2E300F053DE /* SavedMoviesAssembly.swift */,
+				E2284315250EE57900F053DE /* AccountAssembly.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -2580,8 +2583,8 @@
 			isa = PBXGroup;
 			children = (
 				E2912670250DD1D3007AD101 /* DependencyAssemblers */,
-				E26DB21A236C7DBF0054CC95 /* InjectionFactory.swift */,
 				E2912675250DE651007AD101 /* InjectionManager.swift */,
+				E2284317250EE70500F053DE /* InjectionFactory.swift */,
 			);
 			path = DependencyInjection;
 			sourceTree = "<group>";
@@ -3527,6 +3530,7 @@
 				E288620924B174B800E12487 /* ToggleBarButtonItemDisplay.swift in Sources */,
 				E2BE1B34239DE9C200FC47FF /* MovieDetailOption.swift in Sources */,
 				E229AFAD24A846FC002AB427 /* CustomListsProtocols.swift in Sources */,
+				E2284316250EE57900F053DE /* AccountAssembly.swift in Sources */,
 				E2116944220E3CBC00595822 /* SearchMoviesResultDataSource.swift in Sources */,
 				E20CBAFF24B1963600F3992E /* Bool+IntValue.swift in Sources */,
 				E222B95921FA0F3A008BA816 /* UpcomingMoviePreviewCollectionViewCell.swift in Sources */,
@@ -3597,6 +3601,7 @@
 				E2864A3724D66D1A00271EF0 /* MovieDetailInteractor.swift in Sources */,
 				E26AB93021F8C0ED00D9FEAA /* MovieListViewController.swift in Sources */,
 				E20635A4226E127200FDD85E /* SearchMoviesResultView.swift in Sources */,
+				E2284318250EE70500F053DE /* InjectionFactory.swift in Sources */,
 				E2251B132214ECFA00EE7A51 /* MovieCreditsViewController.swift in Sources */,
 				E2DCE7F724B12F940041301E /* ToggleBarButtonContent.swift in Sources */,
 				E200182A21EE336F00F29220 /* SearchOptionsViewModel.swift in Sources */,
@@ -3624,7 +3629,6 @@
 				E25F5DBB2495E07000DF791C /* UpcomingMoviesCoordinator.swift in Sources */,
 				E2634D0A23AFA28D00857DD8 /* GenresHandler.swift in Sources */,
 				E225469C226AC78200E9042C /* CustomListDetailViewController.swift in Sources */,
-				E26DB21B236C7DBF0054CC95 /* InjectionFactory.swift in Sources */,
 				E2FD140C23F972EF00455495 /* SceneDelegate.swift in Sources */,
 				E26DB219236C73250054CC95 /* Storyboarded.swift in Sources */,
 				E22546A8226AE42600E9042C /* CustomListDetailHeaderViewModel.swift in Sources */,

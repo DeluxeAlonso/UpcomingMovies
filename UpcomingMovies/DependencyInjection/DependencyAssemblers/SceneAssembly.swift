@@ -12,7 +12,11 @@ import Swinject
 class SceneAssembly: Assembly {
     
     func assemble(container: Container) {
-        SavedMoviesAssembly().assemble(container: container)
+        let assemblies: [Assembly] = [
+            AccountAssembly(),
+            SavedMoviesAssembly()
+        ]
+        assemblies.forEach { $0.assemble(container: container) }
     }
     
 }

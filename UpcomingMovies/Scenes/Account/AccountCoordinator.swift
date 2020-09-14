@@ -22,10 +22,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol {
     func start() {
         let viewController = AccountViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let interactor = AccountInteractor(useCaseProvider: useCaseProvider,
-                                           authHandler: InjectionManager.shared.resolve(AuthenticationHandlerProtocol.self))
-        let viewModel = AccountViewModel(interactor: interactor)
+        let viewModel = InjectionManager.shared.resolve(AccountViewModelProtocol.self)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self
@@ -52,11 +49,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol {
         
         let viewController = ProfileViewController.instantiate()
         
-        let interactor = ProfileInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let factory = ProfileFactory()
-        let viewModel = ProfileViewModel(userAccount: user,
-                                         interactor: interactor,
-                                         factory: factory)
+        let viewModel = InjectionManager.shared.resolve(ProfileViewModelProtocol.self, argument: user)
         
         viewController.viewModel = viewModel
         viewController.delegate = parentViewController
