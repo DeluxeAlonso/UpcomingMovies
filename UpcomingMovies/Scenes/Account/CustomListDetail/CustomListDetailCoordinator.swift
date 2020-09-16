@@ -24,7 +24,7 @@ final class CustomListDetailCoordinator: CustomListDetailCoordinatorProtocol, Co
     func start() {
         let viewController = CustomListDetailViewController.instantiate()
         
-        let viewModel = InjectionManager.shared.resolve(CustomListDetailViewModelProtocol.self,
+        let viewModel = DIContainer.shared.resolve(CustomListDetailViewModelProtocol.self,
                                                         argument: customList)
         
         viewController.viewModel = viewModel

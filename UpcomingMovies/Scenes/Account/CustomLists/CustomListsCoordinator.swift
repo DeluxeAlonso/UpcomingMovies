@@ -22,7 +22,7 @@ final class CustomListsCoordinator: Coordinator, CustomListsCoordinatorProtocol 
     func start() {
         let viewController = CustomListsViewController.instantiate()
         
-        let viewModel = InjectionManager.shared.resolve(CustomListsViewModelProtocol.self)
+        let viewModel = DIContainer.shared.resolve(CustomListsViewModelProtocol.self)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self

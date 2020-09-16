@@ -21,7 +21,7 @@ final class FavoritesSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coo
     func start() {
         let viewController = SavedMoviesViewController.instantiate()
         
-        let viewModel = InjectionManager.shared.resolve(SavedMoviesViewModelProtocol.self,
+        let viewModel = DIContainer.shared.resolve(SavedMoviesViewModelProtocol.self,
                                                         argument: ProfileCollectionOption.favorites.title)
         
         viewController.viewModel = viewModel
@@ -45,7 +45,7 @@ class WatchListSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coordinat
     func start() {
         let viewController = SavedMoviesViewController.instantiate()
         
-        let viewModel = InjectionManager.shared.resolve(SavedMoviesViewModelProtocol.self,
+        let viewModel = DIContainer.shared.resolve(SavedMoviesViewModelProtocol.self,
                                                         argument: ProfileCollectionOption.watchlist.title)
         
         viewController.viewModel = viewModel

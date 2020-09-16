@@ -46,7 +46,7 @@ final class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinato
     @discardableResult
     func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController {
         let interactor = SearchMoviesResultInteractor(useCaseProvider: InjectionFactory.useCaseProvider(),
-                                                      authHandler: InjectionManager.shared.resolve(AuthenticationHandlerProtocol.self))
+                                                      authHandler: DIContainer.shared.resolve(AuthenticationHandlerProtocol.self))
         let searchResultViewModel = SearchMoviesResultViewModel(interactor: interactor)
         let searchResultController = SearchMoviesResultController(viewModel: searchResultViewModel)
         

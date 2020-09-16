@@ -1,5 +1,5 @@
 //
-//  InjectionManager.swift
+//  DIContainer.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 9/13/20.
@@ -9,9 +9,9 @@
 import Foundation
 import Swinject
 
-class InjectionManager {
+class DIContainer {
     
-    static let shared = InjectionManager()
+    static let shared = DIContainer()
     
     let container: Container = Container()
     let assembler: Assembler
@@ -27,6 +27,13 @@ class InjectionManager {
             container: container)
     }
     
+    func resolve<T>() -> T {
+        guard let resolvedType = container.resolve(T.self) else {
+            fatalError()
+        }
+        return resolvedType
+    }
+    
     func resolve<T>(_ type: T.Type) -> T {
         guard let resolvedType = container.resolve(type) else {
             fatalError()
@@ -34,8 +41,22 @@ class InjectionManager {
         return resolvedType
     }
     
+    func resolve<T>(name: String) -> T {
+        guard let resolvedType = container.resolve(T.self, name: name) else {
+            fatalError()
+        }
+        return resolvedType
+    }
+    
     func resolve<T>(_ type: T.Type, name: String) -> T {
         guard let resolvedType = container.resolve(type, name: name) else {
+            fatalError()
+        }
+        return resolvedType
+    }
+    
+    func resolve<T, U>(argument: U) -> T {
+        guard let resolvedType = container.resolve(T.self, argument: argument) else {
             fatalError()
         }
         return resolvedType

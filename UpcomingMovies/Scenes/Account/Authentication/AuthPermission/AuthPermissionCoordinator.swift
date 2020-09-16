@@ -25,7 +25,7 @@ final class AuthPermissionCoordinator: AuthPermissionCoordinatorProtocol {
     func start() {
         let viewController = AuthPermissionViewController.instantiate()
         
-        let viewModel = InjectionManager.shared.resolve(AuthPermissionViewModelProtocol.self,
+        let viewModel = DIContainer.shared.resolve(AuthPermissionViewModelProtocol.self,
                                                         argument: authPermissionURL)
         
         viewController.viewModel = viewModel

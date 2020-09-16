@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NavigationHandler.shared.handleShortcutItem(shortcutItem, and: window)
         }
         
-        _ = InjectionManager.shared
+        _ = DIContainer.shared
         
         return true
     }

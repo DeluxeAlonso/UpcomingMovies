@@ -21,10 +21,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol {
     
     func start() {
         let viewController = AccountViewController.instantiate()
-        
-        let viewModel = InjectionManager.shared.resolve(AccountViewModelProtocol.self)
-        
-        viewController.viewModel = viewModel
+        viewController.viewModel = DIContainer.shared.resolve()
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
@@ -49,7 +46,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol {
         
         let viewController = ProfileViewController.instantiate()
         
-        let viewModel = InjectionManager.shared.resolve(ProfileViewModelProtocol.self, argument: user)
+        let viewModel = DIContainer.shared.resolve(ProfileViewModelProtocol.self, argument: user)
         
         viewController.viewModel = viewModel
         viewController.delegate = parentViewController
