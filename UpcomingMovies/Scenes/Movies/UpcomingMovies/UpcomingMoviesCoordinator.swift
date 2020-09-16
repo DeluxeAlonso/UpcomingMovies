@@ -37,11 +37,8 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
     
     func start() {
         let viewController = UpcomingMoviesViewController.instantiate()
-        
-        let interactor = UpcomingMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let viewModel = UpcomingMoviesViewModel(interactor: interactor)
-        
-        viewController.viewModel = viewModel
+
+        viewController.viewModel = DIContainer.shared.resolve()
         viewController.coordinator = self
         
         setupNavigationDelegate()
