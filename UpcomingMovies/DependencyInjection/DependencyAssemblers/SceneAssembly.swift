@@ -17,7 +17,8 @@ class SceneAssembly: Assembly {
             AuthenticationAssembly(),
             ProfileAssembly(),
             SavedMoviesAssembly(),
-            CustomListsAssembly()
+            CustomListsAssembly(),
+            CustomListDetailAssembly()
         ]
         assemblies.forEach { $0.assemble(container: container) }
     }
