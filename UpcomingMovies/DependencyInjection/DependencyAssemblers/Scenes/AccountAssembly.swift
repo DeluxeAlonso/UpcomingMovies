@@ -13,6 +13,12 @@ import UpcomingMoviesDomain
 class AccountAssembly: Assembly {
     
     func assemble(container: Container) {
+        accountAssemble(container: container)
+        authenticationAssemble(container: container)
+        profileAssemble(container: container)
+    }
+    
+    private func accountAssemble(container: Container) {
         container.register(AccountInteractorProtocol.self) { resolver in
             let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
             let authHandler = resolver.resolve(AuthenticationHandlerProtocol.self)
@@ -24,8 +30,15 @@ class AccountAssembly: Assembly {
         container.register(AccountViewModelProtocol.self) { resolver in
             AccountViewModel(interactor: resolver.resolve(AccountInteractorProtocol.self)!)
         }
-        
-        // Profile
+    }
+    
+    private func authenticationAssemble(container: Container) {
+        container.register(AuthPermissionViewModelProtocol.self) { (_, authPermissionURL: URL?) in
+            AuthPermissionViewModel(authPermissionURL: authPermissionURL)
+        }
+    }
+    
+    private func profileAssemble(container: Container) {
         container.register(ProfileFactoryProtocol.self) { _ in
             ProfileFactory()
         }
