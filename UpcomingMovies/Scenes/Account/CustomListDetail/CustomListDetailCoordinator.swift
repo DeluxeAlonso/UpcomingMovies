@@ -24,10 +24,7 @@ final class CustomListDetailCoordinator: CustomListDetailCoordinatorProtocol, Co
     func start() {
         let viewController = CustomListDetailViewController.instantiate()
         
-        let viewModel = DIContainer.shared.resolve(CustomListDetailViewModelProtocol.self,
-                                                        argument: customList)
-        
-        viewController.viewModel = viewModel
+        viewController.viewModel = DIContainer.shared.resolve(argument: customList)
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)

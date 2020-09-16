@@ -21,6 +21,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol {
     
     func start() {
         let viewController = AccountViewController.instantiate()
+        
         viewController.viewModel = DIContainer.shared.resolve()
         viewController.coordinator = self
         
@@ -45,10 +46,8 @@ final class AccountCoordinator: AccountCoordinatorProtocol {
         navigationController.setNavigationBarHidden(false, animated: true)
         
         let viewController = ProfileViewController.instantiate()
-        
-        let viewModel = DIContainer.shared.resolve(ProfileViewModelProtocol.self, argument: user)
-        
-        viewController.viewModel = viewModel
+
+        viewController.viewModel = DIContainer.shared.resolve(argument: user)
         viewController.delegate = parentViewController
         
         parentViewController.add(asChildViewController: viewController)
