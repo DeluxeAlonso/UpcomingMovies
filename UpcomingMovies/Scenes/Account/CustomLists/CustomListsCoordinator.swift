@@ -22,8 +22,7 @@ final class CustomListsCoordinator: Coordinator, CustomListsCoordinatorProtocol 
     func start() {
         let viewController = CustomListsViewController.instantiate()
         
-        let interactor = CustomListsInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let viewModel = CustomListsViewModel(interactor: interactor)
+        let viewModel = InjectionManager.shared.resolve(CustomListsViewModelProtocol.self)
         
         viewController.viewModel = viewModel
         viewController.coordinator = self

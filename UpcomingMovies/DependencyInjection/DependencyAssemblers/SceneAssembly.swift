@@ -14,7 +14,10 @@ class SceneAssembly: Assembly {
     func assemble(container: Container) {
         let assemblies: [Assembly] = [
             AccountAssembly(),
-            SavedMoviesAssembly()
+            AuthenticationAssembly(),
+            ProfileAssembly(),
+            SavedMoviesAssembly(),
+            CustomListsAssembly()
         ]
         assemblies.forEach { $0.assemble(container: container) }
     }
