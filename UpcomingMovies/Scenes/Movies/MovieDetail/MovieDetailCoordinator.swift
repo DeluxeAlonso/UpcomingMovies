@@ -29,8 +29,7 @@ final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol 
     func start() {
         let viewController = MovieDetailViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        viewController.viewModel = viewModel(for: movieInfo, and: useCaseProvider)
+        viewController.viewModel = viewModel(for: movieInfo)
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
@@ -87,21 +86,13 @@ final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol 
         coordinator.start()
     }
     
-    private func viewModel(for movieInfo: MovieDetailInfo,
-                           and useCaseProvider: UseCaseProviderProtocol) -> MovieDetailViewModel {
-        let interactor = MovieDetailInteractor(useCaseProvider: InjectionFactory.useCaseProvider(),
-                                               authHandler: DIContainer.shared.resolve(AuthenticationHandlerProtocol.self))
-        let factory = MovieDetailFactory()
-        let viewModel: MovieDetailViewModel
+    private func viewModel(for movieInfo: MovieDetailInfo) -> MovieDetailViewModelProtocol {
         switch movieInfo {
         case .complete(let movie):
-            viewModel = MovieDetailViewModel(movie, interactor: interactor, factory: factory)
+            return DIContainer.shared.resolve(argument: movie)
         case .partial(let movieId, let movieTitle):
-            viewModel = MovieDetailViewModel(id: movieId, title: movieTitle,
-                                             interactor: interactor, factory: factory)
+            return DIContainer.shared.resolve(arguments: movieId, movieTitle)
         }
-        
-        return viewModel
     }
     
     private func getMoviePartialInfo(for movieInfo: MovieDetailInfo) -> (id: Int, title: String) {

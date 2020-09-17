@@ -34,22 +34,8 @@ class DIContainer {
         return resolvedType
     }
     
-    func resolve<T>(_ type: T.Type) -> T {
-        guard let resolvedType = container.resolve(type) else {
-            fatalError()
-        }
-        return resolvedType
-    }
-    
     func resolve<T>(name: String) -> T {
         guard let resolvedType = container.resolve(T.self, name: name) else {
-            fatalError()
-        }
-        return resolvedType
-    }
-    
-    func resolve<T>(_ type: T.Type, name: String) -> T {
-        guard let resolvedType = container.resolve(type, name: name) else {
             fatalError()
         }
         return resolvedType
@@ -62,8 +48,8 @@ class DIContainer {
         return resolvedType
     }
     
-    func resolve<T, U>(_ type: T.Type, argument: U) -> T {
-        guard let resolvedType = container.resolve(type, argument: argument) else {
+    func resolve<T, Arg1, Arg2>(arguments arg1: Arg1, _ arg2: Arg2) -> T {
+        guard let resolvedType = container.resolve(T.self, arguments: arg1, arg2) else {
             fatalError()
         }
         return resolvedType
