@@ -13,13 +13,13 @@ import UpcomingMoviesDomain
 class UpcomingMoviesAssembly: Assembly {
     
     func assemble(container: Container) {
-        container.register(MoviesInteractorProtocol.self, name: "Upcoming") { resolver in
+        container.register(MoviesInteractorProtocol.self, name: "UpcomingMovies") { resolver in
             let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
             return UpcomingMoviesInteractor(useCaseProvider: useCaseProvider!)
         }
         
         container.register(UpcomingMoviesViewModelProtocol.self) { resolver in
-            let interactor = resolver.resolve(MoviesInteractorProtocol.self, name: "Upcoming")
+            let interactor = resolver.resolve(MoviesInteractorProtocol.self, name: "UpcomingMovies")
             return UpcomingMoviesViewModel(interactor: interactor!)
         }
     }

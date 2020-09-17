@@ -19,7 +19,6 @@ class ProfileAssembly: Assembly {
         
         container.register(ProfileInteractorProtocol.self) { resolver in
             let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
-            
             return ProfileInteractor(useCaseProvider: useCaseProvider!)
         }
         

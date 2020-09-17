@@ -31,11 +31,8 @@ final class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinato
     func embedSearchOptions(on parentViewController: UIViewController,
                             in containerView: UIView) -> SearchOptionsViewController {
         let viewController = SearchOptionsViewController.instantiate()
-        
-        let interactor = SearchOptionsInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let viewModel = SearchOptionsViewModel(interactor: interactor)
-        
-        viewController.viewModel = viewModel
+ 
+        viewController.viewModel = DIContainer.shared.resolve()
         
         parentViewController.add(asChildViewController: viewController,
                                  containerView: containerView)
@@ -45,10 +42,7 @@ final class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinato
     
     @discardableResult
     func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController {
-        let interactor = SearchMoviesResultInteractor(useCaseProvider: InjectionFactory.useCaseProvider(),
-                                                      authHandler: DIContainer.shared.resolve())
-        let searchResultViewModel = SearchMoviesResultViewModel(interactor: interactor)
-        let searchResultController = SearchMoviesResultController(viewModel: searchResultViewModel)
+        let searchResultController = SearchMoviesResultController(viewModel: DIContainer.shared.resolve())
         
         let searchController = DefaultSearchController(searchResultsController: searchResultController)
         

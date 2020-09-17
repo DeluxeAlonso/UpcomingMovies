@@ -24,12 +24,9 @@ final class SimilarMoviesCoordinator: NSObject, MovieListCoordinatorProtocol, Co
     func start() {
         let viewController = MovieListViewController.instantiate()
         
-        let interactor = SimilarMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider(), movieId: movieId)
-        let viewModel = MovieListViewModel(interactor: interactor)
-        viewModel.displayTitle = LocalizedStrings.similarMoviesTitle.localized
-        
+        viewController.viewModel = DIContainer.shared.resolve(name: "SimilarMovies",
+                                                              arguments: LocalizedStrings.similarMoviesTitle.localized, movieId)
         viewController.coordinator = self
-        viewController.viewModel = viewModel
         
         navigationController.delegate = self
         navigationController.pushViewController(viewController, animated: true)

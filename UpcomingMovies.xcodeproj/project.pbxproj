@@ -325,6 +325,8 @@
 		E273CDD1238117BA0018464B /* AccountRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CDD0238117BA0018464B /* AccountRemoteDataSource.swift */; };
 		E273CDD4238117E70018464B /* AccountRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CDD3238117E70018464B /* AccountRemoteDataSourceProtocol.swift */; };
 		E273CDD6238118600018464B /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CDD5238118600018464B /* AccountRepository.swift */; };
+		E274550E25130090000847A4 /* SearchMoviesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E274550D25130090000847A4 /* SearchMoviesAssembly.swift */; };
+		E274551025130BCC000847A4 /* MovieListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E274550F25130BCC000847A4 /* MovieListAssembly.swift */; };
 		E279B75524B2DFAB00AECFCC /* Credits+MockInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E279B75424B2DFAB00AECFCC /* Credits+MockInitializer.swift */; };
 		E2825DCD24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2825DCC24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift */; };
 		E28366762470E641008E2544 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28366752470E641008E2544 /* UIImageView+Extensions.swift */; };
@@ -1017,6 +1019,8 @@
 		E273CDD0238117BA0018464B /* AccountRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemoteDataSource.swift; sourceTree = "<group>"; };
 		E273CDD3238117E70018464B /* AccountRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemoteDataSourceProtocol.swift; sourceTree = "<group>"; };
 		E273CDD5238118600018464B /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
+		E274550D25130090000847A4 /* SearchMoviesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesAssembly.swift; sourceTree = "<group>"; };
+		E274550F25130BCC000847A4 /* MovieListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListAssembly.swift; sourceTree = "<group>"; };
 		E279B75424B2DFAB00AECFCC /* Credits+MockInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Credits+MockInitializer.swift"; sourceTree = "<group>"; };
 		E2825DCC24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMoviesCoordinator.swift; sourceTree = "<group>"; };
 		E28366752470E641008E2544 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -2697,6 +2701,8 @@
 			children = (
 				E2A4D93E2511C0CF00571893 /* UpcomingMoviesAssembly.swift */,
 				E26493A62512F45C00E6FFE7 /* MovieDetailAssembly.swift */,
+				E274550D25130090000847A4 /* SearchMoviesAssembly.swift */,
+				E274550F25130BCC000847A4 /* MovieListAssembly.swift */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -3571,6 +3577,7 @@
 				E20CBAFF24B1963600F3992E /* Bool+IntValue.swift in Sources */,
 				E222B95921FA0F3A008BA816 /* UpcomingMoviePreviewCollectionViewCell.swift in Sources */,
 				E2BE1B3B239DEAB200FC47FF /* CreditsMovieDetailOption.swift in Sources */,
+				E274551025130BCC000847A4 /* MovieListAssembly.swift in Sources */,
 				E25F9CEE225AF6D80069A6A1 /* Emptiable.swift in Sources */,
 				E22447722234AFA000A59FEF /* VerticalFlowLayout.swift in Sources */,
 				E22447782234BF0300A59FEF /* UpcomingMovieCollectionViewCellProtocol.swift in Sources */,
@@ -3683,6 +3690,7 @@
 				E2254696226A3D8100E9042C /* CustomListCellViewModel.swift in Sources */,
 				E2E518A824A9991400CC3FA5 /* SearchMoviesResultViewState.swift in Sources */,
 				E2251B202214FBB500EE7A51 /* MovieCreditCollectionViewCell.swift in Sources */,
+				E274550E25130090000847A4 /* SearchMoviesAssembly.swift in Sources */,
 				E2BE1B39239DEAA000FC47FF /* ReviewsMovieDetailOption.swift in Sources */,
 				E263FA9C24D52D8400990638 /* PopularMoviesCoordinator.swift in Sources */,
 				E22588A62243280600E1327E /* SignInViewController.swift in Sources */,

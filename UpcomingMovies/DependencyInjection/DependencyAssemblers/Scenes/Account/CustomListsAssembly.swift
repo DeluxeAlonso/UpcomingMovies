@@ -15,7 +15,6 @@ class CustomListsAssembly: Assembly {
     func assemble(container: Container) {
         container.register(CustomListsInteractorProtocol.self) { resolver in
             let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
-            
             return CustomListsInteractor(useCaseProvider: useCaseProvider!)
         }
         
