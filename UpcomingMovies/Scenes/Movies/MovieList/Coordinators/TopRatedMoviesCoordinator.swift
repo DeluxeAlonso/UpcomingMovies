@@ -21,13 +21,10 @@ final class TopRatedMoviesCoordinator: MovieListCoordinatorProtocol, Coordinator
     
     func start() {
         let viewController = MovieListViewController.instantiate()
-        
-        let interactor = TopRatedMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let viewModel = MovieListViewModel(interactor: interactor)
-        viewModel.displayTitle = LocalizedStrings.topRatedMoviesTitle.localized
-        
+
+        viewController.viewModel = DIContainer.shared.resolve(name: "TopRatedMovies",
+                                                              argument: LocalizedStrings.topRatedMoviesTitle.localized)
         viewController.coordinator = self
-        viewController.viewModel = viewModel
         
         navigationController.pushViewController(viewController, animated: true)
     }

@@ -22,11 +22,8 @@ final class PopularMoviesCoordinator: MovieListCoordinatorProtocol, Coordinator,
     func start() {
         let viewController = MovieListViewController.instantiate()
         
-        let interactor = PopularMoviesInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let viewModel = MovieListViewModel(interactor: interactor)
-        viewModel.displayTitle = LocalizedStrings.popularMoviesTitle.localized
-        
-        viewController.viewModel = viewModel
+        viewController.viewModel = DIContainer.shared.resolve(name: "PopularMovies",
+                                                              argument: LocalizedStrings.popularMoviesTitle.localized)
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)

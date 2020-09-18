@@ -21,11 +21,8 @@ final class CustomListsCoordinator: Coordinator, CustomListsCoordinatorProtocol 
     
     func start() {
         let viewController = CustomListsViewController.instantiate()
-        
-        let interactor = CustomListsInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let viewModel = CustomListsViewModel(interactor: interactor)
-        
-        viewController.viewModel = viewModel
+
+        viewController.viewModel = DIContainer.shared.resolve()
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)

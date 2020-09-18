@@ -122,7 +122,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     // MARK: - User Authentication
     
     func checkIfUserIsAuthenticated() {
-        let isUserSignedIn = AuthenticationHandler.shared.isUserSignedIn()
+        let isUserSignedIn = interactor.isUserSignedIn()
         if isUserSignedIn {
             checkIfMovieIsFavorite()
         } else {

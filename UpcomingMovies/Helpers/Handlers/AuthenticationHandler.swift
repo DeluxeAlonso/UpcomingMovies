@@ -19,17 +19,14 @@ protocol AuthenticationHandlerProtocol {
 
 class AuthenticationHandler: AuthenticationHandlerProtocol {
     
-    static let shared = AuthenticationHandler()
-    
     private let authUseCase: AuthUseCaseProtocol
     private let userUseCase: UserUseCaseProtocol
 
     // MARK: - Initializers
     
-    init() {
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        self.authUseCase = useCaseProvider.authUseCase()
-        self.userUseCase = useCaseProvider.userUseCase()
+    init(authUseCase: AuthUseCaseProtocol, userUseCase: UserUseCaseProtocol) {
+        self.authUseCase = authUseCase
+        self.userUseCase = userUseCase
     }
     
     // MARK: - Authentitacion Persistence

@@ -22,12 +22,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol {
     func start() {
         let viewController = AccountViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let interactor = AccountInteractor(useCaseProvider: useCaseProvider,
-                                           authHandler: AuthenticationHandler.shared)
-        let viewModel = AccountViewModel(interactor: interactor)
-        
-        viewController.viewModel = viewModel
+        viewController.viewModel = DIContainer.shared.resolve()
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
@@ -51,14 +46,8 @@ final class AccountCoordinator: AccountCoordinatorProtocol {
         navigationController.setNavigationBarHidden(false, animated: true)
         
         let viewController = ProfileViewController.instantiate()
-        
-        let interactor = ProfileInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let factory = ProfileFactory()
-        let viewModel = ProfileViewModel(userAccount: user,
-                                         interactor: interactor,
-                                         factory: factory)
-        
-        viewController.viewModel = viewModel
+
+        viewController.viewModel = DIContainer.shared.resolve(argument: user)
         viewController.delegate = parentViewController
         
         parentViewController.add(asChildViewController: viewController)

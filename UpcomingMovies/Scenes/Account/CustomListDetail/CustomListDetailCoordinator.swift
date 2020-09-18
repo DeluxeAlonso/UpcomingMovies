@@ -24,10 +24,7 @@ final class CustomListDetailCoordinator: CustomListDetailCoordinatorProtocol, Co
     func start() {
         let viewController = CustomListDetailViewController.instantiate()
         
-        let interactor = CustomListDetailInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let viewModel = CustomListDetailViewModel(customList, interactor: interactor)
-        
-        viewController.viewModel = viewModel
+        viewController.viewModel = DIContainer.shared.resolve(argument: customList)
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)

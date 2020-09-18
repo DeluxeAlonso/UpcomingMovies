@@ -25,15 +25,9 @@ final class MoviesByGenreCoordinator: MovieListCoordinatorProtocol, Coordinator,
     func start() {
         let viewController = MovieListViewController.instantiate()
         
-        let useCaseProvider = InjectionFactory.useCaseProvider()
-        let interactor = MoviesByGenreInteractor(useCaseProvider: useCaseProvider,
-                                                     genreId: genreId,
-                                                     genreName: genreName)
-        let viewModel = MovieListViewModel(interactor: interactor)
-        viewModel.displayTitle = genreName
-        
+        viewController.viewModel = DIContainer.shared.resolve(name: "MoviesByGenre",
+                                                              arguments: genreId, genreName)
         viewController.coordinator = self
-        viewController.viewModel = viewModel
         
         navigationController.pushViewController(viewController, animated: true)
     }
