@@ -25,9 +25,8 @@ final class MovieReviewDetailCoordinator: Coordinator, MovieReviewDetailCoordina
     
     func start() {
         let viewController = MovieReviewDetailViewController.instantiate()
-        let viewModel = MovieReviewDetailViewModel(review: review)
         
-        viewController.viewModel = viewModel
+        viewController.viewModel = DIContainer.shared.resolve(argument: review)
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: false)
