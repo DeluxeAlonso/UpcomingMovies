@@ -23,13 +23,8 @@ final class MovieCreditsCoordinator: NSObject, Coordinator, MovieCreditsCoordina
     
     func start() {
         let viewController = MovieCreditsViewController.instantiate()
-        
-        let interactor = MovieCreditsInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let factory = MovieCreditsFactory()
-        let viewModel = MovieCreditsViewModel(movieId: movieId, movieTitle: movieTitle,
-                                              interactor: interactor, factory: factory)
-        
-        viewController.viewModel = viewModel
+
+        viewController.viewModel = DIContainer.shared.resolve(arguments: movieId, movieTitle)
         viewController.coordinator = self
         
         navigationController.delegate = self
