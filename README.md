@@ -4,7 +4,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/DLAutoSlidePageViewController.svg?style=flat)]()
 [![Swift 5](https://img.shields.io/badge/Swift-5-orange.svg?style=flat)](https://developer.apple.com/swift/)
 
-Movies app written in Swift 5 using the TMDb API and demonstrating Clean Architecture, MVVM, Coordinators.
+Movies app written in Swift 5 using the TMDb API and demonstrating Clean Architecture, Dependency Injection, MVVM and Coordinators.
 
 ## Demo
 
@@ -33,6 +33,9 @@ Helper functions for saving text in Keychain securely for iOS, OS X, tvOS and wa
 
 ### SwiftLint (https://github.com/realm/SwiftLint)
 A tool to enforce Swift style and conventions.
+
+### Swinject (https://github.com/Swinject/Swinject)
+Dependency injection framework for Swift.
 
 ## Contributing
 
