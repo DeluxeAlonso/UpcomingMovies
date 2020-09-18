@@ -24,13 +24,8 @@ final class MovieReviewsCoordinator: NSObject, Coordinator, MovieReviewsCoordina
     
     func start() {
         let viewController = MovieReviewsViewController.instantiate()
-        
-        let interactor = MovieReviewsInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
-        let viewModel = MovieReviewsViewModel(movieId: movieId,
-                                              movieTitle: movieTitle,
-                                              interactor: interactor)
-        
-        viewController.viewModel = viewModel
+
+        viewController.viewModel = DIContainer.shared.resolve(arguments: movieId, movieTitle)
         viewController.coordinator = self
         
         navigationController.delegate = self

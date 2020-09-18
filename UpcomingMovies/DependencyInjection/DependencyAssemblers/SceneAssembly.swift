@@ -23,7 +23,9 @@ class SceneAssembly: Assembly {
             MovieDetailAssembly(),
             SearchMoviesAssembly(),
             MovieListAssembly(),
-            MovieCreditsAssembly()
+            MovieCreditsAssembly(),
+            MovieVideosAssembly(),
+            MovieReviewsAssembly()
         ]
         assemblies.forEach { $0.assemble(container: container) }
     }
