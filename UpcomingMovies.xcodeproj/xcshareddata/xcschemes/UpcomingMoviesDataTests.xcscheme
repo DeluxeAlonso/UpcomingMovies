@@ -51,15 +51,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E221167B21914E4B0039F8C9"
-            BuildableName = "UpcomingMovies.app"
-            BlueprintName = "UpcomingMovies"
-            ReferencedContainer = "container:UpcomingMovies.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
