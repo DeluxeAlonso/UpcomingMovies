@@ -26,5 +26,13 @@ target 'UpcomingMovies' do
     inherit! :search_paths
     # Pods for testing
   end
+  
+  post_install do |pi|
+      pi.pods_project.targets.each do |t|
+        t.build_configurations.each do |config|
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+        end
+      end
+  end
 
 end
