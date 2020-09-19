@@ -328,7 +328,6 @@
                                             </view>
                                         </subviews>
                                         <viewLayoutGuide key="safeArea" id="qYZ-7f-vai"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
