@@ -16,6 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         connectionOptions.checkForURLOpening(for: window)
         connectionOptions.checkForShortcutItem(for: window)
+        
+        guard let windowScene = scene as? UIWindowScene else { return }
+        window = UIWindow(windowScene: windowScene)
+        
+        window?.rootViewController = SplashBuilder.buildViewController()
+        window?.makeKeyAndVisible()
     }
     
     func windowScene(_ windowScene: UIWindowScene,

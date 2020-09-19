@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class MainTabBarBuilder {
+final class MainTabBarBuilder {
     
     class func buildViewCoordinators() -> [Coordinator] {
 
@@ -39,4 +39,5 @@ class MainTabBarBuilder {
         
         return navController
     }
+    
 }

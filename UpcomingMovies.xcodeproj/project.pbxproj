@@ -14,6 +14,8 @@
 		9598E1DA49AA2CBA6E0628E0 /* Pods_UpcomingMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811C39C9147DA695B15480ED /* Pods_UpcomingMovies.framework */; };
 		E200182821EE323200F29220 /* SearchOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E200182721EE323200F29220 /* SearchOptionsViewController.swift */; };
 		E200182A21EE336F00F29220 /* SearchOptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E200182921EE336F00F29220 /* SearchOptionsViewModel.swift */; };
+		E2009F4F2515BD8600D4B48F /* SplashBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2009F4E2515BD8600D4B48F /* SplashBuilder.swift */; };
+		E2009F582515BEE500D4B48F /* SplashAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2009F572515BEE500D4B48F /* SplashAssembly.swift */; };
 		E2020951236F27BD00EBDC5E /* NetworkInfrastructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2020948236F27BC00EBDC5E /* NetworkInfrastructure.framework */; };
 		E2020958236F27BD00EBDC5E /* NetworkInfrastructureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2020957236F27BD00EBDC5E /* NetworkInfrastructureTests.swift */; };
 		E202095A236F27BD00EBDC5E /* NetworkInfrastructure.h in Headers */ = {isa = PBXBuildFile; fileRef = E202094A236F27BC00EBDC5E /* NetworkInfrastructure.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -172,7 +174,6 @@
 		E2284312250EE2E300F053DE /* SavedMoviesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2284311250EE2E300F053DE /* SavedMoviesAssembly.swift */; };
 		E2284314250EE33A00F053DE /* SceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2284313250EE33A00F053DE /* SceneAssembly.swift */; };
 		E2284316250EE57900F053DE /* AccountAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2284315250EE57900F053DE /* AccountAssembly.swift */; };
-		E2284318250EE70500F053DE /* InjectionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2284317250EE70500F053DE /* InjectionFactory.swift */; };
 		E229A532236BF242006FF112 /* CoreDataInfrastructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E229A529236BF241006FF112 /* CoreDataInfrastructure.framework */; };
 		E229A53B236BF242006FF112 /* CoreDataInfraestructure.h in Headers */ = {isa = PBXBuildFile; fileRef = E229A52B236BF241006FF112 /* CoreDataInfraestructure.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E229A53E236BF242006FF112 /* CoreDataInfrastructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E229A529236BF241006FF112 /* CoreDataInfrastructure.framework */; };
@@ -723,6 +724,8 @@
 		E200182721EE323200F29220 /* SearchOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOptionsViewController.swift; sourceTree = "<group>"; };
 		E200182921EE336F00F29220 /* SearchOptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOptionsViewModel.swift; sourceTree = "<group>"; };
 		E200182B21EE378800F29220 /* MovieVisit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVisit.swift; sourceTree = "<group>"; };
+		E2009F4E2515BD8600D4B48F /* SplashBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashBuilder.swift; sourceTree = "<group>"; };
+		E2009F572515BEE500D4B48F /* SplashAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAssembly.swift; sourceTree = "<group>"; };
 		E2020948236F27BC00EBDC5E /* NetworkInfrastructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkInfrastructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E202094A236F27BC00EBDC5E /* NetworkInfrastructure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkInfrastructure.h; sourceTree = "<group>"; };
 		E202094B236F27BC00EBDC5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -891,7 +894,6 @@
 		E2284311250EE2E300F053DE /* SavedMoviesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMoviesAssembly.swift; sourceTree = "<group>"; };
 		E2284313250EE33A00F053DE /* SceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneAssembly.swift; sourceTree = "<group>"; };
 		E2284315250EE57900F053DE /* AccountAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAssembly.swift; sourceTree = "<group>"; };
-		E2284317250EE70500F053DE /* InjectionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InjectionFactory.swift; sourceTree = "<group>"; };
 		E229A529236BF241006FF112 /* CoreDataInfrastructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreDataInfrastructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E229A52B236BF241006FF112 /* CoreDataInfraestructure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataInfraestructure.h; sourceTree = "<group>"; };
 		E229A52C236BF241006FF112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1347,6 +1349,14 @@
 			path = SearchResult;
 			sourceTree = "<group>";
 		};
+		E2009F562515BEDC00D4B48F /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				E2009F572515BEE500D4B48F /* SplashAssembly.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		E202091B236F20F300EBDC5E /* Genre */ = {
 			isa = PBXGroup;
 			children = (
@@ -1610,6 +1620,7 @@
 				E21F37A221941D3900D6BFB6 /* SplashViewModel.swift */,
 				E2033DC224D90CED00185664 /* SplashProtocols.swift */,
 				E2033DC424D90D7600185664 /* SplashInteractor.swift */,
+				E2009F4E2515BD8600D4B48F /* SplashBuilder.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -2063,6 +2074,7 @@
 		E2284310250EE2CD00F053DE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E2009F562515BEDC00D4B48F /* Splash */,
 				E2A4D9342511B03E00571893 /* Account */,
 				E2A4D93D2511C0AD00571893 /* Movies */,
 			);
@@ -2608,7 +2620,6 @@
 			children = (
 				E2912670250DD1D3007AD101 /* DependencyAssemblers */,
 				E2912675250DE651007AD101 /* DIContainer.swift */,
-				E2284317250EE70500F053DE /* InjectionFactory.swift */,
 			);
 			path = DependencyInjection;
 			sourceTree = "<group>";
@@ -3579,6 +3590,7 @@
 				E2EB923B221375190067F011 /* SimpleTableViewDataSource.swift in Sources */,
 				E2F9F7182201F3C300C62089 /* TransitioningInteractor.swift in Sources */,
 				E284EF4F21F12A12004E705F /* VisitedMovieCollectionViewCell.swift in Sources */,
+				E2009F582515BEE500D4B48F /* SplashAssembly.swift in Sources */,
 				E229AFB724A8597C002AB427 /* MovieCreditsProtocols.swift in Sources */,
 				E25F9CEA225AED440069A6A1 /* EmptyPlaceholderView.swift in Sources */,
 				E2CF112824A809270048AFC0 /* AccountProtocols.swift in Sources */,
@@ -3606,6 +3618,7 @@
 				E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */,
 				E260117D21939D7100E53095 /* MovieDetailViewModel.swift in Sources */,
 				E265C2612495392900712284 /* MoviesByGenreInteractor.swift in Sources */,
+				E2009F4F2515BD8600D4B48F /* SplashBuilder.swift in Sources */,
 				E22447742234BC3500A59FEF /* UpcomingMovieExpandedCollectionViewCell.swift in Sources */,
 				E2254693226A3D6500E9042C /* CustomListTableViewCell.swift in Sources */,
 				E2912676250DE651007AD101 /* DIContainer.swift in Sources */,
@@ -3661,7 +3674,6 @@
 				E26AB93021F8C0ED00D9FEAA /* MovieListViewController.swift in Sources */,
 				E20635A4226E127200FDD85E /* SearchMoviesResultView.swift in Sources */,
 				E2A4D9362511B05500571893 /* AuthenticationAssembly.swift in Sources */,
-				E2284318250EE70500F053DE /* InjectionFactory.swift in Sources */,
 				E2251B132214ECFA00EE7A51 /* MovieCreditsViewController.swift in Sources */,
 				E2DCE7F724B12F940041301E /* ToggleBarButtonContent.swift in Sources */,
 				E200182A21EE336F00F29220 /* SearchOptionsViewModel.swift in Sources */,

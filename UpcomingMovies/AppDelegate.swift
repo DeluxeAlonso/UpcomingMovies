@@ -14,13 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        _ = DIContainer.shared
         
         if let launchOptions = launchOptions,
             let shortcutItem = launchOptions[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
             NavigationHandler.shared.handleShortcutItem(shortcutItem, and: window)
         }
         
-        _ = DIContainer.shared
+        window?.rootViewController = SplashBuilder.buildViewController()
         
         return true
     }

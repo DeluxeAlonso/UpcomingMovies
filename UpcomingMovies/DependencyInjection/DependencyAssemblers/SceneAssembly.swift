@@ -13,6 +13,7 @@ class SceneAssembly: Assembly {
     
     func assemble(container: Container) {
         let assemblies: [Assembly] = [
+            SplashAssembly(),
             AccountAssembly(),
             AuthenticationAssembly(),
             ProfileAssembly(),
