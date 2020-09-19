@@ -8,9 +8,11 @@
 
 import UIKit
 
-class SplashViewController: UIViewController {
+class SplashViewController: UIViewController, Storyboarded {
     
-    private var viewModel: SplashViewModelProtocol = SplashViewModel()
+    static var storyboardName: String = "Main"
+    
+    var viewModel: SplashViewModelProtocol?
 
     // MARK: - Lifecycle
     
@@ -19,13 +21,13 @@ class SplashViewController: UIViewController {
         // We can only get the window and scene of this view controller
         // only after it has been added to the window hierarchy
         setupBindables()
-        viewModel.startInitialDownloads()
+        viewModel?.startInitialDownloads()
     }
 
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        viewModel.initialDownloadsEnded = { [weak self] in
+        viewModel?.initialDownloadsEnded = { [weak self] in
             guard let strongSelf = self else { return }
             NavigationHandler.shared.initialTransition(from: strongSelf.view.window)
         }

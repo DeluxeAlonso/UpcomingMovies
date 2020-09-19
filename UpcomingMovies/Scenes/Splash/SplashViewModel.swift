@@ -16,8 +16,8 @@ final class SplashViewModel: SplashViewModelProtocol {
     
     var initialDownloadsEnded: (() -> Void)?
     
-    init() {
-        self.interactor = SplashInteractor(useCaseProvider: InjectionFactory.useCaseProvider())
+    init(interactor: SplashInteractorProtocol) {
+        self.interactor = interactor
     }
     
     func startInitialDownloads() {
