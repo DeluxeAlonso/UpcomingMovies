@@ -9,47 +9,69 @@
 import Foundation
 import UpcomingMoviesDomain
 
-extension Movie {
+protocol ImageConfigurable {
+    
+    var regularImageBaseURLString: String { get }
+    var backdropImageBaseURLString: String { get }
+}
+
+extension ImageConfigurable {
+    
+    var configurationHandler: ConfigurationHandlerProtocol {
+        DIContainer.shared.resolve()
+    }
+    
+    var regularImageBaseURLString: String {
+        configurationHandler.regularImageBaseURLString
+    }
+    
+    var backdropImageBaseURLString: String {
+        configurationHandler.backdropImageBaseURLString
+    }
+    
+}
+
+extension Movie: ImageConfigurable {
     
     var posterURL: URL? {
         guard let posterPath = posterPath else { return nil }
-        let urlString = ConfigurationHandler.shared.regularImageBaseURLString + posterPath
+        let urlString = regularImageBaseURLString + posterPath
         return URL(string: urlString)
     }
     
     var backdropURL: URL? {
         guard let backdropPath = backdropPath else { return nil }
-        let urlString = ConfigurationHandler.shared.backdropImageBaseURLString + backdropPath
+        let urlString = backdropImageBaseURLString + backdropPath
         return URL(string: urlString)
     }
 
 }
 
-extension Cast {
+extension Cast: ImageConfigurable {
     
     var profileURL: URL? {
         guard let photoPath = photoPath else { return nil }
-        let urlString = ConfigurationHandler.shared.regularImageBaseURLString + photoPath
+        let urlString = regularImageBaseURLString + photoPath
         return URL(string: urlString)
     }
     
 }
 
-extension Crew {
-    
+extension Crew: ImageConfigurable {
+
     var profileURL: URL? {
         guard let photoPath = photoPath else { return nil }
-        let urlString = ConfigurationHandler.shared.regularImageBaseURLString + photoPath
+        let urlString = regularImageBaseURLString + photoPath
         return URL(string: urlString)
     }
     
 }
 
-extension List {
-
+extension List: ImageConfigurable {
+    
     var backdropURL: URL? {
         guard let backdropPath = backdropPath else { return nil }
-        let urlString = ConfigurationHandler.shared.backdropImageBaseURLString + backdropPath
+        let urlString = backdropImageBaseURLString + backdropPath
         return URL(string: urlString)
     }
 

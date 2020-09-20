@@ -9,19 +9,20 @@
 import Foundation
 import UpcomingMoviesDomain
 
-class ConfigurationHandler {
+protocol ConfigurationHandlerProtocol {
     
-    static let shared: ConfigurationHandler = ConfigurationHandler()
+    var regularImageBaseURLString: String { get }
+    var backdropImageBaseURLString: String { get }
+    
+    func setConfiguration(_ configuration: Configuration)
+    
+}
+
+class ConfigurationHandler: ConfigurationHandlerProtocol {
     
     private var imageConfiguration: ImageConfigurationHandler?
     
-    init() {}
-    
-    func setConfiguration(_ configuration: Configuration) {
-        self.imageConfiguration = ImageConfigurationHandler(configuration: configuration)
-    }
-    
-    // MARK: - Images Configuration
+    // MARK: - ConfigurationHandlerProtocol
     
     var regularImageBaseURLString: String {
         guard !isTesting() else {
@@ -35,6 +36,10 @@ class ConfigurationHandler {
             return ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
         }
         return imageConfiguration?.backdropImageBaseURLString ??  ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
+    }
+    
+    func setConfiguration(_ configuration: Configuration) {
+        self.imageConfiguration = ImageConfigurationHandler(configuration: configuration)
     }
     
     // MARK: - XCTest
