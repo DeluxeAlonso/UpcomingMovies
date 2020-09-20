@@ -9,19 +9,28 @@
 import Foundation
 import UpcomingMoviesDomain
 
-class ConfigurationHandler {
+protocol ConfigurationHandlerProtocol {
     
-    static let shared: ConfigurationHandler = ConfigurationHandler()
+    var regularImageBaseURLString: String { get }
+    var backdropImageBaseURLString: String { get }
+    
+    func getAppConfiguration(completion: @escaping (Result<Configuration, Error>) -> Void)
+    
+}
+
+class ConfigurationHandler: ConfigurationHandlerProtocol {
+    
+    private let configurationUseCase: ConfigurationUseCaseProtocol
     
     private var imageConfiguration: ImageConfigurationHandler?
     
-    init() {}
+    // MARK: - Initializarerz
     
-    func setConfiguration(_ configuration: Configuration) {
-        self.imageConfiguration = ImageConfigurationHandler(configuration: configuration)
+    init(configurationUseCase: ConfigurationUseCaseProtocol) {
+        self.configurationUseCase = configurationUseCase
     }
     
-    // MARK: - Images Configuration
+    // MARK: - ConfigurationHandlerProtocol
     
     var regularImageBaseURLString: String {
         guard !isTesting() else {
@@ -35,6 +44,22 @@ class ConfigurationHandler {
             return ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
         }
         return imageConfiguration?.backdropImageBaseURLString ??  ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
+    }
+    
+    func getAppConfiguration(completion: @escaping (Result<Configuration, Error>) -> Void) {
+        configurationUseCase.getConfiguration { result in
+            switch result {
+            case .success(let configuration):
+                self.setConfiguration(configuration)
+                completion(.success(configuration))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    private func setConfiguration(_ configuration: Configuration) {
+        self.imageConfiguration = ImageConfigurationHandler(configuration: configuration)
     }
     
     // MARK: - XCTest

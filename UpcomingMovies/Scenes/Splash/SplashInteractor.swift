@@ -12,15 +12,15 @@ import UpcomingMoviesDomain
 struct SplashInteractor: SplashInteractorProtocol {
     
     private let genreUseCase: GenreUseCaseProtocol
-    private let configurationUseCase: ConfigurationUseCaseProtocol
+    private let configurationHandler: ConfigurationHandlerProtocol
     
-    init(useCaseProvider: UseCaseProviderProtocol) {
+    init(useCaseProvider: UseCaseProviderProtocol, configurationHandler: ConfigurationHandlerProtocol) {
         self.genreUseCase = useCaseProvider.genreUseCase()
-        self.configurationUseCase = useCaseProvider.configurationUseCase()
+        self.configurationHandler = configurationHandler
     }
     
     func getAppConfiguration(completion: @escaping (Result<Configuration, Error>) -> Void) {
-        configurationUseCase.getConfiguration(completion: completion)
+        configurationHandler.getAppConfiguration(completion: completion)
     }
     
     func getAllGenres(completion: @escaping (Result<[Genre], Error>) -> Void) {

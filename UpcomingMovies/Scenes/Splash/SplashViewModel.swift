@@ -38,8 +38,7 @@ final class SplashViewModel: SplashViewModelProtocol {
     */
     private func getAppConfiguration() {
         dispatchGroup.enter()
-        interactor.getAppConfiguration { [weak self] result in
-            _ = result.map { ConfigurationHandler.shared.setConfiguration($0) }
+        interactor.getAppConfiguration { [weak self] _ in
             self?.dispatchGroup.leave()
         }
     }
