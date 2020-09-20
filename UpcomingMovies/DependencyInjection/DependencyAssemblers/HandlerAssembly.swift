@@ -19,9 +19,8 @@ class HandlerAssembly: Assembly {
                                          userUseCase: useCaseProvider!.userUseCase())
         }.inObjectScope(.container)
         
-        container.register(ConfigurationHandlerProtocol.self) { resolver in
-            let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
-            return ConfigurationHandler(configurationUseCase: useCaseProvider!.configurationUseCase())
+        container.register(ConfigurationHandlerProtocol.self) { _ in
+            ConfigurationHandler()
         }.inObjectScope(.container)
     }
     

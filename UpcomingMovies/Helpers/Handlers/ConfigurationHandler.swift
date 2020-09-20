@@ -14,21 +14,13 @@ protocol ConfigurationHandlerProtocol {
     var regularImageBaseURLString: String { get }
     var backdropImageBaseURLString: String { get }
     
-    func getAppConfiguration(completion: @escaping (Result<Configuration, Error>) -> Void)
+    func setConfiguration(_ configuration: Configuration)
     
 }
 
 class ConfigurationHandler: ConfigurationHandlerProtocol {
     
-    private let configurationUseCase: ConfigurationUseCaseProtocol
-    
     private var imageConfiguration: ImageConfigurationHandler?
-    
-    // MARK: - Initializarerz
-    
-    init(configurationUseCase: ConfigurationUseCaseProtocol) {
-        self.configurationUseCase = configurationUseCase
-    }
     
     // MARK: - ConfigurationHandlerProtocol
     
@@ -46,19 +38,7 @@ class ConfigurationHandler: ConfigurationHandlerProtocol {
         return imageConfiguration?.backdropImageBaseURLString ??  ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
     }
     
-    func getAppConfiguration(completion: @escaping (Result<Configuration, Error>) -> Void) {
-        configurationUseCase.getConfiguration { result in
-            switch result {
-            case .success(let configuration):
-                self.setConfiguration(configuration)
-                completion(.success(configuration))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    private func setConfiguration(_ configuration: Configuration) {
+    func setConfiguration(_ configuration: Configuration) {
         self.imageConfiguration = ImageConfigurationHandler(configuration: configuration)
     }
     

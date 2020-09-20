@@ -15,15 +15,14 @@ class SplashAssembly: Assembly {
     func assemble(container: Container) {
         container.register(SplashInteractorProtocol.self) { resolver in
             let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
-            let configurationHandler = resolver.resolve(ConfigurationHandlerProtocol.self)
-            
-            return SplashInteractor(useCaseProvider: useCaseProvider!,
-                                    configurationHandler: configurationHandler!)
+            return SplashInteractor(useCaseProvider: useCaseProvider!)
         }
         
         container.register(SplashViewModelProtocol.self) { resolver in
             let interactor = resolver.resolve(SplashInteractorProtocol.self)
-            return SplashViewModel(interactor: interactor!)
+            let configurationHandler = resolver.resolve(ConfigurationHandlerProtocol.self)
+            
+            return SplashViewModel(interactor: interactor!, configurationHandler: configurationHandler!)
         }
     }
     

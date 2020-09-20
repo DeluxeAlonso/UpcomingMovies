@@ -12,12 +12,15 @@ import UpcomingMoviesDomain
 final class SplashViewModel: SplashViewModelProtocol {
     
     private let interactor: SplashInteractorProtocol
+    private let configurationHandler: ConfigurationHandlerProtocol
+    
     private var dispatchGroup: DispatchGroup!
     
     var initialDownloadsEnded: (() -> Void)?
     
-    init(interactor: SplashInteractorProtocol) {
+    init(interactor: SplashInteractorProtocol, configurationHandler: ConfigurationHandlerProtocol) {
         self.interactor = interactor
+        self.configurationHandler = configurationHandler
     }
     
     func startInitialDownloads() {
@@ -38,7 +41,8 @@ final class SplashViewModel: SplashViewModelProtocol {
     */
     private func getAppConfiguration() {
         dispatchGroup.enter()
-        interactor.getAppConfiguration { [weak self] _ in
+        interactor.getAppConfiguration { [weak self] result in
+            _ = result.map { self?.configurationHandler.setConfiguration($0) }
             self?.dispatchGroup.leave()
         }
     }
