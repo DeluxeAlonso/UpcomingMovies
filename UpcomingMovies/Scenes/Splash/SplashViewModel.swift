@@ -12,14 +12,18 @@ import UpcomingMoviesDomain
 final class SplashViewModel: SplashViewModelProtocol {
     
     private let interactor: SplashInteractorProtocol
+    private let genreHandler: GenreHandlerProtocol
     private let configurationHandler: ConfigurationHandlerProtocol
     
     private var dispatchGroup: DispatchGroup!
     
     var initialDownloadsEnded: (() -> Void)?
     
-    init(interactor: SplashInteractorProtocol, configurationHandler: ConfigurationHandlerProtocol) {
+    init(interactor: SplashInteractorProtocol,
+         genreHandler: GenreHandlerProtocol,
+         configurationHandler: ConfigurationHandlerProtocol) {
         self.interactor = interactor
+        self.genreHandler = genreHandler
         self.configurationHandler = configurationHandler
     }
     
@@ -53,7 +57,7 @@ final class SplashViewModel: SplashViewModelProtocol {
     private func getMovieGenres() {
         dispatchGroup.enter()
         interactor.getAllGenres { [weak self] result in
-            _ = result.map { GenreHandler.shared.setGenres($0) }
+            _ = result.map { self?.genreHandler.setGenres($0) }
             self?.dispatchGroup.leave()
         }
     }

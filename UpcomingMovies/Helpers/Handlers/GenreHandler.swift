@@ -9,13 +9,18 @@
 import Foundation
 import UpcomingMoviesDomain
 
+protocol GenreHandlerProtocol {
+    
+    func setGenres(_ genres: [Genre])
+    func getGenreName(for genreId: Int) -> String?
+    
+}
+
 /**
  * Provides methods to access the movie genres names
- * because they are no always sent to us through the endpoints.
+ * because they are not always sent to us through the endpoints.
  */
-class GenreHandler {
-    
-    static let shared: GenreHandler = GenreHandler()
+class GenreHandler: GenreHandlerProtocol {
     
     private var genres: [Genre] = []
     

@@ -27,13 +27,9 @@ final class MovieCellViewModel: MovieCellViewModelProtocol {
     let posterURL: URL?
     let voteAverage: Double?
 
-    init(_ movie: Movie, genreHandler: GenreHandler = GenreHandler.shared) {
+    init(_ movie: Movie) {
         self.name = movie.title
-        if let genreId = movie.genreIds?.first {
-            self.genreName = genreHandler.getGenreName(for: genreId)
-        } else {
-            self.genreName = "-"
-        }
+        self.genreName = movie.genreName
         self.releaseDate = movie.releaseDate
         self.voteAverage = movie.voteAverage
         self.posterURL = movie.posterURL
