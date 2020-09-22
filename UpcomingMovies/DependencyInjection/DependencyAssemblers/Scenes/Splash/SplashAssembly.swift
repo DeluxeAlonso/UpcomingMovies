@@ -20,9 +20,12 @@ class SplashAssembly: Assembly {
         
         container.register(SplashViewModelProtocol.self) { resolver in
             let interactor = resolver.resolve(SplashInteractorProtocol.self)
+            let genreHandler = resolver.resolve(GenreHandlerProtocol.self)
             let configurationHandler = resolver.resolve(ConfigurationHandlerProtocol.self)
             
-            return SplashViewModel(interactor: interactor!, configurationHandler: configurationHandler!)
+            return SplashViewModel(interactor: interactor!,
+                                   genreHandler: genreHandler!,
+                                   configurationHandler: configurationHandler!)
         }
     }
     

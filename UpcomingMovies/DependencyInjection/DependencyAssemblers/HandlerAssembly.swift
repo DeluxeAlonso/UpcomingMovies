@@ -19,6 +19,10 @@ class HandlerAssembly: Assembly {
                                          userUseCase: useCaseProvider!.userUseCase())
         }.inObjectScope(.container)
         
+        container.register(GenreHandlerProtocol.self) { _ in
+            GenreHandler()
+        }.inObjectScope(.container)
+        
         container.register(ConfigurationHandlerProtocol.self) { _ in
             ConfigurationHandler()
         }.inObjectScope(.container)
