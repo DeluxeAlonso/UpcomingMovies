@@ -10,7 +10,7 @@ import Foundation
 import Swinject
 import UpcomingMoviesDomain
 
-class MovieDetailAssembly: Assembly {
+final class MovieDetailAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(MovieDetailFactoryProtocol.self) { _ in

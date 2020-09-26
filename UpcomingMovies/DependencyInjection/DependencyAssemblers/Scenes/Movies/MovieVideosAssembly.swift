@@ -10,7 +10,7 @@ import Foundation
 import Swinject
 import UpcomingMoviesDomain
 
-class MovieVideosAssembly: Assembly {
+final class MovieVideosAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(MovieVideosInteractorProtocol.self) { resolver in

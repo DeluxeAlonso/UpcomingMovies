@@ -10,7 +10,7 @@ import Foundation
 import Swinject
 import UpcomingMoviesDomain
 
-class MovieCreditsAssembly: Assembly {
+final class MovieCreditsAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(MovieCreditsFactoryProtocol.self) { _ in

@@ -10,7 +10,7 @@ import Foundation
 import Swinject
 import UpcomingMoviesDomain
 
-class CustomListDetailAssembly: Assembly {
+final class CustomListDetailAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(CustomListDetailInteractorProtocol.self) { resolver in

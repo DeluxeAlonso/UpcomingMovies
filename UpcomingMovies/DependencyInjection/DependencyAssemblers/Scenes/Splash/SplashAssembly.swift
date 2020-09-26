@@ -10,7 +10,7 @@ import Foundation
 import Swinject
 import UpcomingMoviesDomain
 
-class SplashAssembly: Assembly {
+final class SplashAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(SplashInteractorProtocol.self) { resolver in

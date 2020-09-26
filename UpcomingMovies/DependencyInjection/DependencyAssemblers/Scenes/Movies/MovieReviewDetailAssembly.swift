@@ -10,7 +10,7 @@ import Foundation
 import Swinject
 import UpcomingMoviesDomain
 
-class MovieReviewDetailAssembly: Assembly {
+final class MovieReviewDetailAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(MovieReviewDetailViewModelProtocol.self) { (_, review: Review?) in

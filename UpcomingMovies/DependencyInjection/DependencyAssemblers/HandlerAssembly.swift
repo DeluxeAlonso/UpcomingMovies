@@ -10,7 +10,7 @@ import Foundation
 import UpcomingMoviesDomain
 import Swinject
 
-class HandlerAssembly: Assembly {
+final class HandlerAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(AuthenticationHandlerProtocol.self) { resolver in

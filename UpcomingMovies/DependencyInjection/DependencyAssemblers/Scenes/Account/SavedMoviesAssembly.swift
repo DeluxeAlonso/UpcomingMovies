@@ -10,7 +10,7 @@ import Foundation
 import Swinject
 import UpcomingMoviesDomain
 
-class SavedMoviesAssembly: Assembly {
+final class SavedMoviesAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(SavedMoviesInteractorProtocol.self,
