@@ -13,7 +13,7 @@ import CoreDataInfrastructure
 import NetworkInfrastructure
 import Swinject
 
-class ProviderAssembly: Assembly {
+final class ProviderAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(UseCaseProviderProtocol.self) { resolver in

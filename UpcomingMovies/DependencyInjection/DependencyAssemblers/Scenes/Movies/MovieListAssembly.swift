@@ -10,7 +10,7 @@ import Foundation
 import Swinject
 import UpcomingMoviesDomain
 
-class MovieListAssembly: Assembly {
+final class MovieListAssembly: Assembly {
     
     func assemble(container: Container) {
         popularMoviesAssemble(container: container)

@@ -12,7 +12,7 @@ import CoreDataInfrastructure
 import NetworkInfrastructure
 import Swinject
 
-class DataSourceAssembly: Assembly {
+final class DataSourceAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(LocalDataSourceProtocol.self) { _ in

@@ -10,7 +10,7 @@ import Foundation
 import Swinject
 import UpcomingMoviesDomain
 
-class ProfileAssembly: Assembly {
+final class ProfileAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(ProfileFactoryProtocol.self) { _ in

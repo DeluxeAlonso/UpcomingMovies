@@ -9,7 +9,7 @@
 import Foundation
 import Swinject
 
-class SceneAssembly: Assembly {
+final class SceneAssembly: Assembly {
     
     func assemble(container: Container) {
         let assemblies: [Assembly] = [
