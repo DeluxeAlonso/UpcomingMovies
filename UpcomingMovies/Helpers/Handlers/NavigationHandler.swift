@@ -8,11 +8,28 @@
 
 import UIKit
 
-class NavigationHandler {
+protocol NavigationHandlerProtocol {
+    
+    func initialTransition(from window: UIWindow?)
+    
+    func handleUrlOpeningNavigation(for urlString: String, and window: UIWindow?)
+    func handleShortcutItem(_ shortcutItem: UIApplicationShortcutItem, and window: UIWindow?)
+    
+}
+
+final class NavigationHandler: NavigationHandlerProtocol {
     
     static let shared = NavigationHandler()
     
     private var currentSelectedIndex: Int = 0
+    
+    private func changeTabBarToSelectedIndex(_ index: Int, from window: UIWindow?) {
+        currentSelectedIndex = index
+        guard let tabBarController = window?.rootViewController as? UITabBarController else {
+            return
+        }
+        tabBarController.selectedIndex = currentSelectedIndex
+    }
     
     func initialTransition(from window: UIWindow?) {
         guard let window = window else { return }
@@ -40,14 +57,6 @@ class NavigationHandler {
         case .searchMovies:
             changeTabBarToSelectedIndex(1, from: window)
         }
-    }
-    
-    func changeTabBarToSelectedIndex(_ index: Int, from window: UIWindow?) {
-        currentSelectedIndex = index
-        guard let tabBarController = window?.rootViewController as? UITabBarController else {
-            return
-        }
-        tabBarController.selectedIndex = currentSelectedIndex
     }
     
 }
