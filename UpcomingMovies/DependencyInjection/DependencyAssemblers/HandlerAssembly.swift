@@ -19,6 +19,10 @@ final class HandlerAssembly: Assembly {
                                          userUseCase: useCaseProvider!.userUseCase())
         }.inObjectScope(.container)
         
+        container.register(NavigationHandlerProtocol.self) { _ in
+            NavigationHandler()
+        }.inObjectScope(.container)
+        
         container.register(GenreHandlerProtocol.self) { _ in
             GenreHandler()
         }.inObjectScope(.container)

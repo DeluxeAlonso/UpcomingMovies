@@ -19,8 +19,6 @@ protocol NavigationHandlerProtocol {
 
 final class NavigationHandler: NavigationHandlerProtocol {
     
-    static let shared = NavigationHandler()
-    
     private var currentSelectedIndex: Int = 0
     
     private func changeTabBarToSelectedIndex(_ index: Int, from window: UIWindow?) {

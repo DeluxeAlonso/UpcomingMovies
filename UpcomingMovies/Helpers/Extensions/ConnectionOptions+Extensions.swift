@@ -13,13 +13,15 @@ extension UIScene.ConnectionOptions {
     
     func checkForURLOpening(for window: UIWindow?) {
         if let url = urlContexts.first?.url {
-            NavigationHandler.shared.handleUrlOpeningNavigation(for: url.absoluteString, and: window)
+            let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
+            navigationHandler.handleUrlOpeningNavigation(for: url.absoluteString, and: window)
         }
     }
     
     func checkForShortcutItem(for window: UIWindow?) {
         if let shortcutItem = shortcutItem {
-            NavigationHandler.shared.handleShortcutItem(shortcutItem, and: window)
+            let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
+            navigationHandler.handleShortcutItem(shortcutItem, and: window)
         }
     }
     

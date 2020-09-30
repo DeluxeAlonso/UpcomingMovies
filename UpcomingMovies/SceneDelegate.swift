@@ -27,12 +27,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func windowScene(_ windowScene: UIWindowScene,
                      performActionFor shortcutItem: UIApplicationShortcutItem,
                      completionHandler: @escaping (Bool) -> Void) {
-        NavigationHandler.shared.handleShortcutItem(shortcutItem, and: window)
+        let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
+        navigationHandler.handleShortcutItem(shortcutItem, and: window)
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else { return }
-        NavigationHandler.shared.handleUrlOpeningNavigation(for: url.absoluteString, and: window)
+        let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
+        navigationHandler.handleUrlOpeningNavigation(for: url.absoluteString, and: window)
     }
 
 }
