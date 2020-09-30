@@ -17,8 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         navigationHandler = DIContainer.shared.resolve()
         
-        connectionOptions.checkForURLOpening(for: window)
-        connectionOptions.checkForShortcutItem(for: window)
+        handleConnectionOptions(connectionOptions)
         
         guard let windowScene = scene as? UIWindowScene else { return }
         window = UIWindow(windowScene: windowScene)
@@ -36,6 +35,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else { return }
         navigationHandler?.handleUrlOpeningNavigation(for: url.absoluteString, and: window)
+    }
+    
+    private func handleConnectionOptions(_ options: UIScene.ConnectionOptions) {
+        if let url = options.urlContexts.first?.url {
+            navigationHandler?.handleUrlOpeningNavigation(for: url.absoluteString, and: window)
+        } else if let shortcutItem = options.shortcutItem {
+            navigationHandler?.handleShortcutItem(shortcutItem, and: window)
+        }
     }
 
 }

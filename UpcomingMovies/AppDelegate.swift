@@ -15,8 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var navigationHandler: NavigationHandlerProtocol?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let container = DIContainer.shared
-        navigationHandler = container.resolve()
+        _ = DIContainer.shared
+        
+        navigationHandler = DIContainer.shared.resolve()
         
         if let launchOptions = launchOptions,
             let shortcutItem = launchOptions[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
