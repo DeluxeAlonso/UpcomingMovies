@@ -12,14 +12,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var navigationHandler: NavigationHandlerProtocol?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        _ = DIContainer.shared
+        let container = DIContainer.shared
+        navigationHandler = container.resolve()
         
         if let launchOptions = launchOptions,
             let shortcutItem = launchOptions[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
-            let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
-            navigationHandler.handleShortcutItem(shortcutItem, and: window)
+            navigationHandler?.handleShortcutItem(shortcutItem, and: window)
         }
         
         window?.rootViewController = SplashBuilder.buildViewController()
@@ -30,14 +31,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      performActionFor shortcutItem: UIApplicationShortcutItem,
                      completionHandler: @escaping (Bool) -> Void) {
-        let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
-        navigationHandler.handleShortcutItem(shortcutItem, and: window)
+        navigationHandler?.handleShortcutItem(shortcutItem, and: window)
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         guard let urlString = url.scheme else { return false }
-        let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
-        navigationHandler.handleUrlOpeningNavigation(for: urlString, and: window)
+        navigationHandler?.handleUrlOpeningNavigation(for: urlString, and: window)
         return true
     }
     

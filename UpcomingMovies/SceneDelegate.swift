@@ -12,8 +12,11 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var navigationHandler: NavigationHandlerProtocol?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        navigationHandler = DIContainer.shared.resolve()
+        
         connectionOptions.checkForURLOpening(for: window)
         connectionOptions.checkForShortcutItem(for: window)
         
@@ -27,14 +30,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func windowScene(_ windowScene: UIWindowScene,
                      performActionFor shortcutItem: UIApplicationShortcutItem,
                      completionHandler: @escaping (Bool) -> Void) {
-        let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
-        navigationHandler.handleShortcutItem(shortcutItem, and: window)
+        navigationHandler?.handleShortcutItem(shortcutItem, and: window)
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else { return }
-        let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
-        navigationHandler.handleUrlOpeningNavigation(for: url.absoluteString, and: window)
+        navigationHandler?.handleUrlOpeningNavigation(for: url.absoluteString, and: window)
     }
 
 }
