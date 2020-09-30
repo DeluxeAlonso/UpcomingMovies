@@ -12,10 +12,12 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var navigationHandler: NavigationHandlerProtocol?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        connectionOptions.checkForURLOpening(for: window)
-        connectionOptions.checkForShortcutItem(for: window)
+        navigationHandler = DIContainer.shared.resolve()
+        
+        handleConnectionOptions(connectionOptions)
         
         guard let windowScene = scene as? UIWindowScene else { return }
         window = UIWindow(windowScene: windowScene)
@@ -27,12 +29,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func windowScene(_ windowScene: UIWindowScene,
                      performActionFor shortcutItem: UIApplicationShortcutItem,
                      completionHandler: @escaping (Bool) -> Void) {
-        NavigationHandler.shared.handleShortcutItem(shortcutItem, and: window)
+        navigationHandler?.handleShortcutItem(shortcutItem, and: window)
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else { return }
-        NavigationHandler.shared.handleUrlOpeningNavigation(for: url.absoluteString, and: window)
+        navigationHandler?.handleUrlOpeningNavigation(for: url.absoluteString, and: window)
+    }
+    
+    private func handleConnectionOptions(_ options: UIScene.ConnectionOptions) {
+        if let url = options.urlContexts.first?.url {
+            navigationHandler?.handleUrlOpeningNavigation(for: url.absoluteString, and: window)
+        } else if let shortcutItem = options.shortcutItem {
+            navigationHandler?.handleShortcutItem(shortcutItem, and: window)
+        }
     }
 
 }
