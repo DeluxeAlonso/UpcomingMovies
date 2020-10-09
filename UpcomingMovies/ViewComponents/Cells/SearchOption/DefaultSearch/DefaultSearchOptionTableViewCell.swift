@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DefaultSearchOptionTableViewCell: UITableViewCell {
+final class DefaultSearchOptionTableViewCell: UITableViewCell {
     
     var viewModel: DefaultSearchOptionCellViewModelProtocol? {
         didSet {

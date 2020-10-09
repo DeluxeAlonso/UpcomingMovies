@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecentSearchTableViewCell: UITableViewCell {
+final class RecentSearchTableViewCell: UITableViewCell {
     
     @IBOutlet weak var searchLabel: UILabel!
     

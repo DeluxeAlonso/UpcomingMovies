@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieCreditCollectionViewCell: UICollectionViewCell {
+final class MovieCreditCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var overlayView: UIView!

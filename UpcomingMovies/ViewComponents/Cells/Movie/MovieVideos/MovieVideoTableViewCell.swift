@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieVideoTableViewCell: UITableViewCell {
+final class MovieVideoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var previewImageView: UIImageView!
