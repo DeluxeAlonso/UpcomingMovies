@@ -15,7 +15,7 @@ protocol RecentlyVisitedMoviesTableViewCellDelegate: class {
     
 }
 
-class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
+final class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     

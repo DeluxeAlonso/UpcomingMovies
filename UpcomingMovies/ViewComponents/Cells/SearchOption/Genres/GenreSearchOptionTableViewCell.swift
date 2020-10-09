@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GenreSearchOptionTableViewCell: UITableViewCell {
+final class GenreSearchOptionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VisitedMovieCollectionViewCell: UICollectionViewCell, Animatable {
+final class VisitedMovieCollectionViewCell: UICollectionViewCell, Animatable {
     
     @IBOutlet weak var posterImageView: UIImageView!
     

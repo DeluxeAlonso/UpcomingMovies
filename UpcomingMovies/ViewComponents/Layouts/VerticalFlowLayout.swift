@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VerticalFlowLayout: UICollectionViewFlowLayout {
+final class VerticalFlowLayout: UICollectionViewFlowLayout {
     
     init(width: Double, height: Double, margin: CGFloat = 16.0) {
         super.init()
