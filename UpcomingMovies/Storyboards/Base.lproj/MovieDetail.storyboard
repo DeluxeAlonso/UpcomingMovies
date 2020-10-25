@@ -3,7 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -34,13 +34,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CollapsibleArrow" translatesAutoresizingMaskIntoConstraints="NO" id="GKJ-Cl-bvG">
-                                            <rect key="frame" x="331" y="16" width="28" height="28"/>
+                                            <rect key="frame" x="334" y="17.5" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="GKJ-Cl-bvG" secondAttribute="height" multiplier="1:1" id="BqT-FJ-bsQ"/>
+                                                <constraint firstAttribute="width" constant="25" id="lyY-CO-x1a"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="joB-oD-goD">
-                                            <rect key="frame" x="16" y="16" width="307" height="28"/>
+                                            <rect key="frame" x="16" y="16" width="41" height="28"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -49,13 +50,12 @@
                                     <viewLayoutGuide key="safeArea" id="xsF-hL-Iz8"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="GKJ-Cl-bvG" firstAttribute="top" secondItem="Bk2-oD-YYu" secondAttribute="topMargin" constant="8" id="79b-4U-yMI"/>
                                         <constraint firstItem="xsF-hL-Iz8" firstAttribute="trailing" secondItem="GKJ-Cl-bvG" secondAttribute="trailing" constant="16" id="AjE-mo-jvQ"/>
                                         <constraint firstItem="joB-oD-goD" firstAttribute="leading" secondItem="xsF-hL-Iz8" secondAttribute="leading" constant="16" id="DsB-SM-uR9"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="GKJ-Cl-bvG" secondAttribute="bottom" constant="8" id="GUP-qV-3eL"/>
+                                        <constraint firstItem="GKJ-Cl-bvG" firstAttribute="centerY" secondItem="Bk2-oD-YYu" secondAttribute="centerY" id="YTR-4S-Kvo"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="joB-oD-goD" secondAttribute="bottom" constant="8" id="YpY-TO-hsG"/>
                                         <constraint firstItem="joB-oD-goD" firstAttribute="top" secondItem="Bk2-oD-YYu" secondAttribute="topMargin" constant="8" id="kCI-3S-ZiY"/>
-                                        <constraint firstItem="GKJ-Cl-bvG" firstAttribute="leading" secondItem="joB-oD-goD" secondAttribute="trailing" constant="8" id="xEV-h8-9uT"/>
+                                        <constraint firstItem="GKJ-Cl-bvG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="joB-oD-goD" secondAttribute="trailing" constant="16" id="xlm-W8-XWA"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="arrowImageView" destination="GKJ-Cl-bvG" id="aWS-QT-sjc"/>
