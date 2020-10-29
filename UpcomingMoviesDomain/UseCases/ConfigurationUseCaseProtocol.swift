@@ -6,8 +6,6 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import Foundation
-
 public protocol ConfigurationUseCaseProtocol {
     
     func getConfiguration(completion: @escaping (Result<Configuration, Error>) -> Void)

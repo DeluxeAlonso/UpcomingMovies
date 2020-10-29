@@ -6,8 +6,6 @@
 //  Copyright © 2018 Alonso. All rights reserved.
 //
 
-import Foundation
-
 public struct Movie: Equatable {
     
     public let id: Int

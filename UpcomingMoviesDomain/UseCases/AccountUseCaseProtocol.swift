@@ -6,8 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
-
 public protocol AccountUseCaseProtocol {
     
     func getFavoriteList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
