@@ -6,8 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
-
 public protocol AuthUseCaseProtocol {
     
     func getAuthURL(completion: @escaping (Result<URL, Error>) -> Void)

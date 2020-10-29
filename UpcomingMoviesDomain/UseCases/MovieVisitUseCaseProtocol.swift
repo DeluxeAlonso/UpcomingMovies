@@ -6,8 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
-
 public protocol MovieVisitUseCaseProtocol {
     
     var didUpdateMovieVisit: (() -> Void)? { get set }

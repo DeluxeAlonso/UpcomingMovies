@@ -6,8 +6,6 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import Foundation
-
 public struct Configuration {
     
     public private(set) var imagesConfiguration: ImagesConfiguration
