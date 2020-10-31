@@ -6,6 +6,8 @@
 //  Copyright © 2018 Alonso. All rights reserved.
 //
 
+import Foundation
+
 public struct MovieSearch {
     
     public let searchText: String
