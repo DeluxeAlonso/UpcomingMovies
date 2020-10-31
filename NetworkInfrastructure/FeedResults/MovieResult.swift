@@ -6,8 +6,6 @@
 //  Copyright © 2018 Alonso. All rights reserved.
 //
 
-import Foundation
-
 struct MovieResult: Decodable, Paginable {
 
     let results: [Movie]

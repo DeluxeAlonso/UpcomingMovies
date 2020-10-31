@@ -6,8 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
-
 /// Decodable Struct to retrieve the read access token and api key from a property list.
 struct Keys: Decodable {
     

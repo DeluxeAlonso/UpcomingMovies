@@ -6,7 +6,6 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import Foundation
 import UpcomingMoviesDomain
 
 public struct Genre: Decodable {
