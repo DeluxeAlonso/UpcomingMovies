@@ -6,6 +6,7 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
+import Foundation
 import UpcomingMoviesDomain
 
 public final class AuthRepository: AuthUseCaseProtocol {
