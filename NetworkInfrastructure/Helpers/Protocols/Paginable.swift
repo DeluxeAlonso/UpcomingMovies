@@ -6,8 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
-
 protocol Paginable {
     
     var currentPage: Int { get set }

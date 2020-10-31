@@ -6,7 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
 import UpcomingMoviesData
 
 final public class RemoteDataSource: RemoteDataSourceProtocol {

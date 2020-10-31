@@ -6,8 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
-
 enum MovieProvider {
     
     case getUpcoming(page: Int)
