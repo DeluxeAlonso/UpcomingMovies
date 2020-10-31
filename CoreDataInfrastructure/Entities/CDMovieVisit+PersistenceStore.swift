@@ -6,8 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
-
 extension PersistenceStore where Entity == CDMovieVisit {
     
     func saveMovieVisit(with id: Int, title: String, posterPath: String?, completion: ((Bool) -> Void)? = nil) {
