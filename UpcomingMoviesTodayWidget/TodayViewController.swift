@@ -1,6 +1,6 @@
 //
 //  TodayViewController.swift
-//  UpcomingMoviesWidget
+//  UpcomingMoviesTodayWidget
 //
 //  Created by Alonso on 5/9/20.
 //  Copyright © 2020 Alonso. All rights reserved.

@@ -1646,7 +1646,7 @@
 				E229A56E236BF44E006FF112 /* UpcomingMoviesDomainTests */,
 				E229A537236BF242006FF112 /* CoreDataInfrastructureTests */,
 				E2020956236F27BD00EBDC5E /* NetworkInfrastructureTests */,
-				E2B63B1024676AE200C0BB13 /* UpcomingMoviesWidget */,
+				E2B63B1024676AE200C0BB13 /* UpcomingMoviesTodayWidget */,
 				E221167D21914E4B0039F8C9 /* Products */,
 				40F1AD1B5623EBC5C5B037B7 /* Pods */,
 				AEA8FC05E782407089541551 /* Frameworks */,
@@ -2748,7 +2748,7 @@
 			path = ShrinkingButton;
 			sourceTree = "<group>";
 		};
-		E2B63B1024676AE200C0BB13 /* UpcomingMoviesWidget */ = {
+		E2B63B1024676AE200C0BB13 /* UpcomingMoviesTodayWidget */ = {
 			isa = PBXGroup;
 			children = (
 				E2B63B1D24676CC700C0BB13 /* Movies.entitlements */,
@@ -2756,7 +2756,7 @@
 				E2B63B1624676AE200C0BB13 /* Info.plist */,
 				E26B03AB24687D04004447AC /* TodayView.swift */,
 			);
-			path = UpcomingMoviesWidget;
+			path = UpcomingMoviesTodayWidget;
 			sourceTree = "<group>";
 		};
 		E2BE1B35239DEA3300FC47FF /* MovieDetailOptions */ = {
@@ -3070,9 +3070,9 @@
 			productReference = E2727DAE236DEB85004BDC5B /* UpcomingMoviesDataTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E2B63B0D24676AE200C0BB13 /* UpcomingMoviesWidget */ = {
+		E2B63B0D24676AE200C0BB13 /* UpcomingMoviesTodayWidget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2B63B1A24676AE200C0BB13 /* Build configuration list for PBXNativeTarget "UpcomingMoviesWidget" */;
+			buildConfigurationList = E2B63B1A24676AE200C0BB13 /* Build configuration list for PBXNativeTarget "UpcomingMoviesTodayWidget" */;
 			buildPhases = (
 				E9664C2F5A0A009E32DCAF7F /* [CP] Check Pods Manifest.lock */,
 				E2B63B0A24676AE200C0BB13 /* Sources */,
@@ -3086,7 +3086,7 @@
 				E2B63B2124676DBB00C0BB13 /* PBXTargetDependency */,
 				E2B63B2A2467784400C0BB13 /* PBXTargetDependency */,
 			);
-			name = UpcomingMoviesWidget;
+			name = UpcomingMoviesTodayWidget;
 			productName = UpcomingMoviesWidget;
 			productReference = E2B63B0E24676AE200C0BB13 /* RecentlyVisited.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -3177,7 +3177,7 @@
 				E2727DAD236DEB85004BDC5B /* UpcomingMoviesDataTests */,
 				E2020947236F27BC00EBDC5E /* NetworkInfrastructure */,
 				E202094F236F27BC00EBDC5E /* NetworkInfrastructureTests */,
-				E2B63B0D24676AE200C0BB13 /* UpcomingMoviesWidget */,
+				E2B63B0D24676AE200C0BB13 /* UpcomingMoviesTodayWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -3996,7 +3996,7 @@
 		};
 		E2B63B1824676AE200C0BB13 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E2B63B0D24676AE200C0BB13 /* UpcomingMoviesWidget */;
+			target = E2B63B0D24676AE200C0BB13 /* UpcomingMoviesTodayWidget */;
 			targetProxy = E2B63B1724676AE200C0BB13 /* PBXContainerItemProxy */;
 		};
 		E2B63B2124676DBB00C0BB13 /* PBXTargetDependency */ = {
@@ -4313,7 +4313,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.Development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -4337,7 +4337,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.Development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -4713,18 +4713,18 @@
 			baseConfigurationReference = 4F2EF8F9671B6A8C765A02CB /* Pods-UpcomingMovies-UpcomingMoviesWidget.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
-				CODE_SIGN_ENTITLEMENTS = UpcomingMoviesWidget/Movies.entitlements;
+				CODE_SIGN_ENTITLEMENTS = UpcomingMoviesTodayWidget/Movies.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95KU8J3PN;
-				INFOPLIST_FILE = UpcomingMoviesWidget/Info.plist;
+				INFOPLIST_FILE = UpcomingMoviesTodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.UpcomingMoviesWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.Development.UpcomingMoviesWidget;
 				PRODUCT_NAME = RecentlyVisited;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -4737,18 +4737,18 @@
 			baseConfigurationReference = 9F674E3A3C0951584E5C5F69 /* Pods-UpcomingMovies-UpcomingMoviesWidget.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
-				CODE_SIGN_ENTITLEMENTS = UpcomingMoviesWidget/Movies.entitlements;
+				CODE_SIGN_ENTITLEMENTS = UpcomingMoviesTodayWidget/Movies.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95KU8J3PN;
-				INFOPLIST_FILE = UpcomingMoviesWidget/Info.plist;
+				INFOPLIST_FILE = UpcomingMoviesTodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.UpcomingMoviesWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.Development.UpcomingMoviesWidget;
 				PRODUCT_NAME = RecentlyVisited;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -4858,7 +4858,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2B63B1A24676AE200C0BB13 /* Build configuration list for PBXNativeTarget "UpcomingMoviesWidget" */ = {
+		E2B63B1A24676AE200C0BB13 /* Build configuration list for PBXNativeTarget "UpcomingMoviesTodayWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2B63B1B24676AE200C0BB13 /* Debug */,
