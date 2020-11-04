@@ -17,7 +17,7 @@ target 'UpcomingMovies' do
     inherit! :search_paths
   end
   
-  target 'UpcomingMoviesWidget' do
+  target 'UpcomingMoviesTodayWidget' do
      use_frameworks!
      pod 'Kingfisher', '5.13.4'
   end
