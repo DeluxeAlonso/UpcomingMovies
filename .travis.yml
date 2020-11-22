@@ -1,7 +1,7 @@
 language: swift
 cache: cocoapods
-osx_image: xcode11.5
-xcode_destination: platform=iOS Simulator,OS=13.0,name=iPad Pro (9.7-inch)
+osx_image: xcode12.2
+xcode_destination: platform=iOS Simulator,OS=14.0,name=iPad Pro (9.7-inch)
 before_install:
   - bundle install
 install:
