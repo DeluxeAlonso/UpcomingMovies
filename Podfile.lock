@@ -1,16 +1,19 @@
 PODS:
   - CollectionViewSlantedLayout (3.1.1)
   - KeychainSwift (19.0.0)
-  - Kingfisher (5.13.4):
-    - Kingfisher/Core (= 5.13.4)
-  - Kingfisher/Core (5.13.4)
-  - SwiftLint (0.39.2)
+  - Kingfisher (5.15.7):
+    - Kingfisher/Core (= 5.15.7)
+  - Kingfisher/Core (5.15.7)
+  - Kingfisher/SwiftUI (5.15.7):
+    - Kingfisher/Core
+  - SwiftLint (0.41.0)
   - Swinject (2.7.1)
 
 DEPENDENCIES:
   - CollectionViewSlantedLayout (~> 3.1)
   - KeychainSwift (~> 19.0)
-  - Kingfisher (= 5.13.4)
+  - Kingfisher
+  - Kingfisher/SwiftUI
   - SwiftLint
   - Swinject
 
@@ -25,10 +28,10 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   CollectionViewSlantedLayout: 24397455acd2461960bc45d394e0ef99c17d03ce
   KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
-  Kingfisher: d2279a7abece3c7f25a80cd2b7f363ca5cf3f44c
-  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
+  Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
+  SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: 08fbcd4f0054ca4015c18a2739e46fd4b62997c8
+PODFILE CHECKSUM: 2be0af908338e14e182865dd709cc2f5c8280a6a
 
 COCOAPODS: 1.9.3

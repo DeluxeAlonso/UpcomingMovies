@@ -8,7 +8,8 @@ target 'UpcomingMovies' do
   # Pods for UpcomingMovies
   pod 'SwiftLint'
   pod 'Swinject'
-  pod 'Kingfisher', '5.13.4'
+  pod 'Kingfisher'
+  pod 'Kingfisher/SwiftUI'
   pod 'CollectionViewSlantedLayout', '~> 3.1'
   
   target 'NetworkInfrastructure' do
@@ -18,8 +19,13 @@ target 'UpcomingMovies' do
   end
   
   target 'UpcomingMoviesTodayWidget' do
-     use_frameworks!
-     pod 'Kingfisher', '5.13.4'
+    use_frameworks!
+    pod 'Kingfisher'
+  end
+
+  target 'UpcomingMoviesWidgetExtension' do
+    use_frameworks!
+    pod 'Kingfisher/SwiftUI'
   end
 
   target 'UpcomingMoviesTests' do
@@ -28,11 +34,11 @@ target 'UpcomingMovies' do
   end
   
   post_install do |pi|
-      pi.pods_project.targets.each do |t|
-        t.build_configurations.each do |config|
-          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
-        end
+    pi.pods_project.targets.each do |t|
+      t.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
       end
+    end
   end
 
 end
