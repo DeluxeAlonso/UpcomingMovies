@@ -72,8 +72,8 @@ struct UpcomingMoviesWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             UpcomingMoviesWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Upcoming movies")
+        .description("Keep up to date with the latest releases")
         .supportedFamilies([.systemSmall])
     }
 }
