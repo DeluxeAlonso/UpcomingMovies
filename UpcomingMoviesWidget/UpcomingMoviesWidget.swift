@@ -14,12 +14,12 @@ struct Provider: TimelineProvider {
         SimpleEntry(date: Date())
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> Void) {
         let entry = SimpleEntry(date: Date())
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         var entries: [SimpleEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
@@ -39,11 +39,28 @@ struct SimpleEntry: TimelineEntry {
     let date: Date
 }
 
-struct UpcomingMoviesWidgetEntryView : View {
+struct UpcomingMoviesWidgetEntryView: View {
     var entry: Provider.Entry
 
+    let gradientColors = [.white, Color("GradientColor"), Color("GradientColor")]
+
     var body: some View {
-        Text(entry.date, style: .time)
+        Group {
+            VStack(alignment: .center, spacing: 16) {
+                Image(systemName: "play")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(.white)
+                    .padding(25)
+                    .background(LinearGradient(gradient: Gradient(colors: gradientColors), startPoint: .topLeading, endPoint: .bottomTrailing))
+                Text("Upcoming")
+                    .font(.system(size: 13))
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color("BackgroundColor"))
     }
 }
 
@@ -57,6 +74,7 @@ struct UpcomingMoviesWidget: Widget {
         }
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
+        .supportedFamilies([.systemSmall])
     }
 }
 
