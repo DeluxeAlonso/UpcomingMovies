@@ -392,6 +392,7 @@
 		E2A02462256F634B00D2018C /* SearchMoviesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A0244E256F628900D2018C /* SearchMoviesWidget.swift */; };
 		E2A02471256F635000D2018C /* UpcomingMoviesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A02459256F62D100D2018C /* UpcomingMoviesWidget.swift */; };
 		E2A02489256F662400D2018C /* WidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A02479256F660300D2018C /* WidgetProvider.swift */; };
+		E2A024AA256F6B7600D2018C /* SmallWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A024A9256F6B7600D2018C /* SmallWidgetView.swift */; };
 		E2A3AD7024C161B300F2D3F4 /* User+MockInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A3AD6F24C161B300F2D3F4 /* User+MockInitializer.swift */; };
 		E2A4D9362511B05500571893 /* AuthenticationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A4D9352511B05500571893 /* AuthenticationAssembly.swift */; };
 		E2A4D9382511B06000571893 /* ProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A4D9372511B06000571893 /* ProfileAssembly.swift */; };
@@ -1121,6 +1122,7 @@
 		E2A0244E256F628900D2018C /* SearchMoviesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesWidget.swift; sourceTree = "<group>"; };
 		E2A02459256F62D100D2018C /* UpcomingMoviesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesWidget.swift; sourceTree = "<group>"; };
 		E2A02479256F660300D2018C /* WidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetProvider.swift; sourceTree = "<group>"; };
+		E2A024A9256F6B7600D2018C /* SmallWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallWidgetView.swift; sourceTree = "<group>"; };
 		E2A3AD6F24C161B300F2D3F4 /* User+MockInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+MockInitializer.swift"; sourceTree = "<group>"; };
 		E2A4D9352511B05500571893 /* AuthenticationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAssembly.swift; sourceTree = "<group>"; };
 		E2A4D9372511B06000571893 /* ProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembly.swift; sourceTree = "<group>"; };
@@ -2755,6 +2757,7 @@
 		E2A0244D256F626D00D2018C /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				E2A024A8256F6B4F00D2018C /* ViewComponents */,
 				E2A02458256F62C300D2018C /* UpcomingMovies */,
 				E2A02457256F62B800D2018C /* SearchMovies */,
 			);
@@ -2775,6 +2778,14 @@
 				E2A02459256F62D100D2018C /* UpcomingMoviesWidget.swift */,
 			);
 			path = UpcomingMovies;
+			sourceTree = "<group>";
+		};
+		E2A024A8256F6B4F00D2018C /* ViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				E2A024A9256F6B7600D2018C /* SmallWidgetView.swift */,
+			);
+			path = ViewComponents;
 			sourceTree = "<group>";
 		};
 		E2A4D9342511B03E00571893 /* Account */ = {
@@ -4048,6 +4059,7 @@
 				E2A02471256F635000D2018C /* UpcomingMoviesWidget.swift in Sources */,
 				E2A02462256F634B00D2018C /* SearchMoviesWidget.swift in Sources */,
 				E2A02489256F662400D2018C /* WidgetProvider.swift in Sources */,
+				E2A024AA256F6B7600D2018C /* SmallWidgetView.swift in Sources */,
 				E2EBDC30256A26060026319B /* MoviesWidgets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

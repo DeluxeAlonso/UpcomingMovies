@@ -15,22 +15,9 @@ struct UpcomingMoviesWidgetEntryView: View {
     let gradientColors = [.white, Color("GradientColor"), Color("GradientColor")]
 
     var body: some View {
-        Group {
-            VStack(alignment: .center, spacing: 16) {
-                Image(systemName: "play")
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(.white)
-                    .padding(25)
-                    .background(LinearGradient(gradient: Gradient(colors: gradientColors), startPoint: .topLeading, endPoint: .bottomTrailing))
-                Text("Upcoming")
-                    .font(.system(size: 13))
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-            }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color("BackgroundColor"))
+        SmallWidgetView(title: "Upcoming",
+                        iconName: "play",
+                        gradientColors: gradientColors)
     }
 }
 
