@@ -64,7 +64,6 @@ struct UpcomingMoviesWidgetEntryView: View {
     }
 }
 
-@main
 struct UpcomingMoviesWidget: Widget {
     let kind: String = "UpcomingMoviesWidget"
 
@@ -75,6 +74,27 @@ struct UpcomingMoviesWidget: Widget {
         .configurationDisplayName("Upcoming movies")
         .description("Keep up to date with the latest releases")
         .supportedFamilies([.systemSmall])
+    }
+}
+
+struct SearchMoviesWidget: Widget {
+    let kind: String = "SearchMoviesWidget"
+
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+            UpcomingMoviesWidgetEntryView(entry: entry)
+        }
+        .configurationDisplayName("Search movies")
+        .description("Search your favorit movies")
+        .supportedFamilies([.systemSmall])
+    }
+}
+
+@main
+struct MoviesWidgets: WidgetBundle {
+    var body: some Widget {
+        UpcomingMoviesWidget()
+        SearchMoviesWidget()
     }
 }
 
