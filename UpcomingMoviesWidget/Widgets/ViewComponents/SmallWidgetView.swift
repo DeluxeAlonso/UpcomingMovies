@@ -14,21 +14,25 @@ struct SmallWidgetView: View {
     let gradientColors: [Color]
 
     var body: some View {
-        Group {
-            VStack(alignment: .center, spacing: 16) {
-                Image(systemName: iconName)
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(.white)
-                    .padding(25)
-                    .background(LinearGradient(gradient: Gradient(colors: gradientColors), startPoint: .topLeading, endPoint: .bottomTrailing))
-                Text(title)
-                    .font(.system(size: 13))
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
+        GeometryReader { geometry in
+            Group {
+                VStack(alignment: .center, spacing: 16) {
+
+                    Image(systemName: iconName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: 25, maxHeight: 25)
+                        .foregroundColor(.white)
+                        .padding(geometry.size.height * 0.15)
+                        .background(LinearGradient(gradient: Gradient(colors: gradientColors), startPoint: .topLeading, endPoint: .bottomTrailing))
+                    Text(title)
+                        .font(.system(size: 13))
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color("BackgroundColor"))
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color("BackgroundColor"))
     }
 }
