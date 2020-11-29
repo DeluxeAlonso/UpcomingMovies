@@ -12,12 +12,12 @@ struct SmallWidgetView: View {
     let title: String
     let iconName: String
     let gradientColors: [Color]
+    let backgroundColor: Color
 
     var body: some View {
         GeometryReader { geometry in
             Group {
                 VStack(alignment: .center, spacing: 16) {
-
                     Image(systemName: iconName)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -32,7 +32,7 @@ struct SmallWidgetView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color("BackgroundColor"))
+            .background(backgroundColor)
         }
     }
 }
