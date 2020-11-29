@@ -16,7 +16,7 @@ struct SearchMoviesWidgetEntryView: View {
                           Color("SearchMoviesGradientColor"),
                           Color("SearchMoviesGradientColor")]
 
-    let backgroundColor = Color("UpcomingMoviesBackgroundColor")
+    let backgroundColor = Color("SearchMoviesBackgroundColor")
 
     var body: some View {
         SmallWidgetView(title: "Search",
