@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E229A528236BF241006FF112"
-               BuildableName = "CoreDataInfrastructure.framework"
-               BlueprintName = "CoreDataInfrastructure"
+               BlueprintIdentifier = "E2727DA5236DEB85004BDC5B"
+               BuildableName = "UpcomingMoviesData.framework"
+               BlueprintName = "UpcomingMoviesData"
                ReferencedContainer = "container:UpcomingMovies.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E229A530236BF242006FF112"
-               BuildableName = "CoreDataInfrastructureTests.xctest"
-               BlueprintName = "CoreDataInfrastructureTests"
+               BlueprintIdentifier = "E2727DAD236DEB85004BDC5B"
+               BuildableName = "UpcomingMoviesDataTests.xctest"
+               BlueprintName = "UpcomingMoviesDataTests"
                ReferencedContainer = "container:UpcomingMovies.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -60,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E229A528236BF241006FF112"
-            BuildableName = "CoreDataInfrastructure.framework"
-            BlueprintName = "CoreDataInfrastructure"
+            BlueprintIdentifier = "E2727DA5236DEB85004BDC5B"
+            BuildableName = "UpcomingMoviesData.framework"
+            BlueprintName = "UpcomingMoviesData"
             ReferencedContainer = "container:UpcomingMovies.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
