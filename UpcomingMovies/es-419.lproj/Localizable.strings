@@ -52,3 +52,8 @@
 "topRatedMoviesTitle" = "Películas Top";
 "popularMoviesTitle" = "Películas Populares";
 "similarMoviesTitle" = "Películas Similares";
+
+"cast" = "Reparto";
+"crew" = "Equipo";
+
+"ratingHint" = "Calificación de %@";
