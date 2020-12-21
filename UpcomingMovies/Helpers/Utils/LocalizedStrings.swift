@@ -71,6 +71,11 @@ enum LocalizedStrings: String, Localizable {
     case topRatedMoviesTitle
     case popularMoviesTitle
     case similarMoviesTitle
+
+    case cast
+    case crew
+
+    case ratingHint
     
     var tableName: String {
         return "Localizable"
