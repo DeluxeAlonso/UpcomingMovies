@@ -11,10 +11,10 @@ import UpcomingMoviesData
 
 final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
     
-    private let client: MovieClient
+    private let client: MovieClientProtocol
     private let authManager: AuthenticationManager
     
-    init(client: MovieClient, authManager: AuthenticationManager = AuthenticationManager.shared) {
+    init(client: MovieClientProtocol, authManager: AuthenticationManager = AuthenticationManager.shared) {
         self.client = client
         self.authManager = authManager
     }

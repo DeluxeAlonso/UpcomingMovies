@@ -8,9 +8,11 @@
 
 import Foundation
 
-class MovieClient: APIClient {
+class MovieClient: APIClient, MovieClientProtocol {
     
     let session: URLSession
+
+    // MARK: - Initializers
     
     init(configuration: URLSessionConfiguration) {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
