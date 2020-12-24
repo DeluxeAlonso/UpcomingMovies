@@ -335,6 +335,7 @@
 		E274551025130BCC000847A4 /* MovieListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E274550F25130BCC000847A4 /* MovieListAssembly.swift */; };
 		E279621E2594536200B90BD4 /* AuthClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E279621D2594536200B90BD4 /* AuthClientProtocol.swift */; };
 		E279622E2594555200B90BD4 /* AccountClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E279622D2594555200B90BD4 /* AccountClientProtocol.swift */; };
+		E279623E2594572900B90BD4 /* ConfigurationClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E279623D2594572900B90BD4 /* ConfigurationClientProtocol.swift */; };
 		E279B75524B2DFAB00AECFCC /* Credits+MockInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E279B75424B2DFAB00AECFCC /* Credits+MockInitializer.swift */; };
 		E2825DCD24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2825DCC24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift */; };
 		E28366762470E641008E2544 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28366752470E641008E2544 /* UIImageView+Extensions.swift */; };
@@ -1057,6 +1058,7 @@
 		E274550F25130BCC000847A4 /* MovieListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListAssembly.swift; sourceTree = "<group>"; };
 		E279621D2594536200B90BD4 /* AuthClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClientProtocol.swift; sourceTree = "<group>"; };
 		E279622D2594555200B90BD4 /* AccountClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountClientProtocol.swift; sourceTree = "<group>"; };
+		E279623D2594572900B90BD4 /* ConfigurationClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationClientProtocol.swift; sourceTree = "<group>"; };
 		E279B75424B2DFAB00AECFCC /* Credits+MockInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Credits+MockInitializer.swift"; sourceTree = "<group>"; };
 		E2825DCC24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMoviesCoordinator.swift; sourceTree = "<group>"; };
 		E28366752470E641008E2544 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -2503,6 +2505,7 @@
 			isa = PBXGroup;
 			children = (
 				E270961D247B2E3300AE694E /* ConfigurationClient.swift */,
+				E279623D2594572900B90BD4 /* ConfigurationClientProtocol.swift */,
 				E270961F247B2E3B00AE694E /* ConfigurationProvider.swift */,
 			);
 			path = Configuration;
@@ -3586,6 +3589,7 @@
 				E268AB3123823D830069E2A9 /* AuthRemoteDataSource.swift in Sources */,
 				E2963EDE23785E3300C36E16 /* MovieProvider.swift in Sources */,
 				E279621E2594536200B90BD4 /* AuthClientProtocol.swift in Sources */,
+				E279623E2594572900B90BD4 /* ConfigurationClientProtocol.swift in Sources */,
 				E268AB3623823DBC0069E2A9 /* AuthProvider.swift in Sources */,
 				E273CDCA238116380018464B /* AccountClient.swift in Sources */,
 				E2B49B7423BD04E7005EC676 /* Cast.swift in Sources */,

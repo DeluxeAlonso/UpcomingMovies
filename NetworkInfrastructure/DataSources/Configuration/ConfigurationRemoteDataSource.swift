@@ -11,9 +11,9 @@ import UpcomingMoviesData
 
 final class ConfigurationRemoteDataSource: ConfigurationRemoteDataSourceProtocol {
     
-    private let client: ConfigurationClient
+    private let client: ConfigurationClientProtocol
     
-    init(client: ConfigurationClient) {
+    init(client: ConfigurationClientProtocol) {
         self.client = client
     }
     

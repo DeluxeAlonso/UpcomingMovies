@@ -11,6 +11,8 @@ import Foundation
 class AccountClient: APIClient, AccountClientProtocol {
     
     let session: URLSession
+
+    // MARK: - Initializers
     
     init(configuration: URLSessionConfiguration) {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData

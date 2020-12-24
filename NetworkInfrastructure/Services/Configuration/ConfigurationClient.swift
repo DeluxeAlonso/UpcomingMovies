@@ -8,8 +8,11 @@
 
 import Foundation
 
-class ConfigurationClient: APIClient {
+class ConfigurationClient: APIClient, ConfigurationClientProtocol {
+
     let session: URLSession
+
+    // MARK: - Initializers
     
     init(configuration: URLSessionConfiguration) {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
@@ -19,6 +22,8 @@ class ConfigurationClient: APIClient {
     convenience init() {
         self.init(configuration: .default)
     }
+
+    // MARK: - ConfigurationClientProtocol
     
     func getImagesConfiguration(completion: @escaping (Result<ImagesConfigurationResult, APIError>) -> Void) {
         fetch(with: ConfigurationProvider.getAPIConfiguration.request, decode: { json -> ImagesConfigurationResult? in
@@ -26,4 +31,5 @@ class ConfigurationClient: APIClient {
             return configuration
         }, completion: completion)
     }
+    
 }
