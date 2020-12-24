@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AuthClient: APIClient {
+class AuthClient: APIClient, AuthClientProtocol {
     
     let session: URLSession
     
