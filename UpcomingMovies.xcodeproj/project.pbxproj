@@ -336,6 +336,8 @@
 		E279621E2594536200B90BD4 /* AuthClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E279621D2594536200B90BD4 /* AuthClientProtocol.swift */; };
 		E279622E2594555200B90BD4 /* AccountClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E279622D2594555200B90BD4 /* AccountClientProtocol.swift */; };
 		E279623E2594572900B90BD4 /* ConfigurationClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E279623D2594572900B90BD4 /* ConfigurationClientProtocol.swift */; };
+		E279624E259457EF00B90BD4 /* MovieClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E279624D259457EF00B90BD4 /* MovieClientProtocol.swift */; };
+		E279625E259459A200B90BD4 /* GenreClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E279625D259459A200B90BD4 /* GenreClientProtocol.swift */; };
 		E279B75524B2DFAB00AECFCC /* Credits+MockInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E279B75424B2DFAB00AECFCC /* Credits+MockInitializer.swift */; };
 		E2825DCD24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2825DCC24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift */; };
 		E28366762470E641008E2544 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28366752470E641008E2544 /* UIImageView+Extensions.swift */; };
@@ -1059,6 +1061,8 @@
 		E279621D2594536200B90BD4 /* AuthClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClientProtocol.swift; sourceTree = "<group>"; };
 		E279622D2594555200B90BD4 /* AccountClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountClientProtocol.swift; sourceTree = "<group>"; };
 		E279623D2594572900B90BD4 /* ConfigurationClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationClientProtocol.swift; sourceTree = "<group>"; };
+		E279624D259457EF00B90BD4 /* MovieClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieClientProtocol.swift; sourceTree = "<group>"; };
+		E279625D259459A200B90BD4 /* GenreClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreClientProtocol.swift; sourceTree = "<group>"; };
 		E279B75424B2DFAB00AECFCC /* Credits+MockInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Credits+MockInitializer.swift"; sourceTree = "<group>"; };
 		E2825DCC24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMoviesCoordinator.swift; sourceTree = "<group>"; };
 		E28366752470E641008E2544 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -1515,6 +1519,7 @@
 			isa = PBXGroup;
 			children = (
 				E2020973236F286600EBDC5E /* GenreClient.swift */,
+				E279625D259459A200B90BD4 /* GenreClientProtocol.swift */,
 				E2020975236F286F00EBDC5E /* GenreProvider.swift */,
 			);
 			path = Genre;
@@ -2710,6 +2715,7 @@
 			isa = PBXGroup;
 			children = (
 				E2963EDB23785E2C00C36E16 /* MovieClient.swift */,
+				E279624D259457EF00B90BD4 /* MovieClientProtocol.swift */,
 				E2963EDD23785E3300C36E16 /* MovieProvider.swift */,
 			);
 			path = Movie;
@@ -3590,8 +3596,10 @@
 				E2963EDE23785E3300C36E16 /* MovieProvider.swift in Sources */,
 				E279621E2594536200B90BD4 /* AuthClientProtocol.swift in Sources */,
 				E279623E2594572900B90BD4 /* ConfigurationClientProtocol.swift in Sources */,
+				E279625E259459A200B90BD4 /* GenreClientProtocol.swift in Sources */,
 				E268AB3623823DBC0069E2A9 /* AuthProvider.swift in Sources */,
 				E273CDCA238116380018464B /* AccountClient.swift in Sources */,
+				E279624E259457EF00B90BD4 /* MovieClientProtocol.swift in Sources */,
 				E2B49B7423BD04E7005EC676 /* Cast.swift in Sources */,
 				E2B69C18247B09E600DEB689 /* Configuration.swift in Sources */,
 				E2B49B7623BD15A5005EC676 /* Genre.swift in Sources */,

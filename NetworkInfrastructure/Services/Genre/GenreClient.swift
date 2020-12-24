@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GenreClient: APIClient {
+class GenreClient: APIClient, GenreClientProtocol {
     
     let session: URLSession
     
