@@ -4901,7 +4901,7 @@
 			baseConfigurationReference = C51432D0ADCAF262E2839CEF /* Pods-UpcomingMovies-UpcomingMoviesTodayWidget.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
-				CODE_SIGN_ENTITLEMENTS = UpcomingMoviesTodayWidget/Movies.entitlements;
+				CODE_SIGN_ENTITLEMENTS = UpcomingMoviesTodayExtension/Movies.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95KU8J3PN;
@@ -4925,7 +4925,7 @@
 			baseConfigurationReference = EB68C485F4F421EF862191C2 /* Pods-UpcomingMovies-UpcomingMoviesTodayWidget.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
-				CODE_SIGN_ENTITLEMENTS = UpcomingMoviesTodayWidget/Movies.entitlements;
+				CODE_SIGN_ENTITLEMENTS = UpcomingMoviesTodayExtension/Movies.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95KU8J3PN;
