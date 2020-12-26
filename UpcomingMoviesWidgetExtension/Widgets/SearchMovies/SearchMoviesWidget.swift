@@ -1,6 +1,6 @@
 //
 //  SearchMoviesWidget.swift
-//  UpcomingMovies
+//  UpcomingMoviesWidgetExtension
 //
 //  Created by Alonso on 11/25/20.
 //  Copyright © 2020 Alonso. All rights reserved.
