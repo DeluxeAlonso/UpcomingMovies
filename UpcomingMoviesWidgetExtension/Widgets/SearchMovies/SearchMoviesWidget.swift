@@ -10,6 +10,7 @@ import SwiftUI
 import WidgetKit
 
 struct SearchMoviesWidgetEntryView: View {
+
     var entry: Provider.Entry
 
     let gradientColors = [.white,
@@ -23,11 +24,13 @@ struct SearchMoviesWidgetEntryView: View {
                         iconName: "magnifyingglass",
                         gradientColors: gradientColors,
                         backgroundColor: backgroundColor)
-            .widgetURL(URL(string: "extension://"))
+            .widgetURL(URL(string: "extension://search"))
     }
+    
 }
 
 struct SearchMoviesWidget: Widget {
+
     let kind: String = "SearchMoviesWidget"
 
     var body: some WidgetConfiguration {
@@ -38,4 +41,5 @@ struct SearchMoviesWidget: Widget {
         .description("Search your favorite movies")
         .supportedFamilies([.systemSmall])
     }
+
 }
