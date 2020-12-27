@@ -23,6 +23,7 @@ struct SearchMoviesWidgetEntryView: View {
                         iconName: "magnifyingglass",
                         gradientColors: gradientColors,
                         backgroundColor: backgroundColor)
+            .widgetURL(URL(string: "extension://"))
     }
 }
 
