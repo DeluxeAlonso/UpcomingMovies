@@ -36,8 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        guard let urlString = url.scheme else { return false }
-        navigationHandler?.handleUrlOpeningNavigation(for: urlString, and: window)
+        navigationHandler?.handleUrlOpeningNavigation(for: url, and: window)
         return true
     }
     

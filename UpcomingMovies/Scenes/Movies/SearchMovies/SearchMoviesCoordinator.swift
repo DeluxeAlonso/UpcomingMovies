@@ -9,14 +9,22 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
+final class SearchMoviesCoordinator: SearchMoviesCoordinatorProtocol, RootCoordinator, MovieDetailCoordinable {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
+
+    // MARK: - Initializers
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+    }
+
+    // MARK: - Coordinator
+
+    var rootIdentifier: String {
+        return RootCoordinatorIdentifier.searchMovies
     }
     
     func start() {

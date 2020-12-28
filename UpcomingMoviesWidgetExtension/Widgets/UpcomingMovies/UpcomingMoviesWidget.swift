@@ -10,23 +10,27 @@ import SwiftUI
 import WidgetKit
 
 struct UpcomingMoviesWidgetEntryView: View {
-    var entry: Provider.Entry
 
+    var entry: Provider.Entry
+    
     let gradientColors = [.white,
                           Color("UpcomingMoviesGradientColor"),
                           Color("UpcomingMoviesGradientColor")]
-
+    
     let backgroundColor = Color("UpcomingMoviesBackgroundColor")
-
+    
     var body: some View {
         SmallWidgetView(title: "Upcoming",
                         iconName: "play",
                         gradientColors: gradientColors,
                         backgroundColor: backgroundColor)
+            .widgetURL(URL(string: "extension://upcoming"))
     }
+
 }
 
 struct UpcomingMoviesWidget: Widget {
+
     let kind: String = "UpcomingMoviesWidget"
 
     var body: some WidgetConfiguration {
@@ -37,4 +41,5 @@ struct UpcomingMoviesWidget: Widget {
         .description("Keep up to date with the latest releases")
         .supportedFamilies([.systemSmall])
     }
+    
 }
