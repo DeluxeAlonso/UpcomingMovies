@@ -9,14 +9,22 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class AccountCoordinator: AccountCoordinatorProtocol {
+final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
+
+    // MARK: - Initializers
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+    }
+
+    // MARK: - Coordinator
+
+    var rootIdentifier: String {
+        return RootCoordinatorIdentifier.account
     }
     
     func start() {

@@ -23,16 +23,24 @@ struct NavigationConfiguration {
     
 }
 
-final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
+final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtocol, RootCoordinator, MovieDetailCoordinable {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
     
     var navigationDelegate: UpcomingMoviesNavigationDelegate!
-    
+
+    // MARK: - Initializers
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+    }
+
+    // MARK: - Coordinator
+
+    var rootIdentifier: String {
+        return RootCoordinatorIdentifier.upcomingMovies
     }
     
     func start() {

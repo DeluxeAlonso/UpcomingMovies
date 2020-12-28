@@ -20,15 +20,16 @@ protocol NavigationHandlerProtocol {
 final class NavigationHandler: NavigationHandlerProtocol {
     
     private var currentSelectedIndex: Int = 0
-    
-    private func changeTabBarToSelectedIndex(_ index: Int, from window: UIWindow?) {
-        currentSelectedIndex = index
-        guard let tabBarController = window?.rootViewController as? UITabBarController else {
-            return
-        }
-        tabBarController.selectedIndex = currentSelectedIndex
+    private var rootCoordinators: [RootCoordinator]!
+
+    // MARK: - Initializers
+
+    init() {
+        rootCoordinators = MainTabBarBuilder.buildViewCoordinators()
     }
-    
+
+    // MARK: - NavigationHandlerProtocol
+
     func initialTransition(from window: UIWindow?) {
         guard let window = window else { return }
         UIView.transition(with: window,
@@ -37,7 +38,7 @@ final class NavigationHandler: NavigationHandlerProtocol {
                                     UIView.AnimationOptions.transitionCrossDissolve],
                           animations: {},
                           completion: { _ in
-                            let mainTabBarController = MainTabBarController()
+                            let mainTabBarController = MainTabBarController(coordinators: self.rootCoordinators)
                             mainTabBarController.setSelectedIndex(self.currentSelectedIndex)
                             window.rootViewController = mainTabBarController
         })
@@ -50,9 +51,10 @@ final class NavigationHandler: NavigationHandlerProtocol {
             guard let host = AppExtensionHost(rawValue: urlHost) else { return }
             switch host {
             case .upcomingMovies:
-                changeTabBarToSelectedIndex(0, from: window)
+                changeTabBarToSelectedIndex(RootCoordinatorIdentifier.upcomingMovies, from: window)
+
             case .searchMovies:
-                changeTabBarToSelectedIndex(1, from: window)
+                changeTabBarToSelectedIndex(RootCoordinatorIdentifier.searchMovies, from: window)
             }
         }
     }
@@ -61,8 +63,28 @@ final class NavigationHandler: NavigationHandlerProtocol {
         guard let shorcut = AppShortcutItem(rawValue: shortcutItem.type) else { return }
         switch shorcut {
         case .searchMovies:
-            changeTabBarToSelectedIndex(1, from: window)
+            changeTabBarToSelectedIndex(RootCoordinatorIdentifier.searchMovies, from: window)
         }
     }
-    
+
+    // MARK: - Private
+
+    private func changeTabBarToSelectedIndex(_ rootIdentifier: String, from window: UIWindow?) {
+        let selectedIndex = index(for: rootIdentifier)
+        currentSelectedIndex = selectedIndex
+        guard let tabBarController = window?.rootViewController as? MainTabBarController else {
+            return
+        }
+        tabBarController.selectedIndex = selectedIndex
+    }
+
+    private func index(for rootIdentifier: String) -> Int {
+        let coordinatorIdentifiers = rootCoordinators.map { $0.rootIdentifier }
+        guard let indexToSelect = coordinatorIdentifiers.firstIndex(of: rootIdentifier) else {
+            fatalError()
+        }
+
+        return indexToSelect
+    }
+
 }

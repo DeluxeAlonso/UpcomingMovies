@@ -9,9 +9,15 @@
 import UIKit
 import UpcomingMoviesDomain
 
+struct RootCoordinatorIdentifier {
+    static let upcomingMovies = "upcoming"
+    static let searchMovies = "search"
+    static let account = "account"
+}
+
 final class MainTabBarBuilder {
     
-    class func buildViewCoordinators() -> [Coordinator] {
+    class func buildViewCoordinators() -> [RootCoordinator] {
 
         let upcomingMoviesNavigationController = createNavigationController(title: "Upcoming", image: #imageLiteral(resourceName: "Movies"))
         let upcomingMoviesCoordinator = UpcomingMoviesCoordinator(navigationController: upcomingMoviesNavigationController)
