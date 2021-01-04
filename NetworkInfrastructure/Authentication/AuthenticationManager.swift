@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-class AuthenticationManager {
+final class AuthenticationManager: AuthenticationManagerProtocol {
     
     static let shared = AuthenticationManager()
     
@@ -21,16 +21,16 @@ class AuthenticationManager {
     }()
     
     @KeychainStorage(key: Constants.sessionIdKey)
-    var sessionId: String?
+    private var sessionId: String?
     
     @KeychainStorage(key: Constants.currentUserIdKey)
-    var currentUserId: String?
+    private var currentUserId: String?
     
     @KeychainStorage(key: Constants.accountIdKey)
-    var accountId: String?
+    private var accountId: String?
     
     @KeychainStorage(key: Constants.accessTokenKey)
-    var token: String?
+    private var token: String?
     
     @KeychainStorage(key: Constants.requestTokenKey)
     var requestToken: String?
