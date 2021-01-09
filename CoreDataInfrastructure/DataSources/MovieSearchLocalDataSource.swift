@@ -14,6 +14,8 @@ final class MovieSearchLocalDataSource: MovieSearchLocalDataSourceProtocol {
     private let store: PersistenceStore<CDMovieSearch>
     
     var didUpdateMovieSearch: (() -> Void)?
+
+    // MARK: - Initializers
     
     init(store: PersistenceStore<CDMovieSearch>) {
         self.store = store
@@ -21,6 +23,8 @@ final class MovieSearchLocalDataSource: MovieSearchLocalDataSourceProtocol {
                                              sortDescriptors: CDMovieSearch.defaultSortDescriptors)
         self.store.delegate = self
     }
+
+    // MARK: - MovieSearchLocalDataSourceProtocol
     
     func getMovieSearches() -> [MovieSearch] {
         return store.entities.map { $0.asDomain() }

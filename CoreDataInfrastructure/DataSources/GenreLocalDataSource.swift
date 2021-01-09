@@ -14,12 +14,16 @@ final class GenreLocalDataSource: GenreLocalDataSourceProtocol {
     private let store: PersistenceStore<CDGenre>
     
     var didUpdateGenre: (() -> Void)?
+
+    // MARK: - Initializers
     
     init(store: PersistenceStore<CDGenre>) {
         self.store = store
         self.store.configureResultsContoller(sortDescriptors: CDGenre.defaultSortDescriptors)
         self.store.delegate = self
     }
+
+    // MARK: - GenreLocalDataSourceProtocol
     
     func saveGenres(_ genres: [Genre]) {
         genres.forEach { store.saveGenre($0) }

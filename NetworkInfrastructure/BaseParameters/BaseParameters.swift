@@ -7,6 +7,7 @@
 //
 
 struct BaseParameters: Decodable {
+
     let baseAPIURLString: String
     let keys: Keys
     
@@ -14,4 +15,5 @@ struct BaseParameters: Decodable {
         case baseAPIURLString = "BaseAPIURLString"
         case keys = "Keys"
     }
+    
 }

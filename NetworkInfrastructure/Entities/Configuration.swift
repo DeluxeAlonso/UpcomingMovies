@@ -9,6 +9,7 @@
 import UpcomingMoviesDomain
 
 struct ImagesConfiguration: Decodable {
+
     let baseURLString: String
     let backdropSizes: [String]
     let posterSizes: [String]
@@ -18,21 +19,27 @@ struct ImagesConfiguration: Decodable {
         case backdropSizes = "backdrop_sizes"
         case posterSizes = "poster_sizes"
     }
+
 }
 
 struct ImagesConfigurationResult: Decodable {
+
     let result: ImagesConfiguration
     
     private enum CodingKeys: String, CodingKey {
         case result = "images"
     }
+
 }
 
 struct SortConfigurationResult {
+
     let movieSortKeys: [String]
+
 }
 
 struct Configuration {
+
     let imagesConfiguration: ImagesConfigurationResult
     let sortConfiguration: SortConfigurationResult
     
@@ -51,6 +58,7 @@ struct Configuration {
     var movieSortKeys: [String] {
         return sortConfiguration.movieSortKeys
     }
+    
 }
 
 extension Configuration: DomainConvertible {

@@ -11,10 +11,14 @@ import UpcomingMoviesData
 final public class LocalDataSource: LocalDataSourceProtocol {
     
     private let coreDataStack: CoreDataStack
+
+    // MARK: - Initializers
     
     public init(coreDataStack: CoreDataStack = CoreDataStack.shared) {
         self.coreDataStack = coreDataStack
     }
+
+    // MARK: - LocalDataSourceProtocol
     
     public func genreDataSource() -> GenreLocalDataSourceProtocol {
         let store: PersistenceStore<CDGenre> = PersistenceStore(self.coreDataStack.mainContext)
