@@ -14,6 +14,8 @@ final class UserLocalDataSource: UserLocalDataSourceProtocol {
     private let store: PersistenceStore<CDUser>
     
     var didUpdateUser: (() -> Void)?
+
+    // MARK: - Initializers
     
     init(store: PersistenceStore<CDUser>) {
         self.store = store
@@ -21,6 +23,8 @@ final class UserLocalDataSource: UserLocalDataSourceProtocol {
                                              notifyChangesOn: [.insert])
         self.store.delegate = self
     }
+
+    // MARK: - UserLocalDataSourceProtocol
     
     func find(with id: Int) -> User? {
         return store.find(with: id)?.asDomain()

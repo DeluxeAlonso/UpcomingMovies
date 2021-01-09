@@ -14,12 +14,16 @@ final class MovieVisitLocalDataSource: MovieVisitLocalDataSourceProtocol {
     private let store: PersistenceStore<CDMovieVisit>
     
     var didUpdateMovieVisit: (() -> Void)?
+
+    // MARK: - Initializers
     
     init(store: PersistenceStore<CDMovieVisit>) {
         self.store = store
         self.store.configureResultsContoller(limit: 10, sortDescriptors: CDMovieVisit.defaultSortDescriptors)
         self.store.delegate = self
     }
+
+    // MARK: - MovieVisitLocalDataSourceProtocol
     
     func getMovieVisits() -> [MovieVisit] {
         return store.entities.map { $0.asDomain() }
