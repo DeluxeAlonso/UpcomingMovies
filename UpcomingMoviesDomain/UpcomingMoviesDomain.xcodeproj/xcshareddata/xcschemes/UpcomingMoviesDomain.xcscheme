@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E2727DA5236DEB85004BDC5B"
-               BuildableName = "UpcomingMoviesData.framework"
-               BlueprintName = "UpcomingMoviesData"
-               ReferencedContainer = "container:UpcomingMovies.xcodeproj">
+               BlueprintIdentifier = "E2DC790225AAB639001A9D21"
+               BuildableName = "UpcomingMoviesDomain.framework"
+               BlueprintName = "UpcomingMoviesDomain"
+               ReferencedContainer = "container:UpcomingMoviesDomain.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E2727DAD236DEB85004BDC5B"
-               BuildableName = "UpcomingMoviesDataTests.xctest"
-               BlueprintName = "UpcomingMoviesDataTests"
-               ReferencedContainer = "container:UpcomingMovies.xcodeproj">
+               BlueprintIdentifier = "E2DC790B25AAB639001A9D21"
+               BuildableName = "UpcomingMoviesDomainTests.xctest"
+               BlueprintName = "UpcomingMoviesDomainTests"
+               ReferencedContainer = "container:UpcomingMoviesDomain.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -60,10 +60,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2727DA5236DEB85004BDC5B"
-            BuildableName = "UpcomingMoviesData.framework"
-            BlueprintName = "UpcomingMoviesData"
-            ReferencedContainer = "container:UpcomingMovies.xcodeproj">
+            BlueprintIdentifier = "E2DC790225AAB639001A9D21"
+            BuildableName = "UpcomingMoviesDomain.framework"
+            BlueprintName = "UpcomingMoviesDomain"
+            ReferencedContainer = "container:UpcomingMoviesDomain.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

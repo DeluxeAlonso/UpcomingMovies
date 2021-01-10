@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E2020947236F27BC00EBDC5E"
-               BuildableName = "NetworkInfrastructure.framework"
-               BlueprintName = "NetworkInfrastructure"
-               ReferencedContainer = "container:UpcomingMovies.xcodeproj">
+               BlueprintIdentifier = "E2DC7A9C25AAC9A4001A9D21"
+               BuildableName = "CoreDataInfrastructure.framework"
+               BlueprintName = "CoreDataInfrastructure"
+               ReferencedContainer = "container:CoreDataInfrastructure.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E202094F236F27BC00EBDC5E"
-               BuildableName = "NetworkInfrastructureTests.xctest"
-               BlueprintName = "NetworkInfrastructureTests"
-               ReferencedContainer = "container:UpcomingMovies.xcodeproj">
+               BlueprintIdentifier = "E2DC7AA525AAC9A4001A9D21"
+               BuildableName = "CoreDataInfrastructureTests.xctest"
+               BlueprintName = "CoreDataInfrastructureTests"
+               ReferencedContainer = "container:CoreDataInfrastructure.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -60,10 +60,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2020947236F27BC00EBDC5E"
-            BuildableName = "NetworkInfrastructure.framework"
-            BlueprintName = "NetworkInfrastructure"
-            ReferencedContainer = "container:UpcomingMovies.xcodeproj">
+            BlueprintIdentifier = "E2DC7A9C25AAC9A4001A9D21"
+            BuildableName = "CoreDataInfrastructure.framework"
+            BlueprintName = "CoreDataInfrastructure"
+            ReferencedContainer = "container:CoreDataInfrastructure.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
