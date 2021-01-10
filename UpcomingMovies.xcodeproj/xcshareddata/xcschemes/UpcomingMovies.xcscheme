@@ -47,46 +47,6 @@
                ReferencedContainer = "container:UpcomingMovies.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E229A567236BF44E006FF112"
-               BuildableName = "UpcomingMoviesDomainTests.xctest"
-               BlueprintName = "UpcomingMoviesDomainTests"
-               ReferencedContainer = "container:UpcomingMovies.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E229A530236BF242006FF112"
-               BuildableName = "CoreDataInfrastructureTests.xctest"
-               BlueprintName = "CoreDataInfrastructureTests"
-               ReferencedContainer = "container:UpcomingMovies.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E2727DAD236DEB85004BDC5B"
-               BuildableName = "UpcomingMoviesDataTests.xctest"
-               BlueprintName = "UpcomingMoviesDataTests"
-               ReferencedContainer = "container:UpcomingMovies.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E202094F236F27BC00EBDC5E"
-               BuildableName = "NetworkInfrastructureTests.xctest"
-               BlueprintName = "NetworkInfrastructureTests"
-               ReferencedContainer = "container:UpcomingMovies.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -15,6 +15,7 @@ target 'UpcomingMovies' do
   pod 'Kingfisher'
   pod 'Kingfisher/SwiftUI'
   pod 'CollectionViewSlantedLayout', '~> 3.1'
+  pod 'KeychainSwift', '~> 19.0'
   
   target 'UpcomingMoviesTodayExtension' do
     pod 'Kingfisher'
