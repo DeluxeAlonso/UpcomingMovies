@@ -18,7 +18,9 @@ Movies app written in Swift 5 using the TMDb API and demonstrating Clean Archite
 <img src="Screenshots/Credits.png" width=200 height=433> <img src="Screenshots/Favorites.png" width=200 height=433>
 <img src="Screenshots/SignIn.png" width=200 height=433> <img src="Screenshots/Profile.png" width=200 height=433>
 <img src="Screenshots/CustomLists.png" width=200 height=433> <img src="Screenshots/CustomListDetail.png" width=200 height=433>
-<img src="Screenshots/TodayExtension.png" width=200 height=433>
+<img src="Screenshots/TodayExtension.png" width=200 height=433> 
+<img src="Screenshots/Widgets/Small/Upcoming.png" width=200 height=433> 
+<img src="Screenshots/Widgets/Small/Search.png" width=200 height=433>
 
 ## Third-party libraries
 
