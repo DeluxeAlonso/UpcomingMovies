@@ -11,6 +11,7 @@
 		9033F1CE4305880237811E2B /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC318F5C43F328E870EBF7A /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework */; };
 		9598E1DA49AA2CBA6E0628E0 /* Pods_UpcomingMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811C39C9147DA695B15480ED /* Pods_UpcomingMovies.framework */; };
 		D488AF31441470DAFB7808ED /* Pods_UpcomingMovies_UpcomingMoviesWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CD38AA86EB6EA61D0DD59B /* Pods_UpcomingMovies_UpcomingMoviesWidgetExtension.framework */; };
+		D5B1B66E435BEF1B63825DA4 /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A75CBE42C52DC4A0217395 /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework */; };
 		E200182821EE323200F29220 /* SearchOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E200182721EE323200F29220 /* SearchOptionsViewController.swift */; };
 		E200182A21EE336F00F29220 /* SearchOptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E200182921EE336F00F29220 /* SearchOptionsViewModel.swift */; };
 		E2009F4F2515BD8600D4B48F /* SplashBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2009F4E2515BD8600D4B48F /* SplashBuilder.swift */; };
@@ -406,6 +407,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00A75CBE42C52DC4A0217395 /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA4109E4F3C2F81D8A3A4D3 /* Pods-NetworkInfrastructure.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkInfrastructure.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkInfrastructure/Pods-NetworkInfrastructure.release.xcconfig"; sourceTree = "<group>"; };
 		2744237F684972533E9A0C42 /* Pods-UpcomingMovies-UpcomingMoviesWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMovies-UpcomingMoviesWidgetExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMovies-UpcomingMoviesWidgetExtension/Pods-UpcomingMovies-UpcomingMoviesWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		2EC318F5C43F328E870EBF7A /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -422,6 +424,7 @@
 		BA04B472CA322537655431AE /* Pods-UpcomingMovies-UpcomingMoviesTodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMovies-UpcomingMoviesTodayExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMovies-UpcomingMoviesTodayExtension/Pods-UpcomingMovies-UpcomingMoviesTodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		C51432D0ADCAF262E2839CEF /* Pods-UpcomingMovies-UpcomingMoviesTodayWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMovies-UpcomingMoviesTodayWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMovies-UpcomingMoviesTodayWidget/Pods-UpcomingMovies-UpcomingMoviesTodayWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		DCEB1DCBD1131A796FBBF671 /* Pods-UpcomingMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMovies.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMovies/Pods-UpcomingMovies.release.xcconfig"; sourceTree = "<group>"; };
+		DDD6A45BF13989486BD7AD5D /* Pods-UpcomingMovies-UpcomingMoviesTodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMovies-UpcomingMoviesTodayExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMovies-UpcomingMoviesTodayExtension/Pods-UpcomingMovies-UpcomingMoviesTodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		E200182721EE323200F29220 /* SearchOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOptionsViewController.swift; sourceTree = "<group>"; };
 		E200182921EE336F00F29220 /* SearchOptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOptionsViewModel.swift; sourceTree = "<group>"; };
 		E2009F4E2515BD8600D4B48F /* SplashBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashBuilder.swift; sourceTree = "<group>"; };
@@ -792,6 +795,7 @@
 				E2B63B0F24676AE200C0BB13 /* NotificationCenter.framework in Frameworks */,
 				E2DC7B8B25AAD60E001A9D21 /* CoreDataInfrastructure.framework in Frameworks */,
 				9033F1CE4305880237811E2B /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework in Frameworks */,
+				D5B1B66E435BEF1B63825DA4 /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
