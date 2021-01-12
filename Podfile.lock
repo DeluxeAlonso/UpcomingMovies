@@ -1,22 +1,33 @@
 PODS:
   - CollectionViewSlantedLayout (3.1.1)
+  - CoreDataInfrastructure (0.0.1):
+    - UpcomingMoviesData
+    - UpcomingMoviesDomain
   - KeychainSwift (19.0.0)
   - Kingfisher (5.15.7):
     - Kingfisher/Core (= 5.15.7)
   - Kingfisher/Core (5.15.7)
   - Kingfisher/SwiftUI (5.15.7):
     - Kingfisher/Core
+  - NetworkInfrastructure (0.0.1):
+    - KeychainSwift (~> 19.0)
+    - UpcomingMoviesData
+    - UpcomingMoviesDomain
   - SwiftLint (0.41.0)
   - Swinject (2.7.1)
+  - UpcomingMoviesData (0.0.1):
+    - UpcomingMoviesDomain
   - UpcomingMoviesDomain (0.0.1)
 
 DEPENDENCIES:
   - CollectionViewSlantedLayout (~> 3.1)
-  - KeychainSwift (~> 19.0)
+  - CoreDataInfrastructure (from `CoreDataInfrastructure/`)
   - Kingfisher
   - Kingfisher/SwiftUI
+  - NetworkInfrastructure (from `NetworkInfrastructure/`)
   - SwiftLint
   - Swinject
+  - UpcomingMoviesData (from `UpcomingMoviesData/`)
   - UpcomingMoviesDomain (from `UpcomingMoviesDomain/`)
 
 SPEC REPOS:
@@ -28,17 +39,26 @@ SPEC REPOS:
     - Swinject
 
 EXTERNAL SOURCES:
+  CoreDataInfrastructure:
+    :path: CoreDataInfrastructure/
+  NetworkInfrastructure:
+    :path: NetworkInfrastructure/
+  UpcomingMoviesData:
+    :path: UpcomingMoviesData/
   UpcomingMoviesDomain:
     :path: UpcomingMoviesDomain/
 
 SPEC CHECKSUMS:
   CollectionViewSlantedLayout: 24397455acd2461960bc45d394e0ef99c17d03ce
+  CoreDataInfrastructure: 85ec4768c194521bfae6956c6896625d6b145226
   KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
   Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
+  NetworkInfrastructure: de88423a25de409b2e2be200b28cd412086e3ef3
   SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
+  UpcomingMoviesData: 781eafb9eec3e6ed2316d3d45232202d24aa40f6
   UpcomingMoviesDomain: bf934e685e69ed25050a2c6909c910d39e627c60
 
-PODFILE CHECKSUM: 591e2bcc59e44b3c8f0783f55dccd4f9e46b1f4d
+PODFILE CHECKSUM: cebf3c6b3eebb68dded54cecd33d2c5f1decd9f1
 
 COCOAPODS: 1.9.3

@@ -34,8 +34,6 @@
 		E2DC7AF025AACA67001A9D21 /* CDGenreStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DC7AEC25AACA67001A9D21 /* CDGenreStoreTests.swift */; };
 		E2DC7AF125AACA67001A9D21 /* CDMovieVisitStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DC7AED25AACA67001A9D21 /* CDMovieVisitStoreTests.swift */; };
 		E2DC7AF225AACA67001A9D21 /* CDMovieSearchStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DC7AEE25AACA67001A9D21 /* CDMovieSearchStoreTests.swift */; };
-		E2DC7B1D25AACE06001A9D21 /* UpcomingMoviesDomain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DC7B1C25AACE06001A9D21 /* UpcomingMoviesDomain.framework */; };
-		E2DC7B7A25AAD308001A9D21 /* UpcomingMoviesData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DC7B7925AAD308001A9D21 /* UpcomingMoviesData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,8 +86,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2DC7B1D25AACE06001A9D21 /* UpcomingMoviesDomain.framework in Frameworks */,
-				E2DC7B7A25AAD308001A9D21 /* UpcomingMoviesData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

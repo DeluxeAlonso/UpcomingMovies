@@ -289,16 +289,6 @@
 		E2D5EB0724A03E3500F41EE5 /* MovieCreditsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5EB0624A03E3500F41EE5 /* MovieCreditsCoordinator.swift */; };
 		E2DB26E324B03C7F000DD01C /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DB26E224B03C7F000DD01C /* LocalizedStrings.swift */; };
 		E2DBF2F3220532C300CBB365 /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DBF2F2220532BD00CBB365 /* Animatable.swift */; };
-		E2DC796425AAB880001A9D21 /* UpcomingMoviesDomain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DC796325AAB880001A9D21 /* UpcomingMoviesDomain.framework */; };
-		E2DC796525AAB880001A9D21 /* UpcomingMoviesDomain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2DC796325AAB880001A9D21 /* UpcomingMoviesDomain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E2DC7B2325AACE5C001A9D21 /* UpcomingMoviesData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DC7B2225AACE5C001A9D21 /* UpcomingMoviesData.framework */; };
-		E2DC7B2425AACE5C001A9D21 /* UpcomingMoviesData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2DC7B2225AACE5C001A9D21 /* UpcomingMoviesData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E2DC7B6325AAD2CD001A9D21 /* CoreDataInfrastructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DC7B6225AAD2CD001A9D21 /* CoreDataInfrastructure.framework */; };
-		E2DC7B6425AAD2CD001A9D21 /* CoreDataInfrastructure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2DC7B6225AAD2CD001A9D21 /* CoreDataInfrastructure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E2DC7B6625AAD2D5001A9D21 /* NetworkInfrastructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DC7B6525AAD2D5001A9D21 /* NetworkInfrastructure.framework */; };
-		E2DC7B6725AAD2D5001A9D21 /* NetworkInfrastructure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2DC7B6525AAD2D5001A9D21 /* NetworkInfrastructure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E2DC7B8B25AAD60E001A9D21 /* CoreDataInfrastructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DC7B8A25AAD60E001A9D21 /* CoreDataInfrastructure.framework */; };
-		E2DC7B8C25AAD60E001A9D21 /* CoreDataInfrastructure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2DC7B8A25AAD60E001A9D21 /* CoreDataInfrastructure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2DCE7F424B12F4F0041301E /* ToggleBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DCE7F324B12F4F0041301E /* ToggleBarButtonItem.swift */; };
 		E2DCE7F724B12F940041301E /* ToggleBarButtonContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DCE7F624B12F940041301E /* ToggleBarButtonContent.swift */; };
 		E2DCE7F924B134ED0041301E /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DCE7F824B134ED0041301E /* Either.swift */; };
@@ -367,20 +357,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E229A540236BF242006FF112 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E2DC7B6425AAD2CD001A9D21 /* CoreDataInfrastructure.framework in Embed Frameworks */,
-				E2DC796525AAB880001A9D21 /* UpcomingMoviesDomain.framework in Embed Frameworks */,
-				E2DC7B6725AAD2D5001A9D21 /* NetworkInfrastructure.framework in Embed Frameworks */,
-				E2DC7B2425AACE5C001A9D21 /* UpcomingMoviesData.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E2B63ADD246767EE00C0BB13 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -391,17 +367,6 @@
 				E2EBDC36256A26090026319B /* UpcomingMoviesWidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2B63B2224676DBB00C0BB13 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E2DC7B8C25AAD60E001A9D21 /* CoreDataInfrastructure.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -424,7 +389,6 @@
 		BA04B472CA322537655431AE /* Pods-UpcomingMovies-UpcomingMoviesTodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMovies-UpcomingMoviesTodayExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMovies-UpcomingMoviesTodayExtension/Pods-UpcomingMovies-UpcomingMoviesTodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		C51432D0ADCAF262E2839CEF /* Pods-UpcomingMovies-UpcomingMoviesTodayWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMovies-UpcomingMoviesTodayWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMovies-UpcomingMoviesTodayWidget/Pods-UpcomingMovies-UpcomingMoviesTodayWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		DCEB1DCBD1131A796FBBF671 /* Pods-UpcomingMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMovies.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMovies/Pods-UpcomingMovies.release.xcconfig"; sourceTree = "<group>"; };
-		DDD6A45BF13989486BD7AD5D /* Pods-UpcomingMovies-UpcomingMoviesTodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMovies-UpcomingMoviesTodayExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMovies-UpcomingMoviesTodayExtension/Pods-UpcomingMovies-UpcomingMoviesTodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		E200182721EE323200F29220 /* SearchOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOptionsViewController.swift; sourceTree = "<group>"; };
 		E200182921EE336F00F29220 /* SearchOptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOptionsViewModel.swift; sourceTree = "<group>"; };
 		E2009F4E2515BD8600D4B48F /* SplashBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashBuilder.swift; sourceTree = "<group>"; };
@@ -772,12 +736,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2DC7B6625AAD2D5001A9D21 /* NetworkInfrastructure.framework in Frameworks */,
-				E2DC796425AAB880001A9D21 /* UpcomingMoviesDomain.framework in Frameworks */,
-				E2DC7B6325AAD2CD001A9D21 /* CoreDataInfrastructure.framework in Frameworks */,
 				E293AD27224B38480070F783 /* WebKit.framework in Frameworks */,
 				9598E1DA49AA2CBA6E0628E0 /* Pods_UpcomingMovies.framework in Frameworks */,
-				E2DC7B2325AACE5C001A9D21 /* UpcomingMoviesData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,7 +753,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2B63B0F24676AE200C0BB13 /* NotificationCenter.framework in Frameworks */,
-				E2DC7B8B25AAD60E001A9D21 /* CoreDataInfrastructure.framework in Frameworks */,
 				9033F1CE4305880237811E2B /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework in Frameworks */,
 				D5B1B66E435BEF1B63825DA4 /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework in Frameworks */,
 			);
@@ -889,6 +848,14 @@
 				E2009F572515BEE500D4B48F /* SplashAssembly.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		E20103C625AD669C00C62A37 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				00A75CBE42C52DC4A0217395 /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		E2143DB422571A43003E939F /* Extensions */ = {
@@ -997,6 +964,7 @@
 				E221167D21914E4B0039F8C9 /* Products */,
 				40F1AD1B5623EBC5C5B037B7 /* Pods */,
 				AEA8FC05E782407089541551 /* Frameworks */,
+				E20103C625AD669C00C62A37 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1908,7 +1876,6 @@
 				E221167A21914E4B0039F8C9 /* Resources */,
 				5EC83C5E01F2A4C789C0A107 /* [CP] Embed Pods Frameworks */,
 				E20198F421FBAEF400ED1FA8 /* ShellScript */,
-				E229A540236BF242006FF112 /* Embed Frameworks */,
 				E2B63ADD246767EE00C0BB13 /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -1948,7 +1915,6 @@
 				E2B63B0A24676AE200C0BB13 /* Sources */,
 				E2B63B0B24676AE200C0BB13 /* Frameworks */,
 				E2B63B0C24676AE200C0BB13 /* Resources */,
-				E2B63B2224676DBB00C0BB13 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

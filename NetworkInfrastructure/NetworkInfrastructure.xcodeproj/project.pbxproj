@@ -73,8 +73,6 @@
 		E2DC7A8625AAC4EF001A9D21 /* ReviewResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DC7A4A25AAC4EE001A9D21 /* ReviewResult.swift */; };
 		E2DC7A8D25AAC4FC001A9D21 /* URLGenerationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DC7A8B25AAC4FB001A9D21 /* URLGenerationTests.swift */; };
 		E2DC7A8E25AAC4FC001A9D21 /* MovieResultPaginationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DC7A8C25AAC4FB001A9D21 /* MovieResultPaginationTests.swift */; };
-		E2DC7B6925AAD2E5001A9D21 /* UpcomingMoviesDomain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DC7B6825AAD2E5001A9D21 /* UpcomingMoviesDomain.framework */; };
-		E2DC7B7625AAD2FD001A9D21 /* UpcomingMoviesData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DC7B7525AAD2FD001A9D21 /* UpcomingMoviesData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,8 +166,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2DC7B7625AAD2FD001A9D21 /* UpcomingMoviesData.framework in Frameworks */,
-				E2DC7B6925AAD2E5001A9D21 /* UpcomingMoviesDomain.framework in Frameworks */,
 				4406B30D703AB3E0DC02E9F6 /* Pods_NetworkInfrastructure.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
