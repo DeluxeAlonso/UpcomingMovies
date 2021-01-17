@@ -2,8 +2,7 @@
 //  CoreDataInfrastructure.h
 //  CoreDataInfrastructure
 //
-//  Created by Alonso on 10/31/19.
-//  Copyright © 2019 Alonso. All rights reserved.
+//  Created by Alonso on 1/10/21.
 //
 
 #import <Foundation/Foundation.h>

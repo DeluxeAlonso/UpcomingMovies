@@ -11,28 +11,25 @@ target 'UpcomingMovies' do
   pod 'Kingfisher'
   pod 'Kingfisher/SwiftUI'
   pod 'CollectionViewSlantedLayout', '~> 3.1'
-  
-  target 'NetworkInfrastructure' do
-    use_frameworks!
-    pod 'KeychainSwift', '~> 19.0'
-    inherit! :search_paths
-  end
+
+  pod 'UpcomingMoviesDomain', :path => 'UpcomingMoviesDomain/', :testspecs => ['UpcomingMoviesDomainTests']
+  pod 'UpcomingMoviesData', :path => 'UpcomingMoviesData/', :testspecs => ['UpcomingMoviesDataTests']
+  pod 'CoreDataInfrastructure', :path => 'CoreDataInfrastructure/', :testspecs => ['CoreDataInfrastructureTests']
+  pod 'NetworkInfrastructure', :path => 'NetworkInfrastructure/', :testspecs => ['NetworkInfrastructureTests']
   
   target 'UpcomingMoviesTodayExtension' do
-    use_frameworks!
     pod 'Kingfisher'
+    pod 'CoreDataInfrastructure', :path => 'CoreDataInfrastructure/'
   end
 
   target 'UpcomingMoviesWidgetExtension' do
-    use_frameworks!
     pod 'Kingfisher/SwiftUI'
   end
 
   target 'UpcomingMoviesTests' do
     inherit! :search_paths
-    # Pods for testing
   end
-  
+
   post_install do |pi|
     pi.pods_project.targets.each do |t|
       t.build_configurations.each do |config|

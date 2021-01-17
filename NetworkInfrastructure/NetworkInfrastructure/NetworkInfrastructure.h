@@ -2,8 +2,7 @@
 //  NetworkInfrastructure.h
 //  NetworkInfrastructure
 //
-//  Created by Alonso on 11/3/19.
-//  Copyright © 2019 Alonso. All rights reserved.
+//  Created by Alonso on 1/10/21.
 //
 
 #import <Foundation/Foundation.h>
