@@ -1,0 +1,52 @@
+{
+  "configurations" : [
+    {
+      "id" : "3969EFD3-655C-4818-ADA5-44DB77A82B6D",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Pods\/Pods.xcodeproj",
+        "identifier" : "D28CD528FF2629D7C73616BEC7DDDAF6",
+        "name" : "CoreDataInfrastructure-Unit-CoreDataInfrastructureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Pods\/Pods.xcodeproj",
+        "identifier" : "8582B8FE7D5E7C89AEAF2E888F9CF152",
+        "name" : "NetworkInfrastructure-Unit-NetworkInfrastructureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Pods\/Pods.xcodeproj",
+        "identifier" : "59AD3B327AD6D78EE3C0A851DF512AE3",
+        "name" : "UpcomingMoviesData-Unit-UpcomingMoviesDataTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Pods\/Pods.xcodeproj",
+        "identifier" : "F6EF6BBFAD94833A92B0A3E15B5638BA",
+        "name" : "UpcomingMoviesDomain-Unit-UpcomingMoviesDomainTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:UpcomingMovies.xcodeproj",
+        "identifier" : "E221169121914E4D0039F8C9",
+        "name" : "UpcomingMoviesTests"
+      }
+    }
+  ],
+  "version" : 1
+}
