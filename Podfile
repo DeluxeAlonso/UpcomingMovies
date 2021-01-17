@@ -12,10 +12,10 @@ target 'UpcomingMovies' do
   pod 'Kingfisher/SwiftUI'
   pod 'CollectionViewSlantedLayout', '~> 3.1'
 
-  pod 'UpcomingMoviesDomain', :path => 'UpcomingMoviesDomain/'
-  pod 'UpcomingMoviesData', :path => 'UpcomingMoviesData/'
-  pod 'CoreDataInfrastructure', :path => 'CoreDataInfrastructure/'
-  pod 'NetworkInfrastructure', :path => 'NetworkInfrastructure/'
+  pod 'UpcomingMoviesDomain', :path => 'UpcomingMoviesDomain/', :testspecs => ['UpcomingMoviesDomainTests']
+  pod 'UpcomingMoviesData', :path => 'UpcomingMoviesData/', :testspecs => ['UpcomingMoviesDataTests']
+  pod 'CoreDataInfrastructure', :path => 'CoreDataInfrastructure/', :testspecs => ['CoreDataInfrastructureTests']
+  pod 'NetworkInfrastructure', :path => 'NetworkInfrastructure/', :testspecs => ['NetworkInfrastructureTests']
   
   target 'UpcomingMoviesTodayExtension' do
     pod 'Kingfisher'
