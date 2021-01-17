@@ -26,6 +26,10 @@ target 'UpcomingMovies' do
     pod 'Kingfisher/SwiftUI'
   end
 
+  target 'UpcomingMoviesTests' do
+    inherit! :search_paths
+  end
+
   post_install do |pi|
     pi.pods_project.targets.each do |t|
       t.build_configurations.each do |config|
