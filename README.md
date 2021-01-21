@@ -6,6 +6,22 @@
 
 Movies app written in Swift 5 using the TMDb API and demonstrating Clean Architecture, Dependency Injection, MVVM and Coordinators.
 
+## How to run
+
+### Requirements
+
+1. Xcode 12.0+
+2. Cocoapods 1.9.0+
+3. Fastlane 2.1.0+ (only needed if you want to easily run the unit tests and swift lint scans via the CLI).
+
+### Getting started
+
+1. Clone this repository.
+2. Via the CLI, go to the root folder of the project where Podfile is located and run `pod install`.
+3. Open the workspace file and you are ready to go.
+
+*Note: you can run the tests either using `CMD+U` on Xcode or running `fastlane tests` via the CLI.* 
+
 ## Demo
 
 <img src="Demo.gif" width="200" height="433" />
