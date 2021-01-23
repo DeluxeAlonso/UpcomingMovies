@@ -6,6 +6,10 @@
 
 Movies app written in Swift 5 using the TMDb API and demonstrating Clean Architecture, Dependency Injection, MVVM and Coordinators.
 
+## Demo
+
+<img src="Demo.gif" width="200" height="433" />
+
 ## How to run
 
 ### Requirements
@@ -21,10 +25,6 @@ Movies app written in Swift 5 using the TMDb API and demonstrating Clean Archite
 3. Open the workspace file and you are ready to go.
 
 *Note: you can run the tests either using `CMD+U` on Xcode or running `fastlane tests` via the CLI.* 
-
-## Demo
-
-<img src="Demo.gif" width="200" height="433" />
 
 ## Screenshots
 
