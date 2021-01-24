@@ -25,11 +25,13 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     private var previewLayout: VerticalFlowLayout!
     private var detailLayout: VerticalFlowLayout!
     
-    var loaderView: RadarView!
-    var toggleGridBarButtonItem: ToggleBarButtonItem!
-    
     private var isAnimatingPresentation: Bool = false
     private var presentationMode: PresentationMode = .preview
+
+    private var isLayoutSet: Bool = false
+
+    var loaderView: RadarView!
+    var toggleGridBarButtonItem: ToggleBarButtonItem!
     
     // MARK: - Lifecycle
     
@@ -39,6 +41,14 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         setupBindables()
         
         viewModel?.getMovies()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !isLayoutSet {
+            configureCollectionViewLayout()
+            isLayoutSet = true
+        }
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -79,8 +89,6 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
 
         collectionView.registerNib(cellType: UpcomingMoviePreviewCollectionViewCell.self)
         collectionView.registerNib(cellType: UpcomingMovieExpandedCollectionViewCell.self)
-
-        configureCollectionViewLayout()
     }
     
     private func configureCollectionViewLayout() {
@@ -168,7 +176,6 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     
     @objc func toggleGridAction(_ sender: Any) {
         guard !isAnimatingPresentation else { return }
-        configureCollectionViewLayout()
 
         toggleGridBarButtonItem.toggle()
         switch presentationMode {
