@@ -10,15 +10,15 @@ import UIKit
 
 final class VerticalFlowLayout: UICollectionViewFlowLayout {
 
-    private var preferredWidth: Double
-    private var preferredHeight: Double
+    private var preferredWidth: CGFloat
+    private var preferredHeight: CGFloat
     private let margin: CGFloat
     private let minColumns: Int
 
     // MARK: - Initializers
     
-    init(preferredWidth: Double,
-         preferredHeight: Double,
+    init(preferredWidth: CGFloat,
+         preferredHeight: CGFloat,
          margin: CGFloat = 16.0,
          minColumns: Int = .zero) {
         self.preferredWidth = preferredWidth
@@ -46,8 +46,8 @@ final class VerticalFlowLayout: UICollectionViewFlowLayout {
             let totalHorizontalSpace = horizontalSpacePerItem * CGFloat(minColumns - 1)
             let maximumItemWidth = ((collectionView.bounds.size.width - totalHorizontalSpace) / CGFloat(minColumns)).rounded(.down)
 
-            if Double(maximumItemWidth) < preferredWidth {
-                finalWidth = Double(maximumItemWidth)
+            if maximumItemWidth < preferredWidth {
+                finalWidth = maximumItemWidth
                 finalHeight = finalWidth * (preferredHeight / preferredWidth)
             }
         }
@@ -59,11 +59,11 @@ final class VerticalFlowLayout: UICollectionViewFlowLayout {
 
     // MARK: - Public
 
-    func updatePreferredWidth(_ width: Double) {
+    func updatePreferredWidth(_ width: CGFloat) {
         self.preferredWidth = width
     }
 
-    func updatePreferredHeight(_ height: Double) {
+    func updatePreferredHeight(_ height: CGFloat) {
         self.preferredHeight = height
     }
 

@@ -48,7 +48,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
             return
         }
         coordinator.animate(alongsideTransition: { _ in
-            let newWidth = Double(self.collectionView.frame.width - Constants.detailCellOffset)
+            let newWidth = self.collectionView.frame.width - Constants.detailCellOffset
             self.detailLayout.updatePreferredWidth(newWidth)
             self.collectionView.collectionViewLayout.invalidateLayout()
         }, completion: nil)
@@ -84,11 +84,11 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     }
     
     private func configureCollectionViewLayout() {
-        let detailLayoutWidth = Double(collectionView.frame.width - Constants.detailCellOffset)
+        let detailLayoutWidth = collectionView.frame.width - Constants.detailCellOffset
         detailLayout = VerticalFlowLayout(preferredWidth: detailLayoutWidth,
                                           preferredHeight: Constants.detailCellHeight)
         
-        let previewLayoutWidth = Constants.previewCellHeight / UIConstants.posterAspectRatio
+        let previewLayoutWidth = Constants.previewCellHeight / CGFloat(UIConstants.posterAspectRatio)
         previewLayout = VerticalFlowLayout(preferredWidth: previewLayoutWidth,
                                            preferredHeight: Constants.previewCellHeight,
                                            minColumns: 3)
@@ -249,9 +249,9 @@ extension UpcomingMoviesViewController {
     
     struct Constants {
         
-        static let previewCellHeight: Double = 150.0
+        static let previewCellHeight: CGFloat = 150.0
         
-        static let detailCellHeight: Double = 200.0
+        static let detailCellHeight: CGFloat = 200.0
         static let detailCellOffset: CGFloat = 32.0
         
     }
