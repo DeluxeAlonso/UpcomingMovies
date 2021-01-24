@@ -9,16 +9,46 @@
 import UIKit
 
 final class VerticalFlowLayout: UICollectionViewFlowLayout {
+
+    private var preferredWidth: Double
+    private var preferredHeight: Double
+    private let margin: CGFloat
+    private let minColumns: Int
+
+    // MARK: - Initializers
     
-    init(width: Double, height: Double, margin: CGFloat = 16.0) {
+    init(preferredWidth: Double,
+         preferredHeight: Double,
+         margin: CGFloat = 16.0,
+         minColumns: Int = 0) {
+        self.preferredWidth = preferredWidth
+        self.preferredHeight = preferredHeight
+        self.margin = margin
+        self.minColumns = minColumns
         super.init()
-        itemSize = CGSize(width: width, height: height)
-        sectionInset = UIEdgeInsets(top: margin, left: margin,
-                                    bottom: margin, right: margin)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError()
+    }
+
+    // MARK: - Lifecycle
+
+    override func prepare() {
+        super.prepare()
+        itemSize = CGSize(width: preferredWidth, height: preferredHeight)
+        sectionInset = UIEdgeInsets(top: margin, left: margin,
+                                    bottom: margin, right: margin)
+    }
+
+    // MARK: - Public
+
+    func updatePreferredWidth(_ width: Double) {
+        self.preferredWidth = width
+    }
+
+    func updatePreferredHeight(_ height: Double) {
+        self.preferredHeight = height
     }
 
 }

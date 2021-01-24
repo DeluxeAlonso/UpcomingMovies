@@ -40,7 +40,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         
         viewModel?.getMovies()
     }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         guard let selectedViewController = tabBarController?.selectedViewController,
@@ -48,7 +48,8 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
             return
         }
         coordinator.animate(alongsideTransition: { _ in
-            self.detailLayout.itemSize.width = self.collectionView.frame.width - Constants.detailCellOffset
+            let newWidth = Double(self.collectionView.frame.width - Constants.detailCellOffset)
+            self.detailLayout.updatePreferredWidth(newWidth)
             self.collectionView.collectionViewLayout.invalidateLayout()
         }, completion: nil)
     }
@@ -75,18 +76,21 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
 
     private func setupCollectionView() {
         collectionView.delegate = self
+
         collectionView.registerNib(cellType: UpcomingMoviePreviewCollectionViewCell.self)
         collectionView.registerNib(cellType: UpcomingMovieExpandedCollectionViewCell.self)
-        setupCollectionViewLayout()
+
+        configureCollectionViewLayout()
     }
     
-    private func setupCollectionViewLayout() {
+    private func configureCollectionViewLayout() {
         let detailLayoutWidth = Double(collectionView.frame.width - Constants.detailCellOffset)
-        detailLayout = VerticalFlowLayout(width: detailLayoutWidth,
-                                          height: Constants.detailCellHeight)
+        detailLayout = VerticalFlowLayout(preferredWidth: detailLayoutWidth,
+                                          preferredHeight: Constants.detailCellHeight)
         
         let previewLayoutWidth = Constants.previewCellHeight / UIConstants.posterAspectRatio
-        previewLayout = VerticalFlowLayout(width: previewLayoutWidth, height: Constants.previewCellHeight)
+        previewLayout = VerticalFlowLayout(preferredWidth: previewLayoutWidth,
+                                           preferredHeight: Constants.previewCellHeight)
         
         collectionView.collectionViewLayout = presentationMode == .preview ? previewLayout : detailLayout
     }
@@ -163,6 +167,8 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     
     @objc func toggleGridAction(_ sender: Any) {
         guard !isAnimatingPresentation else { return }
+        configureCollectionViewLayout()
+
         toggleGridBarButtonItem.toggle()
         switch presentationMode {
         case .preview:
