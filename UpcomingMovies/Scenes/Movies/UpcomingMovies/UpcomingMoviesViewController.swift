@@ -25,11 +25,13 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     private var previewLayout: VerticalFlowLayout!
     private var detailLayout: VerticalFlowLayout!
     
-    var loaderView: RadarView!
-    var toggleGridBarButtonItem: ToggleBarButtonItem!
-    
     private var isAnimatingPresentation: Bool = false
     private var presentationMode: PresentationMode = .preview
+
+    private var isLayoutSet: Bool = false
+
+    var loaderView: RadarView!
+    var toggleGridBarButtonItem: ToggleBarButtonItem!
     
     // MARK: - Lifecycle
     
@@ -40,7 +42,15 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         
         viewModel?.getMovies()
     }
-    
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !isLayoutSet {
+            configureCollectionViewLayout()
+            isLayoutSet = true
+        }
+    }
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         guard let selectedViewController = tabBarController?.selectedViewController,
@@ -48,7 +58,8 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
             return
         }
         coordinator.animate(alongsideTransition: { _ in
-            self.detailLayout.itemSize.width = self.collectionView.frame.width - Constants.detailCellOffset
+            let newWidth = self.collectionView.frame.width - Constants.detailCellOffset
+            self.detailLayout.updatePreferredWidth(newWidth)
             self.collectionView.collectionViewLayout.invalidateLayout()
         }, completion: nil)
     }
@@ -75,18 +86,20 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
 
     private func setupCollectionView() {
         collectionView.delegate = self
+
         collectionView.registerNib(cellType: UpcomingMoviePreviewCollectionViewCell.self)
         collectionView.registerNib(cellType: UpcomingMovieExpandedCollectionViewCell.self)
-        setupCollectionViewLayout()
     }
     
-    private func setupCollectionViewLayout() {
-        let detailLayoutWidth = Double(collectionView.frame.width - Constants.detailCellOffset)
-        detailLayout = VerticalFlowLayout(width: detailLayoutWidth,
-                                          height: Constants.detailCellHeight)
+    private func configureCollectionViewLayout() {
+        let detailLayoutWidth = collectionView.frame.width - Constants.detailCellOffset
+        detailLayout = VerticalFlowLayout(preferredWidth: detailLayoutWidth,
+                                          preferredHeight: Constants.detailCellHeight)
         
-        let previewLayoutWidth = Constants.previewCellHeight / UIConstants.posterAspectRatio
-        previewLayout = VerticalFlowLayout(width: previewLayoutWidth, height: Constants.previewCellHeight)
+        let previewLayoutWidth = Constants.previewCellHeight / CGFloat(UIConstants.posterAspectRatio)
+        previewLayout = VerticalFlowLayout(preferredWidth: previewLayoutWidth,
+                                           preferredHeight: Constants.previewCellHeight,
+                                           minColumns: 3)
         
         collectionView.collectionViewLayout = presentationMode == .preview ? previewLayout : detailLayout
     }
@@ -163,6 +176,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     
     @objc func toggleGridAction(_ sender: Any) {
         guard !isAnimatingPresentation else { return }
+
         toggleGridBarButtonItem.toggle()
         switch presentationMode {
         case .preview:
@@ -242,9 +256,9 @@ extension UpcomingMoviesViewController {
     
     struct Constants {
         
-        static let previewCellHeight: Double = 150.0
+        static let previewCellHeight: CGFloat = 150.0
         
-        static let detailCellHeight: Double = 200.0
+        static let detailCellHeight: CGFloat = 200.0
         static let detailCellOffset: CGFloat = 32.0
         
     }
