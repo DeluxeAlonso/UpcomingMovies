@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -57,7 +57,7 @@
                             <constraint firstItem="bqj-81-ruL" firstAttribute="top" secondItem="gTJ-Um-KVM" secondAttribute="top" id="6kc-6o-ehT"/>
                             <constraint firstItem="eXB-bM-2N4" firstAttribute="centerY" secondItem="gTJ-Um-KVM" secondAttribute="centerY" id="806-Dr-ZDt"/>
                             <constraint firstAttribute="trailing" secondItem="WKn-qA-IIT" secondAttribute="trailing" constant="16" id="IXo-st-TGB"/>
-                            <constraint firstItem="WKn-qA-IIT" firstAttribute="top" secondItem="gTJ-Um-KVM" secondAttribute="top" constant="16" id="MYv-Oi-iId"/>
+                            <constraint firstItem="WKn-qA-IIT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTJ-Um-KVM" secondAttribute="top" constant="16" id="MYv-Oi-iId"/>
                             <constraint firstItem="eXB-bM-2N4" firstAttribute="leading" secondItem="gTJ-Um-KVM" secondAttribute="leading" constant="16" id="NID-Na-aEE"/>
                             <constraint firstItem="Xfj-OO-THV" firstAttribute="top" secondItem="bqj-81-ruL" secondAttribute="top" id="TSV-zJ-5vv"/>
                             <constraint firstItem="Xfj-OO-THV" firstAttribute="trailing" secondItem="bqj-81-ruL" secondAttribute="trailing" id="Udk-zD-yG1"/>
@@ -65,7 +65,7 @@
                             <constraint firstItem="Xfj-OO-THV" firstAttribute="leading" secondItem="bqj-81-ruL" secondAttribute="leading" id="cQ6-aJ-jPJ"/>
                             <constraint firstAttribute="trailing" secondItem="bqj-81-ruL" secondAttribute="trailing" id="ebN-SN-BXV"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eXB-bM-2N4" secondAttribute="bottom" constant="16" id="gLa-Zo-jPF"/>
-                            <constraint firstAttribute="bottom" secondItem="WKn-qA-IIT" secondAttribute="bottom" constant="16" id="hCw-zg-bbJ"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WKn-qA-IIT" secondAttribute="bottom" constant="16" id="hCw-zg-bbJ"/>
                             <constraint firstItem="eXB-bM-2N4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTJ-Um-KVM" secondAttribute="top" constant="16" id="kVS-EI-1XH"/>
                             <constraint firstItem="bqj-81-ruL" firstAttribute="leading" secondItem="gTJ-Um-KVM" secondAttribute="leading" id="lXE-uy-pU1"/>
                             <constraint firstItem="Xfj-OO-THV" firstAttribute="bottom" secondItem="bqj-81-ruL" secondAttribute="bottom" id="syd-TB-GY8"/>
@@ -73,13 +73,13 @@
                     </view>
                 </subviews>
             </view>
+            <viewLayoutGuide key="safeArea" id="aA5-2q-qx8"/>
             <constraints>
                 <constraint firstItem="gTJ-Um-KVM" firstAttribute="leading" secondItem="y3B-Xo-U8K" secondAttribute="leading" id="AP4-MV-aTI"/>
                 <constraint firstAttribute="trailing" secondItem="gTJ-Um-KVM" secondAttribute="trailing" id="ASn-qk-yxq"/>
                 <constraint firstAttribute="bottom" secondItem="gTJ-Um-KVM" secondAttribute="bottom" id="O3G-ep-hq9"/>
                 <constraint firstItem="gTJ-Um-KVM" firstAttribute="top" secondItem="y3B-Xo-U8K" secondAttribute="top" id="zmO-Ag-2Wd"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="aA5-2q-qx8"/>
             <size key="customSize" width="333" height="106"/>
             <connections>
                 <outlet property="backdropImageView" destination="bqj-81-ruL" id="wRZ-48-F3y"/>
