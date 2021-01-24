@@ -20,7 +20,7 @@ final class VerticalFlowLayout: UICollectionViewFlowLayout {
     init(preferredWidth: Double,
          preferredHeight: Double,
          margin: CGFloat = 16.0,
-         minColumns: Int = 0) {
+         minColumns: Int = .zero) {
         self.preferredWidth = preferredWidth
         self.preferredHeight = preferredHeight
         self.margin = margin
@@ -36,7 +36,23 @@ final class VerticalFlowLayout: UICollectionViewFlowLayout {
 
     override func prepare() {
         super.prepare()
-        itemSize = CGSize(width: preferredWidth, height: preferredHeight)
+        // Evaluates if we are gonna finally use the preferred width or not
+        var finalWidth = preferredWidth
+        var finalHeight = preferredHeight
+        if minColumns != .zero, let collectionView = collectionView {
+            let totalHorzontalSafeAreaInset = collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right
+
+            let horizontalSpacePerItem = margin * 2 + totalHorzontalSafeAreaInset + minimumInteritemSpacing
+            let totalHorizontalSpace = horizontalSpacePerItem * CGFloat(minColumns - 1)
+            let maximumItemWidth = ((collectionView.bounds.size.width - totalHorizontalSpace) / CGFloat(minColumns)).rounded(.down)
+
+            if Double(maximumItemWidth) < preferredWidth {
+                finalWidth = Double(maximumItemWidth)
+                finalHeight = finalWidth * (preferredHeight / preferredWidth)
+            }
+        }
+
+        itemSize = CGSize(width: finalWidth, height: finalHeight)
         sectionInset = UIEdgeInsets(top: margin, left: margin,
                                     bottom: margin, right: margin)
     }
