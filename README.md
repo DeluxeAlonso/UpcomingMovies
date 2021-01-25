@@ -10,6 +10,17 @@ Movies app written in Swift 5 using the TMDb API and demonstrating Clean Archite
 
 <img src="Demo.gif" width="200" height="433" />
 
+## Screenshots
+
+<img src="Screenshots/Home.png" width=200 height=433> <img src="Screenshots/Detail.png" width=200 height=433>
+<img src="Screenshots/Search.png" width=200 height=433> <img src="Screenshots/SearchResult.png" width=200 height=433>
+<img src="Screenshots/Reviews.png" width=200 height=433> <img src="Screenshots/Videos.png" width=200 height=433>
+<img src="Screenshots/Credits.png" width=200 height=433> <img src="Screenshots/Favorites.png" width=200 height=433>
+<img src="Screenshots/SignIn.png" width=200 height=433> <img src="Screenshots/Profile.png" width=200 height=433>
+<img src="Screenshots/CustomLists.png" width=200 height=433> <img src="Screenshots/CustomListDetail.png" width=200 height=433>
+<img src="Screenshots/TodayExtension.png" width=200 height=433> <img src="Screenshots/Widgets/Small/Upcoming.png" width=200 height=433> 
+<img src="Screenshots/Widgets/Small/Search.png" width=200 height=433>
+
 ## How to run
 
 ### Requirements
@@ -25,18 +36,6 @@ Movies app written in Swift 5 using the TMDb API and demonstrating Clean Archite
 3. Open the workspace file and you are ready to go.
 
 *Note: you can run the tests either using `CMD+U` on Xcode or running `fastlane tests` via the CLI.* 
-
-## Screenshots
-
-<img src="Screenshots/Home.png" width=200 height=433> <img src="Screenshots/Detail.png" width=200 height=433>
-<img src="Screenshots/Search.png" width=200 height=433> <img src="Screenshots/SearchResult.png" width=200 height=433>
-<img src="Screenshots/Reviews.png" width=200 height=433> <img src="Screenshots/Videos.png" width=200 height=433>
-<img src="Screenshots/Credits.png" width=200 height=433> <img src="Screenshots/Favorites.png" width=200 height=433>
-<img src="Screenshots/SignIn.png" width=200 height=433> <img src="Screenshots/Profile.png" width=200 height=433>
-<img src="Screenshots/CustomLists.png" width=200 height=433> <img src="Screenshots/CustomListDetail.png" width=200 height=433>
-<img src="Screenshots/TodayExtension.png" width=200 height=433> 
-<img src="Screenshots/Widgets/Small/Upcoming.png" width=200 height=433> 
-<img src="Screenshots/Widgets/Small/Search.png" width=200 height=433>
 
 ## Third-party libraries
 
