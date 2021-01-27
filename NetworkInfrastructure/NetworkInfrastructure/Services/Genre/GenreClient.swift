@@ -21,7 +21,7 @@ class GenreClient: APIClient, GenreClientProtocol {
     convenience init() {
         let configuration: URLSessionConfiguration = .default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-
+        
         self.init(configuration: configuration)
     }
 
