@@ -11,15 +11,21 @@ import Foundation
 class GenreClient: APIClient, GenreClientProtocol {
     
     let session: URLSession
+
+    // MARK: - Initializers
     
     init(configuration: URLSessionConfiguration) {
-        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         self.session = URLSession(configuration: configuration)
     }
     
     convenience init() {
-        self.init(configuration: .default)
+        let configuration: URLSessionConfiguration = .default
+        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        
+        self.init(configuration: configuration)
     }
+
+    // MARK: - GenreClientProtocol
     
     func getAllGenres(completion: @escaping (Result<GenreResult, APIError>) -> Void) {
         fetch(with: GenreProvider.getAll.request, decode: { json -> GenreResult? in
