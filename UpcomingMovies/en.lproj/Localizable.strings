@@ -31,8 +31,9 @@
 "signOutConfirmationTitle" = "Are you sure you want to sign out?";
 "signOut" = "Sign out";
 
-"emptyMovieResults" = "There are no movies to show right now.";
+"emptyMoviesResults" = "There are no movies to show right now.";
 "emptyVideoResults" = "There are no trailers to show right now.";
+"emptyCreditReults" = "No credits to show.";
 
 "movieDetailTitle" = "Movie detail";
 "movieDetailShareText" = "Come with me to watch %@!";

@@ -52,7 +52,7 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
         case .populated, .initial:
             hideDisplayedPlaceholderView()
         case .empty:
-            presentEmptyView(with: "No credits to show")
+            presentEmptyView(with: LocalizedStrings.emptyCreditReults.localized)
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in

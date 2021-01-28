@@ -33,6 +33,7 @@
 
 "emptyMovieResults" = "No hay películas que mostrar.";
 "emptyVideoResults" = "No hay trailers que mostrar.";
+"emptyCreditReults" = "No hay créditos que mostrar.";
 
 "movieDetailTitle" = "Detalle";
 "movieDetailShareText" = "Te invito a ver %@";
