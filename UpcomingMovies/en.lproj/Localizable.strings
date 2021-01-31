@@ -57,4 +57,4 @@
 "cast" = "Cast";
 "crew" = "Crew";
 
-"ratingHint" = "Rating of %@";
+"ratingHint" = "Rating of %.1f";
