@@ -57,4 +57,4 @@
 "cast" = "Reparto";
 "crew" = "Equipo";
 
-"ratingHint" = "Calificación de %@";
+"ratingHint" = "Calificación de %.1f";
