@@ -28,8 +28,6 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     private var isAnimatingPresentation: Bool = false
     private var presentationMode: PresentationMode = .preview
 
-    private var isLayoutSet: Bool = false
-
     var loaderView: RadarView!
     var toggleGridBarButtonItem: ToggleBarButtonItem!
     
@@ -41,14 +39,6 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
         setupBindables()
         
         viewModel?.getMovies()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if !isLayoutSet {
-            configureCollectionViewLayout()
-            isLayoutSet = true
-        }
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -89,9 +79,11 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
 
         collectionView.registerNib(cellType: UpcomingMoviePreviewCollectionViewCell.self)
         collectionView.registerNib(cellType: UpcomingMovieExpandedCollectionViewCell.self)
+
+        setupCollectionViewLayout()
     }
     
-    private func configureCollectionViewLayout() {
+    private func setupCollectionViewLayout() {
         let detailLayoutWidth = collectionView.frame.width - Constants.detailCellOffset
         detailLayout = VerticalFlowLayout(preferredWidth: detailLayoutWidth,
                                           preferredHeight: Constants.detailCellHeight)

@@ -42,9 +42,17 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
         collectionView.delegate = self
         collectionView.allowsMultipleSelection = false
         collectionView.registerNib(cellType: MovieCreditCollectionViewCell.self)
-        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.sectionInsetReference = .fromSafeArea
-        }
+
+        setupCollectionViewLayout()
+    }
+
+    private func setupCollectionViewLayout() {
+        let previewLayoutWidth = Constants.creditCellHeight / CGFloat(UIConstants.posterAspectRatio)
+        let layout = VerticalFlowLayout(preferredWidth: previewLayoutWidth,
+                                        preferredHeight: Constants.creditCellHeight,
+                                        minColumns: 2)
+
+        collectionView.collectionViewLayout = layout
     }
     
     private func configureView(with state: MovieCreditsViewState) {
@@ -102,7 +110,7 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
 // MARK: - UICollectionViewDelegate
 
 extension MovieCreditsViewController: UICollectionViewDelegate {
-    
+
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if !displayedCellsIndexPaths.contains(indexPath) {
             displayedCellsIndexPaths.insert(indexPath)
@@ -112,24 +120,14 @@ extension MovieCreditsViewController: UICollectionViewDelegate {
     
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout
+// MARK: - Constants
 
-extension MovieCreditsViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100.0, height: 150.0)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        guard let viewModel = viewModel,
-            viewModel.numberOfItems(for: section) != 0 else {
-                return .zero
-        }
-        return UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
+extension MovieCreditsViewController {
+
+    struct Constants {
+
+        static let creditCellHeight: CGFloat = 150.0
+
     }
 
 }
