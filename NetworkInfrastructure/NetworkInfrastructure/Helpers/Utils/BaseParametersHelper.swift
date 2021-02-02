@@ -28,7 +28,7 @@ final class BaseParametersHelper: NSObject {
     var baseAPIURLString: String {
         return baseParameters.baseAPIURLString
     }
-    
+
     var readAccessToken: String {
         return baseParameters.keys.readAccessToken
     }

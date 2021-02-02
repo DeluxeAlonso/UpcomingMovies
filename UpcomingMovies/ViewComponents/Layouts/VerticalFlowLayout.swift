@@ -26,6 +26,8 @@ final class VerticalFlowLayout: UICollectionViewFlowLayout {
         self.margin = margin
         self.minColumns = minColumns
         super.init()
+
+        sectionInsetReference = .fromSafeArea
     }
     
     required init?(coder aDecoder: NSCoder) {
