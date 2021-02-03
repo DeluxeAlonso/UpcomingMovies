@@ -102,7 +102,7 @@ class VoteAverageView: UIView {
     private func setupShapeLayerPath(_ shapeLayer: CAShapeLayer) {
         shapeLayer.frame = bounds
         let startAngle = degreesToRadians(layerStartAngle)
-        let endAngle = degreesToRadians(layerStartAngle) + 2 * .pi
+        let endAngle = degreesToRadians(layerStartAngle) + 2 * CGFloat.pi
         let center = voteAverageLabel.center
         let radius = bounds.width * 0.35
         let path = UIBezierPath(arcCenter: center,
