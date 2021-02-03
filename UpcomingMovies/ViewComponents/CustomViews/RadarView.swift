@@ -36,13 +36,14 @@ class RadarView: UIView {
         layer.addSublayer(circleLayer)
         
         NotificationCenter.default.addObserver(self, selector: #selector(startLoading),
-                                               name: UIApplication.willEnterForegroundNotification, object: nil)
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
         startLoading()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.cornerRadius = bounds.height / 2.0
+        layer.cornerRadius = bounds.height / CGFloat(2.0)
         circleLayer.frame = bounds
     }
     

@@ -96,8 +96,12 @@ class AuthPermissionViewController: UIViewController, Storyboarded {
     
     private func updateProgressView(with value: Double) {
         progressView.progress = Float(value)
-        
-        value == 1.0 ? progressView.fadeOut(0.5) : progressView.fadeIn(0.0)
+
+        if value == 1.0 {
+            progressView.fadeOut(0.5)
+        } else {
+            progressView.fadeIn(0.0)
+        }
     }
     
     // MARK: - Selectors

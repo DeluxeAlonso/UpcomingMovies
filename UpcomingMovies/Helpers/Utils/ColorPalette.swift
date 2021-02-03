@@ -10,12 +10,13 @@ import UIKit
 
 extension UIColor {
     
-    convenience init(withIntRed red: Int, green: Int, blue: Int, alpha: CGFloat) {
-        
-        let floatRed = CGFloat(red)/255
-        let floatGreen = CGFloat(green)/255
-        let floatBlue = CGFloat(blue)/255
-        
+    convenience init(withIntRed red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        let maxColorValue: CGFloat = 255
+
+        let floatRed = red / maxColorValue
+        let floatGreen = green / maxColorValue
+        let floatBlue = blue / maxColorValue
+
         self.init(red: floatRed, green: floatGreen, blue: floatBlue, alpha: alpha)
     }
     

@@ -35,13 +35,13 @@ extension Movie: ImageConfigurable {
     
     var posterURL: URL? {
         guard let posterPath = posterPath else { return nil }
-        let urlString = regularImageBaseURLString + posterPath
+        let urlString = regularImageBaseURLString.appending(posterPath)
         return URL(string: urlString)
     }
     
     var backdropURL: URL? {
         guard let backdropPath = backdropPath else { return nil }
-        let urlString = backdropImageBaseURLString + backdropPath
+        let urlString = backdropImageBaseURLString.appending(backdropPath)
         return URL(string: urlString)
     }
 
@@ -51,7 +51,7 @@ extension Cast: ImageConfigurable {
     
     var profileURL: URL? {
         guard let photoPath = photoPath else { return nil }
-        let urlString = regularImageBaseURLString + photoPath
+        let urlString = regularImageBaseURLString.appending(photoPath)
         return URL(string: urlString)
     }
     
@@ -61,7 +61,7 @@ extension Crew: ImageConfigurable {
 
     var profileURL: URL? {
         guard let photoPath = photoPath else { return nil }
-        let urlString = regularImageBaseURLString + photoPath
+        let urlString = regularImageBaseURLString.appending(photoPath)
         return URL(string: urlString)
     }
     
@@ -71,7 +71,7 @@ extension List: ImageConfigurable {
     
     var backdropURL: URL? {
         guard let backdropPath = backdropPath else { return nil }
-        let urlString = backdropImageBaseURLString + backdropPath
+        let urlString = backdropImageBaseURLString.appending(backdropPath)
         return URL(string: urlString)
     }
 
