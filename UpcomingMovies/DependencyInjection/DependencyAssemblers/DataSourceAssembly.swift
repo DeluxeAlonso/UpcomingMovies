@@ -19,7 +19,9 @@ final class DataSourceAssembly: Assembly {
             return LocalDataSource()
         }
         container.register(RemoteDataSourceProtocol.self) { _ in
-            return RemoteDataSource()
+            let remoteDataSource = RemoteDataSource()
+            remoteDataSource.configure(with: "0141e6d543b187f0b7e6bb3a1902209a", readAccessToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTQxZTZkNTQzYjE4N2YwYjdlNmJiM2ExOTAyMjA5YSIsInN1YiI6IjVjNDkwZjlhYzNhMzY4NDc3Nzg5ZjYzMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5LmQZ0jl7xA7QsREDm8FecIKq9yP0hSZ3x2MDTEn5dU")
+            return remoteDataSource
         }
     }
     

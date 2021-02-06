@@ -34,8 +34,8 @@ final class DIContainer {
         return resolvedType
     }
     
-    func resolve<T>(name: String?) -> T {
-        guard let resolvedType = container.resolve(T.self, name: name) else {
+    func resolve<T>(registrationName: String?) -> T {
+        guard let resolvedType = container.resolve(T.self, name: registrationName) else {
             fatalError()
         }
         return resolvedType

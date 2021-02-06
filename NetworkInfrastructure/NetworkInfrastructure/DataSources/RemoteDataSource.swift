@@ -11,6 +11,10 @@ import UpcomingMoviesData
 final public class RemoteDataSource: RemoteDataSourceProtocol {
     
     public init() {}
+
+    public func configure(with apiKey: String, readAccessToken: String) {
+        NetworkConfiguration.shared.configure(with: apiKey, and: readAccessToken)
+    }
     
     public func movieDataSource() -> MovieRemoteDataSourceProtocol {
         let client = MovieClient()
