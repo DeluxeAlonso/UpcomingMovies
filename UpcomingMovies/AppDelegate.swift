@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UpcomingMoviesData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = DIContainer.shared
         
         navigationHandler = DIContainer.shared.resolve()
+
+        let baseConfiguration: BaseConfiguration = PropertyListHelper.decode()
+        let remoteDataSource: RemoteDataSourceProtocol = DIContainer.shared.resolve()
+        remoteDataSource.configure(with: baseConfiguration.keys.apiKey,
+                                   readAccessToken: baseConfiguration.keys.readAccessToken)
         
         if let launchOptions = launchOptions,
             let shortcutItem = launchOptions[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {

@@ -6,14 +6,14 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import Foundation
-
-extension URL {
-    
-    func decodePropertyList<T: Decodable>() throws -> T {
-        let data = try Data(contentsOf: self)
-        let decoder = PropertyListDecoder()
-        return try decoder.decode(T.self, from: data)
-    }
-    
-}
+//import Foundation
+//
+//extension URL {
+//    
+//    func decodePropertyList<T: Decodable>() throws -> T {
+//        let data = try Data(contentsOf: self)
+//        let decoder = PropertyListDecoder()
+//        return try decoder.decode(T.self, from: data)
+//    }
+//    
+//}
