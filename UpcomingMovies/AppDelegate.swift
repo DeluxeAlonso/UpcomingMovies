@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         navigationHandler = DIContainer.shared.resolve()
 
+        // We configure the remote data source with the API key and the read access token
         let baseConfiguration: BaseConfiguration = PropertyListHelper.decode()
         let remoteDataSource: RemoteDataSourceProtocol = DIContainer.shared.resolve()
         remoteDataSource.configure(with: baseConfiguration.keys.apiKey,
