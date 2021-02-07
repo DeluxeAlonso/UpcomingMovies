@@ -13,11 +13,7 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
     static let shared = AuthenticationManager()
     
     lazy var readAccessToken: String = {
-        return BaseParametersHelper.shared.readAccessToken
-    }()
-    
-    lazy var apiKey: String = {
-        return BaseParametersHelper.shared.apiKey
+        return NetworkConfiguration.shared.readAccessToken
     }()
     
     @KeychainStorage(key: Constants.sessionIdKey)

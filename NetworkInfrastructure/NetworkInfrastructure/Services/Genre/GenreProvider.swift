@@ -17,7 +17,7 @@ enum GenreProvider {
 extension GenreProvider: Endpoint {
     
     var base: String {
-        return BaseParametersHelper.shared.baseAPIURLString
+        return NetworkConfiguration.shared.baseAPIURLString
     }
     
     var path: String {

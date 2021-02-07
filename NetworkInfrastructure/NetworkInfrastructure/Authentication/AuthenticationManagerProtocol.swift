@@ -11,7 +11,6 @@ import UpcomingMoviesDomain
 protocol AuthenticationManagerProtocol {
 
     var readAccessToken: String { get }
-    var apiKey: String { get }
 
     func saveCurrentUser(_ sessionId: String, accountId: Int)
     func deleteCurrentUser()
