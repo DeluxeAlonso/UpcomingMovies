@@ -51,6 +51,8 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
         let layout = VerticalFlowLayout(preferredWidth: previewLayoutWidth,
                                         preferredHeight: Constants.creditCellHeight,
                                         minColumns: 2)
+        layout.headerReferenceSize = .init(width: collectionView.frame.width,
+                                           height: Constants.creditSectionCellHeight)
 
         collectionView.collectionViewLayout = layout
     }
@@ -120,6 +122,22 @@ extension MovieCreditsViewController: UICollectionViewDelegate {
     
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension MovieCreditsViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        guard let viewModel = viewModel,
+              viewModel.numberOfItems(for: section) != 0 else {
+            return .zero
+        }
+        return UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
+    }
+
+}
+
 // MARK: - Constants
 
 extension MovieCreditsViewController {
@@ -127,6 +145,7 @@ extension MovieCreditsViewController {
     struct Constants {
 
         static let creditCellHeight: CGFloat = 150.0
+        static let creditSectionCellHeight: CGFloat = 60.0
 
     }
 
