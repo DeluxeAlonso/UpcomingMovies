@@ -5,8 +5,6 @@
 //  Created by Alonso on 2/3/21.
 //
 
-import Foundation
-
 final class NetworkConfiguration {
 
     static let shared = NetworkConfiguration()
