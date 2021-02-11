@@ -6,8 +6,6 @@
 //  Copyright © 2021 Alonso. All rights reserved.
 //
 
-import Foundation
-
 struct BaseConfiguration: Decodable {
 
     struct Keys: Decodable {
