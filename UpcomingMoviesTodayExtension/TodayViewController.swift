@@ -40,7 +40,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
 
     private func configureMoviePosters() {
-        let localDataSource = LocalDataSource()
+        let localDataSource = LocalDataSource(appGroupExtensions: ["group.movies.extension"])
         let movieVisits = localDataSource.movieVisitDataSource().getMovieVisits()
         // We only take the 3 latest visited movies
         let posterPaths = Array(movieVisits.compactMap { $0.posterPath }.prefix(3))

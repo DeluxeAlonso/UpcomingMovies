@@ -12,6 +12,8 @@ public class CoreDataStack: CoreDataStackProtocol {
     
     public static let shared = CoreDataStack()
 
+    private var persistentStoreDescriptions: [NSPersistentStoreDescription] = []
+
     // MARK: - CoreDataStackProtocol
 
     var mainContext: NSManagedObjectContext {
@@ -19,6 +21,14 @@ public class CoreDataStack: CoreDataStackProtocol {
         let context = container.viewContext
         context.mergePolicy = NSMergePolicy.overwrite
         return context
+    }
+
+    func setExtensionPersistentStoreDescriptions(_ groupExtensionIds: [String]) {
+        persistentStoreDescriptions = groupExtensionIds.map({ groupId in
+            let storeURL = URL.storeURL(for: groupId, databaseName: Constants.containerName)
+            let storeDescription = NSPersistentStoreDescription(url: storeURL)
+            return storeDescription
+        })
     }
 
     // MARK: - Private
@@ -37,7 +47,10 @@ public class CoreDataStack: CoreDataStackProtocol {
         }
         
         let container = NSPersistentContainer(name: Constants.containerName, managedObjectModel: model)
-        container.persistentStoreDescriptions = [todayExtensionStoreDescription]
+
+        if !persistentStoreDescriptions.isEmpty {
+            container.persistentStoreDescriptions = persistentStoreDescriptions
+        }
         
         container.loadPersistentStores { _, error in
             guard error == nil else { fatalError() }

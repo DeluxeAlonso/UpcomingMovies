@@ -25,7 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let remoteDataSource: RemoteDataSourceProtocol = DIContainer.shared.resolve()
         remoteDataSource.configure(with: baseConfiguration.keys.apiKey,
                                    readAccessToken: baseConfiguration.keys.readAccessToken)
-        
+
+        // We handle app launch if it was triggered by a shorcut item
         if let launchOptions = launchOptions,
             let shortcutItem = launchOptions[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
             navigationHandler?.handleShortcutItem(shortcutItem, and: window)
