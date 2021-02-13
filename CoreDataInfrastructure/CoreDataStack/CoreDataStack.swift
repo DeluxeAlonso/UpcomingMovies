@@ -8,9 +8,20 @@
 
 import CoreData
 
-public class CoreDataStack {
+public class CoreDataStack: CoreDataStackProtocol {
     
     public static let shared = CoreDataStack()
+
+    // MARK: - CoreDataStackProtocol
+
+    var mainContext: NSManagedObjectContext {
+        let container = isTesting() ? mockPersistantContainer : persistentContainer
+        let context = container.viewContext
+        context.mergePolicy = NSMergePolicy.overwrite
+        return context
+    }
+
+    // MARK: - Private
     
     private var todayExtensionStoreDescription: NSPersistentStoreDescription {
         let storeURL = URL.storeURL(for: "group.movies.extension", databaseName: Constants.containerName)
@@ -18,7 +29,7 @@ public class CoreDataStack {
         return storeDescription
     }
     
-    lazy var persistentContainer: NSPersistentContainer = {
+    private lazy var persistentContainer: NSPersistentContainer = {
         let bundle = Bundle(for: CoreDataStack.self)
         guard let url = bundle.url(forResource: Constants.containerName, withExtension: "momd"),
               let model = NSManagedObjectModel(contentsOf: url) else {
@@ -34,16 +45,9 @@ public class CoreDataStack {
         return container
     }()
     
-    var mainContext: NSManagedObjectContext {
-        let container = isTesting() ? mockPersistantContainer : persistentContainer
-        let context = container.viewContext
-        context.mergePolicy = NSMergePolicy.overwrite
-        return context
-    }
-    
     // MARK: - Test mockups
     
-    lazy var mockPersistantContainer: NSPersistentContainer = {
+    private lazy var mockPersistantContainer: NSPersistentContainer = {
         let bundle = Bundle(for: CoreDataStack.self)
         guard let url = bundle.url(forResource: Constants.containerName, withExtension: "momd"),
               let model = NSManagedObjectModel(contentsOf: url) else {

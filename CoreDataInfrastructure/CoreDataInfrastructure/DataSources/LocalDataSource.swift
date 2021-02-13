@@ -10,12 +10,12 @@ import UpcomingMoviesData
 
 final public class LocalDataSource: LocalDataSourceProtocol {
     
-    private let coreDataStack: CoreDataStack
+    private let coreDataStack: CoreDataStackProtocol
 
     // MARK: - Initializers
     
-    public init(coreDataStack: CoreDataStack = CoreDataStack.shared) {
-        self.coreDataStack = coreDataStack
+    public init() {
+        self.coreDataStack = CoreDataStack.shared
     }
 
     // MARK: - LocalDataSourceProtocol
