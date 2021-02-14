@@ -32,13 +32,7 @@ public class CoreDataStack: CoreDataStackProtocol {
     }
 
     // MARK: - Private
-    
-    private var todayExtensionStoreDescription: NSPersistentStoreDescription {
-        let storeURL = URL.storeURL(for: "group.movies.extension", databaseName: Constants.containerName)
-        let storeDescription = NSPersistentStoreDescription(url: storeURL)
-        return storeDescription
-    }
-    
+
     private lazy var persistentContainer: NSPersistentContainer = {
         let bundle = Bundle(for: CoreDataStack.self)
         guard let url = bundle.url(forResource: Constants.containerName, withExtension: "momd"),
