@@ -14,12 +14,13 @@ final public class LocalDataSource: LocalDataSourceProtocol {
 
     // MARK: - Initializers
     
-    public init() {
+    public init(appGroupExtensions: [String] = []) {
         self.coreDataStack = CoreDataStack.shared
+        self.coreDataStack.setExtensionPersistentStoreDescriptions(appGroupExtensions)
     }
 
     // MARK: - LocalDataSourceProtocol
-    
+
     public func genreDataSource() -> GenreLocalDataSourceProtocol {
         let store: PersistenceStore<CDGenre> = PersistenceStore(self.coreDataStack.mainContext)
         return  GenreLocalDataSource(store: store)

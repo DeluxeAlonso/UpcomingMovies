@@ -7,7 +7,7 @@
 //
 
 public protocol LocalDataSourceProtocol {
-    
+
     func genreDataSource() -> GenreLocalDataSourceProtocol
     func movieVisitDataSource() -> MovieVisitLocalDataSourceProtocol
     func movieSearchDataSource() -> MovieSearchLocalDataSourceProtocol

@@ -11,4 +11,6 @@ protocol CoreDataStackProtocol {
 
     var mainContext: NSManagedObjectContext { get }
 
+    func setExtensionPersistentStoreDescriptions(_ groupExtensionIds: [String])
+
 }

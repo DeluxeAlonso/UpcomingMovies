@@ -16,7 +16,7 @@ final class DataSourceAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(LocalDataSourceProtocol.self) { _ in
-            return LocalDataSource()
+            return LocalDataSource(appGroupExtensions: AppGroup.allCasesIdentifiers)
         }
         container.register(RemoteDataSourceProtocol.self) { _ in
             return RemoteDataSource()

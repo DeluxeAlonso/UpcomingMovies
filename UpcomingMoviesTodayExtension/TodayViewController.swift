@@ -23,8 +23,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        configureUI()
     }
+
+    // MARK: - NCWidgetProviding
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         completionHandler(NCUpdateResult.newData)
@@ -32,7 +34,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     // MARK: - Private
     
-    private func setupUI() {
+    private func configureUI() {
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(openHostApp))
         todayView.addGestureRecognizer(tapGesture)
@@ -40,7 +42,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
 
     private func configureMoviePosters() {
-        let localDataSource = LocalDataSource()
+        let localDataSource = LocalDataSource(appGroupExtensions: AppGroup.allCasesIdentifiers)
         let movieVisits = localDataSource.movieVisitDataSource().getMovieVisits()
         // We only take the 3 latest visited movies
         let posterPaths = Array(movieVisits.compactMap { $0.posterPath }.prefix(3))
