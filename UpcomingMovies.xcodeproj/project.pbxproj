@@ -179,6 +179,9 @@
 		E265C25D2495391400712284 /* PopularMoviesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E265C25C2495391400712284 /* PopularMoviesInteractor.swift */; };
 		E265C25F2495391E00712284 /* SimilarMoviesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E265C25E2495391E00712284 /* SimilarMoviesInteractor.swift */; };
 		E265C2612495392900712284 /* MoviesByGenreInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E265C2602495392900712284 /* MoviesByGenreInteractor.swift */; };
+		E2671D7F25D8AD4400E457FF /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2671D7E25D8AD4400E457FF /* AppGroup.swift */; };
+		E2671D8825D8AD9E00E457FF /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2671D7E25D8AD4400E457FF /* AppGroup.swift */; };
+		E2671D8925D8AD9E00E457FF /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2671D7E25D8AD4400E457FF /* AppGroup.swift */; };
 		E26833AE2496B0E200A7496A /* MovieDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26833AD2496B0E100A7496A /* MovieDetailCoordinator.swift */; };
 		E26859B024D099B500CDCF85 /* MovieCreditsMockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26859AF24D099B500CDCF85 /* MovieCreditsMockFactory.swift */; };
 		E2685CA223A092B700483D8D /* MovieDetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2685CA123A092B700483D8D /* MovieDetailFactory.swift */; };
@@ -567,6 +570,7 @@
 		E265C25C2495391400712284 /* PopularMoviesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesInteractor.swift; sourceTree = "<group>"; };
 		E265C25E2495391E00712284 /* SimilarMoviesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMoviesInteractor.swift; sourceTree = "<group>"; };
 		E265C2602495392900712284 /* MoviesByGenreInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesByGenreInteractor.swift; sourceTree = "<group>"; };
+		E2671D7E25D8AD4400E457FF /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		E26833AD2496B0E100A7496A /* MovieDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailCoordinator.swift; sourceTree = "<group>"; };
 		E26859AF24D099B500CDCF85 /* MovieCreditsMockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditsMockFactory.swift; sourceTree = "<group>"; };
 		E2685CA123A092B700483D8D /* MovieDetailFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailFactory.swift; sourceTree = "<group>"; };
@@ -1113,6 +1117,7 @@
 				E2DCE7F824B134ED0041301E /* Either.swift */,
 				E2F789F72598401700002CAD /* AppExtensionHost.swift */,
 				E26EB50325CF503600AFE4A6 /* PropertyListHelper.swift */,
+				E2671D7E25D8AD4400E457FF /* AppGroup.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2401,6 +2406,7 @@
 				E26AB93021F8C0ED00D9FEAA /* MovieListViewController.swift in Sources */,
 				E20635A4226E127200FDD85E /* SearchMoviesResultView.swift in Sources */,
 				E2A4D9362511B05500571893 /* AuthenticationAssembly.swift in Sources */,
+				E2671D7F25D8AD4400E457FF /* AppGroup.swift in Sources */,
 				E2251B132214ECFA00EE7A51 /* MovieCreditsViewController.swift in Sources */,
 				E2DCE7F724B12F940041301E /* ToggleBarButtonContent.swift in Sources */,
 				E26EB50425CF503600AFE4A6 /* PropertyListHelper.swift in Sources */,
@@ -2510,6 +2516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2671D8825D8AD9E00E457FF /* AppGroup.swift in Sources */,
 				E2B63B2F24677E7100C0BB13 /* UIImageView+Kingfisher.swift in Sources */,
 				E2B63B1224676AE200C0BB13 /* TodayViewController.swift in Sources */,
 				E26B03AC24687D04004447AC /* TodayView.swift in Sources */,
@@ -2522,6 +2529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2A02471256F635000D2018C /* UpcomingMoviesWidget.swift in Sources */,
+				E2671D8925D8AD9E00E457FF /* AppGroup.swift in Sources */,
 				E2A02462256F634B00D2018C /* SearchMoviesWidget.swift in Sources */,
 				E2A02489256F662400D2018C /* WidgetProvider.swift in Sources */,
 				E2A024AA256F6B7600D2018C /* SmallWidgetView.swift in Sources */,
