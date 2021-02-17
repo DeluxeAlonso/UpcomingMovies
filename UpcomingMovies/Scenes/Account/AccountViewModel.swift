@@ -23,7 +23,7 @@ final class AccountViewModel: AccountViewModelProtocol {
         self.interactor = interactor
     }
     
-    // MARK: - Authentication
+    // MARK: - AccountViewModelProtocol
     
     func startAuthorizationProcess() {
         interactor.getAuthPermissionURL { result in

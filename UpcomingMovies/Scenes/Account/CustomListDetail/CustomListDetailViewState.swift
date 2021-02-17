@@ -10,6 +10,7 @@ import Foundation
 import UpcomingMoviesDomain
 
 enum CustomListDetailViewState {
+
     case loading
     case empty
     case populated([Movie])

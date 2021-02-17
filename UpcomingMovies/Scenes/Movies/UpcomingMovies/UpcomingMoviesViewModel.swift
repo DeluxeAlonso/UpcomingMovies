@@ -11,16 +11,16 @@ import UpcomingMoviesDomain
 
 final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol {
 
-    // MARK: - Properties
+    // MARK: - Dependencies
     
     private let interactor: MoviesInteractorProtocol
 
-    // MARK: - Bindable
+    // MARK: - Reactive properties
     
     private (set) var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
     private (set) var startLoading: Bindable<Bool> = Bindable(false)
     
-    // MARK: - Computed Properties
+    // MARK: - Computed properties
     
     private var movies: [Movie] {
         return viewState.value.currentEntities
