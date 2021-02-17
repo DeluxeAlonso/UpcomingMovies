@@ -14,9 +14,11 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol {
     // MARK: - Properties
     
     private let interactor: MoviesInteractorProtocol
+
+    // MARK: - Bindable
     
-    var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
-    var startLoading: Bindable<Bool> = Bindable(false)
+    private (set) var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
+    private (set) var startLoading: Bindable<Bool> = Bindable(false)
     
     // MARK: - Computed Properties
     
@@ -38,7 +40,7 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol {
         self.interactor = interactor
     }
     
-    // MARK: - Public
+    // MARK: - UpcomingMoviesViewModelProtocol
     
     func getMovies() {
         let showLoader = viewState.value.isInitialPage
@@ -48,6 +50,8 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol {
     func refreshMovies() {
         self.fetchMovies(currentPage: 1, showLoader: false)
     }
+
+    // MARK: - Private
     
     private func fetchMovies(currentPage: Int, showLoader: Bool = false) {
         startLoading.value = showLoader
