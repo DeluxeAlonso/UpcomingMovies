@@ -10,13 +10,15 @@ import Foundation
 import UpcomingMoviesDomain
 
 final class CustomListsViewModel: CustomListsViewModelProtocol {
+
+    // MARK: - Dependencies
     
     private let interactor: CustomListsInteractorProtocol
     
     // MARK: - Reactive properties
     
-    var startLoading: Bindable<Bool> = Bindable(false)
-    var viewState: Bindable<SimpleViewState<List>> = Bindable(.initial)
+    private (set) var startLoading: Bindable<Bool> = Bindable(false)
+    private (set) var viewState: Bindable<SimpleViewState<List>> = Bindable(.initial)
     
     // MARK: - Computed properties
     
@@ -34,13 +36,11 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
         self.interactor = interactor
     }
     
-    // MARK: - Public
+    // MARK: - CustomListsViewModelProtocol
     
     func list(at index: Int) -> List {
         return lists[index]
     }
-    
-    // MARK: - Networking
     
     func getCustomLists() {
         let showLoader = viewState.value.isInitialPage
@@ -50,6 +50,8 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
     func refreshCustomLists() {
         fetchCustomLists(currentPage: 1, showLoader: false)
     }
+
+    // MARK: - Private
     
     private func fetchCustomLists(currentPage: Int, showLoader: Bool) {
         startLoading.value = showLoader

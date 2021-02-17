@@ -11,12 +11,14 @@ import UpcomingMoviesDomain
 
 final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
 
+    // MARK: - Dependencies
+
     private let list: List
     private let interactor: CustomListDetailInteractorProtocol
     
     // MARK: - Reactive properties
     
-    let viewState: Bindable<CustomListDetailViewState> = Bindable(.loading)
+    private (set) var viewState: Bindable<CustomListDetailViewState> = Bindable(.loading)
     
     // MARK: - Computed properties
     
@@ -39,7 +41,7 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
         self.interactor = interactor
     }
     
-    // MARK: - Public
+    // MARK: - CustomListDetailViewModelProtocol
     
     func buildHeaderViewModel() -> CustomListDetailHeaderViewModelProtocol {
         return CustomListDetailHeaderViewModel(list: list)
@@ -52,9 +54,7 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
     func movie(at index: Int) -> Movie {
         return movies[index]
     }
-    
-    // MARK: - Networking
-    
+
     func getListMovies() {
         interactor.getCustomListMovies(listId: list.id, completion: { result in
             switch result {
@@ -65,6 +65,8 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
             }
         })
     }
+
+    // MARK: - Private
     
     private func processResult(_ movies: [Movie]) -> CustomListDetailViewState {
         guard !movies.isEmpty else { return .empty }

@@ -10,11 +10,15 @@ import Foundation
 import UpcomingMoviesDomain
 
 final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
+
+    // MARK: - Properties
     
     private let interactor: SavedMoviesInteractorProtocol
     
-    var startLoading: Bindable<Bool> = Bindable(false)
-    var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
+    private (set) var startLoading: Bindable<Bool> = Bindable(false)
+    private (set) var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
+
+    // MARK: - Computed properties
     
     private var movies: [Movie] {
         return viewState.value.currentEntities
@@ -36,13 +40,11 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
         self.interactor = interactor
     }
     
-    // MARK: - Public
+    // MARK: - SavedMoviesViewModelProtocol
     
     func movie(at index: Int) -> Movie {
         return movies[index]
     }
-    
-    // MARK: - Networking
     
     func getCollectionList() {
         let showLoader = viewState.value.isInitialPage
@@ -52,6 +54,8 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
     func refreshCollectionList() {
         fetchCollectionList(page: 1, showLoader: false)
     }
+
+    // MARK: - Private
     
     private func fetchCollectionList(page: Int, showLoader: Bool) {
         startLoading.value = showLoader

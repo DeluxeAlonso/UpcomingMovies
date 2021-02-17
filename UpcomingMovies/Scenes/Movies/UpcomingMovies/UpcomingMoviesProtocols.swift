@@ -11,8 +11,8 @@ import UpcomingMoviesDomain
 
 protocol UpcomingMoviesViewModelProtocol {
     
-    var viewState: Bindable<SimpleViewState<Movie>> { get set }
-    var startLoading: Bindable<Bool> { get set }
+    var viewState: Bindable<SimpleViewState<Movie>> { get }
+    var startLoading: Bindable<Bool> { get }
     
     var movieCells: [UpcomingMovieCellViewModelProtocol] { get }
     var needsPrefetch: Bool { get }

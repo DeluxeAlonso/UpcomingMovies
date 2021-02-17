@@ -10,14 +10,20 @@ import Foundation
 import UpcomingMoviesDomain
 
 final class SplashViewModel: SplashViewModelProtocol {
+
+    // MARK: - Dependencies
     
     private let interactor: SplashInteractorProtocol
     private let genreHandler: GenreHandlerProtocol
     private let configurationHandler: ConfigurationHandlerProtocol
+
+    // MARK: - Properties
     
     private var dispatchGroup: DispatchGroup!
     
     var initialDownloadsEnded: (() -> Void)?
+
+    // MARK: - Initializers
     
     init(interactor: SplashInteractorProtocol,
          genreHandler: GenreHandlerProtocol,
@@ -26,6 +32,8 @@ final class SplashViewModel: SplashViewModelProtocol {
         self.genreHandler = genreHandler
         self.configurationHandler = configurationHandler
     }
+
+    // MARK: - SplashViewModelProtocol
     
     func startInitialDownloads() {
         self.dispatchGroup = DispatchGroup()
@@ -39,6 +47,8 @@ final class SplashViewModel: SplashViewModelProtocol {
             }
         }
     }
+
+    // MARK: - Private
 
     /**
     * Fetch API configurations.

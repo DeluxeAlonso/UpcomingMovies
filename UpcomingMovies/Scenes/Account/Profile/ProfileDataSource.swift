@@ -11,6 +11,8 @@ import UIKit
 class ProfileDataSource: NSObject, UITableViewDataSource {
     
     private var viewModel: ProfileViewModelProtocol?
+
+    // MARK: - Initializers
     
     init(viewModel: ProfileViewModelProtocol?) {
         self.viewModel = viewModel

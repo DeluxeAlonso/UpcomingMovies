@@ -10,9 +10,22 @@ import Foundation
 import UpcomingMoviesDomain
 
 final class MovieDetailViewModel: MovieDetailViewModelProtocol {
+
+    // MARK: - Dependencies
     
     private let interactor: MovieDetailInteractorProtocol
     private let factory: MovieDetailFactoryProtocol
+
+    // MARK: - Reactive properties
+
+    private (set) var startLoading: Bindable<Bool> = Bindable(false)
+    private (set) var isFavorite: Bindable<Bool?> = Bindable(false)
+    private (set) var showErrorView: Bindable<Error?> = Bindable(nil)
+    private (set) var showGenreName: Bindable<String> = Bindable("-")
+
+    var updateMovieDetail: (() -> Void)?
+
+    // MARK: - Properties
     
     var id: Int!
     var title: String!
@@ -22,14 +35,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     var voteAverage: Double?
     var posterURL: URL?
     var backdropURL: URL?
-    
-    var updateMovieDetail: (() -> Void)?
+
     var needsFetch = false
-    
-    var startLoading: Bindable<Bool> = Bindable(false)
-    var isFavorite: Bindable<Bool?> = Bindable(false)
-    var showErrorView: Bindable<Error?> = Bindable(nil)
-    var showGenreName: Bindable<String> = Bindable("-")
     
     // MARK: - Initializers
 

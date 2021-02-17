@@ -35,7 +35,7 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
     
     init() {}
     
-    // MARK: - Public
+    // MARK: - AuthenticationManagerProtocol
     
     func saveCurrentUser(_ sessionId: String, accountId: Int) {
         self.sessionId = sessionId
