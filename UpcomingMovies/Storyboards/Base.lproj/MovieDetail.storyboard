@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad11_0rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController storyboardIdentifier="MovieCreditsViewController" id="dIV-7j-Rhb" customClass="MovieCreditsViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fyu-GJ-OYn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="784"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="t6G-YF-8J4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1194" height="764"/>
                                 <viewLayoutGuide key="safeArea" id="P0a-Zo-oZP"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tDJ-KK-hnl">
@@ -30,11 +30,11 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollapsibleCollectionHeaderView" id="Bk2-oD-YYu" customClass="CollapsibleCollectionHeaderView" customModule="UpcomingMovies" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1194" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CollapsibleArrow" translatesAutoresizingMaskIntoConstraints="NO" id="GKJ-Cl-bvG">
-                                            <rect key="frame" x="334" y="17.5" width="25" height="25"/>
+                                            <rect key="frame" x="1153" y="17.5" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="GKJ-Cl-bvG" secondAttribute="height" multiplier="1:1" id="BqT-FJ-bsQ"/>
                                                 <constraint firstAttribute="width" constant="25" id="lyY-CO-x1a"/>
@@ -87,23 +87,23 @@
             <objects>
                 <viewController storyboardIdentifier="MovieDetailViewController" title="MovieDetailViewController" id="4Ld-U6-Odg" customClass="MovieDetailViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hFz-lI-SND">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLg-25-1il">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1194" height="814"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ijy-JB-Zii">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="640"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1194" height="656.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNi-I8-n9k" userLabel="Backdrop View">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="1194" height="200"/>
                                                 <subviews>
                                                     <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="W4O-hv-Tc9" customClass="MovieDetailBackdropView" customModule="UpcomingMovies" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1194" height="200"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RsL-2b-bRH" userLabel="Backdrop Image View">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="1194" height="200"/>
                                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </imageView>
                                                         </subviews>
@@ -146,16 +146,16 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="OUk-3t-KmG" userLabel="Title View">
-                                                <rect key="frame" x="0.0" y="200" width="375" height="56"/>
+                                                <rect key="frame" x="0.0" y="200" width="1194" height="56"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Movie" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2f-cr-5vC" userLabel="Title Label">
-                                                        <rect key="frame" x="16" y="16" width="283" height="24"/>
+                                                        <rect key="frame" x="16" y="16" width="1102" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tar-Cz-6l1" customClass="VoteAverageView" customModule="UpcomingMovies" customModuleProvider="target">
-                                                        <rect key="frame" x="315" y="6" width="44" height="44"/>
+                                                        <rect key="frame" x="1134" y="6" width="44" height="44"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="Kma-ST-59C"/>
@@ -189,22 +189,23 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFa-RK-IZ6" userLabel="Separator View">
-                                                <rect key="frame" x="0.0" y="256" width="375" height="1"/>
+                                                <rect key="frame" x="0.0" y="256" width="1194" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="fkJ-CZ-gUh"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmX-R4-dMd" userLabel="Options View">
-                                                <rect key="frame" x="0.0" y="257" width="375" height="63"/>
+                                                <rect key="frame" x="0.0" y="257" width="1194" height="79.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1.5" translatesAutoresizingMaskIntoConstraints="NO" id="wi6-nq-fos" userLabel="Options Stack View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1194" height="79.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" secondItem="WmX-R4-dMd" secondAttribute="height" multiplier="15:1" id="1IF-Sj-0Ot"/>
                                                     <constraint firstItem="wi6-nq-fos" firstAttribute="leading" secondItem="WmX-R4-dMd" secondAttribute="leading" id="Bgk-sJ-wCA"/>
                                                     <constraint firstAttribute="bottom" secondItem="wi6-nq-fos" secondAttribute="bottom" id="SpT-R0-BPu"/>
                                                     <constraint firstAttribute="width" secondItem="WmX-R4-dMd" secondAttribute="height" multiplier="11:1" id="Vbq-5K-lhT"/>
@@ -214,7 +215,7 @@
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
-                                                        <exclude reference="Vbq-5K-lhT"/>
+                                                        <exclude reference="1IF-Sj-0Ot"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=compact">
@@ -228,31 +229,43 @@
                                                         <exclude reference="y6E-e8-5Sp"/>
                                                     </mask>
                                                 </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <exclude reference="Vbq-5K-lhT"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <mask key="constraints">
+                                                        <include reference="1IF-Sj-0Ot"/>
+                                                        <exclude reference="Vbq-5K-lhT"/>
+                                                        <exclude reference="y6E-e8-5Sp"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jK-m0-ZH0" userLabel="Separator View">
-                                                <rect key="frame" x="0.0" y="320" width="375" height="1"/>
+                                                <rect key="frame" x="0.0" y="336.5" width="1194" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="WF4-nb-41g"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mlz-1r-g6b" userLabel="Info Stack View">
-                                                <rect key="frame" x="0.0" y="321" width="375" height="83"/>
+                                                <rect key="frame" x="0.0" y="337.5" width="1194" height="83"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJt-HO-dKx" userLabel="Genre View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="83"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="597" height="83"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Zyn-vf-TL7" userLabel="Genre Stack View">
-                                                                <rect key="frame" x="16" y="16" width="163.5" height="51"/>
+                                                                <rect key="frame" x="16" y="16" width="573" height="51"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wff-o9-jFG" userLabel="Genre Title Label">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="163.5" height="23"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="573" height="23"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comedy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkj-So-5cA">
-                                                                        <rect key="frame" x="0.0" y="28" width="163.5" height="23"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="573" height="23"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -269,19 +282,19 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZq-f3-VHg" userLabel="Release Date View">
-                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="83"/>
+                                                        <rect key="frame" x="597" y="0.0" width="597" height="83"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7AM-Hz-3BW" userLabel="Release Date Stack View">
-                                                                <rect key="frame" x="8" y="16" width="163.5" height="51"/>
+                                                                <rect key="frame" x="8" y="16" width="573" height="51"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Release" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biy-Ap-rpF" userLabel="Release Date Title Label">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="163.5" height="23"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="573" height="23"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-03-12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slt-aQ-ofO">
-                                                                        <rect key="frame" x="0.0" y="28" width="163.5" height="23"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="573" height="23"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -301,17 +314,17 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g51-3z-gND" userLabel="Separator View">
-                                                <rect key="frame" x="0.0" y="404" width="375" height="1"/>
+                                                <rect key="frame" x="0.0" y="420.5" width="1194" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="O7k-F7-qC5"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lW1-zc-8gr" userLabel="Overview View">
-                                                <rect key="frame" x="0.0" y="405" width="375" height="235"/>
+                                                <rect key="frame" x="0.0" y="421.5" width="1194" height="235"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1SK-ri-asW" userLabel="Overview Label">
-                                                        <rect key="frame" x="16" y="16" width="343" height="203"/>
+                                                        <rect key="frame" x="16" y="16" width="1162" height="203"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -392,11 +405,11 @@
             <objects>
                 <viewController storyboardIdentifier="MovieReviewsViewController" id="tJd-Cb-tNf" customClass="MovieReviewsViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FW6-zN-rcU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="784"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1LO-1f-yqK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1194" height="764"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
@@ -424,17 +437,17 @@
             <objects>
                 <viewController storyboardIdentifier="MovieReviewDetailViewController" id="sT0-0A-avl" customClass="MovieReviewDetailViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3K0-qP-RZM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uh-Sf-xxO">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1194" height="814"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0TG-Mw-oHB">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1194" height="53"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORt-kW-oBS">
-                                                <rect key="frame" x="16" y="16" width="343" height="21"/>
+                                                <rect key="frame" x="16" y="16" width="1162" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -488,11 +501,11 @@
             <objects>
                 <viewController storyboardIdentifier="MovieVideosViewController" id="cYj-ea-zQe" customClass="MovieVideosViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GY1-Ek-OHT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="784"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lBw-Xx-uPf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1194" height="764"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
