@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
+class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,6 +20,10 @@ class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisp
     
     var viewModel: MovieVideosViewModelProtocol?
     weak var coordinator: MovieVideosCoordinatorProtocol?
+
+    // MARK: - LoadingDisplayable
+
+    var loaderView: LoadingView? = RadarView()
     
     // MARK: - Lifecycle
     

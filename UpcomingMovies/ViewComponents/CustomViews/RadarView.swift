@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RadarView: UIView, Displayable {
+class RadarView: UIView, LoadingView {
 
     var isPresented: Bool = false
 
@@ -68,7 +68,6 @@ class RadarView: UIView, Displayable {
                                                name: UIApplication.willEnterForegroundNotification,
                                                object: nil)
         setupLayerContainerView()
-        startLoading()
     }
 
     private func setupLayerContainerView() {
