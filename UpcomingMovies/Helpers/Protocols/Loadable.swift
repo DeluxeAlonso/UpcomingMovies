@@ -9,7 +9,7 @@
 import UIKit
 
 private struct AssociatedKeys {
-    static var isPresented: Bool = false
+    static var isLoaderPresented: Bool = false
 }
 
 protocol Loadable: class {
@@ -24,13 +24,13 @@ extension Loadable where Self: UIViewController {
     
     private(set) var isPresented: Bool {
         get {
-            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.isPresented) as? Bool else {
+            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.isLoaderPresented) as? Bool else {
                 return false
             }
             return value
         }
         set(newValue) {
-            objc_setAssociatedObject(self, &AssociatedKeys.isPresented, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &AssociatedKeys.isLoaderPresented, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     

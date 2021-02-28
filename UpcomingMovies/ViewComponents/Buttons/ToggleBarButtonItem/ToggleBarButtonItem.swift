@@ -10,7 +10,7 @@ import UIKit
 
 class ToggleBarButtonItem: UIBarButtonItem {
 
-    ///We support more than two states for the ToggleBarButtonItem
+    /// We support more than two states for the ToggleBarButtonItem
     private var contents: [ToggleBarButtonItemContent]
     private var currentContentIndex: Int = 0
     
