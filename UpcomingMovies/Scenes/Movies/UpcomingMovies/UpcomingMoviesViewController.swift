@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
+class UpcomingMoviesViewController: UIViewController, Storyboarded, Loadable, PlaceholderDisplayable {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -29,7 +29,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     private var presentationMode: PresentationMode = .preview
 
     private var toggleGridBarButtonItem: ToggleBarButtonItem!
-    
+
     // MARK: - Lifecycle
     
     override func viewDidLoad() {

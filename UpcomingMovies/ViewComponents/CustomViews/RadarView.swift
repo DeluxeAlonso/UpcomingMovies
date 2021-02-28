@@ -8,7 +8,9 @@
 
 import UIKit
 
-class RadarView: UIView {
+class RadarView: UIView, Displayable {
+
+    var isPresented: Bool = false
 
     // MARK: - Properties
     
@@ -28,7 +30,6 @@ class RadarView: UIView {
     // MARK: - Initializers
 
     deinit {
-        print("dsfk;dlskfdsl;")
         NotificationCenter.default.removeObserver(self,
                                                   name: UIApplication.willEnterForegroundNotification,
                                                   object: nil)

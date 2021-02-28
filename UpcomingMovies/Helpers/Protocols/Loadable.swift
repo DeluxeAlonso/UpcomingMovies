@@ -21,7 +21,7 @@ protocol Loadable: class {
 
 extension Loadable where Self: UIViewController {
     
-    private(set) var loadableView: UIView? {
+    private (set) var loadableView: UIView? {
         get {
             guard let value = objc_getAssociatedObject(self, &AssociatedKeys.loadableView) as? UIView else {
                 return nil

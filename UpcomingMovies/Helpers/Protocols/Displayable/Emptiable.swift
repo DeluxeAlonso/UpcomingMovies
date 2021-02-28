@@ -31,10 +31,12 @@ extension Emptiable where Self: UIViewController {
     func presentEmptyView(with message: String?) {
         let isPresented = emptyView?.isPresented ?? false
         if !isPresented {
-            self.emptyView = EmptyPlaceholderView.show(fromViewController: self, animated: true, completion: nil)
+            self.emptyView = EmptyPlaceholderView.loadFromNib()
+            emptyView?.detailText = message
+            self.emptyView?.show(in: self.view, animated: true, completion: nil)
         }
-        emptyView?.frame = self.view.bounds
-        emptyView?.detailText = message
+        //emptyView?.frame = self.view.bounds
+
     }
     
     func hideEmptyView() {

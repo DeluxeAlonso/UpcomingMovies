@@ -9,25 +9,23 @@
 import UIKit
 
 protocol Displayable: UIView {
+
     var isPresented: Bool { get set }
-    
-    static func show(fromViewController viewController: UIViewController,
-                     animated: Bool, completion: ((Bool) -> Void)?) -> Self
-    
+
+    func show(in view: UIView, animated: Bool, completion: ((Bool) -> Void)?)
     func hide(animated: Bool, completion: ((Bool) -> Void)?)
+
 }
 
-extension Displayable where Self: NibLoadable {
-    static func show(fromViewController viewController: UIViewController,
-                     animated: Bool, completion: ((Bool) -> Void)?) -> Self {
-        
-        let subview = loadFromNib()
-        viewController.view.addSubview(subview)
-        subview.alpha = 0
-        subview.isPresented = true
-        subview.superview?.sendSubviewToBack(subview)
-        subview.show(animated: animated) { _ in }
-        return subview
+extension Displayable {
+
+    func show(in view: UIView, animated: Bool, completion: ((Bool) -> Void)?) {
+        view.addSubview(self)
+        fillSuperview()
+        alpha = 0
+        isPresented = true
+        superview?.sendSubviewToBack(self)
+        show(animated: animated) { _ in }
     }
     
     fileprivate func show(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {

@@ -33,11 +33,11 @@ extension Retryable where Self: UIViewController {
         if isPresented {
             self.retryView?.resetState()
         } else {
-            self.retryView = ErrorPlaceholderView.show(fromViewController: self, animated: true, completion: nil)
+            self.retryView = ErrorPlaceholderView.loadFromNib()
+            retryView?.retry = errorHandler
+            retryView?.detailText = errorMessage
+            self.retryView?.show(in: self.view, animated: true, completion: nil)
         }
-        retryView?.retry = errorHandler
-        retryView?.frame = self.view.bounds
-        retryView?.detailText = errorMessage
     }
     
     func hideRetryView() {
