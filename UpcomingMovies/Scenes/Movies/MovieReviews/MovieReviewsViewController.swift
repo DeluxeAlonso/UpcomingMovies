@@ -24,7 +24,7 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
 
     // MARK: - LoadingDisplayable
 
-    var loaderView: LoadingView? = RadarView()
+    var loaderView: LoadingView = RadarView()
     
     // MARK: - Lifecycle
     

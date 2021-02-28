@@ -41,7 +41,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
 
     // MARK: - LoadingDisplayable
 
-    var loaderView: LoadingView? = RadarView()
+    var loaderView: LoadingView = RadarView()
     
     // MARK: - Lifecycle
     

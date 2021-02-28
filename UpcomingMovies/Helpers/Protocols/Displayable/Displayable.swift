@@ -20,42 +20,36 @@ protocol Displayable: UIView {
 extension Displayable {
 
     func show(in view: UIView, animated: Bool, completion: ((Bool) -> Void)?) {
+        guard !isPresented else {
+            completion?(true)
+            return
+        }
+        isPresented = true
+
         view.addSubview(self)
         fillSuperview()
+
+        let animationDuration = animated ? 0.3 : 0.0
         alpha = 0
-        isPresented = true
-        superview?.sendSubviewToBack(self)
-        show(animated: animated) { _ in }
-    }
-    
-    fileprivate func show(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
-        self.superview?.bringSubviewToFront(self)
-        if animated {
-            UIView.animate(withDuration: 0.3, animations: { self.alpha = 1 }, completion: completion)
-        } else {
+        UIView.animate(withDuration: animationDuration, animations: {
             self.alpha = 1
-            completion?(true)
-        }
+        }, completion: completion)
     }
-    
-    func hide(animated: Bool = true, completion: ((Bool) -> Swift.Void)? = nil) {
-        self.isPresented = false
-        let closure: (Bool) -> Void = { (finished) in
-            if finished {
-                self.removeFromSuperview()
-            }
+
+    func hide(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
+        guard isPresented else {
+            completion?(true)
+            return
         }
-        if animated {
-            UIView.animate(withDuration: 0.3,
-                           delay: 0.25,
-                           animations: { self.alpha = 0 }, completion: { (finished) in
-                            closure(finished)
-                            completion?(finished)
-            })
-        } else {
+        isPresented = false
+
+        let animationDuration = animated ? 0.3 : 0.0
+        UIView.animate(withDuration: animationDuration, animations: {
             self.alpha = 0
-            closure(true)
-            completion?(true)
-        }
+        }, completion: { finished in
+            if finished { self.removeFromSuperview() }
+            completion?(finished)
+        })
     }
+
 }

@@ -32,7 +32,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
 
     // MARK: - LoadingDisplayable
 
-    var loaderView: LoadingView? = RadarView()
+    var loaderView: LoadingView = RadarView()
 
     // MARK: - Lifecycle
     

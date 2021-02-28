@@ -10,8 +10,6 @@ import UIKit
 
 class RadarView: UIView, LoadingView {
 
-    var isPresented: Bool = false
-
     // MARK: - Properties
     
     struct Colors {
@@ -24,6 +22,8 @@ class RadarView: UIView, LoadingView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+
+    var isPresented: Bool = false
     
     private let circleLayer = CAShapeLayer()
 
@@ -78,7 +78,7 @@ class RadarView: UIView, LoadingView {
         layerContainerView.layer.addSublayer(circleLayer)
     }
 
-    // MARK: - Internal
+    // MARK: - LoadingView
 
     func startLoading() {
         let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")

@@ -10,7 +10,7 @@ import UIKit
 
 protocol LoadingDisplayable: class {
 
-    var loaderView: LoadingView? { get }
+    var loaderView: LoadingView { get }
 
     func showLoader()
     func hideLoader()
@@ -23,8 +23,8 @@ extension LoadingDisplayable where Self: UIViewController {
 
     func showLoader() {
         DispatchQueue.main.async {
-            self.loaderView?.show(in: self.view, animated: false, completion: nil)
-            self.loaderView?.startLoading()
+            self.loaderView.show(in: self.view, animated: false, completion: nil)
+            self.loaderView.startLoading()
         }
     }
 
@@ -32,8 +32,8 @@ extension LoadingDisplayable where Self: UIViewController {
 
     func hideLoader() {
         DispatchQueue.main.async {
-            self.loaderView?.hide(animated: true, completion: { _ in
-                self.loaderView?.stopLoading()
+            self.loaderView.hide(animated: true, completion: { _ in
+                self.loaderView.stopLoading()
             })
         }
     }
