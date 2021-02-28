@@ -19,8 +19,6 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
     
     static var storyboardName: String = "MovieList"
     
-    var loaderView: RadarView!
-    
     var viewModel: MovieListViewModelProtocol?
     weak var coordinator: MovieListCoordinatorProtocol?
     

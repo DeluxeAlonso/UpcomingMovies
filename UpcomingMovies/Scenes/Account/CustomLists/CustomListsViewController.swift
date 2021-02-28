@@ -17,8 +17,6 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
     
     private var dataSource: SimpleTableViewDataSource<CustomListCellViewModelProtocol>!
     
-    var loaderView: RadarView!
-    
     var viewModel: CustomListsViewModelProtocol?
     weak var coordinator: CustomListsCoordinatorProtocol?
     

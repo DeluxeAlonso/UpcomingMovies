@@ -19,8 +19,6 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
     private var prefetchDataSource: TableViewDataSourcePrefetching!
     private var scaleTransitioningDelegate: ScaleTransitioningDelegate!
     
-    var loaderView: RadarView!
-    
     var viewModel: MovieReviewsViewModelProtocol?
     weak var coordinator: MovieReviewsCoordinatorProtocol?
     

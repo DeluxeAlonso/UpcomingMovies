@@ -9,65 +9,50 @@
 import UIKit
 
 private struct AssociatedKeys {
-    static var isLoaderPresented: Bool = false
+    static var loadableView: UIView?
 }
 
 protocol Loadable: class {
-    
-    associatedtype ViewType: UIView
-    
-    var loaderView: ViewType! { get set }
+
+    func showLoader()
+    func hideLoader()
 
 }
 
 extension Loadable where Self: UIViewController {
     
-    private(set) var isPresented: Bool {
+    private(set) var loadableView: UIView? {
         get {
-            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.isLoaderPresented) as? Bool else {
-                return false
+            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.loadableView) as? UIView else {
+                return nil
             }
             return value
         }
         set(newValue) {
-            objc_setAssociatedObject(self, &AssociatedKeys.isLoaderPresented, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &AssociatedKeys.loadableView, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
     // MARK: - FullScreen loader
     
     func showLoader() {
-        guard !isPresented else { return }
-        isPresented = true
+        guard loadableView == nil else { return }
         DispatchQueue.main.async {
-            let containerView = UIView(frame: self.view.frame)
+            self.loadableView = RadarView()
+            self.loadableView?.frame = self.view.frame
             
-            if #available(iOS 13.0, *) {
-                containerView.backgroundColor = .systemBackground
-            } else {
-                containerView.backgroundColor = .white
-            }
-            
-            self.loaderView = ViewType()
-            self.loaderView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-            self.loaderView.center = containerView.center
-            containerView.addSubview(self.loaderView)
-            
-            self.view.addSubview(containerView)
+            self.view.addSubview(self.loadableView!)
         }
     }
     
     // MARK: - Hiding loader
     
     func hideLoader() {
-        guard isPresented, let containerView = loaderView?.superview else {
-                return
-        }
-        isPresented = false
         UIView.animate(withDuration: 0.5, animations: {
-            containerView.alpha = 0
+            self.loadableView?.alpha = 0
         }, completion: { _ in
-            containerView.removeFromSuperview()
+            self.loadableView?.removeFromSuperview()
+            self.loadableView = nil
         })
     }
     

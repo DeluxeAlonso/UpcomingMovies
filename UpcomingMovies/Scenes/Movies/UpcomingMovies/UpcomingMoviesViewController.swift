@@ -28,8 +28,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     private var isAnimatingPresentation: Bool = false
     private var presentationMode: PresentationMode = .preview
 
-    var loaderView: RadarView!
-    var toggleGridBarButtonItem: ToggleBarButtonItem!
+    private var toggleGridBarButtonItem: ToggleBarButtonItem!
     
     // MARK: - Lifecycle
     

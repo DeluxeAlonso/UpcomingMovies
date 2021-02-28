@@ -36,8 +36,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         return barButtonItem
     }()
     
-    var loaderView: RadarView!
-    
     var viewModel: MovieDetailViewModelProtocol?
     weak var coordinator: MovieDetailCoordinatorProtocol?
     

@@ -19,8 +19,6 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
     private var dataSource: SimpleCollectionViewDataSource<SavedMovieCellViewModelProtocol>!
     private var prefetchDataSource: CollectionViewDataSourcePrefetching!
     
-    var loaderView: RadarView!
-    
     var viewModel: SavedMoviesViewModelProtocol?
     weak var coordinator: SavedMoviesCoordinatorProtocol?
     

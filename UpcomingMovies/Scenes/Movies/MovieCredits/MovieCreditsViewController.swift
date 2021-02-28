@@ -17,8 +17,6 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
     private var displayedCellsIndexPaths = Set<IndexPath>()
     private var dataSource: MovieCreditsDataSource!
     
-    var loaderView: RadarView!
-    
     var viewModel: MovieCreditsViewModelProtocol?
     weak var coordinator: MovieCreditsCoordinatorProtocol?
     

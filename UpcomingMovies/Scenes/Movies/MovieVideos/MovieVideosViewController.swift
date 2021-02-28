@@ -18,8 +18,6 @@ class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisp
     private var dataSource: SimpleTableViewDataSource<MovieVideoCellViewModelProtocol>!
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
-    var loaderView: RadarView!
-    
     var viewModel: MovieVideosViewModelProtocol?
     weak var coordinator: MovieVideosCoordinatorProtocol?
     
