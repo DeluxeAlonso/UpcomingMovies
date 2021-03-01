@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
+class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,10 +19,12 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
     private var prefetchDataSource: TableViewDataSourcePrefetching!
     private var scaleTransitioningDelegate: ScaleTransitioningDelegate!
     
-    var loaderView: RadarView!
-    
     var viewModel: MovieReviewsViewModelProtocol?
     weak var coordinator: MovieReviewsCoordinatorProtocol?
+
+    // MARK: - LoadingDisplayable
+
+    var loaderView: LoadingView = RadarView()
     
     // MARK: - Lifecycle
     

@@ -35,7 +35,15 @@ struct ColorPalette {
     static let darkGray = UIColor.darkGray
     static let lightGray = UIColor.lightGray
     static let lighterGray = UIColor(withIntRed: 223, green: 223, blue: 223, alpha: 1)
-    
+
+    static var defaultBackgroundColor: UIColor {
+        if #available(iOS 13.0, *) {
+            return UIColor.systemBackground
+        } else {
+            return whiteColor
+        }
+    }
+
     static var defaultGrayBackgroundColor: UIColor {
         if #available(iOS 13.0, *) {
             return UIColor.systemGray6

@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
+class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,10 +17,12 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
     
     private var dataSource: SimpleTableViewDataSource<CustomListCellViewModelProtocol>!
     
-    var loaderView: RadarView!
-    
     var viewModel: CustomListsViewModelProtocol?
     weak var coordinator: CustomListsCoordinatorProtocol?
+
+    // MARK: - LoadingDisplayable
+
+    var loaderView: LoadingView = RadarView()
     
     // MARK: - Lifecycle
 

@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class MovieListViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
+class MovieListViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,10 +19,12 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
     
     static var storyboardName: String = "MovieList"
     
-    var loaderView: RadarView!
-    
     var viewModel: MovieListViewModelProtocol?
     weak var coordinator: MovieListCoordinatorProtocol?
+
+    // MARK: - LoadingDisplayable
+
+    var loaderView: LoadingView = RadarView()
     
     // MARK: - Lifcycle
 

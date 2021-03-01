@@ -71,7 +71,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
     }
     
     private func setupUI() {
-        view.backgroundColor = ColorPalette.navigationBarBackgroundColor
+        view.backgroundColor = ColorPalette.defaultBackgroundColor
         setupTableView()
     }
     

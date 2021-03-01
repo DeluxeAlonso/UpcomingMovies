@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
+class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDisplayable, PlaceholderDisplayable {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -28,9 +28,12 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
     private var isAnimatingPresentation: Bool = false
     private var presentationMode: PresentationMode = .preview
 
-    var loaderView: RadarView!
-    var toggleGridBarButtonItem: ToggleBarButtonItem!
-    
+    private var toggleGridBarButtonItem: ToggleBarButtonItem!
+
+    // MARK: - LoadingDisplayable
+
+    var loaderView: LoadingView = RadarView()
+
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -159,8 +162,9 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, PlaceholderD
                 strongSelf.reloadCollectionView()
             }
         })
-        viewModel?.startLoading.bind({ [weak self] start in
-            start ? self?.showLoader() : self?.hideLoader()
+        viewModel?.startLoading.bind({ [weak self] startLoading in
+            guard let self = self else { return }
+            startLoading ? self.showLoader() : self.hideLoader()
         })
     }
     

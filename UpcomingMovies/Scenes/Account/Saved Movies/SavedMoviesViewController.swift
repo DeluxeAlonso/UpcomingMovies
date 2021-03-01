@@ -10,7 +10,7 @@ import UIKit
 import CollectionViewSlantedLayout
 import UpcomingMoviesDomain
 
-class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, Loadable {
+class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -19,10 +19,12 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
     private var dataSource: SimpleCollectionViewDataSource<SavedMovieCellViewModelProtocol>!
     private var prefetchDataSource: CollectionViewDataSourcePrefetching!
     
-    var loaderView: RadarView!
-    
     var viewModel: SavedMoviesViewModelProtocol?
     weak var coordinator: SavedMoviesCoordinatorProtocol?
+
+    // MARK: - LoadingDisplayable
+
+    var loaderView: LoadingView = RadarView()
     
     // MARK: - Lifecycle
     

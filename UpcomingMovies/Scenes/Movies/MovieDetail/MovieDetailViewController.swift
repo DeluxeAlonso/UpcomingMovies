@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Transitionable, Loadable {
+class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Transitionable, LoadingDisplayable {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backdropImageView: UIImageView!
@@ -35,11 +35,13 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         
         return barButtonItem
     }()
-    
-    var loaderView: RadarView!
-    
+
     var viewModel: MovieDetailViewModelProtocol?
     weak var coordinator: MovieDetailCoordinatorProtocol?
+
+    // MARK: - LoadingDisplayable
+
+    var loaderView: LoadingView = RadarView()
     
     // MARK: - Lifecycle
     
