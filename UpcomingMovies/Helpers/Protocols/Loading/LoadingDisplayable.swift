@@ -12,23 +12,19 @@ protocol LoadingDisplayable: class {
 
     var loaderView: LoadingView { get }
 
-    func showLoader()
+    func showLoader(in view: UIView)
     func hideLoader()
 
 }
 
-extension LoadingDisplayable where Self: UIViewController {
+extension LoadingDisplayable {
 
-    // MARK: - Show loader
-
-    func showLoader() {
+    func showLoader(in view: UIView) {
         DispatchQueue.main.async {
-            self.loaderView.show(in: self.view, animated: false, completion: nil)
+            self.loaderView.show(in: view, animated: false, completion: nil)
             self.loaderView.startLoading()
         }
     }
-
-    // MARK: - Hiding loader
 
     func hideLoader() {
         DispatchQueue.main.async {
@@ -36,6 +32,14 @@ extension LoadingDisplayable where Self: UIViewController {
                 self.loaderView.stopLoading()
             })
         }
+    }
+
+}
+
+extension LoadingDisplayable where Self: UIViewController {
+
+    func showLoader() {
+        showLoader(in: self.view)
     }
 
 }
