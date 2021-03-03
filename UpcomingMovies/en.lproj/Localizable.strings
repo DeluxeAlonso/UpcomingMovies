@@ -11,6 +11,11 @@
 
 "searchMoviesTabBarTitle" = "Search";
 "searchMoviesTitle" = "Search movies";
+"recentSearches" = "Recent searches";
+"emptySearchResults" = "No results to show.";
+
+"recentlyVisitedSeearchSectionTitle" = "Recently visited";
+"movieGenresSearchSectionTitle" = "Movie genres";
 
 "favoritesTabBarTitle" = "Favorites";
 "favoritesTitle" = "Favorites";
@@ -18,4 +23,38 @@
 "accountTabBarTitle" = "Account";
 "accountTitle" = "Account";
 
-"refreshControlTitle" = "Fetching new movies...";
+"favoritesCollectionOption" = "Favorites";
+"watchlistCollectionOption" = "Watchlist";
+"customListGroupOption" = "Created Lists";
+"includeAdults" = "Include adult movies";
+
+"signOutConfirmationTitle" = "Are you sure you want to sign out?";
+"signOut" = "Sign out";
+
+"emptyMovieResults" = "There are no movies to show right now.";
+"emptyVideoResults" = "There are no trailers to show right now.";
+"emptyCreditReults" = "No credits to show.";
+
+"movieDetailTitle" = "Movie detail";
+"movieDetailShareText" = "Come with me to watch %@!";
+"reviewsDetailOptions" = "Reviews";
+"trailersDetailOptions" = "Trailers";
+"creditsDetailOptions" = "Credits";
+"similarsDetailOptions" = "Similars";
+
+"movieCreditAccessibility" = "%@ as %@";
+
+"addToFavoritesHint" = "Add to favorites";
+"removeFromFavoritesHint" = "Remove from favorites";
+
+"expandMovieCellsHint" = "Expand movies";
+"collapseMovieCellsHint" = "Collapse movies";
+
+"topRatedMoviesTitle" = "Top Rated Movies";
+"popularMoviesTitle" = "Popular Movies";
+"similarMoviesTitle" = "Similar Movies";
+
+"cast" = "Cast";
+"crew" = "Crew";
+
+"ratingHint" = "Rating of %.1f";

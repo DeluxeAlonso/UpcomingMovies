@@ -10,9 +10,9 @@ import UIKit
 
 class SearchMoviesResultDataSource: NSObject, UITableViewDataSource {
     
-    private let viewModel: SearchMoviesResultViewModel
+    private let viewModel: SearchMoviesResultViewModelProtocol
     
-    init(viewModel: SearchMoviesResultViewModel) {
+    init(viewModel: SearchMoviesResultViewModelProtocol) {
         self.viewModel = viewModel
     }
     
@@ -41,13 +41,14 @@ class SearchMoviesResultDataSource: NSObject, UITableViewDataSource {
         }
     }
     
-    fileprivate func recentSearchesDataSource(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+    private func recentSearchesDataSource(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(with: RecentSearchTableViewCell.self, for: indexPath)
+        guard indexPath.row < viewModel.recentSearchCells.count else { return UITableViewCell() }
         cell.viewModel = viewModel.recentSearchCells[indexPath.row]
         return cell
     }
     
-    fileprivate func searchedMoviesDataSource(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+    private func searchedMoviesDataSource(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(with: MovieTableViewCell.self, for: indexPath)
         cell.viewModel = viewModel.movieCells[indexPath.row]
         return cell

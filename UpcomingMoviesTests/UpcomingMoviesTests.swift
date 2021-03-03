@@ -8,56 +8,49 @@
 
 import XCTest
 @testable import UpcomingMovies
+@testable import UpcomingMoviesDomain
+@testable import NetworkInfrastructure
 
 class UpcomingMoviesTests: XCTestCase {
     
-    var viewModelToTest: UpcomingMoviesViewModel!
-    var upcomingMovieCellViewModelToTest: UpcomingMovieCellViewModel!
+    private var mockInteractor: MockUpcomingMoviesInteractor!
+    private var viewModelToTest: UpcomingMoviesViewModelProtocol!
 
     override func setUp() {
         super.setUp()
-        viewModelToTest = UpcomingMoviesViewModel()
-        upcomingMovieCellViewModelToTest = UpcomingMovieCellViewModel(Movie.with())
+        mockInteractor = MockUpcomingMoviesInteractor()
+        viewModelToTest = UpcomingMoviesViewModel(interactor: mockInteractor)
     }
 
     override func tearDown() {
+        mockInteractor = nil
         viewModelToTest = nil
         super.tearDown()
     }
     
-    func testGestMoviesPopulated() {
-        //Arrange
-        let movieResult = MovieResult(results: [Movie.with(id: 1), Movie.with(id: 2)],
-                                      currentPage: 1, totalPages: 1)
-        let mockupClient = MockMovieClient()
-        mockupClient.getMovieResult = Result.success(movieResult)
-        viewModelToTest.movieClient = mockupClient
-        //Act
-        viewModelToTest.getMovies()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .populated([Movie.with(id: 1), Movie.with(id: 2)]))
-    }
-    
     func testGetMoviesEmpty() {
         //Arrange
-        let movieResult = MovieResult(results: [],
-                                      currentPage: 1, totalPages: 1)
-        let mockupClient = MockMovieClient()
-        mockupClient.getMovieResult = Result.success(movieResult)
-        viewModelToTest.movieClient = mockupClient
+        mockInteractor.upcomingMovies = Result.success([])
         //Act
         viewModelToTest.getMovies()
         //Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .empty)
     }
     
+    func testGetMoviesPopulated() {
+        //Arrange
+        mockInteractor.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
+        //Act
+        viewModelToTest.getMovies()
+        mockInteractor.upcomingMovies = Result.success([])
+        viewModelToTest.getMovies()
+        //Assert
+        XCTAssertEqual(viewModelToTest.viewState.value, .populated([Movie.with(id: 1), Movie.with(id: 2)]))
+    }
+    
     func testGetMoviesPaging() {
         //Arrange
-        let movieResult = MovieResult(results: [Movie.with(id: 1), Movie.with(id: 2)],
-                                      currentPage: 1, totalPages: 2)
-        let mockupClient = MockMovieClient()
-        mockupClient.getMovieResult = Result.success(movieResult)
-        viewModelToTest.movieClient = mockupClient
+        mockInteractor.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
         //Act
         viewModelToTest.getMovies()
         //Assert
@@ -67,42 +60,29 @@ class UpcomingMoviesTests: XCTestCase {
     
     func testGetMoviesError() {
         //Arrange
-        let mockupClient = MockMovieClient()
-        mockupClient.getMovieResult = Result.failure(APIError.badRequest)
-        viewModelToTest.movieClient = mockupClient
+        mockInteractor.upcomingMovies = Result.failure(APIError.badRequest)
         //Act
         viewModelToTest.getMovies()
         //Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
     }
     
-    func testSelectedMovieCell() {
+    func testUpcomingMovieCellPosterURL() {
         //Arrange
-        let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
-        viewModelToTest.viewState.value = .populated(moviesToTest)
+        let cellViewModel = UpcomingMovieCellViewModel(Movie.with())
         //Act
-        viewModelToTest.setSelectedMovie(at: 0)
-        let selectedMovieCell = viewModelToTest.selectedMovieCell
-        let movieFullPosterPath = selectedMovieCell?.posterURL
+        let posterURL = cellViewModel.posterURL
         //Assert
-        XCTAssertEqual(movieFullPosterPath, URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
+        XCTAssertEqual(posterURL, URL(string: "https://image.tmdb.org/t/p/w185/poster.jpg"))
     }
     
-    func testUpcomingMovieCellPosterPath() {
+    func testUpcomingMovieCellBackdropURL() {
+        //Arrange
+        let cellViewModel = UpcomingMovieCellViewModel(Movie.with())
         //Act
-        let posterPath = upcomingMovieCellViewModelToTest.posterURL
+        let backdropURL = cellViewModel.backdropURL
         //Assert
-        XCTAssertEqual(posterPath, URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
+        XCTAssertEqual(backdropURL, URL(string: "https://image.tmdb.org/t/p/w500/backdrop.jpg"))
     }
 
-}
-
-private final class MockMovieClient: MovieClient {
-    
-    var getMovieResult: Result<MovieResult?, APIError>?
-    
-    override func getMovies(page: Int, filter: MovieListFilter, completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
-        completion(getMovieResult!)
-    }
-    
 }

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Account-->
+        <scene sceneID="yur-G6-7aj">
+            <objects>
+                <viewController storyboardIdentifier="AccountViewController" id="4Rs-rx-yMM" customClass="AccountViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TXw-en-eK3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="gnK-bP-C0C"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Account" id="PHb-rS-IvZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GrE-o3-lT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1327" y="884"/>
+        </scene>
+        <!--Saved Movies View Controller-->
+        <scene sceneID="VFJ-zz-NAQ">
+            <objects>
+                <viewController storyboardIdentifier="SavedMoviesViewController" id="0Fw-wE-eJ0" customClass="SavedMoviesViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qah-C1-uMy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2NL-u2-bAS">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ij9-Pn-ZYU">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="gWf-Wf-YjW" firstAttribute="bottom" secondItem="2NL-u2-bAS" secondAttribute="bottom" id="OrQ-r1-wdO"/>
+                            <constraint firstItem="gWf-Wf-YjW" firstAttribute="trailing" secondItem="2NL-u2-bAS" secondAttribute="trailing" id="Sj2-eq-VgO"/>
+                            <constraint firstItem="2NL-u2-bAS" firstAttribute="top" secondItem="gWf-Wf-YjW" secondAttribute="top" id="WC0-dF-GFw"/>
+                            <constraint firstItem="2NL-u2-bAS" firstAttribute="leading" secondItem="gWf-Wf-YjW" secondAttribute="leading" id="Y7k-NA-xqh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gWf-Wf-YjW"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="2NL-u2-bAS" id="Bw4-du-bbc"/>
+                        <segue destination="FM3-ox-Ml0" kind="show" identifier="MovieDetailSegue" id="8Sa-XH-mb9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="54G-7j-wq8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2230" y="883"/>
+        </scene>
+        <!--MovieDetailViewController-->
+        <scene sceneID="Z0d-bc-Bvb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MovieDetail" referencedIdentifier="MovieDetailViewController" id="FM3-ox-Ml0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fuY-fv-G8o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2997" y="883"/>
+        </scene>
+        <!--Sign In View Controller-->
+        <scene sceneID="qVO-mx-whY">
+            <objects>
+                <viewController storyboardIdentifier="SignInViewController" id="A5c-4P-QZW" customClass="SignInViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0gL-lu-l8M" customClass="GradientView" customModule="UpcomingMovies" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="2u0-4E-af1">
+                                <rect key="frame" x="24" y="289.5" width="366" height="277"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignInLogoFirst" translatesAutoresizingMaskIntoConstraints="NO" id="H0D-7d-mxh">
+                                        <rect key="frame" x="0.0" y="0.0" width="366" height="200"/>
+                                        <color key="tintColor" name="SignInGradientColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="4Sl-ak-WMh"/>
+                                            <constraint firstAttribute="height" constant="150" id="ck3-ZC-M3g"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="ck3-ZC-M3g"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=compact">
+                                            <mask key="constraints">
+                                                <exclude reference="4Sl-ak-WMh"/>
+                                                <include reference="ck3-ZC-M3g"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLN-uI-D6w" customClass="ShrinkingButton" customModule="UpcomingMovies" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="225" width="366" height="52"/>
+                                        <color key="backgroundColor" name="SignInGradientColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="20" maxY="15"/>
+                                        <state key="normal" title="Sign in with TheMovieDB">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="loginButtonAction:" destination="A5c-4P-QZW" eventType="touchUpInside" id="9g2-0J-puA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yit-hB-YvF" userLabel="Help Button">
+                                <rect key="frame" x="342" y="68" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="FZK-sF-MXZ"/>
+                                    <constraint firstAttribute="width" secondItem="Yit-hB-YvF" secondAttribute="height" multiplier="1:1" id="WZG-S7-V3d"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="Help"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="hA2-rz-nWS" firstAttribute="trailing" secondItem="Yit-hB-YvF" secondAttribute="trailing" constant="24" id="6CU-jS-3CM"/>
+                            <constraint firstItem="2u0-4E-af1" firstAttribute="centerY" secondItem="0gL-lu-l8M" secondAttribute="centerY" constant="-20" id="JiA-Cz-XHI"/>
+                            <constraint firstItem="2u0-4E-af1" firstAttribute="centerX" secondItem="0gL-lu-l8M" secondAttribute="centerX" id="XL0-c2-XpF"/>
+                            <constraint firstItem="2u0-4E-af1" firstAttribute="leading" secondItem="hA2-rz-nWS" secondAttribute="leading" constant="24" id="leq-Ss-m4Y"/>
+                            <constraint firstItem="hA2-rz-nWS" firstAttribute="trailing" secondItem="2u0-4E-af1" secondAttribute="trailing" constant="24" id="nwO-Jg-l8U"/>
+                            <constraint firstItem="Yit-hB-YvF" firstAttribute="top" secondItem="hA2-rz-nWS" secondAttribute="top" constant="24" id="zsf-iq-bMt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hA2-rz-nWS"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                <color key="value" name="SignInGradientColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                <real key="value" value="0.050000000000000003"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <connections>
+                        <outlet property="iconImageView" destination="H0D-7d-mxh" id="hrn-Zc-0aQ"/>
+                        <outlet property="signInButton" destination="xLN-uI-D6w" id="qNi-YA-b12"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DLD-6M-Hyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1325.5999999999999" y="80.50974512743629"/>
+        </scene>
+        <!--Auth Permission View Controller-->
+        <scene sceneID="qHV-bc-VVu">
+            <objects>
+                <viewController storyboardIdentifier="AuthPermissionViewController" id="gLm-ei-Jyy" customClass="AuthPermissionViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ka7-4u-VNh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPL-PY-RdK">
+                                <rect key="frame" x="0.0" y="44" width="414" height="774"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmq-Bw-6Mp">
+                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem image="Back" id="Q2P-q1-WON" userLabel="Back Bar Button Item">
+                                        <connections>
+                                            <action selector="backButtonAction:" destination="gLm-ei-Jyy" id="Udr-da-vo7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" systemItem="fixedSpace" id="PoT-V7-aMM"/>
+                                    <barButtonItem image="Forward" id="Mqd-ga-f3P" userLabel="Forward Bar Button Item">
+                                        <connections>
+                                            <action selector="forwardButtonAction:" destination="gLm-ei-Jyy" id="f4U-Kx-fsa"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="flexibleSpace" id="yh3-pv-Mda"/>
+                                    <barButtonItem systemItem="refresh" id="7vP-vD-1OC">
+                                        <connections>
+                                            <action selector="reloadButtonAction:" destination="gLm-ei-Jyy" id="zRu-gs-P0p"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MtO-yo-IcQ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="2"/>
+                            </progressView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MtO-yo-IcQ" firstAttribute="leading" secondItem="ka7-4u-VNh" secondAttribute="leading" id="4uA-LL-xgX"/>
+                            <constraint firstItem="bmq-Bw-6Mp" firstAttribute="top" secondItem="hPL-PY-RdK" secondAttribute="bottom" id="7zd-rM-Gnd"/>
+                            <constraint firstItem="bmq-Bw-6Mp" firstAttribute="leading" secondItem="ka7-4u-VNh" secondAttribute="leading" id="GiH-p5-cSJ"/>
+                            <constraint firstItem="hPL-PY-RdK" firstAttribute="top" secondItem="Ig2-Lo-J6s" secondAttribute="top" id="KaN-yt-Ml7"/>
+                            <constraint firstItem="hPL-PY-RdK" firstAttribute="leading" secondItem="ka7-4u-VNh" secondAttribute="leading" id="RdH-kZ-nEe"/>
+                            <constraint firstItem="bmq-Bw-6Mp" firstAttribute="bottom" secondItem="Ig2-Lo-J6s" secondAttribute="bottom" id="Zs5-dK-FRn"/>
+                            <constraint firstItem="bmq-Bw-6Mp" firstAttribute="trailing" secondItem="ka7-4u-VNh" secondAttribute="trailing" id="Zww-kz-iAA"/>
+                            <constraint firstAttribute="trailing" secondItem="hPL-PY-RdK" secondAttribute="trailing" id="aCG-hP-xao"/>
+                            <constraint firstAttribute="trailing" secondItem="MtO-yo-IcQ" secondAttribute="trailing" id="dvC-M5-2TU"/>
+                            <constraint firstItem="MtO-yo-IcQ" firstAttribute="top" secondItem="Ig2-Lo-J6s" secondAttribute="top" id="x3F-EO-2Er"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ig2-Lo-J6s"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="sRO-4n-AxU"/>
+                    <connections>
+                        <outlet property="backButton" destination="Q2P-q1-WON" id="Ygh-y9-o9o"/>
+                        <outlet property="forwardButton" destination="Mqd-ga-f3P" id="Y3O-FY-CBa"/>
+                        <outlet property="progressView" destination="MtO-yo-IcQ" id="p2e-6U-P2J"/>
+                        <outlet property="reloadButton" destination="7vP-vD-1OC" id="Ry0-EB-V4h"/>
+                        <outlet property="webView" destination="hPL-PY-RdK" id="KVC-Uo-hk0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cKD-KS-sjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2230" y="1698"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="eWF-S1-xlP">
+            <objects>
+                <tableViewController storyboardIdentifier="ProfileViewController" id="3cM-0V-bWN" customClass="ProfileViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="mZI-xp-GOO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="3cM-0V-bWN" id="Slq-oC-Jc9"/>
+                            <outlet property="delegate" destination="3cM-0V-bWN" id="xEQ-gQ-bEk"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jtI-KP-cQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2230" y="81"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <resources>
+        <image name="Back" width="24" height="24"/>
+        <image name="Forward" width="24" height="24"/>
+        <image name="Help" width="33" height="33"/>
+        <image name="SignInLogoFirst" width="256" height="256"/>
+        <namedColor name="SignInGradientColor">
+            <color red="0.31000000238418579" green="0.49399998784065247" blue="0.71399998664855957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

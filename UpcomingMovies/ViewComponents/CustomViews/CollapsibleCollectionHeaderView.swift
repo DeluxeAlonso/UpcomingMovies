@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CollapsibleHeaderViewViewDelegate: class {
+protocol CollapsibleHeaderViewDelegate: class {
     
     func collapsibleHeaderView(sectionHeaderView: CollapsibleCollectionHeaderView, sectionToggled section: Int)
     
@@ -19,11 +19,13 @@ final class CollapsibleHeaderViewModel {
     var opened: Bool
     var section: Int
     var title: String
+    var shouldAnimate: Bool
     
-    init(opened: Bool, section: Int, title: String) {
+    init(opened: Bool, section: Int, title: String, shouldAnimate: Bool = false) {
         self.opened = opened
         self.section = section
         self.title = title
+        self.shouldAnimate = shouldAnimate
     }
     
 }
@@ -33,7 +35,7 @@ class CollapsibleCollectionHeaderView: UICollectionReusableView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var arrowImageView: UIImageView!
     
-    weak var delegate: CollapsibleHeaderViewViewDelegate?
+    weak var delegate: CollapsibleHeaderViewDelegate?
     
     var viewModel: CollapsibleHeaderViewModel? {
         didSet {
@@ -51,6 +53,9 @@ class CollapsibleCollectionHeaderView: UICollectionReusableView {
     // MARK: - Private
     
     private func setupUI() {
+        backgroundColor = ColorPalette.defaultGrayBackgroundColor
+        isAccessibilityElement = true
+        
         setupTapGesture()
     }
     
@@ -62,13 +67,16 @@ class CollapsibleCollectionHeaderView: UICollectionReusableView {
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
+        accessibilityLabel = viewModel.title
         titleLabel.text = viewModel.title
-        updateArrowImageView(opened: viewModel.opened, animated: false)
     }
     
-    func updateArrowImageView(opened: Bool, animated: Bool) {
-        let animationDuration = animated ? 0.3 : 0.0
-        arrowImageView.rotate(opened ? .pi / 2 : 0, duration: animationDuration)
+    func updateArrowImageView(animated: Bool) {
+        guard let viewModel = viewModel else { return }
+        let animationDuration: CFTimeInterval = animated ? 0.3 : 0.0
+        let rotationValue = viewModel.opened ? CGFloat.pi / 2 : 0
+
+        arrowImageView.rotate(rotationValue, duration: animationDuration)
     }
     
     // MARK: - Selector

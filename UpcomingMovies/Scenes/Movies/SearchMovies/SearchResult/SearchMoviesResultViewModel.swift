@@ -7,127 +7,60 @@
 //
 
 import Foundation
-import CoreData
+import UpcomingMoviesDomain
 
-final class SearchMoviesResultViewModel {
+final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
     
     // MARK: - Properties
-    
-    private var movieSearchStore: PersistenceStore<MovieSearch>!
-    
-    private let movieClient = MovieClient()
-    private var movies: [Movie] = []
+
+    private let interactor: SearchMoviesResultInteractorProtocol
     
     let viewState: Bindable<SearchMoviesResultViewState> = Bindable(.initial)
     
-    var prepareUpdate: ((Bool) -> Void)?
-    var updateRecentSearches: (() -> Void)?
-    
     // MARK: - Computed Properties
     
-    var recentSearchCells: [RecentSearchCellViewModel] {
-        let searches = movieSearchStore.entities
+    private var movies: [Movie] {
+        return viewState.value.currentSearchedMovies
+    }
+    
+    var recentSearchCells: [RecentSearchCellViewModelProtocol] {
+        let searches = interactor.getMovieSearches().prefix(5)
         return searches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
     }
     
-    var movieCells: [MovieCellViewModel] {
-        return movies.compactMap { MovieCellViewModel($0) }
+    var movieCells: [MovieCellViewModelProtocol] {
+        return movies.compactMap { MovieCellViewModel($0)}
     }
     
     // MARK: - Initilalizers
     
-    init(managedObjectContext: NSManagedObjectContext) {
-        movieSearchStore = PersistenceStore(managedObjectContext)
-        movieSearchStore.configure(limit: 5)
-        movieSearchStore.delegate = self
+    init(interactor: SearchMoviesResultInteractorProtocol) {
+        self.interactor = interactor
     }
     
     // MARK: - Movies handling
     
     func searchMovies(withSearchText searchText: String) {
         viewState.value = .searching
-        movieSearchStore.saveMovieSearch(with: searchText)
-        movieClient.searchMovies(searchText: searchText) { result in
+        interactor.saveSearchText(searchText)
+        interactor.searchMovies(searchText: searchText,
+                                  page: nil, completion: { result in
             switch result {
-            case .success(let movieResult):
-                guard let movieResult = movieResult else { return }
-                self.processMovieResult(movieResult)
+            case .success(let movies):
+                self.viewState.value = movies.isEmpty ? .empty : .populated(movies)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
-        }
-    }
-    
-    private func processMovieResult(_ movieResult: MovieResult) {
-        let fetchedMovies = movieResult.results
-        movies = fetchedMovies
-        if movies.isEmpty {
-            viewState.value = .empty
-        } else {
-            viewState.value = .populated(movies)
-        }
+        })
     }
     
     func clearMovies() {
-        movies = []
+        viewState.value = .initial
     }
     
     // MARK: - Movie detail builder
     
-    func buildDetailViewModel(atIndex index: Int) -> MovieDetailViewModel? {
-        guard index < movies.count else { return nil }
-        return MovieDetailViewModel(movies[index],
-                                    managedObjectContext: movieSearchStore.managedObjectContext)
+    func searchedMovie(at index: Int) -> Movie {
+        return movies[index]
     }
-
-}
-
-// MARK: - SearchMoviesResultStore
-
-extension SearchMoviesResultViewModel: PersistenceStoreDelegate {
-    
-    func persistenceStore(willUpdateEntity shouldPrepare: Bool) {
-        prepareUpdate?(shouldPrepare)
-    }
-    
-    func persistenceStore(didUpdateEntity update: Bool) {
-        updateRecentSearches?()
-    }
-
-}
-
-// MARK: - View states
-
-extension SearchMoviesResultViewModel {
-    
-    enum SearchMoviesResultViewState {
-        
-        case initial
-        case empty
-        case searching
-        case populated([Movie])
-        case error(Error)
-        
-        var sections: [SearchMoviesResultSections]? {
-            switch self {
-            case .populated:
-                return [.searchedMovies]
-            case .initial:
-                return [.recentSearches]
-            case .searching, .empty, .error:
-                return nil
-            }
-        }
-        
-    }
-    
-    enum SearchMoviesResultSections {
-        case recentSearches, searchedMovies
-    }
-    
-    func resetViewState() {
-        clearMovies()
-        viewState.value = .initial
-    }
-    
 }

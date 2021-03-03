@@ -9,9 +9,11 @@
 import UIKit
 
 func degreesToRadians (_ value: CGFloat) -> CGFloat {
-    return value * .pi / 180.0
+    let piDegrees: CGFloat = 180.0
+    return (value * CGFloat.pi) / piDegrees
 }
 
 func radiansToDegrees (_ value: CGFloat) -> CGFloat {
-    return value * 180.0 / .pi
+    let piDegrees: CGFloat = 180.0
+    return (value * piDegrees) / CGFloat.pi
 }

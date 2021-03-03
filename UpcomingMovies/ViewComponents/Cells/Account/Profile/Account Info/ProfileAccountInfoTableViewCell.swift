@@ -13,7 +13,7 @@ class ProfileAccountInfoTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     
-    var viewModel: ProfileAccountInforCellViewModel? {
+    var viewModel: ProfileAccountInforCellViewModelProtocol? {
         didSet {
             setupBindables()
         }
@@ -35,7 +35,7 @@ class ProfileAccountInfoTableViewCell: UITableViewCell {
     
     private func setupLabels() {
         usernameLabel.font = FontHelper.regular(withSize: 18.0)
-        usernameLabel.textColor = ColorPalette.blackColor
+        usernameLabel.textColor = ColorPalette.Label.defaultColor
         usernameLabel.textAlignment = .center
         
         nameLabel.font = FontHelper.light(withSize: 14.0)

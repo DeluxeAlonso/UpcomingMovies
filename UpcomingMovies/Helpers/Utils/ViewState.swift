@@ -14,7 +14,7 @@ enum SimpleViewState<Entity>: Equatable where Entity: Equatable {
     case paging([Entity], next: Int)
     case populated([Entity])
     case empty
-    case error(ErrorDescriptable)
+    case error(Error)
     
     static func == (lhs: SimpleViewState, rhs: SimpleViewState) -> Bool {
         switch (lhs, rhs) {
@@ -55,6 +55,15 @@ enum SimpleViewState<Entity>: Equatable where Entity: Equatable {
     
     var isInitialPage: Bool {
         return currentPage == 1
+    }
+    
+    var needsPrefetch: Bool {
+        switch self {
+        case .initial, .populated, .empty, .error:
+            return false
+        case .paging:
+            return true
+        }
     }
     
 }

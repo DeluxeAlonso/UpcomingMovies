@@ -7,12 +7,19 @@
 //
 
 import Foundation
+import UpcomingMoviesDomain
 
-final class ProfileSelectableOptionCellViewModel {
+protocol ProfileSelectableOptionCellViewModelProtocol {
+    
+    var title: String? { get }
+    
+}
+
+final class ProfileSelectableOptionCellViewModel: ProfileSelectableOptionCellViewModelProtocol {
     
     let title: String?
     
-    init(_ profileCollectionOption: ProfileOption) {
+    init(_ profileCollectionOption: ProfileOptionProtocol) {
         self.title = profileCollectionOption.title
     }
     

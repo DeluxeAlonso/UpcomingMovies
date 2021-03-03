@@ -8,24 +8,15 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, SegueHandler {
+class AccountViewController: UIViewController, AccountViewControllerProtocol, Storyboarded {
     
-    private lazy var signInViewController: SignInViewController = {
-        var viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! SignInViewController
-        viewController.delegate = self
-        self.add(asChildViewController: viewController)
-        return viewController
-    }()
+    private var signInViewController: SignInViewController?
+    private var profileViewController: ProfileViewController?
     
-    private lazy var profileViewController: ProfileTableViewController = {
-        var viewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileTableViewController") as! ProfileTableViewController
-        viewController.delegate = self
-        viewController.viewModel = viewModel.buildProfileViewModel()
-        self.add(asChildViewController: viewController)
-        return viewController
-    }()
+    static var storyboardName: String = "Account"
     
-    private var viewModel = AccountViewModel()
+    var viewModel: AccountViewModelProtocol!
+    weak var coordinator: AccountCoordinatorProtocol?
     
     // MARK: - Lifecycle
 
@@ -35,92 +26,61 @@ class AccountViewController: UIViewController, SegueHandler {
         setupBindables()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.tintColor = view.tintColor
+        restoreNavigationBar(with: ColorPalette.navigationBarBackgroundColor)
+    }
+    
     // MARK: - Private
     
     private func setupUI() {
-        title = Constants.Title
+        title = LocalizedStrings.accountTabBarTitle.localized
         setupContainerView()
         setupNavigationBar()
     }
     
     private func setupContainerView() {
-        if AuthenticationManager.shared.isUserSignedIn() {
-            navigationController?.setNavigationBarHidden(false, animated: false)
-            add(asChildViewController: profileViewController)
-        } else {
-            navigationController?.setNavigationBarHidden(true, animated: false)
-            add(asChildViewController: signInViewController)
-        }
+        viewModel.isUserSignedIn() ? showProfileView() : showSignInView()
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = Constants.NavigationItemTitle
+        navigationItem.title = LocalizedStrings.accountTitle.localized
     }
     
-    private func showSignInView() {
-        remove(asChildViewController: profileViewController)
-        add(asChildViewController: signInViewController)
+    private func showSignInView(withAnimatedNavigationBar animated: Bool = false) {
+        signInViewController = coordinator?.embedSignInViewController(on: self)
+        coordinator?.removeChildViewController(&profileViewController, from: self)
     }
     
-    private func showProfileView() {
-        remove(asChildViewController: signInViewController)
-        // Rebuild the profile view model to show an up to date profile.
-        profileViewController.viewModel = viewModel.buildProfileViewModel()
-        add(asChildViewController: profileViewController)
-    }
-    
-    private func didSignIn() {
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        showProfileView()
-    }
-    
-    private func didSignOut() {
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        showSignInView()
+    private func showProfileView(withAnimatedNavigationBar animated: Bool = false) {
+        guard let viewModel = viewModel else { return }
+        profileViewController = coordinator?.embedProfileViewController(on: self,
+                                                                        for: viewModel.currentUser())
+        
+        coordinator?.removeChildViewController(&signInViewController, from: self)
     }
     
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        viewModel.showAuthPermission = { [weak self] in
+        viewModel.showAuthPermission.bind { [weak self] authPermissionURL in
             guard let strongSelf = self else { return }
-            strongSelf.performSegue(withIdentifier: SegueIdentifier.authPermission.rawValue,
-                                    sender: nil)
+            strongSelf.coordinator?.showAuthPermission(for: authPermissionURL,
+                                                       and: strongSelf)
         }
         viewModel.didSignIn = { [weak self] in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
-                strongSelf.didSignIn()
+                strongSelf.showProfileView(withAnimatedNavigationBar: true)
             }
         }
-    }
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifier(for: segue) {
-        case .authPermission:
-            guard let navController = segue.destination as? UINavigationController,
-                let viewController = navController.topViewController as? AuthPermissionViewController else {
-                    fatalError()
+        viewModel.didReceiveError = { [weak self] in
+            guard let strongSelf = self else { return }
+            DispatchQueue.main.async {
+                strongSelf.signInViewController?.stopLoading()
             }
-            _ = viewController.view
-            viewController.delegate = self
-            viewController.viewModel = viewModel.buildAuthPermissionViewModel()
-        case .collectionList:
-            guard let viewController = segue.destination as? CollectionListViewController else {
-                fatalError()
-            }
-            guard let viewModel = sender as? CollectionListViewModel else { return }
-            _ = viewController.view
-            viewController.viewModel = viewModel
-        case.customLists:
-            guard let viewController = segue.destination as? CustomListsViewController else {
-                fatalError()
-            }
-            guard let viewModel = sender as? CustomListsViewModel else { return }
-            _ = viewController.view
-            viewController.viewModel = viewModel
         }
     }
     
@@ -128,32 +88,30 @@ class AccountViewController: UIViewController, SegueHandler {
 
 // MARK: - SignInViewControllerDelegate
 
-extension AccountViewController: SignInViewControllerDelegate {
+extension AccountViewController {
     
     func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
-        viewModel.getRequestToken()
+        signInViewController.startLoading()
+        viewModel.startAuthorizationProcess()
     }
     
 }
 
 // MARK: - ProfileViewControllerDelegate
 
-extension AccountViewController: ProfileViewControllerDelegate {
+extension AccountViewController {
     
-    func profileViewController(_ profileViewController: ProfileTableViewController, didTapCollection collection: ProfileCollectionOption) {
-        let segueIdentifier = SegueIdentifier.collectionList.rawValue
-        performSegue(withIdentifier: segueIdentifier,
-                     sender: viewModel.buildCollectionListViewModel(collection))
+    func profileViewController(didTapCollection collection: ProfileCollectionOption) {
+        coordinator?.showCollectionOption(collection)
     }
     
-    func profileViewController(_ profileViewController: ProfileTableViewController, didTapGroup group: ProfileGroupOption) {
-        performSegue(withIdentifier: SegueIdentifier.customLists.rawValue,
-                     sender: viewModel.buildCrearedListsViewModel(group))
+    func profileViewController(didTapGroup group: ProfileGroupOption) {
+        coordinator?.showGroupOption(group)
     }
     
-    func profileViewController(_ profileViewController: ProfileTableViewController, didTapSignOutButton tapped: Bool) {
-        AuthenticationManager.shared.deleteCurrentUser()
-        didSignOut()
+    func profileViewController(didTapSignOutButton tapped: Bool) {
+        viewModel.signOutCurrentUser()
+        showSignInView(withAnimatedNavigationBar: true)
     }
     
 }
@@ -163,33 +121,8 @@ extension AccountViewController: ProfileViewControllerDelegate {
 extension AccountViewController: AuthPermissionViewControllerDelegate {
     
     func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
-                                      didSignedIn signedIn: Bool) {
-        viewModel.createSessionId()
-    }
-    
-}
-
-// MARK: - Segue Identifiers
-
-extension AccountViewController {
-    
-    enum SegueIdentifier: String {
-        case authPermission = "AuthPermissionSegue"
-        case collectionList = "CollectionListSegue"
-        case customLists = "CustomListsSegue"
-    }
-    
-}
-
-// MARK: - Constants
-
-extension AccountViewController {
-    
-    struct Constants {
-        
-        static let Title = NSLocalizedString("accountTabBarTitle", comment: "")
-        static let NavigationItemTitle = NSLocalizedString("accountTitle", comment: "")
-        
+                                      didReceiveAuthorization authorized: Bool) {
+        if authorized { viewModel.signInUser() }
     }
     
 }

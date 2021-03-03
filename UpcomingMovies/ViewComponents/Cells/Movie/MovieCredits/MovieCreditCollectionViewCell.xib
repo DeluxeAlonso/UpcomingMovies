@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,46 +11,66 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="G6U-NG-ARk" customClass="MovieCreditCollectionViewCell" customModule="UpcomingMovies" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="100" height="200"/>
+            <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                <rect key="frame" x="0.0" y="0.0" width="100" height="200"/>
+                <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S92-dd-54z">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="S92-dd-54z" secondAttribute="height" multiplier="1:1.5" id="aO6-bT-Z8n"/>
-                        </constraints>
                     </imageView>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="OzY-Na-VTD">
-                        <rect key="frame" x="0.0" y="150" width="100" height="50"/>
+                    <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vBN-8C-DsX" userLabel="Overlay View">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTf-fx-Bj1">
-                                <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="h9G-Na-OHP">
+                                <rect key="frame" x="29" y="50.5" width="42" height="49"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDF-ws-OMT">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdT-lf-RRv">
+                                        <rect key="frame" x="0.0" y="28.5" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                    </stackView>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="h9G-Na-OHP" firstAttribute="centerY" secondItem="vBN-8C-DsX" secondAttribute="centerY" id="QrN-Of-pNh"/>
+                            <constraint firstItem="h9G-Na-OHP" firstAttribute="centerX" secondItem="vBN-8C-DsX" secondAttribute="centerX" id="XI0-7V-fX9"/>
+                            <constraint firstItem="h9G-Na-OHP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vBN-8C-DsX" secondAttribute="top" constant="8" id="hn7-x0-7sK"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="h9G-Na-OHP" secondAttribute="bottom" constant="8" id="mLM-tW-1c6"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="h9G-Na-OHP" secondAttribute="trailing" constant="8" id="oE6-8l-ga9"/>
+                            <constraint firstItem="h9G-Na-OHP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vBN-8C-DsX" secondAttribute="leading" constant="8" id="tl9-eg-PGr"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="S92-dd-54z" firstAttribute="top" secondItem="G6U-NG-ARk" secondAttribute="top" id="1ne-Jx-SJb"/>
-                <constraint firstAttribute="bottom" secondItem="OzY-Na-VTD" secondAttribute="bottom" id="6uC-66-BiK"/>
+                <constraint firstItem="vBN-8C-DsX" firstAttribute="leading" secondItem="S92-dd-54z" secondAttribute="leading" id="76j-rm-neT"/>
                 <constraint firstItem="S92-dd-54z" firstAttribute="leading" secondItem="G6U-NG-ARk" secondAttribute="leading" id="HDi-3W-U8W"/>
-                <constraint firstItem="OzY-Na-VTD" firstAttribute="leading" secondItem="G6U-NG-ARk" secondAttribute="leading" id="HYY-MO-6j1"/>
-                <constraint firstItem="OzY-Na-VTD" firstAttribute="top" secondItem="S92-dd-54z" secondAttribute="bottom" id="ecW-kk-QdQ"/>
-                <constraint firstAttribute="trailing" secondItem="OzY-Na-VTD" secondAttribute="trailing" id="ope-E1-ck1"/>
+                <constraint firstItem="vBN-8C-DsX" firstAttribute="trailing" secondItem="S92-dd-54z" secondAttribute="trailing" id="TG8-AN-yf2"/>
+                <constraint firstAttribute="bottom" secondItem="S92-dd-54z" secondAttribute="bottom" id="VlU-DG-poS"/>
+                <constraint firstItem="vBN-8C-DsX" firstAttribute="bottom" secondItem="S92-dd-54z" secondAttribute="bottom" id="ZL2-mg-yDE"/>
+                <constraint firstItem="vBN-8C-DsX" firstAttribute="top" secondItem="S92-dd-54z" secondAttribute="top" id="fDI-93-C1S"/>
                 <constraint firstAttribute="trailing" secondItem="S92-dd-54z" secondAttribute="trailing" id="wsO-lf-YlU"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="tHv-P6-eL5"/>
             <size key="customSize" width="100" height="200"/>
             <connections>
-                <outlet property="nameLabel" destination="RTf-fx-Bj1" id="5El-NM-6dt"/>
+                <outlet property="nameLabel" destination="aDF-ws-OMT" id="bFM-pl-DGi"/>
+                <outlet property="overlayView" destination="vBN-8C-DsX" id="v5j-SJ-SDB"/>
                 <outlet property="profileImageView" destination="S92-dd-54z" id="L0j-FA-h6T"/>
+                <outlet property="subtitleLabel" destination="hdT-lf-RRv" id="P94-nw-tno"/>
             </connections>
             <point key="canvasLocation" x="177.59999999999999" y="215.8920539730135"/>
         </collectionViewCell>

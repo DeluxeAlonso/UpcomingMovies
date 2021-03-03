@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="y3B-Xo-U8K" customClass="UpcomingMovieExpandedCollectionViewCell" customModule="UpcomingMovies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="333" height="106"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="333" height="106"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTJ-Um-KVM">
+                        <rect key="frame" x="0.0" y="0.0" width="333" height="106"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bqj-81-ruL">
+                                <rect key="frame" x="0.0" y="0.0" width="333" height="106"/>
+                            </imageView>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xfj-OO-THV" userLabel="Overlay View">
+                                <rect key="frame" x="0.0" y="0.0" width="333" height="106"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WKn-qA-IIT">
+                                <rect key="frame" x="267.5" y="16" width="49.5" height="74"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="WKn-qA-IIT" secondAttribute="height" multiplier="1:1.5" id="Nb4-Nj-awQ"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eXB-bM-2N4" userLabel="Movie Detail Stack View">
+                                <rect key="frame" x="16" y="29" width="235.5" height="48.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qA-gP-omR">
+                                        <rect key="frame" x="0.0" y="0.0" width="235.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkG-zA-2G5">
+                                        <rect key="frame" x="0.0" y="30.5" width="235.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WKn-qA-IIT" firstAttribute="leading" secondItem="eXB-bM-2N4" secondAttribute="trailing" constant="16" id="54e-ew-xbv"/>
+                            <constraint firstItem="bqj-81-ruL" firstAttribute="top" secondItem="gTJ-Um-KVM" secondAttribute="top" id="6kc-6o-ehT"/>
+                            <constraint firstItem="eXB-bM-2N4" firstAttribute="centerY" secondItem="gTJ-Um-KVM" secondAttribute="centerY" id="806-Dr-ZDt"/>
+                            <constraint firstAttribute="trailing" secondItem="WKn-qA-IIT" secondAttribute="trailing" constant="16" id="IXo-st-TGB"/>
+                            <constraint firstItem="WKn-qA-IIT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTJ-Um-KVM" secondAttribute="top" constant="16" id="MYv-Oi-iId"/>
+                            <constraint firstItem="eXB-bM-2N4" firstAttribute="leading" secondItem="gTJ-Um-KVM" secondAttribute="leading" constant="16" id="NID-Na-aEE"/>
+                            <constraint firstItem="Xfj-OO-THV" firstAttribute="top" secondItem="bqj-81-ruL" secondAttribute="top" id="TSV-zJ-5vv"/>
+                            <constraint firstItem="Xfj-OO-THV" firstAttribute="trailing" secondItem="bqj-81-ruL" secondAttribute="trailing" id="Udk-zD-yG1"/>
+                            <constraint firstAttribute="bottom" secondItem="bqj-81-ruL" secondAttribute="bottom" id="aN9-vZ-PfP"/>
+                            <constraint firstItem="Xfj-OO-THV" firstAttribute="leading" secondItem="bqj-81-ruL" secondAttribute="leading" id="cQ6-aJ-jPJ"/>
+                            <constraint firstAttribute="trailing" secondItem="bqj-81-ruL" secondAttribute="trailing" id="ebN-SN-BXV"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eXB-bM-2N4" secondAttribute="bottom" constant="16" id="gLa-Zo-jPF"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WKn-qA-IIT" secondAttribute="bottom" constant="16" id="hCw-zg-bbJ"/>
+                            <constraint firstItem="eXB-bM-2N4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTJ-Um-KVM" secondAttribute="top" constant="16" id="kVS-EI-1XH"/>
+                            <constraint firstItem="bqj-81-ruL" firstAttribute="leading" secondItem="gTJ-Um-KVM" secondAttribute="leading" id="lXE-uy-pU1"/>
+                            <constraint firstItem="Xfj-OO-THV" firstAttribute="bottom" secondItem="bqj-81-ruL" secondAttribute="bottom" id="syd-TB-GY8"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="aA5-2q-qx8"/>
+            <constraints>
+                <constraint firstItem="gTJ-Um-KVM" firstAttribute="leading" secondItem="y3B-Xo-U8K" secondAttribute="leading" id="AP4-MV-aTI"/>
+                <constraint firstAttribute="trailing" secondItem="gTJ-Um-KVM" secondAttribute="trailing" id="ASn-qk-yxq"/>
+                <constraint firstAttribute="bottom" secondItem="gTJ-Um-KVM" secondAttribute="bottom" id="O3G-ep-hq9"/>
+                <constraint firstItem="gTJ-Um-KVM" firstAttribute="top" secondItem="y3B-Xo-U8K" secondAttribute="top" id="zmO-Ag-2Wd"/>
+            </constraints>
+            <size key="customSize" width="333" height="106"/>
+            <connections>
+                <outlet property="backdropImageView" destination="bqj-81-ruL" id="wRZ-48-F3y"/>
+                <outlet property="posterImageView" destination="WKn-qA-IIT" id="fbH-Cq-Gkv"/>
+                <outlet property="releaseDateLabel" destination="XkG-zA-2G5" id="dpn-18-vbV"/>
+                <outlet property="titleLabel" destination="5qA-gP-omR" id="oWf-nv-Ptv"/>
+            </connections>
+            <point key="canvasLocation" x="364" y="119.64017991004499"/>
+        </collectionViewCell>
+    </objects>
+</document>

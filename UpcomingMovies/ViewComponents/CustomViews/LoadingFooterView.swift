@@ -17,7 +17,6 @@ class LoadingFooterView: UIView {
         activityIndicatorView.style = .whiteLarge
         activityIndicatorView.color = .darkGray
         activityIndicatorView.startAnimating()
-        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicatorView
     }()
     
@@ -34,14 +33,13 @@ class LoadingFooterView: UIView {
     
     // MARK: - Private
     
-    fileprivate func setupUI() {
+    private func setupUI() {
         setupActivityIndicatorView()
     }
     
-    fileprivate func setupActivityIndicatorView() {
+    private func setupActivityIndicatorView() {
         addSubview(activityIndicatorView)
-        NSLayoutConstraint.activate([activityIndicatorView.centerYAnchor.constraint(equalTo: centerYAnchor),
-                                     activityIndicatorView.centerXAnchor.constraint(equalTo: centerXAnchor)])
+        activityIndicatorView.centerInSuperview()
     }
     
     // MARK: - Public

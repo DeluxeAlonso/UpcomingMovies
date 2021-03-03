@@ -7,14 +7,21 @@
 //
 
 import Foundation
+import UpcomingMoviesDomain
 
-final class VisitedMovieCellViewModel {
+protocol VisitedMovieCellViewModelProtocol {
+    
+    var posterURL: URL? { get }
+    
+}
+
+final class VisitedMovieCellViewModel: VisitedMovieCellViewModelProtocol {
     
     var posterURL: URL?
     
     init(movieVisit: MovieVisit) {
         let posterPath = movieVisit.posterPath
-        posterURL = URL(string: URLConfiguration.mediaPath + posterPath)
+        posterURL = URL(string: posterPath)
     }
     
 }

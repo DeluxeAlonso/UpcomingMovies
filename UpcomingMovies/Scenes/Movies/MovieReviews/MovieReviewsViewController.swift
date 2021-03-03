@@ -7,29 +7,31 @@
 //
 
 import UIKit
+import UpcomingMoviesDomain
 
-class MovieReviewsViewController: UIViewController, Displayable, Loadable {
-    
+class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
+
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel: MovieReviewsViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    static var storyboardName = "MovieDetail"
     
-    private var dataSource: SimpleTableViewDataSource<MovieReviewCellViewModel>!
+    private var dataSource: SimpleTableViewDataSource<MovieReviewCellViewModelProtocol>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
+    private var scaleTransitioningDelegate: ScaleTransitioningDelegate!
     
-    private var displayedCellsIndexPaths = Set<IndexPath>()
-    
-    var loaderView: RadarView!
+    var viewModel: MovieReviewsViewModelProtocol?
+    weak var coordinator: MovieReviewsCoordinatorProtocol?
+
+    // MARK: - LoadingDisplayable
+
+    var loaderView: LoadingView = RadarView()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
     
     private func setupUI() {
@@ -47,6 +49,7 @@ class MovieReviewsViewController: UIViewController, Displayable, Loadable {
         guard let viewModel = viewModel else { return }
         dataSource = SimpleTableViewDataSource.make(for: viewModel.reviewCells)
         prefetchDataSource = TableViewDataSourcePrefetching(cellCount: viewModel.reviewCells.count,
+                                                            needsPrefetch: viewModel.needsPrefetch,
                                                             prefetchHandler: { [weak self] in
                                                                 self?.viewModel?.getMovieReviews()
         })
@@ -59,16 +62,16 @@ class MovieReviewsViewController: UIViewController, Displayable, Loadable {
      * Configures the tableview footer given the current state of the view.
      */
     private func configureView(withState state: SimpleViewState<Review>) {
-        hideDisplayedView()
         switch state {
         case .populated, .paging, .initial:
+            hideDisplayedPlaceholderView()
             tableView.tableFooterView = UIView()
         case .empty:
             presentEmptyView(with: "There are no reviews to show right now.")
         case .error(let error):
-            presentErrorView(with: error.description,
+            presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
-                                        self?.viewModel?.getMovieReviews()
+                                        self?.viewModel?.refreshMovieReviews()
             })
         }
     }
@@ -84,9 +87,9 @@ class MovieReviewsViewController: UIViewController, Displayable, Loadable {
                 strongSelf.reloadTableView()
             }
         })
-        viewModel?.startLoading = { [weak self] start in
+        viewModel?.startLoading.bind({[weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
-        }
+        })
         viewModel?.getMovieReviews()
     }
 
@@ -98,6 +101,10 @@ extension MovieReviewsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        // We retrieve the cell which we are going to use for our scale transition
+        guard let viewModel = viewModel else { return }
+        guard let selectedCell = tableView.cellForRow(at: indexPath) else { return }
+        coordinator?.showReviewDetail(for: viewModel.selectedReview(at: indexPath.row), transitionView: selectedCell)
     }
     
 }

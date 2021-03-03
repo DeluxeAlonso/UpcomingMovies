@@ -8,12 +8,12 @@
 
 import UIKit
 
-class MovieReviewTableViewCell: UITableViewCell {
+final class MovieReviewTableViewCell: UITableViewCell {
 
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     
-    var viewModel: MovieReviewCellViewModel? {
+    var viewModel: MovieReviewCellViewModelProtocol? {
         didSet {
             setupBindables()
         }

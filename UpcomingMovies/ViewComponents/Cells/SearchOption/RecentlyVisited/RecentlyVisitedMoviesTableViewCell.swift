@@ -15,13 +15,13 @@ protocol RecentlyVisitedMoviesTableViewCellDelegate: class {
     
 }
 
-class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
+final class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     weak var delegate: RecentlyVisitedMoviesTableViewCellDelegate?
     
-    var viewModel: RecentlyVisitedMoviesCellViewModel? {
+    var viewModel: RecentlyVisitedMoviesCellViewModelProtocol? {
         didSet {
             setupBindables()
         }
@@ -37,6 +37,7 @@ class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
     // MARK: - Private
     
     private func setupUI() {
+        backgroundColor = ColorPalette.groupedCellBackgroundColor
         setupCollectionView()
     }
     
@@ -91,7 +92,7 @@ extension RecentlyVisitedMoviesTableViewCell: UICollectionViewDelegateFlowLayout
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let posterHeight: Double = Double(contentView.frame.height) - Constants.cellHeightOffset
-        let posterWidth: Double = posterHeight / Movie.posterAspectRatio
+        let posterWidth: Double = posterHeight / UIConstants.posterAspectRatio
         return CGSize(width: posterWidth, height: posterHeight)
     }
     

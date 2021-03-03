@@ -11,21 +11,34 @@ import UIKit
 class MainTabBarController: UITabBarController {
     
     private var currentSelectedItemIndex: Int!
-    
+    private var coordinators: [Coordinator]!
+
+    // MARK: - Initializers
+
+    init(coordinators: [Coordinator]) {
+        self.coordinators = coordinators
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
+        viewControllers = coordinators.map { $0.navigationController }
     }
-    
+
     // MARK: - Public
-    
+
     func setSelectedIndex(_ index: Int) {
         selectedIndex = index
         currentSelectedItemIndex = selectedIndex
     }
-    
+
 }
 
 // MARK: - UITabBarControllerDelegate
@@ -42,18 +55,6 @@ extension MainTabBarController: UITabBarControllerDelegate {
         guard let navigationController = viewController as? UINavigationController,
             let tabBarScrollable = navigationController.topViewController as? TabBarScrollable else { return }
         tabBarScrollable.handleTabBarSelection()
-    }
-    
-}
-
-// MARK: - TabBar Items
-
-extension MainTabBarController {
-    
-    enum Items: Int {
-        case upcomingMovies
-        case searchMovies
-        case favoriteMovies
     }
     
 }

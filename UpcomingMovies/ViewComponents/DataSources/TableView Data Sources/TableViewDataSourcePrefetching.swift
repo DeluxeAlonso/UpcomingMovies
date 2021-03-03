@@ -8,29 +8,20 @@
 
 import UIKit
 
-class TableViewDataSourcePrefetching: NSObject, UITableViewDataSourcePrefetching {
+final class TableViewDataSourcePrefetching: NSObject, DataSourcePrefetching, UITableViewDataSourcePrefetching {
     
-    private var cellCount: Int
-    private let prefetchHandler: (() -> Void)
+    var cellCount: Int
+    var needsPrefetch: Bool
+    var prefetchHandler: (() -> Void)
     
-    init(cellCount: Int, prefetchHandler: @escaping (() -> Void)) {
+    init(cellCount: Int, needsPrefetch: Bool, prefetchHandler: @escaping (() -> Void)) {
         self.cellCount = cellCount
+        self.needsPrefetch = needsPrefetch
         self.prefetchHandler = prefetchHandler
     }
     
-    func updateCellCount(_ cellCount: Int) {
-        self.cellCount = cellCount
-    }
-    
-    private func isLoadingCell(for indexPath: IndexPath) -> Bool {
-        return indexPath.row >= cellCount - 1
-    }
-    
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        guard tableView.visibleCells.count > 1 else { return }
-        if indexPaths.contains(where: isLoadingCell) {
-            prefetchHandler()
-        }
+        prefetchIfNeeded(for: indexPaths)
     }
 
 }

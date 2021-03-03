@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import Kingfisher
 
-class VisitedMovieCollectionViewCell: UICollectionViewCell, Animatable {
+final class VisitedMovieCollectionViewCell: UICollectionViewCell, Animatable {
     
     @IBOutlet weak var posterImageView: UIImageView!
     
-    var viewModel: VisitedMovieCellViewModel? {
+    var viewModel: VisitedMovieCellViewModelProtocol? {
         didSet {
             setupBindables()
         }
@@ -40,8 +39,7 @@ class VisitedMovieCollectionViewCell: UICollectionViewCell, Animatable {
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
-        posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: viewModel.posterURL)
+        posterImageView.setImage(with: viewModel.posterURL)
     }
     
 }

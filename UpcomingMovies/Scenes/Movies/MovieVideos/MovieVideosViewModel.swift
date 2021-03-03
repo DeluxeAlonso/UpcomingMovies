@@ -7,18 +7,20 @@
 //
 
 import UIKit
+import UpcomingMoviesDomain
 
-final class MovieVideosViewModel {
+final class MovieVideosViewModel: MovieVideosViewModelProtocol {
     
-    let movieId: Int
-    let movieTitle: String
+    private let interactor: MovieVideosInteractorProtocol
     
-    var movieClient = MovieClient()
+    var movieId: Int
+    var movieTitle: String
+    
     let viewState: Bindable<SimpleViewState<Video>> = Bindable(.initial)
     
-    var startLoading: ((Bool) -> Void)?
+    var startLoading: Bindable<Bool> = Bindable(false)
     
-    var videoCells: [MovieVideoCellViewModel] {
+    var videoCells: [MovieVideoCellViewModelProtocol] {
         return videos.map { MovieVideoCellViewModel($0) }
     }
     
@@ -28,47 +30,44 @@ final class MovieVideosViewModel {
     
     // MARK: - Initializers
     
-    init(movieId: Int, movieTitle: String) {
+    init(movieId: Int, movieTitle: String, interactor: MovieVideosInteractorProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
+        
+        self.interactor = interactor
     }
     
     // MARK: - Public
-
-    func playVideo(at index: Int) {
-        let application = UIApplication.shared
-        let videoToPlay = videos[index]
-        guard let deepLinkURL = videoToPlay.deepLinkURL,
-            application.canOpenURL(deepLinkURL) else {
-                guard let browserURL = videoToPlay.browserURL else { return }
-                application.open(browserURL, options: [:], completionHandler: nil)
-                return
+    
+    func videoURL(at index: Int) -> URL? {
+        let video = videos[index]
+        if let url = video.deepLinkURL {
+            return url
+        } else {
+            return video.browserURL
         }
-        application.open(deepLinkURL, options: [:], completionHandler: nil)
     }
     
     // MARK: - Networking
     
-    func getMovieVideos() {
-        startLoading?(true)
-        movieClient.getMovieVideos(with: movieId) { result in
+    func getMovieVideos(showLoader: Bool = false) {
+        startLoading.value = showLoader
+        interactor.getMovieVideos(for: movieId, page: nil, completion: { result in
             switch result {
-            case .success(let videoResult):
-                guard let videoResult = videoResult else { return }
-                self.processVideoResult(videoResult)
+            case .success(let videos):
+                self.processVideosResult(videos)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
-        }
+        })
     }
     
-    private func processVideoResult(_ videoResult: VideoResult) {
-        startLoading?(false)
-        let fetchedVideos = videoResult.results
-        if fetchedVideos.isEmpty {
+    private func processVideosResult(_ videos: [Video]) {
+        startLoading.value = false
+        if videos.isEmpty {
             viewState.value = .empty
         } else {
-            viewState.value = .populated(fetchedVideos)
+            viewState.value = .populated(videos)
         }
     }
 

@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import Kingfisher
 
-class MovieTableViewCell: UITableViewCell {
+final class MovieTableViewCell: UITableViewCell {
     
     @IBOutlet weak var movieContainerView: UIView!
     @IBOutlet weak var posterImageView: UIImageView!
@@ -18,7 +17,7 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var voteAverageView: VoteAverageView!
     
-    var viewModel: MovieCellViewModel? {
+    var viewModel: MovieCellViewModelProtocol? {
         didSet {
             setupBindables()
         }
@@ -30,27 +29,15 @@ class MovieTableViewCell: UITableViewCell {
         super.prepareForReuse()
         posterImageView.image = nil
     }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupUI()
-    }
     
-    // MARK: - Private
-    
-    private func setupUI() {
-        
-    }
-
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
         nameLabel.text = viewModel.name
-        genreLabel.text = viewModel.genre
+        genreLabel.text = viewModel.genreName
         releaseDateLabel.text = viewModel.releaseDate
-        posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: viewModel.posterURL)
+        posterImageView.setImage(with: viewModel.posterURL)
         voteAverageView.voteValue = viewModel.voteAverage
     }
 

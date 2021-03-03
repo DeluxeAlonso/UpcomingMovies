@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sYn-C5-AQg" customClass="SavedMovieCollectionViewCell" customModule="UpcomingMovies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="241" height="93"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="241" height="93"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReviewProfile" translatesAutoresizingMaskIntoConstraints="NO" id="7YU-GU-Q0c" userLabel="Backdrop Image View">
+                        <rect key="frame" x="0.0" y="0.0" width="241" height="93"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </imageView>
+                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4HS-u4-vHQ" userLabel="Overlay View">
+                        <rect key="frame" x="0.0" y="0.0" width="241" height="93"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57X-UY-qGr" userLabel="Title Label">
+                        <rect key="frame" x="8" y="8" width="225" height="77"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="57X-UY-qGr" firstAttribute="leading" secondItem="sYn-C5-AQg" secondAttribute="leading" constant="8" id="1Om-ha-yt4"/>
+                <constraint firstItem="57X-UY-qGr" firstAttribute="top" secondItem="sYn-C5-AQg" secondAttribute="top" constant="8" id="3Jk-Gi-fZ1"/>
+                <constraint firstAttribute="bottom" secondItem="7YU-GU-Q0c" secondAttribute="bottom" id="Jwy-h2-q4a"/>
+                <constraint firstItem="7YU-GU-Q0c" firstAttribute="leading" secondItem="sYn-C5-AQg" secondAttribute="leading" id="LrJ-YD-BEx"/>
+                <constraint firstItem="4HS-u4-vHQ" firstAttribute="leading" secondItem="7YU-GU-Q0c" secondAttribute="leading" id="NXc-cg-LMS"/>
+                <constraint firstItem="7YU-GU-Q0c" firstAttribute="top" secondItem="sYn-C5-AQg" secondAttribute="top" id="Xb9-n2-wbX"/>
+                <constraint firstAttribute="trailing" secondItem="7YU-GU-Q0c" secondAttribute="trailing" id="aC4-l0-i89"/>
+                <constraint firstAttribute="bottom" secondItem="57X-UY-qGr" secondAttribute="bottom" constant="8" id="bzx-Ra-PBe"/>
+                <constraint firstItem="4HS-u4-vHQ" firstAttribute="top" secondItem="7YU-GU-Q0c" secondAttribute="top" id="cvi-Jq-Q1c"/>
+                <constraint firstItem="4HS-u4-vHQ" firstAttribute="trailing" secondItem="7YU-GU-Q0c" secondAttribute="trailing" id="hVF-Hd-A9x"/>
+                <constraint firstAttribute="trailing" secondItem="57X-UY-qGr" secondAttribute="trailing" constant="8" id="vSR-hw-lGz"/>
+                <constraint firstItem="4HS-u4-vHQ" firstAttribute="bottom" secondItem="7YU-GU-Q0c" secondAttribute="bottom" id="yq8-sk-Whu"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="BBt-0R-muS"/>
+            <size key="customSize" width="241" height="93"/>
+            <connections>
+                <outlet property="backdropImageView" destination="7YU-GU-Q0c" id="M62-cU-rVY"/>
+                <outlet property="titleLabel" destination="57X-UY-qGr" id="4Vd-lH-1Rb"/>
+            </connections>
+            <point key="canvasLocation" x="290.39999999999998" y="161.46926536731635"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ReviewProfile" width="33" height="33"/>
+    </resources>
+</document>

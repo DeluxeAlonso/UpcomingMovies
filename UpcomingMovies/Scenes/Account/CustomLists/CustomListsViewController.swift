@@ -7,32 +7,56 @@
 //
 
 import UIKit
+import UpcomingMoviesDomain
 
-class CustomListsViewController: UIViewController, Displayable, Loadable {
+class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var dataSource: SimpleTableViewDataSource<CustomListCellViewModel>!
+    static var storyboardName = "CustomLists"
     
-    var loaderView: RadarView!
+    private var dataSource: SimpleTableViewDataSource<CustomListCellViewModelProtocol>!
     
-    var viewModel: CustomListsViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    var viewModel: CustomListsViewModelProtocol?
+    weak var coordinator: CustomListsCoordinatorProtocol?
+
+    // MARK: - LoadingDisplayable
+
+    var loaderView: LoadingView = RadarView()
     
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
+        
+        viewModel?.getCustomLists()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let textAttributes: [NSAttributedString.Key: UIColor]
+        textAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.Label.defaultColor]
+        
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     // MARK: - Private
     
     private func setupUI() {
+        title = LocalizedStrings.customListGroupOption.localized
+        
+        setupNavigationBar()
         setupTableView()
+    }
+    
+    private func setupNavigationBar() {
+        let backBarButtonItem = UIBarButtonItem(title: "",
+                                                style: .done,
+                                                target: nil, action: nil)
+        navigationItem.backBarButtonItem = backBarButtonItem
     }
     
     private func setupTableView() {
@@ -53,16 +77,16 @@ class CustomListsViewController: UIViewController, Displayable, Loadable {
      * Configures the tableview given its current state.
      */
     private func configureView(withState state: SimpleViewState<List>) {
-        hideDisplayedView()
         switch state {
         case .populated, .paging, .initial:
+            hideDisplayedPlaceholderView()
             tableView.tableFooterView = UIView()
         case .empty:
             presentEmptyView(with: "No created lists to show")
         case .error(let error):
-            presentErrorView(with: error.description,
+            presentRetryView(with: error.localizedDescription,
                              errorHandler: { [weak self] in
-                                self?.viewModel?.getCustomLists()
+                                self?.viewModel?.refreshCustomLists()
             })
         }
     }
@@ -70,7 +94,6 @@ class CustomListsViewController: UIViewController, Displayable, Loadable {
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        title = viewModel?.title
         viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
@@ -78,10 +101,9 @@ class CustomListsViewController: UIViewController, Displayable, Loadable {
                 strongSelf.reloadTableView()
             }
         })
-        viewModel?.startLoading = { [weak self] start in
+        viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
-        }
-        viewModel?.getCustomLists()
+        })
     }
 
 }
@@ -89,5 +111,11 @@ class CustomListsViewController: UIViewController, Displayable, Loadable {
 // MARK: - UITableViewDelegate
 
 extension CustomListsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let viewModel = viewModel else { return }
+        coordinator?.showListDetail(for: viewModel.list(at: indexPath.row))
+    }
     
 }

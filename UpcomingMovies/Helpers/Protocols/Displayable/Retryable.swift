@@ -9,41 +9,39 @@
 import UIKit
 
 private struct AssociatedKeys {
-    static var errorView: ErrorPlaceholderView = ErrorPlaceholderView()
+    static var retryView: RetryPlaceHolderable?
 }
 
 protocol Retryable: class { }
 
 extension Retryable where Self: UIViewController {
     
-    private(set) var errorView: ErrorPlaceholderView {
+    private(set) var retryView: RetryPlaceHolderable? {
         get {
-            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.errorView) as? ErrorPlaceholderView else {
-                return ErrorPlaceholderView()
+            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.retryView) as? RetryPlaceHolderable else {
+                return nil
             }
             return value
         }
         set(newValue) {
-            objc_setAssociatedObject(self, &AssociatedKeys.errorView, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &AssociatedKeys.retryView, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
-    func presentErrorView(with errorMessage: String?, errorHandler: @escaping () -> Void) {
-        let isPresented = errorView.isPresented
+    func presentRetryView(with errorMessage: String?, errorHandler: @escaping () -> Void) {
+        let isPresented = retryView?.isPresented ?? false
         if isPresented {
-            errorView.stopAnimation()
+            self.retryView?.resetState()
         } else {
-            errorView = ErrorPlaceholderView.show(fromViewController: self,
-                                                  animated: true,
-                                                  completion: nil)
+            self.retryView = ErrorPlaceholderView.loadFromNib()
+            retryView?.retry = errorHandler
+            retryView?.detailText = errorMessage
+            self.retryView?.show(in: self.view, animated: true, completion: nil)
         }
-        errorView.retry = errorHandler
-        errorView.frame = self.view.bounds
-        errorView.detailText = errorMessage
     }
     
-    func hideErrorView() {
-        errorView.hide()
+    func hideRetryView() {
+        retryView?.hide(animated: true, completion: nil)
     }
     
 }

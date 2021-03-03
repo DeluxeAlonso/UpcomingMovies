@@ -1,0 +1,27 @@
+setup_travis
+
+default_platform(:ios)
+
+ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "4"
+
+platform :ios do
+
+  	lane :tests do
+  	run_tests(
+  	  workspace: "UpcomingMovies.xcworkspace",
+     	  devices: ["iPhone 8"],
+      	  scheme: "UpcomingMovies"
+    	)
+	end
+
+	lane :lint do
+	swiftlint(
+	  mode: :lint,
+	  executable: './Pods/SwiftLint/swiftlint',
+	  output_file: "swiftlint.result.json",
+	  config_file: ".swiftlint.yml",
+	  raise_if_swiftlint_error: true
+	)
+	end
+
+end

@@ -9,17 +9,17 @@
 import UIKit
 
 private struct AssociatedKeys {
-    static var emptyView: EmptyPlaceholderView = EmptyPlaceholderView()
+    static var emptyView: Placeholderable?
 }
 
 protocol Emptiable: class { }
 
 extension Emptiable where Self: UIViewController {
     
-    private(set) var emptyView: EmptyPlaceholderView {
+    private(set) var emptyView: Placeholderable? {
         get {
-            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.emptyView) as? EmptyPlaceholderView else {
-                return EmptyPlaceholderView()
+            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.emptyView) as? Placeholderable else {
+                return nil
             }
             return value
         }
@@ -29,18 +29,16 @@ extension Emptiable where Self: UIViewController {
     }
     
     func presentEmptyView(with message: String?) {
-        let isPresented = emptyView.isPresented
+        let isPresented = emptyView?.isPresented ?? false
         if !isPresented {
-            emptyView = EmptyPlaceholderView.show(fromViewController: self,
-                                                  animated: true,
-                                                  completion: nil)
+            self.emptyView = EmptyPlaceholderView.loadFromNib()
+            emptyView?.detailText = message
+            self.emptyView?.show(in: self.view, animated: true, completion: nil)
         }
-        emptyView.frame = self.view.bounds
-        emptyView.messageText = message
     }
     
     func hideEmptyView() {
-        emptyView.hide()
+        emptyView?.hide(animated: true, completion: nil)
     }
     
 }

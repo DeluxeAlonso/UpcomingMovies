@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import Kingfisher
 
-class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, UpcomingMovieCollectionViewCell {
+final class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, UpcomingMovieCollectionViewCellProtocol {
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var posterImageView: UIImageView!
     
-    var viewModel: UpcomingMovieCellViewModel? {
+    var viewModel: UpcomingMovieCellViewModelProtocol? {
         didSet {
             setupBindables()
         }
@@ -21,27 +21,39 @@ class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, UpcomingMovi
     
     // MARK: - Lifecycle
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
+        titleLabel.text = nil
         posterImageView.image = nil
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupUI()
     }
     
     // MARK: - Private
     
     private func setupUI() {
+        isAccessibilityElement = true
         
+        titleLabel.textColor = ColorPalette.whiteColor
+        titleLabel.numberOfLines = 0
+        titleLabel.font = FontHelper.semiBold(withSize: 18.0)
+        titleLabel.text = ""
     }
     
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
-        posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: viewModel.posterURL)
+        accessibilityLabel = viewModel.title
+        if let posterURL = viewModel.posterURL {
+            posterImageView.setImage(with: posterURL)
+        } else {
+            posterImageView.backgroundColor = .darkGray
+            titleLabel.text = viewModel.title
+        }
     }
     
 }

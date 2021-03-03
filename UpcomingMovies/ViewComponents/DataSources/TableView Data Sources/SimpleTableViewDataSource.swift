@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSource {
+final class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSource {
     
     typealias CellConfigurator = (ViewModel, UITableViewCell) -> Void
     
@@ -38,7 +38,7 @@ class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSource {
     
 }
 
-extension SimpleTableViewDataSource where ViewModel == MovieCellViewModel {
+extension SimpleTableViewDataSource where ViewModel == MovieCellViewModelProtocol {
     
     static func make(for cellViewModels: [ViewModel],
                      reuseIdentifier: String = MovieTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {
@@ -52,7 +52,7 @@ extension SimpleTableViewDataSource where ViewModel == MovieCellViewModel {
     
 }
 
-extension SimpleTableViewDataSource where ViewModel == MovieVideoCellViewModel {
+extension SimpleTableViewDataSource where ViewModel == MovieVideoCellViewModelProtocol {
     
     static func make(for cellViewModels: [ViewModel],
                      reuseIdentifier: String = MovieVideoTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {
@@ -66,7 +66,7 @@ extension SimpleTableViewDataSource where ViewModel == MovieVideoCellViewModel {
     
 }
 
-extension SimpleTableViewDataSource where ViewModel == MovieReviewCellViewModel {
+extension SimpleTableViewDataSource where ViewModel == MovieReviewCellViewModelProtocol {
     
     static func make(for cellViewModels: [ViewModel],
                      reuseIdentifier: String = MovieReviewTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {
@@ -80,7 +80,7 @@ extension SimpleTableViewDataSource where ViewModel == MovieReviewCellViewModel 
     
 }
 
-extension SimpleTableViewDataSource where ViewModel == CustomListCellViewModel {
+extension SimpleTableViewDataSource where ViewModel == CustomListCellViewModelProtocol {
     
     static func make(for cellViewModels: [ViewModel],
                      reuseIdentifier: String = CustomListTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {

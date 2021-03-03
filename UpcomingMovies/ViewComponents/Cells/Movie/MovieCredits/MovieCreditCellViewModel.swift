@@ -7,8 +7,17 @@
 //
 
 import Foundation
+import UpcomingMoviesDomain
 
-final class MovieCreditCellViewModel {
+protocol MovieCreditCellViewModelProtocol {
+    
+    var name: String { get }
+    var role: String { get }
+    var profileURL: URL? { get }
+    
+}
+
+final class MovieCreditCellViewModel: MovieCreditCellViewModelProtocol {
     
     let name: String
     let role: String

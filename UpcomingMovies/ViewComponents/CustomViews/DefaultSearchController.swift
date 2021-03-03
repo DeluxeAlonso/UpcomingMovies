@@ -13,7 +13,6 @@ class DefaultSearchController: UISearchController {
     override init(searchResultsController: UIViewController?) {
         super.init(searchResultsController: searchResultsController)
         hidesNavigationBarDuringPresentation = false
-        dimsBackgroundDuringPresentation = true
         searchBar.searchBarStyle = UISearchBar.Style.minimal
     }
     

@@ -7,54 +7,45 @@
 //
 
 import UIKit
-import CoreData
-import Kingfisher
+import UpcomingMoviesData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var storyboard: UIStoryboard!
+    var navigationHandler: NavigationHandlerProtocol?
     
-    private var currentTabBarSelectedIndex: MainTabBarController.Items = .upcomingMovies
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        storyboard = UIStoryboard(name: "Main", bundle: nil)
+        _ = DIContainer.shared
+        
+        navigationHandler = DIContainer.shared.resolve()
+
+        // We configure the remote data source with the API key and the read access token
+        let baseConfiguration: BaseConfiguration = PropertyListHelper.decode()
+        let remoteDataSource: RemoteDataSourceProtocol = DIContainer.shared.resolve()
+        remoteDataSource.configure(with: baseConfiguration.keys.apiKey,
+                                   readAccessToken: baseConfiguration.keys.readAccessToken)
+
+        // We handle app launch if it was triggered by a shorcut item
+        if let launchOptions = launchOptions,
+            let shortcutItem = launchOptions[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+            navigationHandler?.handleShortcutItem(shortcutItem, and: window)
+        }
+        
+        window?.rootViewController = SplashBuilder.buildViewController()
+        
         return true
     }
     
     func application(_ application: UIApplication,
                      performActionFor shortcutItem: UIApplicationShortcutItem,
                      completionHandler: @escaping (Bool) -> Void) {
-        guard let shorcut = AppShortcutItem(rawValue: shortcutItem.type) else { return }
-        switch shorcut {
-        case .searchMovies:
-            currentTabBarSelectedIndex = .searchMovies
-            guard let tabBarController = window?.rootViewController as? UITabBarController else {
-                return
-            }
-            tabBarController.selectedIndex = currentTabBarSelectedIndex.rawValue
-        }
+        navigationHandler?.handleShortcutItem(shortcutItem, and: window)
     }
-
-    // MARK: - Transitions
     
-    func initialTransition() {
-        let initialViewController = window?.rootViewController
-        let initialView = initialViewController?.view
-        guard let controller = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController else {
-            fatalError()
-        }
-        controller.setSelectedIndex(currentTabBarSelectedIndex.rawValue)
-        let controllerView = controller.view
-        UIView.transition(from: initialView!,
-                          to: controllerView!,
-                          duration: 0.5,
-                          options: [UIView.AnimationOptions.curveEaseOut, UIView.AnimationOptions.transitionCrossDissolve],
-                          completion: { _ in
-                            self.window?.rootViewController = controller
-        })
-        UIView.commitAnimations()
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        navigationHandler?.handleUrlOpeningNavigation(for: url, and: window)
+        return true
     }
-
+    
 }

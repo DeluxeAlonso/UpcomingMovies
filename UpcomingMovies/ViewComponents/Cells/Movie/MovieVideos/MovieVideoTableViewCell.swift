@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import Kingfisher
 
-class MovieVideoTableViewCell: UITableViewCell {
+final class MovieVideoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var previewImageView: UIImageView!
     
-    var viewModel: MovieVideoCellViewModel? {
+    var viewModel: MovieVideoCellViewModelProtocol? {
         didSet {
             setupBindables()
         }
@@ -44,8 +43,7 @@ class MovieVideoTableViewCell: UITableViewCell {
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
         nameLabel.text = viewModel.name
-        previewImageView.kf.indicatorType = .activity
-        previewImageView.kf.setImage(with: viewModel.thumbnailURL)
+        previewImageView.setImage(with: viewModel.thumbnailURL)
     }
 
 }

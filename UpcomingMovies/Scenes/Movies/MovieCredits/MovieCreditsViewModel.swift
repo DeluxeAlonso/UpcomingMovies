@@ -7,151 +7,95 @@
 //
 
 import Foundation
+import UpcomingMoviesDomain
 
-final class MovieCreditsViewModel {
+final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     
     private let movieId: Int
     let movieTitle: String
     
-    private let movieClient = MovieClient()
+    private let interactor: MovieCreditsInteractorProtocol
+    private var factory: MovieCreditsFactoryProtocol
     
-    var sections: [MovieCreditsCollapsibleSection] =
-        [MovieCreditsCollapsibleSection(type: .cast, opened: true),
-         MovieCreditsCollapsibleSection(type: .crew, opened: false)]
-    
-    var viewState: Bindable<ViewState> = Bindable(.initial)
-    var startLoading: ((Bool) -> Void)?
-    
-    var castCells: [MovieCreditCellViewModel] {
-        return viewState.value.currentCast.map { MovieCreditCellViewModel(cast: $0) }
-    }
-    
-    var crewCells: [MovieCreditCellViewModel] {
-        return viewState.value.currentCrew.map { MovieCreditCellViewModel(crew: $0) }
-    }
+    var viewState: Bindable<MovieCreditsViewState> = Bindable(.initial)
+    var didToggleSection: Bindable<Int> = Bindable(0)
+    var startLoading: Bindable<Bool> = Bindable(false)
     
     // MARK: - Initializers
     
-    init(movieId: Int, movieTitle: String) {
+    init(movieId: Int, movieTitle: String,
+         interactor: MovieCreditsInteractorProtocol,
+         factory: MovieCreditsFactoryProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
+
+        self.interactor = interactor
+        self.factory = factory
     }
     
     // MARK: - Public
     
-    func rowCount(for section: Int) -> Int {
-        let section = sections[section]
+    func numberOfSections() -> Int {
+        return factory.sections.count
+    }
+    
+    func numberOfItems(for section: Int) -> Int {
+        let section = factory.sections[section]
         guard section.opened else { return 0 }
         switch section.type {
         case .cast:
-            return castCells.count
+            return viewState.value.currentCast.count
         case .crew:
-            return crewCells.count
+            return viewState.value.currentCrew.count
         }
     }
     
-    func credit(for section: Int, and index: Int) -> MovieCreditCellViewModel {
-        switch sections[section].type {
+    func creditModel(for section: Int, and index: Int) -> MovieCreditCellViewModelProtocol {
+        switch factory.sections[section].type {
         case .cast:
-            return castCells[index]
+            let cast = viewState.value.currentCast[index]
+            return MovieCreditCellViewModel(cast: cast)
         case .crew:
-            return crewCells[index]
+            let crew = viewState.value.currentCrew[index]
+            return MovieCreditCellViewModel(crew: crew)
         }
     }
     
     func headerModel(for index: Int) -> CollapsibleHeaderViewModel {
-        let section = sections[index]
+        let section = factory.sections[index]
         return CollapsibleHeaderViewModel(opened: section.opened,
                                           section: index,
                                           title: section.type.title)
     }
     
-    func toggleSection(_ section: Int) -> Bool {
-        sections[section].opened = !sections[section].opened
-        return sections[section].opened
+    func toggleSection(_ section: Int) {
+        factory.sections[section].opened.toggle()
+        didToggleSection.value = section
     }
     
     // MARK: - Networking
     
-    func getMovieCredits() {
-        startLoading?(true)
-        movieClient.getMovieCredits(with: movieId) { result in
+    func getMovieCredits(showLoader: Bool = false) {
+        startLoading.value = showLoader
+        interactor.getMovieCredits(for: movieId, page: nil, completion: { result in
+            self.startLoading.value = false
             switch result {
-            case .success(let creditResult):
-                guard let creditResult = creditResult else { return }
-                self.processCreditResult(creditResult)
+            case .success(let movieCredits):
+                self.viewState.value = self.processResult(movieCredits)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
-        }
+        })
     }
     
-    private func processCreditResult(_ creditResult: CreditResult) {
-        startLoading?(false)
-        let fetchedCast = creditResult.cast
-        let fetchedCrew = creditResult.crew
+    private func processResult(_ movieCredits: MovieCredits) -> MovieCreditsViewState {
+        let fetchedCast = movieCredits.cast
+        let fetchedCrew = movieCredits.crew
         if fetchedCast.isEmpty && fetchedCrew.isEmpty {
-            viewState.value = .empty
+           return .empty
         } else {
-            viewState.value = .populated(fetchedCast, fetchedCrew)
+            return .populated(fetchedCast, fetchedCrew)
         }
-    }
-    
-}
-
-// MARK: - View sections
-
-extension MovieCreditsViewModel {
-    
-    struct MovieCreditsCollapsibleSection {
-        let type: MovieCreditsViewSection
-        var opened: Bool
-    }
-    
-    enum MovieCreditsViewSection {
-        case cast, crew
-        
-        var title: String {
-            switch self {
-            case .cast:
-                return "Cast"
-            case .crew:
-                return "Crew"
-            }
-        }
-        
-    }
-    
-}
-
-// MARK: - View states
-
-extension MovieCreditsViewModel {
-    
-    enum ViewState {
-        case initial
-        case empty
-        case populated([Cast], [Crew])
-        case error(Error)
-        
-        var currentCast: [Cast] {
-            switch self {
-            case .populated(let cast, _):
-                return cast
-            case .initial, .empty, .error:
-                return []
-            }
-        }
-        
-        var currentCrew: [Crew] {
-            switch self {
-            case .populated(_, let crew):
-                return crew
-            case .initial, .empty, .error:
-                return []
-            }
-        }
-        
     }
     
 }

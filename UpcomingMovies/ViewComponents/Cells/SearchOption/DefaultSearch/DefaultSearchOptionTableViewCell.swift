@@ -8,9 +8,9 @@
 
 import UIKit
 
-class DefaultSearchOptionTableViewCell: UITableViewCell {
+final class DefaultSearchOptionTableViewCell: UITableViewCell {
     
-    var viewModel: DefaultSearchOptionCellViewModel? {
+    var viewModel: DefaultSearchOptionCellViewModelProtocol? {
         didSet {
             setupBindables()
         }

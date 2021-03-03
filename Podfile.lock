@@ -1,0 +1,78 @@
+PODS:
+  - CollectionViewSlantedLayout (3.1.1)
+  - CoreDataInfrastructure (0.0.1):
+    - UpcomingMoviesData
+    - UpcomingMoviesDomain
+  - CoreDataInfrastructure/CoreDataInfrastructureTests (0.0.1):
+    - UpcomingMoviesData
+    - UpcomingMoviesDomain
+  - KeychainSwift (19.0.0)
+  - Kingfisher (5.15.7):
+    - Kingfisher/Core (= 5.15.7)
+  - Kingfisher/Core (5.15.7)
+  - Kingfisher/SwiftUI (5.15.7):
+    - Kingfisher/Core
+  - NetworkInfrastructure (0.0.1):
+    - KeychainSwift (~> 19.0)
+    - UpcomingMoviesData
+    - UpcomingMoviesDomain
+  - NetworkInfrastructure/NetworkInfrastructureTests (0.0.1):
+    - KeychainSwift (~> 19.0)
+    - UpcomingMoviesData
+    - UpcomingMoviesDomain
+  - SwiftLint (0.41.0)
+  - Swinject (2.7.1)
+  - UpcomingMoviesData (0.0.1):
+    - UpcomingMoviesDomain
+  - UpcomingMoviesData/UpcomingMoviesDataTests (0.0.1):
+    - UpcomingMoviesDomain
+  - UpcomingMoviesDomain (0.0.1)
+  - UpcomingMoviesDomain/UpcomingMoviesDomainTests (0.0.1)
+
+DEPENDENCIES:
+  - CollectionViewSlantedLayout (~> 3.1)
+  - CoreDataInfrastructure (from `CoreDataInfrastructure/`)
+  - CoreDataInfrastructure/CoreDataInfrastructureTests (from `CoreDataInfrastructure/`)
+  - Kingfisher
+  - Kingfisher/SwiftUI
+  - NetworkInfrastructure (from `NetworkInfrastructure/`)
+  - NetworkInfrastructure/NetworkInfrastructureTests (from `NetworkInfrastructure/`)
+  - SwiftLint
+  - Swinject
+  - UpcomingMoviesData (from `UpcomingMoviesData/`)
+  - UpcomingMoviesData/UpcomingMoviesDataTests (from `UpcomingMoviesData/`)
+  - UpcomingMoviesDomain (from `UpcomingMoviesDomain/`)
+  - UpcomingMoviesDomain/UpcomingMoviesDomainTests (from `UpcomingMoviesDomain/`)
+
+SPEC REPOS:
+  trunk:
+    - CollectionViewSlantedLayout
+    - KeychainSwift
+    - Kingfisher
+    - SwiftLint
+    - Swinject
+
+EXTERNAL SOURCES:
+  CoreDataInfrastructure:
+    :path: CoreDataInfrastructure/
+  NetworkInfrastructure:
+    :path: NetworkInfrastructure/
+  UpcomingMoviesData:
+    :path: UpcomingMoviesData/
+  UpcomingMoviesDomain:
+    :path: UpcomingMoviesDomain/
+
+SPEC CHECKSUMS:
+  CollectionViewSlantedLayout: 24397455acd2461960bc45d394e0ef99c17d03ce
+  CoreDataInfrastructure: d204f682e1717de4a6a3e22bce0d3d33a17ff8bd
+  KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
+  Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
+  NetworkInfrastructure: 25782d4fe14870704459937a601a6e6009d8b0cf
+  SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
+  Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
+  UpcomingMoviesData: 381170c360ec5f7a64bcd48065930359cda1ab21
+  UpcomingMoviesDomain: 878c2af5d4c2c561f5eba792944af37a81acf363
+
+PODFILE CHECKSUM: bc9fbe3c47d816da2e7ed3842268e87240d0f385
+
+COCOAPODS: 1.9.3

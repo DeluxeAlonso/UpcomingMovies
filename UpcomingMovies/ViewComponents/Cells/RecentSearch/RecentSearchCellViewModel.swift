@@ -8,9 +8,15 @@
 
 import Foundation
 
-final class RecentSearchCellViewModel {
+protocol RecentSearchCellViewModelProtocol {
     
-    var searchText: String
+    var searchText: String { get }
+    
+}
+
+final class RecentSearchCellViewModel: RecentSearchCellViewModelProtocol {
+    
+    let searchText: String
     
     init(searchText: String) {
         self.searchText = searchText

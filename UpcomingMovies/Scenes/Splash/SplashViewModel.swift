@@ -7,33 +7,69 @@
 //
 
 import Foundation
-import CoreData
+import UpcomingMoviesDomain
 
-final class SplashViewModel {
+final class SplashViewModel: SplashViewModelProtocol {
+
+    // MARK: - Dependencies
     
-    private let genreClient = GenreClient()
+    private let interactor: SplashInteractorProtocol
+    private let genreHandler: GenreHandlerProtocol
+    private let configurationHandler: ConfigurationHandlerProtocol
+
+    // MARK: - Properties
     
-    var genresFetched: (() -> Void)?
+    private var dispatchGroup: DispatchGroup!
     
-    private var managedObjectContext: NSManagedObjectContext!
-    private var genreStore: PersistenceStore<Genre>!
+    var initialDownloadsEnded: (() -> Void)?
+
+    // MARK: - Initializers
     
-    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
-        self.managedObjectContext = managedObjectContext
-        setupStores()
+    init(interactor: SplashInteractorProtocol,
+         genreHandler: GenreHandlerProtocol,
+         configurationHandler: ConfigurationHandlerProtocol) {
+        self.interactor = interactor
+        self.genreHandler = genreHandler
+        self.configurationHandler = configurationHandler
     }
+
+    // MARK: - SplashViewModelProtocol
     
-    private func setupStores() {
-        genreStore = PersistenceStore(managedObjectContext)
-    }
-    
-    /**
-     * Fetch all the movie genres and save them in the AppManager Singleton.
-     */
-    func getMovieGenres() {
-        genreClient.getAllGenres(context: managedObjectContext) { _ in
-            self.genresFetched?()
+    func startInitialDownloads() {
+        self.dispatchGroup = DispatchGroup()
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.getAppConfiguration()
+            self.getMovieGenres()
+            
+            self.dispatchGroup.wait()
+            DispatchQueue.main.async {
+                self.initialDownloadsEnded?()
+            }
         }
     }
 
+    // MARK: - Private
+
+    /**
+    * Fetch API configurations.
+    */
+    private func getAppConfiguration() {
+        dispatchGroup.enter()
+        interactor.getAppConfiguration { [weak self] result in
+            _ = result.map { self?.configurationHandler.setConfiguration($0) }
+            self?.dispatchGroup.leave()
+        }
+    }
+    
+    /**
+     * Fetch all the movie genres and save them locally.
+     */
+    private func getMovieGenres() {
+        dispatchGroup.enter()
+        interactor.getAllGenres { [weak self] result in
+            _ = result.map { self?.genreHandler.setGenres($0) }
+            self?.dispatchGroup.leave()
+        }
+    }
+    
 }

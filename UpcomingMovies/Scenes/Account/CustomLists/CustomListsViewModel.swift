@@ -7,23 +7,18 @@
 //
 
 import Foundation
-import CoreData
+import UpcomingMoviesDomain
 
-final class CustomListsViewModel {
+final class CustomListsViewModel: CustomListsViewModelProtocol {
+
+    // MARK: - Dependencies
     
-    private let managedObjectContext: NSManagedObjectContext
-    private let groupOption: ProfileGroupOption
-    
-    private let accountClient = AccountClient()
-    
-    private let userCredentials = AuthenticationManager.shared.userCredentials()
-    
-    let title: String?
+    private let interactor: CustomListsInteractorProtocol
     
     // MARK: - Reactive properties
     
-    var startLoading: ((Bool) -> Void)?
-    var viewState: Bindable<SimpleViewState<List>> = Bindable(.initial)
+    private (set) var startLoading: Bindable<Bool> = Bindable(false)
+    private (set) var viewState: Bindable<SimpleViewState<List>> = Bindable(.initial)
     
     // MARK: - Computed properties
     
@@ -31,50 +26,56 @@ final class CustomListsViewModel {
         return viewState.value.currentEntities
     }
     
-    var listCells: [CustomListCellViewModel] {
+    var listCells: [CustomListCellViewModelProtocol] {
         return lists.map { CustomListCellViewModel($0) }
     }
     
     // MARK: - Initializers
     
-    init(_ managedObjectContext: NSManagedObjectContext, groupOption: ProfileGroupOption) {
-        self.managedObjectContext = managedObjectContext
-        self.groupOption = groupOption
-        self.title = groupOption.title
+    init(interactor: CustomListsInteractorProtocol) {
+        self.interactor = interactor
     }
     
-    // MARK: - Networking
+    // MARK: - CustomListsViewModelProtocol
+    
+    func list(at index: Int) -> List {
+        return lists[index]
+    }
     
     func getCustomLists() {
-        guard let credentials = userCredentials else { fatalError() }
-        startLoading?(true)
-        accountClient.getCustomLists(page: viewState.value.currentPage,
-                                      groupOption: groupOption,
-                                      sessionId: credentials.sessionId,
-                                      accountId: credentials.accountId) { result in
+        let showLoader = viewState.value.isInitialPage
+        fetchCustomLists(currentPage: viewState.value.currentPage, showLoader: showLoader)
+    }
+    
+    func refreshCustomLists() {
+        fetchCustomLists(currentPage: 1, showLoader: false)
+    }
+
+    // MARK: - Private
+    
+    private func fetchCustomLists(currentPage: Int, showLoader: Bool) {
+        startLoading.value = showLoader
+        interactor.getCustomLists(page: currentPage, completion: { result in
+            self.startLoading.value = false
             switch result {
-            case .success(let listResult):
-                guard let listResult = listResult else { return }
-                self.processListResult(listResult)
+            case .success(let lists):
+                let currentPage = self.viewState.value.currentPage
+                self.viewState.value = self.processResult(lists,
+                                                          currentPage: currentPage,
+                                                          currentLists: self.lists)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
-        }
+        })
     }
     
-    private func processListResult(_ listResult: ListResult) {
-        startLoading?(false)
-        var allLists = listResult.currentPage == 1 ? [] : viewState.value.currentEntities
-        allLists.append(contentsOf: listResult.results)
-        guard !allLists.isEmpty else {
-            viewState.value = .empty
-            return
-        }
-        if listResult.hasMorePages {
-            viewState.value = .paging(allLists, next: listResult.nextPage)
-        } else {
-            viewState.value = .populated(allLists)
-        }
+    private func processResult(_ lists: [List], currentPage: Int,
+                               currentLists: [List]) -> SimpleViewState<List> {
+        var allLists = currentPage == 1 ? [] : currentLists
+        allLists.append(contentsOf: lists)
+        guard !allLists.isEmpty else { return .empty }
+        
+        return lists.isEmpty ? .populated(allLists) : .paging(allLists, next: currentPage + 1)
     }
     
 }

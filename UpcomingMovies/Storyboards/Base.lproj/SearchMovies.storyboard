@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search-->
+        <scene sceneID="UzA-XT-ygR">
+            <objects>
+                <viewController storyboardIdentifier="SearchMoviesViewController" id="lOm-30-8lP" customClass="SearchMoviesViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E9m-7H-qwO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LhR-s0-Tff">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="LhR-s0-Tff" firstAttribute="leading" secondItem="E9m-7H-qwO" secondAttribute="leading" id="4hB-PN-y5z"/>
+                            <constraint firstAttribute="trailing" secondItem="LhR-s0-Tff" secondAttribute="trailing" id="HZt-g6-BAk"/>
+                            <constraint firstItem="LhR-s0-Tff" firstAttribute="top" secondItem="3dg-4W-SQK" secondAttribute="top" id="TXD-Nj-MWl"/>
+                            <constraint firstItem="3dg-4W-SQK" firstAttribute="bottom" secondItem="LhR-s0-Tff" secondAttribute="bottom" id="ySh-t2-JGV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3dg-4W-SQK"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search" id="uk2-fb-tQf">
+                        <barButtonItem key="backBarButtonItem" title=" " id="8ZX-kp-9wX"/>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="containerView" destination="LhR-s0-Tff" id="J0j-Tv-hTg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mhw-R1-a3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1006" y="-564"/>
+        </scene>
+        <!--Search Options View Controller-->
+        <scene sceneID="B4z-0t-kzA">
+            <objects>
+                <tableViewController storyboardIdentifier="SearchOptionsViewController" id="2gm-qj-p6l" customClass="SearchOptionsViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="gCe-Xq-zQs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="2gm-qj-p6l" id="SvP-Wh-bqT"/>
+                            <outlet property="delegate" destination="2gm-qj-p6l" id="yPO-YU-cxC"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E75-oG-SmB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1006" y="133"/>
+        </scene>
+    </scenes>
+</document>

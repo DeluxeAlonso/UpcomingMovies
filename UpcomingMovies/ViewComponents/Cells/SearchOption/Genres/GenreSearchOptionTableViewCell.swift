@@ -8,11 +8,11 @@
 
 import UIKit
 
-class GenreSearchOptionTableViewCell: UITableViewCell {
+final class GenreSearchOptionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     
-    var viewModel: GenreSearchOptionCellViewModel? {
+    var viewModel: GenreSearchOptionCellViewModelProtocol? {
         didSet {
             setupBindables()
         }

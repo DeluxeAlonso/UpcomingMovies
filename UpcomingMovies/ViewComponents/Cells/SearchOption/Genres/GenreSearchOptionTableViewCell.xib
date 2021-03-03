@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,11 +13,12 @@
             <rect key="frame" x="0.0" y="0.0" width="374" height="76"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Jx-vN-KSE" id="hKR-rw-ma0">
-                <rect key="frame" x="0.0" y="0.0" width="374" height="75.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="374" height="76"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B27-Cg-rCl">
-                        <rect key="frame" x="16" y="19" width="322" height="38"/>
+                        <rect key="frame" x="15" y="15" width="323" height="46"/>
+                        <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -34,10 +33,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="sci-cz-qiQ" secondAttribute="trailing" constant="8" id="6Vx-Q8-CfA"/>
-                    <constraint firstItem="B27-Cg-rCl" firstAttribute="leading" secondItem="hKR-rw-ma0" secondAttribute="leading" constant="16" id="Dfc-3H-bya"/>
-                    <constraint firstItem="B27-Cg-rCl" firstAttribute="top" secondItem="hKR-rw-ma0" secondAttribute="topMargin" constant="8" id="SGo-up-70G"/>
+                    <constraint firstItem="B27-Cg-rCl" firstAttribute="leading" secondItem="hKR-rw-ma0" secondAttribute="leadingMargin" id="Dfc-3H-bya"/>
+                    <constraint firstItem="B27-Cg-rCl" firstAttribute="top" secondItem="hKR-rw-ma0" secondAttribute="topMargin" constant="4" id="SGo-up-70G"/>
                     <constraint firstItem="sci-cz-qiQ" firstAttribute="leading" secondItem="B27-Cg-rCl" secondAttribute="trailing" constant="8" id="dTM-b8-ipv"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="B27-Cg-rCl" secondAttribute="bottom" constant="8" id="ftR-lD-3ae"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="B27-Cg-rCl" secondAttribute="bottom" constant="4" id="ftR-lD-3ae"/>
                     <constraint firstItem="sci-cz-qiQ" firstAttribute="centerY" secondItem="hKR-rw-ma0" secondAttribute="centerY" id="pvV-Du-fc1"/>
                 </constraints>
             </tableViewCellContentView>
@@ -48,6 +47,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="RightArrow" width="181.89472961425781" height="181.89472961425781"/>
+        <image name="RightArrow" width="24" height="24"/>
     </resources>
 </document>

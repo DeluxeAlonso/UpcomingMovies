@@ -7,88 +7,56 @@
 //
 
 import Foundation
-import CoreData
+import UpcomingMoviesDomain
 
-final class AccountViewModel {
+final class AccountViewModel: AccountViewModelProtocol {
     
-    private var managedObjectContext: NSManagedObjectContext
+    private let interactor: AccountInteractorProtocol
     
-    private let authClient = AuthClient()
-    private let userClient = AccountClient()
-    private var requestToken: String?
-    
-    var showAuthPermission: (() -> Void)?
+    var showAuthPermission: Bindable<URL?> = Bindable(nil)
     var didSignIn: (() -> Void)?
+    var didReceiveError: (() -> Void)?
     
     // MARK: - Initializers
     
-    init(managedObjectContext: NSManagedObjectContext = PersistenceManager.shared.mainContext) {
-        self.managedObjectContext = managedObjectContext
+    init(interactor: AccountInteractorProtocol) {
+        self.interactor = interactor
     }
     
-    // MARK: - Authentication
+    // MARK: - AccountViewModelProtocol
     
-    func getRequestToken() {
-        authClient.getRequestToken { result in
+    func startAuthorizationProcess() {
+        interactor.getAuthPermissionURL { result in
             switch result {
-            case .success(let requestToken):
-                self.requestToken = requestToken.token
-                self.showAuthPermission?()
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .success(let url):
+                self.showAuthPermission.value = url
+            case .failure:
+                self.didReceiveError?()
             }
         }
     }
     
-    func createSessionId() {
-        guard let requestToken = requestToken else { return }
-        authClient.createSessionId(with: requestToken) { result in
+    func signInUser() {
+        interactor.signInUser { result in
             switch result {
-            case .success(let sessionResult):
-                guard let sessionId = sessionResult.sessionId else { return }
-                self.getAccountDetails(sessionId)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    private func getAccountDetails(_ sessionId: String) {
-        userClient.getAccountDetail(managedObjectContext, with: sessionId) { result in
-            switch result {
-            case .success(let user):
-                AuthenticationManager.shared.saveCurrentUser(sessionId,
-                                                             accountId: user.id)
+            case .success:
                 self.didSignIn?()
-            case .failure(let error):
-                print(error.description)
+            case .failure:
+                self.didReceiveError?()
             }
         }
     }
     
-    // MARK: - View model building
-    
-    func buildAuthPermissionViewModel() -> AuthPermissionViewModel? {
-        guard let requestToken = requestToken else { return nil }
-        return AuthPermissionViewModel(requestToken: requestToken)
+    func signOutCurrentUser() {
+        interactor.signOutUser()
     }
     
-    func buildProfileViewModel() -> ProfileViewModel {
-        let currentUser = AuthenticationManager.shared.currentUser()
-        let options = ProfileOptions(collectionOptions: [.favorites, .watchlist],
-                                     groupOptions: [.customLists],
-                                     configurationOptions: [])
-        return ProfileViewModel(managedObjectContext, userAccount: currentUser, options: options)
+    func isUserSignedIn() -> Bool {
+        return currentUser() != nil
+    }
+    
+    func currentUser() -> User? {
+        return interactor.currentUser()
     }
 
-    func buildCollectionListViewModel(_ option: ProfileCollectionOption) -> CollectionListViewModel {
-        return CollectionListViewModel(managedObjectContext: managedObjectContext,
-                                              collectionOption: option)
-    }
-    
-    func buildCrearedListsViewModel(_ group: ProfileGroupOption) -> CustomListsViewModel {
-        return CustomListsViewModel(managedObjectContext,
-                                            groupOption: group)
-    }
-    
 }

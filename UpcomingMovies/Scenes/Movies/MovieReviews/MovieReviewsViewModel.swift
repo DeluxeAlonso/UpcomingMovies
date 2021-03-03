@@ -7,70 +7,80 @@
 //
 
 import Foundation
+import UpcomingMoviesDomain
 
-final class MovieReviewsViewModel {
+final class MovieReviewsViewModel: MovieReviewsViewModelProtocol {
     
-    let movieId: Int
-    let movieTitle: String
+    private var movieId: Int
+    var movieTitle: String
     
-    var movieClient = MovieClient()
+    private let interactor: MovieReviewsInteractorProtocol
+    
     let viewState: Bindable<SimpleViewState<Review>> = Bindable(.initial)
     
-    var startLoading: ((Bool) -> Void)?
-    
-    var reviewCells: [MovieReviewCellViewModel] {
-        return reviews.map { MovieReviewCellViewModel($0) }
-    }
+    var startLoading: Bindable<Bool> = Bindable(false)
     
     private var reviews: [Review] {
         return viewState.value.currentEntities
     }
     
-    // MARK: - Initializers
-    
-    init(movieId: Int, movieTitle: String) {
-        self.movieId = movieId
-        self.movieTitle = movieTitle
+    var reviewCells: [MovieReviewCellViewModelProtocol] {
+        let reviews = viewState.value.currentEntities
+        return reviews.map { MovieReviewCellViewModel($0) }
     }
     
-    func shouldPrefetch() -> Bool {
-        switch viewState.value {
-        case .paging:
-            return true
-        case .empty, .populated, .error, .initial:
-            return false
-        }
+    var needsPrefetch: Bool {
+        return viewState.value.needsPrefetch
+    }
+    
+    // MARK: - Initializers
+    
+    init(movieId: Int, movieTitle: String, interactor: MovieReviewsInteractorProtocol) {
+        self.movieId = movieId
+        self.movieTitle = movieTitle
+        
+        self.interactor = interactor
+    }
+    
+    // MARK: - Public
+    
+    func selectedReview(at index: Int) -> Review {
+        return reviews[index]
     }
     
     // MARK: - Networking
     
     func getMovieReviews() {
-        startLoading?(true)
-        movieClient.getMovieReviews(page: viewState.value.currentPage, with: movieId) { result in
+        let showLoader = viewState.value.isInitialPage
+        fetchMovieReviews(currentPage: viewState.value.currentPage, showLoader: showLoader)
+    }
+    
+    func refreshMovieReviews() {
+        fetchMovieReviews(currentPage: 1, showLoader: false)
+    }
+    
+    private func fetchMovieReviews(currentPage: Int, showLoader: Bool = false) {
+        startLoading.value = showLoader
+        interactor.getMovieReviews(for: movieId, page: currentPage, completion: { result in
+            self.startLoading.value = false
             switch result {
-            case .success(let reviewResult):
-                guard let reviewResult = reviewResult else { return }
-                self.processReviewResult(reviewResult)
+            case .success(let reviews):
+                self.viewState.value = self.processResult(reviews,
+                                                          currentPage: currentPage,
+                                                          currentReviews: self.reviews)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
-        }
+        })
     }
     
-    private func processReviewResult(_ reviewResult: ReviewResult) {
-        startLoading?(false)
-        let fetchedReviews = reviewResult.results
-        var allReviews = reviewResult.currentPage == 1 ? [] : viewState.value.currentEntities
-        allReviews.append(contentsOf: fetchedReviews)
-        guard !allReviews.isEmpty else {
-            viewState.value = .empty
-            return
-        }
-        if reviewResult.hasMorePages {
-            viewState.value = .paging(allReviews, next: reviewResult.nextPage)
-        } else {
-            viewState.value = .populated(allReviews)
-        }
+    private func processResult(_ reviews: [Review], currentPage: Int,
+                               currentReviews: [Review]) -> SimpleViewState<Review> {
+        var allReviews = currentPage == 1 ? [] : currentReviews
+        allReviews.append(contentsOf: reviews)
+        guard !allReviews.isEmpty else { return .empty }
+        
+        return reviews.isEmpty ? .populated(allReviews) : .paging(allReviews, next: currentPage + 1)
     }
     
 }

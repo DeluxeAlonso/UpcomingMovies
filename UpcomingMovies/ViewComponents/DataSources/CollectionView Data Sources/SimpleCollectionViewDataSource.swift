@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SimpleCollectionViewDataSource<ViewModel>: NSObject, UICollectionViewDataSource {
+final class SimpleCollectionViewDataSource<ViewModel>: NSObject, UICollectionViewDataSource {
     
     typealias CellConfigurator = (ViewModel, UICollectionViewCell) -> Void
     
@@ -40,14 +40,14 @@ class SimpleCollectionViewDataSource<ViewModel>: NSObject, UICollectionViewDataS
 
 }
 
-extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellViewModel {
+extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellViewModelProtocol {
     
-    static func make(for cellViewModels: [UpcomingMovieCellViewModel],
+    static func make(for cellViewModels: [ViewModel],
                      presentationMode: UpcomingMoviesViewController.PresentationMode) -> SimpleCollectionViewDataSource {
         return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
                                               reuseIdentifier: presentationMode.cellIdentifier,
                                               cellConfigurator: { (viewModel, cell) in
-                                                var cell = cell as! UpcomingMovieCollectionViewCell
+                                                var cell = cell as! UpcomingMovieCollectionViewCellProtocol
                                                 cell.viewModel = viewModel
         })
     }
@@ -68,14 +68,14 @@ extension SimpleCollectionViewDataSource where ViewModel == MovieCreditCellViewM
     
 }
 
-extension SimpleCollectionViewDataSource where ViewModel == ProfileMovieCellViewModel {
+extension SimpleCollectionViewDataSource where ViewModel == SavedMovieCellViewModelProtocol {
     
-    static func make(for cellViewModels: [ProfileMovieCellViewModel],
-                     reuseIdentifier: String = ProfileMovieCollectionViewCell.dequeuIdentifier) -> SimpleCollectionViewDataSource {
+    static func make(for cellViewModels: [ViewModel],
+                     reuseIdentifier: String = SavedMovieCollectionViewCell.dequeuIdentifier) -> SimpleCollectionViewDataSource {
         return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
                                               reuseIdentifier: reuseIdentifier,
                                               cellConfigurator: { (viewModel, cell) in
-                                                let cell = cell as! ProfileMovieCollectionViewCell
+                                                let cell = cell as! SavedMovieCollectionViewCell
                                                 cell.viewModel = viewModel
         })
     }

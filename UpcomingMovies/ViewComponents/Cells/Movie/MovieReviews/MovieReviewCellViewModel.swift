@@ -7,8 +7,16 @@
 //
 
 import Foundation
+import UpcomingMoviesDomain
 
-final class MovieReviewCellViewModel {
+protocol MovieReviewCellViewModelProtocol {
+    
+    var authorName: String { get }
+    var content: String { get }
+    
+}
+
+final class MovieReviewCellViewModel: MovieReviewCellViewModelProtocol {
     
     let authorName: String
     let content: String

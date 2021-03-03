@@ -8,21 +8,29 @@
 
 import UIKit
 
-class SplashViewController: UIViewController {
+class SplashViewController: UIViewController, Storyboarded {
     
-    private var viewModel = SplashViewModel()
+    static var storyboardName: String = "Main"
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var viewModel: SplashViewModelProtocol?
+
+    // MARK: - Lifecycle
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // We can only get the window and scene of this view controller
+        // only after it has been added to the window hierarchy
         setupBindables()
-        viewModel.getMovieGenres()
+        viewModel?.startInitialDownloads()
     }
 
     // MARK: - Reactive Behaviour
     
     private func setupBindables() {
-        viewModel.genresFetched = { [weak self] in
-            self?.appDelegate?.initialTransition()
+        viewModel?.initialDownloadsEnded = { [weak self] in
+            guard let strongSelf = self else { return }
+            let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
+            navigationHandler.initialTransition(from: strongSelf.view.window)
         }
     }
 

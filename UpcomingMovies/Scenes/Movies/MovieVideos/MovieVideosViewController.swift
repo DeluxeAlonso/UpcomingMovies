@@ -7,27 +7,30 @@
 //
 
 import UIKit
+import UpcomingMoviesDomain
 
-class MovieVideosViewController: UIViewController, Displayable, Loadable {
+class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel: MovieVideosViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    static var storyboardName = "MovieDetail"
     
-    private var dataSource: SimpleTableViewDataSource<MovieVideoCellViewModel>!
+    private var dataSource: SimpleTableViewDataSource<MovieVideoCellViewModelProtocol>!
     private var displayedCellsIndexPaths = Set<IndexPath>()
     
-    var loaderView: RadarView!
+    var viewModel: MovieVideosViewModelProtocol?
+    weak var coordinator: MovieVideosCoordinatorProtocol?
+
+    // MARK: - LoadingDisplayable
+
+    var loaderView: LoadingView = RadarView()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
     
     // MARK: - Private
@@ -54,18 +57,19 @@ class MovieVideosViewController: UIViewController, Displayable, Loadable {
      * Configures the tableview footer given the current state of the view.
      */
     private func configureView(withState state: SimpleViewState<Video>) {
-        hideDisplayedView()
         switch state {
         case .paging:
+            hideDisplayedPlaceholderView()
             tableView.tableFooterView = LoadingFooterView()
         case .populated, .initial:
+            hideDisplayedPlaceholderView()
             tableView.tableFooterView = UIView()
         case .empty:
             presentEmptyView(with: "There are no trailers to show right now.")
         case .error(let error):
-            presentErrorView(with: error.description,
+            presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
-                                        self?.viewModel?.getMovieVideos()
+                                        self?.viewModel?.getMovieVideos(showLoader: false)
             })
         }
     }
@@ -81,10 +85,10 @@ class MovieVideosViewController: UIViewController, Displayable, Loadable {
                 strongSelf.reloadTableView()
             }
         })
-        viewModel?.startLoading = { [weak self] start in
+        viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
-        }
-        viewModel?.getMovieVideos()
+        })
+        viewModel?.getMovieVideos(showLoader: true)
     }
 
 }
@@ -95,7 +99,8 @@ extension MovieVideosViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel?.playVideo(at: indexPath.row)
+        let videoURL = viewModel?.videoURL(at: indexPath.row)
+        openDeepLinkURL(videoURL)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

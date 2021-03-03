@@ -15,7 +15,6 @@ class VoteAverageView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.font = FontHelper.light(withSize: 12.0)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -74,15 +73,14 @@ class VoteAverageView: UIView {
     // MARK: - Private
     
     private func setupUI() {
+        isAccessibilityElement = true
         setupLabels()
         setupShapeLayers()
     }
     
     private func setupLabels() {
         addSubview(voteAverageLabel)
-        NSLayoutConstraint.activate([
-            voteAverageLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            voteAverageLabel.centerYAnchor.constraint(equalTo: centerYAnchor)])
+        voteAverageLabel.centerInSuperview()
     }
     
     private func setupShapeLayers() {
@@ -104,7 +102,7 @@ class VoteAverageView: UIView {
     private func setupShapeLayerPath(_ shapeLayer: CAShapeLayer) {
         shapeLayer.frame = bounds
         let startAngle = degreesToRadians(layerStartAngle)
-        let endAngle = degreesToRadians(layerStartAngle) + 2 * .pi
+        let endAngle = degreesToRadians(layerStartAngle) + 2 * CGFloat.pi
         let center = voteAverageLabel.center
         let radius = bounds.width * 0.35
         let path = UIBezierPath(arcCenter: center,
@@ -126,9 +124,10 @@ class VoteAverageView: UIView {
             loadedLayer.strokeEnd = 0.0
             return
         }
-        voteAverageLabel.text = String(voteValue)
         let toValue = voteValue / 10.0
         loadedLayer.strokeEnd = CGFloat(toValue)
+        voteAverageLabel.text = String(voteValue)
+        accessibilityLabel = String(format: LocalizedStrings.ratingHint.localized, voteValue)
     }
     
 }

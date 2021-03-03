@@ -7,8 +7,16 @@
 //
 
 import Foundation
+import UpcomingMoviesDomain
 
-final class ProfileAccountInforCellViewModel {
+protocol ProfileAccountInforCellViewModelProtocol {
+    
+    var name: String { get }
+    var username: String? { get }
+    
+}
+
+final class ProfileAccountInforCellViewModel: ProfileAccountInforCellViewModelProtocol {
     
     let name: String
     let username: String?

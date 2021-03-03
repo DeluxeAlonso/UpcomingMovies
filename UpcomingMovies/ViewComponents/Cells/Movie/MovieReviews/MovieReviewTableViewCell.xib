@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="124" id="1XD-Sd-tod" customClass="MovieReviewTableViewCell" customModule="UpcomingMovies" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" rowHeight="124" id="1XD-Sd-tod" customClass="MovieReviewTableViewCell" customModule="UpcomingMovies" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1XD-Sd-tod" id="Nqj-3F-g2w">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="123.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="9Wf-MC-L8X">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="123.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaA-g9-VHr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="52.5"/>
@@ -37,7 +35,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="uTS-vE-AbH" firstAttribute="top" secondItem="xaA-g9-VHr" secondAttribute="top" constant="16" id="3FR-Hi-zcA"/>
                                     <constraint firstItem="Qff-Tt-UAC" firstAttribute="height" secondItem="uTS-vE-AbH" secondAttribute="height" multiplier="1.25" id="8ps-Zg-MGc"/>
@@ -49,16 +47,16 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="neR-92-bT2">
-                                <rect key="frame" x="0.0" y="52.5" width="375" height="71"/>
+                                <rect key="frame" x="0.0" y="52.5" width="375" height="71.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1N-KD-c6c" userLabel="Content Label">
-                                        <rect key="frame" x="16" y="0.0" width="343" height="55"/>
+                                        <rect key="frame" x="16" y="0.0" width="343" height="55.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="o1N-KD-c6c" secondAttribute="trailing" priority="999" constant="16" id="VWL-MV-dZe"/>
                                     <constraint firstItem="o1N-KD-c6c" firstAttribute="leading" secondItem="neR-92-bT2" secondAttribute="leading" priority="999" constant="16" id="boT-g3-UMp"/>
@@ -84,6 +82,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ReviewProfile" width="176" height="176"/>
+        <image name="ReviewProfile" width="33" height="33"/>
     </resources>
 </document>

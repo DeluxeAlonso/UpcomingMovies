@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import Kingfisher
 
-class MovieDetailViewController: UIViewController, Retryable, Transitionable, SegueHandler, Loadable {
-    
+class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Transitionable, LoadingDisplayable {
+
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backdropImageView: UIImageView!
     @IBOutlet weak var transitionContainerView: UIView!
@@ -19,27 +18,37 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     @IBOutlet weak var voteAverageView: VoteAverageView!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
-    @IBOutlet weak var favoriteView: UIView!
-    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var optionsStackView: UIStackView!
     
-    var loaderView: RadarView!
+    static var storyboardName: String = "MovieDetail"
     
-    var viewModel: MovieDetailViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    lazy var shareBarButtonItem: UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareBarButtonAction(_:)))
+        return barButtonItem
+    }()
+    
+    lazy var favoriteBarButtonItem: FavoriteToggleBarButtonItem = {
+        let barButtonItem = FavoriteToggleBarButtonItem()
+        barButtonItem.target = self
+        barButtonItem.action = #selector(favoriteButtonAction(_:))
+        
+        return barButtonItem
+    }()
+
+    var viewModel: MovieDetailViewModelProtocol?
+    weak var coordinator: MovieDetailCoordinatorProtocol?
+
+    // MARK: - LoadingDisplayable
+
+    var loaderView: LoadingView = RadarView()
     
     // MARK: - Lifecycle
     
-    deinit {
-        print("MovieDetailViewController")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,7 +62,8 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     // MARK: - Private
     
     private func setupUI() {
-        title = "Movie detail"
+        title = LocalizedStrings.movieDetailTitle.localized
+        
         setupNavigationBar()
         transitionContainerView.setShadowBorder()
     }
@@ -61,14 +71,22 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
     private func setupNavigationBar() {
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
-        let shareBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareBarButtonAction))
-        navigationItem.rightBarButtonItem = shareBarButtonItem
+        navigationItem.rightBarButtonItems = [shareBarButtonItem]
+    }
+    
+    private func configureNavigationBar(isFavorite: Bool?) {
+        if let isFavorite = isFavorite {
+            favoriteBarButtonItem.toggle(to: isFavorite.intValue)
+            navigationItem.rightBarButtonItems = [shareBarButtonItem, favoriteBarButtonItem]
+        } else {
+            navigationItem.rightBarButtonItems = [shareBarButtonItem]
+        }
     }
     
     private func showErrorView(error: Error) {
-        presentErrorView(with: error.localizedDescription,
+        presentRetryView(with: error.localizedDescription,
                                    errorHandler: { [weak self] in
-            self?.viewModel?.getMovieDetail()
+            self?.viewModel?.refreshMovieDetail()
         })
     }
     
@@ -89,14 +107,27 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
         genreLabel.text = viewModel.genre
         releaseDateLabel.text = viewModel.releaseDate
         
-        backdropImageView.kf.indicatorType = .activity
-        backdropImageView.kf.setImage(with: viewModel.backdropURL)
-        
-        posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: viewModel.posterURL)
+        backdropImageView.setImage(with: viewModel.backdropURL)
+        posterImageView.setImage(with: viewModel.posterURL)
         
         voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview
+        
+        viewModel.showGenreName.bindAndFire({ [weak self] genreName in
+            self?.genreLabel.text = genreName
+        })
+        
+        configureOptionsStackView()
+    }
+    
+    private func configureOptionsStackView() {
+        guard let viewModel = viewModel, optionsStackView.arrangedSubviews.isEmpty else { return }
+        let optionsViews = viewModel.options.map { MovieDetailOptionView(option: $0) }
+        for optionView in optionsViews {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(optionAction(_:)))
+            optionView.addGestureRecognizer(tapGesture)
+            optionsStackView.addArrangedSubview(optionView)
+        }
     }
     
     private func setupLoaderBindable() {
@@ -105,93 +136,44 @@ class MovieDetailViewController: UIViewController, Retryable, Transitionable, Se
         })
         viewModel?.updateMovieDetail = { [weak self] in
             self?.setupViewBindables()
+            self?.hideRetryView()
         }
     }
     
     private func setupErrorBindables() {
-        viewModel?.showErrorView = { [weak self] error in
+        viewModel?.showErrorView.bind({ [weak self] error in
+            guard let error = error else { return }
             self?.showErrorView(error: error)
-        }
+        })
     }
     
     private func setupFavoriteBindables() {
         viewModel?.isFavorite.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
-            strongSelf.favoriteView.isHidden = isFavorite == nil
-            if let isFavorite = isFavorite {
-                let favoriteIcon = isFavorite ? #imageLiteral(resourceName: "FavoriteOn") : #imageLiteral(resourceName: "FavoriteOff")
-                strongSelf.favoriteButton.setImage(favoriteIcon, for: .normal)
-            }
+            strongSelf.configureNavigationBar(isFavorite: isFavorite)
         })
-    }
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        navigationController?.delegate = nil
-        switch segueIdentifier(for: segue) {
-        case .movieVideos:
-            guard let viewController = segue.destination as? MovieVideosViewController else { fatalError() }
-            _ = viewController.view
-            viewController.viewModel = viewModel?.buildVideosViewModel()
-        case .movieReviews:
-            guard let viewController = segue.destination as? MovieReviewsViewController else { fatalError() }
-            _ = viewController.view
-            viewController.viewModel = viewModel?.buildReviewsViewModel()
-        case .movieCredits:
-            guard let viewController = segue.destination as? MovieCreditsViewController else { fatalError() }
-            _ = viewController.view
-            viewController.viewModel = viewModel?.buildCreditsViewModel()
-        case .movieSimilars:
-            guard let viewController = segue.destination as? MovieListViewController else { fatalError() }
-            _ = viewController.view
-            viewController.viewModel = viewModel!.buildSimilarsViewModel()
-        }
     }
     
     // MARK: - Selectors
     
-    @objc func shareBarButtonAction() {
-        guard let movieTitle = viewModel?.title else { return }
-        let shareText = "Come with me to watch \(movieTitle)!"
-        let activityViewController = UIActivityViewController(activityItems: [shareText],
-                                                              applicationActivities: nil)
-        self.present(activityViewController, animated: true, completion: nil)
+    @objc func optionAction(_ sender: UITapGestureRecognizer) {
+        guard let sender = sender.view as? MovieDetailOptionView else { return }
+        let movieDetailOption = sender.option
+        movieDetailOption.prepare(coordinator: coordinator)
     }
     
     // MARK: - Actions
     
+    @IBAction func shareBarButtonAction(_ sender: Any) {
+        guard let movieTitle = viewModel?.title else { return }
+        let shareText = String(format: LocalizedStrings.movieDetailShareText.localized, movieTitle)
+        let activityViewController = UIActivityViewController(activityItems: [shareText],
+                                                              applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
     @IBAction func favoriteButtonAction(_ sender: Any) {
         viewModel?.handleFavoriteMovie()
-    }
-    
-    @IBAction func trailersOptionAction(_ sender: Any) {
-        performSegue(withIdentifier: SegueIdentifier.movieVideos.rawValue, sender: nil)
-    }
-    
-    @IBAction func reviewsOptionAction(_ sender: Any) {
-        performSegue(withIdentifier: SegueIdentifier.movieReviews.rawValue, sender: nil)
-    }
-    
-    @IBAction func creditsOptionAction(_ sender: Any) {
-        performSegue(withIdentifier: SegueIdentifier.movieCredits.rawValue, sender: nil)
-    }
-    
-    @IBAction func similarsOptionAction(_ sender: Any) {
-        performSegue(withIdentifier: SegueIdentifier.movieSimilars.rawValue, sender: nil)
-    }
-    
-}
-
-// MARK: - Segue Identifiers
-
-extension MovieDetailViewController {
-    
-    enum SegueIdentifier: String {
-        case movieVideos = "MovieVideosSegue"
-        case movieReviews = "MovieReviewsSegue"
-        case movieSimilars = "MovieSimilarsSegue"
-        case movieCredits = "MovieCreditsSegue"
     }
     
 }

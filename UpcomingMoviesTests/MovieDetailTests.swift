@@ -7,41 +7,40 @@
 //
 
 import XCTest
-import CoreData
 @testable import UpcomingMovies
+@testable import UpcomingMoviesDomain
+@testable import UpcomingMoviesData
+@testable import CoreDataInfrastructure
 
 class MovieDetailTests: XCTestCase {
     
+    private var mockInteractor: MockMovieDetailInteractor!
+    private var mockFactory: MockMovieDetailViewFactory!
     private var viewModelToTest: MovieDetailViewModel!
-    private var context: NSManagedObjectContext!
 
     override func setUp() {
         super.setUp()
-        context = PersistenceManager.shared.mainContext
-        setupMovieGenres()
         let movieToTest = Movie(id: 1,
                             title: "Test 1",
-                            genres: [],
                             genreIds: [1, 2],
                             overview: "Overview",
                             posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
                             backdropPath: "/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg",
                             releaseDate: "2019-02-01", voteAverage: 4.5)
+        mockInteractor = MockMovieDetailInteractor()
+        mockFactory = MockMovieDetailViewFactory()
         viewModelToTest = MovieDetailViewModel(movieToTest,
-                                               managedObjectContext: context)
+                                               interactor: mockInteractor,
+                                               factory: mockFactory)
     }
 
     override func tearDown() {
+        mockInteractor = nil
+        mockFactory = nil
         viewModelToTest = nil
-        context = nil
         super.tearDown()
     }
-    
-    private func setupMovieGenres() {
-        _ = Genre.with(id: 1, name: "Genre 1", context: context)
-        _ = Genre.with(id: 2, name: "Genre 2", context: context)
-    }
-    
+
     func testMovieDetailTitle() {
         //Act
         let title = viewModelToTest.title
@@ -82,13 +81,6 @@ class MovieDetailTests: XCTestCase {
         let fullBackdropPath = viewModelToTest.backdropURL
         //Assert
         XCTAssertEqual(fullBackdropPath!, URL(string: "https://image.tmdb.org/t/p/w500/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg"))
-    }
-    
-    func testMovieDetailGenre() {
-        //Act
-        let genre = viewModelToTest.genre
-        //Assert
-        XCTAssertEqual(genre!, "Genre 1")
     }
     
 }

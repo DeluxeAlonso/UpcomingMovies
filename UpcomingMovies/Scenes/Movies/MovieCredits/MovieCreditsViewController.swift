@@ -8,25 +8,30 @@
 
 import UIKit
 
-class MovieCreditsViewController: UIViewController, Displayable, Loadable {
+class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    static var storyboardName = "MovieDetail"
+    
     private var displayedCellsIndexPaths = Set<IndexPath>()
+    private var dataSource: MovieCreditsDataSource!
     
-    var loaderView: RadarView!
-    
-    var viewModel: MovieCreditsViewModel? {
-        didSet {
-            setupBindables()
-        }
-    }
+    var viewModel: MovieCreditsViewModelProtocol?
+    weak var coordinator: MovieCreditsCoordinatorProtocol?
+
+    // MARK: - LoadingDisplayable
+
+    var loaderView: LoadingView = RadarView()
     
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
+        
+        viewModel?.getMovieCredits(showLoader: true)
     }
     
     // MARK: - Private
@@ -37,24 +42,43 @@ class MovieCreditsViewController: UIViewController, Displayable, Loadable {
     
     private func setupCollectionView() {
         collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionView.allowsMultipleSelection = false
         collectionView.registerNib(cellType: MovieCreditCollectionViewCell.self)
-        collectionView.backgroundView = LoadingFooterView()
+
+        setupCollectionViewLayout()
+    }
+
+    private func setupCollectionViewLayout() {
+        let previewLayoutWidth = Constants.creditCellHeight / CGFloat(UIConstants.posterAspectRatio)
+        let layout = VerticalFlowLayout(preferredWidth: previewLayoutWidth,
+                                        preferredHeight: Constants.creditCellHeight,
+                                        minColumns: 2)
+        layout.headerReferenceSize = .init(width: collectionView.frame.width,
+                                           height: Constants.creditSectionCellHeight)
+
+        collectionView.collectionViewLayout = layout
     }
     
-    private func configureView(with state: MovieCreditsViewModel.ViewState) {
-        hideDisplayedView()
+    private func configureView(with state: MovieCreditsViewState) {
         switch state {
         case .populated, .initial:
-            collectionView.backgroundView = nil
+            hideDisplayedPlaceholderView()
         case .empty:
-            presentEmptyView(with: "No credits to show")
+            presentEmptyView(with: LocalizedStrings.emptyCreditReults.localized)
         case .error(let error):
-            presentErrorView(with: error.localizedDescription,
+            presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
-                               self?.viewModel?.getMovieCredits()
+                                        self?.viewModel?.getMovieCredits(showLoader: false)
             })
         }
+    }
+    
+    private func reloadCollectionView() {
+        guard let viewModel = viewModel else { return }
+        dataSource = MovieCreditsDataSource(viewModel: viewModel)
+        
+        collectionView.dataSource = dataSource
+        collectionView.reloadData()
     }
     
     // MARK: - Reactive Behaviour
@@ -62,57 +86,35 @@ class MovieCreditsViewController: UIViewController, Displayable, Loadable {
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
         title = viewModel.movieTitle
+        
         viewModel.viewState.bind({ [weak self] state in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 strongSelf.configureView(with: state)
-                strongSelf.collectionView.reloadData()
+                strongSelf.reloadCollectionView()
             }
         })
-        viewModel.startLoading = { [weak self] start in
-            start ? self?.showLoader() : self?.hideLoader()
-        }
-        viewModel.getMovieCredits()
+        
+        viewModel.didToggleSection.bind({ [weak self] sectionToggled in
+            guard let strongSelf = self else { return }
+            strongSelf.collectionView.performBatchUpdates({
+                strongSelf.collectionView.reloadSections(IndexSet(integer: sectionToggled))
+            }, completion: nil)
+        })
+        
+        viewModel.startLoading.bind({ [weak self] start in
+            DispatchQueue.main.async {
+                start ? self?.showLoader() : self?.hideLoader()
+            }
+        })
     }
 
-}
-
-extension MovieCreditsViewController: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        guard let viewModel = viewModel else { return 0 }
-        return viewModel.sections.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let viewModel = viewModel else { return 0 }
-        return viewModel.rowCount(for: section)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let viewModel = viewModel else { fatalError() }
-        let cell = collectionView.dequeueReusableCell(with: MovieCreditCollectionViewCell.self, for: indexPath)
-        cell.viewModel = viewModel.credit(for: indexPath.section, and: indexPath.row)
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let viewModel = viewModel else { fatalError() }
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                     withReuseIdentifier: "CollapsibleCollectionHeaderView",
-                                                                     for: indexPath) as! CollapsibleCollectionHeaderView
-        header.viewModel = viewModel.headerModel(for: indexPath.section)
-        header.delegate = self
-        return header
-    }
-    
 }
 
 // MARK: - UICollectionViewDelegate
 
 extension MovieCreditsViewController: UICollectionViewDelegate {
-    
+
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if !displayedCellsIndexPaths.contains(indexPath) {
             displayedCellsIndexPaths.insert(indexPath)
@@ -125,36 +127,28 @@ extension MovieCreditsViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension MovieCreditsViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let posterHeight: Double = 200.0
-        let posterWidth: Double = 100.0
-        return CGSize(width: posterWidth, height: posterHeight)
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         guard let viewModel = viewModel,
-            viewModel.rowCount(for: section) != 0 else {
-                return .zero
+              viewModel.numberOfItems(for: section) != 0 else {
+            return .zero
         }
         return UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
     }
 
 }
 
-extension MovieCreditsViewController: CollapsibleHeaderViewViewDelegate {
-    
-    func collapsibleHeaderView(sectionHeaderView: CollapsibleCollectionHeaderView, sectionToggled section: Int) {
-        guard let viewModel = viewModel else { return }
-        let opened = viewModel.toggleSection(section)
-        sectionHeaderView.updateArrowImageView(opened: opened, animated: true)
-        collectionView.performBatchUpdates({
-            self.collectionView.reloadSections(IndexSet(integer: section))
-        }, completion: nil)
+// MARK: - Constants
+
+extension MovieCreditsViewController {
+
+    struct Constants {
+
+        static let creditCellHeight: CGFloat = 150.0
+        static let creditSectionCellHeight: CGFloat = 60.0
+
     }
-    
+
 }

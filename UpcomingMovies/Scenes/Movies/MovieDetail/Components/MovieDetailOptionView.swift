@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class MovieDetailOptionView: UIView {
     
     private lazy var optionStackView: UIStackView = {
@@ -16,7 +15,6 @@ class MovieDetailOptionView: UIView {
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.spacing = 3.0
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -37,23 +35,19 @@ class MovieDetailOptionView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+
+    var option: MovieDetailOption
     
-    @IBInspectable var optionImage: UIImage? {
-        didSet {
-            optionImageView.image = optionImage
-        }
+    // MARK: - Initializers
+    
+    init(option: MovieDetailOption) {
+        self.option = option
+        super.init(frame: .zero)
+        setupUI()
     }
     
-    @IBInspectable var optionTitle: String? {
-        didSet {
-            optionTitleLabel.text = optionTitle
-        }
-    }
-    
-    @IBInspectable var optionTitleColor: UIColor? {
-        didSet {
-            optionTitleLabel.textColor = optionTitleColor
-        }
+    required init?(coder: NSCoder) {
+        fatalError()
     }
     
     // MARK: - Lifecycle
@@ -71,15 +65,21 @@ class MovieDetailOptionView: UIView {
     // MARK: - Private
     
     private func setupUI() {
+        backgroundColor = ColorPalette.navigationBarBackgroundColor
+        
+        isAccessibilityElement = true
+        accessibilityLabel = option.title
+        
+        optionTitleLabel.text = self.option.title
+        optionImageView.image = self.option.icon
+        
         setupStackView()
     }
     
     private func setupStackView() {
         addSubview(optionStackView)
-        NSLayoutConstraint.activate([optionStackView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-                                     optionStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-                                     optionStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-                                     optionStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)])
+        optionStackView.fillSuperview(padding: .init(top: 8, left: 8,
+                                                     bottom: 8, right: 8))
         
         optionStackView.addArrangedSubview(optionImageView)
         optionStackView.addArrangedSubview(optionTitleLabel)

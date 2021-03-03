@@ -8,21 +8,25 @@
 
 import XCTest
 @testable import UpcomingMovies
+@testable import UpcomingMoviesDomain
+@testable import UpcomingMoviesData
+@testable import NetworkInfrastructure
 
 class MovieReviewsTests: XCTestCase {
     
-    private var viewModelToTest: MovieReviewsViewModel!
-    private var movieReviewCellViewModelToTest: MovieReviewCellViewModel!
+    private var mockInteractor: MockMovieReviewsInteractor!
+    private var viewModelToTest: MovieReviewsViewModelProtocol!
     
     override func setUp() {
         super.setUp()
-        viewModelToTest = MovieReviewsViewModel(movieId: 1, movieTitle: "Movie 1")
-        movieReviewCellViewModelToTest = MovieReviewCellViewModel(Review.with())
+        mockInteractor = MockMovieReviewsInteractor()
+        viewModelToTest = MovieReviewsViewModel(movieId: 1, movieTitle: "Movie 1",
+                                                interactor: mockInteractor)
     }
     
     override func tearDown() {
+        mockInteractor = nil
         viewModelToTest = nil
-        movieReviewCellViewModelToTest = nil
         super.tearDown()
     }
     
@@ -33,65 +37,42 @@ class MovieReviewsTests: XCTestCase {
         XCTAssertEqual(title, "Movie 1")
     }
     
-    func testGetReviewsPopulated() {
-        //Arrange
-        let reviewResult = ReviewResult(results: [Review.with(id: "1"), Review.with(id: "2")],
-                                        currentPage: 1, totalPages: 1)
-        let mockupClient = MockMovieClient()
-        mockupClient.getReviewResult = Result.success(reviewResult)
-        viewModelToTest.movieClient = mockupClient
-        //Act
-        viewModelToTest.getMovieReviews()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .populated([Review.with(id: "1"), Review.with(id: "2")]))
-    }
-    
     func testGetReviewsEmpty() {
         //Arrange
-        let reviewResult = ReviewResult(results: [],
-                                       currentPage: 1, totalPages: 1)
-        let mockupClient = MockMovieClient()
-        mockupClient.getReviewResult = Result.success(reviewResult)
-        viewModelToTest.movieClient = mockupClient
+        mockInteractor.getMovieReviewsResult = Result.success([])
         //Act
         viewModelToTest.getMovieReviews()
         //Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .empty)
     }
     
+    func testGetReviewsPopulated() {
+        //Arrange
+        mockInteractor.getMovieReviewsResult = Result.success([Review.with(id: "1"), Review.with(id: "2")])
+        //Act
+        viewModelToTest.getMovieReviews()
+        mockInteractor.getMovieReviewsResult = Result.success([])
+        viewModelToTest.getMovieReviews()
+        //Assert
+        XCTAssertEqual(viewModelToTest.viewState.value, .populated([Review.with(id: "1"), Review.with(id: "2")]))
+    }
+    
     func testGetReviewsPaging() {
         //Arrange
-        let reviewResult = ReviewResult(results: [Review.with(id: "1"), Review.with(id: "2")],
-                                        currentPage: 1, totalPages: 2)
-        let mockupClient = MockMovieClient()
-        mockupClient.getReviewResult = Result.success(reviewResult)
-        viewModelToTest.movieClient = mockupClient
+        mockInteractor.getMovieReviewsResult = Result.success([Review.with(id: "1"), Review.with(id: "2")])
         //Act
         viewModelToTest.getMovieReviews()
         //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value,
-                       .paging([Review.with(id: "1"), Review.with(id: "2")], next: 2))
+        XCTAssertEqual(viewModelToTest.viewState.value, .paging([Review.with(id: "1"), Review.with(id: "2")], next: 2))
     }
     
     func testGetReviewsError() {
         //Arrange
-        let mockupClient = MockMovieClient()
-        mockupClient.getReviewResult = Result.failure(APIError.badRequest)
-        viewModelToTest.movieClient = mockupClient
+        mockInteractor.getMovieReviewsResult = Result.failure(APIError.badRequest)
         //Act
         viewModelToTest.getMovieReviews()
         //Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
     }
 
-}
-
-private final class MockMovieClient: MovieClient {
-    
-    var getReviewResult: Result<ReviewResult?, APIError>?
-    
-    override func getMovieReviews(page: Int, with movieId: Int, completion: @escaping (Result<ReviewResult?, APIError>) -> Void) {
-        completion(getReviewResult!)
-    }
-    
 }
