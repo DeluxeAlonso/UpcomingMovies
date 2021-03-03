@@ -7,13 +7,21 @@ on:
     branches: [ development ]
 
 jobs:
-  build:
-
+  swiftLint:
     runs-on: macos-latest
-
     steps:
     - uses: actions/checkout@v2
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+    - name: Install Bundle
+      run: bundle install
+    - name: Run swiftlint
+      run: bundle exec fastlane lint
+
+  unitTests:
+    needs: swiftLint
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Bundle
+      run: bundle install
+    - name: Run unit tests
+      run: bundle exec fastlane tests
