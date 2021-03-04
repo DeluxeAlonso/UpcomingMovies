@@ -1,4 +1,4 @@
-name: Swift
+name: Testing
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ development ]
 
 jobs:
-  swiftLint:
+  lint:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -18,7 +18,7 @@ jobs:
     - name: Run swiftlint
       run: bundle exec fastlane lint
 
-  unitTests:
+  test:
     needs: swiftLint
     runs-on: macos-latest
     steps:
