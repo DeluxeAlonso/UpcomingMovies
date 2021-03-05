@@ -19,7 +19,7 @@ jobs:
       run: bundle exec fastlane lint
 
   test:
-    needs: swiftLint
+    needs: lint
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
