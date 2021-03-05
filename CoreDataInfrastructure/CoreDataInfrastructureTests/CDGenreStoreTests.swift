@@ -25,7 +25,6 @@ class CDGenreStoreTests: XCTestCase {
     }
 
     func testSaveGenre() {
-        XCTFail()
         //Arrange
         let genreToTest = Genre(id: 1, name: "Action")
         let saveExpectation = XCTestExpectation(description: "Save genre")
