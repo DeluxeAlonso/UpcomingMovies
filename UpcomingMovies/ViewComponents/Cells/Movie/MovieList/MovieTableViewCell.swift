@@ -24,6 +24,11 @@ final class MovieTableViewCell: UITableViewCell {
     }
     
     // MARK: - Lifecycle
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        posterImageView.layer.shouldRasterize = true
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
