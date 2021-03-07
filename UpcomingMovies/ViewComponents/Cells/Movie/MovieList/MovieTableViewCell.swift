@@ -27,6 +27,7 @@ final class MovieTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        posterImageView.cancelImageDownload()
         posterImageView.image = nil
     }
     

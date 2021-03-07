@@ -24,7 +24,7 @@ class SavedMovieCollectionViewCell: CollectionViewSlantedCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        titleLabel.text = nil
+        backdropImageView.cancelImageDownload()
         backdropImageView.image = nil
     }
     

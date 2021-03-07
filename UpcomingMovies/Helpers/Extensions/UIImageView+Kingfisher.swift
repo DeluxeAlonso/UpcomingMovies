@@ -15,5 +15,9 @@ extension UIImageView {
         kf.indicatorType = .activity
         kf.setImage(with: url)
     }
+
+    func cancelImageDownload() {
+        kf.cancelDownloadTask()
+    }
     
 }

@@ -25,10 +25,10 @@ final class UpcomingMovieExpandedCollectionViewCell: UICollectionViewCell, Upcom
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        backdropImageView.cancelImageDownload()
+        posterImageView.cancelImageDownload()
         backdropImageView.image = nil
         posterImageView.image = nil
-        titleLabel.text = nil
-        releaseDateLabel.text = nil
     }
     
     override func awakeFromNib() {

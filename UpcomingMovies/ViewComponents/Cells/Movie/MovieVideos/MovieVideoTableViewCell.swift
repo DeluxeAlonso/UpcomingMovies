@@ -23,6 +23,7 @@ final class MovieVideoTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        previewImageView.cancelImageDownload()
         previewImageView.image = nil
     }
 
