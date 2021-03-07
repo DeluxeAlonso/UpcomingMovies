@@ -23,7 +23,7 @@ final class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, Upcomi
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        titleLabel.text = nil
+        posterImageView.cancelImageDownload()
         posterImageView.image = nil
     }
     

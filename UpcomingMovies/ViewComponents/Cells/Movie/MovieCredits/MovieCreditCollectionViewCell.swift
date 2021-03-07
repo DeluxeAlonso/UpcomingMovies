@@ -41,8 +41,7 @@ final class MovieCreditCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        nameLabel.text = nil
-        subtitleLabel.text = nil
+        profileImageView.cancelImageDownload()
         profileImageView.image = nil
     }
     
