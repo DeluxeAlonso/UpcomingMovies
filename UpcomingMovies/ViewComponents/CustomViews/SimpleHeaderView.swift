@@ -10,7 +10,7 @@ import UIKit
 
 class SimpleHeaderView: UIView {
     
-    fileprivate lazy var headerTitleLabel: UILabel = {
+    private lazy var headerTitleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = FontHelper.Default.mediumLight

@@ -10,7 +10,7 @@ import UIKit
 
 class DefaultRefreshControl: UIRefreshControl {
     
-    var refreshHandler: () -> Void
+    private var refreshHandler: () -> Void
     
     // MARK: - Initializers
 
