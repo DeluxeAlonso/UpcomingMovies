@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-class AuthenticationHandler: AuthenticationHandlerProtocol {
+final class AuthenticationHandler: AuthenticationHandlerProtocol {
     
     private let authUseCase: AuthUseCaseProtocol
     private let userUseCase: UserUseCaseProtocol
