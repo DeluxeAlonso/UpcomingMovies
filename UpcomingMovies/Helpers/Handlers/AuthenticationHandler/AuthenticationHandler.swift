@@ -6,18 +6,9 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
 import UpcomingMoviesDomain
 
-protocol AuthenticationHandlerProtocol {
-    
-    func currentUser() -> User?
-    func isUserSignedIn() -> Bool
-    func deleteCurrentUser()
-    
-}
-
-class AuthenticationHandler: AuthenticationHandlerProtocol {
+final class AuthenticationHandler: AuthenticationHandlerProtocol {
     
     private let authUseCase: AuthUseCaseProtocol
     private let userUseCase: UserUseCaseProtocol
