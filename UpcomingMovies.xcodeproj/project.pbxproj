@@ -19,6 +19,7 @@
 		E2009F582515BEE500D4B48F /* SplashAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2009F572515BEE500D4B48F /* SplashAssembly.swift */; };
 		E20118CF25FF238F0091D248 /* GenreHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20118CE25FF238F0091D248 /* GenreHandlerProtocol.swift */; };
 		E20118DA25FF24D60091D248 /* NavigationHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20118D925FF24D60091D248 /* NavigationHandlerProtocol.swift */; };
+		E20118E125FF251E0091D248 /* AuthenticationHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20118E025FF251E0091D248 /* AuthenticationHandlerProtocol.swift */; };
 		E2033DC324D90CEE00185664 /* SplashProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2033DC224D90CED00185664 /* SplashProtocols.swift */; };
 		E2033DC524D90D7600185664 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2033DC424D90D7600185664 /* SplashInteractor.swift */; };
 		E2058B6E247F6BBD00A6AB52 /* NavigationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2058B6D247F6BBD00A6AB52 /* NavigationHandler.swift */; };
@@ -407,6 +408,7 @@
 		E2009F572515BEE500D4B48F /* SplashAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAssembly.swift; sourceTree = "<group>"; };
 		E20118CE25FF238F0091D248 /* GenreHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreHandlerProtocol.swift; sourceTree = "<group>"; };
 		E20118D925FF24D60091D248 /* NavigationHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHandlerProtocol.swift; sourceTree = "<group>"; };
+		E20118E025FF251E0091D248 /* AuthenticationHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHandlerProtocol.swift; sourceTree = "<group>"; };
 		E2033DC224D90CED00185664 /* SplashProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashProtocols.swift; sourceTree = "<group>"; };
 		E2033DC424D90D7600185664 /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		E2058B6D247F6BBD00A6AB52 /* NavigationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationHandler.swift; sourceTree = "<group>"; };
@@ -901,6 +903,15 @@
 			path = NavigationHandler;
 			sourceTree = "<group>";
 		};
+		E20118DF25FF25020091D248 /* AuthenticationHandler */ = {
+			isa = PBXGroup;
+			children = (
+				E2E4452E22475533009ABDEA /* AuthenticationHandler.swift */,
+				E20118E025FF251E0091D248 /* AuthenticationHandlerProtocol.swift */,
+			);
+			path = AuthenticationHandler;
+			sourceTree = "<group>";
+		};
 		E2143DB422571A43003E939F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1158,9 +1169,9 @@
 		E221F75A222AE44D008DFF87 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
+				E20118DF25FF25020091D248 /* AuthenticationHandler */,
 				E20118CD25FF237A0091D248 /* GenreHandler */,
 				E20118D825FF24A90091D248 /* NavigationHandler */,
-				E2E4452E22475533009ABDEA /* AuthenticationHandler.swift */,
 				E2709629247B3DC300AE694E /* ConfigurationHandler.swift */,
 				E270962D247B65D800AE694E /* ImageConfigurationHandler.swift */,
 				E297A765248C6C5700AC89B9 /* ImageTransitionHandler.swift */,
@@ -2342,6 +2353,7 @@
 				E211448824AAF44600D0ABB7 /* MovieCreditsDataSource.swift in Sources */,
 				E225468F226A3BF000E9042C /* CustomListsViewModel.swift in Sources */,
 				E2E518B024A9A71500CC3FA5 /* MovieDetailProtocols.swift in Sources */,
+				E20118E125FF251E0091D248 /* AuthenticationHandlerProtocol.swift in Sources */,
 				E221168021914E4B0039F8C9 /* AppDelegate.swift in Sources */,
 				E28FF49B24B19A3E0015CB2F /* UpcomingMoviesViewFactory.swift in Sources */,
 				E22116B4219157020039F8C9 /* Bindable.swift in Sources */,
