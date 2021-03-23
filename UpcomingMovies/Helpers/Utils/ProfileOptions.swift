@@ -6,8 +6,6 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import Foundation
-
 public protocol ProfileOptionProtocol {
     
     var title: String? { get }

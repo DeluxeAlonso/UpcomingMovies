@@ -9,7 +9,9 @@
 import Foundation
 
 protocol RetryActionable {
+
     var retry: (() -> Void)? { get set }
     
     func resetState()
+
 }

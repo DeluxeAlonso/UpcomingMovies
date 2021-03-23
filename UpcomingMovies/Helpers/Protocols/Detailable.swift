@@ -9,5 +9,7 @@
 import Foundation
 
 protocol Detailable {
+
     var detailText: String? { get set }
+
 }
