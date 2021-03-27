@@ -329,7 +329,7 @@
 		E2EB923D221375190067F011 /* SimpleCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB9238221375190067F011 /* SimpleCollectionViewDataSource.swift */; };
 		E2EB923E221375190067F011 /* CollectionViewDataSourcePrefetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB9239221375190067F011 /* CollectionViewDataSourcePrefetching.swift */; };
 		E2EB923F221375190067F011 /* SectionedCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB923A221375190067F011 /* SectionedCollectionViewDataSource.swift */; };
-		E2EB92452213D9700067F011 /* Dequeuable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB92442213D9700067F011 /* Dequeuable.swift */; };
+		E2EB92452213D9700067F011 /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB92442213D9700067F011 /* Dequeueable.swift */; };
 		E2EB92472213E52F0067F011 /* MovieReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2EB92462213E52E0067F011 /* MovieReviewTableViewCell.xib */; };
 		E2EBDC2B256A26060026319B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2EBDC2A256A26060026319B /* WidgetKit.framework */; };
 		E2EBDC2D256A26060026319B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2EBDC2C256A26060026319B /* SwiftUI.framework */; };
@@ -737,7 +737,7 @@
 		E2EB9238221375190067F011 /* SimpleCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		E2EB9239221375190067F011 /* CollectionViewDataSourcePrefetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSourcePrefetching.swift; sourceTree = "<group>"; };
 		E2EB923A221375190067F011 /* SectionedCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionedCollectionViewDataSource.swift; sourceTree = "<group>"; };
-		E2EB92442213D9700067F011 /* Dequeuable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dequeuable.swift; sourceTree = "<group>"; };
+		E2EB92442213D9700067F011 /* Dequeueable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
 		E2EB92462213E52E0067F011 /* MovieReviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieReviewTableViewCell.xib; sourceTree = "<group>"; };
 		E2EBDC29256A26060026319B /* UpcomingMoviesWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = UpcomingMoviesWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2EBDC2A256A26060026319B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -1508,7 +1508,7 @@
 				E21662DE25EB670A001C2905 /* Loading */,
 				E2DBF2F2220532BD00CBB365 /* Animatable.swift */,
 				E22116B3219157020039F8C9 /* Bindable.swift */,
-				E2EB92442213D9700067F011 /* Dequeuable.swift */,
+				E2EB92442213D9700067F011 /* Dequeueable.swift */,
 				E26011682193876500E53095 /* NibLoadable.swift */,
 				E2940804220A188000A74F68 /* TabBarScrollable.swift */,
 				E2060332226D8C610006FB2E /* Keyboardable.swift */,
@@ -2506,7 +2506,7 @@
 				E222B95F21FA2759008BA816 /* CollectionViewCellAnimator.swift in Sources */,
 				E221F761222AF15B008DFF87 /* AppShortcutItem.swift in Sources */,
 				E2BE1B3D239DEABD00FC47FF /* SimilarsMovieDetailOption.swift in Sources */,
-				E2EB92452213D9700067F011 /* Dequeuable.swift in Sources */,
+				E2EB92452213D9700067F011 /* Dequeueable.swift in Sources */,
 				E25F9CF2225B090C0069A6A1 /* PlaceholderDisplayable.swift in Sources */,
 				E2DCE7F424B12F4F0041301E /* ToggleBarButtonItem.swift in Sources */,
 				E2251B1E2214F98F00EE7A51 /* MovieCreditCellViewModel.swift in Sources */,

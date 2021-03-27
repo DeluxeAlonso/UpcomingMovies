@@ -41,7 +41,7 @@ final class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSourc
 extension SimpleTableViewDataSource where ViewModel == MovieCellViewModelProtocol {
     
     static func make(for cellViewModels: [ViewModel],
-                     reuseIdentifier: String = MovieTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {
+                     reuseIdentifier: String = MovieTableViewCell.dequeueIdentifier) -> SimpleTableViewDataSource {
         return SimpleTableViewDataSource(cellViewModels: cellViewModels,
                                          reuseIdentifier: reuseIdentifier,
                                          cellConfigurator: { (viewModel, cell) in
@@ -55,7 +55,7 @@ extension SimpleTableViewDataSource where ViewModel == MovieCellViewModelProtoco
 extension SimpleTableViewDataSource where ViewModel == MovieVideoCellViewModelProtocol {
     
     static func make(for cellViewModels: [ViewModel],
-                     reuseIdentifier: String = MovieVideoTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {
+                     reuseIdentifier: String = MovieVideoTableViewCell.dequeueIdentifier) -> SimpleTableViewDataSource {
         return SimpleTableViewDataSource(cellViewModels: cellViewModels,
                                          reuseIdentifier: reuseIdentifier,
                                          cellConfigurator: { (viewModel, cell) in
@@ -69,7 +69,7 @@ extension SimpleTableViewDataSource where ViewModel == MovieVideoCellViewModelPr
 extension SimpleTableViewDataSource where ViewModel == MovieReviewCellViewModelProtocol {
     
     static func make(for cellViewModels: [ViewModel],
-                     reuseIdentifier: String = MovieReviewTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {
+                     reuseIdentifier: String = MovieReviewTableViewCell.dequeueIdentifier) -> SimpleTableViewDataSource {
         return SimpleTableViewDataSource(cellViewModels: cellViewModels,
                                          reuseIdentifier: reuseIdentifier,
                                          cellConfigurator: { (viewModel, cell) in
@@ -83,7 +83,7 @@ extension SimpleTableViewDataSource where ViewModel == MovieReviewCellViewModelP
 extension SimpleTableViewDataSource where ViewModel == CustomListCellViewModelProtocol {
     
     static func make(for cellViewModels: [ViewModel],
-                     reuseIdentifier: String = CustomListTableViewCell.dequeuIdentifier) -> SimpleTableViewDataSource {
+                     reuseIdentifier: String = CustomListTableViewCell.dequeueIdentifier) -> SimpleTableViewDataSource {
         return SimpleTableViewDataSource(cellViewModels: cellViewModels,
                                          reuseIdentifier: reuseIdentifier,
                                          cellConfigurator: { (viewModel, cell) in
