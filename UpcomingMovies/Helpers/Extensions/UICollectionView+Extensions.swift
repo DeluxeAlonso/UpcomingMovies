@@ -21,14 +21,14 @@ extension UICollectionView {
     // MARK: - Cell Register
     
     func register<T: UICollectionViewCell>(cellType: T.Type, bundle: Bundle? = nil) {
-        let identifier = cellType.dequeuIdentifier
+        let identifier = cellType.dequeueIdentifier
         register(cellType, forCellWithReuseIdentifier: identifier)
     }
     
     // MARK: - Nib Register
     
     func registerNib<T: UICollectionViewCell>(cellType: T.Type, bundle: Bundle? = nil) {
-        let identifier = cellType.dequeuIdentifier
+        let identifier = cellType.dequeueIdentifier
         let nib = UINib(nibName: identifier, bundle: bundle)
         register(nib, forCellWithReuseIdentifier: identifier)
     }
@@ -36,7 +36,7 @@ extension UICollectionView {
     // MARK: - Dequeuing
     
     func dequeueReusableCell<T: UICollectionViewCell>(with type: T.Type, for indexPath: IndexPath) -> T {
-        return self.dequeueReusableCell(withReuseIdentifier: type.dequeuIdentifier, for: indexPath) as! T
+        return self.dequeueReusableCell(withReuseIdentifier: type.dequeueIdentifier, for: indexPath) as! T
     }
     
 }

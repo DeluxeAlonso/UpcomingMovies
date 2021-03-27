@@ -237,9 +237,9 @@ extension UpcomingMoviesViewController {
         var cellIdentifier: String {
             switch self {
             case .preview:
-                return UpcomingMoviePreviewCollectionViewCell.dequeuIdentifier
+                return UpcomingMoviePreviewCollectionViewCell.dequeueIdentifier
             case .detail:
-                return UpcomingMovieExpandedCollectionViewCell.dequeuIdentifier
+                return UpcomingMovieExpandedCollectionViewCell.dequeueIdentifier
             }
         }
     }

@@ -57,7 +57,7 @@ extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellVie
 extension SimpleCollectionViewDataSource where ViewModel == MovieCreditCellViewModel {
     
     static func make(for cellViewModels: [MovieCreditCellViewModel],
-                     reuseIdentifier: String = MovieCreditCollectionViewCell.dequeuIdentifier) -> SimpleCollectionViewDataSource {
+                     reuseIdentifier: String = MovieCreditCollectionViewCell.dequeueIdentifier) -> SimpleCollectionViewDataSource {
         return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
                                               reuseIdentifier: reuseIdentifier,
                                               cellConfigurator: { (viewModel, cell) in
@@ -71,7 +71,7 @@ extension SimpleCollectionViewDataSource where ViewModel == MovieCreditCellViewM
 extension SimpleCollectionViewDataSource where ViewModel == SavedMovieCellViewModelProtocol {
     
     static func make(for cellViewModels: [ViewModel],
-                     reuseIdentifier: String = SavedMovieCollectionViewCell.dequeuIdentifier) -> SimpleCollectionViewDataSource {
+                     reuseIdentifier: String = SavedMovieCollectionViewCell.dequeueIdentifier) -> SimpleCollectionViewDataSource {
         return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
                                               reuseIdentifier: reuseIdentifier,
                                               cellConfigurator: { (viewModel, cell) in
