@@ -289,6 +289,7 @@
 		E2C42E1424C3E8900047A8EF /* ProfileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C42E1324C3E8900047A8EF /* ProfileFactory.swift */; };
 		E2C42E1624C3F3FC0047A8EF /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C42E1524C3F3FC0047A8EF /* ProfileTests.swift */; };
 		E2C42E1824C3F9BF0047A8EF /* ProfileMockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C42E1724C3F9BF0047A8EF /* ProfileMockFactory.swift */; };
+		E2C4E0BC26103F71005A2FEF /* MockViewStateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C4E0BB26103F71005A2FEF /* MockViewStateHandler.swift */; };
 		E2CF112124A7F2C10048AFC0 /* CustomListsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF112024A7F2C10048AFC0 /* CustomListsCoordinator.swift */; };
 		E2CF112324A7F4D60048AFC0 /* CustomListDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF112224A7F4D60048AFC0 /* CustomListDetailCoordinator.swift */; };
 		E2CF112524A7FB9A0048AFC0 /* AuthPermissionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF112424A7FB9A0048AFC0 /* AuthPermissionCoordinator.swift */; };
@@ -689,6 +690,7 @@
 		E2C42E1324C3E8900047A8EF /* ProfileFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFactory.swift; sourceTree = "<group>"; };
 		E2C42E1524C3F3FC0047A8EF /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		E2C42E1724C3F9BF0047A8EF /* ProfileMockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMockFactory.swift; sourceTree = "<group>"; };
+		E2C4E0BB26103F71005A2FEF /* MockViewStateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockViewStateHandler.swift; sourceTree = "<group>"; };
 		E2CF112024A7F2C10048AFC0 /* CustomListsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListsCoordinator.swift; sourceTree = "<group>"; };
 		E2CF112224A7F4D60048AFC0 /* CustomListDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailCoordinator.swift; sourceTree = "<group>"; };
 		E2CF112424A7FB9A0048AFC0 /* AuthPermissionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionCoordinator.swift; sourceTree = "<group>"; };
@@ -1477,6 +1479,7 @@
 				E219859724D2852900D76740 /* MovieReviewsMockFactory.swift */,
 				E2864A3C24D6734E00271EF0 /* MovieDetailMockFactory.swift */,
 				E28A68D224D7A1E600D20E52 /* MovieVideosMockFactory.swift */,
+				E2C4E0BB26103F71005A2FEF /* MockViewStateHandler.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -2575,6 +2578,7 @@
 				E2554E5B24B572EB0043C3EB /* Review+MockInitializer.swift in Sources */,
 				E2EAEC5024CFC67100D89F04 /* CustomListsTests.swift in Sources */,
 				E2A3AD7024C161B300F2D3F4 /* User+MockInitializer.swift in Sources */,
+				E2C4E0BC26103F71005A2FEF /* MockViewStateHandler.swift in Sources */,
 				E220250224BEBFEA00465316 /* AccountMockFactory.swift in Sources */,
 				E28A68D324D7A1E600D20E52 /* MovieVideosMockFactory.swift in Sources */,
 				E2554E5924B5728B0043C3EB /* Movie+MockInitializer.swift in Sources */,

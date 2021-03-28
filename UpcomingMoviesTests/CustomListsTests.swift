@@ -14,13 +14,15 @@ import XCTest
 class CustomListsTests: XCTestCase {
     
     private var mockInteractor: MockCustomListsInteractor!
+    private var mockViewStateHandler: MockViewStateHandler!
     private var viewModelToTest: CustomListsViewModelProtocol!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         mockInteractor = MockCustomListsInteractor()
+        mockViewStateHandler = MockViewStateHandler()
         viewModelToTest = CustomListsViewModel(interactor: mockInteractor,
-                                               viewStateHandler: ViewStateHandler())
+                                               viewStateHandler: mockViewStateHandler)
     }
 
     override func tearDownWithError() throws {
