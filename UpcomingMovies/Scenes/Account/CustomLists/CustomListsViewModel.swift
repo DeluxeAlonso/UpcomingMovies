@@ -14,6 +14,7 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
     // MARK: - Dependencies
     
     private let interactor: CustomListsInteractorProtocol
+    private let viewStateHandler: ViewStateHandlerProtocol
     
     // MARK: - Reactive properties
     
@@ -32,8 +33,9 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(interactor: CustomListsInteractorProtocol) {
+    init(interactor: CustomListsInteractorProtocol, viewStateHandler: ViewStateHandlerProtocol) {
         self.interactor = interactor
+        self.viewStateHandler = viewStateHandler
     }
     
     // MARK: - CustomListsViewModelProtocol
@@ -60,22 +62,13 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
             switch result {
             case .success(let lists):
                 let currentPage = self.viewState.value.currentPage
-                self.viewState.value = self.processResult(lists,
-                                                          currentPage: currentPage,
-                                                          currentLists: self.lists)
+                self.viewState.value = self.viewStateHandler.processResult(lists,
+                                                                           currentPage: currentPage,
+                                                                           currentEntities: self.lists)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
         })
-    }
-    
-    private func processResult(_ lists: [List], currentPage: Int,
-                               currentLists: [List]) -> SimpleViewState<List> {
-        var allLists = currentPage == 1 ? [] : currentLists
-        allLists.append(contentsOf: lists)
-        guard !allLists.isEmpty else { return .empty }
-        
-        return lists.isEmpty ? .populated(allLists) : .paging(allLists, next: currentPage + 1)
     }
     
 }
