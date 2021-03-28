@@ -30,6 +30,10 @@ final class HandlerAssembly: Assembly {
         container.register(ConfigurationHandlerProtocol.self) { _ in
             ConfigurationHandler()
         }.inObjectScope(.container)
+
+        container.register(ViewStateHandlerProtocol.self) { _  in
+            ViewStateHandler()
+        }.inObjectScope(.container)
     }
     
 }

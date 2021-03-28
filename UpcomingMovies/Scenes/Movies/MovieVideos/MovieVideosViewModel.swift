@@ -53,22 +53,18 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol {
     func getMovieVideos(showLoader: Bool = false) {
         startLoading.value = showLoader
         interactor.getMovieVideos(for: movieId, page: nil, completion: { result in
+            self.startLoading.value = false
             switch result {
             case .success(let videos):
-                self.processVideosResult(videos)
+                self.viewState.value =  self.processVideosResult(videos)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
         })
     }
     
-    private func processVideosResult(_ videos: [Video]) {
-        startLoading.value = false
-        if videos.isEmpty {
-            viewState.value = .empty
-        } else {
-            viewState.value = .populated(videos)
-        }
+    private func processVideosResult(_ videos: [Video]) -> SimpleViewState<Video> {
+        return videos.isEmpty ? .empty : .populated(videos)
     }
 
 }
