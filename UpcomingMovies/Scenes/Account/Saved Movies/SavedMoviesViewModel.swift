@@ -11,9 +11,12 @@ import UpcomingMoviesDomain
 
 final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
 
-    // MARK: - Properties
+    // MARK: - Dependencies
     
     private let interactor: SavedMoviesInteractorProtocol
+    private let viewStateHandler: ViewStateHandlerProtocol
+
+    // MARK: - Reactive properties
     
     private (set) var startLoading: Bindable<Bool> = Bindable(false)
     private (set) var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
@@ -36,8 +39,9 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(interactor: SavedMoviesInteractorProtocol) {
+    init(interactor: SavedMoviesInteractorProtocol, viewStateHandler: ViewStateHandlerProtocol) {
         self.interactor = interactor
+        self.viewStateHandler = viewStateHandler
     }
     
     // MARK: - SavedMoviesViewModelProtocol
@@ -63,22 +67,13 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
             self.startLoading.value = false
             switch result {
             case .success(let movies):
-                self.viewState.value = self.processResult(movies,
-                                                          currentPage: page,
-                                                          currentMovies: self.movies)
+                self.viewState.value = self.viewStateHandler.processResult(movies,
+                                                                           currentPage: page,
+                                                                           currentEntities: self.movies)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
         }
-    }
-    
-    private func processResult(_ movies: [Movie], currentPage: Int,
-                               currentMovies: [Movie]) -> SimpleViewState<Movie> {
-        var allMovies = currentPage == 1 ? [] : currentMovies
-        allMovies.append(contentsOf: movies)
-        guard !allMovies.isEmpty else { return .empty }
-        
-        return movies.isEmpty ? .populated(allMovies) : .paging(allMovies, next: currentPage + 1)
     }
     
 }
