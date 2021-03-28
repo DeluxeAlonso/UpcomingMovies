@@ -6,7 +6,6 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import Foundation
 import Swinject
 import UpcomingMoviesDomain
 
@@ -20,10 +19,12 @@ final class MovieReviewsAssembly: Assembly {
         
         container.register(MovieReviewsViewModelProtocol.self) { (resolver, movieId: Int?, movieTitle: String?) in
             let interactor = resolver.resolve(MovieReviewsInteractorProtocol.self)
+            let viewStateHandler = resolver.resolve(ViewStateHandlerProtocol.self)
             
             return MovieReviewsViewModel(movieId: movieId!,
                                          movieTitle: movieTitle!,
-                                         interactor: interactor!)
+                                         interactor: interactor!,
+                                         viewStateHandler: viewStateHandler!)
         }
     }
     
