@@ -21,8 +21,8 @@ class MovieVideosTests: XCTestCase {
         mockInteractor = MockMovieVideosInteractor()
         viewModelToTest = MovieVideosViewModel(movieId: 1,
                                                movieTitle: "Movie Test",
-                                               interactor: mockInteractor)
-        
+                                               interactor: mockInteractor,
+                                               viewStateHandler: ViewStateHandler())
     }
     
     override func tearDown() {

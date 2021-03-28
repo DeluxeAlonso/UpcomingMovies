@@ -19,7 +19,8 @@ class SavedMoviesTests: XCTestCase {
     override func setUp() {
         super.setUp()
         mockInteractor = MockSavedMoviesInteractor()
-        viewModelToTest = SavedMoviesViewModel(interactor: mockInteractor)
+        viewModelToTest = SavedMoviesViewModel(interactor: mockInteractor,
+                                               viewStateHandler: ViewStateHandler())
     }
     
     override func tearDown() {

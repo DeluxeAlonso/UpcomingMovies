@@ -19,7 +19,8 @@ class CustomListsTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         mockInteractor = MockCustomListsInteractor()
-        viewModelToTest = CustomListsViewModel(interactor: mockInteractor)
+        viewModelToTest = CustomListsViewModel(interactor: mockInteractor,
+                                               viewStateHandler: ViewStateHandler())
     }
 
     override func tearDownWithError() throws {
