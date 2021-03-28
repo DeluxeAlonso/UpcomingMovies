@@ -6,9 +6,9 @@
 //  Copyright © 2021 Alonso. All rights reserved.
 //
 
-import Foundation
-
 protocol ViewStateHandlerProtocol {
+
+    func processResult<T: Equatable>(_ entities: [T]) -> SimpleViewState<T>
 
     func processResult<T: Equatable>(_ entities: [T],
                                      currentPage: Int,
@@ -17,6 +17,10 @@ protocol ViewStateHandlerProtocol {
 }
 
 struct ViewStateHandler: ViewStateHandlerProtocol {
+
+    func processResult<T: Equatable>(_ entities: [T]) -> SimpleViewState<T> {
+        return entities.isEmpty ? .empty : .populated(entities)
+    }
 
     func processResult<T: Equatable>(_ entities: [T],
                                      currentPage: Int,
