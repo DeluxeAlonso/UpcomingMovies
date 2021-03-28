@@ -14,12 +14,15 @@ import XCTest
 class UpcomingMoviesTests: XCTestCase {
     
     private var mockInteractor: MockUpcomingMoviesInteractor!
+    private var mockViewStateHandler: MockViewStateHandler!
     private var viewModelToTest: UpcomingMoviesViewModelProtocol!
 
     override func setUp() {
         super.setUp()
         mockInteractor = MockUpcomingMoviesInteractor()
-        viewModelToTest = UpcomingMoviesViewModel(interactor: mockInteractor)
+        mockViewStateHandler = MockViewStateHandler()
+        viewModelToTest = UpcomingMoviesViewModel(interactor: mockInteractor,
+                                                  viewStateHandler: mockViewStateHandler)
     }
 
     override func tearDown() {

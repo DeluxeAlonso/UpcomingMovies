@@ -19,7 +19,8 @@ final class CustomListsAssembly: Assembly {
         }
         
         container.register(CustomListsViewModelProtocol.self) { resolver in
-            CustomListsViewModel(interactor: resolver.resolve(CustomListsInteractorProtocol.self)!)
+            CustomListsViewModel(interactor: resolver.resolve(CustomListsInteractorProtocol.self)!,
+                                 viewStateHandler: resolver.resolve(ViewStateHandlerProtocol.self)!)
         }
     }
     

@@ -20,7 +20,8 @@ final class UpcomingMoviesAssembly: Assembly {
         
         container.register(UpcomingMoviesViewModelProtocol.self) { resolver in
             let interactor = resolver.resolve(MoviesInteractorProtocol.self, name: "UpcomingMovies")
-            return UpcomingMoviesViewModel(interactor: interactor!)
+            let viewStateHelper = resolver.resolve(ViewStateHandlerProtocol.self)
+            return UpcomingMoviesViewModel(interactor: interactor!, viewStateHandler: viewStateHelper!)
         }
     }
     

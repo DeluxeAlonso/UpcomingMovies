@@ -14,12 +14,15 @@ import XCTest
 class SavedMoviesTests: XCTestCase {
     
     private var mockInteractor: MockSavedMoviesInteractor!
+    private var mockViewStateHandler: MockViewStateHandler!
     private var viewModelToTest: SavedMoviesViewModelProtocol!
 
     override func setUp() {
         super.setUp()
         mockInteractor = MockSavedMoviesInteractor()
-        viewModelToTest = SavedMoviesViewModel(interactor: mockInteractor)
+        mockViewStateHandler = MockViewStateHandler()
+        viewModelToTest = SavedMoviesViewModel(interactor: mockInteractor,
+                                               viewStateHandler: mockViewStateHandler)
     }
     
     override func tearDown() {

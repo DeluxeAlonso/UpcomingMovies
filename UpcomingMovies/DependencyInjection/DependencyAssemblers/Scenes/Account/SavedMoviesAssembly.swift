@@ -6,7 +6,6 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import Foundation
 import Swinject
 import UpcomingMoviesDomain
 
@@ -21,11 +20,11 @@ final class SavedMoviesAssembly: Assembly {
                            name: ProfileCollectionOption.watchlist.title) { resolver in
                             WatchListSavedMoviesInteractor(useCaseProvider: resolver.resolve(UseCaseProviderProtocol.self)!)
         }
-        
         container.register(SavedMoviesViewModelProtocol.self) { (resolver, displayTitle: String?) in
             let interactor = resolver.resolve(SavedMoviesInteractorProtocol.self, name: displayTitle)
+            let viewStateHandler = resolver.resolve(ViewStateHandlerProtocol.self)
             
-            let viewModel = SavedMoviesViewModel(interactor: interactor!)
+            let viewModel = SavedMoviesViewModel(interactor: interactor!, viewStateHandler: viewStateHandler!)
             viewModel.displayTitle = displayTitle
             
             return viewModel

@@ -14,6 +14,7 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol {
     // MARK: - Dependencies
     
     private let interactor: MoviesInteractorProtocol
+    private let viewStateHandler: ViewStateHandlerProtocol
 
     // MARK: - Reactive properties
     
@@ -36,8 +37,9 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(interactor: MoviesInteractorProtocol) {
+    init(interactor: MoviesInteractorProtocol, viewStateHandler: ViewStateHandlerProtocol) {
         self.interactor = interactor
+        self.viewStateHandler = viewStateHandler
     }
     
     // MARK: - UpcomingMoviesViewModelProtocol
@@ -51,6 +53,10 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol {
         self.fetchMovies(currentPage: 1, showLoader: false)
     }
 
+    func movie(for index: Int) -> Movie {
+        return movies[index]
+    }
+
     // MARK: - Private
     
     private func fetchMovies(currentPage: Int, showLoader: Bool = false) {
@@ -59,26 +65,13 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol {
             self.startLoading.value = false
             switch result {
             case .success(let movies):
-                self.viewState.value = self.processMovieResult(movies,
-                                                               currentPage: currentPage,
-                                                               currentMovies: self.movies)
+                self.viewState.value = self.viewStateHandler.processResult(movies,
+                                                                           currentPage: currentPage,
+                                                                           currentEntities: self.movies)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
         })
-    }
-    
-    private func processMovieResult(_ movies: [Movie], currentPage: Int,
-                                    currentMovies: [Movie]) -> SimpleViewState<Movie> {
-        var allMovies = currentPage == 1 ? [] : currentMovies
-        allMovies.append(contentsOf: movies)
-        guard !allMovies.isEmpty else { return .empty }
-        
-        return movies.isEmpty ? .populated(allMovies) : .paging(allMovies, next: currentPage + 1)
-    }
-    
-    func movie(for index: Int) -> Movie {
-        return movies[index]
     }
     
 }
