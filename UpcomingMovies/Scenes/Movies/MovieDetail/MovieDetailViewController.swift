@@ -153,13 +153,18 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
             strongSelf.configureNavigationBar(isFavorite: isFavorite)
         })
         viewModel?.didUpdateFavoriteSuccess.bind({ [weak self] isFavorite in
-            let successMessage = isFavorite ? "FAVOITE" : "NO FAVOEITE"
-            self?.view.showToast(withMessage: successMessage)
+            guard let strongSelf = self else { return }
+            if isFavorite {
+                strongSelf.view.showToast(withMessage: LocalizedStrings.addToFavoritesSuccess.localized)
+            } else {
+                strongSelf.view.showToast(withMessage: LocalizedStrings.removeFromFavoritesSuccess.localized)
+            }
+
         })
         viewModel?.didUpdateFavoriteFailure.bind({ [weak self] error in
-            guard let error = error else { return }
-            self?.view.showToast(withMessage: error.localizedDescription,
-                                 configuration: ToastFailureConfiguration())
+            guard let strongSelf = self, let error = error else { return }
+            strongSelf.view.showToast(withMessage: error.localizedDescription,
+                                      configuration: ToastFailureConfiguration())
         })
     }
     
