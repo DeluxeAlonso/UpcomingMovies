@@ -17,4 +17,7 @@ protocol ToastConfigurationProtocol {
     var cornerRadius: CGFloat { get }
     var animationDuration: TimeInterval { get }
 
+    var dismissDuration: TimeInterval { get }
+    var shouldQueue: Bool { get }
+
 }

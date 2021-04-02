@@ -17,4 +17,7 @@ struct ToastSuccessConfiguration: ToastConfigurationProtocol {
     let cornerRadius: CGFloat = 5.0
     let animationDuration: TimeInterval = 0.5
 
+    let dismissDuration: TimeInterval = 3.0
+    let shouldQueue: Bool = false
+
 }

@@ -28,7 +28,6 @@ extension UIView {
 
     func showToast(withMessage message: String,
                    configuration: ToastConfigurationProtocol = ToastSuccessConfiguration(),
-                   dismissDuration: TimeInterval = 3,
                    completion: ((Bool) -> Void)? = nil) {
         if toastView != nil { hideToast() }
 
@@ -47,8 +46,10 @@ extension UIView {
 
         UIView.animate(withDuration: configuration.animationDuration, delay: 0.0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             toastView.alpha = 1.0
+        }, completion: { completed in
+            completion?(completed)
         })
-        DispatchQueue.main.asyncAfter(deadline: .now() + dismissDuration) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + configuration.dismissDuration) {
             self.hideToast(withAnimationDuration: configuration.animationDuration)
         }
     }
