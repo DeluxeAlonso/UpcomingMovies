@@ -159,7 +159,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
             } else {
                 strongSelf.view.showToast(withMessage: LocalizedStrings.removeFromFavoritesSuccess.localized)
             }
-
         })
         viewModel?.didUpdateFavoriteFailure.bind({ [weak self] error in
             guard let strongSelf = self, let error = error else { return }
