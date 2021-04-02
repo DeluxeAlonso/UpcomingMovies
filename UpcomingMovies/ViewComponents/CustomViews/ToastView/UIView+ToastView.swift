@@ -28,13 +28,14 @@ extension UIView {
 
     func showToast(withMessage message: String,
                    configuration: ToastConfigurationProtocol = ToastSuccessConfiguration(),
-                   dismissDuration: TimeInterval = 5,
+                   dismissDuration: TimeInterval = 3,
                    completion: ((Bool) -> Void)? = nil) {
+        if toastView != nil { hideToast() }
+
         self.toastView = ToastView(configuration: configuration)
         self.toastView?.titleLabel.text = message
 
         guard let toastView = toastView else { return }
-
         toastView.translatesAutoresizingMaskIntoConstraints = false
         toastView.alpha = 0
 
@@ -52,11 +53,18 @@ extension UIView {
         }
     }
 
+    func hideToast() {
+        self.toastView?.alpha = 0.0
+        self.toastView?.removeFromSuperview()
+        self.toastView = nil
+    }
+
     func hideToast(withAnimationDuration duration: TimeInterval) {
         UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.toastView?.alpha = 0.0
         }, completion: { _ in
             self.toastView?.removeFromSuperview()
+            self.toastView = nil
         })
     }
 
