@@ -12,7 +12,7 @@ class ToastView: UIView {
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.numberOfLines = 0
         label.font = FontHelper.Default.mediumLight
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -42,14 +42,16 @@ class ToastView: UIView {
     }
 
     private func setupLabels() {
-        titleLabel.tintColor = configuration.tintColor
-        titleLabel.textColor = configuration.tintColor
+        titleLabel.textColor = configuration.titleTextColor
+        titleLabel.textAlignment = configuration.titleTextAlignment
 
         addSubview(titleLabel)
-        NSLayoutConstraint.activate([titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-                                     titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-                                     titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-                                     titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)])
+        let titleInsets = configuration.titleInsets
+        NSLayoutConstraint.activate(
+            [titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: titleInsets.top),
+             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: titleInsets.left),
+             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -titleInsets.right),
+             titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -titleInsets.bottom)])
     }
 
 }

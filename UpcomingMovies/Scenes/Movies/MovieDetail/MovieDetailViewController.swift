@@ -63,10 +63,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         super.viewDidAppear(animated)
         view.showToast(
             withMessage: "Test",
-            configuration: .init(
-                backgroundColor: .black,
-                tintColor: .white,
-                cornerRadius: 5),
+            configuration: ToastSuccessConfiguration(),
             dismissDuration: 3, completion: nil)
     }
 
