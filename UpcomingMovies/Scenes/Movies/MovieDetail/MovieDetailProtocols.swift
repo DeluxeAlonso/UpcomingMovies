@@ -21,15 +21,18 @@ protocol MovieDetailViewModelProtocol {
     var backdropURL: URL? { get set }
     
     var options: [MovieDetailOption] { get }
-    
-    var updateMovieDetail: (() -> Void)? { get set }
+
     var needsFetch: Bool { get set }
     
     var startLoading: Bindable<Bool> { get }
     var isFavorite: Bindable<Bool?> { get }
     var showErrorView: Bindable<Error?> { get }
     var showGenreName: Bindable<String> { get }
-    
+    var didUpdateFavoriteSuccess: Bindable<Bool> { get }
+    var didUpdateFavoriteFailure: Bindable<Error?> { get }
+
+    var updateMovieDetail: (() -> Void)? { get set }
+
     func getMovieDetail()
     func refreshMovieDetail()
     

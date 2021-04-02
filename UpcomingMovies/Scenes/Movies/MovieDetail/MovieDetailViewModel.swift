@@ -23,6 +23,9 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private (set) var showErrorView: Bindable<Error?> = Bindable(nil)
     private (set) var showGenreName: Bindable<String> = Bindable("-")
 
+    private (set) var didUpdateFavoriteSuccess: Bindable<Bool> = Bindable(false)
+    private (set) var didUpdateFavoriteFailure: Bindable<Error?> = Bindable(nil)
+
     var updateMovieDetail: (() -> Void)?
 
     // MARK: - Properties
@@ -158,9 +161,11 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         interactor.markMovieAsFavorite(movieId: id, favorite: !isFavorite, completion: { result in
             switch result {
             case .success:
-                self.isFavorite.value = !isFavorite
+                let newFavoriteValue = !isFavorite
+                self.isFavorite.value = newFavoriteValue
+                self.didUpdateFavoriteSuccess.value = newFavoriteValue
             case .failure(let error):
-                self.showErrorView.value = error
+                self.didUpdateFavoriteFailure.value = error
             }
         })
     }

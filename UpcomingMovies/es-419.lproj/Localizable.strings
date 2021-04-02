@@ -46,6 +46,8 @@
 
 "addToFavoritesHint" = "Añadir a favoritos";
 "removeFromFavoritesHint" = "Remover de favoritos";
+"addToFavoritesSuccess" = "¡Agregado a tu lista de favoritos!";
+"removeFromFavoritesSuccess" = "Removido de tu lista de favoritos";
 
 "expandMovieCellsHint" = "Expandir películas";
 "collapseMovieCellsHint" = "Colapsar películas";

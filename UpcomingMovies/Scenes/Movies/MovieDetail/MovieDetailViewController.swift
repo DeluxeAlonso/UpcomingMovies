@@ -113,11 +113,11 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview
         
+        configureOptionsStackView()
+
         viewModel.showGenreName.bindAndFire({ [weak self] genreName in
             self?.genreLabel.text = genreName
         })
-        
-        configureOptionsStackView()
     }
     
     private func configureOptionsStackView() {
@@ -151,6 +151,19 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         viewModel?.isFavorite.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
             strongSelf.configureNavigationBar(isFavorite: isFavorite)
+        })
+        viewModel?.didUpdateFavoriteSuccess.bind({ [weak self] isFavorite in
+            guard let strongSelf = self else { return }
+            if isFavorite {
+                strongSelf.view.showToast(withMessage: LocalizedStrings.addToFavoritesSuccess.localized)
+            } else {
+                strongSelf.view.showToast(withMessage: LocalizedStrings.removeFromFavoritesSuccess.localized)
+            }
+        })
+        viewModel?.didUpdateFavoriteFailure.bind({ [weak self] error in
+            guard let strongSelf = self, let error = error else { return }
+            strongSelf.view.showToast(withMessage: error.localizedDescription,
+                                      configuration: ToastFailureConfiguration())
         })
     }
     
