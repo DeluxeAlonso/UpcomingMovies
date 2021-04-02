@@ -59,6 +59,17 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         viewModel.checkIfUserIsAuthenticated()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        view.showToast(
+            withMessage: "Test",
+            configuration: .init(
+                backgroundColor: .black,
+                tintColor: .white,
+                cornerRadius: 10),
+            dismissDuration: 10, completion: nil)
+    }
+
     // MARK: - Private
     
     private func setupUI() {
