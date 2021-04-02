@@ -66,8 +66,8 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
             configuration: .init(
                 backgroundColor: .black,
                 tintColor: .white,
-                cornerRadius: 10),
-            dismissDuration: 10, completion: nil)
+                cornerRadius: 5),
+            dismissDuration: 3, completion: nil)
     }
 
     // MARK: - Private

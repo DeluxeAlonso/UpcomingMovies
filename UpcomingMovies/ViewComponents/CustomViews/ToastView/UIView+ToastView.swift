@@ -1,5 +1,5 @@
 //
-//  UIViewController+ToastView.swift
+//  UIView+ToastView.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 1/04/21.
@@ -41,9 +41,21 @@ extension UIView {
         addSubview(toastView)
         NSLayoutConstraint.activate([toastView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
                                      toastView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-                                     toastView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100)])
+                                     toastView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8)])
         UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             toastView.alpha = 1.0
+        })
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + dismissDuration) {
+            self.hideToast()
+        }
+    }
+
+    func hideToast() {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.toastView?.alpha = 0.0
+        }, completion: { _ in
+            self.toastView?.removeFromSuperview()
         })
     }
 
