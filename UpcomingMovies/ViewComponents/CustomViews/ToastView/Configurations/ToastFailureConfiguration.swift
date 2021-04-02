@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ToastFailureConfiguration: ToastConfiguration {
+struct ToastFailureConfiguration: ToastConfigurationProtocol {
 
     let backgroundColor: UIColor = .red
     let titleInsets: UIEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)

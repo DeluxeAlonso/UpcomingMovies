@@ -18,11 +18,11 @@ class ToastView: UIView {
         return label
     }()
 
-    private let configuration: ToastConfiguration
+    private let configuration: ToastConfigurationProtocol
 
     // MARK: - Initializers
 
-    init(configuration: ToastConfiguration) {
+    init(configuration: ToastConfigurationProtocol) {
         self.configuration = configuration
         super.init(frame: .zero)
         setupUI()

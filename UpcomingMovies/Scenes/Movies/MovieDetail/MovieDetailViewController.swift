@@ -59,14 +59,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         viewModel.checkIfUserIsAuthenticated()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        view.showToast(
-            withMessage: "Test",
-            configuration: ToastSuccessConfiguration(),
-            dismissDuration: 3, completion: nil)
-    }
-
     // MARK: - Private
     
     private func setupUI() {
@@ -159,6 +151,15 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         viewModel?.isFavorite.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
             strongSelf.configureNavigationBar(isFavorite: isFavorite)
+        })
+        viewModel?.didUpdateFavoriteSuccess.bind({ [weak self] isFavorite in
+            let successMessage = isFavorite ? "FAVOITE" : "NO FAVOEITE"
+            self?.view.showToast(withMessage: successMessage)
+        })
+        viewModel?.didUpdateFavoriteFailure.bind({ [weak self] error in
+            guard let error = error else { return }
+            self?.view.showToast(withMessage: error.localizedDescription,
+                                 configuration: ToastFailureConfiguration())
         })
     }
     

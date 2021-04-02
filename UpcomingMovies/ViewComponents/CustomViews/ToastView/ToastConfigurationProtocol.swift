@@ -1,5 +1,5 @@
 //
-//  ToastConfiguration.swift
+//  ToastConfigurationProtocol.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 1/04/21.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ToastConfiguration {
+protocol ToastConfigurationProtocol {
 
     var backgroundColor: UIColor { get }
     var titleInsets: UIEdgeInsets { get }

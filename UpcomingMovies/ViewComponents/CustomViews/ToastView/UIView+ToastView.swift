@@ -27,9 +27,9 @@ extension UIView {
     }
 
     func showToast(withMessage message: String,
-                   configuration: ToastConfiguration,
-                   dismissDuration: TimeInterval,
-                   completion: ((Bool) -> Void)?) {
+                   configuration: ToastConfigurationProtocol = ToastSuccessConfiguration(),
+                   dismissDuration: TimeInterval = 5,
+                   completion: ((Bool) -> Void)? = nil) {
         self.toastView = ToastView(configuration: configuration)
         self.toastView?.titleLabel.text = message
 
