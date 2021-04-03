@@ -1910,7 +1910,6 @@
 			children = (
 				E2C44C172616C66B004B9C9B /* Configurations */,
 				E2C085AF2616520400AC5383 /* ToastView.swift */,
-				E2C085B92616521100AC5383 /* ToastConfigurationProtocol.swift */,
 				E2C085BF2616527400AC5383 /* UIView+ToastView.swift */,
 			);
 			path = ToastView;
@@ -1919,6 +1918,7 @@
 		E2C44C172616C66B004B9C9B /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
+				E2C085B92616521100AC5383 /* ToastConfigurationProtocol.swift */,
 				E2C44C182616C6B0004B9C9B /* ToastSuccessConfiguration.swift */,
 				E2C44C1E2616C6D0004B9C9B /* ToastFailureConfiguration.swift */,
 			);

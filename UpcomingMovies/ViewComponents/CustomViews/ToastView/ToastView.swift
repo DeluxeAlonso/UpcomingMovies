@@ -36,6 +36,9 @@ class ToastView: UIView {
 
     private func setupUI() {
         backgroundColor = configuration.backgroundColor
+
+        layer.borderWidth = configuration.borderWidth
+        layer.borderColor = configuration.borderColor.cgColor
         layer.cornerRadius = configuration.cornerRadius
 
         setupLabels()

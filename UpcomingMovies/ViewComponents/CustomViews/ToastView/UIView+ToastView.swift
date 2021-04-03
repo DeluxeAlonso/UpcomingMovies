@@ -28,7 +28,6 @@ extension UIView {
 
     func showToast(withMessage message: String,
                    configuration: ToastConfigurationProtocol = ToastSuccessConfiguration(),
-                   dismissDuration: TimeInterval = 3,
                    completion: ((Bool) -> Void)? = nil) {
         if toastView != nil { hideToast() }
 
@@ -43,16 +42,19 @@ extension UIView {
         NSLayoutConstraint.activate(
             [toastView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
              toastView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
-             toastView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8)])
+             toastView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16)])
 
         UIView.animate(withDuration: configuration.animationDuration, delay: 0.0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             toastView.alpha = 1.0
+        }, completion: { completed in
+            completion?(completed)
         })
-        DispatchQueue.main.asyncAfter(deadline: .now() + dismissDuration) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + configuration.dismissDuration) {
             self.hideToast(withAnimationDuration: configuration.animationDuration)
         }
     }
 
+    /// Hides the current presented toast view without animations.
     func hideToast() {
         self.toastView?.alpha = 0.0
         self.toastView?.removeFromSuperview()
