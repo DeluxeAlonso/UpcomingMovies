@@ -30,14 +30,14 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     // MARK: - Properties
     
-    var id: Int!
-    var title: String!
-    var genre: String?
-    var releaseDate: String?
-    var overview: String?
-    var voteAverage: Double?
-    var posterURL: URL?
-    var backdropURL: URL?
+    private (set) var id: Int!
+    private (set) var title: String!
+    private (set) var genre: String?
+    private (set) var releaseDate: String?
+    private (set) var overview: String?
+    private (set) var voteAverage: Double?
+    private (set) var posterURL: URL?
+    private (set) var backdropURL: URL?
 
     var needsFetch = false
     
