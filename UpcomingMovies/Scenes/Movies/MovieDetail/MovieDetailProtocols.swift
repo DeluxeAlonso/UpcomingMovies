@@ -11,14 +11,14 @@ import UpcomingMoviesDomain
 
 protocol MovieDetailViewModelProtocol {
     
-    var id: Int! { get set }
-    var title: String! { get set }
-    var genre: String? { get set }
-    var releaseDate: String? { get set }
-    var overview: String? { get set }
-    var voteAverage: Double? { get set }
-    var posterURL: URL? { get set }
-    var backdropURL: URL? { get set }
+    var id: Int! { get }
+    var title: String! { get }
+    var genre: String? { get }
+    var releaseDate: String? { get }
+    var overview: String? { get }
+    var voteAverage: Double? { get }
+    var posterURL: URL? { get }
+    var backdropURL: URL? { get }
     
     var options: [MovieDetailOption] { get }
 
@@ -68,5 +68,7 @@ protocol MovieDetailCoordinatorProtocol: class {
     func showMovieCredits()
     func showMovieReviews()
     func showSimilarMovies()
+
+    func showSharingOptions(withShareTitle title: String)
     
 }

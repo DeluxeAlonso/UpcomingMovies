@@ -180,9 +180,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     @IBAction func shareBarButtonAction(_ sender: Any) {
         guard let movieTitle = viewModel?.title else { return }
         let shareText = String(format: LocalizedStrings.movieDetailShareText.localized, movieTitle)
-        let activityViewController = UIActivityViewController(activityItems: [shareText],
-                                                              applicationActivities: nil)
-        present(activityViewController, animated: true, completion: nil)
+        coordinator?.showSharingOptions(withShareTitle: shareText)
     }
     
     @IBAction func favoriteButtonAction(_ sender: Any) {

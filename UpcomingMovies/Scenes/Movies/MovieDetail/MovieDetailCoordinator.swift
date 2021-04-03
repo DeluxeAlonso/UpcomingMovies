@@ -10,8 +10,10 @@ import UIKit
 import UpcomingMoviesDomain
 
 enum MovieDetailInfo {
+
     case complete(movie: Movie)
     case partial(movieId: Int, movieTitle: String)
+
 }
 
 final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol {
@@ -102,6 +104,12 @@ final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol 
         case .partial(let movieId, let movieTitle):
             return (movieId, movieTitle)
         }
+    }
+
+    func showSharingOptions(withShareTitle title: String) {
+        let activityViewController = UIActivityViewController(activityItems: [title],
+                                                              applicationActivities: nil)
+        navigationController.present(activityViewController, animated: true, completion: nil)
     }
     
 }
