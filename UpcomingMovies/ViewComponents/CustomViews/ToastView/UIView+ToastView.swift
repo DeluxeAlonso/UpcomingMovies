@@ -42,7 +42,7 @@ extension UIView {
         NSLayoutConstraint.activate(
             [toastView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
              toastView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
-             toastView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8)])
+             toastView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16)])
 
         UIView.animate(withDuration: configuration.animationDuration, delay: 0.0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             toastView.alpha = 1.0
@@ -54,6 +54,7 @@ extension UIView {
         }
     }
 
+    /// Hides the current presented toast view without animations.
     func hideToast() {
         self.toastView?.alpha = 0.0
         self.toastView?.removeFromSuperview()
