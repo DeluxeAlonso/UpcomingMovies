@@ -54,7 +54,7 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
         posterImageView.addOverlay()
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func setHeaderOffset(_ offset: CGFloat) {
         posterImageViewTopConstraint.constant = initialTopContstraintConstant - offset

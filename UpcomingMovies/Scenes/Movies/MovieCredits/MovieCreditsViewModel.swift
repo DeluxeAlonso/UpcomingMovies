@@ -33,7 +33,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
         self.factory = factory
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func numberOfSections() -> Int {
         return factory.sections.count

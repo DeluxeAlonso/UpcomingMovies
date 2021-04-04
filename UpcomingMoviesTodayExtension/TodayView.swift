@@ -49,7 +49,7 @@ class TodayView: UIView {
         postersStackView.centerInSuperview()
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func setupEmptyView() {
         let emptyLabel = UILabel()

@@ -64,7 +64,7 @@ class ImageTransitionHandler {
       }
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func invalidate() {
         transitionTimer?.invalidate()

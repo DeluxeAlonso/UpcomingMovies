@@ -43,7 +43,7 @@ class ToggleBarButtonItem: UIBarButtonItem {
         accessibilityHint = content.accessibilityHint
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func toggle() {
         currentContentIndex += 1

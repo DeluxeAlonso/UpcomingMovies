@@ -23,7 +23,7 @@ class CustomFooterView: UIView {
         return label
     }()
     
-    // MARK: - Public
+    // MARK: - Internal
     
     var message: String? {
         didSet {

@@ -75,7 +75,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
         return oldViewState != viewState.value
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func loadGenres() {
         interactor.getGenres(completion: { [weak self] result in
