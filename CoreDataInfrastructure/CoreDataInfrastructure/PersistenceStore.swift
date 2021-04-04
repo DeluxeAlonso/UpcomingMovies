@@ -35,7 +35,7 @@ class PersistenceStore<Entity: NSManagedObject>: NSObject, NSFetchedResultsContr
         super.init()
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func configureResultsContoller(batchSize: Int = 5, limit: Int = 0,
                                    sortDescriptors: [NSSortDescriptor] = [],

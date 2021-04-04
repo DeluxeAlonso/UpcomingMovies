@@ -23,7 +23,7 @@ class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate {
         self.verticalSafeAreaOffset = verticalSafeAreaOffset
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func configure(selectedFrame: CGRect?, with imageToTransition: UIImage?) {
         self.selectedFrame = selectedFrame

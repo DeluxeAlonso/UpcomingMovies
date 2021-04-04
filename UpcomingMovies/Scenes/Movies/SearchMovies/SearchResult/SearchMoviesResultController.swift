@@ -116,7 +116,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         })
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func startSearch(withSearchText searchText: String) {
         viewModel.clearMovies()

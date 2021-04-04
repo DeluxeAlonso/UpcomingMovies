@@ -44,7 +44,7 @@ class SignInViewController: UIViewController, Storyboarded {
                                                         transitionImages: transitionImages)
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func startLoading() {
         signInButton.startAnimation()

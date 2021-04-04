@@ -42,7 +42,7 @@ class LoadingFooterView: UIView {
         activityIndicatorView.centerInSuperview()
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func startAnimating() {
         activityIndicatorView.startAnimating()
