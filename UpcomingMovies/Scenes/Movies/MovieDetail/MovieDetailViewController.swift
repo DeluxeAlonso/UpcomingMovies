@@ -155,13 +155,11 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         viewModel?.didUpdateFavoriteSuccess.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
             let message = isFavorite ? LocalizedStrings.addToFavoritesSuccess.localized : LocalizedStrings.removeFromFavoritesSuccess.localized
-            strongSelf.view.showToast(withMessage: message,
-                                      defaultConfiguration: .success)
+            strongSelf.view.showSuccessToast(withMessage: message)
         })
         viewModel?.didUpdateFavoriteFailure.bind({ [weak self] error in
             guard let strongSelf = self, let error = error else { return }
-            strongSelf.view.showToast(withMessage: error.localizedDescription,
-                                      defaultConfiguration: .failure)
+            strongSelf.view.showFailureToast(withMessage: error.localizedDescription)
         })
     }
     
