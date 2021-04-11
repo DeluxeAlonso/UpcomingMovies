@@ -35,7 +35,7 @@ extension UIView {
     }
 
     func showToast(withMessage message: String,
-                   configuration: ToastConfigurationProtocol = ToastSuccessConfiguration(),
+                   configuration: ToastConfigurationProtocol,
                    completion: ((Bool) -> Void)? = nil) {
         if toastView != nil { hideToast() }
 
