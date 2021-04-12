@@ -55,11 +55,11 @@ class ProfileViewController: UITableViewController, Storyboarded {
     }
     
     private func showSignOutActionSheet() {
-        let signOutAction = UIAlertAction(title: LocalizedStrings.signOut.localized,
+        let signOutAction = UIAlertAction(title: LocalizedStrings.signOut(),
                                           style: .destructive) { _ in
             self.delegate?.profileViewController(didTapSignOutButton: true)
         }
-        showSimpleActionSheet(title: LocalizedStrings.signOutConfirmationTitle.localized,
+        showSimpleActionSheet(title: LocalizedStrings.signOutConfirmationTitle(),
                               message: nil, action: signOutAction)
     }
     

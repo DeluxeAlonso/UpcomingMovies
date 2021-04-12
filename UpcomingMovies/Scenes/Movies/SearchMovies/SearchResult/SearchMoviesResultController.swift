@@ -93,7 +93,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         tableView.separatorStyle = .none
         switch state {
         case .empty:
-            tableView.tableFooterView = CustomFooterView(message: LocalizedStrings.emptySearchResults.localized)
+            tableView.tableFooterView = CustomFooterView(message: LocalizedStrings.emptySearchResults())
         case .populated, .initial:
             tableView.tableFooterView = UIView()
             tableView.separatorStyle = .singleLine
@@ -153,7 +153,7 @@ extension SearchMoviesResultController: UITableViewDelegate {
         switch viewState {
         case .initial:
             let headerView = SimpleHeaderView()
-            headerView.headerTitle = LocalizedStrings.recentSearches.localized
+            headerView.headerTitle = LocalizedStrings.recentSearches()
             return headerView
         case .populated:
             let view = UIView()

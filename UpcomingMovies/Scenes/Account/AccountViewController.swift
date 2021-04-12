@@ -36,7 +36,7 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     // MARK: - Private
     
     private func setupUI() {
-        title = LocalizedStrings.accountTabBarTitle.localized
+        title = LocalizedStrings.accountTabBarTitle()
         setupContainerView()
         setupNavigationBar()
     }
@@ -46,7 +46,7 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = LocalizedStrings.accountTitle.localized
+        navigationItem.title = LocalizedStrings.accountTitle()
     }
     
     private func showSignInView(withAnimatedNavigationBar animated: Bool = false) {

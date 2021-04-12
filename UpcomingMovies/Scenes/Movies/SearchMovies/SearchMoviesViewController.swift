@@ -29,7 +29,7 @@ class SearchMoviesViewController: UIViewController, Storyboarded {
     // MARK: - Private
     
     private func setupUI() {
-        title = LocalizedStrings.searchMoviesTabBarTitle.localized
+        title = LocalizedStrings.searchMoviesTabBarTitle()
         
         setupNavigationBar()
         setupContainerView()
@@ -37,7 +37,7 @@ class SearchMoviesViewController: UIViewController, Storyboarded {
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = LocalizedStrings.searchMoviesTabBarTitle.localized
+        navigationItem.title = LocalizedStrings.searchMoviesTabBarTitle()
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     

@@ -11,7 +11,7 @@ import UIKit
 class CreditsMovieDetailOption: MovieDetailOption {
     
     var title: String {
-        return LocalizedStrings.creditsDetailOptions.localized
+        return LocalizedStrings.creditsDetailOptions()
     }
     
     var icon: UIImage {

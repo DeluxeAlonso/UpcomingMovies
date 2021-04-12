@@ -46,7 +46,7 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
     // MARK: - Private
     
     private func setupUI() {
-        title = LocalizedStrings.customListGroupOption.localized
+        title = LocalizedStrings.customListGroupOption()
         
         setupNavigationBar()
         setupTableView()

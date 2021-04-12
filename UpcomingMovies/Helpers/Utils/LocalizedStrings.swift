@@ -83,5 +83,9 @@ enum LocalizedStrings: String, Localizable {
     var tableName: String {
         return "Localizable"
     }
+
+    func callAsFunction() -> String {
+        return self.localized
+    }
     
 }

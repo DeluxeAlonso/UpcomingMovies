@@ -107,7 +107,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
     private func configureView(with state: CustomListDetailViewState) {
         switch state {
         case .empty:
-            tableView.tableFooterView = CustomFooterView(message: LocalizedStrings.emptyMovieResults.localized)
+            tableView.tableFooterView = CustomFooterView(message: LocalizedStrings.emptyMovieResults())
         case .populated:
             tableView.tableFooterView = UIView()
         case .loading:

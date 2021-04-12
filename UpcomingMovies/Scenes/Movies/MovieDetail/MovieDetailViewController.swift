@@ -62,7 +62,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     // MARK: - Private
     
     private func setupUI() {
-        title = LocalizedStrings.movieDetailTitle.localized
+        title = LocalizedStrings.movieDetailTitle()
         
         setupNavigationBar()
         transitionContainerView.setShadowBorder()
@@ -154,7 +154,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         })
         viewModel?.didUpdateFavoriteSuccess.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
-            let message = isFavorite ? LocalizedStrings.addToFavoritesSuccess.localized : LocalizedStrings.removeFromFavoritesSuccess.localized
+            let message = isFavorite ? LocalizedStrings.addToFavoritesSuccess() : LocalizedStrings.removeFromFavoritesSuccess()
             strongSelf.view.showSuccessToast(withMessage: message)
         })
         viewModel?.didUpdateFavoriteFailure.bind({ [weak self] error in
@@ -175,7 +175,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     @IBAction func shareBarButtonAction(_ sender: Any) {
         guard let movieTitle = viewModel?.title else { return }
-        let shareText = String(format: LocalizedStrings.movieDetailShareText.localized, movieTitle)
+        let shareText = String(format: LocalizedStrings.movieDetailShareText(), movieTitle)
         coordinator?.showSharingOptions(withShareTitle: shareText)
     }
     

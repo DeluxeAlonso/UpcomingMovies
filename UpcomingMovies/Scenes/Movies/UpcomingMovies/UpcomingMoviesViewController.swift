@@ -60,7 +60,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     // MARK: - Private
     
     private func setupUI() {
-        title = LocalizedStrings.upcomingMoviesTabBarTitle.localized
+        title = LocalizedStrings.upcomingMoviesTabBarTitle()
         UIAccessibility.post(notification: .screenChanged, argument: self.navigationItem.title)
         
         setupNavigationBar()
@@ -69,7 +69,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = LocalizedStrings.upcomingMoviesTitle.localized
+        navigationItem.title = LocalizedStrings.upcomingMoviesTitle()
         
         toggleGridBarButtonItem = UpcomingMoviesViewFactory.makeGridBarButtonItem()
         toggleGridBarButtonItem.target = self
@@ -143,7 +143,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
              hideDisplayedPlaceholderView()
             collectionView.backgroundView = UIView(frame: .zero)
         case .empty:
-            presentEmptyView(with: LocalizedStrings.emptyMovieResults.localized)
+            presentEmptyView(with: LocalizedStrings.emptyMovieResults())
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
