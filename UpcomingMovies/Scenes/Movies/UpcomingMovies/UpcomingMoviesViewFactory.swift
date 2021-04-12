@@ -12,9 +12,9 @@ final class UpcomingMoviesViewFactory {
     
     class func makeGridBarButtonItem() -> ToggleBarButtonItem {
         let preview = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "List")),
-                                                 accessibilityLabel: LocalizedStrings.expandMovieCellsHint.localized)
+                                                 accessibilityLabel: LocalizedStrings.expandMovieCellsHint())
         let detail = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "Grid")),
-                                                accessibilityLabel: LocalizedStrings.collapseMovieCellsHint.localized)
+                                                accessibilityLabel: LocalizedStrings.collapseMovieCellsHint())
         
         return ToggleBarButtonItem(contents: [preview, detail])
     }

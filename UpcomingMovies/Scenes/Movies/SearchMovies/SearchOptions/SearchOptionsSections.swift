@@ -14,11 +14,11 @@ enum SearchOptionsSection {
     var title: String? {
         switch self {
         case .recentlyVisited:
-            return LocalizedStrings.recentlyVisitedSeearchSectionTitle.localized
+            return LocalizedStrings.recentlyVisitedSeearchSectionTitle()
         case .defaultSearches:
             return nil
         case .genres:
-            return LocalizedStrings.movieGenresSearchSectionTitle.localized
+            return LocalizedStrings.movieGenresSearchSectionTitle()
         }
     }
     

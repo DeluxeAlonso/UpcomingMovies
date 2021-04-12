@@ -24,7 +24,7 @@ class ProfileSignOutTableViewCell: UITableViewCell {
     // MARK: - Private
     
     private func setupUI() {
-        textLabel?.text = LocalizedStrings.signOut.localized
+        textLabel?.text = LocalizedStrings.signOut()
         textLabel?.textAlignment = .center
         textLabel?.textColor = ColorPalette.redColor
         textLabel?.font = FontHelper.light(withSize: 16.0)

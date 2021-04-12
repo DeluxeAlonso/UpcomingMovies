@@ -12,9 +12,9 @@ class FavoriteToggleBarButtonItem: ToggleBarButtonItem {
     
     init() {
         let favoriteOff = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "FavoriteOff")),
-                                                     accessibilityLabel: LocalizedStrings.addToFavoritesHint.localized)
+                                                     accessibilityLabel: LocalizedStrings.addToFavoritesHint())
         let favoriteOn = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "FavoriteOn")),
-                                                    accessibilityLabel: LocalizedStrings.removeFromFavoritesHint.localized)
+                                                    accessibilityLabel: LocalizedStrings.removeFromFavoritesHint())
         super.init(contents: [favoriteOff, favoriteOn])
     }
     

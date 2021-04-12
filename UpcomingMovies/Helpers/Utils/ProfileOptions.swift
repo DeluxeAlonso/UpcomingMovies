@@ -22,9 +22,9 @@ public enum ProfileCollectionOption: ProfileOptionProtocol {
     public var title: String? {
         switch self {
         case .favorites:
-            return LocalizedStrings.favoritesCollectionOption.localized
+            return LocalizedStrings.favoritesCollectionOption()
         case .watchlist:
-            return LocalizedStrings.watchlistCollectionOption.localized
+            return LocalizedStrings.watchlistCollectionOption()
         }
     }
     
@@ -40,7 +40,7 @@ public enum ProfileGroupOption: ProfileOptionProtocol {
     public var title: String? {
         switch self {
         case .customLists:
-            return LocalizedStrings.customListGroupOption.localized
+            return LocalizedStrings.customListGroupOption()
         }
     }
     
@@ -56,7 +56,7 @@ public enum ProfileConfigurationOption: ProfileOptionProtocol {
     public var title: String? {
         switch self {
         case .includeAdult:
-            return LocalizedStrings.includeAdults.localized
+            return LocalizedStrings.includeAdults()
         }
     }
     

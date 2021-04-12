@@ -62,7 +62,7 @@ final class MovieCreditCollectionViewCell: UICollectionViewCell {
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
         
-        let creditLabelFormat = LocalizedStrings.movieCreditAccessibility.localized
+        let creditLabelFormat = LocalizedStrings.movieCreditAccessibility()
         accessibilityLabel = String(format: creditLabelFormat, viewModel.name, viewModel.role)
         
         profileImageView.setImage(with: viewModel.profileURL)

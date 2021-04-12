@@ -23,7 +23,7 @@ final class PopularMoviesCoordinator: MovieListCoordinatorProtocol, Coordinator,
         let viewController = MovieListViewController.instantiate()
         
         viewController.viewModel = DIContainer.shared.resolve(name: "PopularMovies",
-                                                              argument: LocalizedStrings.popularMoviesTitle.localized)
+                                                              argument: LocalizedStrings.popularMoviesTitle())
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
