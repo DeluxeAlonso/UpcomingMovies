@@ -10,7 +10,7 @@ import UIKit
 
 class ToastView: UIView {
 
-    lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = FontHelper.Default.mediumLight
