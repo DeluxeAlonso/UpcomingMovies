@@ -40,7 +40,7 @@ extension UIView {
         if toastView != nil { hideToast() }
 
         self.toastView = ToastView(configuration: configuration)
-        self.toastView?.titleLabel.text = message
+        self.toastView?.title = message
 
         guard let toastView = toastView else { return }
         toastView.translatesAutoresizingMaskIntoConstraints = false

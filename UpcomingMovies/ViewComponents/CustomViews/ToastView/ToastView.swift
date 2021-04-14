@@ -20,6 +20,12 @@ class ToastView: UIView {
 
     private let configuration: ToastConfigurationProtocol
 
+    var title: String? {
+        didSet {
+            titleLabel.text = title
+        }
+    }
+
     // MARK: - Initializers
 
     init(configuration: ToastConfigurationProtocol) {
