@@ -1,5 +1,3 @@
-setup_travis
-
 default_platform(:ios)
 
 ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "4"
