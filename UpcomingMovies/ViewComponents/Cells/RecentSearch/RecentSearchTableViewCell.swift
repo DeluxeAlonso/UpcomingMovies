@@ -35,7 +35,7 @@ final class RecentSearchTableViewCell: UITableViewCell {
     
     fileprivate func setupSearchLabel() {
         searchLabel.font = FontHelper.Default.mediumLight
-        searchLabel.textColor = ColorPalette.darkGray
+        searchLabel.textColor = ColorPalette.darkGrayColor
     }
     
     fileprivate func setupBindables() {
