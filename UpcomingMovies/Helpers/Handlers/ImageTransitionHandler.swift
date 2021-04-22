@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageTransitionHandler {
+final class ImageTransitionHandler {
     
     private let imageView: UIImageView
     private let transitionImages: [UIImage]
@@ -17,8 +17,8 @@ class ImageTransitionHandler {
     // We start on the second index because the first image is set up without animation.
     private var currentTransitionImageIndex = 1
     
-    weak var transitionTimer: Timer?
-    
+    private var transitionTimer: Timer?
+
     // MARK: - Initializers
     
     init(imageView: UIImageView,
