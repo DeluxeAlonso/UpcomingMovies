@@ -22,9 +22,8 @@ final class SavedMoviesAssembly: Assembly {
         }
         container.register(SavedMoviesViewModelProtocol.self) { (resolver, displayTitle: String?) in
             let interactor = resolver.resolve(SavedMoviesInteractorProtocol.self, name: displayTitle)
-            let viewStateHandler = resolver.resolve(ViewStateHandlerProtocol.self)
             
-            let viewModel = SavedMoviesViewModel(interactor: interactor!, viewStateHandler: viewStateHandler!)
+            let viewModel = SavedMoviesViewModel(interactor: interactor!)
             viewModel.displayTitle = displayTitle
             
             return viewModel

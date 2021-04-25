@@ -1,12 +1,14 @@
 //
-//  ViewStateHandler.swift
+//  SimpleViewStateProcessable.swift
 //  UpcomingMovies
 //
-//  Created by Alonso on 27/03/21.
+//  Created by Alonso on 24/04/21.
 //  Copyright © 2021 Alonso. All rights reserved.
 //
 
-protocol ViewStateHandlerProtocol {
+import Foundation
+
+protocol SimpleViewStateProcessable {
 
     func processResult<T: Equatable>(_ entities: [T]) -> SimpleViewState<T>
 
@@ -16,7 +18,7 @@ protocol ViewStateHandlerProtocol {
 
 }
 
-struct ViewStateHandler: ViewStateHandlerProtocol {
+extension SimpleViewStateProcessable {
 
     func processResult<T: Equatable>(_ entities: [T]) -> SimpleViewState<T> {
         return entities.isEmpty ? .empty : .populated(entities)
@@ -31,5 +33,5 @@ struct ViewStateHandler: ViewStateHandlerProtocol {
 
         return entities.isEmpty ? .populated(allEntities) : .paging(allEntities, next: currentPage + 1)
     }
-    
+
 }

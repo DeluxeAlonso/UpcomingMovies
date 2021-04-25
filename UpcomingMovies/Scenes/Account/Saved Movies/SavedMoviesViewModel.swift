@@ -9,12 +9,11 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
+final class SavedMoviesViewModel: SavedMoviesViewModelProtocol, SimpleViewStateProcessable {
 
     // MARK: - Dependencies
     
     private let interactor: SavedMoviesInteractorProtocol
-    private let viewStateHandler: ViewStateHandlerProtocol
 
     // MARK: - Reactive properties
     
@@ -39,9 +38,8 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(interactor: SavedMoviesInteractorProtocol, viewStateHandler: ViewStateHandlerProtocol) {
+    init(interactor: SavedMoviesInteractorProtocol) {
         self.interactor = interactor
-        self.viewStateHandler = viewStateHandler
     }
     
     // MARK: - SavedMoviesViewModelProtocol
@@ -58,7 +56,7 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
     func refreshCollectionList() {
         fetchCollectionList(page: 1, showLoader: false)
     }
-
+    
     // MARK: - Private
     
     private func fetchCollectionList(page: Int, showLoader: Bool) {
@@ -67,9 +65,9 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
             self.startLoading.value = false
             switch result {
             case .success(let movies):
-                self.viewState.value = self.viewStateHandler.processResult(movies,
-                                                                           currentPage: page,
-                                                                           currentEntities: self.movies)
+                self.viewState.value = self.processResult(movies,
+                                                          currentPage: page,
+                                                          currentEntities: self.movies)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
