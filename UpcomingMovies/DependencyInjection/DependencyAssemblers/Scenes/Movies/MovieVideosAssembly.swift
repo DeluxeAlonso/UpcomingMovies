@@ -19,12 +19,10 @@ final class MovieVideosAssembly: Assembly {
         
         container.register(MovieVideosViewModelProtocol.self) { (resolver, movieId: Int?, movieTitle: String?) in
             let interactor = resolver.resolve(MovieVideosInteractorProtocol.self)
-            let viewStateHandler = resolver.resolve(ViewStateHandlerProtocol.self)
             
             return MovieVideosViewModel(movieId: movieId!,
                                         movieTitle: movieTitle!,
-                                        interactor: interactor!,
-                                        viewStateHandler: viewStateHandler!)
+                                        interactor: interactor!)
         }
     }
     

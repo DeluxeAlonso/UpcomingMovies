@@ -27,10 +27,8 @@ final class MovieListAssembly: Assembly {
         
         container.register(MovieListViewModelProtocol.self, name: "PopularMovies") { (resolver, displayTitle: String) in
             let interactor = resolver.resolve(MoviesInteractorProtocol.self, name: "PopularMovies")
-            let viewStateHandler = resolver.resolve(ViewStateHandlerProtocol.self)
             
-            let viewModel = MovieListViewModel(interactor: interactor!,
-                                               viewStateHandler: viewStateHandler!)
+            let viewModel = MovieListViewModel(interactor: interactor!)
             viewModel.displayTitle = displayTitle
             
             return viewModel
@@ -45,9 +43,8 @@ final class MovieListAssembly: Assembly {
         
         container.register(MovieListViewModelProtocol.self, name: "TopRatedMovies") { (resolver, displayTitle: String) in
             let interactor = resolver.resolve(MoviesInteractorProtocol.self, name: "TopRatedMovies")
-            let viewStateHandler = resolver.resolve(ViewStateHandlerProtocol.self)
             
-            let viewModel = MovieListViewModel(interactor: interactor!, viewStateHandler: viewStateHandler!)
+            let viewModel = MovieListViewModel(interactor: interactor!)
             viewModel.displayTitle = displayTitle
             
             return viewModel
@@ -63,9 +60,8 @@ final class MovieListAssembly: Assembly {
         container.register(MovieListViewModelProtocol.self, name: "SimilarMovies") { (resolver, displayTitle: String, movieId: Int?) in
             let interactor = resolver.resolve(MoviesInteractorProtocol.self,
                                               name: "SimilarMovies", argument: movieId!)
-            let viewStateHandler = resolver.resolve(ViewStateHandlerProtocol.self)
             
-            let viewModel = MovieListViewModel(interactor: interactor!, viewStateHandler: viewStateHandler!)
+            let viewModel = MovieListViewModel(interactor: interactor!)
             viewModel.displayTitle = displayTitle
             
             return viewModel
@@ -83,9 +79,8 @@ final class MovieListAssembly: Assembly {
             let interactor = resolver.resolve(MoviesInteractorProtocol.self,
                                               name: "MoviesByGenre",
                                               arguments: genreId!, genreName!)
-            let viewStateHandler = resolver.resolve(ViewStateHandlerProtocol.self)
             
-            let viewModel = MovieListViewModel(interactor: interactor!, viewStateHandler: viewStateHandler!)
+            let viewModel = MovieListViewModel(interactor: interactor!)
             viewModel.displayTitle = genreName
             
             return viewModel

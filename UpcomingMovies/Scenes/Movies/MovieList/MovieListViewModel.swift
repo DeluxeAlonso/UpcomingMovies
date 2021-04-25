@@ -8,12 +8,11 @@
 
 import UpcomingMoviesDomain
 
-final class MovieListViewModel: MovieListViewModelProtocol {
+final class MovieListViewModel: MovieListViewModelProtocol, SimpleViewStateProcessable {
 
     // MARK: - Dependencies
     
     private let interactor: MoviesInteractorProtocol
-    private let viewStateHandler: ViewStateHandlerProtocol
 
     // MARK: - Reactive properties
     
@@ -38,9 +37,8 @@ final class MovieListViewModel: MovieListViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(interactor: MoviesInteractorProtocol, viewStateHandler: ViewStateHandlerProtocol) {
+    init(interactor: MoviesInteractorProtocol) {
         self.interactor = interactor
-        self.viewStateHandler = viewStateHandler
     }
     
     // MARK: - MovieListViewModelProtocol
@@ -57,7 +55,7 @@ final class MovieListViewModel: MovieListViewModelProtocol {
     func selectedMovie(at index: Int) -> Movie {
         return movies[index]
     }
-
+    
     // MARK: - Private
     
     private func fetchMovies(currentPage: Int, showLoader: Bool = false) {
@@ -66,9 +64,9 @@ final class MovieListViewModel: MovieListViewModelProtocol {
             self.startLoading.value = false
             switch result {
             case .success(let movies):
-                self.viewState.value = self.viewStateHandler.processResult(movies,
-                                                                           currentPage: currentPage,
-                                                                           currentEntities: self.movies)
+                self.viewState.value = self.processResult(movies,
+                                                          currentPage: currentPage,
+                                                          currentEntities: self.movies)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }

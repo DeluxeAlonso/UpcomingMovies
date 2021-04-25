@@ -9,12 +9,11 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class CustomListsViewModel: CustomListsViewModelProtocol {
+final class CustomListsViewModel: CustomListsViewModelProtocol, SimpleViewStateProcessable {
 
     // MARK: - Dependencies
     
     private let interactor: CustomListsInteractorProtocol
-    private let viewStateHandler: ViewStateHandlerProtocol
     
     // MARK: - Reactive properties
     
@@ -33,9 +32,8 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(interactor: CustomListsInteractorProtocol, viewStateHandler: ViewStateHandlerProtocol) {
+    init(interactor: CustomListsInteractorProtocol) {
         self.interactor = interactor
-        self.viewStateHandler = viewStateHandler
     }
     
     // MARK: - CustomListsViewModelProtocol
@@ -62,9 +60,9 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
             switch result {
             case .success(let lists):
                 let currentPage = self.viewState.value.currentPage
-                self.viewState.value = self.viewStateHandler.processResult(lists,
-                                                                           currentPage: currentPage,
-                                                                           currentEntities: self.lists)
+                self.viewState.value = self.processResult(lists,
+                                                          currentPage: currentPage,
+                                                          currentEntities: self.lists)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }

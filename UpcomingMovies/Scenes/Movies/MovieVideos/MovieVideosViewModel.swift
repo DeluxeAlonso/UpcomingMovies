@@ -9,13 +9,12 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class MovieVideosViewModel: MovieVideosViewModelProtocol {
+final class MovieVideosViewModel: MovieVideosViewModelProtocol, SimpleViewStateProcessable {
 
     // MARK: - Dependencies
 
     private let movieId: Int
     private let interactor: MovieVideosInteractorProtocol
-    private let viewStateHandler: ViewStateHandlerProtocol
     
     // MARK: - Reactive properties
 
@@ -39,12 +38,11 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol {
     // MARK: - Initializers
     
     init(movieId: Int, movieTitle: String,
-         interactor: MovieVideosInteractorProtocol, viewStateHandler: ViewStateHandlerProtocol) {
+         interactor: MovieVideosInteractorProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
         
         self.interactor = interactor
-        self.viewStateHandler = viewStateHandler
     }
     
     // MARK: - MovieVideosViewModelProtocol
@@ -64,7 +62,7 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol {
             self.startLoading.value = false
             switch result {
             case .success(let videos):
-                self.viewState.value =  self.viewStateHandler.processResult(videos)
+                self.viewState.value =  self.processResult(videos)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
