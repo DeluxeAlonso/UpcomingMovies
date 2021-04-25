@@ -6,16 +6,6 @@
 //  Copyright © 2021 Alonso. All rights reserved.
 //
 
-protocol ViewStateHandlerProtocol {
-
-    func processResult<T: Equatable>(_ entities: [T]) -> SimpleViewState<T>
-
-    func processResult<T: Equatable>(_ entities: [T],
-                                     currentPage: Int,
-                                     currentEntities: [T]) -> SimpleViewState<T>
-
-}
-
 struct ViewStateHandler: ViewStateHandlerProtocol {
 
     func processResult<T: Equatable>(_ entities: [T]) -> SimpleViewState<T> {
