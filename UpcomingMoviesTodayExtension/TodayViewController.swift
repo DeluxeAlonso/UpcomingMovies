@@ -57,7 +57,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     // MARK: - Selectors
     
     @objc private func openHostApp() {
-        guard let url = URL(string: "extension://search") else { return }
+        guard let url = AppExtension.url(for: .searchMovies) else { return }
         self.extensionContext?.open(url, completionHandler: nil)
     }
     
