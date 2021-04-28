@@ -1,14 +1,27 @@
 //
-//  AppExtensionHost.swift
+//  AppExtension.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 12/26/20.
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-enum AppExtensionHost: String {
+import Foundation
 
-    case upcomingMovies = "upcoming"
-    case searchMovies = "search"
+struct AppExtension {
+
+    static let scheme = "extension"
+
+    enum Host: String {
+
+        case upcomingMovies = "upcoming"
+        case searchMovies = "search"
+
+    }
+
+    func url(for host: AppExtension.Host) -> URL? {
+        let urlString = AppExtension.scheme + "//" + host.rawValue
+        return URL(string: urlString)
+    }
 
 }
