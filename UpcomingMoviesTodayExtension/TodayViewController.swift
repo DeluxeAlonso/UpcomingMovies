@@ -9,7 +9,6 @@
 import UIKit
 import NotificationCenter
 import CoreDataInfrastructure
-
 @objc(TodayViewController)
 class TodayViewController: UIViewController, NCWidgetProviding {
     
