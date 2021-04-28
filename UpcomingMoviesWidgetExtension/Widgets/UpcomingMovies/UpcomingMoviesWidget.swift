@@ -24,7 +24,7 @@ struct UpcomingMoviesWidgetEntryView: View {
                         iconName: "play",
                         gradientColors: gradientColors,
                         backgroundColor: backgroundColor)
-            .widgetURL(URL(string: "extension://upcoming"))
+            .widgetURL(AppExtension.url(for: .upcomingMovies))
     }
 
 }

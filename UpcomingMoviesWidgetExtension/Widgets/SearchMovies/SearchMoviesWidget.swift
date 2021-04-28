@@ -24,7 +24,7 @@ struct SearchMoviesWidgetEntryView: View {
                         iconName: "magnifyingglass",
                         gradientColors: gradientColors,
                         backgroundColor: backgroundColor)
-            .widgetURL(URL(string: "extension://search"))
+            .widgetURL(AppExtension.url(for: .searchMovies))
     }
     
 }
