@@ -11,13 +11,13 @@ import WidgetKit
 
 struct SearchMoviesWidgetEntryView: View {
 
+    private let gradientColors = [.white,
+                                  Color("SearchMoviesGradientColor"),
+                                  Color("SearchMoviesGradientColor")]
+
+    private let backgroundColor = Color("SearchMoviesBackgroundColor")
+
     var entry: Provider.Entry
-
-    let gradientColors = [.white,
-                          Color("SearchMoviesGradientColor"),
-                          Color("SearchMoviesGradientColor")]
-
-    let backgroundColor = Color("SearchMoviesBackgroundColor")
 
     var body: some View {
         SmallWidgetView(title: "Search",
