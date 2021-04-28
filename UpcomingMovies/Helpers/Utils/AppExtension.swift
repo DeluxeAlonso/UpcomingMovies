@@ -20,7 +20,7 @@ struct AppExtension {
     }
 
     func url(for host: AppExtension.Host) -> URL? {
-        let urlString = AppExtension.scheme + "//" + host.rawValue
+        let urlString = AppExtension.scheme + "://" + host.rawValue
         return URL(string: urlString)
     }
 
