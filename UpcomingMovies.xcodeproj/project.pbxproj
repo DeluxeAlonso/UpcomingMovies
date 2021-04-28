@@ -246,6 +246,8 @@
 		E2912672250DD20F007AD101 /* DataSourceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2912671250DD20F007AD101 /* DataSourceAssembly.swift */; };
 		E2912674250DD358007AD101 /* ProviderAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2912673250DD358007AD101 /* ProviderAssembly.swift */; };
 		E2912676250DE651007AD101 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2912675250DE651007AD101 /* DIContainer.swift */; };
+		E2916FF02639174E004D8C04 /* AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F789F72598401700002CAD /* AppExtension.swift */; };
+		E2916FF526391872004D8C04 /* AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F789F72598401700002CAD /* AppExtension.swift */; };
 		E293AD27224B38480070F783 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E293AD26224B38480070F783 /* WebKit.framework */; };
 		E29407FE2209E83600A74F68 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */; };
 		E29408002209E85000A74F68 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */; };
@@ -344,7 +346,7 @@
 		E2EBDC30256A26060026319B /* MoviesWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EBDC2F256A26060026319B /* MoviesWidgets.swift */; };
 		E2EBDC32256A26090026319B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2EBDC31256A26090026319B /* Assets.xcassets */; };
 		E2EBDC36256A26090026319B /* UpcomingMoviesWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E2EBDC29256A26060026319B /* UpcomingMoviesWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E2F789F82598401700002CAD /* AppExtensionHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F789F72598401700002CAD /* AppExtensionHost.swift */; };
+		E2F789F82598401700002CAD /* AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F789F72598401700002CAD /* AppExtension.swift */; };
 		E2F78A0125985D5A00002CAD /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F78A0025985D5A00002CAD /* RootCoordinator.swift */; };
 		E2F9F7182201F3C300C62089 /* TransitioningInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F7162201F3C300C62089 /* TransitioningInteractor.swift */; };
 		E2F9F7202201FC1100C62089 /* Transitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F71F2201FC1100C62089 /* Transitionable.swift */; };
@@ -761,7 +763,7 @@
 		E2EBDC2F256A26060026319B /* MoviesWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesWidgets.swift; sourceTree = "<group>"; };
 		E2EBDC31256A26090026319B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2EBDC33256A26090026319B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2F789F72598401700002CAD /* AppExtensionHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtensionHost.swift; sourceTree = "<group>"; };
+		E2F789F72598401700002CAD /* AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtension.swift; sourceTree = "<group>"; };
 		E2F78A0025985D5A00002CAD /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		E2F9F7162201F3C300C62089 /* TransitioningInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitioningInteractor.swift; sourceTree = "<group>"; };
 		E2F9F71F2201FC1100C62089 /* Transitionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitionable.swift; sourceTree = "<group>"; };
@@ -1195,7 +1197,7 @@
 				E289DB8F23DCA25D008B2163 /* ProfileOptions.swift */,
 				E2DB26E224B03C7F000DD01C /* LocalizedStrings.swift */,
 				E2DCE7F824B134ED0041301E /* Either.swift */,
-				E2F789F72598401700002CAD /* AppExtensionHost.swift */,
+				E2F789F72598401700002CAD /* AppExtension.swift */,
 				E26EB50325CF503600AFE4A6 /* PropertyListHelper.swift */,
 				E2671D7E25D8AD4400E457FF /* AppGroup.swift */,
 			);
@@ -2589,7 +2591,7 @@
 				E289DB9023DCA25D008B2163 /* ProfileOptions.swift in Sources */,
 				E2A621C82622B6A4006A72FA /* UIView+ToastUtils.swift in Sources */,
 				E2601170219388C500E53095 /* ColorPalette.swift in Sources */,
-				E2F789F82598401700002CAD /* AppExtensionHost.swift in Sources */,
+				E2F789F82598401700002CAD /* AppExtension.swift in Sources */,
 				E2C44C1F2616C6D0004B9C9B /* ToastFailureConfiguration.swift in Sources */,
 				E290DF06249FB23E00BABBB8 /* MovieVideosCoordinator.swift in Sources */,
 				E2A4D93C2511BA4A00571893 /* CustomListDetailAssembly.swift in Sources */,
@@ -2633,6 +2635,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2671D8825D8AD9E00E457FF /* AppGroup.swift in Sources */,
+				E2916FF02639174E004D8C04 /* AppExtension.swift in Sources */,
 				E2B63B2F24677E7100C0BB13 /* UIImageView+Kingfisher.swift in Sources */,
 				E2B63B1224676AE200C0BB13 /* TodayViewController.swift in Sources */,
 				E26B03AC24687D04004447AC /* TodayView.swift in Sources */,
@@ -2650,6 +2653,7 @@
 				E2A02489256F662400D2018C /* WidgetProvider.swift in Sources */,
 				E2A024AA256F6B7600D2018C /* SmallWidgetView.swift in Sources */,
 				E2EBDC30256A26060026319B /* MoviesWidgets.swift in Sources */,
+				E2916FF526391872004D8C04 /* AppExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct SmallWidgetView: View {
+
     let title: String
     let iconName: String
     let gradientColors: [Color]
@@ -35,4 +36,5 @@ struct SmallWidgetView: View {
             .background(backgroundColor)
         }
     }
+
 }
