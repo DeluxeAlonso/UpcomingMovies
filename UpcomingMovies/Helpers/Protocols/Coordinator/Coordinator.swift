@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Coordinator: class {
+protocol Coordinator: AnyObject {
     
     var childCoordinators: [Coordinator] { get set }
     var parentCoordinator: Coordinator? { get set }

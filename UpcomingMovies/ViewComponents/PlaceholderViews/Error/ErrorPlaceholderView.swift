@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ErrorPlaceholderViewDelegate: class {
+protocol ErrorPlaceholderViewDelegate: AnyObject {
     
     func errorPlaceholderView(_ errorPlaceholderView: ErrorPlaceholderView, didRetry sender: UIButton)
     

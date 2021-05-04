@@ -12,7 +12,7 @@ private struct AssociatedKeys {
     static var retryView: RetryPlaceHolderable?
 }
 
-protocol Retryable: class { }
+protocol Retryable: AnyObject { }
 
 extension Retryable where Self: UIViewController {
     

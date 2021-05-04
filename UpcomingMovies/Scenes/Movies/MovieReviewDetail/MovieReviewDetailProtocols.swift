@@ -15,7 +15,7 @@ protocol MovieReviewDetailViewModelProtocol {
     
 }
 
-protocol MovieReviewDetailCoordinatorProtocol: class {
+protocol MovieReviewDetailCoordinatorProtocol: AnyObject {
     
     func dismiss()
     

@@ -25,7 +25,7 @@ private struct AssociatedKeys {
     
 }
 
-protocol Animatable: class {
+protocol Animatable: AnyObject {
     
     var settings: AnimatableSettings { get }
     func lockAnimation()

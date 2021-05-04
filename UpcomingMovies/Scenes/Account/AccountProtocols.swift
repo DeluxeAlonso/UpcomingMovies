@@ -33,7 +33,7 @@ protocol AccountInteractorProtocol {
     
 }
 
-protocol AccountCoordinatorProtocol: class {
+protocol AccountCoordinatorProtocol: AnyObject {
     
     func embedSignInViewController(on parentViewController: AccountViewControllerProtocol) -> SignInViewController
     func embedProfileViewController(on parentViewController: AccountViewControllerProtocol,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SignInViewControllerDelegate: class {
+protocol SignInViewControllerDelegate: AnyObject {
     
     func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool)
     

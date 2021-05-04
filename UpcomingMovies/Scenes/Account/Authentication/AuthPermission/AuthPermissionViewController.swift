@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-protocol AuthPermissionViewControllerDelegate: class {
+protocol AuthPermissionViewControllerDelegate: AnyObject {
     
     func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
                                       didReceiveAuthorization authorized: Bool)

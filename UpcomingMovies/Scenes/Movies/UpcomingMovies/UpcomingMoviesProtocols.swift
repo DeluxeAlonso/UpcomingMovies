@@ -24,13 +24,13 @@ protocol UpcomingMoviesViewModelProtocol {
     
 }
 
-protocol UpcomingMoviesCoordinatorProtocol: class {
+protocol UpcomingMoviesCoordinatorProtocol: AnyObject {
     
     func showMovieDetail(for movie: Movie, with navigationConfiguration: NavigationConfiguration?)
     
 }
 
-protocol UpcomingMoviesNavigationDelegate: class, UINavigationControllerDelegate {
+protocol UpcomingMoviesNavigationDelegate: UINavigationControllerDelegate {
     
     var parentCoordinator: Coordinator? { get set }
     

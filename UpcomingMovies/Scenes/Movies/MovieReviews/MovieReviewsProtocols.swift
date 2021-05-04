@@ -33,7 +33,7 @@ protocol MovieReviewsInteractorProtocol {
     
 }
 
-protocol MovieReviewsCoordinatorProtocol: class {
+protocol MovieReviewsCoordinatorProtocol: AnyObject {
     
     func showReviewDetail(for review: Review, transitionView: UIView?)
     

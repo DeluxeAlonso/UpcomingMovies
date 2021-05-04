@@ -32,7 +32,7 @@ protocol MoviesInteractorProtocol {
     
 }
 
-protocol MovieListCoordinatorProtocol: class {
+protocol MovieListCoordinatorProtocol: AnyObject {
     
     func showMovieDetail(for movie: Movie)
     
