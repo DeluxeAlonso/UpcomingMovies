@@ -42,7 +42,7 @@ protocol ProfileFactoryProtocol {
     
 }
 
-protocol ProfileViewControllerDelegate: class {
+protocol ProfileViewControllerDelegate: AnyObject {
 
     func profileViewController(didTapCollection collection: ProfileCollectionOption)
     func profileViewController(didTapGroup group: ProfileGroupOption)

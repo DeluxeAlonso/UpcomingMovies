@@ -62,7 +62,7 @@ protocol MovieDetailFactoryProtocol {
     
 }
 
-protocol MovieDetailCoordinatorProtocol: class {
+protocol MovieDetailCoordinatorProtocol: AnyObject {
     
     func showMovieVideos()
     func showMovieCredits()

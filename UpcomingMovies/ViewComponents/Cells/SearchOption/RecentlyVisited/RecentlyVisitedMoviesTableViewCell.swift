@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol RecentlyVisitedMoviesTableViewCellDelegate: class {
+protocol RecentlyVisitedMoviesTableViewCellDelegate: AnyObject {
     
     func recentlyVisitedMoviesTableViewCell(_ recentlyVisitedMoviesTableViewCell: RecentlyVisitedMoviesTableViewCell,
                                             didSelectMovieAt indexPath: IndexPath)

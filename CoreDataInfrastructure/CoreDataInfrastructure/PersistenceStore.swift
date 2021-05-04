@@ -8,7 +8,7 @@
 
 import CoreData
 
-protocol PersistenceStoreDelegate: class {
+protocol PersistenceStoreDelegate: AnyObject {
     
     func persistenceStore(willUpdateEntity shouldPrepare: Bool)
     func persistenceStore(didUpdateEntity update: Bool)

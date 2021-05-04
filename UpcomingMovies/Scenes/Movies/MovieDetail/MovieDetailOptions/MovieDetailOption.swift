@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol MovieDetailOption: class {
+protocol MovieDetailOption: AnyObject {
     
     var title: String { get }
     var icon: UIImage { get }

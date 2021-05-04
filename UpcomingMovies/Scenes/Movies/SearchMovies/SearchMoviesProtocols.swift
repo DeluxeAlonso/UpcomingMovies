@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-protocol SearchMoviesCoordinatorProtocol: class {
+protocol SearchMoviesCoordinatorProtocol: AnyObject {
     
     @discardableResult
     func embedSearchOptions(on parentViewController: UIViewController,

@@ -30,4 +30,4 @@ protocol MovieVideosInteractorProtocol {
     
 }
 
-protocol MovieVideosCoordinatorProtocol: class {}
+protocol MovieVideosCoordinatorProtocol: AnyObject {}

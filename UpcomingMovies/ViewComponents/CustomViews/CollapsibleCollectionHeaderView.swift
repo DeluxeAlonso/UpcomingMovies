@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CollapsibleHeaderViewDelegate: class {
+protocol CollapsibleHeaderViewDelegate: AnyObject {
     
     func collapsibleHeaderView(sectionHeaderView: CollapsibleCollectionHeaderView, sectionToggled section: Int)
     

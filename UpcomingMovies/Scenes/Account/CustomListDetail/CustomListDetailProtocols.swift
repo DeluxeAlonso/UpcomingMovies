@@ -30,7 +30,7 @@ protocol CustomListDetailInteractorProtocol {
     
 }
 
-protocol CustomListDetailCoordinatorProtocol: class {
+protocol CustomListDetailCoordinatorProtocol: AnyObject {
     
     func showMovieDetail(for movie: Movie)
     
