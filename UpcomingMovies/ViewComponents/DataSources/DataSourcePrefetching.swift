@@ -15,6 +15,7 @@ protocol DataSourcePrefetching {
     var prefetchHandler: (() -> Void) { get set }
     
     func isLoadingCell(for indexPath: IndexPath) -> Bool
+    func prefetchIfNeeded(for indexPaths: [IndexPath])
     
 }
 
