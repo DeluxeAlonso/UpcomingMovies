@@ -28,6 +28,7 @@ protocol MovieDetailViewModelProtocol {
     var isFavorite: Bindable<Bool?> { get }
     var showErrorView: Bindable<Error?> { get }
     var showGenreName: Bindable<String> { get }
+    var showMovieOptions: Bindable<[MovieDetailOption]> { get }
     var didUpdateFavoriteSuccess: Bindable<Bool> { get }
     var didUpdateFavoriteFailure: Bindable<Error?> { get }
 

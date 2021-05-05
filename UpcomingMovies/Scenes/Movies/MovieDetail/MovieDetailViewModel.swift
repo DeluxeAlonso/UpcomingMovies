@@ -22,7 +22,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private (set) var isFavorite: Bindable<Bool?> = Bindable(false)
     private (set) var showErrorView: Bindable<Error?> = Bindable(nil)
     private (set) var showGenreName: Bindable<String> = Bindable("-")
-    private (set) var showOptions: Bindable<[MovieDetailOption]> = Bindable([])
+    private (set) var showMovieOptions: Bindable<[MovieDetailOption]> = Bindable([])
 
     private (set) var didUpdateFavoriteSuccess: Bindable<Bool> = Bindable(false)
     private (set) var didUpdateFavoriteFailure: Bindable<Error?> = Bindable(nil)
@@ -59,7 +59,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         setupMovie(movie)
         checkIfUserIsAuthenticated()
 
-        showOptions.value = factory.options
+        showMovieOptions.value = factory.options
     }
     
     init(id: Int, title: String,
@@ -72,7 +72,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         
         needsFetch = true
 
-        showOptions.value = factory.options
+        showMovieOptions.value = factory.options
     }
 
     // MARK: - Private

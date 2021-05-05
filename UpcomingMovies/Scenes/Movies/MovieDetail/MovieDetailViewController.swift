@@ -86,10 +86,9 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     }
     
     private func showErrorView(error: Error) {
-        presentRetryView(with: error.localizedDescription,
-                         errorHandler: { [weak self] in
-                            self?.viewModel?.refreshMovieDetail()
-                         })
+        presentRetryView(with: error.localizedDescription, errorHandler: { [weak self] in
+            self?.viewModel?.refreshMovieDetail()
+        })
     }
     
     // MARK: - Reactive Behaviour
@@ -113,15 +112,16 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         
         voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview
-        
-        configureOptionsStackView()
 
         viewModel.showGenreName.bindAndFire({ [weak self] genreName in
             self?.genreLabel.text = genreName
         })
+        viewModel.showMovieOptions.bindAndFire { [weak self] movieOptions in
+            self?.configureMovieOptions(movieOptions)
+        }
     }
     
-    private func configureOptionsStackView() {
+    private func configureMovieOptions(_ options: [MovieDetailOption]) {
         guard let viewModel = viewModel, optionsStackView.arrangedSubviews.isEmpty else { return }
         let optionsViews = viewModel.options.map { MovieDetailOptionView(option: $0) }
         for optionView in optionsViews {
