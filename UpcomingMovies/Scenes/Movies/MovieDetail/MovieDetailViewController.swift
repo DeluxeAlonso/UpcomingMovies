@@ -85,9 +85,9 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     private func showErrorView(error: Error) {
         presentRetryView(with: error.localizedDescription,
-                                   errorHandler: { [weak self] in
-            self?.viewModel?.refreshMovieDetail()
-        })
+                         errorHandler: { [weak self] in
+                            self?.viewModel?.refreshMovieDetail()
+                         })
     }
     
     // MARK: - Reactive Behaviour
