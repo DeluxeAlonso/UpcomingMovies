@@ -19,8 +19,6 @@ protocol MovieDetailViewModelProtocol {
     var voteAverage: Double? { get }
     var posterURL: URL? { get }
     var backdropURL: URL? { get }
-    
-    var options: [MovieDetailOption] { get }
 
     var needsFetch: Bool { get }
     

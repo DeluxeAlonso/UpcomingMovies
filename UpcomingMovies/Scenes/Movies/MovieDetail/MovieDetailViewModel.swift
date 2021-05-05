@@ -41,12 +41,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private (set) var backdropURL: URL?
 
     private (set) var needsFetch = false
-
-    // MARK: - Computed properties
-
-    var options: [MovieDetailOption] {
-        return factory.options
-    }
     
     // MARK: - Initializers
 
