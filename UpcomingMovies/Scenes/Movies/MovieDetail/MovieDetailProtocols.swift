@@ -19,15 +19,14 @@ protocol MovieDetailViewModelProtocol {
     var voteAverage: Double? { get }
     var posterURL: URL? { get }
     var backdropURL: URL? { get }
-    
-    var options: [MovieDetailOption] { get }
 
-    var needsFetch: Bool { get set }
+    var needsFetch: Bool { get }
     
     var startLoading: Bindable<Bool> { get }
     var isFavorite: Bindable<Bool?> { get }
     var showErrorView: Bindable<Error?> { get }
     var showGenreName: Bindable<String> { get }
+    var showMovieOptions: Bindable<[MovieDetailOption]> { get }
     var didUpdateFavoriteSuccess: Bindable<Bool> { get }
     var didUpdateFavoriteFailure: Bindable<Error?> { get }
 

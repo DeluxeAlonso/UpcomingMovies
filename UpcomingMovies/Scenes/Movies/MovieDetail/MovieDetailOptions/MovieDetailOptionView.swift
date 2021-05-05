@@ -36,7 +36,7 @@ class MovieDetailOptionView: UIView {
         return label
     }()
 
-    var option: MovieDetailOption
+    private (set) var option: MovieDetailOption
     
     // MARK: - Initializers
     

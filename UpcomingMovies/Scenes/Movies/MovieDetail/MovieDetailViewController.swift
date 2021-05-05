@@ -49,6 +49,8 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         super.viewDidLoad()
         setupUI()
         setupBindables()
+
+        viewModel?.getMovieDetail()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,8 +86,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     }
     
     private func showErrorView(error: Error) {
-        presentRetryView(with: error.localizedDescription,
-                                   errorHandler: { [weak self] in
+        presentRetryView(with: error.localizedDescription, errorHandler: { [weak self] in
             self?.viewModel?.refreshMovieDetail()
         })
     }
@@ -97,7 +98,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         setupLoaderBindable()
         setupErrorBindables()
         setupFavoriteBindables()
-        viewModel?.getMovieDetail()
     }
     
     private func setupViewBindables() {
@@ -112,17 +112,18 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         
         voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview
-        
-        configureOptionsStackView()
 
         viewModel.showGenreName.bindAndFire({ [weak self] genreName in
             self?.genreLabel.text = genreName
         })
+        viewModel.showMovieOptions.bindAndFire { [weak self] movieOptions in
+            self?.configureMovieOptions(movieOptions)
+        }
     }
     
-    private func configureOptionsStackView() {
-        guard let viewModel = viewModel, optionsStackView.arrangedSubviews.isEmpty else { return }
-        let optionsViews = viewModel.options.map { MovieDetailOptionView(option: $0) }
+    private func configureMovieOptions(_ options: [MovieDetailOption]) {
+        guard optionsStackView.arrangedSubviews.isEmpty else { return }
+        let optionsViews = options.map { MovieDetailOptionView(option: $0) }
         for optionView in optionsViews {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(optionAction(_:)))
             optionView.addGestureRecognizer(tapGesture)
