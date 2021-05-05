@@ -22,7 +22,7 @@ protocol MovieDetailViewModelProtocol {
     
     var options: [MovieDetailOption] { get }
 
-    var needsFetch: Bool { get set }
+    var needsFetch: Bool { get }
     
     var startLoading: Bindable<Bool> { get }
     var isFavorite: Bindable<Bool?> { get }

@@ -49,6 +49,8 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         super.viewDidLoad()
         setupUI()
         setupBindables()
+
+        viewModel?.getMovieDetail()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,7 +99,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         setupLoaderBindable()
         setupErrorBindables()
         setupFavoriteBindables()
-        viewModel?.getMovieDetail()
     }
     
     private func setupViewBindables() {

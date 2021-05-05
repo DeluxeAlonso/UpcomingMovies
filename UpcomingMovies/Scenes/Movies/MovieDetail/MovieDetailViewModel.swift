@@ -22,6 +22,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private (set) var isFavorite: Bindable<Bool?> = Bindable(false)
     private (set) var showErrorView: Bindable<Error?> = Bindable(nil)
     private (set) var showGenreName: Bindable<String> = Bindable("-")
+    private (set) var showOptions: Bindable<[MovieDetailOption]> = Bindable([])
 
     private (set) var didUpdateFavoriteSuccess: Bindable<Bool> = Bindable(false)
     private (set) var didUpdateFavoriteFailure: Bindable<Error?> = Bindable(nil)
@@ -39,7 +40,13 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private (set) var posterURL: URL?
     private (set) var backdropURL: URL?
 
-    var needsFetch = false
+    private (set) var needsFetch = false
+
+    // MARK: - Computed properties
+
+    var options: [MovieDetailOption] {
+        return factory.options
+    }
     
     // MARK: - Initializers
 
@@ -51,6 +58,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         
         setupMovie(movie)
         checkIfUserIsAuthenticated()
+
+        showOptions.value = factory.options
     }
     
     init(id: Int, title: String,
@@ -61,15 +70,11 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         self.interactor = interactor
         self.factory = factory
         
-        self.needsFetch = true
+        needsFetch = true
+
+        showOptions.value = factory.options
     }
-    
-    // MARK: - Computed properties
-    
-    var options: [MovieDetailOption] {
-        return factory.options
-    }
-    
+
     // MARK: - Private
     
     private func setupMovie(_ movie: Movie) {
