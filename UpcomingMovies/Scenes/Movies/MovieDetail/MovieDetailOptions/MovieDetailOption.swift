@@ -8,6 +8,25 @@
 
 import UIKit
 
+enum MovieDetailOptionEnum {
+
+    case trailers, reviews, credits, similarMovies
+
+    var title: String {
+        switch self {
+        case .trailers:
+            return LocalizedStrings.trailersDetailOptions()
+        case .reviews:
+            return LocalizedStrings.reviewsDetailOptions()
+        case .credits:
+            return LocalizedStrings.creditsDetailOptions()
+        case .similarMovies:
+            return LocalizedStrings.similarsDetailOptions()
+        }
+    }
+
+}
+
 protocol MovieDetailOption: AnyObject {
     
     var title: String { get }
