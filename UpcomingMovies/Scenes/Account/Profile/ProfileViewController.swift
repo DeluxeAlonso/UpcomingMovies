@@ -72,12 +72,6 @@ class ProfileViewController: UITableViewController, Storyboarded {
         }
     }
     
-    // MARK: - Actions
-    
-    @IBAction func signOutButtonAction(_ sender: Any) {
-       delegate?.profileViewController(didTapSignOutButton: true)
-    }
-    
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
