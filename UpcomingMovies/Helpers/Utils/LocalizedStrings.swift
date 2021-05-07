@@ -79,6 +79,8 @@ enum LocalizedStrings: String, Localizable {
     case crew
 
     case ratingHint
+
+    case cancel
     
     var tableName: String {
         return "Localizable"

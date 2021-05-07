@@ -60,3 +60,5 @@
 "crew" = "Crew";
 
 "ratingHint" = "Rating of %.1f";
+
+"cancel" = "Cancel";

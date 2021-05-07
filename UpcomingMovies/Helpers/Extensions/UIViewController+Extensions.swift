@@ -68,7 +68,7 @@ extension UIViewController {
                                             message: message,
                                             preferredStyle: .actionSheet)
         
-        let cancelTitle = "Cancel"
+        let cancelTitle = LocalizedStrings.cancel()
         let cancelActionButton = UIAlertAction(title: cancelTitle, style: .cancel) { _ in
             self.dismiss(animated: true)
         }
