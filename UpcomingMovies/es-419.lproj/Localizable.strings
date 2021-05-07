@@ -60,3 +60,5 @@
 "crew" = "Equipo";
 
 "ratingHint" = "Calificación de %.1f";
+
+"cancel" = "Cancelar";
