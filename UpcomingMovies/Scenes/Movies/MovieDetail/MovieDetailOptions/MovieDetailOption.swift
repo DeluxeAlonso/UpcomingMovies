@@ -6,8 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
-
 enum MovieDetailOption {
 
     case trailers, reviews, credits, similarMovies
