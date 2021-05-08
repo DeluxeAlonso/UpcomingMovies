@@ -11,10 +11,10 @@ import UIKit
 final class MovieDetailFactory: MovieDetailFactoryProtocol {
 
     var options: [MovieDetailOption] {
-        return [ReviewsMovieDetailOption(),
-                TrailersMovieDetailOption(),
-                CreditsMovieDetailOption(),
-                SimilarsMovieDetailOption()]
+        return [.reviews,
+                .trailers,
+                .credits,
+                .similarMovies]
     }
     
 }

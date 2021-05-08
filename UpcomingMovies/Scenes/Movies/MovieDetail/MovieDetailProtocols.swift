@@ -62,12 +62,8 @@ protocol MovieDetailFactoryProtocol {
 }
 
 protocol MovieDetailCoordinatorProtocol: AnyObject {
-    
-    func showMovieVideos()
-    func showMovieCredits()
-    func showMovieReviews()
-    func showSimilarMovies()
 
+    func showMovieOption(_ option: MovieDetailOption)
     func showSharingOptions(withShareTitle title: String)
     
 }
