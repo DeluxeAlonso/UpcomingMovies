@@ -169,7 +169,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     @objc func optionAction(_ sender: UITapGestureRecognizer) {
         guard let sender = sender.view as? MovieDetailOptionView else { return }
         let movieDetailOption = sender.option
-        movieDetailOption.prepare(coordinator: coordinator)
+        coordinator?.showMovieOption(movieDetailOption)
     }
     
     // MARK: - Actions

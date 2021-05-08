@@ -36,6 +36,15 @@ final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol 
         
         navigationController.pushViewController(viewController, animated: true)
     }
+
+    func showMovieOption(_ option: MovieDetailOption) {
+        switch option {
+        case .credits: showMovieCredits()
+        case .reviews: showMovieReviews()
+        case .trailers: showMovieVideos()
+        case .similarMovies: showSimilarMovies()
+        }
+    }
     
     func showMovieVideos() {
         let coordinator = MovieVideosCoordinator(navigationController: navigationController)

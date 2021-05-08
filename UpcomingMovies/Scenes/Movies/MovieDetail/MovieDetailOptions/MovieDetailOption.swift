@@ -6,9 +6,9 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-enum MovieDetailOptionEnum {
+enum MovieDetailOption {
 
     case trailers, reviews, credits, similarMovies
 
@@ -25,13 +25,17 @@ enum MovieDetailOptionEnum {
         }
     }
 
-}
+    var iconName: String {
+        switch self {
+        case .trailers:
+            return "PlayVideo"
+        case .reviews:
+            return "Reviews"
+        case .credits:
+            return "Cast"
+        case .similarMovies:
+            return "SimilarMovies"
+        }
+    }
 
-protocol MovieDetailOption: AnyObject {
-    
-    var title: String { get }
-    var icon: UIImage { get }
-    
-   func prepare(coordinator: MovieDetailCoordinatorProtocol?)
-    
 }
