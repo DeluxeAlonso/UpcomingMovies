@@ -23,12 +23,12 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     static var storyboardName: String = "MovieDetail"
     
-    lazy var shareBarButtonItem: UIBarButtonItem = {
+    private lazy var shareBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareBarButtonAction(_:)))
         return barButtonItem
     }()
     
-    lazy var favoriteBarButtonItem: FavoriteToggleBarButtonItem = {
+    private lazy var favoriteBarButtonItem: FavoriteToggleBarButtonItem = {
         let barButtonItem = FavoriteToggleBarButtonItem()
         barButtonItem.target = self
         barButtonItem.action = #selector(favoriteButtonAction(_:))
