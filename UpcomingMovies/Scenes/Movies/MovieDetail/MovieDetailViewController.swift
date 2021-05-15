@@ -65,7 +65,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     private func setupUI() {
         title = LocalizedStrings.movieDetailTitle()
-        
+
         setupNavigationBar()
         transitionContainerView.setShadowBorder()
     }
@@ -101,24 +101,32 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     }
     
     private func setupViewBindables() {
+        configureUI()
+
+        viewModel?.updateMovieDetail = { [weak self] in
+            self?.configureUI()
+            self?.hideRetryView()
+        }
+        viewModel?.showGenreName.bindAndFire({ [weak self] genreName in
+            self?.genreLabel.text = genreName
+        })
+        viewModel?.showMovieOptions.bindAndFire { [weak self] movieOptions in
+            self?.configureMovieOptions(movieOptions)
+        }
+    }
+
+    private func configureUI() {
         guard let viewModel = viewModel else { return }
-        
+
         titleLabel.text = viewModel.title
         genreLabel.text = viewModel.genre
         releaseDateLabel.text = viewModel.releaseDate
-        
+
         backdropImageView.setImage(with: viewModel.backdropURL)
         posterImageView.setImage(with: viewModel.posterURL)
-        
+
         voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview
-
-        viewModel.showGenreName.bindAndFire({ [weak self] genreName in
-            self?.genreLabel.text = genreName
-        })
-        viewModel.showMovieOptions.bindAndFire { [weak self] movieOptions in
-            self?.configureMovieOptions(movieOptions)
-        }
     }
     
     private func configureMovieOptions(_ options: [MovieDetailOption]) {
@@ -135,10 +143,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
         })
-        viewModel?.updateMovieDetail = { [weak self] in
-            self?.setupViewBindables()
-            self?.hideRetryView()
-        }
     }
     
     private func setupErrorBindables() {
