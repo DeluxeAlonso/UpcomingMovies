@@ -152,7 +152,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
         }
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         viewModel?.viewState.bind({ [weak self] state in

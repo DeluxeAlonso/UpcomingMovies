@@ -45,7 +45,7 @@ final class UpcomingMovieExpandedCollectionViewCell: UICollectionViewCell, Upcom
         releaseDateLabel.font = FontHelper.regular(withSize: 17.0)
     }
 
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

@@ -13,7 +13,6 @@ protocol MovieDetailViewModelProtocol {
     
     var id: Int! { get }
     var title: String! { get }
-    var genre: String? { get }
     var releaseDate: String? { get }
     var overview: String? { get }
     var voteAverage: Double? { get }
@@ -27,10 +26,9 @@ protocol MovieDetailViewModelProtocol {
     var showErrorView: Bindable<Error?> { get }
     var showGenreName: Bindable<String> { get }
     var showMovieOptions: Bindable<[MovieDetailOption]> { get }
+    var didUpdateMovieDetail: Bindable<Bool> { get }
     var didUpdateFavoriteSuccess: Bindable<Bool> { get }
     var didUpdateFavoriteFailure: Bindable<Error?> { get }
-
-    var updateMovieDetail: (() -> Void)? { get set }
 
     func getMovieDetail()
     func refreshMovieDetail()

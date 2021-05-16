@@ -32,7 +32,7 @@ class ProfileSelectableOptionTableViewCell: UITableViewCell {
         titlelabel.textColor = ColorPalette.lightBlueColor
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         titlelabel.text = viewModel?.title

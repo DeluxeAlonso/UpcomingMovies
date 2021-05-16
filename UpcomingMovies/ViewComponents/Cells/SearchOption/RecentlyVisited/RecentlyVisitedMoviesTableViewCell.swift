@@ -47,7 +47,7 @@ final class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
         collectionView.registerNib(cellType: VisitedMovieCollectionViewCell.self)
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         collectionView.reloadData()

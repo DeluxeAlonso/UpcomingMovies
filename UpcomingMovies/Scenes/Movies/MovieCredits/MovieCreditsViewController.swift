@@ -81,7 +81,7 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
         collectionView.reloadData()
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

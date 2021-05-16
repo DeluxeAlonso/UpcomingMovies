@@ -39,7 +39,7 @@ final class MovieVideoTableViewCell: UITableViewCell {
         nameLabel.textColor = ColorPalette.Label.defaultColor
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

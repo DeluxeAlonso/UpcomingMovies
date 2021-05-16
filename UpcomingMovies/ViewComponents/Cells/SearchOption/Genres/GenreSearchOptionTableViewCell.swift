@@ -32,7 +32,7 @@ final class GenreSearchOptionTableViewCell: UITableViewCell {
         nameLabel.textColor = ColorPalette.lightBlueColor
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         nameLabel.text = viewModel?.name

@@ -62,7 +62,7 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
         coordinator?.removeChildViewController(&signInViewController, from: self)
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         viewModel.showAuthPermission.bind { [weak self] authPermissionURL in

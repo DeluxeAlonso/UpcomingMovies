@@ -57,7 +57,7 @@ final class MovieCreditCollectionViewCell: UICollectionViewCell {
         subtitleLabel.textColor = .white
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

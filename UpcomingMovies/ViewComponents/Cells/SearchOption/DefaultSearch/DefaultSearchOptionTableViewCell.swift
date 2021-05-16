@@ -37,7 +37,7 @@ final class DefaultSearchOptionTableViewCell: UITableViewCell {
         detailTextLabel?.textColor = ColorPalette.lightBlueColor
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         textLabel?.text = viewModel?.title

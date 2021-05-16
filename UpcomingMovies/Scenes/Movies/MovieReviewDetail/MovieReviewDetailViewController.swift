@@ -35,7 +35,7 @@ class MovieReviewDetailViewController: UIViewController, Storyboarded {
         contentLabel.numberOfLines = 0
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         title = viewModel?.author

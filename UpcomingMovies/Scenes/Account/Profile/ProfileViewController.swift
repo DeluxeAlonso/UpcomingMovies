@@ -63,7 +63,7 @@ class ProfileViewController: UITableViewController, Storyboarded {
                               message: nil, action: signOutAction)
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         viewModel?.reloadAccountInfo = { [weak self] in

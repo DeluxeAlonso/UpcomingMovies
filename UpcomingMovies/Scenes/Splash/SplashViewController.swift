@@ -24,7 +24,7 @@ class SplashViewController: UIViewController, Storyboarded {
         viewModel?.startInitialDownloads()
     }
 
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         viewModel?.initialDownloadsEnded = { [weak self] in
