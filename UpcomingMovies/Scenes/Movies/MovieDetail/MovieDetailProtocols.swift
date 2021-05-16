@@ -27,12 +27,9 @@ protocol MovieDetailViewModelProtocol {
     var showErrorView: Bindable<Error?> { get }
     var showGenreName: Bindable<String> { get }
     var showMovieOptions: Bindable<[MovieDetailOption]> { get }
+    var didUpdateMovieDetail: Bindable<Bool> { get }
     var didUpdateFavoriteSuccess: Bindable<Bool> { get }
     var didUpdateFavoriteFailure: Bindable<Error?> { get }
-
-    var didUpdateMovieDetail: Bindable<Void> { get }
-
-    var updateMovieDetail: (() -> Void)? { get set }
 
     func getMovieDetail()
     func refreshMovieDetail()

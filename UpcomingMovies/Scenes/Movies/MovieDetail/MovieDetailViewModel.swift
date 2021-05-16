@@ -24,12 +24,10 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private (set) var showGenreName: Bindable<String> = Bindable("-")
     private (set) var showMovieOptions: Bindable<[MovieDetailOption]> = Bindable([])
 
-    private (set) var didUpdateMovieDetail: Bindable<Void> = Bindable(Void())
+    private (set) var didUpdateMovieDetail: Bindable<Bool> = Bindable(true)
 
     private (set) var didUpdateFavoriteSuccess: Bindable<Bool> = Bindable(false)
     private (set) var didUpdateFavoriteFailure: Bindable<Error?> = Bindable(nil)
-
-    var updateMovieDetail: (() -> Void)?
 
     // MARK: - Properties
     
@@ -117,8 +115,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             switch result {
             case .success(let movie):
                 self.setupMovie(movie)
-                self.didUpdateMovieDetail.value = Void()
                 self.checkIfUserIsAuthenticated()
+                self.didUpdateMovieDetail.value = true
             case .failure(let error):
                 self.startLoading.value = false
                 self.showErrorView.value = error
