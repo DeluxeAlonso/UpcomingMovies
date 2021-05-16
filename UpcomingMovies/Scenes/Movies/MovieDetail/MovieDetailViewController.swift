@@ -117,7 +117,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         guard let viewModel = viewModel else { return }
 
         titleLabel.text = viewModel.title
-        genreLabel.text = viewModel.genre
         releaseDateLabel.text = viewModel.releaseDate
 
         backdropImageView.setImage(with: viewModel.backdropURL)

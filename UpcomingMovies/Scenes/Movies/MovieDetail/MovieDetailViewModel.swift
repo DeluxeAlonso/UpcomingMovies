@@ -33,7 +33,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     private (set) var id: Int!
     private (set) var title: String!
-    private (set) var genre: String?
     private (set) var releaseDate: String?
     private (set) var overview: String?
     private (set) var voteAverage: Double?
@@ -53,6 +52,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         setupMovie(movie)
         checkIfUserIsAuthenticated()
 
+        showGenreName.value = movie.genreName
         showMovieOptions.value = factory.options
     }
     
