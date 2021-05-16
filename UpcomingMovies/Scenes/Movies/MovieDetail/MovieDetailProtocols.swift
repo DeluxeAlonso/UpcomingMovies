@@ -30,6 +30,8 @@ protocol MovieDetailViewModelProtocol {
     var didUpdateFavoriteSuccess: Bindable<Bool> { get }
     var didUpdateFavoriteFailure: Bindable<Error?> { get }
 
+    var didUpdateMovieDetail: Bindable<Void> { get }
+
     var updateMovieDetail: (() -> Void)? { get set }
 
     func getMovieDetail()
