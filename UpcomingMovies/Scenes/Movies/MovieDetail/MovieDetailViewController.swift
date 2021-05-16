@@ -91,7 +91,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         })
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         setupViewBindables()

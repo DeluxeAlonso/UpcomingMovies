@@ -72,7 +72,7 @@ class AuthPermissionViewController: UIViewController, Storyboarded {
                                                     changeHandler: didUpdateProgress)
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         loadURL()

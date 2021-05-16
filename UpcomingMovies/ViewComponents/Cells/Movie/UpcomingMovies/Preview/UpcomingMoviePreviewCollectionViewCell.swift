@@ -42,7 +42,7 @@ final class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, Upcomi
         titleLabel.font = FontHelper.semiBold(withSize: 18.0)
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

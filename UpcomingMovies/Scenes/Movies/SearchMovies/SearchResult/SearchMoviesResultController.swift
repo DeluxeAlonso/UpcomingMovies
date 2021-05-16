@@ -104,7 +104,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         }
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         viewModel.viewState.bindAndFire({ [weak self] state in

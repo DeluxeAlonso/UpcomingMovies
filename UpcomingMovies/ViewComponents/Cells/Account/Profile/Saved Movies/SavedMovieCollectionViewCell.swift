@@ -44,7 +44,7 @@ class SavedMovieCollectionViewCell: CollectionViewSlantedCell {
         titleLabel.textColor = ColorPalette.whiteColor
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

@@ -43,7 +43,7 @@ class ProfileAccountInfoTableViewCell: UITableViewCell {
         nameLabel.textAlignment = .center
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

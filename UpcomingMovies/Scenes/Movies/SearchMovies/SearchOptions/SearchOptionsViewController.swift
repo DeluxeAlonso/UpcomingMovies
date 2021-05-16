@@ -56,7 +56,7 @@ class SearchOptionsViewController: UITableViewController, Storyboarded {
         }, completion: nil)
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         viewModel?.needsContentReload = { [weak self] in

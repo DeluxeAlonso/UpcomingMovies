@@ -64,7 +64,7 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
         posterImageViewHeightConstraint.constant = height
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         nameLabel.text = viewModel?.name

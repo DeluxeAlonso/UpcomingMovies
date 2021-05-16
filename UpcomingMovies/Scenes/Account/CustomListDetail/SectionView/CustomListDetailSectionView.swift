@@ -45,7 +45,7 @@ class CustomListDetailSectionView: UIView, NibLoadable {
         titleLabels.forEach { $0.font = FontHelper.light(withSize: 12.0) }
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         movieCountLabel.text = viewModel?.movieCountText

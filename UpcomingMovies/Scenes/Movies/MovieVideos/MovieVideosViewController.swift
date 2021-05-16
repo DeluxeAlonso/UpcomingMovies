@@ -74,7 +74,7 @@ class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisp
         }
     }
 
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         title = viewModel?.movieTitle

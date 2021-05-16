@@ -91,7 +91,7 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
         }
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         viewModel?.viewState.bindAndFire({ [weak self] state in

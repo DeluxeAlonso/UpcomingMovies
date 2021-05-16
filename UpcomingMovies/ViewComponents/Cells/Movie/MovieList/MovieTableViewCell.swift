@@ -36,7 +36,7 @@ final class MovieTableViewCell: UITableViewCell {
         posterImageView.image = nil
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

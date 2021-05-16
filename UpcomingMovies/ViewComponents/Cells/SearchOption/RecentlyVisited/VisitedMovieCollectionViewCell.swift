@@ -35,7 +35,7 @@ final class VisitedMovieCollectionViewCell: UICollectionViewCell, Animatable {
         }
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

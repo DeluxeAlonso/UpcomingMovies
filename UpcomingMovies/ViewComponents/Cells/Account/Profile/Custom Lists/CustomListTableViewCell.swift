@@ -40,7 +40,7 @@ class CustomListTableViewCell: UITableViewCell {
         descriptionLabel.font = FontHelper.light(withSize: 15.0)
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         nameLabel.text = viewModel?.name
