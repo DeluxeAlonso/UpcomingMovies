@@ -33,7 +33,7 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol, SimpleViewStateP
 
     // MARK: - Stored properties
 
-    var movieTitle: String
+    let movieTitle: String
     
     // MARK: - Initializers
     

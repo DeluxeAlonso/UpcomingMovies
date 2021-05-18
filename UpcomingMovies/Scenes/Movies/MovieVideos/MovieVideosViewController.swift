@@ -65,7 +65,7 @@ class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisp
             hideDisplayedPlaceholderView()
             tableView.tableFooterView = UIView()
         case .empty:
-            presentEmptyView(with: "There are no trailers to show right now.")
+            presentEmptyView(with: LocalizedStrings.emptyVideoResults())
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
