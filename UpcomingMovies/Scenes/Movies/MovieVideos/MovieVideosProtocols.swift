@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 protocol MovieVideosViewModelProtocol {
     
-    var movieTitle: String { get set }
+    var movieTitle: String { get }
     
     var viewState: Bindable<SimpleViewState<Video>> { get }
     var startLoading: Bindable<Bool> { get }
