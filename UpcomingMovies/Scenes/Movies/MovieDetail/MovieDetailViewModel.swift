@@ -88,12 +88,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         guard let genreId = genreId else { return }
         interactor.findGenre(with: genreId, completion: { [weak self] result in
             guard let strongSelf = self else { return }
-            switch result {
-            case .success(let genre):
-                strongSelf.showGenreName.value = genre?.name ?? "-"
-            case .failure:
-                break
-            }
+            let genre = try? result.get()
+            strongSelf.showGenreName.value = genre?.name ?? "-"
         })
     }
     
