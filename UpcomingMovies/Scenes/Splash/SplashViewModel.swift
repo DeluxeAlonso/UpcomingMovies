@@ -9,14 +9,6 @@
 import Foundation
 import UpcomingMoviesDomain
 
-extension Result {
-
-    func optionalGet() -> Success? {
-        return try? get()
-    }
-
-}
-
 final class SplashViewModel: SplashViewModelProtocol {
 
     // MARK: - Dependencies
@@ -28,10 +20,6 @@ final class SplashViewModel: SplashViewModelProtocol {
     // MARK: - Properties
 
     var initialDownloadsEnded: (() -> Void)?
-
-    deinit {
-        print("Splash")
-    }
 
     // MARK: - Initializers
     
@@ -50,13 +38,13 @@ final class SplashViewModel: SplashViewModelProtocol {
 
         dispatchGroup.enter()
         interactor.getAppConfiguration { result in
-            self.updateAppConfiguration(result.optionalGet())
+            self.updateAppConfiguration(result.getWrappedValue())
             dispatchGroup.leave()
         }
 
         dispatchGroup.enter()
         interactor.getAllGenres { result in
-            self.updateAvailableMovieGenres(result.optionalGet())
+            self.updateAvailableMovieGenres(result.getWrappedValue())
             dispatchGroup.leave()
         }
 
