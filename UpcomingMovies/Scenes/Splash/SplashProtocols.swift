@@ -17,8 +17,15 @@ protocol SplashViewModelProtocol {
 }
 
 protocol SplashInteractorProtocol {
-    
+
+    /**
+    * Fetch API configurations.
+    */
     func getAppConfiguration(completion: @escaping (Result<Configuration, Error>) -> Void)
+
+    /**
+     * Fetch all the available movie genres
+     */
     func getAllGenres(completion: @escaping (Result<[Genre], Error>) -> Void)
     
 }
