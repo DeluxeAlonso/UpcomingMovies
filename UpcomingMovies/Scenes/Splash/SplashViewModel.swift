@@ -48,7 +48,7 @@ final class SplashViewModel: SplashViewModelProtocol {
             dispatchGroup.leave()
         }
 
-        dispatchGroup.notify(queue: .main) {
+        dispatchGroup.notify(queue: .global(qos: .userInitiated)) {
             self.initialDownloadsEnded?()
         }
     }
