@@ -50,7 +50,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         self.factory = factory
         
         setupMovie(movie)
-        checkIfUserIsAuthenticated()
 
         showGenreName.value = movie.genreName
         showMovieOptions.value = factory.options
