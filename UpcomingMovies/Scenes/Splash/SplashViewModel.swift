@@ -9,6 +9,14 @@
 import Foundation
 import UpcomingMoviesDomain
 
+extension Result {
+
+    func optionalGet() -> Success? {
+        return try? get()
+    }
+
+}
+
 final class SplashViewModel: SplashViewModelProtocol {
 
     // MARK: - Dependencies
@@ -18,8 +26,12 @@ final class SplashViewModel: SplashViewModelProtocol {
     private let configurationHandler: ConfigurationHandlerProtocol
 
     // MARK: - Properties
-    
+
     var initialDownloadsEnded: (() -> Void)?
+
+    deinit {
+        print("Splash")
+    }
 
     // MARK: - Initializers
     
@@ -35,39 +47,34 @@ final class SplashViewModel: SplashViewModelProtocol {
     
     func startInitialDownloads() {
         let dispatchGroup = DispatchGroup()
-        DispatchQueue.global(qos: .userInitiated).async {
-            dispatchGroup.enter()
-            self.getAppConfiguration { dispatchGroup.leave() }
 
-            dispatchGroup.enter()
-            self.getMovieGenres { dispatchGroup.leave() }
+        dispatchGroup.enter()
+        interactor.getAppConfiguration { result in
+            self.updateAppConfiguration(result.optionalGet())
+            dispatchGroup.leave()
+        }
 
-            dispatchGroup.notify(queue: .main) {
-                self.initialDownloadsEnded?()
-            }
+        dispatchGroup.enter()
+        interactor.getAllGenres { result in
+            self.updateAvailableMovieGenres(result.optionalGet())
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            self.initialDownloadsEnded?()
         }
     }
 
     // MARK: - Private
 
-    /**
-    * Fetch API configurations.
-    */
-    private func getAppConfiguration(completion: @escaping () -> Void) {
-        interactor.getAppConfiguration { [weak self] result in
-            _ = result.map { self?.configurationHandler.setConfiguration($0) }
-            completion()
-        }
+    private func updateAppConfiguration(_ configuration: Configuration?) {
+        guard let configuration = configuration else { return }
+        configurationHandler.setConfiguration(configuration)
     }
-    
-    /**
-     * Fetch all the movie genres and save them locally.
-     */
-    private func getMovieGenres(completion: @escaping () -> Void) {
-        interactor.getAllGenres { [weak self] result in
-            _ = result.map { self?.genreHandler.setGenres($0) }
-            completion()
-        }
+
+    private func updateAvailableMovieGenres(_ genres: [Genre]?) {
+        guard let genres = genres else { return }
+        genreHandler.setGenres(genres)
     }
     
 }
