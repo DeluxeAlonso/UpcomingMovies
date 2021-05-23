@@ -19,8 +19,6 @@ final class SplashViewModel: SplashViewModelProtocol {
 
     // MARK: - Properties
     
-    private var dispatchGroup: DispatchGroup!
-    
     var initialDownloadsEnded: (() -> Void)?
 
     // MARK: - Initializers
@@ -36,13 +34,15 @@ final class SplashViewModel: SplashViewModelProtocol {
     // MARK: - SplashViewModelProtocol
     
     func startInitialDownloads() {
-        self.dispatchGroup = DispatchGroup()
+        let dispatchGroup = DispatchGroup()
         DispatchQueue.global(qos: .userInitiated).async {
-            self.getAppConfiguration()
-            self.getMovieGenres()
-            
-            self.dispatchGroup.wait()
-            DispatchQueue.main.async {
+            dispatchGroup.enter()
+            self.getAppConfiguration { dispatchGroup.leave() }
+
+            dispatchGroup.enter()
+            self.getMovieGenres { dispatchGroup.leave() }
+
+            dispatchGroup.notify(queue: .main) {
                 self.initialDownloadsEnded?()
             }
         }
@@ -53,22 +53,20 @@ final class SplashViewModel: SplashViewModelProtocol {
     /**
     * Fetch API configurations.
     */
-    private func getAppConfiguration() {
-        dispatchGroup.enter()
+    private func getAppConfiguration(completion: @escaping () -> Void) {
         interactor.getAppConfiguration { [weak self] result in
             _ = result.map { self?.configurationHandler.setConfiguration($0) }
-            self?.dispatchGroup.leave()
+            completion()
         }
     }
     
     /**
      * Fetch all the movie genres and save them locally.
      */
-    private func getMovieGenres() {
-        dispatchGroup.enter()
+    private func getMovieGenres(completion: @escaping () -> Void) {
         interactor.getAllGenres { [weak self] result in
             _ = result.map { self?.genreHandler.setGenres($0) }
-            self?.dispatchGroup.leave()
+            completion()
         }
     }
     
