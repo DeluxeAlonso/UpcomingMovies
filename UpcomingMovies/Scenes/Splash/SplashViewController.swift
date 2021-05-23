@@ -30,7 +30,9 @@ class SplashViewController: UIViewController, Storyboarded {
         viewModel?.initialDownloadsEnded = { [weak self] in
             guard let strongSelf = self else { return }
             let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
-            navigationHandler.initialTransition(from: strongSelf.view.window)
+            DispatchQueue.main.async {
+                navigationHandler.initialTransition(from: strongSelf.view.window)
+            }
         }
     }
 
