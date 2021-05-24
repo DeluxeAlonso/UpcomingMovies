@@ -110,7 +110,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             switch result {
             case .success(let movie):
                 self.setupMovie(movie)
-                self.checkIfUserIsAuthenticated()
+                self.checkIfMovieIsFavorite()
                 self.didUpdateMovieDetail.value = true
             case .failure(let error):
                 self.startLoading.value = false
@@ -125,13 +125,10 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     // MARK: - User Authentication
     
-    func checkIfUserIsAuthenticated() {
-        guard interactor.isUserSignedIn() else {
-            startLoading.value = false
-            isFavorite.value = nil
-            return
-        }
+    func checkIfMovieIsFavorite() {
+        startLoading.value = true
         checkIfMovieIsFavorite { result in
+            self.startLoading.value = false
             switch result {
             case .success(let isFavorite):
                 self.isFavorite.value = isFavorite
@@ -150,7 +147,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             return
         }
         interactor.isMovieInFavorites(for: id, completion: { result in
-            self.startLoading.value = false
             switch result {
             case .success(let isFavorite):
                 completion(.success(isFavorite))
