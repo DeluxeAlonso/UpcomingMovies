@@ -126,26 +126,36 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     // MARK: - User Authentication
     
     func checkIfUserIsAuthenticated() {
-        let isUserSignedIn = interactor.isUserSignedIn()
-        if isUserSignedIn {
-            checkIfMovieIsFavorite()
-        } else {
+        guard interactor.isUserSignedIn() else {
             startLoading.value = false
             isFavorite.value = nil
+            return
         }
-    }
-    
-    // MARK: - Favorites
-    
-    private func checkIfMovieIsFavorite() {
-        interactor.isMovieInFavorites(for: id, completion: { result in
-            self.startLoading.value = false
+        checkIfMovieIsFavorite { result in
             switch result {
             case .success(let isFavorite):
                 self.isFavorite.value = isFavorite
             case .failure(let error):
                 guard self.needsFetch else { return }
                 self.showErrorView.value = error
+            }
+        }
+    }
+    
+    // MARK: - Favorites
+    
+    private func checkIfMovieIsFavorite(completion: @escaping (Result<Bool?, Error>) -> Void) {
+        guard interactor.isUserSignedIn() else {
+            completion(.success(nil))
+            return
+        }
+        interactor.isMovieInFavorites(for: id, completion: { result in
+            self.startLoading.value = false
+            switch result {
+            case .success(let isFavorite):
+                completion(.success(isFavorite))
+            case .failure(let error):
+                completion(.failure(error))
             }
         })
     }
