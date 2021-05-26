@@ -167,7 +167,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     // MARK: - Selectors
     
-    @objc func optionAction(_ sender: UITapGestureRecognizer) {
+    @objc private func optionAction(_ sender: UITapGestureRecognizer) {
         guard let sender = sender.view as? MovieDetailOptionView else { return }
         let movieDetailOption = sender.option
         coordinator?.showMovieOption(movieDetailOption)
@@ -175,13 +175,13 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     // MARK: - Actions
     
-    @IBAction func shareBarButtonAction(_ sender: Any) {
+    @IBAction private func shareBarButtonAction(_ sender: Any) {
         guard let movieTitle = viewModel?.title else { return }
         let shareText = String(format: LocalizedStrings.movieDetailShareText(), movieTitle)
         coordinator?.showSharingOptions(withShareTitle: shareText)
     }
     
-    @IBAction func favoriteButtonAction(_ sender: Any) {
+    @IBAction private func favoriteButtonAction(_ sender: Any) {
         viewModel?.handleFavoriteMovie()
     }
     
