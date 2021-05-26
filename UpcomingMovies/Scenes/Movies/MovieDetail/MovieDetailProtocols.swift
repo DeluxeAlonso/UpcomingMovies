@@ -22,13 +22,15 @@ protocol MovieDetailViewModelProtocol {
     var needsFetch: Bool { get }
     
     var startLoading: Bindable<Bool> { get }
-    var isFavorite: Bindable<Bool?> { get }
+    var isFavorite: Bindable<Bool> { get }
     var showErrorView: Bindable<Error?> { get }
     var showGenreName: Bindable<String> { get }
     var showMovieOptions: Bindable<[MovieDetailOption]> { get }
     var didUpdateMovieDetail: Bindable<Bool> { get }
     var didUpdateFavoriteSuccess: Bindable<Bool> { get }
     var didUpdateFavoriteFailure: Bindable<Error?> { get }
+
+    var shouldHideFavoriteButton: (() -> Void)? { get set }
 
     func getMovieDetail()
     func refreshMovieDetail()

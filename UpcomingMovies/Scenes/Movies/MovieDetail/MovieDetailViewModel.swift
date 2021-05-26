@@ -19,7 +19,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     // MARK: - Reactive properties
 
     private (set) var startLoading: Bindable<Bool> = Bindable(false)
-    private (set) var isFavorite: Bindable<Bool?> = Bindable(false)
+    private (set) var isFavorite: Bindable<Bool> = Bindable(false)
+    private (set) var favoriteState: Bindable<MovieDetailFavoriteState> = Bindable(.unknown)
     private (set) var showErrorView: Bindable<Error?> = Bindable(nil)
     private (set) var showGenreName: Bindable<String> = Bindable("-")
     private (set) var showMovieOptions: Bindable<[MovieDetailOption]> = Bindable([])
@@ -28,6 +29,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     private (set) var didUpdateFavoriteSuccess: Bindable<Bool> = Bindable(false)
     private (set) var didUpdateFavoriteFailure: Bindable<Error?> = Bindable(nil)
+
+    var shouldHideFavoriteButton: (() -> Void)?
 
     // MARK: - Properties
     
@@ -131,6 +134,10 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             self.startLoading.value = false
             switch result {
             case .success(let isFavorite):
+                guard let isFavorite = isFavorite else {
+                    self.shouldHideFavoriteButton?()
+                    return
+                }
                 self.isFavorite.value = isFavorite
             case .failure(let error):
                 guard self.needsFetch else { return }
@@ -157,11 +164,10 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     }
     
     func handleFavoriteMovie() {
-        guard let isFavorite = isFavorite.value else { return }
-        interactor.markMovieAsFavorite(movieId: id, favorite: !isFavorite, completion: { result in
+        let newFavoriteValue = !isFavorite.value
+        interactor.markMovieAsFavorite(movieId: id, favorite: newFavoriteValue, completion: { result in
             switch result {
             case .success:
-                let newFavoriteValue = !isFavorite
                 self.isFavorite.value = newFavoriteValue
                 self.didUpdateFavoriteSuccess.value = newFavoriteValue
             case .failure(let error):

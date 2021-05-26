@@ -76,15 +76,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         navigationItem.rightBarButtonItems = [shareBarButtonItem]
     }
     
-    private func configureNavigationBar(isFavorite: Bool?) {
-        if let isFavorite = isFavorite {
-            favoriteBarButtonItem.toggle(to: isFavorite.intValue)
-            navigationItem.rightBarButtonItems = [shareBarButtonItem, favoriteBarButtonItem]
-        } else {
-            navigationItem.rightBarButtonItems = [shareBarButtonItem]
-        }
-    }
-    
     private func showErrorView(error: Error) {
         presentRetryView(with: error.localizedDescription, errorHandler: { [weak self] in
             self?.viewModel?.refreshMovieDetail()
@@ -152,7 +143,8 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     private func setupFavoriteBindables() {
         viewModel?.isFavorite.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
-            strongSelf.configureNavigationBar(isFavorite: isFavorite)
+            strongSelf.favoriteBarButtonItem.toggle(to: isFavorite.intValue)
+            strongSelf.navigationItem.rightBarButtonItems = [strongSelf.shareBarButtonItem, strongSelf.favoriteBarButtonItem]
         })
         viewModel?.didUpdateFavoriteSuccess.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
@@ -163,6 +155,10 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
             guard let strongSelf = self, let error = error else { return }
             strongSelf.view.showFailureToast(withMessage: error.localizedDescription)
         })
+        viewModel?.shouldHideFavoriteButton = { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.navigationItem.rightBarButtonItems = [strongSelf.shareBarButtonItem]
+        }
     }
     
     // MARK: - Selectors
