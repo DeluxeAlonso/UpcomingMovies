@@ -130,15 +130,15 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     func checkIfMovieIsFavorite(showLoader: Bool) {
         startLoading.value = showLoader
-        checkIfMovieIsFavorite { result in
+        getFavoriteState { result in
             self.startLoading.value = false
             switch result {
-            case .success(let isFavorite):
-                guard let isFavorite = isFavorite else {
+            case .success(let favoriteState):
+                guard favoriteState != .unknown else {
                     self.shouldHideFavoriteButton?()
                     return
                 }
-                self.isFavorite.value = isFavorite
+                self.isFavorite.value = favoriteState == .favorite
             case .failure(let error):
                 guard self.needsFetch else { return }
                 self.showErrorView.value = error
@@ -148,15 +148,16 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     // MARK: - Favorites
     
-    private func checkIfMovieIsFavorite(completion: @escaping (Result<Bool?, Error>) -> Void) {
+    private func getFavoriteState(completion: @escaping (Result<MovieDetailFavoriteState, Error>) -> Void) {
         guard interactor.isUserSignedIn() else {
-            completion(.success(nil))
+            completion(.success(.unknown))
             return
         }
         interactor.isMovieInFavorites(for: id, completion: { result in
             switch result {
             case .success(let isFavorite):
-                completion(.success(isFavorite))
+                let favoriteState: MovieDetailFavoriteState = isFavorite ? .favorite : .nonFavorite
+                completion(.success(favoriteState))
             case .failure(let error):
                 completion(.failure(error))
             }
