@@ -10,16 +10,16 @@ import UIKit
 
 class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Transitionable, LoadingDisplayable {
 
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var backdropImageView: UIImageView!
-    @IBOutlet weak var transitionContainerView: UIView!
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var voteAverageView: VoteAverageView!
-    @IBOutlet weak var genreLabel: UILabel!
-    @IBOutlet weak var releaseDateLabel: UILabel!
-    @IBOutlet weak var overviewLabel: UILabel!
-    @IBOutlet weak var optionsStackView: UIStackView!
+    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var backdropImageView: UIImageView!
+    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var voteAverageView: VoteAverageView!
+    @IBOutlet private weak var genreLabel: UILabel!
+    @IBOutlet private weak var releaseDateLabel: UILabel!
+    @IBOutlet private weak var overviewLabel: UILabel!
+    @IBOutlet private weak var optionsStackView: UIStackView!
+    @IBOutlet private(set) weak var transitionContainerView: UIView!
     
     static var storyboardName: String = "MovieDetail"
     
@@ -58,7 +58,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         guard let viewModel = viewModel, !viewModel.startLoading.value else {
             return
         }
-        viewModel.checkIfUserIsAuthenticated()
+        viewModel.checkIfMovieIsFavorite(showLoader: false)
     }
 
     // MARK: - Private
@@ -74,15 +74,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
         navigationItem.rightBarButtonItems = [shareBarButtonItem]
-    }
-    
-    private func configureNavigationBar(isFavorite: Bool?) {
-        if let isFavorite = isFavorite {
-            favoriteBarButtonItem.toggle(to: isFavorite.intValue)
-            navigationItem.rightBarButtonItems = [shareBarButtonItem, favoriteBarButtonItem]
-        } else {
-            navigationItem.rightBarButtonItems = [shareBarButtonItem]
-        }
     }
     
     private func showErrorView(error: Error) {
@@ -152,7 +143,8 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     private func setupFavoriteBindables() {
         viewModel?.isFavorite.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
-            strongSelf.configureNavigationBar(isFavorite: isFavorite)
+            strongSelf.favoriteBarButtonItem.toggle(to: isFavorite.intValue)
+            strongSelf.navigationItem.rightBarButtonItems = [strongSelf.shareBarButtonItem, strongSelf.favoriteBarButtonItem]
         })
         viewModel?.didUpdateFavoriteSuccess.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
@@ -163,11 +155,15 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
             guard let strongSelf = self, let error = error else { return }
             strongSelf.view.showFailureToast(withMessage: error.localizedDescription)
         })
+        viewModel?.shouldHideFavoriteButton = { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.navigationItem.rightBarButtonItems = [strongSelf.shareBarButtonItem]
+        }
     }
     
     // MARK: - Selectors
     
-    @objc func optionAction(_ sender: UITapGestureRecognizer) {
+    @objc private func optionAction(_ sender: UITapGestureRecognizer) {
         guard let sender = sender.view as? MovieDetailOptionView else { return }
         let movieDetailOption = sender.option
         coordinator?.showMovieOption(movieDetailOption)
@@ -175,13 +171,13 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     // MARK: - Actions
     
-    @IBAction func shareBarButtonAction(_ sender: Any) {
+    @IBAction private func shareBarButtonAction(_ sender: Any) {
         guard let movieTitle = viewModel?.title else { return }
         let shareText = String(format: LocalizedStrings.movieDetailShareText(), movieTitle)
         coordinator?.showSharingOptions(withShareTitle: shareText)
     }
     
-    @IBAction func favoriteButtonAction(_ sender: Any) {
+    @IBAction private func favoriteButtonAction(_ sender: Any) {
         viewModel?.handleFavoriteMovie()
     }
     
