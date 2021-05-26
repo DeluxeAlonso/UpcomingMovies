@@ -58,7 +58,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         guard let viewModel = viewModel, !viewModel.startLoading.value else {
             return
         }
-        viewModel.checkIfMovieIsFavorite()
+        viewModel.checkIfMovieIsFavorite(showLoader: false)
     }
 
     // MARK: - Private

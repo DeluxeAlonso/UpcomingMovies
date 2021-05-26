@@ -110,7 +110,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             switch result {
             case .success(let movie):
                 self.setupMovie(movie)
-                self.checkIfMovieIsFavorite()
+                self.checkIfMovieIsFavorite(showLoader: false)
                 self.didUpdateMovieDetail.value = true
             case .failure(let error):
                 self.startLoading.value = false
@@ -125,8 +125,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     // MARK: - User Authentication
     
-    func checkIfMovieIsFavorite() {
-        startLoading.value = true
+    func checkIfMovieIsFavorite(showLoader: Bool) {
+        startLoading.value = showLoader
         checkIfMovieIsFavorite { result in
             self.startLoading.value = false
             switch result {

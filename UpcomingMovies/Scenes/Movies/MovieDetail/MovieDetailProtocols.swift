@@ -34,7 +34,7 @@ protocol MovieDetailViewModelProtocol {
     func refreshMovieDetail()
     
     func saveVisitedMovie()
-    func checkIfMovieIsFavorite()
+    func checkIfMovieIsFavorite(showLoader: Bool) 
     func handleFavoriteMovie()
     
 }
