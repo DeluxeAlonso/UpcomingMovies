@@ -178,3 +178,15 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     }
     
 }
+
+// MARK: - MovieDetailFavoriteState
+
+extension MovieDetailViewModel {
+
+    enum MovieDetailFavoriteState {
+
+        case favorite, nonFavorite, unknown
+
+    }
+
+}
