@@ -10,8 +10,8 @@ import UIKit
 
 class CustomListDetailViewController: UIViewController, Storyboarded {
     
-    @IBOutlet weak var navigationBarPlaceholderView: UIView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var navigationBarPlaceholderView: UIView!
+    @IBOutlet private weak var tableView: UITableView!
     
     static var storyboardName = "CustomLists"
     

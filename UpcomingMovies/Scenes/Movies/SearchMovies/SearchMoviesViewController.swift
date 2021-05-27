@@ -10,7 +10,7 @@ import UIKit
 
 class SearchMoviesViewController: UIViewController, Storyboarded {
     
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet private weak var containerView: UIView!
     
     static var storyboardName: String = "SearchMovies"
     

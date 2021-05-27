@@ -11,8 +11,8 @@ import CollectionViewSlantedLayout
 
 class SavedMovieCollectionViewCell: CollectionViewSlantedCell {
     
-    @IBOutlet weak var backdropImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private weak var backdropImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
     
     var viewModel: SavedMovieCellViewModelProtocol? {
         didSet {

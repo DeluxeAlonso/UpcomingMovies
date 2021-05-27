@@ -10,8 +10,8 @@ import UIKit
 
 final class MovieVideoTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var previewImageView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var previewImageView: UIImageView!
     
     var viewModel: MovieVideoCellViewModelProtocol? {
         didSet {

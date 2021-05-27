@@ -10,8 +10,8 @@ import UIKit
 
 class EmptyPlaceholderView: UIView, NibLoadable, Placeholderable {
 
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var messageLabel: UILabel!
     
     var isPresented: Bool = false
     

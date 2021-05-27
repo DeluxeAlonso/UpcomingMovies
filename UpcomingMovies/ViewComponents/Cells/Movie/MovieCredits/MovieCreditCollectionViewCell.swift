@@ -10,10 +10,10 @@ import UIKit
 
 final class MovieCreditCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var overlayView: UIView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet private weak var profileImageView: UIImageView!
+    @IBOutlet private weak var overlayView: UIView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var subtitleLabel: UILabel!
     
     var viewModel: MovieCreditCellViewModelProtocol? {
         didSet {

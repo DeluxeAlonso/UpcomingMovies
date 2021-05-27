@@ -10,7 +10,7 @@ import UIKit
 
 class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     static var storyboardName = "MovieDetail"
     

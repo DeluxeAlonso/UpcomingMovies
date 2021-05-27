@@ -10,7 +10,7 @@ import UIKit
 
 final class RecentSearchTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var searchLabel: UILabel!
+    @IBOutlet private weak var searchLabel: UILabel!
     
     static let identifier = "RecentSearchCell"
     

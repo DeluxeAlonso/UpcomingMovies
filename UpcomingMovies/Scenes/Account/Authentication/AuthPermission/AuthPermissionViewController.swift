@@ -18,11 +18,11 @@ protocol AuthPermissionViewControllerDelegate: AnyObject {
 
 class AuthPermissionViewController: UIViewController, Storyboarded {
     
-    @IBOutlet weak var progressView: UIProgressView!
-    @IBOutlet weak var webView: WKWebView!
-    @IBOutlet weak var backButton: UIBarButtonItem!
-    @IBOutlet weak var forwardButton: UIBarButtonItem!
-    @IBOutlet weak var reloadButton: UIBarButtonItem!
+    @IBOutlet private weak var progressView: UIProgressView!
+    @IBOutlet private weak var webView: WKWebView!
+    @IBOutlet private weak var backButton: UIBarButtonItem!
+    @IBOutlet private weak var forwardButton: UIBarButtonItem!
+    @IBOutlet private weak var reloadButton: UIBarButtonItem!
     
     static var storyboardName = "Account"
     

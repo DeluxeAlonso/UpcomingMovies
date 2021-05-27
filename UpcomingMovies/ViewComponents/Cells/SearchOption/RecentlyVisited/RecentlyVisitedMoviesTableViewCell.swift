@@ -17,7 +17,7 @@ protocol RecentlyVisitedMoviesTableViewCellDelegate: AnyObject {
 
 final class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     weak var delegate: RecentlyVisitedMoviesTableViewCellDelegate?
     

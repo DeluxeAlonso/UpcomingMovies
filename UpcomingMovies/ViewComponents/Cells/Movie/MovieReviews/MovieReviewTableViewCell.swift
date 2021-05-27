@@ -10,8 +10,8 @@ import UIKit
 
 final class MovieReviewTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var authorNameLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet private weak var authorNameLabel: UILabel!
+    @IBOutlet private weak var contentLabel: UILabel!
     
     var viewModel: MovieReviewCellViewModelProtocol? {
         didSet {
