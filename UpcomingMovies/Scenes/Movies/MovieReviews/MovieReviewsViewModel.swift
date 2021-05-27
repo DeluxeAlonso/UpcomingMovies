@@ -17,8 +17,8 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
 
     // MARK: - Reactive properties
     
-    private (set) var viewState: Bindable<SimpleViewState<Review>> = Bindable(.initial)
-    private (set) var startLoading: Bindable<Bool> = Bindable(false)
+    private(set) var viewState: Bindable<SimpleViewState<Review>> = Bindable(.initial)
+    private(set) var startLoading: Bindable<Bool> = Bindable(false)
 
     // MARK: - Computed properties
     

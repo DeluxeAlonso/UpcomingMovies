@@ -18,31 +18,31 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     // MARK: - Reactive properties
 
-    private (set) var startLoading: Bindable<Bool> = Bindable(false)
-    private (set) var isFavorite: Bindable<Bool> = Bindable(false)
-    private (set) var favoriteState: Bindable<MovieDetailFavoriteState> = Bindable(.unknown)
-    private (set) var showErrorView: Bindable<Error?> = Bindable(nil)
-    private (set) var showGenreName: Bindable<String> = Bindable("-")
-    private (set) var showMovieOptions: Bindable<[MovieDetailOption]> = Bindable([])
+    private(set) var startLoading: Bindable<Bool> = Bindable(false)
+    private(set) var isFavorite: Bindable<Bool> = Bindable(false)
+    private(set) var favoriteState: Bindable<MovieDetailFavoriteState> = Bindable(.unknown)
+    private(set) var showErrorView: Bindable<Error?> = Bindable(nil)
+    private(set) var showGenreName: Bindable<String> = Bindable("-")
+    private(set) var showMovieOptions: Bindable<[MovieDetailOption]> = Bindable([])
 
-    private (set) var didUpdateMovieDetail: Bindable<Bool> = Bindable(true)
+    private(set) var didUpdateMovieDetail: Bindable<Bool> = Bindable(true)
 
-    private (set) var didUpdateFavoriteSuccess: Bindable<Bool> = Bindable(false)
-    private (set) var didUpdateFavoriteFailure: Bindable<Error?> = Bindable(nil)
+    private(set) var didUpdateFavoriteSuccess: Bindable<Bool> = Bindable(false)
+    private(set) var didUpdateFavoriteFailure: Bindable<Error?> = Bindable(nil)
 
     var shouldHideFavoriteButton: (() -> Void)?
 
     // MARK: - Properties
     
-    private (set) var id: Int!
-    private (set) var title: String!
-    private (set) var releaseDate: String?
-    private (set) var overview: String?
-    private (set) var voteAverage: Double?
-    private (set) var posterURL: URL?
-    private (set) var backdropURL: URL?
+    private(set) var id: Int!
+    private(set) var title: String!
+    private(set) var releaseDate: String?
+    private(set) var overview: String?
+    private(set) var voteAverage: Double?
+    private(set) var posterURL: URL?
+    private(set) var backdropURL: URL?
 
-    private (set) var needsFetch = false
+    private(set) var needsFetch = false
     
     // MARK: - Initializers
 
