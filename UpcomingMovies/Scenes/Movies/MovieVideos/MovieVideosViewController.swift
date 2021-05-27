@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
     static var storyboardName = "MovieDetail"
     

@@ -10,7 +10,7 @@ import UIKit
 
 class MovieReviewDetailViewController: UIViewController, Storyboarded {
     
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet private weak var contentLabel: UILabel!
     
     static var storyboardName = "MovieDetail"
     

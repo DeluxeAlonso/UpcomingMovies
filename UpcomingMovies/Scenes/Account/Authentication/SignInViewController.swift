@@ -16,8 +16,8 @@ protocol SignInViewControllerDelegate: AnyObject {
 
 class SignInViewController: UIViewController, Storyboarded {
     
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var signInButton: ShrinkingButton!
+    @IBOutlet private weak var iconImageView: UIImageView!
+    @IBOutlet private weak var signInButton: ShrinkingButton!
     
     static var storyboardName: String = "Account"
     

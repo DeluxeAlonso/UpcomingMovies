@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDisplayable, PlaceholderDisplayable {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     static var storyboardName: String = "UpcomingMovies"
     

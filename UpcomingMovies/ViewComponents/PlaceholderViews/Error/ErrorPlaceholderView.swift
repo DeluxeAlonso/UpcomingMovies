@@ -16,9 +16,9 @@ protocol ErrorPlaceholderViewDelegate: AnyObject {
 
 class ErrorPlaceholderView: UIView, NibLoadable, RetryPlaceHolderable {
     
-    @IBOutlet weak var errorTitleLabel: UILabel!
-    @IBOutlet weak var errorDetailLabel: UILabel!
-    @IBOutlet weak var retryButton: ShrinkingButton!
+    @IBOutlet private weak var errorTitleLabel: UILabel!
+    @IBOutlet private weak var errorDetailLabel: UILabel!
+    @IBOutlet private weak var retryButton: ShrinkingButton!
     
     var isPresented: Bool = false
     var retry: (() -> Void)?

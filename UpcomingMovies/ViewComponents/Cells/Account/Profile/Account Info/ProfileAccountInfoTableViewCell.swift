@@ -10,8 +10,8 @@ import UIKit
 
 class ProfileAccountInfoTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var usernameLabel: UILabel!
     
     var viewModel: ProfileAccountInforCellViewModelProtocol? {
         didSet {

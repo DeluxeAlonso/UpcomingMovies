@@ -10,8 +10,8 @@ import UIKit
 
 final class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, UpcomingMovieCollectionViewCellProtocol {
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var posterImageView: UIImageView!
     
     var viewModel: UpcomingMovieCellViewModelProtocol? {
         didSet {

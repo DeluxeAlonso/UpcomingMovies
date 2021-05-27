@@ -10,7 +10,7 @@ import UIKit
 
 final class VisitedMovieCollectionViewCell: UICollectionViewCell, Animatable {
     
-    @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet private weak var posterImageView: UIImageView!
     
     var viewModel: VisitedMovieCellViewModelProtocol? {
         didSet {

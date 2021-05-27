@@ -10,7 +10,7 @@ import UIKit
 
 final class GenreSearchOptionTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel!
     
     var viewModel: GenreSearchOptionCellViewModelProtocol? {
         didSet {

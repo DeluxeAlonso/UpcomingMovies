@@ -10,12 +10,12 @@ import UIKit
 
 class CustomListDetailHeaderView: UIView, NibLoadable {
     
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var posterImageViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var posterImageViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descriptionView: UIView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var posterImageViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var posterImageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var descriptionView: UIView!
+    @IBOutlet private weak var descriptionLabel: UILabel!
 
     var initialHeightConstraintConstant: CGFloat!
     var initialTopContstraintConstant: CGFloat!

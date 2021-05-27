@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileSelectableOptionTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var titlelabel: UILabel!
+    @IBOutlet private weak var titlelabel: UILabel!
     
     var viewModel: ProfileSelectableOptionCellViewModelProtocol? {
         didSet {
