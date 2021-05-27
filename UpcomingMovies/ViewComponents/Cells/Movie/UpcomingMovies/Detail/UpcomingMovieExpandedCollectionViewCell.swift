@@ -13,7 +13,7 @@ final class UpcomingMovieExpandedCollectionViewCell: UICollectionViewCell, Upcom
     @IBOutlet private weak var backdropImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var releaseDateLabel: UILabel!
-    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private(set) weak var posterImageView: UIImageView!
     
     var viewModel: UpcomingMovieCellViewModelProtocol? {
         didSet {

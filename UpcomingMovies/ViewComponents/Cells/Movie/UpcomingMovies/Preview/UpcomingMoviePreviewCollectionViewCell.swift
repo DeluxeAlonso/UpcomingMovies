@@ -11,7 +11,7 @@ import UIKit
 final class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, UpcomingMovieCollectionViewCellProtocol {
     
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private(set) weak var posterImageView: UIImageView!
     
     var viewModel: UpcomingMovieCellViewModelProtocol? {
         didSet {
@@ -55,5 +55,5 @@ final class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, Upcomi
             titleLabel.text = viewModel.title
         }
     }
-    
+
 }
