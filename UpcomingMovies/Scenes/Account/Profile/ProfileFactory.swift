@@ -15,25 +15,38 @@ final class ProfileFactory: ProfileFactoryProtocol {
             .accountInfo,
             .collections,
             .recommended,
-            .groups,
+            .customLists,
             .signOut
         ]
     }
-    
-    var collectionOptions: [ProfileCollectionOption] {
-        return [.favorites, .watchlist]
-    }
 
-    var recommendedOptions: [ProfileCollectionOption] {
-        return [.recommended]
+    func profileOptions(for section: ProfileSection) -> [ProfileOptionProtocol] {
+        switch section {
+        case .accountInfo, .signOut:
+            return []
+        case .collections:
+            return [ProfileOption.favorites, ProfileOption.watchlist]
+        case .recommended:
+            return [ProfileOption.recommended]
+        case .customLists:
+            return [ProfileOption.customLists]
+        }
     }
     
-    var groupOptions: [ProfileGroupOption] {
-        return [.customLists]
-    }
-    
-    var configurationOptions: [ProfileConfigurationOption] {
-        return []
-    }
+//    var collectionOptions: [ProfileCollectionOption] {
+//        return [.favorites, .watchlist]
+//    }
+//
+//    var recommendedOptions: [ProfileCollectionOption] {
+//        return [.recommended]
+//    }
+//    
+//    var groupOptions: [ProfileGroupOption] {
+//        return [.customLists]
+//    }
+//    
+//    var configurationOptions: [ProfileConfigurationOption] {
+//        return []
+//    }
     
 }

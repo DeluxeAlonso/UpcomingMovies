@@ -82,19 +82,35 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
-    
-    // MARK: - Saved Collection Options
-    
-    func showCollectionOption(_ collectionOption: ProfileCollectionOption) {
-        switch collectionOption {
+
+    func showProfileOption(_ profileOption: ProfileOptionProtocol) {
+        guard let profileOption = ProfileOption(rawValue: profileOption.identifier) else { return }
+        switch profileOption {
         case .favorites:
             showFavoritesSavedMovies()
         case .watchlist:
             showWatchListSavedMovies()
         case .recommended:
+            showRecommendedMovies()
+        case .customLists:
+            showCustomLists()
+        case .includeAdult:
             break
         }
     }
+    
+    // MARK: - Saved Collection Options
+    
+//    func showCollectionOption(_ collectionOption: ProfileCollectionOption) {
+//        switch collectionOption {
+//        case .favorites:
+//            showFavoritesSavedMovies()
+//        case .watchlist:
+//            showWatchListSavedMovies()
+//        case .recommended:
+//            break
+//        }
+//    }
     
     private func showFavoritesSavedMovies() {
         let coordinator = FavoritesSavedMoviesCoordinator(navigationController: navigationController)
@@ -127,12 +143,12 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
     
     // MARK: - Profile Group Options
     
-    func showGroupOption(_ groupOption: ProfileGroupOption) {
-        switch groupOption {
-        case .customLists:
-            showCustomLists()
-        }
-    }
+//    func showGroupOption(_ groupOption: ProfileGroupOption) {
+//        switch groupOption {
+//        case .customLists:
+//            showCustomLists()
+//        }
+//    }
     
     private func showCustomLists() {
         let coordinator = CustomListsCoordinator(navigationController: navigationController)

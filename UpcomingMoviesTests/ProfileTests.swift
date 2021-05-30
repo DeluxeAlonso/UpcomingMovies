@@ -98,7 +98,7 @@ class ProfileTests: XCTestCase {
     
     func testSectionIndex() {
         //Arrange
-        let sectionsToTest: [ProfileSection] = [.accountInfo, .collections, .groups, .signOut]
+        let sectionsToTest: [ProfileSection] = [.accountInfo, .collections, .customLists, .signOut]
         let indexToTest = Int.random(in: 0...sectionsToTest.count - 1)
         mockFactory.sections = sectionsToTest
         //Act
@@ -109,7 +109,7 @@ class ProfileTests: XCTestCase {
     
     func testNumberOfSections() {
         //Arrange
-        let sectionsToTest: [ProfileSection] = [.accountInfo, .collections, .groups, .signOut]
+        let sectionsToTest: [ProfileSection] = [.accountInfo, .collections, .customLists, .signOut]
         mockFactory.sections = sectionsToTest
         //Act
         let numberOfSections = viewModelToTest.numberOfSections()

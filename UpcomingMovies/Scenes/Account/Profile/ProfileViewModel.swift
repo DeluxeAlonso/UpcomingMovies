@@ -21,17 +21,25 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         guard let userAccount = userAccount else { return nil }
         return ProfileAccountInforCellViewModel(userAccount: userAccount)
     }
+
+    // TODO: - Fix this
     
     var collectionOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] {
-        return factory.collectionOptions.map { ProfileSelectableOptionCellViewModel($0) }
+        return factory.profileOptions(for: .collections).map {
+            ProfileSelectableOptionCellViewModel($0)
+        }
     }
 
     var recommendedOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] {
-        return factory.recommendedOptions.map { ProfileSelectableOptionCellViewModel($0) }
+        return factory.profileOptions(for: .recommended).map {
+            ProfileSelectableOptionCellViewModel($0)
+        }
     }
 
     var groupOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] {
-        return factory.groupOptions.map { ProfileSelectableOptionCellViewModel($0) }
+        return factory.profileOptions(for: .customLists).map {
+            ProfileSelectableOptionCellViewModel($0)
+        }
     }
     
     // MARK: - Initializers
@@ -45,18 +53,25 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     }
     
     // MARK: - Factory
-    
-    func collectionOption(at index: Int) -> ProfileCollectionOption {
-        return factory.collectionOptions[index]
-    }
 
-    func recommendedOption(at index: Int) -> ProfileCollectionOption {
-        return factory.recommendedOptions[index]
+    func profileOption(for section: Int, at index: Int) -> ProfileOptionProtocol {
+        let section = self.section(at: section)
+        let profileOptions = factory.profileOptions(for: section)
+
+        return profileOptions[index]
     }
     
-    func groupOption(at index: Int) -> ProfileGroupOption {
-        return factory.groupOptions[index]
-    }
+//    func collectionOption(at index: Int) -> ProfileCollectionOption {
+//        return factory.collectionOptions[index]
+//    }
+//
+//    func recommendedOption(at index: Int) -> ProfileCollectionOption {
+//        return factory.recommendedOptions[index]
+//    }
+//
+//    func groupOption(at index: Int) -> ProfileGroupOption {
+//        return factory.groupOptions[index]
+//    }
     
     func section(at index: Int) -> ProfileSection {
         return factory.sections[index]

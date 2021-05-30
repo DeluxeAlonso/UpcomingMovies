@@ -45,8 +45,6 @@ protocol AccountCoordinatorProtocol: AnyObject {
     func showAuthPermission(for authPermissionURL: URL?,
                             and authPermissionDelegate: AuthPermissionViewControllerDelegate)
     
-    func showCollectionOption(_ collectionOption: ProfileCollectionOption)
-    func showRecommendedMovies()
-    func showGroupOption(_ groupOption: ProfileGroupOption)
+    func showProfileOption(_ profileOption: ProfileOptionProtocol)
     
 }

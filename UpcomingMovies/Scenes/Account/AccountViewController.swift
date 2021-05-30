@@ -100,17 +100,9 @@ extension AccountViewController: SignInViewControllerDelegate {
 // MARK: - ProfileViewControllerDelegate
 
 extension AccountViewController: ProfileViewControllerDelegate {
-    
-    func profileViewController(didTapCollection collection: ProfileCollectionOption) {
-        coordinator?.showCollectionOption(collection)
-    }
 
-    func profileViewController(didTapRecommended recommended: ProfileCollectionOption) {
-        coordinator?.showRecommendedMovies()
-    }
-    
-    func profileViewController(didTapGroup group: ProfileGroupOption) {
-        coordinator?.showGroupOption(group)
+    func profileViewController(didTapProfileOption option: ProfileOptionProtocol) {
+        coordinator?.showProfileOption(option)
     }
     
     func profileViewController(didTapSignOutButton tapped: Bool) {

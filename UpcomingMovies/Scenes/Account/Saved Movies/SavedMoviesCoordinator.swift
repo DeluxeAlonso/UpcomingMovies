@@ -21,7 +21,7 @@ final class FavoritesSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coo
     func start() {
         let viewController = SavedMoviesViewController.instantiate()
         
-        viewController.viewModel = DIContainer.shared.resolve(argument: ProfileCollectionOption.favorites.title)
+        viewController.viewModel = DIContainer.shared.resolve(argument: ProfileOption.favorites.title)
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)
@@ -42,7 +42,7 @@ class WatchListSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coordinat
     func start() {
         let viewController = SavedMoviesViewController.instantiate()
         
-        viewController.viewModel = DIContainer.shared.resolve(argument: ProfileCollectionOption.watchlist.title)
+        viewController.viewModel = DIContainer.shared.resolve(argument: ProfileOption.watchlist.title)
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)

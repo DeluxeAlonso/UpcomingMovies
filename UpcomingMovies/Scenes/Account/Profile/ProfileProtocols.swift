@@ -17,10 +17,8 @@ protocol ProfileViewModelProtocol {
     var groupOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] { get }
     
     var reloadAccountInfo: (() -> Void)? { get set }
-    
-    func collectionOption(at index: Int) -> ProfileCollectionOption
-    func recommendedOption(at index: Int) -> ProfileCollectionOption
-    func groupOption(at index: Int) -> ProfileGroupOption
+
+    func profileOption(for section: Int, at index: Int) -> ProfileOptionProtocol
     
     func section(at index: Int) -> ProfileSection
     func numberOfSections() -> Int
@@ -38,18 +36,16 @@ protocol ProfileInteractorProtocol {
 protocol ProfileFactoryProtocol {
     
     var sections: [ProfileSection] { get }
-    var collectionOptions: [ProfileCollectionOption] { get }
-    var recommendedOptions: [ProfileCollectionOption] { get }
-    var groupOptions: [ProfileGroupOption] { get }
-    var configurationOptions: [ProfileConfigurationOption] { get }
+
+    func profileOptions(for section: ProfileSection) -> [ProfileOptionProtocol]
     
 }
 
 protocol ProfileViewControllerDelegate: UIViewController {
 
-    func profileViewController(didTapCollection collection: ProfileCollectionOption)
-    func profileViewController(didTapRecommended recommended: ProfileCollectionOption)
-    func profileViewController(didTapGroup group: ProfileGroupOption)
+    func profileViewController(didTapProfileOption option: ProfileOptionProtocol)
+
+    // TODO: - Remove this protocol method
     func profileViewController(didTapSignOutButton tapped: Bool)
     
 }

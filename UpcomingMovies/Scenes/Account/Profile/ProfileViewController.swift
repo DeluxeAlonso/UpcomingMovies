@@ -73,21 +73,23 @@ class ProfileViewController: UITableViewController, Storyboarded {
     }
     
     // MARK: - Table view delegate
-    
+
+    // TODO: - Refactor
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let viewModel = viewModel else { return }
         switch viewModel.section(at: indexPath.section) {
         case .collections:
-            let collectionOption = viewModel.collectionOption(at: indexPath.row)
-            delegate?.profileViewController(didTapCollection: collectionOption)
+            let collectionOption = viewModel.profileOption(for: indexPath.section, at: indexPath.row)
+            delegate?.profileViewController(didTapProfileOption: collectionOption)
         case .recommended:
-            let recommendedOption = viewModel.recommendedOption(at: indexPath.row)
-            delegate?.profileViewController(didTapRecommended: recommendedOption)
-        case .groups:
-            let groupOption = viewModel.groupOption(at: indexPath.row)
-            delegate?.profileViewController(didTapGroup: groupOption)
+            let recommendedOption = viewModel.profileOption(for: indexPath.section, at: indexPath.row)
+            delegate?.profileViewController(didTapProfileOption: recommendedOption)
+        case .customLists:
+            let groupOption = viewModel.profileOption(for: indexPath.section, at: indexPath.row)
+            delegate?.profileViewController(didTapProfileOption: groupOption)
         case .signOut:
+            // TODO: - Delegate this to account view controller
             showSignOutActionSheet()
         case .accountInfo:
             break
@@ -99,7 +101,7 @@ class ProfileViewController: UITableViewController, Storyboarded {
         switch viewModel.section(at: indexPath.section) {
         case .accountInfo:
             return 75.0
-        case .collections, .recommended, .groups, .signOut:
+        case .collections, .recommended, .customLists, .signOut:
             return 50.0
         }
     }
