@@ -10,7 +10,7 @@ public protocol ProfileOptionProtocol {
     
     var title: String? { get }
     var identifier: String { get }
-    
+
 }
 
 public enum ProfileOption: String, ProfileOptionProtocol {

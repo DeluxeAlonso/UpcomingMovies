@@ -44,8 +44,6 @@ protocol ProfileFactoryProtocol {
 protocol ProfileViewControllerDelegate: UIViewController {
 
     func profileViewController(didTapProfileOption option: ProfileOptionProtocol)
-
-    // TODO: - Remove this protocol method
-    func profileViewController(didTapSignOutButton tapped: Bool)
+    func profileViewController(didSignOut signedOut: Bool)
     
 }

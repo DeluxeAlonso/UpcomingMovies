@@ -105,7 +105,7 @@ extension AccountViewController: ProfileViewControllerDelegate {
         coordinator?.showProfileOption(option)
     }
     
-    func profileViewController(didTapSignOutButton tapped: Bool) {
+    func profileViewController(didSignOut signedOut: Bool) {
         viewModel.signOutCurrentUser()
         showSignInView(withAnimatedNavigationBar: true)
     }

@@ -57,7 +57,7 @@ class ProfileViewController: UITableViewController, Storyboarded {
     private func showSignOutActionSheet() {
         let signOutAction = UIAlertAction(title: LocalizedStrings.signOut(),
                                           style: .destructive) { _ in
-            self.delegate?.profileViewController(didTapSignOutButton: true)
+            self.delegate?.profileViewController(didSignOut: true)
         }
         showSimpleActionSheet(title: LocalizedStrings.signOutConfirmationTitle(),
                               message: nil, action: signOutAction)
@@ -74,22 +74,15 @@ class ProfileViewController: UITableViewController, Storyboarded {
     
     // MARK: - Table view delegate
 
-    // TODO: - Refactor
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let viewModel = viewModel else { return }
+
         switch viewModel.section(at: indexPath.section) {
-        case .collections:
-            let collectionOption = viewModel.profileOption(for: indexPath.section, at: indexPath.row)
-            delegate?.profileViewController(didTapProfileOption: collectionOption)
-        case .recommended:
-            let recommendedOption = viewModel.profileOption(for: indexPath.section, at: indexPath.row)
-            delegate?.profileViewController(didTapProfileOption: recommendedOption)
-        case .customLists:
-            let groupOption = viewModel.profileOption(for: indexPath.section, at: indexPath.row)
-            delegate?.profileViewController(didTapProfileOption: groupOption)
+        case .collections, .recommended, .customLists:
+            let profileOption = viewModel.profileOption(for: indexPath.section, at: indexPath.row)
+            delegate?.profileViewController(didTapProfileOption: profileOption)
         case .signOut:
-            // TODO: - Delegate this to account view controller
             showSignOutActionSheet()
         case .accountInfo:
             break
