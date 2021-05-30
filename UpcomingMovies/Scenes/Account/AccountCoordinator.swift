@@ -113,6 +113,17 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
+
+    // MARK: - Recommended Options
+
+    func showRecommendedMovies() {
+        let coordinator = RecommendedMoviesCoordinator(navigationController: navigationController)
+
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
     
     // MARK: - Profile Group Options
     

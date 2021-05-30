@@ -49,6 +49,10 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     func collectionOption(at index: Int) -> ProfileCollectionOption {
         return factory.collectionOptions[index]
     }
+
+    func recommendedOption(at index: Int) -> ProfileCollectionOption {
+        return factory.recommendedOptions[index]
+    }
     
     func groupOption(at index: Int) -> ProfileGroupOption {
         return factory.groupOptions[index]

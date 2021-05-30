@@ -38,6 +38,7 @@ protocol AccountCoordinatorProtocol: AnyObject {
     func embedSignInViewController(on parentViewController: SignInViewControllerDelegate) -> SignInViewController
     func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate,
                                     for user: User?) -> ProfileViewController
+
     func removeChildViewController<T: UIViewController>(_ viewController: inout T?,
                                                         from parentViewController: UIViewController)
     
@@ -45,6 +46,7 @@ protocol AccountCoordinatorProtocol: AnyObject {
                             and authPermissionDelegate: AuthPermissionViewControllerDelegate)
     
     func showCollectionOption(_ collectionOption: ProfileCollectionOption)
+    func showRecommendedMovies()
     func showGroupOption(_ groupOption: ProfileGroupOption)
     
 }

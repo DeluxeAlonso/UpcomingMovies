@@ -104,6 +104,10 @@ extension AccountViewController: ProfileViewControllerDelegate {
     func profileViewController(didTapCollection collection: ProfileCollectionOption) {
         coordinator?.showCollectionOption(collection)
     }
+
+    func profileViewController(didTapRecommended recommended: ProfileCollectionOption) {
+        coordinator?.showRecommendedMovies()
+    }
     
     func profileViewController(didTapGroup group: ProfileGroupOption) {
         coordinator?.showGroupOption(group)

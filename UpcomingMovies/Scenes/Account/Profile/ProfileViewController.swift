@@ -82,7 +82,8 @@ class ProfileViewController: UITableViewController, Storyboarded {
             let collectionOption = viewModel.collectionOption(at: indexPath.row)
             delegate?.profileViewController(didTapCollection: collectionOption)
         case .recommended:
-            break
+            let recommendedOption = viewModel.recommendedOption(at: indexPath.row)
+            delegate?.profileViewController(didTapRecommended: recommendedOption)
         case .groups:
             let groupOption = viewModel.groupOption(at: indexPath.row)
             delegate?.profileViewController(didTapGroup: groupOption)

@@ -32,6 +32,8 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
         super.viewDidLoad()
         setupUI()
         setupBindables()
+
+        viewModel?.getMovies()
     }
     
     // MARK: - Private
@@ -105,7 +107,6 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
         viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
         })
-        viewModel?.getMovies()
     }
 
 }

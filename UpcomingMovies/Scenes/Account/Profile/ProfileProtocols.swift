@@ -19,6 +19,7 @@ protocol ProfileViewModelProtocol {
     var reloadAccountInfo: (() -> Void)? { get set }
     
     func collectionOption(at index: Int) -> ProfileCollectionOption
+    func recommendedOption(at index: Int) -> ProfileCollectionOption
     func groupOption(at index: Int) -> ProfileGroupOption
     
     func section(at index: Int) -> ProfileSection
@@ -47,6 +48,7 @@ protocol ProfileFactoryProtocol {
 protocol ProfileViewControllerDelegate: UIViewController {
 
     func profileViewController(didTapCollection collection: ProfileCollectionOption)
+    func profileViewController(didTapRecommended recommended: ProfileCollectionOption)
     func profileViewController(didTapGroup group: ProfileGroupOption)
     func profileViewController(didTapSignOutButton tapped: Bool)
     
