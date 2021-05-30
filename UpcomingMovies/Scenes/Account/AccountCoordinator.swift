@@ -100,18 +100,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
     }
     
     // MARK: - Saved Collection Options
-    
-//    func showCollectionOption(_ collectionOption: ProfileCollectionOption) {
-//        switch collectionOption {
-//        case .favorites:
-//            showFavoritesSavedMovies()
-//        case .watchlist:
-//            showWatchListSavedMovies()
-//        case .recommended:
-//            break
-//        }
-//    }
-    
+
     private func showFavoritesSavedMovies() {
         let coordinator = FavoritesSavedMoviesCoordinator(navigationController: navigationController)
         
@@ -142,13 +131,6 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
     }
     
     // MARK: - Profile Group Options
-    
-//    func showGroupOption(_ groupOption: ProfileGroupOption) {
-//        switch groupOption {
-//        case .customLists:
-//            showCustomLists()
-//        }
-//    }
     
     private func showCustomLists() {
         let coordinator = CustomListsCoordinator(navigationController: navigationController)

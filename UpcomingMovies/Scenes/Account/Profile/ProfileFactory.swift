@@ -33,20 +33,4 @@ final class ProfileFactory: ProfileFactoryProtocol {
         }
     }
     
-//    var collectionOptions: [ProfileCollectionOption] {
-//        return [.favorites, .watchlist]
-//    }
-//
-//    var recommendedOptions: [ProfileCollectionOption] {
-//        return [.recommended]
-//    }
-//    
-//    var groupOptions: [ProfileGroupOption] {
-//        return [.customLists]
-//    }
-//    
-//    var configurationOptions: [ProfileConfigurationOption] {
-//        return []
-//    }
-    
 }
