@@ -35,8 +35,8 @@ protocol AccountInteractorProtocol {
 
 protocol AccountCoordinatorProtocol: AnyObject {
     
-    func embedSignInViewController(on parentViewController: AccountViewControllerProtocol) -> SignInViewController
-    func embedProfileViewController(on parentViewController: AccountViewControllerProtocol,
+    func embedSignInViewController(on parentViewController: SignInViewControllerDelegate) -> SignInViewController
+    func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate,
                                     for user: User?) -> ProfileViewController
     func removeChildViewController<T: UIViewController>(_ viewController: inout T?,
                                                         from parentViewController: UIViewController)
@@ -47,7 +47,4 @@ protocol AccountCoordinatorProtocol: AnyObject {
     func showCollectionOption(_ collectionOption: ProfileCollectionOption)
     func showGroupOption(_ groupOption: ProfileGroupOption)
     
-}
-
-protocol AccountViewControllerProtocol: UIViewController, SignInViewControllerDelegate, ProfileViewControllerDelegate {
 }

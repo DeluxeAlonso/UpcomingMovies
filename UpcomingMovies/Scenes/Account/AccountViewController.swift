@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, AccountViewControllerProtocol, Storyboarded {
+class AccountViewController: UIViewController, Storyboarded {
     
     private var signInViewController: SignInViewController?
     private var profileViewController: ProfileViewController?
@@ -88,7 +88,7 @@ class AccountViewController: UIViewController, AccountViewControllerProtocol, St
 
 // MARK: - SignInViewControllerDelegate
 
-extension AccountViewController {
+extension AccountViewController: SignInViewControllerDelegate {
     
     func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
         signInViewController.startLoading()
@@ -99,7 +99,7 @@ extension AccountViewController {
 
 // MARK: - ProfileViewControllerDelegate
 
-extension AccountViewController {
+extension AccountViewController: ProfileViewControllerDelegate {
     
     func profileViewController(didTapCollection collection: ProfileCollectionOption) {
         coordinator?.showCollectionOption(collection)

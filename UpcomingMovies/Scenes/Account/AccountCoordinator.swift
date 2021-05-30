@@ -37,7 +37,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
     }
     
     @discardableResult
-    func embedSignInViewController(on parentViewController: AccountViewControllerProtocol) -> SignInViewController {
+    func embedSignInViewController(on parentViewController: SignInViewControllerDelegate) -> SignInViewController {
         navigationController.setNavigationBarHidden(true, animated: true)
         
         let viewController = SignInViewController.instantiate()
@@ -49,7 +49,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
     }
     
     @discardableResult
-    func embedProfileViewController(on parentViewController: AccountViewControllerProtocol,
+    func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate,
                                     for user: User?) -> ProfileViewController {
         navigationController.setNavigationBarHidden(false, animated: true)
         
