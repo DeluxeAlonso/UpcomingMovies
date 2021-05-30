@@ -24,7 +24,7 @@ public enum ProfileOption: String, ProfileOptionProtocol {
         case .watchlist:
             return LocalizedStrings.watchlistCollectionOption()
         case .recommended:
-            return "Recommended movies"
+            return LocalizedStrings.recomendedMoviesOption()
         case .customLists:
             return LocalizedStrings.customListGroupOption()
         case .includeAdult:

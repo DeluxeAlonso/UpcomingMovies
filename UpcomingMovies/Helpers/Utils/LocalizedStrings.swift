@@ -45,6 +45,7 @@ enum LocalizedStrings: String, Localizable {
     case favoritesCollectionOption
     case watchlistCollectionOption
     case customListGroupOption
+    case recomendedMoviesOption
     case includeAdults
     
     case signOutConfirmationTitle
