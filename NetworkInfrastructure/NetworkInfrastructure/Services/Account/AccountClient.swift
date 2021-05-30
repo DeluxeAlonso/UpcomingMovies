@@ -48,6 +48,21 @@ class AccountClient: APIClient, AccountClientProtocol {
             return movieResult
         }, completion: completion)
     }
+
+    // MARK: - Recommended List
+
+    func getRecommendedList(page: Int,
+                            accessToken: String,
+                            accountId: String,
+                            completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
+        let request = AccountProvider.getRecommendedList(page: page,
+                                                         accessToken: accessToken,
+                                                         accountId: accountId).request
+        fetch(with: request, decode: { json -> MovieResult? in
+            guard let movieResult = json as? MovieResult else { return  nil }
+            return movieResult
+        }, completion: completion)
+    }
     
     // MARK: - Custom Lists
     

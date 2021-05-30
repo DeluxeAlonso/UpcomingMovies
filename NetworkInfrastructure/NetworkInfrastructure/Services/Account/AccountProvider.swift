@@ -11,7 +11,7 @@ enum AccountProvider {
     case getAccountDetail(sessionId: String)
     case getFavoriteList(page: Int, sessionId: String, accountId: Int)
     case getWatchlist(page: Int, sessionId: String, accountId: Int)
-    case getRecommendedList(page: Int, accessToken: String, accountId: Int)
+    case getRecommendedList(page: Int, accessToken: String, accountId: String)
     case getCustomLists(page: Int, accessToken: String, accountId: String)
     case getCustomListDetail(accessToken: String, id: String)
     case markAsFavorite(sessionId: String, accountId: Int, movieId: Int, favorite: Bool)

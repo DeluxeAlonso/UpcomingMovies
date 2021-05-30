@@ -46,6 +46,23 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
             }
         })
     }
+
+    func getRecommendedList(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+        guard let accountId = authManager.accessToken?.accountId,
+            let accessToken = authManager.accessToken?.token else {
+            return
+        }
+        client.getRecommendedList(page: page ?? 1, accessToken: accessToken, accountId: accountId) { result in
+            switch result {
+            case .success(let movieResult):
+                guard let movieResult = movieResult else { return }
+                let movies = movieResult.results.map { $0.asDomain() }
+                completion(.success(movies))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
     
     func getCustomLists(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.List], Error>) -> Void) {
         guard let accountId = authManager.accessToken?.accountId,
