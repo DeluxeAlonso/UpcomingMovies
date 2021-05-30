@@ -81,6 +81,8 @@ class ProfileViewController: UITableViewController, Storyboarded {
         case .collections:
             let collectionOption = viewModel.collectionOption(at: indexPath.row)
             delegate?.profileViewController(didTapCollection: collectionOption)
+        case .recommended:
+            break
         case .groups:
             let groupOption = viewModel.groupOption(at: indexPath.row)
             delegate?.profileViewController(didTapGroup: groupOption)
@@ -96,7 +98,7 @@ class ProfileViewController: UITableViewController, Storyboarded {
         switch viewModel.section(at: indexPath.section) {
         case .accountInfo:
             return 75.0
-        case .collections, .groups, .signOut:
+        case .collections, .recommended, .groups, .signOut:
             return 50.0
         }
     }

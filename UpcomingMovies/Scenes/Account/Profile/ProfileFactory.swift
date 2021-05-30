@@ -14,6 +14,7 @@ final class ProfileFactory: ProfileFactoryProtocol {
         return [
             .accountInfo,
             .collections,
+            .recommended,
             .groups,
             .signOut
         ]
@@ -21,6 +22,10 @@ final class ProfileFactory: ProfileFactoryProtocol {
     
     var collectionOptions: [ProfileCollectionOption] {
         return [.favorites, .watchlist]
+    }
+
+    var recommendedOptions: [ProfileCollectionOption] {
+        return [.recommended]
     }
     
     var groupOptions: [ProfileGroupOption] {

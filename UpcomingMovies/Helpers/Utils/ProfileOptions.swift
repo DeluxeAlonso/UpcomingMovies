@@ -17,7 +17,7 @@ public protocol ProfileOptionProtocol {
  */
 public enum ProfileCollectionOption: ProfileOptionProtocol {
     
-    case favorites, watchlist
+    case favorites, watchlist, recommended
     
     public var title: String? {
         switch self {
@@ -25,6 +25,8 @@ public enum ProfileCollectionOption: ProfileOptionProtocol {
             return LocalizedStrings.favoritesCollectionOption()
         case .watchlist:
             return LocalizedStrings.watchlistCollectionOption()
+        case .recommended:
+            return "Recommended movies"
         }
     }
     

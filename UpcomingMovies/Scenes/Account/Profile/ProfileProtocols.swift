@@ -13,6 +13,7 @@ protocol ProfileViewModelProtocol {
     
     var userInfoCell: ProfileAccountInforCellViewModelProtocol? { get }
     var collectionOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] { get }
+    var recommendedOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] { get }
     var groupOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] { get }
     
     var reloadAccountInfo: (() -> Void)? { get set }
@@ -37,6 +38,7 @@ protocol ProfileFactoryProtocol {
     
     var sections: [ProfileSection] { get }
     var collectionOptions: [ProfileCollectionOption] { get }
+    var recommendedOptions: [ProfileCollectionOption] { get }
     var groupOptions: [ProfileGroupOption] { get }
     var configurationOptions: [ProfileConfigurationOption] { get }
     

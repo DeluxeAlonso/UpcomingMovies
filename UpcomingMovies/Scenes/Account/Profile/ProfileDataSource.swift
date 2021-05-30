@@ -32,6 +32,8 @@ class ProfileDataSource: NSObject, UITableViewDataSource {
             return 1
         case .collections:
             return viewModel.collectionOptionsCells.count
+        case .recommended:
+            return viewModel.recommendedOptionsCells.count
         case .groups:
             return viewModel.groupOptionsCells.count
         case .signOut:
@@ -49,6 +51,10 @@ class ProfileDataSource: NSObject, UITableViewDataSource {
         case .collections:
             let cell = tableView.dequeueReusableCell(with: ProfileSelectableOptionTableViewCell.self, for: indexPath)
             cell.viewModel = viewModel.collectionOptionsCells[indexPath.row]
+            return cell
+        case .recommended:
+            let cell = tableView.dequeueReusableCell(with: ProfileSelectableOptionTableViewCell.self, for: indexPath)
+            cell.viewModel = viewModel.recommendedOptionsCells[indexPath.row]
             return cell
         case .groups:
             let cell = tableView.dequeueReusableCell(with: ProfileSelectableOptionTableViewCell.self, for: indexPath)

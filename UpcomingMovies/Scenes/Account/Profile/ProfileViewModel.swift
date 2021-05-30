@@ -25,7 +25,11 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     var collectionOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] {
         return factory.collectionOptions.map { ProfileSelectableOptionCellViewModel($0) }
     }
-    
+
+    var recommendedOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] {
+        return factory.recommendedOptions.map { ProfileSelectableOptionCellViewModel($0) }
+    }
+
     var groupOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] {
         return factory.groupOptions.map { ProfileSelectableOptionCellViewModel($0) }
     }

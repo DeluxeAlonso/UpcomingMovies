@@ -14,6 +14,9 @@ enum ProfileSection {
     
     /// Shows the user's collections like favorites
     case collections
+
+    /// Shows the user's recommended movies
+    case recommended
     
     /// Shows the user's created lists
     case groups

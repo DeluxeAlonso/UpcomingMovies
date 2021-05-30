@@ -91,6 +91,8 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
             showFavoritesSavedMovies()
         case .watchlist:
             showWatchListSavedMovies()
+        case .recommended:
+            break
         }
     }
     
