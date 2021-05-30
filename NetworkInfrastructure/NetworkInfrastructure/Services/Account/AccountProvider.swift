@@ -11,6 +11,7 @@ enum AccountProvider {
     case getAccountDetail(sessionId: String)
     case getFavoriteList(page: Int, sessionId: String, accountId: Int)
     case getWatchlist(page: Int, sessionId: String, accountId: Int)
+    case getRecommendedList(page: Int, accessToken: String, accountId: Int)
     case getCustomLists(page: Int, accessToken: String, accountId: String)
     case getCustomListDetail(accessToken: String, id: String)
     case markAsFavorite(sessionId: String, accountId: Int, movieId: Int, favorite: Bool)
@@ -33,6 +34,8 @@ extension AccountProvider: Endpoint {
             return "/3/account/\(accountId)/favorite/movies"
         case .getWatchlist( _, _, let accountId):
             return "/3/account/\(accountId)/watchlist/movies"
+        case .getRecommendedList(_, _, let accountId):
+            return "/4/account/\(accountId)/movie/recommendations"
         case .getCustomLists( _, _, let accountId):
             return "/4/account/\(accountId)/lists"
         case .getCustomListDetail(_, let id):
@@ -44,6 +47,8 @@ extension AccountProvider: Endpoint {
     
     var headers: [String: String]? {
         switch self {
+        case .getRecommendedList(_, let accessToken, _):
+            return ["Authorization": "Bearer \(accessToken)"]
         case .getCustomLists(_, let accessToken, _):
             return ["Authorization": "Bearer \(accessToken)"]
         case .getCustomListDetail(let accessToken, _):
@@ -61,6 +66,8 @@ extension AccountProvider: Endpoint {
             return ["session_id": sessionId, "page": page]
         case .getWatchlist(let page, let sessionId, _):
             return ["session_id": sessionId, "page": page]
+        case .getRecommendedList(let page, _, _):
+            return ["page": page]
         case .getCustomLists(let page, _, _):
             return ["page": page]
         case .getCustomListDetail:
@@ -77,7 +84,7 @@ extension AccountProvider: Endpoint {
     var parameterEncoding: ParameterEnconding {
         switch self {
         case .getAccountDetail, .getFavoriteList, .getWatchlist,
-             .getCustomLists, .getCustomListDetail:
+             .getRecommendedList, .getCustomLists, .getCustomListDetail:
             return .defaultEncoding
         case .markAsFavorite:
             return .compositeEncoding
@@ -87,7 +94,7 @@ extension AccountProvider: Endpoint {
     var method: HTTPMethod {
         switch self {
         case .getAccountDetail, .getFavoriteList, .getWatchlist,
-             .getCustomLists, .getCustomListDetail:
+             .getRecommendedList, .getCustomLists, .getCustomListDetail:
             return .get
         case .markAsFavorite:
             return .post
