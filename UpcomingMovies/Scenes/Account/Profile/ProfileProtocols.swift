@@ -12,16 +12,16 @@ import UpcomingMoviesDomain
 protocol ProfileViewModelProtocol {
     
     var userInfoCell: ProfileAccountInforCellViewModelProtocol? { get }
-    var collectionOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] { get }
-    var groupOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] { get }
     
     var reloadAccountInfo: (() -> Void)? { get set }
     
-    func collectionOption(at index: Int) -> ProfileCollectionOption
-    func groupOption(at index: Int) -> ProfileGroupOption
-    
     func section(at index: Int) -> ProfileSection
     func numberOfSections() -> Int
+    func numberOfRows(for section: Int) -> Int
+
+    func profileOption(for section: Int, at index: Int) -> ProfileOptionProtocol
+    func buildProfileOptionCellViewModel(for section: Int,
+                                         at index: Int) -> ProfileSelectableOptionCellViewModelProtocol
     
     func getAccountDetails()
     
@@ -36,16 +36,14 @@ protocol ProfileInteractorProtocol {
 protocol ProfileFactoryProtocol {
     
     var sections: [ProfileSection] { get }
-    var collectionOptions: [ProfileCollectionOption] { get }
-    var groupOptions: [ProfileGroupOption] { get }
-    var configurationOptions: [ProfileConfigurationOption] { get }
+
+    func profileOptions(for section: ProfileSection) -> [ProfileOptionProtocol]
     
 }
 
-protocol ProfileViewControllerDelegate: AnyObject {
+protocol ProfileViewControllerDelegate: UIViewController {
 
-    func profileViewController(didTapCollection collection: ProfileCollectionOption)
-    func profileViewController(didTapGroup group: ProfileGroupOption)
-    func profileViewController(didTapSignOutButton tapped: Bool)
+    func profileViewController(didTapProfileOption option: ProfileOptionProtocol)
+    func profileViewController(didSignOut signedOut: Bool)
     
 }

@@ -25,6 +25,11 @@ public final class AccountRepository: AccountUseCaseProtocol {
         remoteDataSource.getWatchList(page: page,
                                       completion: completion)
     }
+
+    public func getRecommendedList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.getRecommendedList(page: page,
+                                            completion: completion)
+    }
     
     public func getCustomLists(page: Int?, completion: @escaping (Result<[List], Error>) -> Void) {
         remoteDataSource.getCustomLists(page: page,
