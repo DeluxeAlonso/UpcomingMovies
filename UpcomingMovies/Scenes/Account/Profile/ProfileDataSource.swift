@@ -30,18 +30,13 @@ class ProfileDataSource: NSObject, UITableViewDataSource {
         switch viewModel.section(at: section) {
         case .accountInfo:
             return 1
-        case .collections:
-            return viewModel.collectionOptionsCells.count
-        case .recommended:
-            return viewModel.recommendedOptionsCells.count
-        case .customLists:
-            return viewModel.groupOptionsCells.count
+        case .collections, .recommended, .customLists:
+            return viewModel.numberOfRows(for: section)
         case .signOut:
             return 1
         }
     }
 
-    // TODO: - Refactor this
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let viewModel = viewModel else { return UITableViewCell() }
         switch viewModel.section(at: indexPath.section) {
@@ -49,17 +44,9 @@ class ProfileDataSource: NSObject, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(with: ProfileAccountInfoTableViewCell.self, for: indexPath)
             cell.viewModel = viewModel.userInfoCell
             return cell
-        case .collections:
+        case .collections, .recommended, .customLists:
             let cell = tableView.dequeueReusableCell(with: ProfileSelectableOptionTableViewCell.self, for: indexPath)
-            cell.viewModel = viewModel.collectionOptionsCells[indexPath.row]
-            return cell
-        case .recommended:
-            let cell = tableView.dequeueReusableCell(with: ProfileSelectableOptionTableViewCell.self, for: indexPath)
-            cell.viewModel = viewModel.recommendedOptionsCells[indexPath.row]
-            return cell
-        case .customLists:
-            let cell = tableView.dequeueReusableCell(with: ProfileSelectableOptionTableViewCell.self, for: indexPath)
-            cell.viewModel = viewModel.groupOptionsCells[indexPath.row]
+            cell.viewModel = viewModel.buildProfileOptionCellViewModels(for: indexPath.section, at: indexPath.row)
             return cell
         case .signOut:
             let cell = ProfileSignOutTableViewCell(style: .default, reuseIdentifier: nil)

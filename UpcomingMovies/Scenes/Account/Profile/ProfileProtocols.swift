@@ -12,16 +12,16 @@ import UpcomingMoviesDomain
 protocol ProfileViewModelProtocol {
     
     var userInfoCell: ProfileAccountInforCellViewModelProtocol? { get }
-    var collectionOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] { get }
-    var recommendedOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] { get }
-    var groupOptionsCells: [ProfileSelectableOptionCellViewModelProtocol] { get }
     
     var reloadAccountInfo: (() -> Void)? { get set }
-
-    func profileOption(for section: Int, at index: Int) -> ProfileOptionProtocol
     
     func section(at index: Int) -> ProfileSection
     func numberOfSections() -> Int
+    func numberOfRows(for section: Int) -> Int
+
+    func profileOption(for section: Int, at index: Int) -> ProfileOptionProtocol
+    func buildProfileOptionCellViewModels(for section: Int,
+                                          at index: Int) -> ProfileSelectableOptionCellViewModelProtocol
     
     func getAccountDetails()
     
