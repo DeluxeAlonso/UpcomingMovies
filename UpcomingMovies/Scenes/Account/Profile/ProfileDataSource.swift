@@ -46,7 +46,7 @@ class ProfileDataSource: NSObject, UITableViewDataSource {
             return cell
         case .collections, .recommended, .customLists:
             let cell = tableView.dequeueReusableCell(with: ProfileSelectableOptionTableViewCell.self, for: indexPath)
-            cell.viewModel = viewModel.buildProfileOptionCellViewModels(for: indexPath.section, at: indexPath.row)
+            cell.viewModel = viewModel.buildProfileOptionCellViewModel(for: indexPath.section, at: indexPath.row)
             return cell
         case .signOut:
             let cell = ProfileSignOutTableViewCell(style: .default, reuseIdentifier: nil)

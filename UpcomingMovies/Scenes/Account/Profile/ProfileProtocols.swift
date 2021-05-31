@@ -20,8 +20,8 @@ protocol ProfileViewModelProtocol {
     func numberOfRows(for section: Int) -> Int
 
     func profileOption(for section: Int, at index: Int) -> ProfileOptionProtocol
-    func buildProfileOptionCellViewModels(for section: Int,
-                                          at index: Int) -> ProfileSelectableOptionCellViewModelProtocol
+    func buildProfileOptionCellViewModel(for section: Int,
+                                         at index: Int) -> ProfileSelectableOptionCellViewModelProtocol
     
     func getAccountDetails()
     

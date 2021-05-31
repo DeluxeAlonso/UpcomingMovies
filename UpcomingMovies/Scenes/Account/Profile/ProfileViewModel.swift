@@ -60,7 +60,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         return profileOptions[index]
     }
 
-    func buildProfileOptionCellViewModels(for section: Int,
+    func buildProfileOptionCellViewModel(for section: Int,
                                           at index: Int) -> ProfileSelectableOptionCellViewModelProtocol {
         let profileOption = self.profileOption(for: section, at: index)
         return ProfileSelectableOptionCellViewModel(profileOption)
