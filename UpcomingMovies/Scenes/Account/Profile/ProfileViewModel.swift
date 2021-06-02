@@ -59,9 +59,9 @@ final class ProfileViewModel: ProfileViewModelProtocol {
 
         return profileOptions[index]
     }
-
+    
     func buildProfileOptionCellViewModel(for section: Int,
-                                          at index: Int) -> ProfileSelectableOptionCellViewModelProtocol {
+                                         at index: Int) -> ProfileSelectableOptionCellViewModelProtocol {
         let profileOption = self.profileOption(for: section, at: index)
         return ProfileSelectableOptionCellViewModel(profileOption)
     }
