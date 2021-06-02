@@ -35,12 +35,7 @@ protocol MovieDetailViewModelProtocol {
     /**
      * Retrieves movie detail information.
      */
-    func getMovieDetail()
-
-    /**
-     * Retrieves movie detail information.
-     */
-    func refreshMovieDetail()
+    func getMovieDetail(showLoader: Bool)
 
     /**
      * Saves currently presented movie detail as a visited movie.

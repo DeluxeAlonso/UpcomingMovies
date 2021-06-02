@@ -98,14 +98,10 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     // MARK: - Networking
     
-    func getMovieDetail() {
-        fetchMovieDetail(showLoader: true)
+    func getMovieDetail(showLoader: Bool) {
+        fetchMovieDetail(showLoader: showLoader)
     }
-    
-    func refreshMovieDetail() {
-        fetchMovieDetail(showLoader: false)
-    }
-    
+
     private func fetchMovieDetail(showLoader: Bool = true) {
         guard needsFetch else { return }
         startLoading.value = showLoader
