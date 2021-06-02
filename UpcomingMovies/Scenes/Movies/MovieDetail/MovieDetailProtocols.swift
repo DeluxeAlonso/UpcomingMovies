@@ -34,6 +34,8 @@ protocol MovieDetailViewModelProtocol {
 
     /**
      * Retrieves movie detail information.
+     * - Parameters:
+     *      - showLoader: Indicates if loader should be triggered or not.
      */
     func getMovieDetail(showLoader: Bool)
 
@@ -44,6 +46,8 @@ protocol MovieDetailViewModelProtocol {
 
     /**
      * Checks if a movie is marked as favorite or not.
+     * - Parameters:
+     *      - showLoader: Indicates if loader should be triggered or not.
      */
     func checkIfMovieIsFavorite(showLoader: Bool)
 
