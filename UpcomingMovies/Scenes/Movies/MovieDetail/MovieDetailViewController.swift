@@ -50,7 +50,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         setupUI()
         setupBindables()
 
-        viewModel?.getMovieDetail()
+        viewModel?.getMovieDetail(showLoader: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +78,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     private func showErrorView(error: Error) {
         presentRetryView(with: error.localizedDescription, errorHandler: { [weak self] in
-            self?.viewModel?.refreshMovieDetail()
+            self?.viewModel?.getMovieDetail(showLoader: false)
         })
     }
     
