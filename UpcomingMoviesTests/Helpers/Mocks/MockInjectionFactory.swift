@@ -120,6 +120,11 @@ final class MockMovieUseCase: MovieUseCaseProtocol {
     func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Review], Error>) -> Void) {
         completion(reviews!)
     }
+
+    var rateMovieResult: Result<Void, Error>?
+    func rateMovie(movieId: Int, value: Double, completion: @escaping (Result<Void, Error>) -> Void) {
+        completion(rateMovieResult!)
+    }
     
 }
 
