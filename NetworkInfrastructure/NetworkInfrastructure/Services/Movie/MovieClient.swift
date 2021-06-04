@@ -11,7 +11,7 @@ import Foundation
 class MovieClient: APIClient, MovieClientProtocol {
     
     let session: URLSession
-    
+
     // MARK: - Initializers
     
     init(configuration: URLSessionConfiguration) {
@@ -21,12 +21,12 @@ class MovieClient: APIClient, MovieClientProtocol {
     convenience init() {
         let configuration: URLSessionConfiguration = .default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        
+
         self.init(configuration: configuration)
     }
     
     // MARK: - Movie list
-    
+
     func getUpcomingMovies(page: Int, completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
         let request = MovieProvider.getUpcoming(page: page).request
         fetch(with: request, decode: { json -> MovieResult? in
@@ -120,17 +120,19 @@ class MovieClient: APIClient, MovieClientProtocol {
     
     func getMovieAccountState(with movieId: Int, sessionId: String,
                               completion: @escaping (Result<MovieAccountStateResult?, APIError>) -> Void) {
-        fetch(with: MovieProvider.getAccountState(id: movieId, sessionId: sessionId).request, decode: { json -> MovieAccountStateResult? in
+        let request = MovieProvider.getAccountState(id: movieId, sessionId: sessionId).request
+        fetch(with: request, decode: { json -> MovieAccountStateResult? in
             guard let accountStateResult = json as? MovieAccountStateResult else { return nil }
             return accountStateResult
         }, completion: completion)
     }
-    
+
     // MARK: - Movie Rate
-    
+
     func rateMovie(with movieId: Int, sessionId: String, value: Double,
                    completion: @escaping (Result<RateMovieResult?, APIError>) -> Void) {
-        fetch(with: MovieProvider.rateMovie(id: movieId, sessionId: sessionId, value: value).request, decode: { json -> RateMovieResult? in
+        let request =  MovieProvider.rateMovie(id: movieId, sessionId: sessionId, value: value).request
+        fetch(with: request, decode: { json -> RateMovieResult? in
             guard let rateMovieResult = json as? RateMovieResult else { return nil }
             return rateMovieResult
         }, completion: completion)

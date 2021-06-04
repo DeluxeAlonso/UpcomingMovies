@@ -38,4 +38,7 @@ protocol MovieClientProtocol {
     func getMovieAccountState(with movieId: Int, sessionId: String,
                               completion: @escaping (Result<MovieAccountStateResult?, APIError>) -> Void)
 
+    func rateMovie(with movieId: Int, sessionId: String, value: Double,
+                   completion: @escaping (Result<RateMovieResult?, APIError>) -> Void)
+
 }
