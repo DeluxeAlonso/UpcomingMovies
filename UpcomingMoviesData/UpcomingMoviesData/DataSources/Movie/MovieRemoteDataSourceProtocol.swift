@@ -48,6 +48,6 @@ public protocol MovieRemoteDataSourceProtocol {
     func isMovieInWatchList(for movieId: Int,
                             completion: @escaping (Result<Bool, Error>) -> Void)
 
-    func rateMovie(for movieId: Int, value: Double, completion: @escaping (Result<Void, Error>) -> Void)
+    func rateMovie(movieId: Int, value: Double, completion: @escaping (Result<Void, Error>) -> Void)
     
 }

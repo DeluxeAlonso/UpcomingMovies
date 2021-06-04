@@ -73,7 +73,7 @@ public class MovieRepository: MovieUseCaseProtocol {
     }
 
     public func rateMovie(movieId: Int, value: Double, completion: @escaping (Result<Void, Error>) -> Void) {
-        remoteDataSource.rateMovie(for: movieId, value: value, completion: completion)
+        remoteDataSource.rateMovie(movieId: movieId, value: value, completion: completion)
     }
 
 }

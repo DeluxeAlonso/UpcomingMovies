@@ -129,7 +129,7 @@ class MovieClient: APIClient, MovieClientProtocol {
 
     // MARK: - Movie Rate
 
-    func rateMovie(with movieId: Int, sessionId: String, value: Double,
+    func rateMovie(movieId: Int, sessionId: String, value: Double,
                    completion: @escaping (Result<RateMovieResult?, APIError>) -> Void) {
         let request =  MovieProvider.rateMovie(id: movieId, sessionId: sessionId, value: value).request
         fetch(with: request, decode: { json -> RateMovieResult? in
