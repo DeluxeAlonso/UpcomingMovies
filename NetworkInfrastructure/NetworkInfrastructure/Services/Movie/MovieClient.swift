@@ -84,9 +84,9 @@ class MovieClient: APIClient, MovieClientProtocol {
     func getMovieDetail(with movieId: Int, completion: @escaping (Result<MovieDetailResult, APIError>) -> Void) {
         fetch(with: MovieProvider.getDetail(id: movieId).request,
               decode: { json -> MovieDetailResult? in
-            guard let movie = json as? MovieDetailResult else { return nil }
-            return movie
-        }, completion: completion)
+                guard let movie = json as? MovieDetailResult else { return nil }
+                return movie
+              }, completion: completion)
     }
     
     // MARK: - Movie videos
@@ -120,10 +120,21 @@ class MovieClient: APIClient, MovieClientProtocol {
     
     func getMovieAccountState(with movieId: Int, sessionId: String,
                               completion: @escaping (Result<MovieAccountStateResult?, APIError>) -> Void) {
-        fetch(with: MovieProvider.getAccountState(id: movieId, sessionId: sessionId).request,
-              decode: { json -> MovieAccountStateResult? in
+        let request = MovieProvider.getAccountState(id: movieId, sessionId: sessionId).request
+        fetch(with: request, decode: { json -> MovieAccountStateResult? in
             guard let accountStateResult = json as? MovieAccountStateResult else { return nil }
             return accountStateResult
+        }, completion: completion)
+    }
+
+    // MARK: - Movie Rate
+
+    func rateMovie(movieId: Int, sessionId: String, value: Double,
+                   completion: @escaping (Result<RateMovieResult?, APIError>) -> Void) {
+        let request =  MovieProvider.rateMovie(id: movieId, sessionId: sessionId, value: value).request
+        fetch(with: request, decode: { json -> RateMovieResult? in
+            guard let rateMovieResult = json as? RateMovieResult else { return nil }
+            return rateMovieResult
         }, completion: completion)
     }
     

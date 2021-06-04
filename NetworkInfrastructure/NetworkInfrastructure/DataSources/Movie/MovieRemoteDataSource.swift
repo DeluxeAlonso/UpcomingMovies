@@ -179,5 +179,17 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             }
         })
     }
+
+    func rateMovie(movieId: Int, value: Double, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let account = authManager.userAccount else { return }
+        client.rateMovie(movieId: movieId, sessionId: account.sessionId, value: value) { result in
+            switch result {
+            case .success:
+                completion(.success(Void()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
     
 }
