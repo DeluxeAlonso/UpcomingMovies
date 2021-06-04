@@ -19,6 +19,7 @@ enum MovieProvider {
     case getSimilars(page: Int, id: Int)
     case getCredits(id: Int)
     case getAccountState(id: Int, sessionId: String)
+    case rateMovie(id: Int, sessionId: String, value: Double)
     
 }
 
@@ -54,6 +55,8 @@ extension MovieProvider: Endpoint {
             return "/3/movie/\(id)/credits"
         case .getAccountState(let id, _):
             return "/3/movie/\(id)/account_states"
+        case .rateMovie(let id, _, _):
+            return "/3/movie/\(id)/rating"
         }
     }
     
@@ -83,15 +86,29 @@ extension MovieProvider: Endpoint {
             return ["page": page]
         case .getAccountState( _, let sessionId):
             return ["session_id": sessionId]
+        case .rateMovie(_, _, let value):
+            return ["value": value]
         }
     }
     
     var parameterEncoding: ParameterEnconding {
-        return .defaultEncoding
+        switch self {
+        case .getAccountState, .getByGenreId, .getCredits, .getDetail, .getPopular, .getReviews,
+             .getSimilars, .getTopRated, .getUpcoming, .getVideos, .search:
+            return .defaultEncoding
+        case .rateMovie:
+            return .jsonEncoding
+        }
     }
     
     var method: HTTPMethod {
-        return .get
+        switch self {
+        case .getAccountState, .getByGenreId, .getCredits, .getDetail, .getPopular, .getReviews,
+             .getSimilars, .getTopRated, .getUpcoming, .getVideos, .search:
+            return .get
+        case .rateMovie:
+            return .post
+        }
     }
     
 }
