@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-public final class AuthRepository: AuthUseCaseProtocol {
+final class AuthRepository: AuthUseCaseProtocol {
     
     private var remoteDataSource: AuthRemoteDataSourceProtocol
     
@@ -17,19 +17,19 @@ public final class AuthRepository: AuthUseCaseProtocol {
         self.remoteDataSource = remoteDataSource
     }
     
-    public func getAuthURL(completion: @escaping (Result<URL, Error>) -> Void) {
+    func getAuthURL(completion: @escaping (Result<URL, Error>) -> Void) {
         remoteDataSource.getAuthURL(completion: completion)
     }
     
-    public func signInUser(completion: @escaping (Result<User, Error>) -> Void) {
+    func signInUser(completion: @escaping (Result<User, Error>) -> Void) {
         remoteDataSource.signInUser(completion: completion)
     }
     
-    public func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void) {
+    func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void) {
         remoteDataSource.signOutUser(completion: completion)
     }
     
-    public func currentUserId() -> Int? {
+    func currentUserId() -> Int? {
         return remoteDataSource.currentUserId()
     }
     
