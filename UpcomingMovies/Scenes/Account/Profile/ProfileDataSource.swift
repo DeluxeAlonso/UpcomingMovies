@@ -30,15 +30,13 @@ class ProfileDataSource: NSObject, UITableViewDataSource {
         switch viewModel.section(at: section) {
         case .accountInfo:
             return 1
-        case .collections:
-            return viewModel.collectionOptionsCells.count
-        case .groups:
-            return viewModel.groupOptionsCells.count
+        case .collections, .recommended, .customLists:
+            return viewModel.numberOfRows(for: section)
         case .signOut:
             return 1
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let viewModel = viewModel else { return UITableViewCell() }
         switch viewModel.section(at: indexPath.section) {
@@ -46,13 +44,9 @@ class ProfileDataSource: NSObject, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(with: ProfileAccountInfoTableViewCell.self, for: indexPath)
             cell.viewModel = viewModel.userInfoCell
             return cell
-        case .collections:
+        case .collections, .recommended, .customLists:
             let cell = tableView.dequeueReusableCell(with: ProfileSelectableOptionTableViewCell.self, for: indexPath)
-            cell.viewModel = viewModel.collectionOptionsCells[indexPath.row]
-            return cell
-        case .groups:
-            let cell = tableView.dequeueReusableCell(with: ProfileSelectableOptionTableViewCell.self, for: indexPath)
-            cell.viewModel = viewModel.groupOptionsCells[indexPath.row]
+            cell.viewModel = viewModel.buildProfileOptionCellViewModel(for: indexPath.section, at: indexPath.row)
             return cell
         case .signOut:
             let cell = ProfileSignOutTableViewCell(style: .default, reuseIdentifier: nil)

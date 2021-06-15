@@ -45,5 +45,7 @@ public protocol MovieUseCaseProtocol {
     
     func isMovieInWatchList(for movieId: Int,
                             completion: @escaping (Result<Bool, Error>) -> Void)
+
+    func rateMovie(movieId: Int, value: Double, completion: @escaping (Result<Void, Error>) -> Void)
     
 }

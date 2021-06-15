@@ -13,6 +13,8 @@ public protocol AccountRemoteDataSourceProtocol {
     func getFavoriteList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
     
     func getWatchList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
+
+    func getRecommendedList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
     
     func getCustomLists(page: Int?, completion: @escaping (Result<[List], Error>) -> Void)
     

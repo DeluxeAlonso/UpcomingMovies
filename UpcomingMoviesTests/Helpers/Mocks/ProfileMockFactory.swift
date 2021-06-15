@@ -6,7 +6,6 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import Foundation
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 
@@ -20,13 +19,26 @@ class MockProfileInteractor: ProfileInteractorProtocol {
 }
 
 class MockProfileViewFactory: ProfileFactoryProtocol {
-    
+
+    var collectionSectionOptions: [ProfileOptionProtocol] = []
+    var recommendedSectionOptions: [ProfileOptionProtocol] = []
+    var customListsSectionOptions: [ProfileOptionProtocol] = []
+
+    // MARK: - ProfileFactoryProtocol
+
+    func profileOptions(for section: ProfileSection) -> [ProfileOptionProtocol] {
+        switch section {
+        case .accountInfo, .signOut:
+            return []
+        case .collections:
+            return collectionSectionOptions
+        case .recommended:
+            return recommendedSectionOptions
+        case .customLists:
+            return customListsSectionOptions
+        }
+    }
+
     var sections: [ProfileSection] = []
-    
-    var collectionOptions: [ProfileCollectionOption] = []
-    
-    var groupOptions: [ProfileGroupOption] = []
-    
-    var configurationOptions: [ProfileConfigurationOption] = []
     
 }

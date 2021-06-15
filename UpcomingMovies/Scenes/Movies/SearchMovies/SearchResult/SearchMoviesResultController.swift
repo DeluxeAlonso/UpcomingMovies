@@ -55,7 +55,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
     }
     
     // MARK: - Private
-    
+
     private func setupObservers() {
         registerKeyboardWillShowNotification(using: { [weak self] keyboardFrame in
             self?.view.layoutIfNeeded()

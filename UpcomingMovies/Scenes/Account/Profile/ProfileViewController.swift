@@ -57,7 +57,7 @@ class ProfileViewController: UITableViewController, Storyboarded {
     private func showSignOutActionSheet() {
         let signOutAction = UIAlertAction(title: LocalizedStrings.signOut(),
                                           style: .destructive) { _ in
-            self.delegate?.profileViewController(didTapSignOutButton: true)
+            self.delegate?.profileViewController(didSignOut: true)
         }
         showSimpleActionSheet(title: LocalizedStrings.signOutConfirmationTitle(),
                               message: nil, action: signOutAction)
@@ -73,17 +73,15 @@ class ProfileViewController: UITableViewController, Storyboarded {
     }
     
     // MARK: - Table view delegate
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let viewModel = viewModel else { return }
+
         switch viewModel.section(at: indexPath.section) {
-        case .collections:
-            let collectionOption = viewModel.collectionOption(at: indexPath.row)
-            delegate?.profileViewController(didTapCollection: collectionOption)
-        case .groups:
-            let groupOption = viewModel.groupOption(at: indexPath.row)
-            delegate?.profileViewController(didTapGroup: groupOption)
+        case .collections, .recommended, .customLists:
+            let profileOption = viewModel.profileOption(for: indexPath.section, at: indexPath.row)
+            delegate?.profileViewController(didTapProfileOption: profileOption)
         case .signOut:
             showSignOutActionSheet()
         case .accountInfo:
@@ -96,7 +94,7 @@ class ProfileViewController: UITableViewController, Storyboarded {
         switch viewModel.section(at: indexPath.section) {
         case .accountInfo:
             return 75.0
-        case .collections, .groups, .signOut:
+        case .collections, .recommended, .customLists, .signOut:
             return 50.0
         }
     }

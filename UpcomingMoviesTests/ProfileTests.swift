@@ -34,29 +34,29 @@ class ProfileTests: XCTestCase {
     }
     
     func testGetAccountDetailSuccessInfoReloaded() {
-        //Arrange
+        // Arrange
         mockInteractor.getAccountDetailResult = .success(User.with(name: "Alonso"))
         let expectation = XCTestExpectation(description: "Reload account info")
-        //Act
+        // Act
         viewModelToTest.reloadAccountInfo = {
             expectation.fulfill()
         }
         viewModelToTest.getAccountDetails()
-        //Assert
+        // Assert
         wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetAccountDetailSuccessInfoNotReloaded() {
-        //Arrange
+        // Arrange
         mockInteractor.getAccountDetailResult = .success(User.with())
         let expectation = XCTestExpectation(description: "Should not reload account info")
         expectation.isInverted = true
-        //Act
+        // Act
         viewModelToTest.reloadAccountInfo = {
             expectation.fulfill()
         }
         viewModelToTest.getAccountDetails()
-        //Assert
+        // Assert
         wait(for: [expectation], timeout: 1.0)
     }
     
@@ -65,55 +65,57 @@ class ProfileTests: XCTestCase {
         mockInteractor.getAccountDetailResult = Result.failure(APIError.badRequest)
         let expectation = XCTestExpectation(description: "Should not reload account info")
         expectation.isInverted = true
-        //Act
+        // Act
         viewModelToTest.reloadAccountInfo = {
             expectation.fulfill()
         }
         viewModelToTest.getAccountDetails()
-        //Assert
+        // Assert
         wait(for: [expectation], timeout: 1.0)
     }
     
     func testCollectionOptionIndex() {
-        //Arrange
-        let collectionOptionsToTest: [ProfileCollectionOption] = [.favorites, .watchlist]
+        // Arrange
+        let collectionOptionsToTest: [ProfileOptionProtocol] = [ProfileOption.favorites, ProfileOption.watchlist]
         let indexToTest = Int.random(in: 0...collectionOptionsToTest.count - 1)
-        mockFactory.collectionOptions = collectionOptionsToTest
-        //Act
-        let firstCollectionOption = viewModelToTest.collectionOption(at: indexToTest)
-        //Assert
+        mockFactory.sections = [.customLists]
+        mockFactory.customListsSectionOptions = collectionOptionsToTest
+        // Act
+        let firstCollectionOption = viewModelToTest.profileOption(for: 0, at: indexToTest)
+        // Assert
         XCTAssertEqual(firstCollectionOption.title, collectionOptionsToTest[indexToTest].title)
     }
     
-    func testGroupOtionIndex() {
-        //Arrange
-        let groupOptionsToTest: [ProfileGroupOption] = [.customLists]
-        let indexToTest = Int.random(in: 0...groupOptionsToTest.count - 1)
-        mockFactory.groupOptions = groupOptionsToTest
-        //Act
-        let firstGroupOption = viewModelToTest.groupOption(at: indexToTest)
-        //Assert
-        XCTAssertEqual(firstGroupOption.title, groupOptionsToTest[indexToTest].title)
+    func testCustomListsOptionIndex() {
+        // Arrange
+        let customListsOptionsToTest: [ProfileOptionProtocol] = [ProfileOption.customLists]
+        let indexToTest = Int.random(in: 0...customListsOptionsToTest.count - 1)
+        mockFactory.sections = [.customLists]
+        mockFactory.customListsSectionOptions = customListsOptionsToTest
+        // Act
+        let firstCustomListsOption = viewModelToTest.profileOption(for: 0, at: indexToTest)
+        // Assert
+        XCTAssertEqual(firstCustomListsOption.title, customListsOptionsToTest[indexToTest].title)
     }
     
     func testSectionIndex() {
-        //Arrange
-        let sectionsToTest: [ProfileSection] = [.accountInfo, .collections, .groups, .signOut]
+        // Arrange
+        let sectionsToTest: [ProfileSection] = [.accountInfo, .collections, .customLists, .signOut]
         let indexToTest = Int.random(in: 0...sectionsToTest.count - 1)
         mockFactory.sections = sectionsToTest
-        //Act
+        // Act
         let section = viewModelToTest.section(at: indexToTest)
-        //Assert
+        // Assert
         XCTAssertEqual(section, sectionsToTest[indexToTest])
     }
     
     func testNumberOfSections() {
-        //Arrange
-        let sectionsToTest: [ProfileSection] = [.accountInfo, .collections, .groups, .signOut]
+        // Arrange
+        let sectionsToTest: [ProfileSection] = [.accountInfo, .collections, .customLists, .signOut]
         mockFactory.sections = sectionsToTest
-        //Act
+        // Act
         let numberOfSections = viewModelToTest.numberOfSections()
-        //Assert
+        // Assert
         XCTAssertEqual(numberOfSections, sectionsToTest.count)
     }
 

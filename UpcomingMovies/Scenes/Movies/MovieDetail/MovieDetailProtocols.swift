@@ -32,20 +32,38 @@ protocol MovieDetailViewModelProtocol {
 
     var shouldHideFavoriteButton: (() -> Void)? { get set }
 
-    func getMovieDetail()
-    func refreshMovieDetail()
-    
+    /**
+     * Retrieves movie detail information.
+     * - Parameters:
+     *      - showLoader: Indicates if loader should be triggered or not.
+     */
+    func getMovieDetail(showLoader: Bool)
+
+    /**
+     * Saves currently presented movie detail as a visited movie.
+     */
     func saveVisitedMovie()
-    func checkIfMovieIsFavorite(showLoader: Bool) 
+
+    /**
+     * Checks if a movie is marked as favorite or not.
+     * - Parameters:
+     *      - showLoader: Indicates if loader should be triggered or not.
+     */
+    func checkIfMovieIsFavorite(showLoader: Bool)
+
+    /**
+     * Marks a movie as a favorite or non-favorite given the current favorite state of the presented movie.
+     */
     func handleFavoriteMovie()
     
 }
 
 protocol MovieDetailInteractorProtocol {
-    
+
     func isUserSignedIn() -> Bool
-    
+
     func findGenre(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void)
+
     func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void)
     
     func markMovieAsFavorite(movieId: Int, favorite: Bool, completion: @escaping (Result<Bool, Error>) -> Void)
