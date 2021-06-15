@@ -1188,6 +1188,7 @@
 			children = (
 				E26EB50925CF508300AFE4A6 /* BaseConfiguration */,
 				E208FC4C263523D0008593D8 /* SimpleViewState */,
+				E22116B3219157020039F8C9 /* Bindable.swift */,
 				E289DB9123DCAE03008B2163 /* UIConstants.swift */,
 				E260116D219388B700E53095 /* FontHelper.swift */,
 				E260116F219388C500E53095 /* ColorPalette.swift */,
@@ -1532,7 +1533,6 @@
 				E25F9CF0225B08F20069A6A1 /* Displayable */,
 				E21662DE25EB670A001C2905 /* Loading */,
 				E2DBF2F2220532BD00CBB365 /* Animatable.swift */,
-				E22116B3219157020039F8C9 /* Bindable.swift */,
 				E2EB92442213D9700067F011 /* Dequeueable.swift */,
 				E26011682193876500E53095 /* NibLoadable.swift */,
 				E2940804220A188000A74F68 /* TabBarScrollable.swift */,
