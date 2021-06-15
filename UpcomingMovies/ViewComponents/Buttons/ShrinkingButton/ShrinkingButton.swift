@@ -6,10 +6,9 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-@IBDesignable class ShrinkingButton: UIButton, UIViewControllerTransitioningDelegate, CAAnimationDelegate {
+@IBDesignable class ShrinkingButton: UIButton {
     
     @IBInspectable var spinnerColor: UIColor = UIColor.white {
         didSet {
@@ -143,7 +142,7 @@ import UIKit
     
 }
 
-extension UIImage {
+private extension UIImage {
     
     convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         let rect = CGRect(origin: .zero, size: size)
