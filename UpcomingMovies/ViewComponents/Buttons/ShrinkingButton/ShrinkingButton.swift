@@ -143,7 +143,7 @@ import UIKit
     
 }
 
-extension UIImage {
+fileprivate extension UIImage {
     
     convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         let rect = CGRect(origin: .zero, size: size)
