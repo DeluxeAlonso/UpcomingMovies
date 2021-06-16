@@ -18,16 +18,16 @@ class UpcomingMoviesTests: XCTestCase {
     private var mockInteractor: MockUpcomingMoviesInteractor!
     private var viewModelToTest: UpcomingMoviesViewModelProtocol!
 
-    override func setUp() {
-        super.setUp()
+    override func setUpWithError() throws {
+        try super.setUpWithError()
         mockInteractor = MockUpcomingMoviesInteractor()
         viewModelToTest = UpcomingMoviesViewModel(interactor: mockInteractor)
     }
 
-    override func tearDown() {
+    override func tearDownWithError() throws {
         mockInteractor = nil
         viewModelToTest = nil
-        super.tearDown()
+        try super.tearDownWithError()
     }
     
     func testGetMoviesEmpty() {
