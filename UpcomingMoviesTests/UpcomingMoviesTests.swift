@@ -12,6 +12,8 @@ import XCTest
 @testable import NetworkInfrastructure
 
 class UpcomingMoviesTests: XCTestCase {
+
+    typealias MoviesViewState = SimpleViewState<UpcomingMoviesDomain.Movie>
     
     private var mockInteractor: MockUpcomingMoviesInteractor!
     private var viewModelToTest: UpcomingMoviesViewModelProtocol!
@@ -29,59 +31,82 @@ class UpcomingMoviesTests: XCTestCase {
     }
     
     func testGetMoviesEmpty() {
-        //Arrange
+        // Arrange
+        let expectation = XCTestExpectation(description: "Should get empty state")
+        viewModelToTest.viewState.bind { state in
+            XCTAssertTrue(state == .empty)
+            expectation.fulfill()
+        }
+        // Act
         mockInteractor.upcomingMovies = Result.success([])
-        //Act
         viewModelToTest.getMovies()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .empty)
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetMoviesPopulated() {
-        //Arrange
-        mockInteractor.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
-        //Act
+        // Arrange
+        let moviesToEvaluate = [Movie.with(id: 1), Movie.with(id: 2)]
+        var statesToReceive: [MoviesViewState] = [.paging(moviesToEvaluate, next: 2), .populated(moviesToEvaluate)]
+
+        let expectation = XCTestExpectation(description: "Should get populated state after recaiving a paging state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, statesToReceive.removeFirst())
+            expectation.fulfill()
+        }
+        mockInteractor.upcomingMovies = Result.success(moviesToEvaluate)
         viewModelToTest.getMovies()
         mockInteractor.upcomingMovies = Result.success([])
         viewModelToTest.getMovies()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .populated([Movie.with(id: 1), Movie.with(id: 2)]))
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetMoviesPaging() {
-        //Arrange
-        mockInteractor.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
-        //Act
+        // Arrange
+        let moviesToEvaluate = [Movie.with(id: 1), Movie.with(id: 2)]
+        let expectation = XCTestExpectation(description: "Should get paging state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .paging(moviesToEvaluate, next: 2))
+            expectation.fulfill()
+        }
+        mockInteractor.upcomingMovies = Result.success(moviesToEvaluate)
         viewModelToTest.getMovies()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value,
-                       .paging([Movie.with(id: 1), Movie.with(id: 2)], next: 2))
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetMoviesError() {
-        //Arrange
+        // Arrange
+        let expectation = XCTestExpectation(description: "Should get error state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertTrue(state == .error(APIError.badRequest))
+            expectation.fulfill()
+        }
         mockInteractor.upcomingMovies = Result.failure(APIError.badRequest)
-        //Act
         viewModelToTest.getMovies()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testUpcomingMovieCellPosterURL() {
-        //Arrange
+        // Arrange
         let cellViewModel = UpcomingMovieCellViewModel(Movie.with())
-        //Act
+        // Act
         let posterURL = cellViewModel.posterURL
-        //Assert
+        // Assert
         XCTAssertEqual(posterURL, URL(string: "https://image.tmdb.org/t/p/w185/poster.jpg"))
     }
     
     func testUpcomingMovieCellBackdropURL() {
-        //Arrange
+        // Arrange
         let cellViewModel = UpcomingMovieCellViewModel(Movie.with())
-        //Act
+        // Act
         let backdropURL = cellViewModel.backdropURL
-        //Assert
+        // Assert
         XCTAssertEqual(backdropURL, URL(string: "https://image.tmdb.org/t/p/w500/backdrop.jpg"))
     }
 
