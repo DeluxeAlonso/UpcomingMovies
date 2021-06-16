@@ -49,7 +49,7 @@ class UpcomingMoviesTests: XCTestCase {
         let moviesToEvaluate = [Movie.with(id: 1), Movie.with(id: 2)]
         var statesToReceive: [MoviesViewState] = [.paging(moviesToEvaluate, next: 2), .populated(moviesToEvaluate)]
 
-        let expectation = XCTestExpectation(description: "Should get populated state after recaiving a paging state")
+        let expectation = XCTestExpectation(description: "Should get populated state after a paging state")
         // Act
         viewModelToTest.viewState.bind { state in
             XCTAssertEqual(state, statesToReceive.removeFirst())
