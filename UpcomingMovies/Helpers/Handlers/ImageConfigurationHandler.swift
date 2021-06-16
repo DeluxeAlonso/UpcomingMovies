@@ -35,11 +35,14 @@ struct ImageConfigurationHandler {
 // MARK: - Constants
 
 extension ImageConfigurationHandler {
+
     struct Constants {
+
         static let defaultRegularSize = "w185"
         static let defaultBackdropSize = "w500"
         
         static let defaultRegularImageBaseURLString: String = "https://image.tmdb.org/t/p/w185"
         static let defaultBackdropImageBaseURLString: String = "https://image.tmdb.org/t/p/w500"
     }
+
 }
