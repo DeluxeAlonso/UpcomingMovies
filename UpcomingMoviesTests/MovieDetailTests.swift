@@ -21,12 +21,12 @@ class MovieDetailTests: XCTestCase {
     override func setUp() {
         super.setUp()
         let movieToTest = Movie(id: 1,
-                            title: "Test 1",
-                            genreIds: [1, 2],
-                            overview: "Overview",
-                            posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
-                            backdropPath: "/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg",
-                            releaseDate: "2019-02-01", voteAverage: 4.5)
+                                title: "Test 1",
+                                genreIds: [1, 2],
+                                overview: "Overview",
+                                posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
+                                backdropPath: "/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg",
+                                releaseDate: "2019-02-01", voteAverage: 4.5)
         mockInteractor = MockMovieDetailInteractor()
         mockFactory = MockMovieDetailViewFactory()
         viewModelToTest = MovieDetailViewModel(movieToTest,
