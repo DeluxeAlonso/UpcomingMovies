@@ -34,54 +34,54 @@ class MovieCreditsTests: XCTestCase {
     }
     
     func testMovieCreditsTitle() {
-        //Act
+        // Act
         let title = viewModelToTest.movieTitle
-        //Assert
+        // Assert
         XCTAssertEqual(title, "Movie 1")
     }
     
     func testGetMovieCreditsEmpty() {
-        //Arrange
+        // Arrange
         mockInteractor.getMovieCreditsResult = Result.success(MovieCredits.withEmptyValues())
-        //Act
+        // Act
         viewModelToTest.getMovieCredits(showLoader: false)
-        //Assert
+        // Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .empty)
     }
     
     func testGetMovieCreditsPopulated() {
-        //Arrange
+        // Arrange
         mockInteractor.getMovieCreditsResult = Result.success(MovieCredits.with())
-        //Act
+        // Act
         viewModelToTest.getMovieCredits(showLoader: false)
-        //Assert
+        // Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .populated([Cast.with()], [Crew.with()]))
     }
     
     func testGetMovieCreditsError() {
-        //Arrange
+        // Arrange
         mockInteractor.getMovieCreditsResult = Result.failure(APIError.badRequest)
-        //Act
+        // Act
         viewModelToTest.getMovieCredits(showLoader: false)
-        //Assert
+        // Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
     }
     
     func testNumberOfSections() {
-        //Arrange
+        // Arrange
         let sectionsToTest: [MovieCreditsCollapsibleSection] = [
             MovieCreditsCollapsibleSection(type: .cast, opened: true),
             MovieCreditsCollapsibleSection(type: .crew, opened: true)
         ]
         mockFactory.sections = sectionsToTest
-        //Act
+        // Act
         let numberOfSections = viewModelToTest.numberOfSections()
-        //Assert
+        // Assert
         XCTAssertEqual(numberOfSections, sectionsToTest.count)
     }
     
     func testNumberOfItemsCastSection() {
-        //Arrange
+        // Arrange
         let sectionsToTest: [MovieCreditsCollapsibleSection] = [
             MovieCreditsCollapsibleSection(type: .cast, opened: true),
             MovieCreditsCollapsibleSection(type: .crew, opened: true)
@@ -92,15 +92,15 @@ class MovieCreditsTests: XCTestCase {
         let crewToTest = [Crew.with()]
         let movieCreditsToTest = MovieCredits(cast: castToTest, crew: crewToTest)
         mockInteractor.getMovieCreditsResult = Result.success(movieCreditsToTest)
-        //Act
+        // Act
         viewModelToTest.getMovieCredits(showLoader: false)
         let numberOfItems = viewModelToTest.numberOfItems(for: 0)
-        //Assert
+        // Assert
         XCTAssertEqual(numberOfItems, castToTest.count)
     }
     
     func testNumberOfItemsCrewSection() {
-        //Arrange
+        // Arrange
         let sectionsToTest: [MovieCreditsCollapsibleSection] = [
             MovieCreditsCollapsibleSection(type: .cast, opened: true),
             MovieCreditsCollapsibleSection(type: .crew, opened: true)
@@ -111,15 +111,15 @@ class MovieCreditsTests: XCTestCase {
         let crewToTest = [Crew.with()]
         let movieCreditsToTest = MovieCredits(cast: castToTest, crew: crewToTest)
         mockInteractor.getMovieCreditsResult = Result.success(movieCreditsToTest)
-        //Act
+        // Act
         viewModelToTest.getMovieCredits(showLoader: false)
         let numberOfItems = viewModelToTest.numberOfItems(for: 1)
-        //Assert
+        // Assert
         XCTAssertEqual(numberOfItems, crewToTest.count)
     }
     
     func testToggleClosedSection() {
-        //Arrange
+        // Arrange
         let sectionsToTest: [MovieCreditsCollapsibleSection] = [
             MovieCreditsCollapsibleSection(type: .cast, opened: false),
             MovieCreditsCollapsibleSection(type: .crew, opened: false)
@@ -127,19 +127,19 @@ class MovieCreditsTests: XCTestCase {
         mockFactory.sections = sectionsToTest
         let sectionIndexToTest = Int.random(in: 0...sectionsToTest.count - 1)
         let expectation = XCTestExpectation(description: "Should toggle section")
-        //Act
+        // Act
         viewModelToTest.didToggleSection.bind { section in
             let headerModel = self.viewModelToTest.headerModel(for: section)
             XCTAssertTrue(headerModel.opened)
             expectation.fulfill()
         }
         viewModelToTest.toggleSection(sectionIndexToTest)
-        //Assert
+        // Assert
         wait(for: [expectation], timeout: 1.0)
     }
     
     func testToggleOpenedSection() {
-        //Arrange
+        // Arrange
         let sectionsToTest: [MovieCreditsCollapsibleSection] = [
             MovieCreditsCollapsibleSection(type: .cast, opened: true),
             MovieCreditsCollapsibleSection(type: .crew, opened: true)
@@ -147,14 +147,14 @@ class MovieCreditsTests: XCTestCase {
         mockFactory.sections = sectionsToTest
         let sectionIndexToTest = Int.random(in: 0...sectionsToTest.count - 1)
         let expectation = XCTestExpectation(description: "Should toggle section")
-        //Act
+        // Act
         viewModelToTest.didToggleSection.bind { section in
             let headerModel = self.viewModelToTest.headerModel(for: section)
             XCTAssertFalse(headerModel.opened)
             expectation.fulfill()
         }
         viewModelToTest.toggleSection(sectionIndexToTest)
-        //Assert
+        // Assert
         wait(for: [expectation], timeout: 1.0)
     }
     
