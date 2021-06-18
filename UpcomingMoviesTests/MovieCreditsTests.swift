@@ -56,20 +56,30 @@ class MovieCreditsTests: XCTestCase {
     
     func testGetMovieCreditsPopulated() {
         // Arrange
-        mockInteractor.getMovieCreditsResult = Result.success(MovieCredits.with())
+        let expectation = XCTestExpectation(description: "Should get populated state")
         // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .populated([Cast.with()], [Crew.with()]))
+            expectation.fulfill()
+        }
+        mockInteractor.getMovieCreditsResult = Result.success(MovieCredits.with())
         viewModelToTest.getMovieCredits(showLoader: false)
         // Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .populated([Cast.with()], [Crew.with()]))
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetMovieCreditsError() {
         // Arrange
-        mockInteractor.getMovieCreditsResult = Result.failure(APIError.badRequest)
+        let expectation = XCTestExpectation(description: "Should get error state")
         // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .error(APIError.badRequest))
+            expectation.fulfill()
+        }
+        mockInteractor.getMovieCreditsResult = Result.failure(APIError.badRequest)
         viewModelToTest.getMovieCredits(showLoader: false)
         // Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testNumberOfSections() {
