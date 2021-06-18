@@ -16,23 +16,23 @@ class MovieCreditsTests: XCTestCase {
     private var mockInteractor: MockMovieCreditsInteractor!
     private var mockFactory: MockMovieCreditsFactory!
     private var viewModelToTest: MovieCreditsViewModelProtocol!
-    
-    override func setUp() {
-        super.setUp()
+
+    override func setUpWithError() throws {
+        try super.setUpWithError()
         mockInteractor = MockMovieCreditsInteractor()
         mockFactory = MockMovieCreditsFactory()
-        
+
         viewModelToTest = MovieCreditsViewModel(movieId: 1, movieTitle: "Movie 1",
                                                 interactor: mockInteractor, factory: mockFactory)
     }
-    
-    override func tearDown() {
+
+    override func tearDownWithError() throws {
         mockInteractor = nil
         mockFactory = nil
         viewModelToTest = nil
-        super.tearDown()
+        try super.tearDownWithError()
     }
-    
+
     func testMovieCreditsTitle() {
         // Act
         let title = viewModelToTest.movieTitle
