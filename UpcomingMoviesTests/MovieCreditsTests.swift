@@ -42,11 +42,16 @@ class MovieCreditsTests: XCTestCase {
     
     func testGetMovieCreditsEmpty() {
         // Arrange
-        mockInteractor.getMovieCreditsResult = Result.success(MovieCredits.withEmptyValues())
+        let expectation = XCTestExpectation(description: "Should get empty state")
         // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .empty)
+            expectation.fulfill()
+        }
+        mockInteractor.getMovieCreditsResult = Result.success(MovieCredits.withEmptyValues())
         viewModelToTest.getMovieCredits(showLoader: false)
         // Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .empty)
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetMovieCreditsPopulated() {
