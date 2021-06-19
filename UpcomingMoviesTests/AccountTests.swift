@@ -29,91 +29,91 @@ class AccountTests: XCTestCase {
     }
     
     func testAuthorizationProcessSuccess() {
-        //Arrange
+        // Arrange
         mockInteractor.permissionURLResult = Result.success(URL(string: "http://www.google.com")!)
         let expectation = XCTestExpectation(description: "Get permission URL")
-        //Act
+        // Act
         viewModelToTest.showAuthPermission.bind { url in
             XCTAssertNotNil(url)
             expectation.fulfill()
         }
         viewModelToTest.startAuthorizationProcess()
-        //Assert
+        // Assert
         wait(for: [expectation], timeout: 1.0)
     }
     
     func testAuthorizationProcessError() {
-        //Arrange
+        // Arrange
         mockInteractor.permissionURLResult = Result.failure(APIError.badRequest)
         let expectation = XCTestExpectation(description: "Get permission URL error")
-        //Act
+        // Act
         viewModelToTest.didReceiveError = {
             expectation.fulfill()
         }
         viewModelToTest.startAuthorizationProcess()
-        //Assert
+        // Assert
         wait(for: [expectation], timeout: 1.0)
     }
     
     func testSignInUserSuccess() {
-        //Arrange
+        // Arrange
         mockInteractor.signInUserResult = Result.success(User.with())
         let expectation = XCTestExpectation(description: "Sign in user")
-        //Act
+        // Act
         viewModelToTest.didSignIn = {
             expectation.fulfill()
         }
         viewModelToTest.signInUser()
-        //Assert
+        // Assert
         wait(for: [expectation], timeout: 1.0)
     }
     
     func testSignInUserError() {
-        //Arrange
+        // Arrange
         mockInteractor.signInUserResult = Result.failure(APIError.badRequest)
         let expectation = XCTestExpectation(description: "Sign in user error")
-        //Act
+        // Act
         viewModelToTest.didReceiveError = {
             expectation.fulfill()
         }
         viewModelToTest.signInUser()
-        //Assert
+        // Assert
         wait(for: [expectation], timeout: 1.0)
     }
     
     func testCurrentUserNotNil() {
-        //Arrange
+        // Arrange
         mockInteractor.currentUserResult = User.with()
-        //Act
+        // Act
         let user = viewModelToTest.currentUser()
-        //Assert
+        // Assert
         XCTAssertNotNil(user)
     }
     
     func testCurrentUserNil() {
-        //Arrange
+        // Arrange
         mockInteractor.currentUserResult = nil
-        //Act
+        // Act
         let user = viewModelToTest.currentUser()
         //Assert
         XCTAssertNil(user)
     }
     
     func testIsUserSignedInTrue() {
-        //Arrange
+        // Arrange
         mockInteractor.currentUserResult = User.with()
-        //Act
+        // Act
         let isUserSignedIn = viewModelToTest.isUserSignedIn()
-        //Assert
+        // Assert
         XCTAssertTrue(isUserSignedIn)
     }
     
     func testIsUserSignedInFalse() {
-        //Arrange
+        // Arrange
         mockInteractor.currentUserResult = nil
-        //Act
+        // Act
         let isUserSignedIn = viewModelToTest.isUserSignedIn()
-        //Assert
+        // Assert
         XCTAssertFalse(isUserSignedIn)
     }
     
