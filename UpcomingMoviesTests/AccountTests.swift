@@ -15,17 +15,17 @@ class AccountTests: XCTestCase {
     
     private var mockInteractor: MockAccountInteractor!
     private var viewModelToTest: AccountViewModelProtocol!
-    
-    override func setUp() {
-        super.setUp()
+
+    override func setUpWithError() throws {
+        try super.setUpWithError()
         mockInteractor = MockAccountInteractor()
         viewModelToTest = AccountViewModel(interactor: mockInteractor)
     }
-    
-    override func tearDown() {
+
+    override func tearDownWithError() throws {
         mockInteractor = nil
         viewModelToTest = nil
-        super.tearDown()
+        try super.tearDownWithError()
     }
     
     func testAuthorizationProcessSuccess() {
