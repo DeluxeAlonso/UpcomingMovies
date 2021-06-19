@@ -30,13 +30,14 @@ class AccountTests: XCTestCase {
     
     func testAuthorizationProcessSuccess() {
         // Arrange
-        mockInteractor.permissionURLResult = Result.success(URL(string: "http://www.google.com")!)
+        let permissionURLToTest = URL(string: "http://www.google.com")!
         let expectation = XCTestExpectation(description: "Get permission URL")
         // Act
         viewModelToTest.showAuthPermission.bind { url in
             XCTAssertNotNil(url)
             expectation.fulfill()
         }
+        mockInteractor.permissionURLResult = Result.success(permissionURLToTest)
         viewModelToTest.startAuthorizationProcess()
         // Assert
         wait(for: [expectation], timeout: 1.0)
@@ -44,12 +45,13 @@ class AccountTests: XCTestCase {
     
     func testAuthorizationProcessError() {
         // Arrange
-        mockInteractor.permissionURLResult = Result.failure(APIError.badRequest)
+        let errorToTest = APIError.badRequest
         let expectation = XCTestExpectation(description: "Get permission URL error")
         // Act
         viewModelToTest.didReceiveError = {
             expectation.fulfill()
         }
+        mockInteractor.permissionURLResult = Result.failure(errorToTest)
         viewModelToTest.startAuthorizationProcess()
         // Assert
         wait(for: [expectation], timeout: 1.0)
@@ -57,12 +59,13 @@ class AccountTests: XCTestCase {
     
     func testSignInUserSuccess() {
         // Arrange
-        mockInteractor.signInUserResult = Result.success(User.with())
+        let userToTest = User.with()
         let expectation = XCTestExpectation(description: "Sign in user")
         // Act
         viewModelToTest.didSignIn = {
             expectation.fulfill()
         }
+        mockInteractor.signInUserResult = Result.success(userToTest)
         viewModelToTest.signInUser()
         // Assert
         wait(for: [expectation], timeout: 1.0)
@@ -70,12 +73,13 @@ class AccountTests: XCTestCase {
     
     func testSignInUserError() {
         // Arrange
-        mockInteractor.signInUserResult = Result.failure(APIError.badRequest)
+        let errorToTest = APIError.badRequest
         let expectation = XCTestExpectation(description: "Sign in user error")
         // Act
         viewModelToTest.didReceiveError = {
             expectation.fulfill()
         }
+        mockInteractor.signInUserResult = Result.failure(errorToTest)
         viewModelToTest.signInUser()
         // Assert
         wait(for: [expectation], timeout: 1.0)
@@ -83,8 +87,9 @@ class AccountTests: XCTestCase {
     
     func testCurrentUserNotNil() {
         // Arrange
-        mockInteractor.currentUserResult = User.with()
+        let userToTest = User.with()
         // Act
+        mockInteractor.currentUserResult = userToTest
         let user = viewModelToTest.currentUser()
         // Assert
         XCTAssertNotNil(user)
@@ -92,8 +97,9 @@ class AccountTests: XCTestCase {
     
     func testCurrentUserNil() {
         // Arrange
-        mockInteractor.currentUserResult = nil
+        let userToTest: UpcomingMoviesDomain.User? = nil
         // Act
+        mockInteractor.currentUserResult = userToTest
         let user = viewModelToTest.currentUser()
         //Assert
         XCTAssertNil(user)
@@ -101,8 +107,9 @@ class AccountTests: XCTestCase {
     
     func testIsUserSignedInTrue() {
         // Arrange
-        mockInteractor.currentUserResult = User.with()
+        let userToTest = User.with()
         // Act
+        mockInteractor.currentUserResult = userToTest
         let isUserSignedIn = viewModelToTest.isUserSignedIn()
         // Assert
         XCTAssertTrue(isUserSignedIn)
@@ -110,8 +117,9 @@ class AccountTests: XCTestCase {
     
     func testIsUserSignedInFalse() {
         // Arrange
-        mockInteractor.currentUserResult = nil
+        let userToTest: UpcomingMoviesDomain.User? = nil
         // Act
+        mockInteractor.currentUserResult = userToTest
         let isUserSignedIn = viewModelToTest.isUserSignedIn()
         // Assert
         XCTAssertFalse(isUserSignedIn)
