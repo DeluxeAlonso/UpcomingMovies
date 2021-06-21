@@ -16,21 +16,21 @@ class ProfileTests: XCTestCase {
     private var mockInteractor: MockProfileInteractor!
     private var mockFactory: MockProfileViewFactory!
     private var viewModelToTest: ProfileViewModelProtocol!
-    
-    override func setUp() {
-        super.setUp()
+
+    override func setUpWithError() throws {
+        try super.setUpWithError()
         mockInteractor = MockProfileInteractor()
         mockFactory = MockProfileViewFactory()
         viewModelToTest = ProfileViewModel(userAccount: User.with(),
                                            interactor: mockInteractor,
                                            factory: mockFactory)
     }
-    
-    override func tearDown() {
+
+    override func tearDownWithError() throws {
         mockInteractor = nil
         mockFactory = nil
         viewModelToTest = nil
-        super.tearDown()
+        try super.tearDownWithError()
     }
     
     func testGetAccountDetailSuccessInfoReloaded() {
