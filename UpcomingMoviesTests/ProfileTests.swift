@@ -16,31 +16,32 @@ class ProfileTests: XCTestCase {
     private var mockInteractor: MockProfileInteractor!
     private var mockFactory: MockProfileViewFactory!
     private var viewModelToTest: ProfileViewModelProtocol!
-    
-    override func setUp() {
-        super.setUp()
+
+    override func setUpWithError() throws {
+        try super.setUpWithError()
         mockInteractor = MockProfileInteractor()
         mockFactory = MockProfileViewFactory()
         viewModelToTest = ProfileViewModel(userAccount: User.with(),
                                            interactor: mockInteractor,
                                            factory: mockFactory)
     }
-    
-    override func tearDown() {
+
+    override func tearDownWithError() throws {
         mockInteractor = nil
         mockFactory = nil
         viewModelToTest = nil
-        super.tearDown()
+        try super.tearDownWithError()
     }
     
     func testGetAccountDetailSuccessInfoReloaded() {
         // Arrange
-        mockInteractor.getAccountDetailResult = .success(User.with(name: "Alonso"))
+        let userToTest = User.with(name: "Alonso")
         let expectation = XCTestExpectation(description: "Reload account info")
         // Act
         viewModelToTest.reloadAccountInfo = {
             expectation.fulfill()
         }
+        mockInteractor.getAccountDetailResult = .success(userToTest)
         viewModelToTest.getAccountDetails()
         // Assert
         wait(for: [expectation], timeout: 1.0)
@@ -48,13 +49,14 @@ class ProfileTests: XCTestCase {
     
     func testGetAccountDetailSuccessInfoNotReloaded() {
         // Arrange
-        mockInteractor.getAccountDetailResult = .success(User.with())
+        let userToTest = User.with()
         let expectation = XCTestExpectation(description: "Should not reload account info")
         expectation.isInverted = true
         // Act
         viewModelToTest.reloadAccountInfo = {
             expectation.fulfill()
         }
+        mockInteractor.getAccountDetailResult = .success(userToTest)
         viewModelToTest.getAccountDetails()
         // Assert
         wait(for: [expectation], timeout: 1.0)
@@ -62,13 +64,14 @@ class ProfileTests: XCTestCase {
     
     func testGetAccountDetailError() {
         //Arrange
-        mockInteractor.getAccountDetailResult = Result.failure(APIError.badRequest)
+        let errorToTest = APIError.badRequest
         let expectation = XCTestExpectation(description: "Should not reload account info")
         expectation.isInverted = true
         // Act
         viewModelToTest.reloadAccountInfo = {
             expectation.fulfill()
         }
+        mockInteractor.getAccountDetailResult = Result.failure(errorToTest)
         viewModelToTest.getAccountDetails()
         // Assert
         wait(for: [expectation], timeout: 1.0)
@@ -78,9 +81,9 @@ class ProfileTests: XCTestCase {
         // Arrange
         let collectionOptionsToTest: [ProfileOptionProtocol] = [ProfileOption.favorites, ProfileOption.watchlist]
         let indexToTest = Int.random(in: 0...collectionOptionsToTest.count - 1)
+        // Act
         mockFactory.sections = [.customLists]
         mockFactory.customListsSectionOptions = collectionOptionsToTest
-        // Act
         let firstCollectionOption = viewModelToTest.profileOption(for: 0, at: indexToTest)
         // Assert
         XCTAssertEqual(firstCollectionOption.title, collectionOptionsToTest[indexToTest].title)
@@ -90,9 +93,9 @@ class ProfileTests: XCTestCase {
         // Arrange
         let customListsOptionsToTest: [ProfileOptionProtocol] = [ProfileOption.customLists]
         let indexToTest = Int.random(in: 0...customListsOptionsToTest.count - 1)
+        // Act
         mockFactory.sections = [.customLists]
         mockFactory.customListsSectionOptions = customListsOptionsToTest
-        // Act
         let firstCustomListsOption = viewModelToTest.profileOption(for: 0, at: indexToTest)
         // Assert
         XCTAssertEqual(firstCustomListsOption.title, customListsOptionsToTest[indexToTest].title)
@@ -102,8 +105,8 @@ class ProfileTests: XCTestCase {
         // Arrange
         let sectionsToTest: [ProfileSection] = [.accountInfo, .collections, .customLists, .signOut]
         let indexToTest = Int.random(in: 0...sectionsToTest.count - 1)
-        mockFactory.sections = sectionsToTest
         // Act
+        mockFactory.sections = sectionsToTest
         let section = viewModelToTest.section(at: indexToTest)
         // Assert
         XCTAssertEqual(section, sectionsToTest[indexToTest])
@@ -112,8 +115,8 @@ class ProfileTests: XCTestCase {
     func testNumberOfSections() {
         // Arrange
         let sectionsToTest: [ProfileSection] = [.accountInfo, .collections, .customLists, .signOut]
-        mockFactory.sections = sectionsToTest
         // Act
+        mockFactory.sections = sectionsToTest
         let numberOfSections = viewModelToTest.numberOfSections()
         // Assert
         XCTAssertEqual(numberOfSections, sectionsToTest.count)
