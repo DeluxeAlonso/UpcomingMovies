@@ -30,44 +30,66 @@ class CustomListsTests: XCTestCase {
     
     func testGetCustomListsEmpty() {
         // Arrange
-
+        let customListsToTest: [UpcomingMoviesDomain.List] = []
+        let expectation = XCTestExpectation(description: "Should get empty state")
         // Act
-        mockInteractor.getCustomListsResult = Result.success([])
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .empty)
+            expectation.fulfill()
+        }
+        mockInteractor.getCustomListsResult = Result.success(customListsToTest)
         viewModelToTest.getCustomLists()
         // Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .empty)
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetCustomListsPopulated() {
         // Arrange
+        let customListsToTest: [UpcomingMoviesDomain.List] = [List.with(id: "1"), List.with(id: "2")]
+        var statesToReceive: [SimpleViewState<UpcomingMoviesDomain.List>] = [.paging(customListsToTest, next: 2), .populated(customListsToTest)]
 
+        let expectation = XCTestExpectation(description: "Should get populated state after a paging state")
         // Act
-        mockInteractor.getCustomListsResult = Result.success([List.with(id: "1"), List.with(id: "2")])
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, statesToReceive.removeFirst())
+            expectation.fulfill()
+        }
+        mockInteractor.getCustomListsResult = Result.success(customListsToTest)
         viewModelToTest.getCustomLists()
         mockInteractor.getCustomListsResult = Result.success([])
         viewModelToTest.getCustomLists()
         // Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .populated([List.with(id: "1"), List.with(id: "2")]))
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetCustomListsPaging() {
         // Arrange
-
+        let customListsToTest: [UpcomingMoviesDomain.List] = [List.with(id: "1"), List.with(id: "2")]
+        let expectation = XCTestExpectation(description: "Should get paging state")
         // Act
-        mockInteractor.getCustomListsResult = Result.success([List.with(id: "1"), List.with(id: "2")])
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .paging(customListsToTest, next: 2))
+            expectation.fulfill()
+        }
+        mockInteractor.getCustomListsResult = Result.success(customListsToTest)
         viewModelToTest.getCustomLists()
         // Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .paging([List.with(id: "1"), List.with(id: "2")], next: 2))
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetCustomListsError() {
         // Arrange
-
+        let errorToTest = APIError.badRequest
+        let expectation = XCTestExpectation(description: "Should get error state")
         // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .error(errorToTest))
+            expectation.fulfill()
+        }
         mockInteractor.getCustomListsResult = Result.failure(APIError.badRequest)
         viewModelToTest.getCustomLists()
         // Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
+        wait(for: [expectation], timeout: 1.0)
     }
 
 }
