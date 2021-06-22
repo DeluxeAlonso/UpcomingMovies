@@ -12,6 +12,8 @@ import XCTest
 @testable import NetworkInfrastructure
 
 class CustomListsTests: XCTestCase {
+
+    typealias CustomListsState = SimpleViewState<UpcomingMoviesDomain.List>
     
     private var mockInteractor: MockCustomListsInteractor!
     private var viewModelToTest: CustomListsViewModelProtocol!
@@ -46,7 +48,7 @@ class CustomListsTests: XCTestCase {
     func testGetCustomListsPopulated() {
         // Arrange
         let customListsToTest: [UpcomingMoviesDomain.List] = [List.with(id: "1"), List.with(id: "2")]
-        var statesToReceive: [SimpleViewState<UpcomingMoviesDomain.List>] = [.paging(customListsToTest, next: 2), .populated(customListsToTest)]
+        var statesToReceive: [CustomListsState] = [.paging(customListsToTest, next: 2), .populated(customListsToTest)]
 
         let expectation = XCTestExpectation(description: "Should get populated state after a paging state")
         // Act
