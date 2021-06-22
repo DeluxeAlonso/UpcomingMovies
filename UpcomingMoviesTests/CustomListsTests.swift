@@ -12,6 +12,8 @@ import XCTest
 @testable import NetworkInfrastructure
 
 class CustomListsTests: XCTestCase {
+
+    typealias CustomListsState = SimpleViewState<UpcomingMoviesDomain.List>
     
     private var mockInteractor: MockCustomListsInteractor!
     private var viewModelToTest: CustomListsViewModelProtocol!
@@ -23,47 +25,73 @@ class CustomListsTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        try super.tearDownWithError()
         mockInteractor = nil
         viewModelToTest = nil
+        try super.tearDownWithError()
     }
     
     func testGetCustomListsEmpty() {
-        //Arrange
-        mockInteractor.getCustomListsResult = Result.success([])
-        //Act
+        // Arrange
+        let customListsToTest: [UpcomingMoviesDomain.List] = []
+        let expectation = XCTestExpectation(description: "Should get empty state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .empty)
+            expectation.fulfill()
+        }
+        mockInteractor.getCustomListsResult = Result.success(customListsToTest)
         viewModelToTest.getCustomLists()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .empty)
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetCustomListsPopulated() {
-        //Arrange
-        mockInteractor.getCustomListsResult = Result.success([List.with(id: "1"), List.with(id: "2")])
-        //Act
+        // Arrange
+        let customListsToTest: [UpcomingMoviesDomain.List] = [List.with(id: "1"), List.with(id: "2")]
+        var statesToReceive: [CustomListsState] = [.paging(customListsToTest, next: 2), .populated(customListsToTest)]
+
+        let expectation = XCTestExpectation(description: "Should get populated state after a paging state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, statesToReceive.removeFirst())
+            expectation.fulfill()
+        }
+        mockInteractor.getCustomListsResult = Result.success(customListsToTest)
         viewModelToTest.getCustomLists()
         mockInteractor.getCustomListsResult = Result.success([])
         viewModelToTest.getCustomLists()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .populated([List.with(id: "1"), List.with(id: "2")]))
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetCustomListsPaging() {
-        //Arrange
-        mockInteractor.getCustomListsResult = Result.success([List.with(id: "1"), List.with(id: "2")])
-        //Act
+        // Arrange
+        let customListsToTest: [UpcomingMoviesDomain.List] = [List.with(id: "1"), List.with(id: "2")]
+        let expectation = XCTestExpectation(description: "Should get paging state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .paging(customListsToTest, next: 2))
+            expectation.fulfill()
+        }
+        mockInteractor.getCustomListsResult = Result.success(customListsToTest)
         viewModelToTest.getCustomLists()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .paging([List.with(id: "1"), List.with(id: "2")], next: 2))
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetCustomListsError() {
-        //Arrange
+        // Arrange
+        let errorToTest = APIError.badRequest
+        let expectation = XCTestExpectation(description: "Should get error state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .error(errorToTest))
+            expectation.fulfill()
+        }
         mockInteractor.getCustomListsResult = Result.failure(APIError.badRequest)
-        //Act
         viewModelToTest.getCustomLists()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
 
 }
