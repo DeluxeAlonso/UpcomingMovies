@@ -23,46 +23,46 @@ class CustomListsTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        try super.tearDownWithError()
         mockInteractor = nil
         viewModelToTest = nil
+        try super.tearDownWithError()
     }
     
     func testGetCustomListsEmpty() {
-        //Arrange
+        // Arrange
         mockInteractor.getCustomListsResult = Result.success([])
-        //Act
+        // Act
         viewModelToTest.getCustomLists()
-        //Assert
+        // Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .empty)
     }
     
     func testGetCustomListsPopulated() {
-        //Arrange
+        // Arrange
         mockInteractor.getCustomListsResult = Result.success([List.with(id: "1"), List.with(id: "2")])
-        //Act
+        // Act
         viewModelToTest.getCustomLists()
         mockInteractor.getCustomListsResult = Result.success([])
         viewModelToTest.getCustomLists()
-        //Assert
+        // Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .populated([List.with(id: "1"), List.with(id: "2")]))
     }
     
     func testGetCustomListsPaging() {
-        //Arrange
+        // Arrange
         mockInteractor.getCustomListsResult = Result.success([List.with(id: "1"), List.with(id: "2")])
-        //Act
+        // Act
         viewModelToTest.getCustomLists()
-        //Assert
+        // Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .paging([List.with(id: "1"), List.with(id: "2")], next: 2))
     }
     
     func testGetCustomListsError() {
-        //Arrange
+        // Arrange
         mockInteractor.getCustomListsResult = Result.failure(APIError.badRequest)
-        //Act
+        // Act
         viewModelToTest.getCustomLists()
-        //Assert
+        // Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
     }
 
