@@ -39,8 +39,9 @@ class SavedMoviesTests: XCTestCase {
     
     func testGetCollectionListPopulated() {
         // Arrange
-        mockInteractor.getSavedMoviesResult = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
+
         // Act
+        mockInteractor.getSavedMoviesResult = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
         viewModelToTest.getCollectionList()
         mockInteractor.getSavedMoviesResult = Result.success([])
         viewModelToTest.getCollectionList()
@@ -50,8 +51,9 @@ class SavedMoviesTests: XCTestCase {
     
     func testGetCollectionListPaging() {
         // Arrange
-        mockInteractor.getSavedMoviesResult = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
+
         // Act
+        mockInteractor.getSavedMoviesResult = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
         viewModelToTest.getCollectionList()
         // Assert
         XCTAssertEqual(viewModelToTest.viewState.value,
@@ -60,8 +62,9 @@ class SavedMoviesTests: XCTestCase {
     
     func testGetCollectionListEmpty() {
         // Arrange
-        mockInteractor.getSavedMoviesResult = Result.success([])
+
         // Act
+        mockInteractor.getSavedMoviesResult = Result.success([])
         viewModelToTest.getCollectionList()
         // Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .empty)
@@ -69,8 +72,9 @@ class SavedMoviesTests: XCTestCase {
     
     func testGetCollectionListError() {
         // Arrange
-        mockInteractor.getSavedMoviesResult = Result.failure(APIError.badRequest)
+
         // Act
+        mockInteractor.getSavedMoviesResult = Result.failure(APIError.badRequest)
         viewModelToTest.getCollectionList()
         // Assert
         XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
@@ -79,8 +83,8 @@ class SavedMoviesTests: XCTestCase {
     func testMovieCellsCount() {
         // Arrange
         let movies = [Movie.with(id: 1), Movie.with(id: 2)]
-        mockInteractor.getSavedMoviesResult = Result.success(movies)
         // Act
+        mockInteractor.getSavedMoviesResult = Result.success(movies)
         viewModelToTest.getCollectionList()
         let cellsCount = viewModelToTest.movieCells.count
         // Assert
@@ -89,8 +93,9 @@ class SavedMoviesTests: XCTestCase {
     
     func testMovieCellsZeroCount() {
         // Arrange
-        mockInteractor.getSavedMoviesResult = Result.success([])
+
         // Act
+        mockInteractor.getSavedMoviesResult = Result.success([])
         viewModelToTest.getCollectionList()
         let cellsCount = viewModelToTest.movieCells.count
         // Assert
@@ -100,9 +105,9 @@ class SavedMoviesTests: XCTestCase {
     func testMovieIndex() {
         // Arrange
         let movies = [Movie.with(id: 1), Movie.with(id: 2)]
-        mockInteractor.getSavedMoviesResult = Result.success(movies)
         let indexToTest = Int.random(in: 0...movies.count - 1)
         // Act
+        mockInteractor.getSavedMoviesResult = Result.success(movies)
         viewModelToTest.getCollectionList()
         let movie = viewModelToTest.movie(at: indexToTest)
         // Assert
