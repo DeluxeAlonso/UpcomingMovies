@@ -16,18 +16,18 @@ class SavedMoviesTests: XCTestCase {
     private var mockInteractor: MockSavedMoviesInteractor!
     private var viewModelToTest: SavedMoviesViewModelProtocol!
 
-    override func setUp() {
-        super.setUp()
+    override func setUpWithError() throws {
+        try super.setUpWithError()
         mockInteractor = MockSavedMoviesInteractor()
         viewModelToTest = SavedMoviesViewModel(interactor: mockInteractor)
     }
-    
-    override func tearDown() {
+
+    override func tearDownWithError() throws {
         mockInteractor = nil
         viewModelToTest = nil
-        super.tearDown()
+        try super.tearDownWithError()
     }
-    
+
     func testSavedMoviesTitle() {
         //Arrange
         viewModelToTest.displayTitle = "Test title"
