@@ -32,13 +32,14 @@ class UpcomingMoviesTests: XCTestCase {
     
     func testGetMoviesEmpty() {
         // Arrange
+        let moviesToTest: [UpcomingMoviesDomain.Movie] = []
         let expectation = XCTestExpectation(description: "Should get empty state")
+        // Act
         viewModelToTest.viewState.bind { state in
             XCTAssertTrue(state == .empty)
             expectation.fulfill()
         }
-        // Act
-        mockInteractor.upcomingMovies = Result.success([])
+        mockInteractor.upcomingMovies = Result.success(moviesToTest)
         viewModelToTest.getMovies()
         // Assert
         wait(for: [expectation], timeout: 1.0)
@@ -46,8 +47,8 @@ class UpcomingMoviesTests: XCTestCase {
     
     func testGetMoviesPopulated() {
         // Arrange
-        let moviesToEvaluate = [Movie.with(id: 1), Movie.with(id: 2)]
-        var statesToReceive: [MoviesViewState] = [.paging(moviesToEvaluate, next: 2), .populated(moviesToEvaluate)]
+        let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        var statesToReceive: [MoviesViewState] = [.paging(moviesToTest, next: 2), .populated(moviesToTest)]
 
         let expectation = XCTestExpectation(description: "Should get populated state after a paging state")
         // Act
@@ -55,7 +56,7 @@ class UpcomingMoviesTests: XCTestCase {
             XCTAssertEqual(state, statesToReceive.removeFirst())
             expectation.fulfill()
         }
-        mockInteractor.upcomingMovies = Result.success(moviesToEvaluate)
+        mockInteractor.upcomingMovies = Result.success(moviesToTest)
         viewModelToTest.getMovies()
         mockInteractor.upcomingMovies = Result.success([])
         viewModelToTest.getMovies()
@@ -80,13 +81,14 @@ class UpcomingMoviesTests: XCTestCase {
     
     func testGetMoviesError() {
         // Arrange
+        let errorToTest = APIError.badRequest
         let expectation = XCTestExpectation(description: "Should get error state")
         // Act
         viewModelToTest.viewState.bind { state in
-            XCTAssertTrue(state == .error(APIError.badRequest))
+            XCTAssertTrue(state == .error(errorToTest))
             expectation.fulfill()
         }
-        mockInteractor.upcomingMovies = Result.failure(APIError.badRequest)
+        mockInteractor.upcomingMovies = Result.failure(errorToTest)
         viewModelToTest.getMovies()
         // Assert
         wait(for: [expectation], timeout: 1.0)
