@@ -39,8 +39,8 @@ class SavedMoviesTests: XCTestCase {
     
     func testGetCollectionListPopulated() {
         // Arrange
-        let moviesToEvaluate = [Movie.with(id: 1), Movie.with(id: 2)]
-        var statesToReceive: [SimpleViewState<UpcomingMoviesDomain.Movie>] = [.paging(moviesToEvaluate, next: 2), .populated(moviesToEvaluate)]
+        let moviestoTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        var statesToReceive: [SimpleViewState<UpcomingMoviesDomain.Movie>] = [.paging(moviestoTest, next: 2), .populated(moviestoTest)]
 
         let expectation = XCTestExpectation(description: "Should get populated state after a paging state")
         // Act
@@ -48,7 +48,7 @@ class SavedMoviesTests: XCTestCase {
             XCTAssertEqual(state, statesToReceive.removeFirst())
             expectation.fulfill()
         }
-        mockInteractor.getSavedMoviesResult = Result.success(moviesToEvaluate)
+        mockInteractor.getSavedMoviesResult = Result.success(moviestoTest)
         viewModelToTest.getCollectionList()
         mockInteractor.getSavedMoviesResult = Result.success([])
         viewModelToTest.getCollectionList()

@@ -66,14 +66,14 @@ class UpcomingMoviesTests: XCTestCase {
     
     func testGetMoviesPaging() {
         // Arrange
-        let moviesToEvaluate = [Movie.with(id: 1), Movie.with(id: 2)]
+        let moviestoTest = [Movie.with(id: 1), Movie.with(id: 2)]
         let expectation = XCTestExpectation(description: "Should get paging state")
         // Act
         viewModelToTest.viewState.bind { state in
-            XCTAssertEqual(state, .paging(moviesToEvaluate, next: 2))
+            XCTAssertEqual(state, .paging(moviestoTest, next: 2))
             expectation.fulfill()
         }
-        mockInteractor.upcomingMovies = Result.success(moviesToEvaluate)
+        mockInteractor.upcomingMovies = Result.success(moviestoTest)
         viewModelToTest.getMovies()
         // Assert
         wait(for: [expectation], timeout: 1.0)

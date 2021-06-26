@@ -40,14 +40,14 @@ class MovieVideosTests: XCTestCase {
     
     func testGetVideosPopulated() {
         // Arrange
-        let videosToEvaluate = [Video.with(id: "1"), Video.with(id: "2")]
+        let videostoTest = [Video.with(id: "1"), Video.with(id: "2")]
         let expectation = XCTestExpectation(description: "Should get populated state")
         // Act
         viewModelToTest.viewState.bind { state in
-            XCTAssertEqual(state, .populated(videosToEvaluate))
+            XCTAssertEqual(state, .populated(videostoTest))
             expectation.fulfill()
         }
-        mockInteractor.getMovieVideosResult = Result.success(videosToEvaluate)
+        mockInteractor.getMovieVideosResult = Result.success(videostoTest)
         viewModelToTest.getMovieVideos(showLoader: false)
         // Assert
         wait(for: [expectation], timeout: 1.0)
@@ -83,22 +83,22 @@ class MovieVideosTests: XCTestCase {
     
     func testMovieVideoCellName() {
         // Arrange
-        let videoNameToEvaluate = "Video1"
-        let cellViewModel = MovieVideoCellViewModel(Video.with(name: videoNameToEvaluate))
+        let videoNametoTest = "Video1"
+        let cellViewModel = MovieVideoCellViewModel(Video.with(name: videoNametoTest))
         // Act
         let name = cellViewModel.name
         // Assert
-        XCTAssertEqual(name, videoNameToEvaluate)
+        XCTAssertEqual(name, videoNametoTest)
     }
     
     func testMovieVideoCellKey() {
         // Arrange
-        let videoKeyToEvaluate = "ABC"
-        let cellViewModel = MovieVideoCellViewModel(Video.with(key: videoKeyToEvaluate))
+        let videoKeytoTest = "ABC"
+        let cellViewModel = MovieVideoCellViewModel(Video.with(key: videoKeytoTest))
         // Act
         let key = cellViewModel.key
         // Assert
-        XCTAssertEqual(key, videoKeyToEvaluate)
+        XCTAssertEqual(key, videoKeytoTest)
     }
     
     func testMovieVideoCellThumbnailURL() {

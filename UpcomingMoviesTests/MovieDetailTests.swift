@@ -42,44 +42,44 @@ class MovieDetailTests: XCTestCase {
     }
 
     func testMovieDetailTitle() {
-        //Act
+        // Act
         let title = viewModelToTest.title
-        //Assert
+        // Assert
         XCTAssertEqual(title, "Test 1")
     }
     
     func testMovieDetailReleaseDate() {
-        //Act
+        // Act
         let releaseDate = viewModelToTest.releaseDate
-        //Assert
+        // Assert
         XCTAssertEqual(releaseDate, "2019-02-01")
     }
     
     func testMovieDetailOverview() {
-        //Act
+        // Act
         let overview = viewModelToTest.overview
-        //Assert
+        // Assert
         XCTAssertEqual(overview, "Overview")
     }
     
     func testMovieDetailVoteAverage() {
-        //Act
+        // Act
         let voteAverage = viewModelToTest.voteAverage
-        //Assert
+        // Assert
         XCTAssertEqual(voteAverage, 4.5)
     }
     
     func testMovieDetailPosterPath() {
-        //Act
+        // Act
         let fullPosterPath = viewModelToTest.posterURL
-        //Assert
+        // Assert
         XCTAssertEqual(fullPosterPath!, URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
     }
     
     func testMovieDetailBackdropPath() {
-        //Act
+        // Act
         let fullBackdropPath = viewModelToTest.backdropURL
-        //Assert
+        // Assert
         XCTAssertEqual(fullBackdropPath!, URL(string: "https://image.tmdb.org/t/p/w500/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg"))
     }
     
