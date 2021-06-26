@@ -5,7 +5,6 @@ line_length: 150
 disabled_rules: # rule identifiers to exclude from running
  - force_cast
  - trailing_whitespace
-# - discarded_notification_center_observer
  - todo
  - weak_delegate
  - class_delegate_protocol
