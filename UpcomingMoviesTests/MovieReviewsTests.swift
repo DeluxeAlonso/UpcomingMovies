@@ -77,22 +77,22 @@ class MovieReviewsTests: XCTestCase {
 
     func testMovieReviewCellAuthorName() {
         // Arrange
-        let reviewAuthorNameToEvaluate = "Alonso"
-        let cellViewModel = MovieReviewCellViewModel(Review.with(authorName: reviewAuthorNameToEvaluate))
+        let reviewAuthorNametoTest = "Alonso"
+        let cellViewModel = MovieReviewCellViewModel(Review.with(authorName: reviewAuthorNametoTest))
         // Act
         let authorName = cellViewModel.authorName
         // Assert
-        XCTAssertEqual(authorName, reviewAuthorNameToEvaluate)
+        XCTAssertEqual(authorName, reviewAuthorNametoTest)
     }
 
     func testMovieReviewCellContent() {
         // Arrange
-        let reviewContentToEvaluate = "Review content"
-        let cellViewModel = MovieReviewCellViewModel(Review.with(content: reviewContentToEvaluate))
+        let reviewContenttoTest = "Review content"
+        let cellViewModel = MovieReviewCellViewModel(Review.with(content: reviewContenttoTest))
         // Act
         let content = cellViewModel.content
         // Assert
-        XCTAssertEqual(content, reviewContentToEvaluate)
+        XCTAssertEqual(content, reviewContenttoTest)
     }
 
 }
