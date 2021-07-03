@@ -59,18 +59,18 @@ import UIKit
     
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        self.setup()
+        setup()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.spiner.setToFrame(self.frame)
+        spiner.setToFrame(self.frame)
     }
 
     // MARK: - Private
     
     private func setup() {
-        self.clipsToBounds  = true
+        clipsToBounds = true
         spiner.spinnerColor = spinnerColor
     }
     
@@ -96,7 +96,7 @@ import UIKit
         CATransaction.setCompletionBlock {
             completion?()
         }
-        self.layer.add(shrinkAnimation, forKey: shrinkAnimation.keyPath)
+        layer.add(shrinkAnimation, forKey: shrinkAnimation.keyPath)
         
         CATransaction.commit()
     }
