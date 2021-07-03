@@ -18,7 +18,7 @@ import UIKit
     
     @IBInspectable var disabledBackgroundColor: UIColor = UIColor.lightGray {
         didSet {
-            self.setBackgroundImage(UIImage(color: disabledBackgroundColor), for: .disabled)
+            setBackgroundImage(UIImage(color: disabledBackgroundColor), for: .disabled)
         }
     }
     
@@ -31,7 +31,7 @@ import UIKit
     
     private lazy var spiner: SpinerLayer = {
         let spiner = SpinerLayer(frame: self.frame)
-        self.layer.addSublayer(spiner)
+        layer.addSublayer(spiner)
         return spiner
     }()
     
@@ -75,13 +75,13 @@ import UIKit
     }
     
     private func setOriginalState(completion: (() -> Void)?) {
-        self.animateToOriginalWidth(completion: completion)
-        self.spiner.stopAnimation()
-        self.setTitle(self.cachedTitle, for: .normal)
-        self.setImage(self.cachedImage, for: .normal)
-        self.isUserInteractionEnabled = true
-        self.layer.cornerRadius = self.cornerRadius
-        self.isAnimating = false
+        animateToOriginalWidth(completion: completion)
+        spiner.stopAnimation()
+        setTitle(self.cachedTitle, for: .normal)
+        setImage(self.cachedImage, for: .normal)
+        isUserInteractionEnabled = true
+        layer.cornerRadius = self.cornerRadius
+        isAnimating = false
     }
     
     private func animateToOriginalWidth(completion: (() -> Void)?) {
@@ -116,14 +116,14 @@ import UIKit
     // MARK: - Internal
 
     func startAnimation() {
-        self.isAnimating = true
-        self.isUserInteractionEnabled = false
+        isAnimating = true
+        isUserInteractionEnabled = false
 
-        self.cachedTitle = title(for: .normal)
-        self.cachedImage = image(for: .normal)
+        cachedTitle = title(for: .normal)
+        cachedImage = image(for: .normal)
 
-        self.setTitle("", for: .normal)
-        self.setImage(nil, for: .normal)
+        setTitle("", for: .normal)
+        setImage(nil, for: .normal)
 
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.layer.cornerRadius = self.frame.height / 2
@@ -155,10 +155,10 @@ private extension UIImage {
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
         color.setFill()
         UIRectFill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
         UIGraphicsEndImageContext()
 
-        guard let cgImage = image!.cgImage else { return nil }
+        guard let cgImage = image.cgImage else { return nil }
         self.init(cgImage: cgImage)
     }
 
