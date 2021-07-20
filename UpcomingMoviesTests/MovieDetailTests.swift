@@ -16,7 +16,7 @@ class MovieDetailTests: XCTestCase {
     
     private var mockInteractor: MockMovieDetailInteractor!
     private var mockFactory: MockMovieDetailViewFactory!
-    private var viewModelToTest: MovieDetailViewModel!
+    private var viewModelToTest: MovieDetailViewModelProtocol!
 
     override func setUp() {
         super.setUp()
