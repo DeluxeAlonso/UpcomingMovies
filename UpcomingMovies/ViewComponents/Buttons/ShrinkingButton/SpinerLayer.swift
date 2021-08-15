@@ -15,6 +15,8 @@ class SpinerLayer: CAShapeLayer {
             strokeColor = spinnerColor.cgColor
         }
     }
+
+    // MARK: - Initializers
     
     init(frame: CGRect) {
         super.init()
@@ -36,6 +38,8 @@ class SpinerLayer: CAShapeLayer {
     override init(layer: Any) {
         super.init(layer: layer)
     }
+
+    // MARK: - Internal
     
     func animation() {
         isHidden = false
