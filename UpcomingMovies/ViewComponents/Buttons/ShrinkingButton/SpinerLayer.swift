@@ -15,30 +15,30 @@ class SpinerLayer: CAShapeLayer {
             strokeColor = spinnerColor.cgColor
         }
     }
+
+    // MARK: - Initializers
     
     init(frame: CGRect) {
         super.init()
         
-        self.setToFrame(frame)
+        setToFrame(frame)
         
-        self.fillColor = nil
-        self.strokeColor = spinnerColor.cgColor
-        self.lineWidth = 1
+        fillColor = nil
+        strokeColor = spinnerColor.cgColor
+        lineWidth = 1
         
-        self.strokeEnd = 0.4
-        self.isHidden = true
+        strokeEnd = 0.4
+        isHidden = true
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override init(layer: Any) {
-        super.init(layer: layer)
-    }
+
+    // MARK: - Internal
     
     func animation() {
-        self.isHidden = false
+        isHidden = false
         let rotate = CABasicAnimation(keyPath: "transform.rotation.z")
         rotate.fromValue = 0
         rotate.toValue = Double.pi * 2
@@ -48,7 +48,7 @@ class SpinerLayer: CAShapeLayer {
         rotate.repeatCount = HUGE
         rotate.fillMode = .forwards
         rotate.isRemovedOnCompletion = false
-        self.add(rotate, forKey: rotate.keyPath)
+        add(rotate, forKey: rotate.keyPath)
         
     }
     
@@ -59,14 +59,15 @@ class SpinerLayer: CAShapeLayer {
         let startAngle = 0 - Double.pi/2
         let endAngle = Double.pi * 2 - Double.pi/2
         let clockwise: Bool = true
-        self.path = UIBezierPath(arcCenter: center,
+        path = UIBezierPath(arcCenter: center,
                                  radius: radius,
                                  startAngle: CGFloat(startAngle),
                                  endAngle: CGFloat(endAngle), clockwise: clockwise).cgPath
     }
     
     func stopAnimation() {
-        self.isHidden = true
-        self.removeAllAnimations()
+        isHidden = true
+        removeAllAnimations()
     }
+
 }
