@@ -6,8 +6,6 @@
 //  Copyright © 2021 Alonso. All rights reserved.
 //
 
-import Foundation
-
 protocol ToggleBarButtonItemContentProtocol {
 
     var display: ToggleBarButtonItemDisplay { get }
