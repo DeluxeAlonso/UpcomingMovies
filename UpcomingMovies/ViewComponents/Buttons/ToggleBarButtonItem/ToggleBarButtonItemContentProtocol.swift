@@ -9,5 +9,9 @@
 import Foundation
 
 protocol ToggleBarButtonItemContentProtocol {
-    
+
+    var display: ToggleBarButtonItemDisplay { get }
+    var accessibilityLabel: String? { get }
+    var accessibilityHint: String? { get }
+
 }

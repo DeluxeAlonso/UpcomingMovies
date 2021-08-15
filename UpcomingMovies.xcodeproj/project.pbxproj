@@ -1941,8 +1941,8 @@
 			isa = PBXGroup;
 			children = (
 				E2DCE7F324B12F4F0041301E /* ToggleBarButtonItem.swift */,
-				E2DCE7F624B12F940041301E /* ToggleBarButtonContent.swift */,
 				E288620824B174B800E12487 /* ToggleBarButtonItemDisplay.swift */,
+				E2DCE7F624B12F940041301E /* ToggleBarButtonContent.swift */,
 				E20097F826C8D5F000C653BB /* ToggleBarButtonItemContentProtocol.swift */,
 			);
 			path = ToggleBarButtonItem;
