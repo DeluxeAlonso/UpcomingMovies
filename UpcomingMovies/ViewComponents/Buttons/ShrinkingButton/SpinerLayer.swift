@@ -19,14 +19,14 @@ class SpinerLayer: CAShapeLayer {
     init(frame: CGRect) {
         super.init()
         
-        self.setToFrame(frame)
+        setToFrame(frame)
         
-        self.fillColor = nil
-        self.strokeColor = spinnerColor.cgColor
-        self.lineWidth = 1
+        fillColor = nil
+        strokeColor = spinnerColor.cgColor
+        lineWidth = 1
         
-        self.strokeEnd = 0.4
-        self.isHidden = true
+        strokeEnd = 0.4
+        isHidden = true
     }
     
     required init?(coder aDecoder: NSCoder) {
