@@ -10,9 +10,9 @@ import UIKit
 
 final class CollectionViewDataSourcePrefetching: NSObject, DataSourcePrefetching, UICollectionViewDataSourcePrefetching {
     
-    var cellCount: Int
-    var needsPrefetch: Bool
-    var prefetchHandler: (() -> Void)
+    let cellCount: Int
+    let needsPrefetch: Bool
+    let prefetchHandler: (() -> Void)
     
     init(cellCount: Int, needsPrefetch: Bool, prefetchHandler: @escaping (() -> Void)) {
         self.cellCount = cellCount
