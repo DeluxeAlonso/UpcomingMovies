@@ -14,8 +14,7 @@ final class SimpleCollectionViewDataSource<ViewModel>: NSObject, UICollectionVie
     
     private let reuseIdentifier: String
     private let cellConfigurator: CellConfigurator
-    
-    private var cellViewModels: [ViewModel]
+    private let cellViewModels: [ViewModel]
     
     // MARK: - Initializers
     
@@ -25,7 +24,7 @@ final class SimpleCollectionViewDataSource<ViewModel>: NSObject, UICollectionVie
         self.cellConfigurator = cellConfigurator
     }
     
-    // MARK: - Collection view data source
+    // MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cellViewModels.count
