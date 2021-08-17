@@ -14,8 +14,7 @@ final class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSourc
     
     private let reuseIdentifier: String
     private let cellConfigurator: CellConfigurator
-    
-    private var cellViewModels: [ViewModel]
+    private let cellViewModels: [ViewModel]
     
     // MARK: - Initializers
     
@@ -24,6 +23,8 @@ final class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSourc
         self.reuseIdentifier = reuseIdentifier
         self.cellConfigurator = cellConfigurator
     }
+
+    // MARK: - UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellViewModels.count
