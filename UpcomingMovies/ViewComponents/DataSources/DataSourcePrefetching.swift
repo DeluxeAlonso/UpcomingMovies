@@ -10,9 +10,9 @@ import Foundation
 
 protocol DataSourcePrefetching {
     
-    var cellCount: Int { get set }
-    var needsPrefetch: Bool { get set }
-    var prefetchHandler: (() -> Void) { get set }
+    var cellCount: Int { get }
+    var needsPrefetch: Bool { get }
+    var prefetchHandler: (() -> Void) { get }
     
     func isLoadingCell(for indexPath: IndexPath) -> Bool
     func prefetchIfNeeded(for indexPaths: [IndexPath])
