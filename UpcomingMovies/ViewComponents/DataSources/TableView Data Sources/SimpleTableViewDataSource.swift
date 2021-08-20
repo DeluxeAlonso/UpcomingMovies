@@ -23,7 +23,7 @@ final class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSourc
         self.reuseIdentifier = reuseIdentifier
         self.cellConfigurator = cellConfigurator
     }
-
+    
     // MARK: - UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,9 +46,9 @@ extension SimpleTableViewDataSource where ViewModel == MovieCellViewModelProtoco
         return SimpleTableViewDataSource(cellViewModels: cellViewModels,
                                          reuseIdentifier: reuseIdentifier,
                                          cellConfigurator: { (viewModel, cell) in
-                                                let cell = cell as! MovieTableViewCell
-                                                cell.viewModel = viewModel
-        })
+                                            let cell = cell as! MovieTableViewCell
+                                            cell.viewModel = viewModel
+                                         })
     }
     
 }
@@ -62,7 +62,7 @@ extension SimpleTableViewDataSource where ViewModel == MovieVideoCellViewModelPr
                                          cellConfigurator: { (viewModel, cell) in
                                             let cell = cell as! MovieVideoTableViewCell
                                             cell.viewModel = viewModel
-        })
+                                         })
     }
     
 }
@@ -76,7 +76,7 @@ extension SimpleTableViewDataSource where ViewModel == MovieReviewCellViewModelP
                                          cellConfigurator: { (viewModel, cell) in
                                             let cell = cell as! MovieReviewTableViewCell
                                             cell.viewModel = viewModel
-        })
+                                         })
     }
     
 }
@@ -90,7 +90,7 @@ extension SimpleTableViewDataSource where ViewModel == CustomListCellViewModelPr
                                          cellConfigurator: { (viewModel, cell) in
                                             let cell = cell as! CustomListTableViewCell
                                             cell.viewModel = viewModel
-        })
+                                         })
     }
     
 }

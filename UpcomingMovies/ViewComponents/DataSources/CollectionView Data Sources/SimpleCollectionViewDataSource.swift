@@ -36,7 +36,7 @@ final class SimpleCollectionViewDataSource<ViewModel>: NSObject, UICollectionVie
         cellConfigurator(viewModel, cell)
         return cell
     }
-
+    
 }
 
 extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellViewModelProtocol {
@@ -48,7 +48,7 @@ extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellVie
                                               cellConfigurator: { (viewModel, cell) in
                                                 var cell = cell as! UpcomingMovieCollectionViewCellProtocol
                                                 cell.viewModel = viewModel
-        })
+                                              })
     }
     
 }
@@ -62,7 +62,7 @@ extension SimpleCollectionViewDataSource where ViewModel == MovieCreditCellViewM
                                               cellConfigurator: { (viewModel, cell) in
                                                 let cell = cell as! MovieCreditCollectionViewCell
                                                 cell.viewModel = viewModel
-        })
+                                              })
     }
     
 }
@@ -76,7 +76,7 @@ extension SimpleCollectionViewDataSource where ViewModel == SavedMovieCellViewMo
                                               cellConfigurator: { (viewModel, cell) in
                                                 let cell = cell as! SavedMovieCollectionViewCell
                                                 cell.viewModel = viewModel
-        })
+                                              })
     }
     
 }
