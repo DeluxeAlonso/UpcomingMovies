@@ -21,7 +21,7 @@ class SpinerLayer: CAShapeLayer {
     init(frame: CGRect) {
         super.init()
         
-        setFrame(frame)
+        updateFrame(frame)
         
         fillColor = nil
         strokeColor = spinnerColor.cgColor
@@ -52,7 +52,7 @@ class SpinerLayer: CAShapeLayer {
         
     }
     
-    func setFrame(_ frame: CGRect) {
+    func updateFrame(_ frame: CGRect) {
         let radius: CGFloat = (frame.height / 2) * 0.5
         self.frame = CGRect(x: 0, y: 0, width: frame.height, height: frame.height)
         let center = CGPoint(x: frame.height / 2, y: bounds.center.y)
