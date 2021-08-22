@@ -64,7 +64,7 @@ import UIKit
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        spiner.setToFrame(self.frame)
+        spiner.updateFrame(frame)
     }
 
     // MARK: - Private
