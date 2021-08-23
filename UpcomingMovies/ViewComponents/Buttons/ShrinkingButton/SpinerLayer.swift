@@ -63,6 +63,8 @@ class SpinerLayer: CAShapeLayer {
         removeAllAnimations()
     }
 
+    // MARK: - Private
+
     private func updatePath(with frame: CGRect, and radius: CGFloat) {
         let center = CGPoint(x: frame.height / 2, y: bounds.center.y)
         let startAngle = 0 - Double.pi/2
