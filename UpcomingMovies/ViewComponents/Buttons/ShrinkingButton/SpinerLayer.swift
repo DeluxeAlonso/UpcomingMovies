@@ -55,6 +55,10 @@ class SpinerLayer: CAShapeLayer {
     func updateFrame(_ frame: CGRect) {
         let radius: CGFloat = (frame.height / 2) * 0.5
         self.frame = CGRect(x: 0, y: 0, width: frame.height, height: frame.height)
+        updatePath(with: self.frame, and: radius)
+    }
+
+    func updatePath(with frame: CGRect, and radius: CGFloat) {
         let center = CGPoint(x: frame.height / 2, y: bounds.center.y)
         let startAngle = 0 - Double.pi/2
         let endAngle = Double.pi * 2 - Double.pi/2
