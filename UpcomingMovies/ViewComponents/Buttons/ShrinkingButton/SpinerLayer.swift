@@ -55,6 +55,17 @@ class SpinerLayer: CAShapeLayer {
     func updateFrame(_ frame: CGRect) {
         let radius: CGFloat = (frame.height / 2) * 0.5
         self.frame = CGRect(x: 0, y: 0, width: frame.height, height: frame.height)
+        updatePath(with: self.frame, and: radius)
+    }
+    
+    func stopAnimation() {
+        isHidden = true
+        removeAllAnimations()
+    }
+
+    // MARK: - Private
+
+    private func updatePath(with frame: CGRect, and radius: CGFloat) {
         let center = CGPoint(x: frame.height / 2, y: bounds.center.y)
         let startAngle = 0 - Double.pi/2
         let endAngle = Double.pi * 2 - Double.pi/2
@@ -63,11 +74,6 @@ class SpinerLayer: CAShapeLayer {
                                  radius: radius,
                                  startAngle: CGFloat(startAngle),
                                  endAngle: CGFloat(endAngle), clockwise: clockwise).cgPath
-    }
-    
-    func stopAnimation() {
-        isHidden = true
-        removeAllAnimations()
     }
 
 }
