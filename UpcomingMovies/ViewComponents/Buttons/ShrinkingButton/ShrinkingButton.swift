@@ -125,7 +125,7 @@ import UIKit
 
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.layer.cornerRadius = self.frame.height / 2
-        }, completion: { _ -> Void in
+        }, completion: { _ in
             self.shrink()
             self.spiner.animation()
         })
