@@ -93,9 +93,7 @@ import UIKit
         shrinkAnimation.fillMode = .forwards
         shrinkAnimation.isRemovedOnCompletion = false
         
-        CATransaction.setCompletionBlock {
-            completion?()
-        }
+        CATransaction.setCompletionBlock { completion?() }
         layer.add(shrinkAnimation, forKey: shrinkAnimation.keyPath)
         
         CATransaction.commit()
