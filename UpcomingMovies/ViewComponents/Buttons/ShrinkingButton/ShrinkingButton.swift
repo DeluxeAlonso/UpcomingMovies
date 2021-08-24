@@ -93,9 +93,7 @@ import UIKit
         shrinkAnimation.fillMode = .forwards
         shrinkAnimation.isRemovedOnCompletion = false
         
-        CATransaction.setCompletionBlock {
-            completion?()
-        }
+        CATransaction.setCompletionBlock { completion?() }
         layer.add(shrinkAnimation, forKey: shrinkAnimation.keyPath)
         
         CATransaction.commit()
@@ -127,7 +125,7 @@ import UIKit
 
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.layer.cornerRadius = self.frame.height / 2
-        }, completion: { _ -> Void in
+        }, completion: { _ in
             self.shrink()
             self.spiner.animation()
         })
@@ -136,6 +134,7 @@ import UIKit
     func stopAnimation(revertAfterDelay delay: TimeInterval = 1.0, completion: (() -> Void)? = nil) {
         guard isAnimating else { return }
 
+        // Delay should have a minimum value
         let delayToRevert = max(delay, 0.2)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + delayToRevert) {
