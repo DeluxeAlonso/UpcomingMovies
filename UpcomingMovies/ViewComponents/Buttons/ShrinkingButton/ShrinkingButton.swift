@@ -134,6 +134,7 @@ import UIKit
     func stopAnimation(revertAfterDelay delay: TimeInterval = 1.0, completion: (() -> Void)? = nil) {
         guard isAnimating else { return }
 
+        // Delay should have a minimum value
         let delayToRevert = max(delay, 0.2)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + delayToRevert) {
