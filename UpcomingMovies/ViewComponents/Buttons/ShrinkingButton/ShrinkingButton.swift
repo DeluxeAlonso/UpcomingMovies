@@ -47,19 +47,19 @@ import UIKit
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        setupUI()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
+        setupUI()
     }
 
     // MARK: - Lifecycle
     
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        setup()
+        setupUI()
     }
     
     override func layoutSubviews() {
@@ -69,7 +69,7 @@ import UIKit
 
     // MARK: - Private
     
-    private func setup() {
+    private func setupUI() {
         clipsToBounds = true
         spiner.spinnerColor = spinnerColor
     }
