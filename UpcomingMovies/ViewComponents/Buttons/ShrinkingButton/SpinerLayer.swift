@@ -35,6 +35,19 @@ class SpinerLayer: CAShapeLayer {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Private
+
+    private func updatePath(with frame: CGRect, and radius: CGFloat) {
+        let center = CGPoint(x: frame.height / 2, y: bounds.center.y)
+        let startAngle = 0 - Double.pi/2
+        let endAngle = Double.pi * 2 - Double.pi/2
+        let clockwise: Bool = true
+        path = UIBezierPath(arcCenter: center,
+                                 radius: radius,
+                                 startAngle: CGFloat(startAngle),
+                                 endAngle: CGFloat(endAngle), clockwise: clockwise).cgPath
+    }
+
     // MARK: - Internal
     
     func animation() {
@@ -61,19 +74,6 @@ class SpinerLayer: CAShapeLayer {
     func stopAnimation() {
         isHidden = true
         removeAllAnimations()
-    }
-
-    // MARK: - Private
-
-    private func updatePath(with frame: CGRect, and radius: CGFloat) {
-        let center = CGPoint(x: frame.height / 2, y: bounds.center.y)
-        let startAngle = 0 - Double.pi/2
-        let endAngle = Double.pi * 2 - Double.pi/2
-        let clockwise: Bool = true
-        path = UIBezierPath(arcCenter: center,
-                                 radius: radius,
-                                 startAngle: CGFloat(startAngle),
-                                 endAngle: CGFloat(endAngle), clockwise: clockwise).cgPath
     }
 
 }
