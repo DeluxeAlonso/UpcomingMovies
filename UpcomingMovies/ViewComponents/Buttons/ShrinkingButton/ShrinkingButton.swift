@@ -100,15 +100,15 @@ import UIKit
     }
     
     private func shrink() {
-        let shrinkAnim = CABasicAnimation(keyPath: "bounds.size.width")
-        shrinkAnim.fromValue = frame.width
-        shrinkAnim.toValue = frame.height
-        shrinkAnim.duration = shrinkDuration
-        shrinkAnim.timingFunction = shrinkCurve
-        shrinkAnim.fillMode = .forwards
-        shrinkAnim.isRemovedOnCompletion = false
+        let shrinkAnimation = CABasicAnimation(keyPath: "bounds.size.width")
+        shrinkAnimation.fromValue = frame.width
+        shrinkAnimation.toValue = frame.height
+        shrinkAnimation.duration = shrinkDuration
+        shrinkAnimation.timingFunction = shrinkCurve
+        shrinkAnimation.fillMode = .forwards
+        shrinkAnimation.isRemovedOnCompletion = false
         
-        layer.add(shrinkAnim, forKey: shrinkAnim.keyPath)
+        layer.add(shrinkAnimation, forKey: shrinkAnimation.keyPath)
     }
 
     // MARK: - Internal
