@@ -18,7 +18,11 @@ class TransitioningAnimator: NSObject {
     
     // MARK: - Initializers
     
-    init(duration: TimeInterval = 0.3, isPresenting: Bool, originFrame: CGRect, transitionView: UIView, verticalSafeAreaOffset: CGFloat = 0.0) {
+    init(duration: TimeInterval = 0.3,
+         isPresenting: Bool,
+         originFrame: CGRect,
+         transitionView: UIView,
+         verticalSafeAreaOffset: CGFloat = 0.0) {
         self.duration = duration
         self.isPresenting = isPresenting
         self.originFrame = originFrame
