@@ -10,17 +10,15 @@ import UIKit
 
 class TransitioningInteractor: UIPercentDrivenInteractiveTransition {
     
-    private var navigationController: UINavigationController
+    private let navigationController: UINavigationController
     private var shouldCompleteTransition: Bool = false
-    
+
     public var transitionInProgress: Bool = false
     
     // MARK: - Initializers
     
     init?(attachTo viewController: UIViewController) {
-        guard let navigationController = viewController.navigationController else {
-            return nil
-        }
+        guard let navigationController = viewController.navigationController else { return nil }
         self.navigationController = navigationController
         super.init()
         setupBackGesture(view: viewController.view)
@@ -52,7 +50,9 @@ class TransitioningInteractor: UIPercentDrivenInteractiveTransition {
         case .ended:
             transitionInProgress = false
             shouldCompleteTransition ? finish() : cancel()
-        default:
+        case .failed, .possible:
+            fallthrough
+        @unknown default:
             break
         }
     }
