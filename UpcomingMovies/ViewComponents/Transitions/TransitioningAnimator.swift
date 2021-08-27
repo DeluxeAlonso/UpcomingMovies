@@ -10,11 +10,11 @@ import UIKit
 
 class TransitioningAnimator: NSObject {
     
-    private var duration: TimeInterval
-    private var isPresenting: Bool
-    private var originFrame: CGRect
-    private var transitionView: UIView
-    private var verticalSafeAreaOffset: CGFloat
+    private let duration: TimeInterval
+    private let isPresenting: Bool
+    private let originFrame: CGRect
+    private let transitionView: UIView
+    private let verticalSafeAreaOffset: CGFloat
     
     // MARK: - Initializers
     
