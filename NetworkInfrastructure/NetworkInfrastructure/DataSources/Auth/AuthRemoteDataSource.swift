@@ -26,7 +26,8 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
         authClient.getRequestToken(with: readAccessToken) { result in
             switch result {
             case .success(let requestToken):
-                guard let url = URL(string: "https://www.themoviedb.org/auth/access?request_token=\(requestToken.token)") else { return }
+                let urlString = String(format: Constants.authURLStringPath, requestToken.token)
+                guard let url = URL(string: urlString) else { return }
                 self.authManager.saveRequestToken(requestToken.token)
                 completion(.success(url))
             case .failure(let error):
@@ -87,4 +88,14 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
         return account.accountId
     }
     
+}
+
+extension AuthRemoteDataSource {
+
+    struct Constants {
+
+        static let authURLStringPath = "https://www.themoviedb.org/auth/access?request_token=%@"
+
+    }
+
 }
