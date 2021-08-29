@@ -36,7 +36,6 @@ extension APIClient {
                         let genericModel = try decoder.decode(decodingType, from: data)
                         completion?(genericModel, nil)
                     } catch {
-                        print(error.localizedDescription)
                         completion?(nil, .requestFailed)
                     }
                 } else {
