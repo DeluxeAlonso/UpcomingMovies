@@ -45,7 +45,6 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
                 self.authManager.saveAccessToken(accessToken)
                 self.createSessionId(with: accessToken.token, completion: completion)
             case .failure(let error):
-                print(error.description)
                 completion(.failure(error))
             }
         }
