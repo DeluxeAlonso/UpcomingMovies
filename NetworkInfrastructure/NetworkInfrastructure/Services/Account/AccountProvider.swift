@@ -31,17 +31,17 @@ extension AccountProvider: Endpoint {
         switch self {
         case .getAccountDetail:
             return "/3/account"
-        case .getFavoriteList( _, _, let accountId):
+        case .getFavoriteList(_, _, let accountId):
             return "/3/account/\(accountId)/favorite/movies"
-        case .getWatchlist( _, _, let accountId):
+        case .getWatchlist(_, _, let accountId):
             return "/3/account/\(accountId)/watchlist/movies"
         case .getRecommendedList(_, _, let accountId):
             return "/4/account/\(accountId)/movie/recommendations"
-        case .getCustomLists( _, _, let accountId):
+        case .getCustomLists(_, _, let accountId):
             return "/4/account/\(accountId)/lists"
         case .getCustomListDetail(_, let id):
             return "/4/list/\(id)"
-        case .markAsFavorite( _, let accountId, _, _):
+        case .markAsFavorite(_, let accountId, _, _):
             return "/3/account/\(accountId)/favorite"
         case .addToWatchlist(_, let accountId):
             return "/account/\(accountId)/watchlist"
