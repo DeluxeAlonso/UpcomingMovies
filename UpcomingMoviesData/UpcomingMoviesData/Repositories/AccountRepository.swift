@@ -47,5 +47,9 @@ final class AccountRepository: AccountUseCaseProtocol {
     func markMovieAsFavorite(movieId: Int, favorite: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
         remoteDataSource.markMovieAsFavorite(movieId: movieId, favorite: favorite, completion: completion)
     }
+
+    func addToWatchList(movieId: Int, watchlist: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
+        remoteDataSource.addToWatchlist(movieId: movieId, watchlist: watchlist, completion: completion)
+    }
     
 }
