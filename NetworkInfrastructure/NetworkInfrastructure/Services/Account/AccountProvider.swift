@@ -15,7 +15,7 @@ enum AccountProvider {
     case getCustomLists(page: Int, accessToken: String, accountId: String)
     case getCustomListDetail(accessToken: String, id: String)
     case markAsFavorite(sessionId: String, accountId: Int, movieId: Int, favorite: Bool)
-    case addToWatchlist(sessionId: String, accountId: Int)
+    case addToWatchlist(sessionId: String, accountId: Int, movieId: Int, watchlist: Bool)
     
 }
 
@@ -43,7 +43,7 @@ extension AccountProvider: Endpoint {
             return "/4/list/\(id)"
         case .markAsFavorite(_, let accountId, _, _):
             return "/3/account/\(accountId)/favorite"
-        case .addToWatchlist(_, let accountId):
+        case .addToWatchlist(_, let accountId, _, _):
             return "/account/\(accountId)/watchlist"
         }
     }
@@ -81,17 +81,21 @@ extension AccountProvider: Endpoint {
                                              "media_id": movieId,
                                              "favorite": favorite]
             return ["query": queryParams, "body": bodyParams]
-        case .addToWatchlist(let sessionId, _):
-            return ["session_id": sessionId]
+        case .addToWatchlist(let sessionId, _, let movieId, let watchlist):
+            let queryParams: [String: Any] = ["session_id": sessionId]
+            let bodyParams: [String: Any] = ["media_type": "movie",
+                                             "media_id": movieId,
+                                             "watchlist": watchlist]
+            return ["query": queryParams, "body": bodyParams]
         }
     }
     
     var parameterEncoding: ParameterEnconding {
         switch self {
         case .getAccountDetail, .getFavoriteList, .getWatchlist,
-             .getRecommendedList, .getCustomLists, .getCustomListDetail, .addToWatchlist:
+             .getRecommendedList, .getCustomLists, .getCustomListDetail:
             return .defaultEncoding
-        case .markAsFavorite:
+        case .markAsFavorite, .addToWatchlist:
             return .compositeEncoding
         }
     }
