@@ -15,6 +15,7 @@ enum AccountProvider {
     case getCustomLists(page: Int, accessToken: String, accountId: String)
     case getCustomListDetail(accessToken: String, id: String)
     case markAsFavorite(sessionId: String, accountId: Int, movieId: Int, favorite: Bool)
+    case addToWatchlist(sessionId: String, accountId: Int)
     
 }
 
@@ -42,6 +43,8 @@ extension AccountProvider: Endpoint {
             return "/4/list/\(id)"
         case .markAsFavorite( _, let accountId, _, _):
             return "/3/account/\(accountId)/favorite"
+        case .addToWatchlist(_, let accountId):
+            return "/account/\(accountId)/watchlist"
         }
     }
     
@@ -53,7 +56,7 @@ extension AccountProvider: Endpoint {
             return ["Authorization": "Bearer \(accessToken)"]
         case .getCustomListDetail(let accessToken, _):
             return ["Authorization": "Bearer \(accessToken)"]
-        case .getAccountDetail, .getFavoriteList, .getWatchlist, .markAsFavorite:
+        case .getAccountDetail, .getFavoriteList, .getWatchlist, .markAsFavorite, .addToWatchlist:
             return nil
         }
     }
@@ -78,13 +81,15 @@ extension AccountProvider: Endpoint {
                                              "media_id": movieId,
                                              "favorite": favorite]
             return ["query": queryParams, "body": bodyParams]
+        case .addToWatchlist(let sessionId, _):
+            return ["session_id": sessionId]
         }
     }
     
     var parameterEncoding: ParameterEnconding {
         switch self {
         case .getAccountDetail, .getFavoriteList, .getWatchlist,
-             .getRecommendedList, .getCustomLists, .getCustomListDetail:
+             .getRecommendedList, .getCustomLists, .getCustomListDetail, .addToWatchlist:
             return .defaultEncoding
         case .markAsFavorite:
             return .compositeEncoding
@@ -96,7 +101,7 @@ extension AccountProvider: Endpoint {
         case .getAccountDetail, .getFavoriteList, .getWatchlist,
              .getRecommendedList, .getCustomLists, .getCustomListDetail:
             return .get
-        case .markAsFavorite:
+        case .markAsFavorite, .addToWatchlist:
             return .post
         }
     }
