@@ -24,5 +24,9 @@ public protocol AccountUseCaseProtocol {
     func markMovieAsFavorite(movieId: Int,
                              favorite: Bool,
                              completion: @escaping (Result<Bool, Error>) -> Void)
+
+    func addToWatchList(movieId: Int,
+                        watchlist: Bool,
+                        completion: @escaping (Result<Bool, Error>) -> Void)
     
 }

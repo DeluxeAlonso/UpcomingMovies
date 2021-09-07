@@ -109,5 +109,18 @@ class AccountClient: APIClient, AccountClientProtocol {
                 return result
         }, completion: completion)
     }
+
+    // MARK: - Add to watchlist
+
+    func addToWatchlist(_ movieId: Int, sessionId: String,
+                        accountId: Int, watchlist: Bool,
+                        completion: @escaping (Result<AddToWatchlistResult, APIError>) -> Void) {
+        fetch(with: AccountProvider.addToWatchlist(sessionId: sessionId, accountId: accountId,
+                                                   movieId: movieId, watchlist: watchlist).request,
+              decode: { json -> AddToWatchlistResult? in
+                guard let result = json as? AddToWatchlistResult else { return  nil }
+                return result
+        }, completion: completion)
+    }
     
 }
