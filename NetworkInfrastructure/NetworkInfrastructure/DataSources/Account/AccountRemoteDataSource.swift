@@ -118,5 +118,17 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
             }
         })
     }
-    
+
+    func addToWatchlist(movieId: Int, watchlist: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
+        guard let account = authManager.userAccount else { return }
+        client.addToWatchlist(movieId, sessionId: account.sessionId, accountId: account.accountId, watchlist: watchlist, completion: { result in
+            switch result {
+            case .success:
+                completion(.success(true))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
+    }
+
 }

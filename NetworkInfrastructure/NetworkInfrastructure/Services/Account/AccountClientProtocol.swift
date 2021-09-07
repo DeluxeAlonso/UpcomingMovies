@@ -32,4 +32,8 @@ protocol AccountClientProtocol {
                         accountId: Int, favorite: Bool,
                         completion: @escaping (Result<MarkAsFavoriteResult, APIError>) -> Void)
 
+    func addToWatchlist(_ movieId: Int, sessionId: String,
+                        accountId: Int, watchlist: Bool,
+                        completion: @escaping (Result<AddToWatchlistResult, APIError>) -> Void)
+
 }
