@@ -24,8 +24,8 @@ final class AccountRepository: AccountUseCaseProtocol {
         remoteDataSource.getFavoriteList(page: page, completion: completion)
     }
     
-    func getWatchList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        remoteDataSource.getWatchList(page: page, completion: completion)
+    func getWatchlist(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.getWatchlist(page: page, completion: completion)
     }
 
     func getRecommendedList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
@@ -48,7 +48,7 @@ final class AccountRepository: AccountUseCaseProtocol {
         remoteDataSource.markMovieAsFavorite(movieId: movieId, favorite: favorite, completion: completion)
     }
 
-    func addToWatchList(movieId: Int, watchlist: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func addToWatchlist(movieId: Int, watchlist: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
         remoteDataSource.addToWatchlist(movieId: movieId, watchlist: watchlist, completion: completion)
     }
     

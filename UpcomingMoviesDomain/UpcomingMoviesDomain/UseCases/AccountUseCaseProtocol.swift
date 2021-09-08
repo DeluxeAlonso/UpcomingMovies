@@ -10,7 +10,7 @@ public protocol AccountUseCaseProtocol {
     
     func getFavoriteList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
     
-    func getWatchList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
+    func getWatchlist(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
 
     func getRecommendedList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
     
@@ -25,7 +25,7 @@ public protocol AccountUseCaseProtocol {
                              favorite: Bool,
                              completion: @escaping (Result<Bool, Error>) -> Void)
 
-    func addToWatchList(movieId: Int,
+    func addToWatchlist(movieId: Int,
                         watchlist: Bool,
                         completion: @escaping (Result<Bool, Error>) -> Void)
     

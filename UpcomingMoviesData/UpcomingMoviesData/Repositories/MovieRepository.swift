@@ -67,8 +67,8 @@ public class MovieRepository: MovieUseCaseProtocol {
                                             completion: completion)
     }
     
-    public func isMovieInWatchList(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
-        remoteDataSource.isMovieInWatchList(for: movieId,
+    public func isMovieInWatchlist(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+        remoteDataSource.isMovieInWatchlist(for: movieId,
                                             completion: completion)
     }
 

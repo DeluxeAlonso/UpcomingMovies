@@ -33,9 +33,9 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
         })
     }
     
-    func getWatchList(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+    func getWatchlist(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
-        client.getWatchList(page: page ?? 1, sessionId: account.sessionId, accountId: account.accountId, completion: { result in
+        client.getWatchlist(page: page ?? 1, sessionId: account.sessionId, accountId: account.accountId, completion: { result in
             switch result {
             case .success(let movieResult):
                 guard let movieResult = movieResult else { return }
