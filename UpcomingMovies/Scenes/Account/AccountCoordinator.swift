@@ -89,7 +89,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
         case .favorites:
             showFavoritesSavedMovies()
         case .watchlist:
-            showWatchListSavedMovies()
+            showWatchlistSavedMovies()
         case .recommended:
             showRecommendedMovies()
         case .customLists:
@@ -110,8 +110,8 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
         coordinator.start()
     }
     
-    private func showWatchListSavedMovies() {
-        let coordinator = WatchListSavedMoviesCoordinator(navigationController: navigationController)
+    private func showWatchlistSavedMovies() {
+        let coordinator = WatchlistSavedMoviesCoordinator(navigationController: navigationController)
         
         coordinator.parentCoordinator = unwrappedParentCoordinator
         

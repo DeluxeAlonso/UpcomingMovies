@@ -112,7 +112,7 @@ final class MockMovieUseCase: MovieUseCaseProtocol {
     }
     
     var isInWatchlist: Result<Bool, Error>?
-    func isMovieInWatchList(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func isMovieInWatchlist(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
         completion(isInWatchlist!)
     }
     

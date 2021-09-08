@@ -18,7 +18,7 @@ final class SavedMoviesAssembly: Assembly {
         }
         container.register(SavedMoviesInteractorProtocol.self,
                            name: ProfileOption.watchlist.title) { resolver in
-                            WatchListSavedMoviesInteractor(useCaseProvider: resolver.resolve(UseCaseProviderProtocol.self)!)
+                            WatchlistSavedMoviesInteractor(useCaseProvider: resolver.resolve(UseCaseProviderProtocol.self)!)
         }
         container.register(SavedMoviesViewModelProtocol.self) { (resolver, displayTitle: String?) in
             let interactor = resolver.resolve(SavedMoviesInteractorProtocol.self, name: displayTitle)
