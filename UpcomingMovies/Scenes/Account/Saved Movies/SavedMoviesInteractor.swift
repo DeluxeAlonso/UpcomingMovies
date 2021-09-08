@@ -23,7 +23,7 @@ final class FavoritesSavedMoviesInteractor: SavedMoviesInteractorProtocol {
     
 }
 
-final class WatchListSavedMoviesInteractor: SavedMoviesInteractorProtocol {
+final class WatchlistSavedMoviesInteractor: SavedMoviesInteractorProtocol {
     
     private let accountUseCase: AccountUseCaseProtocol
     
@@ -32,7 +32,7 @@ final class WatchListSavedMoviesInteractor: SavedMoviesInteractorProtocol {
     }
     
     func getSavedMovies(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        accountUseCase.getWatchList(page: page, completion: completion)
+        accountUseCase.getWatchlist(page: page, completion: completion)
     }
     
 }

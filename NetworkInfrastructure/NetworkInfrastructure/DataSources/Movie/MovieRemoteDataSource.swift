@@ -167,7 +167,7 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         })
     }
     
-    func isMovieInWatchList(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func isMovieInWatchlist(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
         client.getMovieAccountState(with: movieId, sessionId: account.sessionId, completion: { result in
             switch result {

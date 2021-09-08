@@ -11,7 +11,7 @@ protocol AccountClientProtocol {
     func getFavoriteList(page: Int, sessionId: String, accountId: Int,
                          completion: @escaping (Result<MovieResult?, APIError>) -> Void)
 
-    func getWatchList(page: Int, sessionId: String, accountId: Int,
+    func getWatchlist(page: Int, sessionId: String, accountId: Int,
                       completion: @escaping (Result<MovieResult?, APIError>) -> Void)
 
     func getRecommendedList(page: Int,
