@@ -5,8 +5,6 @@
 //  Created by Alonso on 6/09/21.
 //
 
-import Foundation
-
 struct AddToWatchlistResult: Decodable {
 
     let statusCode: Int

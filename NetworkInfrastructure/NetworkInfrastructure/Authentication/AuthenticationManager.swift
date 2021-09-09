@@ -62,9 +62,8 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
     }
     
     var accessToken: AccessToken? {
-        guard let token = token,
-            let accountId = accountId else {
-                return nil
+        guard let token = token, let accountId = accountId else {
+            return nil
         }
         return AccessToken(token: token, accountId: accountId)
     }
@@ -81,6 +80,8 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
     }
     
 }
+
+// MARK: - Constants
 
 extension AuthenticationManager {
     
