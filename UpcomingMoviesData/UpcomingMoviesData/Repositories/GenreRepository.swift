@@ -34,10 +34,10 @@ public final class GenreRepository: GenreUseCaseProtocol {
         if !localGenres.isEmpty { completion(.success(localGenres)) }
         
         remoteDataSource.getAllGenres(completion: { [weak self] result in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             switch result {
             case .success(let remoteGenres):
-                strongSelf.localDataSource.saveGenres(remoteGenres)
+                self.localDataSource.saveGenres(remoteGenres)
                 if localGenres.isEmpty { completion(.success(remoteGenres)) }
             case .failure:
                 break
