@@ -32,4 +32,22 @@ class AccessTokenTests: XCTestCase {
         XCTAssertEqual(decodedAccessToken.token, tokenToTest)
     }
 
+    func testMissingAccounIdFromDecodedAccessToken() throws {
+        // Arrange
+        let dataResponse = MockResponse.accessToken.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "account_id")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(AccessToken.self, from: jsonDataToTest))
+    }
+
+    func testMissingTokenFromDecodedAccessToken() throws {
+        // Arrange
+        let dataResponse = MockResponse.accessToken.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "access_token")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(AccessToken.self, from: jsonDataToTest))
+    }
+
 }
