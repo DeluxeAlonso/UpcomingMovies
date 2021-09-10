@@ -23,7 +23,7 @@ enum MockResponse {
     }
 
     var dataResponse: Data {
-        Data(mockJsonString.utf8)
+        Data(jsonString.utf8)
     }
 
 }
