@@ -38,17 +38,3 @@ class AccessTokenTests: XCTestCase {
     }
 
 }
-
-extension Data {
-
-    func json(updatingKeyPaths keyPaths: (String, Any)...) throws -> Data {
-        let decoded = try JSONSerialization.jsonObject(with: self, options: .mutableContainers) as AnyObject
-
-        for (keyPath, value) in keyPaths {
-            decoded.setValue(value, forKeyPath: keyPath)
-        }
-
-        return try JSONSerialization.data(withJSONObject: decoded)
-    }
-
-}
