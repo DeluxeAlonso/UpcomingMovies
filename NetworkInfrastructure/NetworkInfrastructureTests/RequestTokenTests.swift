@@ -6,27 +6,26 @@
 //
 
 import XCTest
+@testable import NetworkInfrastructure
 
 class RequestTokenTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testMissingSuccessFromDecodedRequestToken() throws {
+        // Arrange
+        let dataResponse = MockResponse.requestToken.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "success")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(RequestTokenResult.self, from: jsonDataToTest))
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testMissingTokenFromDecodedAccessToken() throws {
+        // Arrange
+        let dataResponse = MockResponse.requestToken.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "request_token")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(RequestTokenResult.self, from: jsonDataToTest))
     }
 
 }
