@@ -11,58 +11,50 @@ import XCTest
 
 class URLGenerationTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testURLRequestSetJsonContentType() {
-        //Arrange
+        // Arrange
         var urlRequest = URLRequest(url: URL(string: "https://api.themoviedb.org")!)
-        //Act
+        // Act
         urlRequest.setJSONContentType()
         let allHeaderFields = urlRequest.allHTTPHeaderFields
-        //Assert
+        // Assert
         XCTAssertNotNil(allHeaderFields!["Content-Type"])
     }
     
     func testURLRequestSetJsonContentTypeNil() {
-        //Arrange
+        // Arrange
         let urlRequest = URLRequest(url: URL(string: "https://api.themoviedb.org")!)
-        //Act
+        // Act
         let allHeaderFields = urlRequest.allHTTPHeaderFields
-        //Assert
+        // Assert
         XCTAssertNil(allHeaderFields)
     }
     
     func testPercentEscapedEmptyParamters() {
-        //Arrange
+        // Arrange
         let parametersDictionary: [String: Any] = [:]
-        //Act
+        // Act
         let percentEscapedParameters = parametersDictionary.percentEscaped()
-        //Assert
+        // Assert
         XCTAssertTrue(percentEscapedParameters.isEmpty)
     }
     
     func testPercentEscapedSingleParameters() {
-        //Arrange
+        // Arrange
         let parametersDictionary: [String: Any] = ["Param1": "A"]
-        //Act
+        // Act
         let percentEscapedParameters = parametersDictionary.percentEscaped()
-        //Assert
+        // Assert
         XCTAssertEqual(percentEscapedParameters, "Param1=A")
     }
     
     func testPercentEscapedMultipleParameters() {
-        //Arrange
+        // Arrange
         let parametersDictionary: [String: Any] = ["Param1": "A", "Param2": "B"]
-        //Act
+        // Act
         let percentEscapedParameters = parametersDictionary.percentEscaped()
         let possibleEscapedParameters = ["Param1=A&Param2=B", "Param2=B&Param1=A"]
-        //Assert
+        // Assert
         XCTAssertTrue(possibleEscapedParameters.contains(percentEscapedParameters))
     }
 
