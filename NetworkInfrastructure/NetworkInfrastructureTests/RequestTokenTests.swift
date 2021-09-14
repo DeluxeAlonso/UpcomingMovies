@@ -10,7 +10,7 @@ import XCTest
 
 class RequestTokenTests: XCTestCase {
 
-    func testMissingSuccessFromDecodedRequestToken() throws {
+    func testMissingSuccessFromResponse() throws {
         // Arrange
         let dataResponse = MockResponse.requestToken.dataResponse
         // Act
@@ -19,7 +19,7 @@ class RequestTokenTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(RequestTokenResult.self, from: jsonDataToTest))
     }
 
-    func testMissingTokenFromDecodedRequestToken() throws {
+    func testMissingTokenFromDResponse() throws {
         // Arrange
         let dataResponse = MockResponse.requestToken.dataResponse
         // Act
@@ -28,7 +28,7 @@ class RequestTokenTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(RequestTokenResult.self, from: jsonDataToTest))
     }
 
-    func testMissingSuccessAndTokenFromDecodedRequestToken() throws {
+    func testMissingSuccessAndTokenFromResponse() throws {
         // Arrange
         let dataResponse = MockResponse.requestToken.dataResponse
         // Act
@@ -37,7 +37,7 @@ class RequestTokenTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(AccessToken.self, from: jsonDataToTest))
     }
 
-    func testSuccessFromDecodedRequestToken() throws {
+    func testSuccessFromResponse() throws {
         // Arrange
         let successToTest = true
         let dataResponse = MockResponse.requestToken.dataResponse
@@ -48,7 +48,7 @@ class RequestTokenTests: XCTestCase {
         XCTAssertEqual(decodedRequestToken.success, successToTest)
     }
 
-    func testTokenFromDecodedRequestToken() throws {
+    func testTokenFromResponse() throws {
         // Arrange
         let tokenToTest = "test"
         let dataResponse = MockResponse.requestToken.dataResponse

@@ -10,7 +10,7 @@ import XCTest
 
 class AccessTokenTests: XCTestCase {
 
-    func testMissingAccounIdFromDecodedAccessToken() throws {
+    func testMissingAccounIdFromResponse() throws {
         // Arrange
         let dataResponse = MockResponse.accessToken.dataResponse
         // Act
@@ -19,7 +19,7 @@ class AccessTokenTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(AccessToken.self, from: jsonDataToTest))
     }
 
-    func testMissingTokenFromDecodedAccessToken() throws {
+    func testMissingTokenFromResponse() throws {
         // Arrange
         let dataResponse = MockResponse.accessToken.dataResponse
         // Act
@@ -28,7 +28,7 @@ class AccessTokenTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(AccessToken.self, from: jsonDataToTest))
     }
 
-    func testMissingAccounIdAndTokenFromDecodedAccessToken() throws {
+    func testMissingAccounIdAndTokenFromResponse() throws {
         // Arrange
         let dataResponse = MockResponse.accessToken.dataResponse
         // Act
@@ -37,7 +37,7 @@ class AccessTokenTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(AccessToken.self, from: jsonDataToTest))
     }
 
-    func testAccounIdFromDecodedAccessToken() throws {
+    func testAccounIdFromResponse() throws {
         // Arrange
         let accountIdToTest = "accountId"
         let dataResponse = MockResponse.accessToken.dataResponse
@@ -48,7 +48,7 @@ class AccessTokenTests: XCTestCase {
         XCTAssertEqual(decodedAccessToken.accountId, accountIdToTest)
     }
 
-    func testTokenFromDecodedAccessToken() throws {
+    func testTokenFromResponse() throws {
         // Arrange
         let tokenToTest = "token"
         let dataResponse = MockResponse.accessToken.dataResponse
