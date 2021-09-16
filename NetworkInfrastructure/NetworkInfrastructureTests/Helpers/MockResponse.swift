@@ -11,6 +11,7 @@ enum MockResponse {
     case accessToken
     case requestToken
     case markAsFavorite
+    case addToWatchlist
     
     var jsonString: String {
         switch self {
@@ -29,7 +30,7 @@ enum MockResponse {
                   "request_token": "ff5c7eeb5a8870efe3cd7fc5c282cffd26800ecd"
                 }
                 """
-        case .markAsFavorite:
+        case .markAsFavorite, .addToWatchlist:
             return """
                 {
                     "status_code": 12,
