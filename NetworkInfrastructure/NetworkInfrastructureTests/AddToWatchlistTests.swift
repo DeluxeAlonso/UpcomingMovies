@@ -12,40 +12,40 @@ class AddToWatchlistTests: XCTestCase {
 
     func testMissingStatusCodeFromResponse() throws {
         // Arrange
-        let dataResponse = MockResponse.markAsFavorite.dataResponse
+        let dataResponse = MockResponse.addToWatchlist.dataResponse
         // Act
         let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "status_code")
         // Assert
-        XCTAssertThrowsError(try JSONDecoder().decode(MarkAsFavoriteResult.self, from: jsonDataToTest))
+        XCTAssertThrowsError(try JSONDecoder().decode(AddToWatchlistResult.self, from: jsonDataToTest))
     }
 
     func testMissingStatusMessageFromResponse() throws {
         // Arrange
-        let dataResponse = MockResponse.markAsFavorite.dataResponse
+        let dataResponse = MockResponse.addToWatchlist.dataResponse
         // Act
         let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "status_message")
         // Assert
-        XCTAssertThrowsError(try JSONDecoder().decode(MarkAsFavoriteResult.self, from: jsonDataToTest))
+        XCTAssertThrowsError(try JSONDecoder().decode(AddToWatchlistResult.self, from: jsonDataToTest))
     }
 
     func testMissingStatusCodeAndMessageFromResponse() throws {
         // Arrange
-        let dataResponse = MockResponse.markAsFavorite.dataResponse
+        let dataResponse = MockResponse.addToWatchlist.dataResponse
         // Act
         let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "status_code", "status_message")
         // Assert
-        XCTAssertThrowsError(try JSONDecoder().decode(MarkAsFavoriteResult.self, from: jsonDataToTest))
+        XCTAssertThrowsError(try JSONDecoder().decode(AddToWatchlistResult.self, from: jsonDataToTest))
     }
 
     func testStatusCodeFromResponse() throws {
         // Arrange
         let statusCodeToTest = 200
-        let dataResponse = MockResponse.markAsFavorite.dataResponse
+        let dataResponse = MockResponse.addToWatchlist.dataResponse
         // Act
         let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("status_code", statusCodeToTest))
-        let decodedMarkAsFavoriteResult = try JSONDecoder().decode(MarkAsFavoriteResult.self, from: jsonDataToTest)
+        let decodedAddToWatchlistResult = try JSONDecoder().decode(AddToWatchlistResult.self, from: jsonDataToTest)
         // Assert
-        XCTAssertEqual(decodedMarkAsFavoriteResult.statusCode, statusCodeToTest)
+        XCTAssertEqual(decodedAddToWatchlistResult.statusCode, statusCodeToTest)
     }
 
     func testStatusMessageFromResponse() throws {
@@ -54,9 +54,9 @@ class AddToWatchlistTests: XCTestCase {
         let dataResponse = MockResponse.markAsFavorite.dataResponse
         // Act
         let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("status_message", statusMessageToTest))
-        let decodedMarkAsFavoriteResult = try JSONDecoder().decode(MarkAsFavoriteResult.self, from: jsonDataToTest)
+        let decodedAddToWatchlistResult = try JSONDecoder().decode(AddToWatchlistResult.self, from: jsonDataToTest)
         // Assert
-        XCTAssertEqual(decodedMarkAsFavoriteResult.statusMessage, statusMessageToTest)
+        XCTAssertEqual(decodedAddToWatchlistResult.statusMessage, statusMessageToTest)
     }
 
 }
