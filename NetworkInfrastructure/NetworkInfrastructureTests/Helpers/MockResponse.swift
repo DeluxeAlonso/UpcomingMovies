@@ -12,6 +12,7 @@ enum MockResponse {
     case requestToken
     case markAsFavorite
     case addToWatchlist
+    case session
     
     var jsonString: String {
         switch self {
@@ -35,6 +36,13 @@ enum MockResponse {
                 {
                     "status_code": 12,
                     "status_message": "The item/record was updated successfully."
+                }
+                """
+        case .session:
+            return """
+                {
+                  "success": true,
+                  "session_id": "79191836ddaa0da3df76a5ffef6f07ad6ab0c641"
                 }
                 """
         }
