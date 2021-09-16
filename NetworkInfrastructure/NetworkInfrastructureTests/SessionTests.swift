@@ -6,27 +6,35 @@
 //
 
 import XCTest
+@testable import NetworkInfrastructure
 
 class SessionTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testMissingSuccessFromResponse() throws {
+        // Arrange
+        let dataResponse = MockResponse.session.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "success")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(SessionResult.self, from: jsonDataToTest))
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testMissingSessionIdFromDResponse() throws {
+        // Arrange
+        let dataResponse = MockResponse.session.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "session_id")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(SessionResult.self, from: jsonDataToTest))
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testMissingSuccessAndSessionIdFromResponse() throws {
+        // Arrange
+        let dataResponse = MockResponse.session.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "success", "session_id")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(SessionResult.self, from: jsonDataToTest))
     }
 
 }
