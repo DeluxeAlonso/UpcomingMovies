@@ -9,7 +9,7 @@
 struct SessionResult: Decodable {
     
     let success: Bool
-    let sessionId: String?
+    let sessionId: String
     
     private enum CodingKeys: String, CodingKey {
         case success

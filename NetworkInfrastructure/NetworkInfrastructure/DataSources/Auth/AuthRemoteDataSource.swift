@@ -55,7 +55,7 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
         authClient.createSessionId(with: accessToken) { result in
             switch result {
             case .success(let sessionResult):
-                guard let sessionId = sessionResult.sessionId else { return }
+                let sessionId = sessionResult.sessionId
                 self.getAccountDetails(sessionId, completion: completion)
             case .failure(let error):
                 completion(.failure(error))
