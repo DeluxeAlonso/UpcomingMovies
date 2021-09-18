@@ -37,4 +37,26 @@ class SessionTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(SessionResult.self, from: jsonDataToTest))
     }
 
+    func testSessionIdFromResponse() throws {
+        // Arrange
+        let sessionIdToTest = "sessionId"
+        let dataResponse = MockResponse.session.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("session_id", sessionIdToTest))
+        let decodedSessionResult = try JSONDecoder().decode(SessionResult.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedSessionResult.sessionId, sessionIdToTest)
+    }
+
+    func testSuccessFromResponse() throws {
+        // Arrange
+        let successToTest = true
+        let dataResponse = MockResponse.session.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("success", successToTest))
+        let decodedSessionResult = try JSONDecoder().decode(SessionResult.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedSessionResult.success, successToTest)
+    }
+
 }
