@@ -65,7 +65,7 @@ class VideosTests: XCTestCase {
         let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("key", keyToTest))
         let decodedVideo = try JSONDecoder().decode(Video.self, from: jsonDataToTest)
         // Assert
-        XCTAssertEqual(decodedVideo.id, keyToTest)
+        XCTAssertEqual(decodedVideo.key, keyToTest)
     }
 
     func testNameFromResponse() throws {
