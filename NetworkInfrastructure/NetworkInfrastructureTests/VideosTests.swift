@@ -6,27 +6,52 @@
 //
 
 import XCTest
+@testable import NetworkInfrastructure
 
 class VideosTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testIdFromResponse() throws {
+        // Arrange
+        let idToTest = "videoId"
+        let dataResponse = MockResponse.video.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("id", idToTest))
+        let decodedVideo = try JSONDecoder().decode(Video.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedVideo.id, idToTest)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testKeyFromResponse() throws {
+        // Arrange
+        let keyToTest = "videoKey"
+        let dataResponse = MockResponse.video.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("key", keyToTest))
+        let decodedVideo = try JSONDecoder().decode(Video.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedVideo.id, keyToTest)
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testNameFromResponse() throws {
+        // Arrange
+        let nameToTest = "videoName"
+        let dataResponse = MockResponse.video.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("name", nameToTest))
+        let decodedVideo = try JSONDecoder().decode(Video.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedVideo.name, nameToTest)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testSiteFromResponse() throws {
+        // Arrange
+        let siteToTest = "videoSite"
+        let dataResponse = MockResponse.video.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("site", siteToTest))
+        let decodedVideo = try JSONDecoder().decode(Video.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedVideo.site, siteToTest)
     }
 
 }

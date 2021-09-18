@@ -13,7 +13,7 @@ enum MockResponse {
     case markAsFavorite
     case addToWatchlist
     case session
-    case videos
+    case video
     
     var jsonString: String {
         switch self {
@@ -46,7 +46,7 @@ enum MockResponse {
                   "session_id": "79191836ddaa0da3df76a5ffef6f07ad6ab0c641"
                 }
                 """
-        case .videos:
+        case .video:
             return """
             {
                   "iso_639_1": "en",
