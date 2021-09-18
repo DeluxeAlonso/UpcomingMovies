@@ -13,6 +13,7 @@ enum MockResponse {
     case markAsFavorite
     case addToWatchlist
     case session
+    case video
     
     var jsonString: String {
         switch self {
@@ -45,6 +46,21 @@ enum MockResponse {
                   "session_id": "79191836ddaa0da3df76a5ffef6f07ad6ab0c641"
                 }
                 """
+        case .video:
+            return """
+            {
+                  "iso_639_1": "en",
+                  "iso_3166_1": "US",
+                  "name": "Fight Club - Theatrical Trailer Remastered in HD",
+                  "key": "6JnN1DmbqoU",
+                  "site": "YouTube",
+                  "size": 1080,
+                  "type": "Trailer",
+                  "official": false,
+                  "published_at": "2015-02-26T03:19:25.000Z",
+                  "id": "5e382d1b4ca676001453826d"
+            }
+            """
         }
     }
     
