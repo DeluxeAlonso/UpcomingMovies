@@ -10,6 +10,42 @@ import XCTest
 
 class VideosTests: XCTestCase {
 
+    func testMissingIdFromResponse() throws {
+        // Arrange
+        let dataResponse = MockResponse.video.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "id")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(Video.self, from: jsonDataToTest))
+    }
+
+    func testMissingKeyFromResponse() throws {
+        // Arrange
+        let dataResponse = MockResponse.video.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "key")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(Video.self, from: jsonDataToTest))
+    }
+
+    func testMissingNameFromResponse() throws {
+        // Arrange
+        let dataResponse = MockResponse.video.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "name")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(Video.self, from: jsonDataToTest))
+    }
+
+    func testMissingSiteFromResponse() throws {
+        // Arrange
+        let dataResponse = MockResponse.video.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "site")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(Video.self, from: jsonDataToTest))
+    }
+
     func testIdFromResponse() throws {
         // Arrange
         let idToTest = "videoId"
