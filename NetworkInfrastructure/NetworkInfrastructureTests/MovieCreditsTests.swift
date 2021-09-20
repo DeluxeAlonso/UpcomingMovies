@@ -52,24 +52,24 @@ class MovieCreditsTests: XCTestCase {
 
     func testCharacterFromCastResponse() throws {
         // Arrange
-        let idToTest = "castId"
+        let characterToTest = "Hero"
         let dataResponse = MockResponse.cast.dataResponse
         // Act
-        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("character", idToTest))
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("character", characterToTest))
         let decodedCast = try JSONDecoder().decode(Cast.self, from: jsonDataToTest)
         // Assert
-        XCTAssertEqual(decodedCast.character, idToTest)
+        XCTAssertEqual(decodedCast.character, characterToTest)
     }
 
     func testNameFromCastResponse() throws {
         // Arrange
-        let idToTest = "name"
+        let nameToTest = "name"
         let dataResponse = MockResponse.cast.dataResponse
         // Act
-        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("name", idToTest))
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("name", nameToTest))
         let decodedCast = try JSONDecoder().decode(Cast.self, from: jsonDataToTest)
         // Assert
-        XCTAssertEqual(decodedCast.name, idToTest)
+        XCTAssertEqual(decodedCast.name, nameToTest)
     }
 
     // MARK: - Crew tests
