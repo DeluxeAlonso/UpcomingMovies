@@ -28,15 +28,6 @@ class AddToWatchlistTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(AddToWatchlistResult.self, from: jsonDataToTest))
     }
 
-    func testMissingStatusCodeAndMessageFromResponse() throws {
-        // Arrange
-        let dataResponse = MockResponse.addToWatchlist.dataResponse
-        // Act
-        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "status_code", "status_message")
-        // Assert
-        XCTAssertThrowsError(try JSONDecoder().decode(AddToWatchlistResult.self, from: jsonDataToTest))
-    }
-
     func testStatusCodeFromResponse() throws {
         // Arrange
         let statusCodeToTest = 200

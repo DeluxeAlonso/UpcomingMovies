@@ -28,15 +28,6 @@ class RequestTokenTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(RequestTokenResult.self, from: jsonDataToTest))
     }
 
-    func testMissingSuccessAndTokenFromResponse() throws {
-        // Arrange
-        let dataResponse = MockResponse.requestToken.dataResponse
-        // Act
-        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "success", "request_token")
-        // Assert
-        XCTAssertThrowsError(try JSONDecoder().decode(AccessToken.self, from: jsonDataToTest))
-    }
-
     func testSuccessFromResponse() throws {
         // Arrange
         let successToTest = true

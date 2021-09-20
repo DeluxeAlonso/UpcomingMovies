@@ -14,6 +14,8 @@ enum MockResponse {
     case addToWatchlist
     case session
     case video
+    case cast
+    case crew
     
     var jsonString: String {
         switch self {
@@ -48,7 +50,7 @@ enum MockResponse {
                 """
         case .video:
             return """
-            {
+                {
                   "iso_639_1": "en",
                   "iso_3166_1": "US",
                   "name": "Fight Club - Theatrical Trailer Remastered in HD",
@@ -59,8 +61,41 @@ enum MockResponse {
                   "official": false,
                   "published_at": "2015-02-26T03:19:25.000Z",
                   "id": "5e382d1b4ca676001453826d"
-            }
-            """
+                }
+                """
+        case .cast:
+            return """
+                {
+                  "adult": false,
+                  "gender": 2,
+                  "id": 819,
+                  "known_for_department": "Acting",
+                  "name": "Edward Norton",
+                  "original_name": "Edward Norton",
+                  "popularity": 7.861,
+                  "profile_path": "/5XBzD5WuTyVQZeS4VI25z2moMeY.jpg",
+                  "cast_id": 4,
+                  "character": "The Narrator",
+                  "credit_id": "52fe4250c3a36847f80149f3",
+                  "order": 0
+                }
+                """
+        case .crew:
+            return """
+                {
+                  "adult": false,
+                  "gender": 2,
+                  "id": 376,
+                  "known_for_department": "Production",
+                  "name": "Arnon Milchan",
+                  "original_name": "Arnon Milchan",
+                  "popularity": 1.702,
+                  "profile_path": "/b2hBExX4NnczNAnLuTBF4kmNhZm.jpg",
+                  "credit_id": "55731b8192514111610027d7",
+                  "department": "Production",
+                  "job": "Executive Producer"
+                }
+                """
         }
     }
     
