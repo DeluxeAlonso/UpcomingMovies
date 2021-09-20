@@ -28,15 +28,6 @@ class SessionTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(SessionResult.self, from: jsonDataToTest))
     }
 
-    func testMissingSuccessAndSessionIdFromResponse() throws {
-        // Arrange
-        let dataResponse = MockResponse.session.dataResponse
-        // Act
-        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "success", "session_id")
-        // Assert
-        XCTAssertThrowsError(try JSONDecoder().decode(SessionResult.self, from: jsonDataToTest))
-    }
-
     func testSessionIdFromResponse() throws {
         // Arrange
         let sessionIdToTest = "sessionId"

@@ -28,15 +28,6 @@ class MarkAsFavoriteTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(MarkAsFavoriteResult.self, from: jsonDataToTest))
     }
 
-    func testMissingStatusCodeAndMessageFromResponse() throws {
-        // Arrange
-        let dataResponse = MockResponse.markAsFavorite.dataResponse
-        // Act
-        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "status_code", "status_message")
-        // Assert
-        XCTAssertThrowsError(try JSONDecoder().decode(MarkAsFavoriteResult.self, from: jsonDataToTest))
-    }
-
     func testStatusCodeFromResponse() throws {
         // Arrange
         let statusCodeToTest = 200
