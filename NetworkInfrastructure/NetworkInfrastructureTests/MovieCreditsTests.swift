@@ -6,27 +6,35 @@
 //
 
 import XCTest
+@testable import NetworkInfrastructure
 
 class MovieCreditsTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testMissingIdFromCastResponse() throws {
+        // Arrange
+        let dataResponse = MockResponse.cast.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "id")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(Cast.self, from: jsonDataToTest))
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testMissingCharacterFromCastResponse() throws {
+        // Arrange
+        let dataResponse = MockResponse.cast.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "character")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(Cast.self, from: jsonDataToTest))
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testMissingNameFromCastResponse() throws {
+        // Arrange
+        let dataResponse = MockResponse.cast.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "name")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(Cast.self, from: jsonDataToTest))
     }
 
 }
