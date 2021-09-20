@@ -39,6 +39,39 @@ class MovieCreditsTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(Cast.self, from: jsonDataToTest))
     }
 
+    func testIdFromCastResponse() throws {
+        // Arrange
+        let idToTest = 123456
+        let dataResponse = MockResponse.cast.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("id", idToTest))
+        let decodedCast = try JSONDecoder().decode(Cast.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedCast.id, idToTest)
+    }
+
+    func testCharacterFromCastResponse() throws {
+        // Arrange
+        let idToTest = "castId"
+        let dataResponse = MockResponse.cast.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("character", idToTest))
+        let decodedCast = try JSONDecoder().decode(Cast.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedCast.character, idToTest)
+    }
+
+    func testNameFromCastResponse() throws {
+        // Arrange
+        let idToTest = "name"
+        let dataResponse = MockResponse.cast.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("name", idToTest))
+        let decodedCast = try JSONDecoder().decode(Cast.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedCast.name, idToTest)
+    }
+
     // MARK: - Crew tests
 
     func testMissingIdFromCrewResponse() throws {
