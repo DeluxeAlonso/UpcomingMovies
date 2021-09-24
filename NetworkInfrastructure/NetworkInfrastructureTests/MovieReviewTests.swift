@@ -37,4 +37,37 @@ class MovieReviewTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(Review.self, from: jsonDataToTest))
     }
 
+    func testIdFromResponse() throws {
+        // Arrange
+        let idToTest = "reviewId"
+        let dataResponse = MockResponse.review.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("id", idToTest))
+        let decodedReview = try JSONDecoder().decode(Review.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedReview.id, idToTest)
+    }
+
+    func testAuthoerFromResponse() throws {
+        // Arrange
+        let authorToTest = "authoer"
+        let dataResponse = MockResponse.review.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("author", authorToTest))
+        let decodedReview = try JSONDecoder().decode(Review.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedReview.authorName, authorToTest)
+    }
+
+    func testContentFromResponse() throws {
+        // Arrange
+        let contentToTest = "content"
+        let dataResponse = MockResponse.review.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("content", contentToTest))
+        let decodedReview = try JSONDecoder().decode(Review.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedReview.content, contentToTest)
+    }
+
 }
