@@ -1,32 +1,31 @@
 //
 //  MovieGenreTests.swift
-//  NetworkInfrastructure-Unit-NetworkInfrastructureTests
+//  NetworkInfrastructure
 //
 //  Created by Alonso on 25/09/21.
 //
 
 import XCTest
+@testable import NetworkInfrastructure
 
 class MovieGenreTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testMissingIdFromResponse() throws {
+        // Arrange
+        let dataResponse = MockResponse.genre.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "id")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(Genre.self, from: jsonDataToTest))
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testMissingNameFromResponse() throws {
+        // Arrange
+        let dataResponse = MockResponse.genre.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "name")
+        // Assert
+        XCTAssertThrowsError(try JSONDecoder().decode(Genre.self, from: jsonDataToTest))
     }
 
 }

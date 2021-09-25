@@ -1,6 +1,6 @@
 //
 //  MovieReviewTests.swift
-//  NetworkInfrastructure-Unit-NetworkInfrastructureTests
+//  NetworkInfrastructure
 //
 //  Created by Alonso on 24/09/21.
 //
