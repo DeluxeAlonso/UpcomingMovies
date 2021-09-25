@@ -17,6 +17,7 @@ enum MockResponse {
     case cast
     case crew
     case review
+    case genre
     
     var jsonString: String {
         switch self {
@@ -112,6 +113,13 @@ enum MockResponse {
                   "id": "58a231c5925141179e000674",
                   "updated_at": "2017-02-13T23:16:19.538Z",
                   "url": "https://www.themoviedb.org/review/58a231c5925141179e000674"
+                }
+                """
+        case .genre:
+            return """
+                {
+                  "id": 12345,
+                  "name": "Adventure"
                 }
                 """
         }
