@@ -1,6 +1,6 @@
 //
 //  MovieReviewTests.swift
-//  NetworkInfrastructure-Unit-NetworkInfrastructureTests
+//  NetworkInfrastructure
 //
 //  Created by Alonso on 24/09/21.
 //
@@ -48,7 +48,7 @@ class MovieReviewTests: XCTestCase {
         XCTAssertEqual(decodedReview.id, idToTest)
     }
 
-    func testAuthoerFromResponse() throws {
+    func testAuthorFromResponse() throws {
         // Arrange
         let authorToTest = "authoer"
         let dataResponse = MockResponse.review.dataResponse
