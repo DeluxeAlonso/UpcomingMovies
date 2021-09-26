@@ -28,4 +28,26 @@ class MovieGenreTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(Genre.self, from: jsonDataToTest))
     }
 
+    func testIdFromResponse() throws {
+        // Arrange
+        let idToTest = 123456
+        let dataResponse = MockResponse.genre.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("id", idToTest))
+        let decodedGenre = try JSONDecoder().decode(Genre.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedGenre.id, idToTest)
+    }
+
+    func testNameFromResponse() throws {
+        // Arrange
+        let nameToTest = "name"
+        let dataResponse = MockResponse.genre.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("name", nameToTest))
+        let decodedGenre = try JSONDecoder().decode(Genre.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedGenre.name, nameToTest)
+    }
+
 }
