@@ -12,6 +12,7 @@ enum MockResponse {
     case requestToken
     case markAsFavorite
     case addToWatchlist
+    case rateMovie
     case session
     case video
     case cast
@@ -36,7 +37,7 @@ enum MockResponse {
                   "request_token": "ff5c7eeb5a8870efe3cd7fc5c282cffd26800ecd"
                 }
                 """
-        case .markAsFavorite, .addToWatchlist:
+        case .markAsFavorite, .addToWatchlist, .rateMovie:
             return """
                 {
                     "status_code": 12,
