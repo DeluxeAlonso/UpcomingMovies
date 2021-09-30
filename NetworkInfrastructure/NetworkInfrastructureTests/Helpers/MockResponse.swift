@@ -19,6 +19,7 @@ enum MockResponse {
     case crew
     case review
     case genre
+    case imageConfiguration
     
     var jsonString: String {
         switch self {
@@ -121,6 +122,28 @@ enum MockResponse {
                 {
                   "id": 12345,
                   "name": "Adventure"
+                }
+                """
+        case .imageConfiguration:
+            return """
+                {
+                  "base_url": "http://image.tmdb.org/t/p/",
+                  "secure_base_url": "https://image.tmdb.org/t/p/",
+                  "backdrop_sizes": [
+                  "w300",
+                  "w780",
+                  "w1280",
+                  "original"
+                  ],
+                  "poster_sizes": [
+                  "w92",
+                  "w154",
+                  "w185",
+                  "w342",
+                  "w500",
+                  "w780",
+                  "original"
+                  ]
                 }
                 """
         }

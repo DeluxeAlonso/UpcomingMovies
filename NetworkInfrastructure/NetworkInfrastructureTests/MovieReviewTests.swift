@@ -50,7 +50,7 @@ class MovieReviewTests: XCTestCase {
 
     func testAuthorFromResponse() throws {
         // Arrange
-        let authorToTest = "authoer"
+        let authorToTest = "author"
         let dataResponse = MockResponse.review.dataResponse
         // Act
         let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("author", authorToTest))
