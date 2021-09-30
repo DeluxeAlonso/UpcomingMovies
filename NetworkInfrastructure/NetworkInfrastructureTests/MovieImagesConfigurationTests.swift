@@ -37,4 +37,15 @@ class MovieImagesConfigurationTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(ImagesConfiguration.self, from: jsonDataToTest))
     }
 
+    func testBaseURLStringFromResponse() throws {
+        // Arrange
+        let urlToTest = "urlTest"
+        let dataResponse = MockResponse.imageConfiguration.dataResponse
+        // Act
+        let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("secure_base_url", urlToTest))
+        let decodedImageConfiguration = try JSONDecoder().decode(ImagesConfiguration.self, from: jsonDataToTest)
+        // Assert
+        XCTAssertEqual(decodedImageConfiguration.baseURLString, urlToTest)
+    }
+
 }
