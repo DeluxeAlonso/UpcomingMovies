@@ -9,7 +9,7 @@ import XCTest
 @testable import NetworkInfrastructure
 
 class MovieImagesConfigurationTests: XCTestCase {
-
+    
     func testMissingBaseURLStringFromResponse() throws {
         // Arrange
         let dataResponse = MockResponse.imageConfiguration.dataResponse
@@ -18,7 +18,7 @@ class MovieImagesConfigurationTests: XCTestCase {
         // Assert
         XCTAssertThrowsError(try JSONDecoder().decode(ImagesConfiguration.self, from: jsonDataToTest))
     }
-
+    
     func testMissingBackdropSizesFromResponse() throws {
         // Arrange
         let dataResponse = MockResponse.imageConfiguration.dataResponse
@@ -27,7 +27,7 @@ class MovieImagesConfigurationTests: XCTestCase {
         // Assert
         XCTAssertThrowsError(try JSONDecoder().decode(ImagesConfiguration.self, from: jsonDataToTest))
     }
-
+    
     func testMissingPosterSizesFromResponse() throws {
         // Arrange
         let dataResponse = MockResponse.imageConfiguration.dataResponse
@@ -36,7 +36,7 @@ class MovieImagesConfigurationTests: XCTestCase {
         // Assert
         XCTAssertThrowsError(try JSONDecoder().decode(ImagesConfiguration.self, from: jsonDataToTest))
     }
-
+    
     func testBaseURLStringFromResponse() throws {
         // Arrange
         let urlToTest = "urlTest"
@@ -47,5 +47,5 @@ class MovieImagesConfigurationTests: XCTestCase {
         // Assert
         XCTAssertEqual(decodedImageConfiguration.baseURLString, urlToTest)
     }
-
+    
 }
