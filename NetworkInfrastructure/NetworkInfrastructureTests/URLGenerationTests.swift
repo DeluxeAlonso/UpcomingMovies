@@ -10,7 +10,7 @@ import XCTest
 @testable import NetworkInfrastructure
 
 class URLGenerationTests: XCTestCase {
-
+    
     func testURLRequestSetJsonContentType() {
         // Arrange
         var urlRequest = URLRequest(url: URL(string: "https://api.themoviedb.org")!)
@@ -57,5 +57,5 @@ class URLGenerationTests: XCTestCase {
         // Assert
         XCTAssertTrue(possibleEscapedParameters.contains(percentEscapedParameters))
     }
-
+    
 }
