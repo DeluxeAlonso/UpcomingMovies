@@ -19,14 +19,14 @@ protocol APIClient {
 
 extension APIClient {
     
-    typealias JSONTaskCompletionHandler = (Decodable?, APIError?) -> Void
+    typealias JSONTaskCompletionHandler = (Result<Decodable, APIError>) -> Void
     
     private func decodingTask<T: Decodable>(with request: URLRequest,
                                             decodingType: T.Type,
-                                            completionHandler completion: JSONTaskCompletionHandler?) -> URLSessionDataTask {
+                                            completion: @escaping JSONTaskCompletionHandler) -> URLSessionDataTask {
         let task = session.dataTask(with: request) { data, response, _ in
             guard let httpResponse = response as? HTTPURLResponse else {
-                completion?(nil, .requestFailed)
+                completion(.failure(.requestFailed))
                 return
             }
             if 200..<300 ~= httpResponse.statusCode {
@@ -34,15 +34,15 @@ extension APIClient {
                     do {
                         let decoder = JSONDecoder()
                         let genericModel = try decoder.decode(decodingType, from: data)
-                        completion?(genericModel, nil)
+                        completion(.success(genericModel))
                     } catch {
-                        completion?(nil, .requestFailed)
+                        completion(.failure(.requestFailed))
                     }
                 } else {
-                    completion?(nil, .invalidData)
+                    completion(.failure(.invalidData))
                 }
             } else {
-                completion?(nil, APIError(response: httpResponse))
+                completion(.failure(APIError(response: httpResponse)))
             }
         }
         return task
@@ -51,20 +51,17 @@ extension APIClient {
     func fetch<T: Decodable>(with request: URLRequest,
                              decode: @escaping (Decodable) -> T?,
                              completion: @escaping (Result<T, APIError>) -> Void) {
-        let task = decodingTask(with: request, decodingType: T.self) { (json, error) in
+        let task = decodingTask(with: request, decodingType: T.self) { result in
             DispatchQueue.main.async {
-                guard let json = json else {
-                    if let error = error {
-                        completion(Result.failure(error))
+                switch result {
+                case .success(let json):
+                    if let value = decode(json) {
+                        completion(.success(value))
                     } else {
-                        completion(Result.failure(.requestFailed))
+                        completion(.failure(.requestFailed))
                     }
-                    return
-                }
-                if let value = decode(json) {
-                    completion(.success(value))
-                } else {
-                    completion(.failure(.requestFailed))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
             }
         }
