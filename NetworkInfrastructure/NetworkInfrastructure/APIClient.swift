@@ -29,7 +29,7 @@ extension APIClient {
                 completion?(nil, .requestFailed)
                 return
             }
-            if httpResponse.statusCode == 200 || httpResponse.statusCode == 201 {
+            if 200..<300 ~= httpResponse.statusCode {
                 if let data = data {
                     do {
                         let decoder = JSONDecoder()
