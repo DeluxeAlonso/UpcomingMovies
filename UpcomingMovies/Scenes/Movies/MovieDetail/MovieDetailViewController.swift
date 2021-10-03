@@ -24,7 +24,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     static var storyboardName: String = "MovieDetail"
     
     private lazy var moreBarButtonItem: UIBarButtonItem = {
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(moreBarButtonAction(_:)))
+        let barButtonItem = UIBarButtonItem(image: .init(named: "Ellipsis"), style: .plain, target: self, action: #selector(moreBarButtonAction(_:)))
         return barButtonItem
     }()
 
