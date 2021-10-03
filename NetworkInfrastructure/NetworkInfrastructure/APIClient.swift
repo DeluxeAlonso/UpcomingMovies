@@ -29,20 +29,20 @@ extension APIClient {
                 completion(.failure(.requestFailed))
                 return
             }
-            if 200..<300 ~= httpResponse.statusCode {
-                if let data = data {
-                    do {
-                        let decoder = JSONDecoder()
-                        let genericModel = try decoder.decode(decodingType, from: data)
-                        completion(.success(genericModel))
-                    } catch {
-                        completion(.failure(.requestFailed))
-                    }
-                } else {
-                    completion(.failure(.invalidData))
-                }
-            } else {
+            guard 200..<300 ~= httpResponse.statusCode else {
                 completion(.failure(APIError(response: httpResponse)))
+                return
+            }
+            guard let data = data else {
+                completion(.failure(.invalidData))
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                let genericModel = try decoder.decode(decodingType, from: data)
+                completion(.success(genericModel))
+            } catch {
+                completion(.failure(.requestFailed))
             }
         }
         return task
