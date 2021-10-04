@@ -82,6 +82,8 @@ enum LocalizedStrings: String, Localizable {
     case ratingHint
 
     case cancel
+
+    case shareMovieActionSheetItemTitle
     
     var tableName: String {
         return "Localizable"

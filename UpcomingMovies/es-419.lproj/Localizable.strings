@@ -63,3 +63,5 @@
 "ratingHint" = "Calificación de %.1f";
 
 "cancel" = "Cancelar";
+
+"shareMovieActionSheetItemTitle" = "Compartir película";
