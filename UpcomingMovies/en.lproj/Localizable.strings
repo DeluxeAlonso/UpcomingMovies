@@ -63,3 +63,5 @@
 "ratingHint" = "Rating of %.1f";
 
 "cancel" = "Cancel";
+
+"shareMovieActionSheetItemTitle" = "Share this movie!";

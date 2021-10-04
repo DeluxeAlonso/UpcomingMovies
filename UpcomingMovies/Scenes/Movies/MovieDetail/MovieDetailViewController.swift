@@ -23,11 +23,14 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     static var storyboardName: String = "MovieDetail"
     
-    private lazy var shareBarButtonItem: UIBarButtonItem = {
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareBarButtonAction(_:)))
+    private lazy var moreBarButtonItem: UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(image: UIImage(named: "Ellipsis"),
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(moreBarButtonAction(_:)))
         return barButtonItem
     }()
-    
+
     private lazy var favoriteBarButtonItem: FavoriteToggleBarButtonItem = {
         let barButtonItem = FavoriteToggleBarButtonItem()
         barButtonItem.target = self
@@ -38,6 +41,10 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
 
     var viewModel: MovieDetailViewModelProtocol?
     weak var coordinator: MovieDetailCoordinatorProtocol?
+
+    deinit {
+        print("MovieDetailViewController")
+    }
 
     // MARK: - LoadingDisplayable
 
@@ -73,7 +80,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     private func setupNavigationBar() {
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
-        navigationItem.rightBarButtonItems = [shareBarButtonItem]
+        navigationItem.rightBarButtonItems = [moreBarButtonItem]
     }
     
     private func showErrorView(error: Error) {
@@ -144,7 +151,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         viewModel?.isFavorite.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
             strongSelf.favoriteBarButtonItem.toggle(to: isFavorite.intValue)
-            strongSelf.navigationItem.rightBarButtonItems = [strongSelf.shareBarButtonItem, strongSelf.favoriteBarButtonItem]
+            strongSelf.navigationItem.rightBarButtonItems = [strongSelf.moreBarButtonItem, strongSelf.favoriteBarButtonItem]
         })
         viewModel?.didUpdateFavoriteSuccess.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
@@ -157,7 +164,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         })
         viewModel?.shouldHideFavoriteButton = { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.navigationItem.rightBarButtonItems = [strongSelf.shareBarButtonItem]
+            strongSelf.navigationItem.rightBarButtonItems = [strongSelf.moreBarButtonItem]
         }
     }
     
@@ -171,7 +178,15 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     
     // MARK: - Actions
     
-    @IBAction private func shareBarButtonAction(_ sender: Any) {
+    @IBAction private func moreBarButtonAction(_ sender: Any) {
+        guard let movieTitle = viewModel?.title else { return }
+        let shareAction = UIAlertAction(title: "Share this movie!", style: .default) { _ in
+            self.shareMovie()
+        }
+        showSimpleActionSheet(title: movieTitle, message: nil, action: shareAction)
+    }
+
+    private func shareMovie() {
         guard let movieTitle = viewModel?.title else { return }
         let shareText = String(format: LocalizedStrings.movieDetailShareText(), movieTitle)
         coordinator?.showSharingOptions(withShareTitle: shareText)

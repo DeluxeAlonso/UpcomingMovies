@@ -20,7 +20,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     private(set) var startLoading: Bindable<Bool> = Bindable(false)
     private(set) var isFavorite: Bindable<Bool> = Bindable(false)
-    private(set) var favoriteState: Bindable<MovieDetailFavoriteState> = Bindable(.unknown)
+    private(set) var isInWatchlist: Bindable<Bool> = Bindable(false)
+
     private(set) var showErrorView: Bindable<Error?> = Bindable(nil)
     private(set) var showGenreName: Bindable<String> = Bindable("-")
     private(set) var showMovieOptions: Bindable<[MovieDetailOption]> = Bindable([])
@@ -172,7 +173,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             }
         })
     }
-    
+
 }
 
 // MARK: - MovieDetailFavoriteState
@@ -182,6 +183,18 @@ extension MovieDetailViewModel {
     enum MovieDetailFavoriteState {
 
         case favorite, nonFavorite, unknown
+
+    }
+
+}
+
+// MARK: - MovieDetailWatchlistState
+
+extension MovieDetailViewModel {
+
+    enum MovieDetailWatchlistState {
+
+        case added, notAdded, unknown
 
     }
 
