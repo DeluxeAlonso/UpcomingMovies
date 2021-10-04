@@ -180,15 +180,13 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         let shareAction = UIAlertAction(title: "Share this movie!", style: .default) { _ in
             self.shareMovie()
         }
-        showSimpleActionSheet(title: movieTitle,
-                              message: nil, action: shareAction)
+        showSimpleActionSheet(title: movieTitle, message: nil, action: shareAction)
     }
 
     private func shareMovie() {
         guard let movieTitle = viewModel?.title else { return }
         let shareText = String(format: LocalizedStrings.movieDetailShareText(), movieTitle)
         coordinator?.showSharingOptions(withShareTitle: shareText)
-
     }
     
     @IBAction private func favoriteButtonAction(_ sender: Any) {
