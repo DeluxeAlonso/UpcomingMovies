@@ -10,6 +10,9 @@ jobs:
   lint:
     runs-on: macos-latest
     steps:
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '12.4'
     - uses: actions/checkout@v2
     - name: Install Bundle
       run: bundle install
@@ -22,6 +25,9 @@ jobs:
     needs: lint
     runs-on: macos-latest
     steps:
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '12.4'
     - uses: actions/checkout@v2
     - name: Install Bundle
       run: bundle install
