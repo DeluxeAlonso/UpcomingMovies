@@ -10,10 +10,10 @@ import UIKit
 
 final class UpcomingMovieExpandedCollectionViewCell: UICollectionViewCell, UpcomingMovieCollectionViewCellProtocol {
     
-    @IBOutlet weak var backdropImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var releaseDateLabel: UILabel!
-    @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet private weak var backdropImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var releaseDateLabel: UILabel!
+    @IBOutlet private(set) weak var posterImageView: UIImageView!
     
     var viewModel: UpcomingMovieCellViewModelProtocol? {
         didSet {
@@ -25,10 +25,10 @@ final class UpcomingMovieExpandedCollectionViewCell: UICollectionViewCell, Upcom
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        backdropImageView.cancelImageDownload()
+        posterImageView.cancelImageDownload()
         backdropImageView.image = nil
         posterImageView.image = nil
-        titleLabel.text = nil
-        releaseDateLabel.text = nil
     }
     
     override func awakeFromNib() {
@@ -45,7 +45,7 @@ final class UpcomingMovieExpandedCollectionViewCell: UICollectionViewCell, Upcom
         releaseDateLabel.font = FontHelper.regular(withSize: 17.0)
     }
 
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

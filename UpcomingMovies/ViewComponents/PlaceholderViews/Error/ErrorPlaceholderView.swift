@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ErrorPlaceholderViewDelegate: class {
+protocol ErrorPlaceholderViewDelegate: AnyObject {
     
     func errorPlaceholderView(_ errorPlaceholderView: ErrorPlaceholderView, didRetry sender: UIButton)
     
@@ -16,9 +16,9 @@ protocol ErrorPlaceholderViewDelegate: class {
 
 class ErrorPlaceholderView: UIView, NibLoadable, RetryPlaceHolderable {
     
-    @IBOutlet weak var errorTitleLabel: UILabel!
-    @IBOutlet weak var errorDetailLabel: UILabel!
-    @IBOutlet weak var retryButton: ShrinkingButton!
+    @IBOutlet private weak var errorTitleLabel: UILabel!
+    @IBOutlet private weak var errorDetailLabel: UILabel!
+    @IBOutlet private weak var retryButton: ShrinkingButton!
     
     var isPresented: Bool = false
     var retry: (() -> Void)?
@@ -50,13 +50,13 @@ class ErrorPlaceholderView: UIView, NibLoadable, RetryPlaceHolderable {
     
     private func setupErrorTitleLabel() {
         errorTitleLabel.text = Constants.errorTitle
-        errorTitleLabel.textColor = ColorPalette.darkGray
+        errorTitleLabel.textColor = ColorPalette.darkGrayColor
         errorTitleLabel.font = FontHelper.regular(withSize: 24.0)
     }
     
     private func setupErrorDetailLabel() {
         errorDetailLabel.text = Constants.errorDetail
-        errorDetailLabel.textColor = ColorPalette.lightGray
+        errorDetailLabel.textColor = ColorPalette.lightGrayColor
         errorDetailLabel.font = FontHelper.light(withSize: 15.0)
     }
     

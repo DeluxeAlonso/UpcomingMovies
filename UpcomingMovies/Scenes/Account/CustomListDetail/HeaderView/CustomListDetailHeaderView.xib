@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,13 +15,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5H8-fK-RG1">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="216.5"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="200" id="pYX-2B-HY2"/>
+                        <constraint firstAttribute="height" priority="999" constant="200" id="pYX-2B-HY2"/>
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="fRO-iW-9EL">
-                    <rect key="frame" x="0.0" y="200" width="414" height="97"/>
+                    <rect key="frame" x="0.0" y="216.5" width="414" height="80.5"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j93-7Z-hy9" userLabel="Name View">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="36.5"/>
@@ -41,10 +42,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDl-vg-Mae" userLabel="Description View">
-                            <rect key="frame" x="0.0" y="36.5" width="414" height="60.5"/>
+                            <rect key="frame" x="0.0" y="36.5" width="414" height="44"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="List Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bN4-Xi-8GE" userLabel="Description Label">
-                                    <rect key="frame" x="16" y="28" width="382" height="20.5"/>
+                                    <rect key="frame" x="16" y="11.5" width="382" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -61,7 +62,7 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="5H8-fK-RG1" secondAttribute="trailing" id="2yU-2t-vzv"/>
                 <constraint firstItem="fRO-iW-9EL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3SJ-Wr-b04"/>
@@ -83,4 +84,9 @@
             <point key="canvasLocation" x="131.8840579710145" y="-4.3526785714285712"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

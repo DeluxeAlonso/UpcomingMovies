@@ -6,19 +6,21 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
 import UpcomingMoviesDomain
 
-final class MovieReviewsViewModel: MovieReviewsViewModelProtocol {
-    
-    private var movieId: Int
-    var movieTitle: String
-    
+final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStateProcessable {
+
+    // MARK: - Dependencies
+
+    private let movieId: Int
     private let interactor: MovieReviewsInteractorProtocol
+
+    // MARK: - Reactive properties
     
-    let viewState: Bindable<SimpleViewState<Review>> = Bindable(.initial)
-    
-    var startLoading: Bindable<Bool> = Bindable(false)
+    private(set) var viewState: Bindable<SimpleViewState<Review>> = Bindable(.initial)
+    private(set) var startLoading: Bindable<Bool> = Bindable(false)
+
+    // MARK: - Computed properties
     
     private var reviews: [Review] {
         return viewState.value.currentEntities
@@ -32,24 +34,27 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol {
     var needsPrefetch: Bool {
         return viewState.value.needsPrefetch
     }
+
+    // MARK: - Stored properties
+
+    var movieTitle: String
     
     // MARK: - Initializers
     
-    init(movieId: Int, movieTitle: String, interactor: MovieReviewsInteractorProtocol) {
+    init(movieId: Int, movieTitle: String,
+         interactor: MovieReviewsInteractorProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
         
         self.interactor = interactor
     }
     
-    // MARK: - Public
+    // MARK: - MovieReviewsViewModelProtocol
     
     func selectedReview(at index: Int) -> Review {
         return reviews[index]
     }
-    
-    // MARK: - Networking
-    
+
     func getMovieReviews() {
         let showLoader = viewState.value.isInitialPage
         fetchMovieReviews(currentPage: viewState.value.currentPage, showLoader: showLoader)
@@ -58,6 +63,8 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol {
     func refreshMovieReviews() {
         fetchMovieReviews(currentPage: 1, showLoader: false)
     }
+
+    // MARK: - Private
     
     private func fetchMovieReviews(currentPage: Int, showLoader: Bool = false) {
         startLoading.value = showLoader
@@ -67,20 +74,11 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol {
             case .success(let reviews):
                 self.viewState.value = self.processResult(reviews,
                                                           currentPage: currentPage,
-                                                          currentReviews: self.reviews)
+                                                          currentEntities: self.reviews)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
         })
-    }
-    
-    private func processResult(_ reviews: [Review], currentPage: Int,
-                               currentReviews: [Review]) -> SimpleViewState<Review> {
-        var allReviews = currentPage == 1 ? [] : currentReviews
-        allReviews.append(contentsOf: reviews)
-        guard !allReviews.isEmpty else { return .empty }
-        
-        return reviews.isEmpty ? .populated(allReviews) : .paging(allReviews, next: currentPage + 1)
     }
     
 }

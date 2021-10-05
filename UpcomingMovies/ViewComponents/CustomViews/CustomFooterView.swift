@@ -12,7 +12,7 @@ class CustomFooterView: UIView {
     
     static let recommendedFrame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100)
     
-    fileprivate lazy var messageLabel: UILabel = {
+    private lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = FontHelper.Default.mediumLight
@@ -23,7 +23,7 @@ class CustomFooterView: UIView {
         return label
     }()
     
-    // MARK: - Public
+    // MARK: - Internal
     
     var message: String? {
         didSet {
@@ -45,7 +45,7 @@ class CustomFooterView: UIView {
     
     // MARK: - Private
     
-    fileprivate func setupUI() {
+    private func setupUI() {
         addSubview(messageLabel)
         messageLabel.fillSuperview(padding: .init(top: 0, left: Constants.horizontalMargin,
                                                   bottom: 0, right: Constants.horizontalMargin))

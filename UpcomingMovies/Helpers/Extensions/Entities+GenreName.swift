@@ -6,13 +6,12 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import Foundation
 import UpcomingMoviesDomain
 
 protocol GenreNameable {
     
     var genreId: Int? { get }
-    var genreName: String? { get }
+    var genreName: String { get }
     
 }
 
@@ -22,7 +21,7 @@ extension GenreNameable {
         DIContainer.shared.resolve()
     }
     
-    var genreName: String? {
+    var genreName: String {
         guard let genreId = genreId,
               let genreName = genreHandler.getGenreName(for: genreId) else {
             return "-"

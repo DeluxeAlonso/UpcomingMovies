@@ -31,10 +31,7 @@ struct ColorPalette {
     static let grayColor = UIColor(withIntRed: 130, green: 130, blue: 130, alpha: 1)
     static let whiteColor = UIColor(white: 249 / 255, alpha: 1)
     static let blackColor = UIColor(white: 40 / 255, alpha: 1)
-    
-    static let darkGray = UIColor.darkGray
-    static let lightGray = UIColor.lightGray
-    static let lighterGray = UIColor(withIntRed: 223, green: 223, blue: 223, alpha: 1)
+    static let darkGrayColor = UIColor.darkGray
 
     static var defaultBackgroundColor: UIColor {
         if #available(iOS 13.0, *) {

@@ -10,7 +10,7 @@ import UIKit
 
 class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     static var storyboardName = "MovieDetail"
     
@@ -64,7 +64,7 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
         case .populated, .initial:
             hideDisplayedPlaceholderView()
         case .empty:
-            presentEmptyView(with: LocalizedStrings.emptyCreditReults.localized)
+            presentEmptyView(with: LocalizedStrings.emptyCreditReults())
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
@@ -81,7 +81,7 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
         collectionView.reloadData()
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

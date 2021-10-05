@@ -11,39 +11,59 @@ import UpcomingMoviesDomain
 
 protocol MovieDetailViewModelProtocol {
     
-    var id: Int! { get set }
-    var title: String! { get set }
-    var genre: String? { get set }
-    var releaseDate: String? { get set }
-    var overview: String? { get set }
-    var voteAverage: Double? { get set }
-    var posterURL: URL? { get set }
-    var backdropURL: URL? { get set }
-    
-    var options: [MovieDetailOption] { get }
-    
-    var updateMovieDetail: (() -> Void)? { get set }
-    var needsFetch: Bool { get set }
+    var id: Int! { get }
+    var title: String! { get }
+    var releaseDate: String? { get }
+    var overview: String? { get }
+    var voteAverage: Double? { get }
+    var posterURL: URL? { get }
+    var backdropURL: URL? { get }
+
+    var needsFetch: Bool { get }
     
     var startLoading: Bindable<Bool> { get }
-    var isFavorite: Bindable<Bool?> { get }
+    var isFavorite: Bindable<Bool> { get }
     var showErrorView: Bindable<Error?> { get }
     var showGenreName: Bindable<String> { get }
-    
-    func getMovieDetail()
-    func refreshMovieDetail()
-    
+    var showMovieOptions: Bindable<[MovieDetailOption]> { get }
+    var didUpdateMovieDetail: Bindable<Bool> { get }
+    var didUpdateFavoriteSuccess: Bindable<Bool> { get }
+    var didUpdateFavoriteFailure: Bindable<Error?> { get }
+
+    var shouldHideFavoriteButton: (() -> Void)? { get set }
+
+    /**
+     * Retrieves movie detail information.
+     * - Parameters:
+     *      - showLoader: Indicates if loader should be triggered or not.
+     */
+    func getMovieDetail(showLoader: Bool)
+
+    /**
+     * Saves currently presented movie detail as a visited movie.
+     */
     func saveVisitedMovie()
-    func checkIfUserIsAuthenticated()
+
+    /**
+     * Checks if a movie is marked as favorite or not.
+     * - Parameters:
+     *      - showLoader: Indicates if loader should be triggered or not.
+     */
+    func checkIfMovieIsFavorite(showLoader: Bool)
+
+    /**
+     * Marks a movie as a favorite or non-favorite given the current favorite state of the presented movie.
+     */
     func handleFavoriteMovie()
     
 }
 
 protocol MovieDetailInteractorProtocol {
-    
+
     func isUserSignedIn() -> Bool
-    
+
     func findGenre(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void)
+
     func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void)
     
     func markMovieAsFavorite(movieId: Int, favorite: Bool, completion: @escaping (Result<Bool, Error>) -> Void)
@@ -59,11 +79,9 @@ protocol MovieDetailFactoryProtocol {
     
 }
 
-protocol MovieDetailCoordinatorProtocol: class {
-    
-    func showMovieVideos()
-    func showMovieCredits()
-    func showMovieReviews()
-    func showSimilarMovies()
+protocol MovieDetailCoordinatorProtocol: AnyObject {
+
+    func showMovieOption(_ option: MovieDetailOption)
+    func showSharingOptions(withShareTitle title: String)
     
 }

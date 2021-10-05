@@ -1,5 +1,5 @@
 //
-//  ViewState.swift
+//  SimpleViewState.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 2/13/19.

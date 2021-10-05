@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
     static var storyboardName = "MovieDetail"
     
@@ -76,7 +76,7 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
         }
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         title = viewModel?.movieTitle

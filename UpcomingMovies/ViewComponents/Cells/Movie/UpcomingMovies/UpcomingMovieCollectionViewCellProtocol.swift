@@ -10,7 +10,7 @@ import UIKit
 
 protocol UpcomingMovieCollectionViewCellProtocol {
     
-    var posterImageView: UIImageView! { get set }
+    var posterImageView: UIImageView! { get }
     var viewModel: UpcomingMovieCellViewModelProtocol? { get set }
     
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol RecentlyVisitedMoviesTableViewCellDelegate: class {
+protocol RecentlyVisitedMoviesTableViewCellDelegate: AnyObject {
     
     func recentlyVisitedMoviesTableViewCell(_ recentlyVisitedMoviesTableViewCell: RecentlyVisitedMoviesTableViewCell,
                                             didSelectMovieAt indexPath: IndexPath)
@@ -17,7 +17,7 @@ protocol RecentlyVisitedMoviesTableViewCellDelegate: class {
 
 final class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     weak var delegate: RecentlyVisitedMoviesTableViewCellDelegate?
     
@@ -47,7 +47,7 @@ final class RecentlyVisitedMoviesTableViewCell: UITableViewCell {
         collectionView.registerNib(cellType: VisitedMovieCollectionViewCell.self)
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         collectionView.reloadData()

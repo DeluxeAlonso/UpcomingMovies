@@ -17,6 +17,7 @@ final class MovieListAssembly: Assembly {
         topRatedMoviesAssemble(container: container)
         similarMoviesAssemble(container: container)
         moviesByGenreAssemble(container: container)
+        recommendedMoviesAssemble(container: container)
     }
     
     private func popularMoviesAssemble(container: Container) {
@@ -83,6 +84,23 @@ final class MovieListAssembly: Assembly {
             let viewModel = MovieListViewModel(interactor: interactor!)
             viewModel.displayTitle = genreName
             
+            return viewModel
+        }
+    }
+
+    private func recommendedMoviesAssemble(container: Container) {
+        container.register(MoviesInteractorProtocol.self, name: "RecommendedMovies") { resolver in
+            let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
+            return RecommendedMoviesInteractor(useCaseProvider: useCaseProvider!)
+        }
+        
+        container.register(MovieListViewModelProtocol.self, name: "RecommendedMovies") { (resolver, displayTitle: String) in
+            let interactor = resolver.resolve(MoviesInteractorProtocol.self,
+                                              name: "RecommendedMovies")
+
+            let viewModel = MovieListViewModel(interactor: interactor!)
+            viewModel.displayTitle = displayTitle
+
             return viewModel
         }
     }

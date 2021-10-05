@@ -75,4 +75,24 @@ class MovieReviewsTests: XCTestCase {
         XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
     }
 
+    func testMovieReviewCellAuthorName() {
+        // Arrange
+        let reviewAuthorNametoTest = "Alonso"
+        let cellViewModel = MovieReviewCellViewModel(Review.with(authorName: reviewAuthorNametoTest))
+        // Act
+        let authorName = cellViewModel.authorName
+        // Assert
+        XCTAssertEqual(authorName, reviewAuthorNametoTest)
+    }
+
+    func testMovieReviewCellContent() {
+        // Arrange
+        let reviewContenttoTest = "Review content"
+        let cellViewModel = MovieReviewCellViewModel(Review.with(content: reviewContenttoTest))
+        // Act
+        let content = cellViewModel.content
+        // Assert
+        XCTAssertEqual(content, reviewContenttoTest)
+    }
+
 }

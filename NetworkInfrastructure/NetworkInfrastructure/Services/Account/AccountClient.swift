@@ -38,11 +38,26 @@ class AccountClient: APIClient, AccountClientProtocol {
         }, completion: completion)
     }
     
-    func getWatchList(page: Int, sessionId: String, accountId: Int,
+    func getWatchlist(page: Int, sessionId: String, accountId: Int,
                       completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
         let request = AccountProvider.getWatchlist(page: page,
                                                    sessionId: sessionId,
                                                    accountId: accountId).request
+        fetch(with: request, decode: { json -> MovieResult? in
+            guard let movieResult = json as? MovieResult else { return  nil }
+            return movieResult
+        }, completion: completion)
+    }
+
+    // MARK: - Recommended List
+
+    func getRecommendedList(page: Int,
+                            accessToken: String,
+                            accountId: String,
+                            completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
+        let request = AccountProvider.getRecommendedList(page: page,
+                                                         accessToken: accessToken,
+                                                         accountId: accountId).request
         fetch(with: request, decode: { json -> MovieResult? in
             guard let movieResult = json as? MovieResult else { return  nil }
             return movieResult
@@ -91,6 +106,19 @@ class AccountClient: APIClient, AccountClientProtocol {
                                                    movieId: movieId, favorite: favorite).request,
               decode: { json -> MarkAsFavoriteResult? in
                 guard let result = json as? MarkAsFavoriteResult else { return  nil }
+                return result
+        }, completion: completion)
+    }
+
+    // MARK: - Add to watchlist
+
+    func addToWatchlist(_ movieId: Int, sessionId: String,
+                        accountId: Int, watchlist: Bool,
+                        completion: @escaping (Result<AddToWatchlistResult, APIError>) -> Void) {
+        fetch(with: AccountProvider.addToWatchlist(sessionId: sessionId, accountId: accountId,
+                                                   movieId: movieId, watchlist: watchlist).request,
+              decode: { json -> AddToWatchlistResult? in
+                guard let result = json as? AddToWatchlistResult else { return  nil }
                 return result
         }, completion: completion)
     }

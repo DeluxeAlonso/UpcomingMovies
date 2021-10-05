@@ -12,7 +12,9 @@ public protocol AccountRemoteDataSourceProtocol {
     
     func getFavoriteList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
     
-    func getWatchList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
+    func getWatchlist(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
+    
+    func getRecommendedList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
     
     func getCustomLists(page: Int?, completion: @escaping (Result<[List], Error>) -> Void)
     
@@ -24,5 +26,9 @@ public protocol AccountRemoteDataSourceProtocol {
     func markMovieAsFavorite(movieId: Int,
                              favorite: Bool,
                              completion: @escaping (Result<Bool, Error>) -> Void)
+    
+    func addToWatchlist(movieId: Int,
+                        watchlist: Bool,
+                        completion: @escaping (Result<Bool, Error>) -> Void)
     
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CollapsibleHeaderViewDelegate: class {
+protocol CollapsibleHeaderViewDelegate: AnyObject {
     
     func collapsibleHeaderView(sectionHeaderView: CollapsibleCollectionHeaderView, sectionToggled section: Int)
     
@@ -32,8 +32,8 @@ final class CollapsibleHeaderViewModel {
 
 class CollapsibleCollectionHeaderView: UICollectionReusableView {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var arrowImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var arrowImageView: UIImageView!
     
     weak var delegate: CollapsibleHeaderViewDelegate?
     

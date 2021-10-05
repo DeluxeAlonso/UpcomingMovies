@@ -9,14 +9,16 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
+final class SavedMoviesViewModel: SavedMoviesViewModelProtocol, SimpleViewStateProcessable {
 
-    // MARK: - Properties
+    // MARK: - Dependencies
     
     private let interactor: SavedMoviesInteractorProtocol
+
+    // MARK: - Reactive properties
     
-    private (set) var startLoading: Bindable<Bool> = Bindable(false)
-    private (set) var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
+    private(set) var startLoading: Bindable<Bool> = Bindable(false)
+    private(set) var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
 
     // MARK: - Computed properties
     
@@ -54,7 +56,7 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
     func refreshCollectionList() {
         fetchCollectionList(page: 1, showLoader: false)
     }
-
+    
     // MARK: - Private
     
     private func fetchCollectionList(page: Int, showLoader: Bool) {
@@ -65,20 +67,11 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol {
             case .success(let movies):
                 self.viewState.value = self.processResult(movies,
                                                           currentPage: page,
-                                                          currentMovies: self.movies)
+                                                          currentEntities: self.movies)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
         }
-    }
-    
-    private func processResult(_ movies: [Movie], currentPage: Int,
-                               currentMovies: [Movie]) -> SimpleViewState<Movie> {
-        var allMovies = currentPage == 1 ? [] : currentMovies
-        allMovies.append(contentsOf: movies)
-        guard !allMovies.isEmpty else { return .empty }
-        
-        return movies.isEmpty ? .populated(allMovies) : .paging(allMovies, next: currentPage + 1)
     }
     
 }

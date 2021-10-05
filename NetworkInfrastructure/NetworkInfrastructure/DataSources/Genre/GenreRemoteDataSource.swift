@@ -25,7 +25,6 @@ final class GenreRemoteDataSource: GenreRemoteDataSourceProtocol {
                 completion(.success(genres))
             case .failure(let error):
                 completion(.failure(error))
-                print(error.description)
             }
         })
     }

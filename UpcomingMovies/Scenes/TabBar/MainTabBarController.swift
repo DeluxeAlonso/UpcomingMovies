@@ -32,7 +32,7 @@ class MainTabBarController: UITabBarController {
         viewControllers = coordinators.map { $0.navigationController }
     }
 
-    // MARK: - Public
+    // MARK: - Internal
 
     func setSelectedIndex(_ index: Int) {
         selectedIndex = index

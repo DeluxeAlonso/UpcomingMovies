@@ -10,8 +10,8 @@ import UIKit
 
 class ProfileAccountInfoTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var usernameLabel: UILabel!
     
     var viewModel: ProfileAccountInforCellViewModelProtocol? {
         didSet {
@@ -39,11 +39,11 @@ class ProfileAccountInfoTableViewCell: UITableViewCell {
         usernameLabel.textAlignment = .center
         
         nameLabel.font = FontHelper.light(withSize: 14.0)
-        nameLabel.textColor = ColorPalette.lightGray
+        nameLabel.textColor = ColorPalette.lightGrayColor
         nameLabel.textAlignment = .center
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

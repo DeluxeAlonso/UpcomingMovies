@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 class MovieListViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
     private var dataSource: SimpleTableViewDataSource<MovieCellViewModelProtocol>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
@@ -32,6 +32,8 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
         super.viewDidLoad()
         setupUI()
         setupBindables()
+
+        viewModel?.getMovies()
     }
     
     // MARK: - Private
@@ -91,7 +93,7 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
         }
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         title = viewModel?.displayTitle
@@ -105,7 +107,6 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
         viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
         })
-        viewModel?.getMovies()
     }
 
 }

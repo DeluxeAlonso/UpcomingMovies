@@ -22,7 +22,7 @@ protocol AuthPermissionCoordinatorProtocol: Coordinator {
     
 }
 
-protocol AuthPermissionWebViewNavigationDelegate: class, WKNavigationDelegate {
+protocol AuthPermissionWebViewNavigationDelegate: WKNavigationDelegate {
     
     var didFinishNavigation: () -> Void { get set }
     

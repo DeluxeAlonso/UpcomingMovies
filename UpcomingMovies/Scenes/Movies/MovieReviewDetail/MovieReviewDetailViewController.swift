@@ -10,7 +10,7 @@ import UIKit
 
 class MovieReviewDetailViewController: UIViewController, Storyboarded {
     
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet private weak var contentLabel: UILabel!
     
     static var storyboardName = "MovieDetail"
     
@@ -35,7 +35,7 @@ class MovieReviewDetailViewController: UIViewController, Storyboarded {
         contentLabel.numberOfLines = 0
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         title = viewModel?.author

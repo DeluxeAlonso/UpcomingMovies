@@ -10,10 +10,10 @@ import UIKit
 
 final class MovieCreditCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var overlayView: UIView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet private weak var profileImageView: UIImageView!
+    @IBOutlet private weak var overlayView: UIView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var subtitleLabel: UILabel!
     
     var viewModel: MovieCreditCellViewModelProtocol? {
         didSet {
@@ -41,8 +41,7 @@ final class MovieCreditCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        nameLabel.text = nil
-        subtitleLabel.text = nil
+        profileImageView.cancelImageDownload()
         profileImageView.image = nil
     }
     
@@ -58,12 +57,12 @@ final class MovieCreditCollectionViewCell: UICollectionViewCell {
         subtitleLabel.textColor = .white
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
         
-        let creditLabelFormat = LocalizedStrings.movieCreditAccessibility.localized
+        let creditLabelFormat = LocalizedStrings.movieCreditAccessibility()
         accessibilityLabel = String(format: creditLabelFormat, viewModel.name, viewModel.role)
         
         profileImageView.setImage(with: viewModel.profileURL)

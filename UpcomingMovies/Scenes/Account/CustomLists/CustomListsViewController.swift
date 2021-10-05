@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
     static var storyboardName = "CustomLists"
     
@@ -46,7 +46,7 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
     // MARK: - Private
     
     private func setupUI() {
-        title = LocalizedStrings.customListGroupOption.localized
+        title = LocalizedStrings.customListGroupOption()
         
         setupNavigationBar()
         setupTableView()
@@ -91,7 +91,7 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
         }
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         viewModel?.viewState.bindAndFire({ [weak self] state in

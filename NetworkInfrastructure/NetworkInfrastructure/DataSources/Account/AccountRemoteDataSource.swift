@@ -33,9 +33,9 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
         })
     }
     
-    func getWatchList(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+    func getWatchlist(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
-        client.getWatchList(page: page ?? 1, sessionId: account.sessionId, accountId: account.accountId, completion: { result in
+        client.getWatchlist(page: page ?? 1, sessionId: account.sessionId, accountId: account.accountId, completion: { result in
             switch result {
             case .success(let movieResult):
                 guard let movieResult = movieResult else { return }
@@ -45,6 +45,23 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
                 completion(.failure(error))
             }
         })
+    }
+
+    func getRecommendedList(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+        guard let accountId = authManager.accessToken?.accountId,
+            let accessToken = authManager.accessToken?.token else {
+            return
+        }
+        client.getRecommendedList(page: page ?? 1, accessToken: accessToken, accountId: accountId) { result in
+            switch result {
+            case .success(let movieResult):
+                guard let movieResult = movieResult else { return }
+                let movies = movieResult.results.map { $0.asDomain() }
+                completion(.success(movies))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
     func getCustomLists(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.List], Error>) -> Void) {
@@ -101,5 +118,17 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
             }
         })
     }
-    
+
+    func addToWatchlist(movieId: Int, watchlist: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
+        guard let account = authManager.userAccount else { return }
+        client.addToWatchlist(movieId, sessionId: account.sessionId, accountId: account.accountId, watchlist: watchlist, completion: { result in
+            switch result {
+            case .success:
+                completion(.success(true))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
+    }
+
 }

@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
     static var storyboardName = "MovieDetail"
     
@@ -65,7 +65,7 @@ class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisp
             hideDisplayedPlaceholderView()
             tableView.tableFooterView = UIView()
         case .empty:
-            presentEmptyView(with: "There are no trailers to show right now.")
+            presentEmptyView(with: LocalizedStrings.emptyVideoResults())
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
                                        errorHandler: { [weak self] in
@@ -74,7 +74,7 @@ class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisp
         }
     }
 
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         title = viewModel?.movieTitle

@@ -55,7 +55,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
     }
     
     // MARK: - Private
-    
+
     private func setupObservers() {
         registerKeyboardWillShowNotification(using: { [weak self] keyboardFrame in
             self?.view.layoutIfNeeded()
@@ -93,7 +93,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         tableView.separatorStyle = .none
         switch state {
         case .empty:
-            tableView.tableFooterView = CustomFooterView(message: LocalizedStrings.emptySearchResults.localized)
+            tableView.tableFooterView = CustomFooterView(message: LocalizedStrings.emptySearchResults())
         case .populated, .initial:
             tableView.tableFooterView = UIView()
             tableView.separatorStyle = .singleLine
@@ -104,7 +104,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         }
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         viewModel.viewState.bindAndFire({ [weak self] state in
@@ -116,7 +116,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         })
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func startSearch(withSearchText searchText: String) {
         viewModel.clearMovies()
@@ -153,7 +153,7 @@ extension SearchMoviesResultController: UITableViewDelegate {
         switch viewState {
         case .initial:
             let headerView = SimpleHeaderView()
-            headerView.headerTitle = LocalizedStrings.recentSearches.localized
+            headerView.headerTitle = LocalizedStrings.recentSearches()
             return headerView
         case .populated:
             let view = UIView()

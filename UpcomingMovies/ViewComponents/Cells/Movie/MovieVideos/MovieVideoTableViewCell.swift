@@ -10,8 +10,8 @@ import UIKit
 
 final class MovieVideoTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var previewImageView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var previewImageView: UIImageView!
     
     var viewModel: MovieVideoCellViewModelProtocol? {
         didSet {
@@ -23,6 +23,7 @@ final class MovieVideoTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        previewImageView.cancelImageDownload()
         previewImageView.image = nil
     }
 
@@ -38,7 +39,7 @@ final class MovieVideoTableViewCell: UITableViewCell {
         nameLabel.textColor = ColorPalette.Label.defaultColor
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

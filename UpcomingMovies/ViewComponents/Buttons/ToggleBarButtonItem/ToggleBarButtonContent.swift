@@ -6,9 +6,7 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import Foundation
-
-struct ToggleBarButtonItemContent {
+struct ToggleBarButtonItemContent: ToggleBarButtonItemContentProtocol {
     
     let display: ToggleBarButtonItemDisplay
     let accessibilityLabel: String?

@@ -123,8 +123,11 @@ extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalTo: widthAnchor, multiplier: constant).isActive = true
     }
+
 }
 
 struct AnchoredConstraints {
+
     var top, leading, bottom, trailing, width, height: NSLayoutConstraint?
+
 }

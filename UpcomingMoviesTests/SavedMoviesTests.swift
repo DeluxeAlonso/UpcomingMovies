@@ -16,97 +16,123 @@ class SavedMoviesTests: XCTestCase {
     private var mockInteractor: MockSavedMoviesInteractor!
     private var viewModelToTest: SavedMoviesViewModelProtocol!
 
-    override func setUp() {
-        super.setUp()
+    override func setUpWithError() throws {
+        try super.setUpWithError()
         mockInteractor = MockSavedMoviesInteractor()
         viewModelToTest = SavedMoviesViewModel(interactor: mockInteractor)
     }
-    
-    override func tearDown() {
+
+    override func tearDownWithError() throws {
         mockInteractor = nil
         viewModelToTest = nil
-        super.tearDown()
+        try super.tearDownWithError()
     }
-    
+
     func testSavedMoviesTitle() {
-        //Arrange
+        // Arrange
         viewModelToTest.displayTitle = "Test title"
-        //Act
+        // Act
         let title = viewModelToTest.displayTitle
-        //Assert
+        // Assert
         XCTAssertEqual(title, "Test title")
     }
     
     func testGetCollectionListPopulated() {
-        //Arrange
-        mockInteractor.getSavedMoviesResult = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
-        //Act
+        // Arrange
+        let moviestoTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        var statesToReceive: [SimpleViewState<UpcomingMoviesDomain.Movie>] = [.paging(moviestoTest, next: 2), .populated(moviestoTest)]
+
+        let expectation = XCTestExpectation(description: "Should get populated state after a paging state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, statesToReceive.removeFirst())
+            expectation.fulfill()
+        }
+        mockInteractor.getSavedMoviesResult = Result.success(moviestoTest)
         viewModelToTest.getCollectionList()
         mockInteractor.getSavedMoviesResult = Result.success([])
         viewModelToTest.getCollectionList()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .populated([Movie.with(id: 1), Movie.with(id: 2)]))
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetCollectionListPaging() {
-        //Arrange
-        mockInteractor.getSavedMoviesResult = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
-        //Act
+        // Arrange
+        let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        let expectation = XCTestExpectation(description: "Should get paging state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .paging(moviesToTest, next: 2))
+            expectation.fulfill()
+        }
+        mockInteractor.getSavedMoviesResult = Result.success(moviesToTest)
         viewModelToTest.getCollectionList()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value,
-                       .paging([Movie.with(id: 1), Movie.with(id: 2)], next: 2))
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetCollectionListEmpty() {
-        //Arrange
-        mockInteractor.getSavedMoviesResult = Result.success([])
-        //Act
+        // Arrange
+        let moviesToTest: [UpcomingMoviesDomain.Movie] = []
+        let expectation = XCTestExpectation(description: "Should get empty state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .empty)
+            expectation.fulfill()
+        }
+        mockInteractor.getSavedMoviesResult = Result.success(moviesToTest)
         viewModelToTest.getCollectionList()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .empty)
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetCollectionListError() {
-        //Arrange
+        // Arrange
+        let errorToTest = APIError.badRequest
+        let expectation = XCTestExpectation(description: "Should get error state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .error(errorToTest))
+            expectation.fulfill()
+        }
         mockInteractor.getSavedMoviesResult = Result.failure(APIError.badRequest)
-        //Act
         viewModelToTest.getCollectionList()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testMovieCellsCount() {
-        //Arrange
-        let movies = [Movie.with(id: 1), Movie.with(id: 2)]
-        mockInteractor.getSavedMoviesResult = Result.success(movies)
-        //Act
+        // Arrange
+        let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        // Act
+        mockInteractor.getSavedMoviesResult = Result.success(moviesToTest)
         viewModelToTest.getCollectionList()
         let cellsCount = viewModelToTest.movieCells.count
-        //Assert
-        XCTAssertEqual(cellsCount, movies.count)
+        // Assert
+        XCTAssertEqual(cellsCount, moviesToTest.count)
     }
     
     func testMovieCellsZeroCount() {
-        //Arrange
-        mockInteractor.getSavedMoviesResult = Result.success([])
-        //Act
+        // Arrange
+        let moviesToTest: [UpcomingMoviesDomain.Movie] = []
+        // Act
+        mockInteractor.getSavedMoviesResult = Result.success(moviesToTest)
         viewModelToTest.getCollectionList()
         let cellsCount = viewModelToTest.movieCells.count
-        //Assert
+        // Assert
         XCTAssertEqual(cellsCount, .zero)
     }
     
     func testMovieIndex() {
-        //Arrange
-        let movies = [Movie.with(id: 1), Movie.with(id: 2)]
-        mockInteractor.getSavedMoviesResult = Result.success(movies)
-        let indexToTest = Int.random(in: 0...movies.count - 1)
-        //Act
+        // Arrange
+        let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        let indexToTest = Int.random(in: 0...moviesToTest.count - 1)
+        // Act
+        mockInteractor.getSavedMoviesResult = Result.success(moviesToTest)
         viewModelToTest.getCollectionList()
         let movie = viewModelToTest.movie(at: indexToTest)
-        //Assert
-        XCTAssertEqual(movie, movies[indexToTest])
+        // Assert
+        XCTAssertEqual(movie, moviesToTest[indexToTest])
     }
 
 }

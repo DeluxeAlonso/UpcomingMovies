@@ -10,7 +10,7 @@ import UIKit
 
 final class RecentSearchTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var searchLabel: UILabel!
+    @IBOutlet private weak var searchLabel: UILabel!
     
     static let identifier = "RecentSearchCell"
     
@@ -35,7 +35,7 @@ final class RecentSearchTableViewCell: UITableViewCell {
     
     fileprivate func setupSearchLabel() {
         searchLabel.font = FontHelper.Default.mediumLight
-        searchLabel.textColor = ColorPalette.darkGray
+        searchLabel.textColor = ColorPalette.darkGrayColor
     }
     
     fileprivate func setupBindables() {

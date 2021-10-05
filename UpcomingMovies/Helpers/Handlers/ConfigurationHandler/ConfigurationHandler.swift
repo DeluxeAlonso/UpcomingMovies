@@ -9,16 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-protocol ConfigurationHandlerProtocol {
-    
-    var regularImageBaseURLString: String { get }
-    var backdropImageBaseURLString: String { get }
-    
-    func setConfiguration(_ configuration: Configuration)
-    
-}
-
-class ConfigurationHandler: ConfigurationHandlerProtocol {
+final class ConfigurationHandler: ConfigurationHandlerProtocol {
     
     private var imageConfiguration: ImageConfigurationHandler?
     

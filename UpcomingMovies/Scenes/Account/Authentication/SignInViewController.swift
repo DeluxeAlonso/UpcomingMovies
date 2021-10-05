@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SignInViewControllerDelegate: class {
+protocol SignInViewControllerDelegate: UIViewController {
     
     func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool)
     
@@ -16,8 +16,8 @@ protocol SignInViewControllerDelegate: class {
 
 class SignInViewController: UIViewController, Storyboarded {
     
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var signInButton: ShrinkingButton!
+    @IBOutlet private weak var iconImageView: UIImageView!
+    @IBOutlet private weak var signInButton: ShrinkingButton!
     
     static var storyboardName: String = "Account"
     
@@ -44,7 +44,7 @@ class SignInViewController: UIViewController, Storyboarded {
                                                         transitionImages: transitionImages)
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func startLoading() {
         signInButton.startAnimation()

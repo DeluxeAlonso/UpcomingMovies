@@ -11,8 +11,12 @@ protocol AccountClientProtocol {
     func getFavoriteList(page: Int, sessionId: String, accountId: Int,
                          completion: @escaping (Result<MovieResult?, APIError>) -> Void)
 
-    func getWatchList(page: Int, sessionId: String, accountId: Int,
+    func getWatchlist(page: Int, sessionId: String, accountId: Int,
                       completion: @escaping (Result<MovieResult?, APIError>) -> Void)
+
+    func getRecommendedList(page: Int,
+                            accessToken: String, accountId: String,
+                            completion: @escaping (Result<MovieResult?, APIError>) -> Void)
 
     func getCustomLists(page: Int,
                         accessToken: String, accountId: String,
@@ -27,5 +31,9 @@ protocol AccountClientProtocol {
     func markAsFavorite(_ movieId: Int, sessionId: String,
                         accountId: Int, favorite: Bool,
                         completion: @escaping (Result<MarkAsFavoriteResult, APIError>) -> Void)
+
+    func addToWatchlist(_ movieId: Int, sessionId: String,
+                        accountId: Int, watchlist: Bool,
+                        completion: @escaping (Result<AddToWatchlistResult, APIError>) -> Void)
 
 }

@@ -10,8 +10,10 @@ import UIKit
 import UpcomingMoviesDomain
 
 enum MovieDetailInfo {
+
     case complete(movie: Movie)
     case partial(movieId: Int, movieTitle: String)
+
 }
 
 final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol {
@@ -34,8 +36,27 @@ final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol 
         
         navigationController.pushViewController(viewController, animated: true)
     }
+
+    // MARK: - MovieDetailCoordinatorProtocol
+
+    func showMovieOption(_ option: MovieDetailOption) {
+        switch option {
+        case .credits: showMovieCredits()
+        case .reviews: showMovieReviews()
+        case .trailers: showMovieVideos()
+        case .similarMovies: showSimilarMovies()
+        }
+    }
+
+    func showSharingOptions(withShareTitle title: String) {
+        let activityViewController = UIActivityViewController(activityItems: [title],
+                                                              applicationActivities: nil)
+        navigationController.present(activityViewController, animated: true, completion: nil)
+    }
+
+    // MARK: - Private
     
-    func showMovieVideos() {
+    private func showMovieVideos() {
         let coordinator = MovieVideosCoordinator(navigationController: navigationController)
         
         let movieInfo = getMoviePartialInfo(for: self.movieInfo)
@@ -48,7 +69,7 @@ final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol 
         coordinator.start()
     }
     
-    func showMovieCredits() {
+    private func showMovieCredits() {
         let coordinator = MovieCreditsCoordinator(navigationController: navigationController)
         
         let movieInfo = getMoviePartialInfo(for: self.movieInfo)
@@ -61,7 +82,7 @@ final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol 
         coordinator.start()
     }
     
-    func showMovieReviews() {
+    private func showMovieReviews() {
         let coordinator = MovieReviewsCoordinator(navigationController: navigationController)
         
         let movieInfo = getMoviePartialInfo(for: self.movieInfo)
@@ -74,7 +95,7 @@ final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol 
         coordinator.start()
     }
     
-    func showSimilarMovies() {
+    private func showSimilarMovies() {
         let coordinator = SimilarMoviesCoordinator(navigationController: navigationController)
         
         let movieInfo = getMoviePartialInfo(for: self.movieInfo)

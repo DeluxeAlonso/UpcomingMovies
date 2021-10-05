@@ -6,10 +6,8 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import UIKit
-
 protocol TabBarScrollable {
-    
+
     func handleTabBarSelection()
     
 }

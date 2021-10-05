@@ -10,8 +10,8 @@ import UIKit
 
 class CustomListDetailViewController: UIViewController, Storyboarded {
     
-    @IBOutlet weak var navigationBarPlaceholderView: UIView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var navigationBarPlaceholderView: UIView!
+    @IBOutlet private weak var tableView: UITableView!
     
     static var storyboardName = "CustomLists"
     
@@ -107,7 +107,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
     private func configureView(with state: CustomListDetailViewState) {
         switch state {
         case .empty:
-            tableView.tableFooterView = CustomFooterView(message: LocalizedStrings.emptyMovieResults.localized)
+            tableView.tableFooterView = CustomFooterView(message: LocalizedStrings.emptyMovieResults())
         case .populated:
             tableView.tableFooterView = UIView()
         case .loading:
@@ -146,7 +146,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
         setClearNavigationBar()
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         viewModel?.viewState.bindAndFire({ [weak self] state in

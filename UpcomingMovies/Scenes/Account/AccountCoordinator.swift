@@ -37,7 +37,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
     }
     
     @discardableResult
-    func embedSignInViewController(on parentViewController: AccountViewControllerProtocol) -> SignInViewController {
+    func embedSignInViewController(on parentViewController: SignInViewControllerDelegate) -> SignInViewController {
         navigationController.setNavigationBarHidden(true, animated: true)
         
         let viewController = SignInViewController.instantiate()
@@ -49,7 +49,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
     }
     
     @discardableResult
-    func embedProfileViewController(on parentViewController: AccountViewControllerProtocol,
+    func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate,
                                     for user: User?) -> ProfileViewController {
         navigationController.setNavigationBarHidden(false, animated: true)
         
@@ -82,18 +82,25 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
-    
-    // MARK: - Saved Collection Options
-    
-    func showCollectionOption(_ collectionOption: ProfileCollectionOption) {
-        switch collectionOption {
+
+    func showProfileOption(_ profileOption: ProfileOptionProtocol) {
+        guard let profileOption = ProfileOption(rawValue: profileOption.identifier) else { return }
+        switch profileOption {
         case .favorites:
             showFavoritesSavedMovies()
         case .watchlist:
-            showWatchListSavedMovies()
+            showWatchlistSavedMovies()
+        case .recommended:
+            showRecommendedMovies()
+        case .customLists:
+            showCustomLists()
+        case .includeAdult:
+            break
         }
     }
     
+    // MARK: - Saved Collection Options
+
     private func showFavoritesSavedMovies() {
         let coordinator = FavoritesSavedMoviesCoordinator(navigationController: navigationController)
         
@@ -103,23 +110,27 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
         coordinator.start()
     }
     
-    private func showWatchListSavedMovies() {
-        let coordinator = WatchListSavedMoviesCoordinator(navigationController: navigationController)
+    private func showWatchlistSavedMovies() {
+        let coordinator = WatchlistSavedMoviesCoordinator(navigationController: navigationController)
         
         coordinator.parentCoordinator = unwrappedParentCoordinator
         
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
+
+    // MARK: - Recommended Options
+
+    func showRecommendedMovies() {
+        let coordinator = RecommendedMoviesCoordinator(navigationController: navigationController)
+
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
     
     // MARK: - Profile Group Options
-    
-    func showGroupOption(_ groupOption: ProfileGroupOption) {
-        switch groupOption {
-        case .customLists:
-            showCustomLists()
-        }
-    }
     
     private func showCustomLists() {
         let coordinator = CustomListsCoordinator(navigationController: navigationController)

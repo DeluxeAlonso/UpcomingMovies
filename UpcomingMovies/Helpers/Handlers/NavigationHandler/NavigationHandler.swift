@@ -8,15 +8,6 @@
 
 import UIKit
 
-protocol NavigationHandlerProtocol {
-    
-    func initialTransition(from window: UIWindow?)
-    
-    func handleUrlOpeningNavigation(for url: URL?, and window: UIWindow?)
-    func handleShortcutItem(_ shortcutItem: UIApplicationShortcutItem, and window: UIWindow?)
-    
-}
-
 final class NavigationHandler: NavigationHandlerProtocol {
     
     private var currentSelectedIndex: Int = 0
@@ -47,8 +38,8 @@ final class NavigationHandler: NavigationHandlerProtocol {
     func handleUrlOpeningNavigation(for url: URL?, and window: UIWindow?) {
         guard let url = url, let urlHost = url.host else { return }
 
-        if url.scheme == "extension" {
-            guard let host = AppExtensionHost(rawValue: urlHost) else { return }
+        if url.scheme == AppExtension.scheme {
+            guard let host = AppExtension.Host(rawValue: urlHost) else { return }
             switch host {
             case .upcomingMovies:
                 changeTabBarToSelectedIndex(RootCoordinatorIdentifier.upcomingMovies, from: window)

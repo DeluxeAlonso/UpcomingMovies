@@ -11,8 +11,8 @@ import CollectionViewSlantedLayout
 
 class SavedMovieCollectionViewCell: CollectionViewSlantedCell {
     
-    @IBOutlet weak var backdropImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private weak var backdropImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
     
     var viewModel: SavedMovieCellViewModelProtocol? {
         didSet {
@@ -24,7 +24,7 @@ class SavedMovieCollectionViewCell: CollectionViewSlantedCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        titleLabel.text = nil
+        backdropImageView.cancelImageDownload()
         backdropImageView.image = nil
     }
     
@@ -44,7 +44,7 @@ class SavedMovieCollectionViewCell: CollectionViewSlantedCell {
         titleLabel.textColor = ColorPalette.whiteColor
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

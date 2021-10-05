@@ -16,21 +16,28 @@ protocol UpcomingMoviesViewModelProtocol {
     
     var movieCells: [UpcomingMovieCellViewModelProtocol] { get }
     var needsPrefetch: Bool { get }
-    
+
+    /**
+     * Retrieves upcoming movies information.
+     */
     func getMovies()
+
+    /**
+     * Retrieves upcoming movies information resetting the current page to zero.
+     */
     func refreshMovies()
     
     func movie(for index: Int) -> Movie
     
 }
 
-protocol UpcomingMoviesCoordinatorProtocol: class {
+protocol UpcomingMoviesCoordinatorProtocol: AnyObject {
     
     func showMovieDetail(for movie: Movie, with navigationConfiguration: NavigationConfiguration?)
     
 }
 
-protocol UpcomingMoviesNavigationDelegate: class, UINavigationControllerDelegate {
+protocol UpcomingMoviesNavigationDelegate: UINavigationControllerDelegate {
     
     var parentCoordinator: Coordinator? { get set }
     

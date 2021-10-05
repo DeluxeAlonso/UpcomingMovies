@@ -8,42 +8,48 @@
 
 import UpcomingMoviesDomain
 
-public final class AccountRepository: AccountUseCaseProtocol {
+final class AccountRepository: AccountUseCaseProtocol {
     
     private var remoteDataSource: AccountRemoteDataSourceProtocol
+
+    // MARK: - Initializers
     
     init(remoteDataSource: AccountRemoteDataSourceProtocol) {
         self.remoteDataSource = remoteDataSource
     }
+
+    // MARK: - AccountUseCaseProtocol
     
-    public func getFavoriteList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        remoteDataSource.getFavoriteList(page: page,
-                                         completion: completion)
+    func getFavoriteList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.getFavoriteList(page: page, completion: completion)
     }
     
-    public func getWatchList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        remoteDataSource.getWatchList(page: page,
-                                      completion: completion)
+    func getWatchlist(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.getWatchlist(page: page, completion: completion)
+    }
+
+    func getRecommendedList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.getRecommendedList(page: page, completion: completion)
     }
     
-    public func getCustomLists(page: Int?, completion: @escaping (Result<[List], Error>) -> Void) {
-        remoteDataSource.getCustomLists(page: page,
-                                        completion: completion)
+    func getCustomLists(page: Int?, completion: @escaping (Result<[List], Error>) -> Void) {
+        remoteDataSource.getCustomLists(page: page, completion: completion)
     }
     
-    public func getCustomListMovies(listId: String, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        remoteDataSource.getCustomListMovies(listId: listId,
-                                             completion: completion)
+    func getCustomListMovies(listId: String, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        remoteDataSource.getCustomListMovies(listId: listId, completion: completion)
     }
     
-    public func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void) {
+    func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void) {
         remoteDataSource.getAccountDetail(completion: completion)
     }
     
-    public func markMovieAsFavorite(movieId: Int, favorite: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
-        remoteDataSource.markMovieAsFavorite(movieId: movieId,
-                                             favorite: favorite,
-                                             completion: completion)
+    func markMovieAsFavorite(movieId: Int, favorite: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
+        remoteDataSource.markMovieAsFavorite(movieId: movieId, favorite: favorite, completion: completion)
+    }
+
+    func addToWatchlist(movieId: Int, watchlist: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
+        remoteDataSource.addToWatchlist(movieId: movieId, watchlist: watchlist, completion: completion)
     }
     
 }

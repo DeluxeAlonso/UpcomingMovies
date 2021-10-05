@@ -26,6 +26,7 @@
 "favoritesCollectionOption" = "Favoritos";
 "watchlistCollectionOption" = "Lista de pendientes";
 "customListGroupOption" = "Listas";
+"recomendedMoviesOption" = "Películas recomendadas";
 "includeAdults" = "Incluir películas para adultos";
 
 "signOutConfirmationTitle" = "¿Estás seguro de que deseas cerrar sesión?";
@@ -46,6 +47,8 @@
 
 "addToFavoritesHint" = "Añadir a favoritos";
 "removeFromFavoritesHint" = "Remover de favoritos";
+"addToFavoritesSuccess" = "¡Agregado a tu lista de favoritos!";
+"removeFromFavoritesSuccess" = "Removido de tu lista de favoritos";
 
 "expandMovieCellsHint" = "Expandir películas";
 "collapseMovieCellsHint" = "Colapsar películas";
@@ -58,3 +61,7 @@
 "crew" = "Equipo";
 
 "ratingHint" = "Calificación de %.1f";
+
+"cancel" = "Cancelar";
+
+"shareMovieActionSheetItemTitle" = "Compartir película";

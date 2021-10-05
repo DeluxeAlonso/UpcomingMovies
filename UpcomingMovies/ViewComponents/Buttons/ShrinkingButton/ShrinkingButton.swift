@@ -6,10 +6,9 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-@IBDesignable class ShrinkingButton: UIButton, UIViewControllerTransitioningDelegate, CAAnimationDelegate {
+@IBDesignable class ShrinkingButton: UIButton {
     
     @IBInspectable var spinnerColor: UIColor = UIColor.white {
         didSet {
@@ -19,7 +18,7 @@ import UIKit
     
     @IBInspectable var disabledBackgroundColor: UIColor = UIColor.lightGray {
         didSet {
-            self.setBackgroundImage(UIImage(color: disabledBackgroundColor), for: .disabled)
+            setBackgroundImage(UIImage(color: disabledBackgroundColor), for: .disabled)
         }
     }
     
@@ -32,7 +31,7 @@ import UIKit
     
     private lazy var spiner: SpinerLayer = {
         let spiner = SpinerLayer(frame: self.frame)
-        self.layer.addSublayer(spiner)
+        layer.addSublayer(spiner)
         return spiner
     }()
     
@@ -42,74 +41,47 @@ import UIKit
     private let shrinkCurve: CAMediaTimingFunction = CAMediaTimingFunction(name: .linear)
     private let shrinkDuration: CFTimeInterval = 0.1
     
-    var isAnimating: Bool = false
+    private var isAnimating: Bool = false
     
-    // MARK: - Lifecycle
+    // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setup()
+        setupUI()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.setup()
+        setupUI()
     }
+
+    // MARK: - Lifecycle
     
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        self.setup()
+        setupUI()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.spiner.setToFrame(self.frame)
+        spiner.updateFrame(frame)
     }
+
+    // MARK: - Private
     
-    private func setup() {
-        self.clipsToBounds  = true
+    private func setupUI() {
+        clipsToBounds = true
         spiner.spinnerColor = spinnerColor
     }
     
-    func startAnimation() {
-        self.isAnimating = true
-        self.isUserInteractionEnabled = false
-        
-        self.cachedTitle = title(for: .normal)
-        self.cachedImage = image(for: .normal)
-        
-        self.setTitle("", for: .normal)
-        self.setImage(nil, for: .normal)
-        
-        UIView.animate(withDuration: 0.1, animations: { () -> Void in
-            self.layer.cornerRadius = self.frame.height / 2
-        }, completion: { _ -> Void in
-            self.shrink()
-            self.spiner.animation()
-        })
-    }
-    
-    func stopAnimation(revertAfterDelay delay: TimeInterval = 1.0, completion: (() -> Void)? = nil) {
-        guard isAnimating else { return }
-        
-        let delayToRevert = max(delay, 0.2)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + delayToRevert) {
-            self.setOriginalState { [weak self] in
-                self?.layer.removeAllAnimations()
-                completion?()
-            }
-        }
-    }
-    
     private func setOriginalState(completion: (() -> Void)?) {
-        self.animateToOriginalWidth(completion: completion)
-        self.spiner.stopAnimation()
-        self.setTitle(self.cachedTitle, for: .normal)
-        self.setImage(self.cachedImage, for: .normal)
-        self.isUserInteractionEnabled = true
-        self.layer.cornerRadius = self.cornerRadius
-        self.isAnimating = false
+        animateToOriginalWidth(completion: completion)
+        spiner.stopAnimation()
+        setTitle(self.cachedTitle, for: .normal)
+        setImage(self.cachedImage, for: .normal)
+        isUserInteractionEnabled = true
+        layer.cornerRadius = self.cornerRadius
+        isAnimating = false
     }
     
     private func animateToOriginalWidth(completion: (() -> Void)?) {
@@ -121,40 +93,72 @@ import UIKit
         shrinkAnimation.fillMode = .forwards
         shrinkAnimation.isRemovedOnCompletion = false
         
-        CATransaction.setCompletionBlock {
-            completion?()
-        }
-        self.layer.add(shrinkAnimation, forKey: shrinkAnimation.keyPath)
+        CATransaction.setCompletionBlock { completion?() }
+        layer.add(shrinkAnimation, forKey: shrinkAnimation.keyPath)
         
         CATransaction.commit()
     }
     
     private func shrink() {
-        let shrinkAnim = CABasicAnimation(keyPath: "bounds.size.width")
-        shrinkAnim.fromValue = frame.width
-        shrinkAnim.toValue = frame.height
-        shrinkAnim.duration = shrinkDuration
-        shrinkAnim.timingFunction = shrinkCurve
-        shrinkAnim.fillMode = .forwards
-        shrinkAnim.isRemovedOnCompletion = false
+        let shrinkAnimation = CABasicAnimation(keyPath: "bounds.size.width")
+        shrinkAnimation.fromValue = frame.width
+        shrinkAnimation.toValue = frame.height
+        shrinkAnimation.duration = shrinkDuration
+        shrinkAnimation.timingFunction = shrinkCurve
+        shrinkAnimation.fillMode = .forwards
+        shrinkAnimation.isRemovedOnCompletion = false
         
-        layer.add(shrinkAnim, forKey: shrinkAnim.keyPath)
+        layer.add(shrinkAnimation, forKey: shrinkAnimation.keyPath)
+    }
+
+    // MARK: - Internal
+
+    func startAnimation() {
+        isAnimating = true
+        isUserInteractionEnabled = false
+
+        cachedTitle = title(for: .normal)
+        cachedImage = image(for: .normal)
+
+        setTitle("", for: .normal)
+        setImage(nil, for: .normal)
+
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.layer.cornerRadius = self.frame.height / 2
+        }, completion: { _ in
+            self.shrink()
+            self.spiner.animation()
+        })
+    }
+
+    func stopAnimation(revertAfterDelay delay: TimeInterval = 1.0, completion: (() -> Void)? = nil) {
+        guard isAnimating else { return }
+
+        // Delay should have a minimum value
+        let delayToRevert = max(delay, 0.2)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + delayToRevert) {
+            self.setOriginalState { [weak self] in
+                self?.layer.removeAllAnimations()
+                completion?()
+            }
+        }
     }
     
 }
 
-extension UIImage {
-    
+private extension UIImage {
+
     convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         let rect = CGRect(origin: .zero, size: size)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
         color.setFill()
         UIRectFill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
         UIGraphicsEndImageContext()
-        
-        guard let cgImage = image!.cgImage else { return nil }
+
+        guard let cgImage = image.cgImage else { return nil }
         self.init(cgImage: cgImage)
     }
-    
+
 }

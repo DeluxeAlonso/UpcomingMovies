@@ -10,13 +10,13 @@ import UIKit
 
 class ToggleBarButtonItem: UIBarButtonItem {
 
-    /// We support more than two states for the ToggleBarButtonItem
-    private var contents: [ToggleBarButtonItemContent]
+    /// We support more than two items for the ToggleBarButtonItem
+    private var contents: [ToggleBarButtonItemContentProtocol]
     private var currentContentIndex: Int = 0
     
     // MARK: - Initializers
     
-    init(contents: [ToggleBarButtonItemContent]) {
+    init(contents: [ToggleBarButtonItemContentProtocol]) {
         self.contents = contents
         super.init()
         configure(for: currentContentIndex)
@@ -43,7 +43,7 @@ class ToggleBarButtonItem: UIBarButtonItem {
         accessibilityHint = content.accessibilityHint
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func toggle() {
         currentContentIndex += 1

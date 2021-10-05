@@ -11,9 +11,11 @@ import UpcomingMoviesDomain
 
 final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
 
+    // MARK: - Dependencies
+
     private var interactor: SearchOptionsInteractorProtocol
-    
-    private var genres: [Genre] = []
+
+    // MARK: - Reactive properties
     
     let viewState: Bindable<SearchOptionsViewState> = Bindable(.emptyMovieVisits)
     
@@ -23,6 +25,8 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     var selectedDefaultSearchOption: Bindable<DefaultSearchOption?> = Bindable(nil)
     var selectedMovieGenre: Bindable<(Int?, String?)> = Bindable((nil, nil))
     var selectedRecentlyVisitedMovie: ((Int, String) -> Void)?
+
+    // MARK: - Computed properties
     
     var visitedMovieCells: [VisitedMovieCellViewModelProtocol] {
         let visited = interactor.getMovieVisits()
@@ -32,11 +36,15 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     var genreCells: [GenreSearchOptionCellViewModelProtocol] {
         return genres.map { GenreSearchOptionCellViewModel(genre: $0) }
     }
-    
-    private let defaultSearchOptions: [DefaultSearchOption] = [.popular, .topRated]
+
     var defaultSearchOptionsCells: [DefaultSearchOptionCellViewModelProtocol] {
         return defaultSearchOptions.map { DefaultSearchOptionCellViewModel(defaultSearchOption: $0) }
     }
+
+    // MARK: - Stored properties
+
+    private var genres: [Genre] = []
+    private let defaultSearchOptions: [DefaultSearchOption] = [.popular, .topRated]
     
     // MARK: - Initializers
     
@@ -58,24 +66,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
         configureViewState()
     }
     
-    // MARK: - Private
-    
-    /**
-     * Configures the state of the view according to the saved movie visits
-     * quantity. Returns true if the state changed and false if not.
-     */
-    @discardableResult
-    private func configureViewState() -> Bool {
-        let oldViewState = viewState.value
-        if interactor.hasMovieVisits() {
-            viewState.value = .populatedMovieVisits
-        } else {
-            viewState.value = .emptyMovieVisits
-        }
-        return oldViewState != viewState.value
-    }
-    
-    // MARK: - Public
+    // MARK: - SearchOptionsViewModelProtocol
     
     func loadGenres() {
         interactor.getGenres(completion: { [weak self] result in
@@ -117,6 +108,20 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
         let visitedMovies = interactor.getMovieVisits()
         let selectedVisitedMovie = visitedMovies[index]
         selectedRecentlyVisitedMovie?(selectedVisitedMovie.id, selectedVisitedMovie.title)
+    }
+
+    // MARK: - Private
+
+    /**
+     * Configures the state of the view according to the saved movie visits
+     * quantity. Returns true if the state changed and false if not.
+     */
+    @discardableResult
+    private func configureViewState() -> Bool {
+        let oldViewState = viewState.value
+        viewState.value = interactor.hasMovieVisits() ? .populatedMovieVisits : .emptyMovieVisits
+
+        return oldViewState != viewState.value
     }
 
 }

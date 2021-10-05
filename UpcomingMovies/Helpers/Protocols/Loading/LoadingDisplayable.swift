@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol LoadingDisplayable: class {
+protocol LoadingDisplayable: AnyObject {
 
     var loaderView: LoadingView { get }
 

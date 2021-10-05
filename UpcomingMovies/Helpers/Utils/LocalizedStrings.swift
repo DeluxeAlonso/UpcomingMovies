@@ -45,6 +45,7 @@ enum LocalizedStrings: String, Localizable {
     case favoritesCollectionOption
     case watchlistCollectionOption
     case customListGroupOption
+    case recomendedMoviesOption
     case includeAdults
     
     case signOutConfirmationTitle
@@ -65,6 +66,8 @@ enum LocalizedStrings: String, Localizable {
     
     case addToFavoritesHint
     case removeFromFavoritesHint
+    case addToFavoritesSuccess
+    case removeFromFavoritesSuccess
     
     case expandMovieCellsHint
     case collapseMovieCellsHint
@@ -77,9 +80,17 @@ enum LocalizedStrings: String, Localizable {
     case crew
 
     case ratingHint
+
+    case cancel
+
+    case shareMovieActionSheetItemTitle
     
     var tableName: String {
         return "Localizable"
+    }
+
+    func callAsFunction() -> String {
+        return self.localized
     }
     
 }

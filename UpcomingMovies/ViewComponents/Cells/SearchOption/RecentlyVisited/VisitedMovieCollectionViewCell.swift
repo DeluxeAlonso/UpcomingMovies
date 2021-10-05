@@ -10,7 +10,7 @@ import UIKit
 
 final class VisitedMovieCollectionViewCell: UICollectionViewCell, Animatable {
     
-    @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet private weak var posterImageView: UIImageView!
     
     var viewModel: VisitedMovieCellViewModelProtocol? {
         didSet {
@@ -35,7 +35,7 @@ final class VisitedMovieCollectionViewCell: UICollectionViewCell, Animatable {
         }
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }

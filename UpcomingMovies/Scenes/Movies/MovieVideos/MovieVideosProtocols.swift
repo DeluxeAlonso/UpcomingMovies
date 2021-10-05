@@ -11,8 +11,7 @@ import UpcomingMoviesDomain
 
 protocol MovieVideosViewModelProtocol {
     
-    var movieId: Int { get set }
-    var movieTitle: String { get set }
+    var movieTitle: String { get }
     
     var viewState: Bindable<SimpleViewState<Video>> { get }
     var startLoading: Bindable<Bool> { get }
@@ -31,4 +30,4 @@ protocol MovieVideosInteractorProtocol {
     
 }
 
-protocol MovieVideosCoordinatorProtocol: class {}
+protocol MovieVideosCoordinatorProtocol: AnyObject {}

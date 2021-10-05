@@ -12,7 +12,7 @@ private struct AssociatedKeys {
     static var emptyView: Placeholderable?
 }
 
-protocol Emptiable: class { }
+protocol Emptiable: AnyObject { }
 
 extension Emptiable where Self: UIViewController {
     

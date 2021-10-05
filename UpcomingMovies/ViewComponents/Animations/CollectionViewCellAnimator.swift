@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CollectionViewCellAnimator {
+final class CollectionViewCellAnimator {
     
     class func fadeAnimate(cell: UICollectionViewCell) {
         let view = cell.contentView

@@ -41,4 +41,4 @@ protocol MovieCreditsFactoryProtocol {
     
 }
 
-protocol MovieCreditsCoordinatorProtocol: class {}
+protocol MovieCreditsCoordinatorProtocol: AnyObject {}

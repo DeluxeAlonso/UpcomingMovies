@@ -6,11 +6,10 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import Foundation
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 
-class MockMovieCreditsInteractor: MovieCreditsInteractorProtocol {
+final class MockMovieCreditsInteractor: MovieCreditsInteractorProtocol {
     
     var getMovieCreditsResult: Result<MovieCredits, Error>?
     func getMovieCredits(for movieId: Int, page: Int?, completion: @escaping (Result<MovieCredits, Error>) -> Void) {
@@ -19,7 +18,7 @@ class MockMovieCreditsInteractor: MovieCreditsInteractorProtocol {
     
 }
 
-class MockMovieCreditsFactory: MovieCreditsFactoryProtocol {
+final class MockMovieCreditsFactory: MovieCreditsFactoryProtocol {
     
     var sections: [MovieCreditsCollapsibleSection] = []
 

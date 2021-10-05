@@ -59,7 +59,7 @@ final class VerticalFlowLayout: UICollectionViewFlowLayout {
                                     bottom: margin, right: margin)
     }
 
-    // MARK: - Public
+    // MARK: - Internal
 
     func updatePreferredWidth(_ width: CGFloat) {
         self.preferredWidth = width

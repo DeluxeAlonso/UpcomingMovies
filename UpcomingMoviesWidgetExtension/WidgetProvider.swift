@@ -10,10 +10,13 @@ import SwiftUI
 import WidgetKit
 
 struct SimpleEntry: TimelineEntry {
+
     let date: Date
+
 }
 
 struct Provider: TimelineProvider {
+
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date())
     }
@@ -37,4 +40,5 @@ struct Provider: TimelineProvider {
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
+
 }

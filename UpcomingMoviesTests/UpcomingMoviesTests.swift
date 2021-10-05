@@ -12,76 +12,103 @@ import XCTest
 @testable import NetworkInfrastructure
 
 class UpcomingMoviesTests: XCTestCase {
+
+    typealias MoviesViewState = SimpleViewState<UpcomingMoviesDomain.Movie>
     
     private var mockInteractor: MockUpcomingMoviesInteractor!
     private var viewModelToTest: UpcomingMoviesViewModelProtocol!
 
-    override func setUp() {
-        super.setUp()
+    override func setUpWithError() throws {
+        try super.setUpWithError()
         mockInteractor = MockUpcomingMoviesInteractor()
         viewModelToTest = UpcomingMoviesViewModel(interactor: mockInteractor)
     }
 
-    override func tearDown() {
+    override func tearDownWithError() throws {
         mockInteractor = nil
         viewModelToTest = nil
-        super.tearDown()
+        try super.tearDownWithError()
     }
     
     func testGetMoviesEmpty() {
-        //Arrange
-        mockInteractor.upcomingMovies = Result.success([])
-        //Act
+        // Arrange
+        let moviesToTest: [UpcomingMoviesDomain.Movie] = []
+        let expectation = XCTestExpectation(description: "Should get empty state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertTrue(state == .empty)
+            expectation.fulfill()
+        }
+        mockInteractor.upcomingMovies = Result.success(moviesToTest)
         viewModelToTest.getMovies()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .empty)
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetMoviesPopulated() {
-        //Arrange
-        mockInteractor.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
-        //Act
+        // Arrange
+        let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        var statesToReceive: [MoviesViewState] = [.paging(moviesToTest, next: 2), .populated(moviesToTest)]
+
+        let expectation = XCTestExpectation(description: "Should get populated state after a paging state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, statesToReceive.removeFirst())
+            expectation.fulfill()
+        }
+        mockInteractor.upcomingMovies = Result.success(moviesToTest)
         viewModelToTest.getMovies()
         mockInteractor.upcomingMovies = Result.success([])
         viewModelToTest.getMovies()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .populated([Movie.with(id: 1), Movie.with(id: 2)]))
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetMoviesPaging() {
-        //Arrange
-        mockInteractor.upcomingMovies = Result.success([Movie.with(id: 1), Movie.with(id: 2)])
-        //Act
+        // Arrange
+        let moviestoTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        let expectation = XCTestExpectation(description: "Should get paging state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .paging(moviestoTest, next: 2))
+            expectation.fulfill()
+        }
+        mockInteractor.upcomingMovies = Result.success(moviestoTest)
         viewModelToTest.getMovies()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value,
-                       .paging([Movie.with(id: 1), Movie.with(id: 2)], next: 2))
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testGetMoviesError() {
-        //Arrange
-        mockInteractor.upcomingMovies = Result.failure(APIError.badRequest)
-        //Act
+        // Arrange
+        let errorToTest = APIError.badRequest
+        let expectation = XCTestExpectation(description: "Should get error state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertTrue(state == .error(errorToTest))
+            expectation.fulfill()
+        }
+        mockInteractor.upcomingMovies = Result.failure(errorToTest)
         viewModelToTest.getMovies()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testUpcomingMovieCellPosterURL() {
-        //Arrange
+        // Arrange
         let cellViewModel = UpcomingMovieCellViewModel(Movie.with())
-        //Act
+        // Act
         let posterURL = cellViewModel.posterURL
-        //Assert
+        // Assert
         XCTAssertEqual(posterURL, URL(string: "https://image.tmdb.org/t/p/w185/poster.jpg"))
     }
     
     func testUpcomingMovieCellBackdropURL() {
-        //Arrange
+        // Arrange
         let cellViewModel = UpcomingMovieCellViewModel(Movie.with())
-        //Act
+        // Act
         let backdropURL = cellViewModel.backdropURL
-        //Assert
+        // Assert
         XCTAssertEqual(backdropURL, URL(string: "https://image.tmdb.org/t/p/w500/backdrop.jpg"))
     }
 

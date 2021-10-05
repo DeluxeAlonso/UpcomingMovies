@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewCellAnimator {
+final class TableViewCellAnimator {
     
     class func fadeAnimate(cell: UITableViewCell) {
         let view = cell.contentView

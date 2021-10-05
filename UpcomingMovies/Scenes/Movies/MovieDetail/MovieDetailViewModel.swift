@@ -18,25 +18,32 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     // MARK: - Reactive properties
 
-    private (set) var startLoading: Bindable<Bool> = Bindable(false)
-    private (set) var isFavorite: Bindable<Bool?> = Bindable(false)
-    private (set) var showErrorView: Bindable<Error?> = Bindable(nil)
-    private (set) var showGenreName: Bindable<String> = Bindable("-")
+    private(set) var startLoading: Bindable<Bool> = Bindable(false)
+    private(set) var isFavorite: Bindable<Bool> = Bindable(false)
+    private(set) var isInWatchlist: Bindable<Bool> = Bindable(false)
 
-    var updateMovieDetail: (() -> Void)?
+    private(set) var showErrorView: Bindable<Error?> = Bindable(nil)
+    private(set) var showGenreName: Bindable<String> = Bindable("-")
+    private(set) var showMovieOptions: Bindable<[MovieDetailOption]> = Bindable([])
+
+    private(set) var didUpdateMovieDetail: Bindable<Bool> = Bindable(true)
+
+    private(set) var didUpdateFavoriteSuccess: Bindable<Bool> = Bindable(false)
+    private(set) var didUpdateFavoriteFailure: Bindable<Error?> = Bindable(nil)
+
+    var shouldHideFavoriteButton: (() -> Void)?
 
     // MARK: - Properties
     
-    var id: Int!
-    var title: String!
-    var genre: String?
-    var releaseDate: String?
-    var overview: String?
-    var voteAverage: Double?
-    var posterURL: URL?
-    var backdropURL: URL?
+    private(set) var id: Int!
+    private(set) var title: String!
+    private(set) var releaseDate: String?
+    private(set) var overview: String?
+    private(set) var voteAverage: Double?
+    private(set) var posterURL: URL?
+    private(set) var backdropURL: URL?
 
-    var needsFetch = false
+    private(set) var needsFetch = false
     
     // MARK: - Initializers
 
@@ -47,7 +54,9 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         self.factory = factory
         
         setupMovie(movie)
-        checkIfUserIsAuthenticated()
+
+        showGenreName.value = movie.genreName
+        showMovieOptions.value = factory.options
     }
     
     init(id: Int, title: String,
@@ -58,15 +67,11 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         self.interactor = interactor
         self.factory = factory
         
-        self.needsFetch = true
+        needsFetch = true
+
+        showMovieOptions.value = factory.options
     }
-    
-    // MARK: - Computed properties
-    
-    var options: [MovieDetailOption] {
-        return factory.options
-    }
-    
+
     // MARK: - Private
     
     private func setupMovie(_ movie: Movie) {
@@ -87,25 +92,17 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         guard let genreId = genreId else { return }
         interactor.findGenre(with: genreId, completion: { [weak self] result in
             guard let strongSelf = self else { return }
-            switch result {
-            case .success(let genre):
-                strongSelf.showGenreName.value = genre?.name ?? "-"
-            case .failure:
-                break
-            }
+            let genre = try? result.get()
+            strongSelf.showGenreName.value = genre?.name ?? "-"
         })
     }
     
     // MARK: - Networking
     
-    func getMovieDetail() {
-        fetchMovieDetail(showLoader: true)
+    func getMovieDetail(showLoader: Bool) {
+        fetchMovieDetail(showLoader: showLoader)
     }
-    
-    func refreshMovieDetail() {
-        fetchMovieDetail(showLoader: false)
-    }
-    
+
     private func fetchMovieDetail(showLoader: Bool = true) {
         guard needsFetch else { return }
         startLoading.value = showLoader
@@ -113,8 +110,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             switch result {
             case .success(let movie):
                 self.setupMovie(movie)
-                self.updateMovieDetail?()
-                self.checkIfUserIsAuthenticated()
+                self.checkIfMovieIsFavorite(showLoader: false)
+                self.didUpdateMovieDetail.value = true
             case .failure(let error):
                 self.startLoading.value = false
                 self.showErrorView.value = error
@@ -128,41 +125,77 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     // MARK: - User Authentication
     
-    func checkIfUserIsAuthenticated() {
-        let isUserSignedIn = interactor.isUserSignedIn()
-        if isUserSignedIn {
-            checkIfMovieIsFavorite()
-        } else {
-            startLoading.value = false
-            isFavorite.value = nil
+    func checkIfMovieIsFavorite(showLoader: Bool) {
+        startLoading.value = showLoader
+        getFavoriteState { result in
+            self.startLoading.value = false
+            switch result {
+            case .success(let favoriteState):
+                guard favoriteState != .unknown else {
+                    self.shouldHideFavoriteButton?()
+                    return
+                }
+                self.isFavorite.value = favoriteState == .favorite
+            case .failure(let error):
+                guard self.needsFetch else { return }
+                self.showErrorView.value = error
+            }
         }
     }
     
     // MARK: - Favorites
     
-    private func checkIfMovieIsFavorite() {
+    private func getFavoriteState(completion: @escaping (Result<MovieDetailFavoriteState, Error>) -> Void) {
+        guard interactor.isUserSignedIn() else {
+            completion(.success(.unknown))
+            return
+        }
         interactor.isMovieInFavorites(for: id, completion: { result in
-            self.startLoading.value = false
             switch result {
             case .success(let isFavorite):
-                self.isFavorite.value = isFavorite
+                let favoriteState: MovieDetailFavoriteState = isFavorite ? .favorite : .nonFavorite
+                completion(.success(favoriteState))
             case .failure(let error):
-                guard self.needsFetch else { return }
-                self.showErrorView.value = error
+                completion(.failure(error))
             }
         })
     }
     
     func handleFavoriteMovie() {
-        guard let isFavorite = isFavorite.value else { return }
-        interactor.markMovieAsFavorite(movieId: id, favorite: !isFavorite, completion: { result in
+        let newFavoriteValue = !isFavorite.value
+        interactor.markMovieAsFavorite(movieId: id, favorite: newFavoriteValue, completion: { result in
             switch result {
             case .success:
-                self.isFavorite.value = !isFavorite
+                self.isFavorite.value = newFavoriteValue
+                self.didUpdateFavoriteSuccess.value = newFavoriteValue
             case .failure(let error):
-                self.showErrorView.value = error
+                self.didUpdateFavoriteFailure.value = error
             }
         })
     }
-    
+
+}
+
+// MARK: - MovieDetailFavoriteState
+
+extension MovieDetailViewModel {
+
+    enum MovieDetailFavoriteState {
+
+        case favorite, nonFavorite, unknown
+
+    }
+
+}
+
+// MARK: - MovieDetailWatchlistState
+
+extension MovieDetailViewModel {
+
+    enum MovieDetailWatchlistState {
+
+        case added, notAdded, unknown
+
+    }
+
 }

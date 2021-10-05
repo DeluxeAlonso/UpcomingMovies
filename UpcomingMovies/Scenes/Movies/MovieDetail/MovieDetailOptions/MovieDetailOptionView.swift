@@ -36,7 +36,7 @@ class MovieDetailOptionView: UIView {
         return label
     }()
 
-    var option: MovieDetailOption
+    private(set) var option: MovieDetailOption
     
     // MARK: - Initializers
     
@@ -70,8 +70,8 @@ class MovieDetailOptionView: UIView {
         isAccessibilityElement = true
         accessibilityLabel = option.title
         
-        optionTitleLabel.text = self.option.title
-        optionImageView.image = self.option.icon
+        optionTitleLabel.text = option.title
+        optionImageView.image = UIImage(named: option.iconName) 
         
         setupStackView()
     }

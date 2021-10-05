@@ -10,8 +10,8 @@ import UIKit
 
 class CustomListTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
     
     var viewModel: CustomListCellViewModelProtocol? {
         didSet {
@@ -40,7 +40,7 @@ class CustomListTableViewCell: UITableViewCell {
         descriptionLabel.font = FontHelper.light(withSize: 15.0)
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         nameLabel.text = viewModel?.name

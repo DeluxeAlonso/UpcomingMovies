@@ -10,7 +10,7 @@ import UIKit
 
 final class GenreSearchOptionTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel!
     
     var viewModel: GenreSearchOptionCellViewModelProtocol? {
         didSet {
@@ -32,7 +32,7 @@ final class GenreSearchOptionTableViewCell: UITableViewCell {
         nameLabel.textColor = ColorPalette.lightBlueColor
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         nameLabel.text = viewModel?.name

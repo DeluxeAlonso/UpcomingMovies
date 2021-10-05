@@ -10,12 +10,12 @@ import UIKit
 
 class CustomListDetailHeaderView: UIView, NibLoadable {
     
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var posterImageViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var posterImageViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descriptionView: UIView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var posterImageViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var posterImageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var descriptionView: UIView!
+    @IBOutlet private weak var descriptionLabel: UILabel!
 
     var initialHeightConstraintConstant: CGFloat!
     var initialTopContstraintConstant: CGFloat!
@@ -54,7 +54,7 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
         posterImageView.addOverlay()
     }
     
-    // MARK: - Public
+    // MARK: - Internal
     
     func setHeaderOffset(_ offset: CGFloat) {
         posterImageViewTopConstraint.constant = initialTopContstraintConstant - offset
@@ -64,7 +64,7 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
         posterImageViewHeightConstraint.constant = height
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         nameLabel.text = viewModel?.name

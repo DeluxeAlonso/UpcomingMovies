@@ -9,35 +9,43 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class MovieVideosViewModel: MovieVideosViewModelProtocol {
-    
+final class MovieVideosViewModel: MovieVideosViewModelProtocol, SimpleViewStateProcessable {
+
+    // MARK: - Dependencies
+
+    private let movieId: Int
     private let interactor: MovieVideosInteractorProtocol
     
-    var movieId: Int
-    var movieTitle: String
-    
-    let viewState: Bindable<SimpleViewState<Video>> = Bindable(.initial)
-    
-    var startLoading: Bindable<Bool> = Bindable(false)
+    // MARK: - Reactive properties
+
+    private(set) var viewState: Bindable<SimpleViewState<Video>> = Bindable(.initial)
+    private(set) var startLoading: Bindable<Bool> = Bindable(false)
+
+    // MARK: - Computed properties
     
     var videoCells: [MovieVideoCellViewModelProtocol] {
         return videos.map { MovieVideoCellViewModel($0) }
     }
-    
+
     private var videos: [Video] {
         return viewState.value.currentEntities
     }
+
+    // MARK: - Stored properties
+
+    let movieTitle: String
     
     // MARK: - Initializers
     
-    init(movieId: Int, movieTitle: String, interactor: MovieVideosInteractorProtocol) {
+    init(movieId: Int, movieTitle: String,
+         interactor: MovieVideosInteractorProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
         
         self.interactor = interactor
     }
     
-    // MARK: - Public
+    // MARK: - MovieVideosViewModelProtocol
     
     func videoURL(at index: Int) -> URL? {
         let video = videos[index]
@@ -47,28 +55,18 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol {
             return video.browserURL
         }
     }
-    
-    // MARK: - Networking
-    
+
     func getMovieVideos(showLoader: Bool = false) {
         startLoading.value = showLoader
         interactor.getMovieVideos(for: movieId, page: nil, completion: { result in
+            self.startLoading.value = false
             switch result {
             case .success(let videos):
-                self.processVideosResult(videos)
+                self.viewState.value =  self.processResult(videos)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
         })
-    }
-    
-    private func processVideosResult(_ videos: [Video]) {
-        startLoading.value = false
-        if videos.isEmpty {
-            viewState.value = .empty
-        } else {
-            viewState.value = .populated(videos)
-        }
     }
 
 }

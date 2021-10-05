@@ -10,8 +10,8 @@ import UIKit
 
 final class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, UpcomingMovieCollectionViewCellProtocol {
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private(set) weak var posterImageView: UIImageView!
     
     var viewModel: UpcomingMovieCellViewModelProtocol? {
         didSet {
@@ -23,7 +23,7 @@ final class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, Upcomi
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        titleLabel.text = nil
+        posterImageView.cancelImageDownload()
         posterImageView.image = nil
     }
     
@@ -40,20 +40,20 @@ final class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, Upcomi
         titleLabel.textColor = ColorPalette.whiteColor
         titleLabel.numberOfLines = 0
         titleLabel.font = FontHelper.semiBold(withSize: 18.0)
-        titleLabel.text = ""
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
         accessibilityLabel = viewModel.title
         if let posterURL = viewModel.posterURL {
             posterImageView.setImage(with: posterURL)
+            titleLabel.text = nil
         } else {
             posterImageView.backgroundColor = .darkGray
             titleLabel.text = viewModel.title
         }
     }
-    
+
 }

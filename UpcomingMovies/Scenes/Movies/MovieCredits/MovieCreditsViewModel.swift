@@ -10,12 +10,16 @@ import Foundation
 import UpcomingMoviesDomain
 
 final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
+
+    // MARK: - Dependencies
     
     private let movieId: Int
-    let movieTitle: String
+    private(set) var movieTitle: String
     
     private let interactor: MovieCreditsInteractorProtocol
     private var factory: MovieCreditsFactoryProtocol
+
+    // MARK: - Reactive properties
     
     var viewState: Bindable<MovieCreditsViewState> = Bindable(.initial)
     var didToggleSection: Bindable<Int> = Bindable(0)
@@ -33,7 +37,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
         self.factory = factory
     }
     
-    // MARK: - Public
+    // MARK: - MovieCreditsViewModelProtocol
     
     func numberOfSections() -> Int {
         return factory.sections.count
@@ -73,8 +77,6 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
         didToggleSection.value = section
     }
     
-    // MARK: - Networking
-    
     func getMovieCredits(showLoader: Bool = false) {
         startLoading.value = showLoader
         interactor.getMovieCredits(for: movieId, page: nil, completion: { result in
@@ -87,6 +89,8 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
             }
         })
     }
+
+    // MARK: - Private
     
     private func processResult(_ movieCredits: MovieCredits) -> MovieCreditsViewState {
         let fetchedCast = movieCredits.cast

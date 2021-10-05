@@ -26,6 +26,7 @@
 "favoritesCollectionOption" = "Favorites";
 "watchlistCollectionOption" = "Watchlist";
 "customListGroupOption" = "Created Lists";
+"recomendedMoviesOption" = "Recommendations";
 "includeAdults" = "Include adult movies";
 
 "signOutConfirmationTitle" = "Are you sure you want to sign out?";
@@ -46,6 +47,8 @@
 
 "addToFavoritesHint" = "Add to favorites";
 "removeFromFavoritesHint" = "Remove from favorites";
+"addToFavoritesSuccess" = "Added to favorites!";
+"removeFromFavoritesSuccess" = "Removed from favorites";
 
 "expandMovieCellsHint" = "Expand movies";
 "collapseMovieCellsHint" = "Collapse movies";
@@ -58,3 +61,7 @@
 "crew" = "Crew";
 
 "ratingHint" = "Rating of %.1f";
+
+"cancel" = "Cancel";
+
+"shareMovieActionSheetItemTitle" = "Share this movie!";

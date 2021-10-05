@@ -10,9 +10,9 @@ import UIKit
 
 class CustomListDetailSectionView: UIView, NibLoadable {
 
-    @IBOutlet weak var movieCountLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
-    @IBOutlet weak var runtimeLabel: UILabel!
+    @IBOutlet private weak var movieCountLabel: UILabel!
+    @IBOutlet private weak var ratingLabel: UILabel!
+    @IBOutlet private weak var runtimeLabel: UILabel!
     
     @IBOutlet var titleLabels: [UILabel]!
     
@@ -45,7 +45,7 @@ class CustomListDetailSectionView: UIView, NibLoadable {
         titleLabels.forEach { $0.font = FontHelper.light(withSize: 12.0) }
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         movieCountLabel.text = viewModel?.movieCountText

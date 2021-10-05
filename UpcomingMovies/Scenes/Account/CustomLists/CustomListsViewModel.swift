@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-final class CustomListsViewModel: CustomListsViewModelProtocol {
+final class CustomListsViewModel: CustomListsViewModelProtocol, SimpleViewStateProcessable {
 
     // MARK: - Dependencies
     
@@ -17,8 +17,8 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
     
     // MARK: - Reactive properties
     
-    private (set) var startLoading: Bindable<Bool> = Bindable(false)
-    private (set) var viewState: Bindable<SimpleViewState<List>> = Bindable(.initial)
+    private(set) var startLoading: Bindable<Bool> = Bindable(false)
+    private(set) var viewState: Bindable<SimpleViewState<List>> = Bindable(.initial)
     
     // MARK: - Computed properties
     
@@ -62,20 +62,11 @@ final class CustomListsViewModel: CustomListsViewModelProtocol {
                 let currentPage = self.viewState.value.currentPage
                 self.viewState.value = self.processResult(lists,
                                                           currentPage: currentPage,
-                                                          currentLists: self.lists)
+                                                          currentEntities: self.lists)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
         })
-    }
-    
-    private func processResult(_ lists: [List], currentPage: Int,
-                               currentLists: [List]) -> SimpleViewState<List> {
-        var allLists = currentPage == 1 ? [] : currentLists
-        allLists.append(contentsOf: lists)
-        guard !allLists.isEmpty else { return .empty }
-        
-        return lists.isEmpty ? .populated(allLists) : .paging(allLists, next: currentPage + 1)
     }
     
 }

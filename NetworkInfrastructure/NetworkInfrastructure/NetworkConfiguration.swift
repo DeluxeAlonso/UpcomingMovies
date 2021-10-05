@@ -9,8 +9,8 @@ final class NetworkConfiguration {
 
     static let shared = NetworkConfiguration()
 
-    private (set) var apiKey = ""
-    private (set) var readAccessToken = ""
+    private(set) var apiKey = ""
+    private(set) var readAccessToken = ""
 
     var baseAPIURLString: String {
         return "https://api.themoviedb.org"

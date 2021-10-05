@@ -23,7 +23,7 @@ final class TopRatedMoviesCoordinator: MovieListCoordinatorProtocol, Coordinator
         let viewController = MovieListViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(name: "TopRatedMovies",
-                                                              argument: LocalizedStrings.topRatedMoviesTitle.localized)
+                                                              argument: LocalizedStrings.topRatedMoviesTitle())
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)

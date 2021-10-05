@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileSelectableOptionTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var titlelabel: UILabel!
+    @IBOutlet private weak var titlelabel: UILabel!
     
     var viewModel: ProfileSelectableOptionCellViewModelProtocol? {
         didSet {
@@ -32,7 +32,7 @@ class ProfileSelectableOptionTableViewCell: UITableViewCell {
         titlelabel.textColor = ColorPalette.lightBlueColor
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         titlelabel.text = viewModel?.title

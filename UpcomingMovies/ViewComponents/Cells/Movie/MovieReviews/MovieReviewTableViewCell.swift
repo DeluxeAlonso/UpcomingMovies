@@ -10,8 +10,8 @@ import UIKit
 
 final class MovieReviewTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var authorNameLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet private weak var authorNameLabel: UILabel!
+    @IBOutlet private weak var contentLabel: UILabel!
     
     var viewModel: MovieReviewCellViewModelProtocol? {
         didSet {
@@ -35,7 +35,7 @@ final class MovieReviewTableViewCell: UITableViewCell {
         contentLabel.font = FontHelper.light(withSize: 15.0)
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         authorNameLabel.text = viewModel?.authorName

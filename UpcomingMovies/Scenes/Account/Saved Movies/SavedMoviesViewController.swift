@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 
 class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     static var storyboardName = "Account"
     
@@ -112,7 +112,7 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
         }
     }
     
-    // MARK: - Reactive Behaviour
+    // MARK: - Reactive Behavior
     
     private func setupBindables() {
         title = viewModel?.displayTitle
