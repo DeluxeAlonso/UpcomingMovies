@@ -9,9 +9,10 @@ on:
 jobs:
   lint:
     runs-on: macos-latest
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_12.5.app/Contents/Developer
     steps:
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '12.5'
     - uses: actions/checkout@v2
     - name: Install Bundle
       run: bundle install
@@ -23,9 +24,10 @@ jobs:
   test:
     needs: lint
     runs-on: macos-latest
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_12.5.app/Contents/Developer
     steps:
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '12.5'
     - uses: actions/checkout@v2
     - name: Install Bundle
       run: bundle install
