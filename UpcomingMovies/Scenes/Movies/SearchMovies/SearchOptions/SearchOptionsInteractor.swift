@@ -32,9 +32,5 @@ class SearchOptionsInteractor: SearchOptionsInteractorProtocol {
     func getMovieVisits(completion: @escaping (Result<[MovieVisit], Error>) -> Void) {
         movieVisitUseCase.getMovieVisits(completion: completion)
     }
-
-    func hasMovieVisits() -> Bool {
-        return movieVisitUseCase.hasMovieVisits()
-    }
     
 }

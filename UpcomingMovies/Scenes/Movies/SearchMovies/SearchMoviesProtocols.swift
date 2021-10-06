@@ -87,8 +87,6 @@ protocol SearchOptionsInteractorProtocol {
     
     func getGenres(completion: @escaping (Result<[Genre], Error>) -> Void)
     func getMovieVisits(completion: @escaping (Result<[MovieVisit], Error>) -> Void)
-
-    func hasMovieVisits() -> Bool
     
 }
 

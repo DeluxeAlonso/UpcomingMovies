@@ -62,32 +62,25 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     func loadGenres() {
         interactor.getGenres(completion: { [weak self] result in
             guard let strongSelf = self else { return }
-            switch result {
-            case .success(let genres):
-                strongSelf.genres = genres
-                strongSelf.needsContentReload?()
-            case .failure:
-                break
-            }
+            guard let genres = try? result.get() else { return }
+            strongSelf.genres = genres
+            strongSelf.needsContentReload?()
         })
     }
 
     func loadVisitedMovies() {
         interactor.getMovieVisits { [weak self] result in
             guard let strongSelf = self else { return }
-            switch result {
-            case .success(let movieVisits):
-                strongSelf.movieVisits = movieVisits
-                let viewStateChanged = strongSelf.configureViewState(movieVisits: movieVisits)
-                // If the state changed we reload the entire table view
-                if viewStateChanged {
-                    strongSelf.needsContentReload?()
-                } else {
-                    let index = strongSelf.sectionIndex(for: .recentlyVisited)
-                    strongSelf.updateVisitedMovies.value = index
-                }
-            case .failure:
-                break
+            guard let movieVisits = try? result.get() else { return }
+
+            strongSelf.movieVisits = movieVisits
+            let viewStateChanged = strongSelf.configureViewState(movieVisits: movieVisits)
+            // If the state changed we reload the entire table view
+            if viewStateChanged {
+                strongSelf.needsContentReload?()
+            } else {
+                let index = strongSelf.sectionIndex(for: .recentlyVisited)
+                strongSelf.updateVisitedMovies.value = index
             }
         }
     }
