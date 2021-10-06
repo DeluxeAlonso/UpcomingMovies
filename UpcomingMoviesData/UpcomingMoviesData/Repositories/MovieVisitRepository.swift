@@ -30,9 +30,5 @@ public final class MovieVisitRepository: MovieVisitUseCaseProtocol {
     public func save(with id: Int, title: String, posterPath: String?) {
         localDataSource.save(with: id, title: title, posterPath: posterPath)
     }
-    
-    public func hasMovieVisits() -> Bool {
-        return localDataSource.hasMovieVisits()
-    }
 
 }

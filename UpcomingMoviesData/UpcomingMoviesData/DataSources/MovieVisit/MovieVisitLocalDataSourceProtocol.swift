@@ -14,6 +14,5 @@ public protocol MovieVisitLocalDataSourceProtocol {
     
     func getMovieVisits() -> [MovieVisit]
     func save(with id: Int, title: String, posterPath: String?)
-    func hasMovieVisits() -> Bool
     
 }

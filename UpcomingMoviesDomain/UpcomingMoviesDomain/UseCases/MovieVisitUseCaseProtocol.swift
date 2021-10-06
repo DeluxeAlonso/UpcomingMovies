@@ -12,6 +12,5 @@ public protocol MovieVisitUseCaseProtocol {
 
     func getMovieVisits(completion: @escaping (Result<[MovieVisit], Error>) -> Void)
     func save(with id: Int, title: String, posterPath: String?)
-    func hasMovieVisits() -> Bool
     
 }
