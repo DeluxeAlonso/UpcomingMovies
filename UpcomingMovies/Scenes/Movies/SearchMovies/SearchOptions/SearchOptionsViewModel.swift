@@ -29,8 +29,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     // MARK: - Computed properties
     
     var visitedMovieCells: [VisitedMovieCellViewModelProtocol] {
-        let visited = interactor.getMovieVisits()
-        return visited.map { VisitedMovieCellViewModel(movieVisit: $0) }
+        return movieVisits.map { VisitedMovieCellViewModel(movieVisit: $0) }
     }
     
     var genreCells: [GenreSearchOptionCellViewModelProtocol] {
@@ -43,6 +42,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
 
     // MARK: - Stored properties
 
+    private var movieVisits: [MovieVisit] = []
     private var genres: [Genre] = []
     private let defaultSearchOptions: [DefaultSearchOption] = [.popular, .topRated]
     
@@ -53,17 +53,8 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
         
         self.interactor.didUpdateMovieVisit = { [weak self] in
             guard let strongSelf = self else { return }
-            // If the state changed we reload the entire table view
-            let viewStateChanged = strongSelf.configureViewState()
-            if viewStateChanged {
-                strongSelf.needsContentReload?()
-            } else {
-                let index = strongSelf.sectionIndex(for: .recentlyVisited)
-                strongSelf.updateVisitedMovies.value = index
-            }
+            strongSelf.loadVisitedMovies()
         }
-        
-        configureViewState()
     }
     
     // MARK: - SearchOptionsViewModelProtocol
@@ -79,6 +70,26 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
                 break
             }
         })
+    }
+
+    func loadVisitedMovies() {
+        interactor.getMovieVisits { [weak self] result in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(let movieVisits):
+                strongSelf.movieVisits = movieVisits
+                let viewStateChanged = strongSelf.configureViewState(movieVisits: movieVisits)
+                // If the state changed we reload the entire table view
+                if viewStateChanged {
+                    strongSelf.needsContentReload?()
+                } else {
+                    let index = strongSelf.sectionIndex(for: .recentlyVisited)
+                    strongSelf.updateVisitedMovies.value = index
+                }
+            case .failure:
+                break
+            }
+        }
     }
     
     func section(at index: Int) -> SearchOptionsSection {
@@ -105,8 +116,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     }
     
     func getRecentlyVisitedMovieSelection(by index: Int) {
-        let visitedMovies = interactor.getMovieVisits()
-        let selectedVisitedMovie = visitedMovies[index]
+        let selectedVisitedMovie = movieVisits[index]
         selectedRecentlyVisitedMovie?(selectedVisitedMovie.id, selectedVisitedMovie.title)
     }
 
@@ -117,9 +127,9 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
      * quantity. Returns true if the state changed and false if not.
      */
     @discardableResult
-    private func configureViewState() -> Bool {
+    private func configureViewState(movieVisits: [MovieVisit]) -> Bool {
         let oldViewState = viewState.value
-        viewState.value = interactor.hasMovieVisits() ? .populatedMovieVisits : .emptyMovieVisits
+        viewState.value = movieVisits.isEmpty ? .emptyMovieVisits : .populatedMovieVisits
 
         return oldViewState != viewState.value
     }
