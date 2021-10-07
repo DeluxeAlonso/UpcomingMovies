@@ -28,13 +28,9 @@ class SearchOptionsInteractor: SearchOptionsInteractorProtocol {
     func getGenres(completion: @escaping (Result<[Genre], Error>) -> Void) {
         genreUseCase.fetchAll(completion: completion)
     }
-    
-    func getMovieVisits() -> [MovieVisit] {
-        return movieVisitUseCase.getMovieVisits()
-    }
-    
-    func hasMovieVisits() -> Bool {
-        return movieVisitUseCase.hasMovieVisits()
+
+    func getMovieVisits(completion: @escaping (Result<[MovieVisit], Error>) -> Void) {
+        movieVisitUseCase.getMovieVisits(completion: completion)
     }
     
 }

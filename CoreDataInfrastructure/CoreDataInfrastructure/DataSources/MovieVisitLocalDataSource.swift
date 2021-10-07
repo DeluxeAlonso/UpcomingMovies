@@ -34,11 +34,7 @@ final class MovieVisitLocalDataSource: MovieVisitLocalDataSourceProtocol {
                              title: title,
                              posterPath: posterPath)
     }
-    
-    func hasMovieVisits() -> Bool {
-        return store.exists()
-    }
-    
+
 }
 
 // MARK: - PersistenceStoreDelegate

@@ -9,7 +9,7 @@
 import UpcomingMoviesDomain
 
 public final class MovieVisitRepository: MovieVisitUseCaseProtocol {
-    
+
     private var localDataSource: MovieVisitLocalDataSourceProtocol
     
     public var didUpdateMovieVisit: (() -> Void)? {
@@ -21,17 +21,14 @@ public final class MovieVisitRepository: MovieVisitUseCaseProtocol {
     init(localDataSource: MovieVisitLocalDataSourceProtocol) {
         self.localDataSource = localDataSource
     }
-    
-    public func getMovieVisits() -> [MovieVisit] {
-        return localDataSource.getMovieVisits()
+
+    public func getMovieVisits(completion: @escaping (Result<[MovieVisit], Error>) -> Void) {
+        let movieVisits = localDataSource.getMovieVisits()
+        completion(.success(movieVisits))
     }
     
     public func save(with id: Int, title: String, posterPath: String?) {
         localDataSource.save(with: id, title: title, posterPath: posterPath)
-    }
-    
-    public func hasMovieVisits() -> Bool {
-        return localDataSource.hasMovieVisits()
     }
 
 }

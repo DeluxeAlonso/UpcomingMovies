@@ -25,6 +25,7 @@ class SearchOptionsViewController: UITableViewController, Storyboarded {
         setupBindables()
         
         viewModel?.loadGenres()
+        viewModel?.loadVisitedMovies()
     }
     
     // MARK: - Private
