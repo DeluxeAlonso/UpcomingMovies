@@ -22,22 +22,22 @@ final public class LocalDataSource: LocalDataSourceProtocol {
     // MARK: - LocalDataSourceProtocol
 
     public func genreDataSource() -> GenreLocalDataSourceProtocol {
-        let store: PersistenceStore<CDGenre> = PersistenceStore(self.coreDataStack.mainContext)
+        let store: PersistenceStore<CDGenre> = PersistenceStore(self.coreDataStack.persistentContainer)
         return  GenreLocalDataSource(store: store)
     }
     
     public func movieVisitDataSource() -> MovieVisitLocalDataSourceProtocol {
-        let store: PersistenceStore<CDMovieVisit> = PersistenceStore(self.coreDataStack.mainContext)
+        let store: PersistenceStore<CDMovieVisit> = PersistenceStore(self.coreDataStack.persistentContainer)
         return MovieVisitLocalDataSource(store: store)
     }
     
     public func movieSearchDataSource() -> MovieSearchLocalDataSourceProtocol {
-        let store: PersistenceStore<CDMovieSearch> = PersistenceStore(self.coreDataStack.mainContext)
+        let store: PersistenceStore<CDMovieSearch> = PersistenceStore(self.coreDataStack.persistentContainer)
         return MovieSearchLocalDataSource(store: store)
     }
     
     public func userDataSource() -> UserLocalDataSourceProtocol {
-        let store: PersistenceStore<CDUser> = PersistenceStore(self.coreDataStack.mainContext)
+        let store: PersistenceStore<CDUser> = PersistenceStore(self.coreDataStack.persistentContainer)
         return UserLocalDataSource(store: store)
     }
     

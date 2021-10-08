@@ -16,8 +16,8 @@ protocol PersistenceStoreDelegate: AnyObject {
 }
 
 class PersistenceStore<Entity: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
-    
-    var managedObjectContext: NSManagedObjectContext
+
+    private let persistentContainer: NSPersistentContainer
     
     private var fetchedResultsController: NSFetchedResultsController<Entity>!
     private var changeTypes: [NSFetchedResultsChangeType]!
@@ -27,11 +27,15 @@ class PersistenceStore<Entity: NSManagedObject>: NSObject, NSFetchedResultsContr
     var entities: [Entity] {
         return fetchedResultsController.fetchedObjects ?? []
     }
+
+    var managedObjectContext: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
     
     // MARK: - Initializers
     
-    init(_ managedObjectContext: NSManagedObjectContext) {
-        self.managedObjectContext = managedObjectContext
+    init(_ persistentContainer: NSPersistentContainer) {
+        self.persistentContainer = persistentContainer
         super.init()
     }
     
@@ -51,6 +55,12 @@ class PersistenceStore<Entity: NSManagedObject>: NSObject, NSFetchedResultsContr
         request.returnsObjectsAsFaults = false
         
         self.changeTypes = changeTypes
+
+//        let context = CoreDataStack.shared.persistentContainer.newBackgroundContext()
+//
+//        // If needed, ensure the background context stays
+//        // up to date with changes from the parent
+//        context.automaticallyMergesChangesFromParent = true
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
                                                               managedObjectContext: managedObjectContext,

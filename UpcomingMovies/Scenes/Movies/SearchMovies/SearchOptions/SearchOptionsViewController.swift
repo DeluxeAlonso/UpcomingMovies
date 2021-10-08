@@ -62,7 +62,9 @@ class SearchOptionsViewController: UITableViewController, Storyboarded {
     private func setupBindables() {
         viewModel?.needsContentReload = { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.reloadTableView()
+            DispatchQueue.main.async {
+                strongSelf.reloadTableView()
+            }
         }
         
         viewModel?.updateVisitedMovies.bind({ [weak self] section in
@@ -70,7 +72,9 @@ class SearchOptionsViewController: UITableViewController, Storyboarded {
                 let section = section else {
                     return
             }
-            strongSelf.reloadSection(section)
+            DispatchQueue.main.async {
+                strongSelf.reloadSection(section)
+            }
         })
         
         viewModel?.selectedDefaultSearchOption.bind({ [weak self] option in

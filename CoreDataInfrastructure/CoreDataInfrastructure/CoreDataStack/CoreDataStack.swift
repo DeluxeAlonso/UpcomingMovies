@@ -16,12 +16,12 @@ public class CoreDataStack: CoreDataStackProtocol {
 
     // MARK: - CoreDataStackProtocol
 
-    var mainContext: NSManagedObjectContext {
-        let container = isTesting() ? mockPersistantContainer : persistentContainer
-        let context = container.viewContext
-        context.mergePolicy = NSMergePolicy.overwrite
-        return context
-    }
+//    var mainContext: NSManagedObjectContext {
+//        let container = isTesting() ? mockPersistantContainer : persistentContainer
+//        let context = container.viewContext
+//        context.mergePolicy = NSMergePolicy.overwrite
+//        return context
+//    }
 
     func setExtensionPersistentStoreDescriptions(_ groupExtensionIds: [String]) {
         persistentStoreDescriptions = groupExtensionIds.map({ groupId in
@@ -33,7 +33,7 @@ public class CoreDataStack: CoreDataStackProtocol {
 
     // MARK: - Private
 
-    private lazy var persistentContainer: NSPersistentContainer = {
+    lazy var persistentContainer: NSPersistentContainer = {
         let bundle = Bundle(for: CoreDataStack.self)
         guard let url = bundle.url(forResource: Constants.containerName, withExtension: "momd"),
               let model = NSManagedObjectModel(contentsOf: url) else {
