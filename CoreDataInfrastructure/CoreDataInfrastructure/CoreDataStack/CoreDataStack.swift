@@ -16,13 +16,6 @@ public class CoreDataStack: CoreDataStackProtocol {
 
     // MARK: - CoreDataStackProtocol
 
-//    var mainContext: NSManagedObjectContext {
-//        let container = isTesting() ? mockPersistantContainer : persistentContainer
-//        let context = container.viewContext
-//        context.mergePolicy = NSMergePolicy.overwrite
-//        return context
-//    }
-
     func setExtensionPersistentStoreDescriptions(_ groupExtensionIds: [String]) {
         persistentStoreDescriptions = groupExtensionIds.map({ groupId in
             let storeURL = URL.storeURL(for: groupId, databaseName: Constants.containerName)
