@@ -17,7 +17,7 @@ class CDMovieSearchStoreTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        storeToTest = PersistenceStore(CoreDataStack.shared.mainContext)
+        storeToTest = PersistenceStore(CoreDataStack.shared.mockPersistantContainer)
     }
 
     override func tearDown() {
@@ -30,7 +30,7 @@ class CDMovieSearchStoreTests: XCTestCase {
         let saveExpectation = XCTestExpectation(description: "Save movie search")
         //Act
         storeToTest.saveMovieSearch(with: "Search") { _ in
-            let savedMovieSearch = CDMovieSearch.fetch(in: CoreDataStack.shared.mainContext).first
+            let savedMovieSearch = CDMovieSearch.fetch(in: CoreDataStack.shared.mockPersistantContainer.viewContext).first
             XCTAssertNotNil(savedMovieSearch)
             saveExpectation.fulfill()
         }

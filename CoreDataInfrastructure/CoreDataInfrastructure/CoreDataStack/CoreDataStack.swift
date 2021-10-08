@@ -54,7 +54,7 @@ public class CoreDataStack: CoreDataStackProtocol {
     
     // MARK: - Test mockups
     
-    private lazy var mockPersistantContainer: NSPersistentContainer = {
+    lazy var mockPersistantContainer: NSPersistentContainer = {
         let bundle = Bundle(for: CoreDataStack.self)
         guard let url = bundle.url(forResource: Constants.containerName, withExtension: "momd"),
               let model = NSManagedObjectModel(contentsOf: url) else {

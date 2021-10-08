@@ -9,8 +9,6 @@ import CoreData
 
 protocol CoreDataStackProtocol {
 
-   // var mainContext: NSManagedObjectContext { get }
-
     var persistentContainer: NSPersistentContainer { get }
 
     func setExtensionPersistentStoreDescriptions(_ groupExtensionIds: [String])
