@@ -19,7 +19,7 @@ extension PersistenceStore where Entity == CDGenre {
             completion?(true)
         }
     }
-    
+
     func find(with id: Int) -> CDGenre? {
         let predicate = NSPredicate(format: "id == %d", id)
         return CDGenre.findOrFetch(in: managedObjectContext, matching: predicate)

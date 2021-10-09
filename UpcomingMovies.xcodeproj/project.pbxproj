@@ -2874,7 +2874,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.AppDevelopment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.AppDev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -2898,7 +2898,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.AppDevelopment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.AppDev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -2966,7 +2966,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.AppDevelopment.Today;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.AppDev.Today;
 				PRODUCT_NAME = RecentlyVisited;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2990,7 +2990,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.AppDevelopment.Today;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.AppDev.Today;
 				PRODUCT_NAME = RecentlyVisited;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -3014,7 +3014,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.AppDevelopment.Widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.AppDev.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -3038,7 +3038,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.AppDevelopment.Widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alonso.UpcomingMovies.AppDev.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;

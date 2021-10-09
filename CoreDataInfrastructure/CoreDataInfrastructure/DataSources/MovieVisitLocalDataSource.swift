@@ -26,7 +26,7 @@ final class MovieVisitLocalDataSource: MovieVisitLocalDataSourceProtocol {
     // MARK: - MovieVisitLocalDataSourceProtocol
     
     func getMovieVisits() -> [MovieVisit] {
-        return store.entities.map { $0.asDomain() }
+        return store.findAll().map { $0.asDomain() }
     }
     
     func save(with id: Int, title: String, posterPath: String?) {
