@@ -23,13 +23,13 @@ class PersistenceStore<Entity: NSManagedObject>: NSObject, NSFetchedResultsContr
     private var changeTypes: [NSFetchedResultsChangeType]!
     
     weak var delegate: PersistenceStoreDelegate?
-    
-    var entities: [Entity] {
-        return fetchedResultsController.fetchedObjects ?? []
-    }
 
     var managedObjectContext: NSManagedObjectContext {
         return persistentContainer.viewContext
+    }
+
+    func createBackgroundContext() -> NSManagedObjectContext {
+        return persistentContainer.newBackgroundContext()
     }
     
     // MARK: - Initializers

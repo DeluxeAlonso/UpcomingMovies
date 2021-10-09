@@ -25,6 +25,13 @@ extension PersistenceStore where Entity == CDMovieVisit {
     func exists() -> Bool {
         return countAll() > 0
     }
+
+    func findAll() -> [CDMovieVisit] {
+        let backgroundContext = createBackgroundContext()
+        backgroundContext.automaticallyMergesChangesFromParent = true
+
+        return CDMovieVisit.fetch(in: backgroundContext)
+    }
     
     func countAll() -> Int {
         return CDMovieVisit.count(in: managedObjectContext)
