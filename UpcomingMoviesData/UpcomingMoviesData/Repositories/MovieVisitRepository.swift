@@ -27,7 +27,8 @@ public final class MovieVisitRepository: MovieVisitUseCaseProtocol {
         completion(.success(movieVisits))
     }
     
-    public func save(with id: Int, title: String, posterPath: String?) {
+    public func save(with id: Int, title: String, posterPath: String?,
+                     completion: @escaping (Result<Void, Error>) -> Void) {
         localDataSource.save(with: id, title: title, posterPath: posterPath)
     }
 
