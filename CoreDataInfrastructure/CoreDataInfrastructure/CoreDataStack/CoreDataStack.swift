@@ -42,6 +42,7 @@ public class CoreDataStack: CoreDataStackProtocol {
         container.loadPersistentStores { _, error in
             guard error == nil else { fatalError() }
         }
+        container.viewContext.mergePolicy = NSMergePolicy.overwrite
         return container
     }()
     
