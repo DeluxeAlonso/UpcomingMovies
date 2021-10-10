@@ -26,10 +26,6 @@ extension PersistenceStore where Entity == CDMovieVisit {
         return countAll() > 0
     }
 
-    func findAll() -> [CDMovieVisit] {
-        return CDMovieVisit.fetch(in: managedObjectContext)
-    }
-
     func findAll(completion: (([CDMovieVisit]) -> Void)? = nil) {
         let context = createBackgroundContext()
         context.automaticallyMergesChangesFromParent = true
