@@ -27,7 +27,7 @@ final class MovieSearchLocalDataSource: MovieSearchLocalDataSourceProtocol {
     // MARK: - MovieSearchLocalDataSourceProtocol
     
     func getMovieSearches() -> [MovieSearch] {
-        return store.entities.map { $0.asDomain() }
+        return store.findAll().map { $0.asDomain() }
     }
     
     func save(with searchText: String) {

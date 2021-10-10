@@ -16,13 +16,6 @@ public class CoreDataStack: CoreDataStackProtocol {
 
     // MARK: - CoreDataStackProtocol
 
-    var mainContext: NSManagedObjectContext {
-        let container = isTesting() ? mockPersistantContainer : persistentContainer
-        let context = container.viewContext
-        context.mergePolicy = NSMergePolicy.overwrite
-        return context
-    }
-
     func setExtensionPersistentStoreDescriptions(_ groupExtensionIds: [String]) {
         persistentStoreDescriptions = groupExtensionIds.map({ groupId in
             let storeURL = URL.storeURL(for: groupId, databaseName: Constants.containerName)
@@ -33,7 +26,7 @@ public class CoreDataStack: CoreDataStackProtocol {
 
     // MARK: - Private
 
-    private lazy var persistentContainer: NSPersistentContainer = {
+    lazy var persistentContainer: NSPersistentContainer = {
         let bundle = Bundle(for: CoreDataStack.self)
         guard let url = bundle.url(forResource: Constants.containerName, withExtension: "momd"),
               let model = NSManagedObjectModel(contentsOf: url) else {
@@ -49,12 +42,13 @@ public class CoreDataStack: CoreDataStackProtocol {
         container.loadPersistentStores { _, error in
             guard error == nil else { fatalError() }
         }
+        container.viewContext.mergePolicy = NSMergePolicy.overwrite
         return container
     }()
     
     // MARK: - Test mockups
     
-    private lazy var mockPersistantContainer: NSPersistentContainer = {
+    lazy var mockPersistantContainer: NSPersistentContainer = {
         let bundle = Bundle(for: CoreDataStack.self)
         guard let url = bundle.url(forResource: Constants.containerName, withExtension: "momd"),
               let model = NSManagedObjectModel(contentsOf: url) else {

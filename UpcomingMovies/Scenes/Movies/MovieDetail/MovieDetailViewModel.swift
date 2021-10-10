@@ -120,7 +120,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     }
     
     func saveVisitedMovie() {
-        interactor.saveMovieVisit(with: id, title: title, posterPath: posterURL?.absoluteString)
+        interactor.saveMovieVisit(with: id, title: title, posterPath: posterURL?.absoluteString, completion: {_ in })
     }
     
     // MARK: - User Authentication

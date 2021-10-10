@@ -25,6 +25,10 @@ extension PersistenceStore where Entity == CDMovieVisit {
     func exists() -> Bool {
         return countAll() > 0
     }
+
+    func findAll() -> [CDMovieVisit] {
+        return CDMovieVisit.fetch(in: managedObjectContext)
+    }
     
     func countAll() -> Int {
         return CDMovieVisit.count(in: managedObjectContext)

@@ -26,10 +26,11 @@ public final class MovieVisitRepository: MovieVisitUseCaseProtocol {
         let movieVisits = localDataSource.getMovieVisits()
         completion(.success(movieVisits))
     }
-    
+
     public func save(with id: Int, title: String, posterPath: String?,
                      completion: @escaping (Result<Void, Error>) -> Void) {
         localDataSource.save(with: id, title: title, posterPath: posterPath)
+        completion(.success(Void()))
     }
 
 }

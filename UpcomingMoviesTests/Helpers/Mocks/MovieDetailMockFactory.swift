@@ -35,8 +35,11 @@ class MockMovieDetailInteractor: MovieDetailInteractorProtocol {
     func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
         completion(isMovieInFavoritesResult!)
     }
-    
-    func saveMovieVisit(with id: Int, title: String, posterPath: String?) {}
+
+    var saveMovieVisitResult: Result<Void, Error>? = .success(Void())
+    func saveMovieVisit(with id: Int, title: String, posterPath: String?, completion: @escaping (Result<Void, Error>) -> Void) {
+        completion(saveMovieVisitResult!)
+    }
     
 }
 
