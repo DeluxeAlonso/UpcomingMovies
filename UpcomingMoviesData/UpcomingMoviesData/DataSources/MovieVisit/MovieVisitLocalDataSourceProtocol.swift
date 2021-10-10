@@ -11,8 +11,9 @@ import UpcomingMoviesDomain
 public protocol MovieVisitLocalDataSourceProtocol {
     
     var didUpdateMovieVisit: (() -> Void)? { get set }
-    
-    func getMovieVisits() -> [MovieVisit]
+
+    func getMovieVisits(completion: @escaping (Result<[MovieVisit], Error>) -> Void)
+
     func save(with id: Int, title: String, posterPath: String?)
     
 }

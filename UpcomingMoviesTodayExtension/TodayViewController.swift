@@ -13,6 +13,8 @@ import CoreDataInfrastructure
 class TodayViewController: UIViewController, NCWidgetProviding {
     
     private let todayView: TodayView = TodayView()
+
+    private var localDataSource: LocalDataSource!
     
     // MARK: - Lifecycle
     
@@ -41,11 +43,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
 
     private func configureMoviePosters() {
-        let localDataSource = LocalDataSource(appGroupExtensions: AppGroup.allCasesIdentifiers)
-        let movieVisits = localDataSource.movieVisitDataSource().getMovieVisits()
-        // We only take the 3 latest visited movies
-        let posterPaths = Array(movieVisits.compactMap { $0.posterPath }.prefix(3))
-        posterPaths.isEmpty ? todayView.setupEmptyView() : configurePostersStackView(with: posterPaths)
+        localDataSource = LocalDataSource(appGroupExtensions: AppGroup.allCasesIdentifiers)
+        localDataSource.movieVisitDataSource().getMovieVisits(completion: { [weak self] result in
+            guard let self = self else { return }
+            guard let movieVisits = try? result.get() else { return }
+
+            // We only take the 3 latest visited movies
+            let posterPaths = Array(movieVisits.compactMap { $0.posterPath }.prefix(3))
+            posterPaths.isEmpty ? self.todayView.setupEmptyView() : self.configurePostersStackView(with: posterPaths)
+        })
     }
     
     private func configurePostersStackView(with posterPaths: [String]) {
