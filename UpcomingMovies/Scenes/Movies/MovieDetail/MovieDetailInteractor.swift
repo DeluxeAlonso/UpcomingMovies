@@ -9,7 +9,7 @@
 import UpcomingMoviesDomain
 
 class MovieDetailInteractor: MovieDetailInteractorProtocol {
-    
+
     private let movieUseCase: MovieUseCaseProtocol
     private let movieVisitUseCase: MovieVisitUseCaseProtocol
     private let genreUseCase: GenreUseCaseProtocol
@@ -44,9 +44,9 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
     func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
         movieUseCase.isMovieInFavorites(for: movieId, completion: completion)
     }
-    
+
     func saveMovieVisit(with id: Int, title: String, posterPath: String?) {
-        movieVisitUseCase.save(with: id, title: title, posterPath: posterPath)
+        movieVisitUseCase.save(with: id, title: title, posterPath: posterPath, completion: { _ in })
     }
     
 }

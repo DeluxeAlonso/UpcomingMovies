@@ -70,7 +70,7 @@ protocol MovieDetailInteractorProtocol {
     func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
     
     func saveMovieVisit(with id: Int, title: String, posterPath: String?)
-    
+
 }
 
 protocol MovieDetailFactoryProtocol {

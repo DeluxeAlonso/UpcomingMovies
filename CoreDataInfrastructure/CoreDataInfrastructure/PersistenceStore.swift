@@ -16,22 +16,26 @@ protocol PersistenceStoreDelegate: AnyObject {
 }
 
 class PersistenceStore<Entity: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
-    
-    var managedObjectContext: NSManagedObjectContext
+
+    private let persistentContainer: NSPersistentContainer
     
     private var fetchedResultsController: NSFetchedResultsController<Entity>!
     private var changeTypes: [NSFetchedResultsChangeType]!
     
     weak var delegate: PersistenceStoreDelegate?
-    
-    var entities: [Entity] {
-        return fetchedResultsController.fetchedObjects ?? []
+
+    var managedObjectContext: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
+
+    func createBackgroundContext() -> NSManagedObjectContext {
+        return persistentContainer.newBackgroundContext()
     }
     
     // MARK: - Initializers
     
-    init(_ managedObjectContext: NSManagedObjectContext) {
-        self.managedObjectContext = managedObjectContext
+    init(_ persistentContainer: NSPersistentContainer) {
+        self.persistentContainer = persistentContainer
         super.init()
     }
     

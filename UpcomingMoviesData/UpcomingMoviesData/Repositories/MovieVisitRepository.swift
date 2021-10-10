@@ -23,12 +23,16 @@ public final class MovieVisitRepository: MovieVisitUseCaseProtocol {
     }
 
     public func getMovieVisits(completion: @escaping (Result<[MovieVisit], Error>) -> Void) {
-        let movieVisits = localDataSource.getMovieVisits()
-        completion(.success(movieVisits))
+        localDataSource.getMovieVisits(completion: { result in
+            let movieVisits = try? result.get()
+            completion(.success(movieVisits ?? []))
+        })
     }
-    
-    public func save(with id: Int, title: String, posterPath: String?) {
+
+    public func save(with id: Int, title: String, posterPath: String?,
+                     completion: @escaping (Result<Void, Error>) -> Void) {
         localDataSource.save(with: id, title: title, posterPath: posterPath)
+        completion(.success(Void()))
     }
 
 }
