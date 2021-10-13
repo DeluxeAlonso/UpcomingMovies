@@ -31,8 +31,7 @@ public final class MovieVisitRepository: MovieVisitUseCaseProtocol {
 
     public func save(with id: Int, title: String, posterPath: String?,
                      completion: @escaping (Result<Void, Error>) -> Void) {
-        localDataSource.save(with: id, title: title, posterPath: posterPath)
-        completion(.success(Void()))
+        localDataSource.save(with: id, title: title, posterPath: posterPath, completion: completion)
     }
 
 }

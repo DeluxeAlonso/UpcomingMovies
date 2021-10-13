@@ -31,10 +31,10 @@ final class MovieVisitLocalDataSource: MovieVisitLocalDataSourceProtocol {
         }
     }
     
-    func save(with id: Int, title: String, posterPath: String?) {
-        store.saveMovieVisit(with: id,
-                             title: title,
-                             posterPath: posterPath)
+    func save(with id: Int, title: String, posterPath: String?,
+              completion: @escaping (Result<Void, Error>) -> Void) {
+        store.saveMovieVisit(with: id, title: title, posterPath: posterPath)
+        completion(.success(Void()))
     }
 
 }

@@ -16,7 +16,8 @@ extension NSManagedObjectContext {
         }
         return obj
     }
-    
+
+    @discardableResult
     func saveOrRollback() -> Bool {
         do {
             try save()
@@ -30,7 +31,14 @@ extension NSManagedObjectContext {
     func performChanges(block: @escaping () -> Void) {
         perform {
             block()
-            _ = self.saveOrRollback()
+            self.saveOrRollback()
+        }
+    }
+
+    func performChangesAndWait(block: () -> Void) {
+        performAndWait {
+            block()
+            self.saveOrRollback()
         }
     }
     
