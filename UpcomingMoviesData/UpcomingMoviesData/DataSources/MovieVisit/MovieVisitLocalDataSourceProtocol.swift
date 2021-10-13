@@ -15,6 +15,6 @@ public protocol MovieVisitLocalDataSourceProtocol {
     func getMovieVisits(completion: @escaping (Result<[MovieVisit], Error>) -> Void)
 
     func save(with id: Int, title: String, posterPath: String?,
-              completion: @escaping (Result<[MovieVisit], Error>) -> Void)
+              completion: @escaping (Result<Void, Error>) -> Void)
     
 }
