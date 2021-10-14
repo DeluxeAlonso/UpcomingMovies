@@ -42,10 +42,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     var viewModel: MovieDetailViewModelProtocol?
     weak var coordinator: MovieDetailCoordinatorProtocol?
 
-    deinit {
-        print("MovieDetailViewController")
-    }
-
     // MARK: - LoadingDisplayable
 
     var loaderView: LoadingView = RadarView()
