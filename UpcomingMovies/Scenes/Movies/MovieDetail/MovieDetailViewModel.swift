@@ -26,7 +26,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var showGenreName: Bindable<String> = Bindable("-")
     private(set) var showMovieOptions: Bindable<[MovieDetailOption]> = Bindable([])
 
-    private(set) var didUpdateMovieDetail: Bindable<Bool> = Bindable(true)
+    private(set) var didSetupMovieDetail: Bindable<Bool> = Bindable(true)
 
     private(set) var didUpdateFavoriteSuccess: Bindable<Bool> = Bindable(false)
     private(set) var didUpdateFavoriteFailure: Bindable<Error?> = Bindable(nil)
@@ -77,7 +77,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private func setupMovie(_ movie: Movie) {
         id = movie.id
         title = movie.title
-        
+
         releaseDate = movie.releaseDate
         voteAverage = movie.voteAverage
         overview = movie.overview
@@ -85,7 +85,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         backdropURL = movie.backdropURL
         
         getMovieGenreName(for: movie.genreIds?.first)
-        saveVisitedMovie()
+
+        didSetupMovieDetail.value = true
     }
     
     private func getMovieGenreName(for genreId: Int?) {
@@ -111,7 +112,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             case .success(let movie):
                 self.setupMovie(movie)
                 self.checkIfMovieIsFavorite(showLoader: false)
-                self.didUpdateMovieDetail.value = true
             case .failure(let error):
                 self.startLoading.value = false
                 self.showErrorView.value = error

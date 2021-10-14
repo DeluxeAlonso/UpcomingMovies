@@ -95,9 +95,10 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     }
     
     private func setupViewBindables() {
-        viewModel?.didUpdateMovieDetail.bindAndFire { [weak self] _ in
+        viewModel?.didSetupMovieDetail.bindAndFire { [weak self] _ in
             self?.configureUI()
             self?.hideRetryView()
+            self?.viewModel?.saveVisitedMovie()
         }
         viewModel?.showGenreName.bindAndFire({ [weak self] genreName in
             self?.genreLabel.text = genreName
