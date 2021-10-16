@@ -33,6 +33,22 @@ class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate {
     func updateOffset(_ verticalSafeAreaOffset: CGFloat) {
         self.verticalSafeAreaOffset = verticalSafeAreaOffset
     }
+
+    // MARK: - Private
+
+    private func isTransitionableNavigation(between fromVC: UIViewController,
+                                            and toVC: UIViewController,
+                                            on operation: UINavigationController.Operation) -> Bool {
+        guard fromVC is Transitionable || toVC is Transitionable else { return false }
+        switch operation {
+        case .push:
+            return toVC is Transitionable
+        case .pop, .none:
+            return fromVC is Transitionable
+        @unknown default:
+            return false
+        }
+    }
     
     // MARK: - UINavigationControllerDelegate
     
@@ -41,6 +57,8 @@ class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate {
                               from fromVC: UIViewController,
                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         guard let frame = selectedFrame else { return nil }
+        guard isTransitionableNavigation(between: fromVC, and: toVC, on: operation) else { return nil }
+
         let transitionView = UIImageView(image: imageToTransition)
         transitionView.contentMode = .scaleAspectFit
         switch operation {
