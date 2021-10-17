@@ -11,11 +11,9 @@ import UpcomingMoviesDomain
 
 protocol SearchMoviesCoordinatorProtocol: AnyObject {
     
-    @discardableResult
     func embedSearchOptions(on parentViewController: UIViewController,
                             in containerView: UIView) -> SearchOptionsViewController
-    
-    @discardableResult
+
     func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController
 
     func showMovieDetail(for movie: Movie)
