@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class SimilarMoviesCoordinator: NSObject, MovieListCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
+final class SimilarMoviesCoordinator: MovieListCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
