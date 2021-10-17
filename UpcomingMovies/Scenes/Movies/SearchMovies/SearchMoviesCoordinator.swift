@@ -36,7 +36,6 @@ final class SearchMoviesCoordinator: NSObject, SearchMoviesCoordinatorProtocol, 
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    @discardableResult
     func embedSearchOptions(on parentViewController: UIViewController,
                             in containerView: UIView) -> SearchOptionsViewController {
         let viewController = SearchOptionsViewController.instantiate()
@@ -48,8 +47,7 @@ final class SearchMoviesCoordinator: NSObject, SearchMoviesCoordinatorProtocol, 
         
         return viewController
     }
-    
-    @discardableResult
+
     func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController {
         let searchResultController = SearchMoviesResultController(viewModel: DIContainer.shared.resolve())
         

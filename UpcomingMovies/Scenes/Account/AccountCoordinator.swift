@@ -36,8 +36,7 @@ final class AccountCoordinator: NSObject, AccountCoordinatorProtocol, RootCoordi
         navigationController.delegate = self
         navigationController.pushViewController(viewController, animated: true)
     }
-    
-    @discardableResult
+
     func embedSignInViewController(on parentViewController: SignInViewControllerDelegate) -> SignInViewController {
         navigationController.setNavigationBarHidden(true, animated: true)
         
@@ -49,7 +48,6 @@ final class AccountCoordinator: NSObject, AccountCoordinatorProtocol, RootCoordi
         return viewController
     }
     
-    @discardableResult
     func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate,
                                     for user: User?) -> ProfileViewController {
         navigationController.setNavigationBarHidden(false, animated: true)
