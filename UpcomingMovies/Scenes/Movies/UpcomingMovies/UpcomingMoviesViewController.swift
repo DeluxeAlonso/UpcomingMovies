@@ -47,7 +47,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         guard let selectedViewController = tabBarController?.selectedViewController,
-            selectedViewController == self || selectedViewController == navigationController else {
+              selectedViewController == self || selectedViewController == navigationController else {
             return
         }
         coordinator.animate(alongsideTransition: { _ in
@@ -101,10 +101,10 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     
     private func setupRefreshControl() {
         collectionView.refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
-                                              backgroundColor: collectionView.backgroundColor,
-                                              refreshHandler: { [weak self] in
-                                                self?.viewModel?.refreshMovies()
-        })
+                                                              backgroundColor: collectionView.backgroundColor,
+                                                              refreshHandler: { [weak self] in
+                                                                self?.viewModel?.refreshMovies()
+                                                              })
     }
     
     private func reloadCollectionView() {
@@ -113,10 +113,10 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
                                                          presentationMode: presentationMode)
         
         prefetchDataSource = CollectionViewDataSourcePrefetching(cellCount: viewModel.movieCells.count,
-                                                       needsPrefetch: viewModel.needsPrefetch,
-                                                       prefetchHandler: { [weak self] in
-                                                        self?.viewModel?.getMovies()
-        })
+                                                                 needsPrefetch: viewModel.needsPrefetch,
+                                                                 prefetchHandler: { [weak self] in
+                                                                    self?.viewModel?.getMovies()
+                                                                 })
         
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = prefetchDataSource
@@ -140,15 +140,15 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     private func configureView(withState state: SimpleViewState<Movie>) {
         switch state {
         case .populated, .paging, .initial:
-             hideDisplayedPlaceholderView()
+            hideDisplayedPlaceholderView()
             collectionView.backgroundView = UIView(frame: .zero)
         case .empty:
             presentEmptyView(with: LocalizedStrings.emptyMovieResults())
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
-                                       errorHandler: { [weak self] in
-                                        self?.viewModel?.refreshMovies()
-            })
+                             errorHandler: { [weak self] in
+                                self?.viewModel?.refreshMovies()
+                             })
         }
     }
     
@@ -202,17 +202,17 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cellAttributes = collectionView.layoutAttributesForItem(at: indexPath),
-            let cell = collectionView.cellForItem(at: indexPath) as? UpcomingMovieCollectionViewCellProtocol else {
-                return
+              let cell = collectionView.cellForItem(at: indexPath) as? UpcomingMovieCollectionViewCellProtocol else {
+            return
         }
         
         let imageToTransition = cell.posterImageView.image
         let selectedFrame = collectionView.convert(cellAttributes.frame,
-                                               to: collectionView.superview)
+                                                   to: collectionView.superview)
         
         let navigationConfiguration = UpcomingMoviesNavigationConfiguration(selectedFrame: selectedFrame,
-                                                              imageToTransition: imageToTransition,
-                                                              transitionOffset: view.safeAreaInsets.left)
+                                                                            imageToTransition: imageToTransition,
+                                                                            transitionOffset: view.safeAreaInsets.left)
         
         coordinator?.showMovieDetail(for: viewModel.movie(for: indexPath.row), with: navigationConfiguration)
     }
