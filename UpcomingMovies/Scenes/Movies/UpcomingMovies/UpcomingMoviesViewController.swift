@@ -210,7 +210,7 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
         let selectedFrame = collectionView.convert(cellAttributes.frame,
                                                to: collectionView.superview)
         
-        let navigationConfiguration = NavigationConfiguration(selectedFrame: selectedFrame,
+        let navigationConfiguration = UpcomingMoviesNavigationConfiguration(selectedFrame: selectedFrame,
                                                               imageToTransition: imageToTransition,
                                                               transitionOffset: view.safeAreaInsets.left)
         
