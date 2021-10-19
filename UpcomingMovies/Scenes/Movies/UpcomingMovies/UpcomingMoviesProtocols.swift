@@ -16,12 +16,12 @@ protocol UpcomingMoviesViewModelProtocol {
     
     var movieCells: [UpcomingMovieCellViewModelProtocol] { get }
     var needsPrefetch: Bool { get }
-
+    
     /**
      * Retrieves upcoming movies information.
      */
     func getMovies()
-
+    
     /**
      * Retrieves upcoming movies information resetting the current page to zero.
      */
