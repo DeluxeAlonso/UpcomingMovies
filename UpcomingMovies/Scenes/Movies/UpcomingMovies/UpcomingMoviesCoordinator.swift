@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-struct NavigationConfiguration {
+struct UpcomingMoviesNavigationConfiguration {
     
     let selectedFrame: CGRect
     let imageToTransition: UIImage?
@@ -54,7 +54,7 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func showMovieDetail(for movie: Movie, with navigationConfiguration: NavigationConfiguration?) {
+    func showMovieDetail(for movie: Movie, with navigationConfiguration: UpcomingMoviesNavigationConfiguration?) {
         configureNavigationDelegate(with: navigationConfiguration)
         
         showMovieDetail(for: movie)
@@ -72,7 +72,7 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
         navigationController.delegate = navigationDelegate
     }
     
-    private func configureNavigationDelegate(with navigationConfiguration: NavigationConfiguration?) {
+    private func configureNavigationDelegate(with navigationConfiguration: UpcomingMoviesNavigationConfiguration?) {
         guard let navigationConfiguration = navigationConfiguration else { return }
         setupNavigationDelegate()
         
