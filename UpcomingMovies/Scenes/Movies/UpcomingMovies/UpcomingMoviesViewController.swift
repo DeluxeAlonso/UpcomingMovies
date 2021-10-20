@@ -94,7 +94,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
         let previewLayoutWidth = Constants.previewCellHeight / CGFloat(UIConstants.posterAspectRatio)
         previewLayout = VerticalFlowLayout(preferredWidth: previewLayoutWidth,
                                            preferredHeight: Constants.previewCellHeight,
-                                           minColumns: 3)
+                                           minColumns: Constants.previewLayoutMinColumns)
 
         collectionView.collectionViewLayout = presentationMode == .preview ? previewLayout : detailLayout
     }
@@ -256,6 +256,8 @@ extension UpcomingMoviesViewController {
         
         static let detailCellHeight: CGFloat = 200.0
         static let detailCellOffset: CGFloat = 32.0
+
+        static let previewLayoutMinColumns: Int = 3
         
     }
     
