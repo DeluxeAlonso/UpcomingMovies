@@ -40,7 +40,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
         super.viewDidLoad()
         setupUI()
         setupBindables()
-        
+
         viewModel?.getMovies()
     }
 
@@ -62,7 +62,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     private func setupUI() {
         title = LocalizedStrings.upcomingMoviesTabBarTitle()
         UIAccessibility.post(notification: .screenChanged, argument: self.navigationItem.title)
-        
+
         setupNavigationBar()
         setupCollectionView()
         setupRefreshControl()
@@ -70,7 +70,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     
     private func setupNavigationBar() {
         navigationItem.title = LocalizedStrings.upcomingMoviesTitle()
-        
+
         toggleGridBarButtonItem = UpcomingMoviesViewFactory.makeGridBarButtonItem()
         toggleGridBarButtonItem.target = self
         toggleGridBarButtonItem.action = #selector(toggleGridAction)
@@ -90,15 +90,15 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
         let detailLayoutWidth = collectionView.frame.width - Constants.detailCellOffset
         detailLayout = VerticalFlowLayout(preferredWidth: detailLayoutWidth,
                                           preferredHeight: Constants.detailCellHeight)
-        
+
         let previewLayoutWidth = Constants.previewCellHeight / CGFloat(UIConstants.posterAspectRatio)
         previewLayout = VerticalFlowLayout(preferredWidth: previewLayoutWidth,
                                            preferredHeight: Constants.previewCellHeight,
                                            minColumns: 3)
-        
+
         collectionView.collectionViewLayout = presentationMode == .preview ? previewLayout : detailLayout
     }
-    
+
     private func setupRefreshControl() {
         collectionView.refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
                                                               backgroundColor: collectionView.backgroundColor,
@@ -106,25 +106,25 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
                                                                 self?.viewModel?.refreshMovies()
                                                               })
     }
-    
+
     private func reloadCollectionView() {
         guard let viewModel = viewModel else { return }
         dataSource = SimpleCollectionViewDataSource.make(for: viewModel.movieCells,
                                                          presentationMode: presentationMode)
-        
+
         prefetchDataSource = CollectionViewDataSourcePrefetching(cellCount: viewModel.movieCells.count,
                                                                  needsPrefetch: viewModel.needsPrefetch,
                                                                  prefetchHandler: { [weak self] in
                                                                     self?.viewModel?.getMovies()
                                                                  })
-        
+
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = prefetchDataSource
-        
+
         collectionView.reloadData()
         collectionView.refreshControl?.endRefreshing(with: 0.5)
     }
-    
+
     private func updateCollectionViewLayout(_ layout: UICollectionViewLayout) {
         collectionView.collectionViewLayout.invalidateLayout()
         reloadCollectionView()
@@ -133,7 +133,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
             self.isAnimatingPresentation = !completed
         }
     }
-    
+
     /**
      * Configures the view given the current state of the view.
      */
@@ -151,9 +151,9 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
                              })
         }
     }
-    
+
     // MARK: - Reactive Behavior
-    
+
     private func setupBindables() {
         viewModel?.viewState.bind({ [weak self] state in
             guard let strongSelf = self else { return }
@@ -167,9 +167,9 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
             startLoading ? self.showLoader() : self.hideLoader()
         })
     }
-    
+
     // MARK: - Actions
-    
+
     @objc func toggleGridAction(_ sender: Any) {
         guard !isAnimatingPresentation else { return }
 
