@@ -12,14 +12,14 @@ enum Language: String {
 }
 
 struct LocalizationHelper {
-  
+
   static let defaultLanguage: Language = .english
-  
+
   static func getCurrentLanguageCode() -> String {
     guard let languageCode = Locale.current.languageCode else {
       return defaultLanguage.rawValue
     }
     return Language.init(rawValue: languageCode)?.rawValue ?? defaultLanguage.rawValue
   }
-  
+
 }

@@ -7,7 +7,7 @@
 //
 
 enum AccountProvider {
-    
+
     case getAccountDetail(sessionId: String)
     case getFavoriteList(page: Int, sessionId: String, accountId: Int)
     case getWatchlist(page: Int, sessionId: String, accountId: Int)
@@ -16,17 +16,17 @@ enum AccountProvider {
     case getCustomListDetail(accessToken: String, id: String)
     case markAsFavorite(sessionId: String, accountId: Int, movieId: Int, favorite: Bool)
     case addToWatchlist(sessionId: String, accountId: Int, movieId: Int, watchlist: Bool)
-    
+
 }
 
 // MARK: - Endpoint
 
 extension AccountProvider: Endpoint {
-    
+
     var base: String {
         return NetworkConfiguration.shared.baseAPIURLString
     }
-    
+
     var path: String {
         switch self {
         case .getAccountDetail:
@@ -47,7 +47,7 @@ extension AccountProvider: Endpoint {
             return "/account/\(accountId)/watchlist"
         }
     }
-    
+
     var headers: [String: String]? {
         switch self {
         case .getRecommendedList(_, let accessToken, _):
@@ -60,7 +60,7 @@ extension AccountProvider: Endpoint {
             return nil
         }
     }
-    
+
     var params: [String: Any]? {
         switch self {
         case .getAccountDetail(let sessionId):
@@ -89,7 +89,7 @@ extension AccountProvider: Endpoint {
             return ["query": queryParams, "body": bodyParams]
         }
     }
-    
+
     var parameterEncoding: ParameterEnconding {
         switch self {
         case .getAccountDetail, .getFavoriteList, .getWatchlist,
@@ -99,7 +99,7 @@ extension AccountProvider: Endpoint {
             return .compositeEncoding
         }
     }
-    
+
     var method: HTTPMethod {
         switch self {
         case .getAccountDetail, .getFavoriteList, .getWatchlist,
@@ -109,5 +109,5 @@ extension AccountProvider: Endpoint {
             return .post
         }
     }
-    
+
 }

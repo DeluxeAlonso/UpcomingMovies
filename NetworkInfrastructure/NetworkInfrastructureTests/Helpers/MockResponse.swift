@@ -148,9 +148,9 @@ enum MockResponse {
                 """
         }
     }
-    
+
     var dataResponse: Data {
         Data(jsonString.utf8)
     }
-    
+
 }

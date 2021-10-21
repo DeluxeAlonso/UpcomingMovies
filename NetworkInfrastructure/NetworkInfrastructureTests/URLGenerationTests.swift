@@ -10,7 +10,7 @@ import XCTest
 @testable import NetworkInfrastructure
 
 class URLGenerationTests: XCTestCase {
-    
+
     func testURLRequestSetJsonContentType() {
         // Arrange
         var urlRequest = URLRequest(url: URL(string: "https://api.themoviedb.org")!)
@@ -20,7 +20,7 @@ class URLGenerationTests: XCTestCase {
         // Assert
         XCTAssertNotNil(allHeaderFields!["Content-Type"])
     }
-    
+
     func testURLRequestSetJsonContentTypeNil() {
         // Arrange
         let urlRequest = URLRequest(url: URL(string: "https://api.themoviedb.org")!)
@@ -29,7 +29,7 @@ class URLGenerationTests: XCTestCase {
         // Assert
         XCTAssertNil(allHeaderFields)
     }
-    
+
     func testPercentEscapedEmptyParamters() {
         // Arrange
         let parametersDictionary: [String: Any] = [:]
@@ -38,7 +38,7 @@ class URLGenerationTests: XCTestCase {
         // Assert
         XCTAssertTrue(percentEscapedParameters.isEmpty)
     }
-    
+
     func testPercentEscapedSingleParameters() {
         // Arrange
         let parametersDictionary: [String: Any] = ["Param1": "A"]
@@ -47,7 +47,7 @@ class URLGenerationTests: XCTestCase {
         // Assert
         XCTAssertEqual(percentEscapedParameters, "Param1=A")
     }
-    
+
     func testPercentEscapedMultipleParameters() {
         // Arrange
         let parametersDictionary: [String: Any] = ["Param1": "A", "Param2": "B"]
@@ -57,5 +57,5 @@ class URLGenerationTests: XCTestCase {
         // Assert
         XCTAssertTrue(possibleEscapedParameters.contains(percentEscapedParameters))
     }
-    
+
 }
