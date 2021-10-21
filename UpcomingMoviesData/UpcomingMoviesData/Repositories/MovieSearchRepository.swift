@@ -21,13 +21,13 @@ public final class MovieSearchRepository: MovieSearchUseCaseProtocol {
     init(localDataSource: MovieSearchLocalDataSourceProtocol) {
         self.localDataSource = localDataSource
     }
-    
+
     public func getMovieSearches() -> [MovieSearch] {
         return localDataSource.getMovieSearches()
     }
-    
+
     public func save(with searchText: String) {
         localDataSource.save(with: searchText)
     }
-    
+
 }

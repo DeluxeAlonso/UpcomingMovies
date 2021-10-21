@@ -16,5 +16,5 @@ public protocol MovieVisitLocalDataSourceProtocol {
 
     func save(with id: Int, title: String, posterPath: String?,
               completion: @escaping (Result<Void, Error>) -> Void)
-    
+
 }
