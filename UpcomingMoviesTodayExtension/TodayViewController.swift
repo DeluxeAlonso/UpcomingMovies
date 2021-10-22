@@ -11,30 +11,30 @@ import NotificationCenter
 import CoreDataInfrastructure
 @objc(TodayViewController)
 class TodayViewController: UIViewController, NCWidgetProviding {
-    
+
     private let todayView: TodayView = TodayView()
 
     private var localDataSource: LocalDataSource!
-    
+
     // MARK: - Lifecycle
-    
+
     override func loadView() {
         view = todayView
     }
-        
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
 
     // MARK: - NCWidgetProviding
-        
+
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         completionHandler(NCUpdateResult.newData)
     }
-    
+
     // MARK: - Private
-    
+
     private func configureUI() {
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(openHostApp))
@@ -53,18 +53,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             posterPaths.isEmpty ? self.todayView.setupEmptyView() : self.configurePostersStackView(with: posterPaths)
         })
     }
-    
+
     private func configurePostersStackView(with posterPaths: [String]) {
         posterPaths.forEach { posterPath in
             todayView.addPoster(with: posterPath)
         }
     }
-    
+
     // MARK: - Selectors
-    
+
     @objc private func openHostApp() {
         guard let url = AppExtension.url(for: .searchMovies) else { return }
         self.extensionContext?.open(url, completionHandler: nil)
     }
-    
+
 }

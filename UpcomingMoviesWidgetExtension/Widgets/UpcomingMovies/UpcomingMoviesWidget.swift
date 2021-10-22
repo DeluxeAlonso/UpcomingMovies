@@ -10,15 +10,15 @@ import SwiftUI
 import WidgetKit
 
 struct UpcomingMoviesWidgetEntryView: View {
-    
+
     private let gradientColors = [.white,
                                   Color("UpcomingMoviesGradientColor"),
                                   Color("UpcomingMoviesGradientColor")]
-    
+
     private let backgroundColor = Color("UpcomingMoviesBackgroundColor")
 
     var entry: Provider.Entry
-    
+
     var body: some View {
         SmallWidgetView(title: "Upcoming",
                         iconName: "play",
@@ -41,5 +41,5 @@ struct UpcomingMoviesWidget: Widget {
         .description("Keep up to date with the latest releases")
         .supportedFamilies([.systemSmall])
     }
-    
+
 }
