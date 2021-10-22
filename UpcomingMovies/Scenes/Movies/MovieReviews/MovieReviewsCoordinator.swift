@@ -10,18 +10,18 @@ import UIKit
 import UpcomingMoviesDomain
 
 final class MovieReviewsCoordinator: Coordinator, MovieReviewsCoordinatorProtocol {
-    
+
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
-    
+
     var movieId: Int!
     var movieTitle: String!
-    
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+
     func start() {
         let viewController = MovieReviewsViewController.instantiate()
 
@@ -30,7 +30,7 @@ final class MovieReviewsCoordinator: Coordinator, MovieReviewsCoordinatorProtoco
 
         navigationController.pushViewController(viewController, animated: true)
     }
-    
+
     func showReviewDetail(for review: Review, transitionView: UIView? = nil) {
         let navigationController = UINavigationController()
         let coordinator = MovieReviewDetailCoordinator(navigationController: navigationController)
@@ -39,9 +39,9 @@ final class MovieReviewsCoordinator: Coordinator, MovieReviewsCoordinatorProtoco
         coordinator.presentingViewController = self.navigationController.topViewController
         coordinator.parentCoordinator = unwrappedParentCoordinator
         coordinator.transitioningDelegate = ScaleTransitioningDelegate(viewToScale: transitionView)
-        
+
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
-    
+
 }

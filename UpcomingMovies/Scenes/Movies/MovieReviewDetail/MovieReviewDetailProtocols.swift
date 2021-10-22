@@ -7,14 +7,14 @@
 //
 
 protocol MovieReviewDetailViewModelProtocol {
-    
+
     var author: String { get }
     var content: String { get }
-    
+
 }
 
 protocol MovieReviewDetailCoordinatorProtocol: AnyObject {
-    
+
     func dismiss()
-    
+
 }

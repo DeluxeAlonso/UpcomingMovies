@@ -10,7 +10,7 @@ import UIKit
 
 enum DefaultSearchOption {
     case popular, topRated
-    
+
     var title: String? {
         switch self {
         case .popular:
@@ -19,7 +19,7 @@ enum DefaultSearchOption {
             return "Top rated movies"
         }
     }
-    
+
     var subtitle: String? {
         switch self {
         case .popular:
@@ -28,7 +28,7 @@ enum DefaultSearchOption {
             return "The top rated movies on the internet"
         }
     }
-    
+
     var icon: UIImage {
         switch self {
         case .popular:
@@ -37,5 +37,5 @@ enum DefaultSearchOption {
             return #imageLiteral(resourceName: "TopRated")
         }
     }
-    
+
 }

@@ -9,10 +9,10 @@
 import UpcomingMoviesDomain
 
 struct SplashInteractor: SplashInteractorProtocol {
-    
+
     private let genreUseCase: GenreUseCaseProtocol
     private let configurationUseCase: ConfigurationUseCaseProtocol
-    
+
     init(useCaseProvider: UseCaseProviderProtocol) {
         self.genreUseCase = useCaseProvider.genreUseCase()
         self.configurationUseCase = useCaseProvider.configurationUseCase()
@@ -27,5 +27,5 @@ struct SplashInteractor: SplashInteractorProtocol {
     func getAllGenres(completion: @escaping (Result<[Genre], Error>) -> Void) {
         genreUseCase.fetchAll(completion: completion)
     }
-    
+
 }

@@ -12,21 +12,21 @@ import UpcomingMoviesDomain
 final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
 
     // MARK: - Dependencies
-    
+
     private let movieId: Int
     private(set) var movieTitle: String
-    
+
     private let interactor: MovieCreditsInteractorProtocol
     private var factory: MovieCreditsFactoryProtocol
 
     // MARK: - Reactive properties
-    
+
     var viewState: Bindable<MovieCreditsViewState> = Bindable(.initial)
     var didToggleSection: Bindable<Int> = Bindable(0)
     var startLoading: Bindable<Bool> = Bindable(false)
-    
+
     // MARK: - Initializers
-    
+
     init(movieId: Int, movieTitle: String,
          interactor: MovieCreditsInteractorProtocol,
          factory: MovieCreditsFactoryProtocol) {
@@ -36,13 +36,13 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
         self.interactor = interactor
         self.factory = factory
     }
-    
+
     // MARK: - MovieCreditsViewModelProtocol
-    
+
     func numberOfSections() -> Int {
         return factory.sections.count
     }
-    
+
     func numberOfItems(for section: Int) -> Int {
         let section = factory.sections[section]
         guard section.opened else { return 0 }
@@ -53,7 +53,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
             return viewState.value.currentCrew.count
         }
     }
-    
+
     func creditModel(for section: Int, and index: Int) -> MovieCreditCellViewModelProtocol {
         switch factory.sections[section].type {
         case .cast:
@@ -64,19 +64,19 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
             return MovieCreditCellViewModel(crew: crew)
         }
     }
-    
+
     func headerModel(for index: Int) -> CollapsibleHeaderViewModel {
         let section = factory.sections[index]
         return CollapsibleHeaderViewModel(opened: section.opened,
                                           section: index,
                                           title: section.type.title)
     }
-    
+
     func toggleSection(_ section: Int) {
         factory.sections[section].opened.toggle()
         didToggleSection.value = section
     }
-    
+
     func getMovieCredits(showLoader: Bool = false) {
         startLoading.value = showLoader
         interactor.getMovieCredits(for: movieId, page: nil, completion: { result in
@@ -91,7 +91,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     }
 
     // MARK: - Private
-    
+
     private func processResult(_ movieCredits: MovieCredits) -> MovieCreditsViewState {
         let fetchedCast = movieCredits.cast
         let fetchedCrew = movieCredits.crew
@@ -101,5 +101,5 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
             return .populated(fetchedCast, fetchedCrew)
         }
     }
-    
+
 }

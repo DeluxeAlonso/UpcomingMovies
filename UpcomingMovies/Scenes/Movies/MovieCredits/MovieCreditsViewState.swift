@@ -10,12 +10,12 @@ import Foundation
 import UpcomingMoviesDomain
 
 enum MovieCreditsViewState: Equatable {
-    
+
     case initial
     case empty
     case populated([Cast], [Crew])
     case error(Error)
-    
+
     static func == (lhs: MovieCreditsViewState, rhs: MovieCreditsViewState) -> Bool {
         switch (lhs, rhs) {
         case (.initial, .initial):
@@ -30,7 +30,7 @@ enum MovieCreditsViewState: Equatable {
             return false
         }
     }
-    
+
     var currentCast: [Cast] {
         switch self {
         case .populated(let cast, _):
@@ -39,7 +39,7 @@ enum MovieCreditsViewState: Equatable {
             return []
         }
     }
-    
+
     var currentCrew: [Crew] {
         switch self {
         case .populated(_, let crew):
@@ -48,5 +48,5 @@ enum MovieCreditsViewState: Equatable {
             return []
         }
     }
-    
+
 }
