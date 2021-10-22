@@ -9,7 +9,7 @@
 import UpcomingMoviesDomain
 
 public protocol MovieVisitLocalDataSourceProtocol {
-    
+
     var didUpdateMovieVisit: (() -> Void)? { get set }
 
     func getMovieVisits(completion: @escaping (Result<[MovieVisit], Error>) -> Void)
