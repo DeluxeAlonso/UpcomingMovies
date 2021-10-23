@@ -13,7 +13,7 @@ import XCTest
 @testable import CoreDataInfrastructure
 
 class MovieDetailTests: XCTestCase {
-    
+
     private var mockInteractor: MockMovieDetailInteractor!
     private var mockFactory: MockMovieDetailViewFactory!
     private var viewModelToTest: MovieDetailViewModelProtocol!
@@ -47,40 +47,40 @@ class MovieDetailTests: XCTestCase {
         // Assert
         XCTAssertEqual(title, "Test 1")
     }
-    
+
     func testMovieDetailReleaseDate() {
         // Act
         let releaseDate = viewModelToTest.releaseDate
         // Assert
         XCTAssertEqual(releaseDate, "2019-02-01")
     }
-    
+
     func testMovieDetailOverview() {
         // Act
         let overview = viewModelToTest.overview
         // Assert
         XCTAssertEqual(overview, "Overview")
     }
-    
+
     func testMovieDetailVoteAverage() {
         // Act
         let voteAverage = viewModelToTest.voteAverage
         // Assert
         XCTAssertEqual(voteAverage, 4.5)
     }
-    
+
     func testMovieDetailPosterPath() {
         // Act
         let fullPosterPath = viewModelToTest.posterURL
         // Assert
         XCTAssertEqual(fullPosterPath!, URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
     }
-    
+
     func testMovieDetailBackdropPath() {
         // Act
         let fullBackdropPath = viewModelToTest.backdropURL
         // Assert
         XCTAssertEqual(fullBackdropPath!, URL(string: "https://image.tmdb.org/t/p/w500/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg"))
     }
-    
+
 }
