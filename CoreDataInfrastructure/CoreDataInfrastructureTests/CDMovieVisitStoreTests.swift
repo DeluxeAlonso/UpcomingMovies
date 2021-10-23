@@ -12,7 +12,7 @@ import XCTest
 @testable import UpcomingMoviesDomain
 
 class CDMovieVisitStoreTests: XCTestCase {
-    
+
     private var storeToTest: PersistenceStore<CDMovieVisit>!
 
     override func setUp() {
@@ -37,7 +37,7 @@ class CDMovieVisitStoreTests: XCTestCase {
         //Assert
         wait(for: [saveExpectation], timeout: 1.0)
     }
-    
+
     func testSaveMovieSearchError() {
         //Arrange
         let saveExpectation = XCTestExpectation(description: "Save movie visit")

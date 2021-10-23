@@ -10,7 +10,7 @@ import Foundation
 import UpcomingMoviesDomain
 
 extension PersistenceStore where Entity == CDGenre {
-    
+
     func saveGenre(_ genre: Genre, completion: ((Bool) -> Void)? = nil) {
         managedObjectContext.performChanges {
             _ = CDGenre.insert(into: self.managedObjectContext,
@@ -24,9 +24,9 @@ extension PersistenceStore where Entity == CDGenre {
         let predicate = NSPredicate(format: "id == %d", id)
         return CDGenre.findOrFetch(in: managedObjectContext, matching: predicate)
     }
-    
+
     func findAll() -> [CDGenre] {
         return CDGenre.fetch(in: managedObjectContext)
     }
-    
+
 }
