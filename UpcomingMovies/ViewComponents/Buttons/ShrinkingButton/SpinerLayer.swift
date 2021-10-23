@@ -9,7 +9,7 @@
 import UIKit
 
 class SpinerLayer: CAShapeLayer {
-    
+
     var spinnerColor = UIColor.white {
         didSet {
             strokeColor = spinnerColor.cgColor
@@ -17,20 +17,20 @@ class SpinerLayer: CAShapeLayer {
     }
 
     // MARK: - Initializers
-    
+
     init(frame: CGRect) {
         super.init()
-        
+
         updateFrame(frame)
-        
+
         fillColor = nil
         strokeColor = spinnerColor.cgColor
         lineWidth = 1
-        
+
         strokeEnd = 0.4
         isHidden = true
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -49,7 +49,7 @@ class SpinerLayer: CAShapeLayer {
     }
 
     // MARK: - Internal
-    
+
     func animation() {
         isHidden = false
         let rotate = CABasicAnimation(keyPath: "transform.rotation.z")
@@ -57,20 +57,20 @@ class SpinerLayer: CAShapeLayer {
         rotate.toValue = Double.pi * 2
         rotate.duration = 0.4
         rotate.timingFunction = CAMediaTimingFunction(name: .linear)
-        
+
         rotate.repeatCount = HUGE
         rotate.fillMode = .forwards
         rotate.isRemovedOnCompletion = false
         add(rotate, forKey: rotate.keyPath)
-        
+
     }
-    
+
     func updateFrame(_ frame: CGRect) {
         let radius: CGFloat = (frame.height / 2) * 0.5
         self.frame = CGRect(x: 0, y: 0, width: frame.height, height: frame.height)
         updatePath(with: self.frame, and: radius)
     }
-    
+
     func stopAnimation() {
         isHidden = true
         removeAllAnimations()

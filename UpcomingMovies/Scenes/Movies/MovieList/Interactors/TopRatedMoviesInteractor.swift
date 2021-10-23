@@ -10,9 +10,9 @@ import Foundation
 import UpcomingMoviesDomain
 
 struct TopRatedMoviesInteractor: MoviesInteractorProtocol {
-    
+
     let movieUseCase: MovieUseCaseProtocol
-    
+
     init(useCaseProvider: UseCaseProviderProtocol) {
         self.movieUseCase = useCaseProvider.movieUseCase()
     }
@@ -20,5 +20,5 @@ struct TopRatedMoviesInteractor: MoviesInteractorProtocol {
     func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         movieUseCase.getTopRatedMovies(page: page, completion: completion)
     }
-    
+
 }

@@ -9,18 +9,18 @@
 import UIKit
 
 final class MovieVideosCoordinator: Coordinator, MovieVideosCoordinatorProtocol {
-    
+
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
-    
+
     var movieId: Int!
     var movieTitle: String!
-    
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+
     func start() {
         let viewController = MovieVideosViewController.instantiate()
 

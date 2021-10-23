@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIColor {
-    
+
     convenience init(withIntRed red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         let maxColorValue: CGFloat = 255
 
@@ -19,11 +19,11 @@ extension UIColor {
 
         self.init(red: floatRed, green: floatGreen, blue: floatBlue, alpha: alpha)
     }
-    
+
 }
 
 struct ColorPalette {
-    
+
     static let lightBlueColor = UIColor(withIntRed: 74, green: 144, blue: 226, alpha: 1)
     static let darkBlueColor = UIColor(withIntRed: 0, green: 101, blue: 163, alpha: 1)
     static let lightGrayColor = UIColor(withIntRed: 205, green: 205, blue: 205, alpha: 1)
@@ -48,7 +48,7 @@ struct ColorPalette {
             return .lightGray
         }
     }
-    
+
     static var navigationBarBackgroundColor: UIColor {
         if #available(iOS 13.0, *) {
             return UIColor.systemBackground
@@ -56,7 +56,7 @@ struct ColorPalette {
             return whiteColor
         }
     }
-    
+
     static var groupedCellBackgroundColor: UIColor {
         if #available(iOS 13.0, *) {
             return UIColor.secondarySystemGroupedBackground
@@ -64,7 +64,7 @@ struct ColorPalette {
             return whiteColor
         }
     }
-    
+
     struct Label {
         static var defaultColor: UIColor {
             if #available(iOS 13.0, *) {
@@ -74,5 +74,5 @@ struct ColorPalette {
             }
         }
     }
-    
+
 }

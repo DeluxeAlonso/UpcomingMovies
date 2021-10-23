@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     // MARK: - Dependencies
-    
+
     private let interactor: MovieDetailInteractorProtocol
     private let factory: MovieDetailFactoryProtocol
 
@@ -34,7 +34,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     var shouldHideFavoriteButton: (() -> Void)?
 
     // MARK: - Properties
-    
+
     private(set) var id: Int!
     private(set) var title: String!
     private(set) var releaseDate: String?
@@ -44,7 +44,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var backdropURL: URL?
 
     private(set) var needsFetch = false
-    
+
     // MARK: - Initializers
 
     init(_ movie: Movie,
@@ -52,13 +52,13 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
          factory: MovieDetailFactoryProtocol) {
         self.interactor = interactor
         self.factory = factory
-        
+
         setupMovie(movie)
 
         showGenreName.value = movie.genreName
         showMovieOptions.value = factory.options
     }
-    
+
     init(id: Int, title: String,
          interactor: MovieDetailInteractorProtocol,
          factory: MovieDetailFactoryProtocol) {
@@ -66,14 +66,14 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         self.title = title
         self.interactor = interactor
         self.factory = factory
-        
+
         needsFetch = true
 
         showMovieOptions.value = factory.options
     }
 
     // MARK: - Private
-    
+
     private func setupMovie(_ movie: Movie) {
         id = movie.id
         title = movie.title
@@ -83,12 +83,12 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         overview = movie.overview
         posterURL = movie.posterURL
         backdropURL = movie.backdropURL
-        
+
         getMovieGenreName(for: movie.genreIds?.first)
 
         didSetupMovieDetail.value = true
     }
-    
+
     private func getMovieGenreName(for genreId: Int?) {
         guard let genreId = genreId else { return }
         interactor.findGenre(with: genreId, completion: { [weak self] result in
@@ -97,9 +97,9 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             strongSelf.showGenreName.value = genre?.name ?? "-"
         })
     }
-    
+
     // MARK: - Networking
-    
+
     func getMovieDetail(showLoader: Bool) {
         fetchMovieDetail(showLoader: showLoader)
     }
@@ -118,13 +118,13 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             }
         })
     }
-    
+
     func saveVisitedMovie() {
         interactor.saveMovieVisit(with: id, title: title, posterPath: posterURL?.absoluteString)
     }
-    
+
     // MARK: - User Authentication
-    
+
     func checkIfMovieIsFavorite(showLoader: Bool) {
         startLoading.value = showLoader
         getFavoriteState { result in
@@ -142,9 +142,9 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             }
         }
     }
-    
+
     // MARK: - Favorites
-    
+
     private func getFavoriteState(completion: @escaping (Result<MovieDetailFavoriteState, Error>) -> Void) {
         guard interactor.isUserSignedIn() else {
             completion(.success(.unknown))
@@ -160,7 +160,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             }
         })
     }
-    
+
     func handleFavoriteMovie() {
         let newFavoriteValue = !isFavorite.value
         interactor.markMovieAsFavorite(movieId: id, favorite: newFavoriteValue, completion: { result in

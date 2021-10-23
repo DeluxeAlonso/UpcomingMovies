@@ -14,12 +14,12 @@ import NetworkInfrastructure
 import Swinject
 
 final class ProviderAssembly: Assembly {
-    
+
     func assemble(container: Container) {
         container.register(UseCaseProviderProtocol.self) { resolver in
             UseCaseProvider(localDataSource: resolver.resolve(LocalDataSourceProtocol.self)!,
                             remoteDataSource: resolver.resolve(RemoteDataSourceProtocol.self)!)
         }
     }
-    
+
 }

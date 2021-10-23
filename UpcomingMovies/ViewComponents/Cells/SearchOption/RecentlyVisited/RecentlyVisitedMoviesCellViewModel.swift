@@ -9,17 +9,17 @@
 import Foundation
 
 protocol RecentlyVisitedMoviesCellViewModelProtocol {
-    
+
     var visitedMovieCells: [VisitedMovieCellViewModelProtocol] { get }
-    
+
 }
 
 final class RecentlyVisitedMoviesCellViewModel: RecentlyVisitedMoviesCellViewModelProtocol {
-    
+
     var visitedMovieCells: [VisitedMovieCellViewModelProtocol]
-    
+
     init(visitedMovieCells: [VisitedMovieCellViewModelProtocol]) {
         self.visitedMovieCells = visitedMovieCells
     }
-    
+
 }

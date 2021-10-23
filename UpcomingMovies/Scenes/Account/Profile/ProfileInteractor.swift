@@ -10,10 +10,10 @@ import Foundation
 import UpcomingMoviesDomain
 
 class ProfileInteractor: ProfileInteractorProtocol {
-    
+
     private let userUseCase: UserUseCaseProtocol
     private let accountUseCase: AccountUseCaseProtocol
-    
+
     init(useCaseProvider: UseCaseProviderProtocol) {
         self.userUseCase = useCaseProvider.userUseCase()
         self.accountUseCase = useCaseProvider.accountUseCase()
@@ -31,5 +31,5 @@ class ProfileInteractor: ProfileInteractorProtocol {
             }
         })
     }
-    
+
 }

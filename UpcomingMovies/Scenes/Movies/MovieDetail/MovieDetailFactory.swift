@@ -16,5 +16,5 @@ final class MovieDetailFactory: MovieDetailFactoryProtocol {
                 .credits,
                 .similarMovies]
     }
-    
+
 }

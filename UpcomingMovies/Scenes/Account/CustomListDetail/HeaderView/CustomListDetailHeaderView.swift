@@ -9,7 +9,7 @@
 import UIKit
 
 class CustomListDetailHeaderView: UIView, NibLoadable {
-    
+
     @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var posterImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var posterImageViewTopConstraint: NSLayoutConstraint!
@@ -19,53 +19,53 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
 
     var initialHeightConstraintConstant: CGFloat!
     var initialTopContstraintConstant: CGFloat!
-    
+
     var viewModel: CustomListDetailHeaderViewModelProtocol? {
         didSet {
             setupBindables()
         }
     }
-    
+
     // MARK: - Lifecycle
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
         initialHeightConstraintConstant = posterImageViewHeightConstraint.constant
         initialTopContstraintConstant = posterImageViewTopConstraint.constant
     }
-    
+
     // MARK: - Private
-    
+
     private func setupUI() {
         setupLabels()
         setupImageViews()
     }
-    
+
     private func setupLabels() {
         nameLabel.font = FontHelper.regular(withSize: 18.0)
         nameLabel.textColor = ColorPalette.darkBlueColor
-        
+
         descriptionLabel.font = FontHelper.light(withSize: 16.0)
         descriptionLabel.textColor = ColorPalette.darkBlueColor
     }
-    
+
     private func setupImageViews() {
         posterImageView.addOverlay()
     }
-    
+
     // MARK: - Internal
-    
+
     func setHeaderOffset(_ offset: CGFloat) {
         posterImageViewTopConstraint.constant = initialTopContstraintConstant - offset
     }
-    
+
     func setPosterHeight(_ height: CGFloat) {
         posterImageViewHeightConstraint.constant = height
     }
-    
+
     // MARK: - Reactive Behavior
-    
+
     private func setupBindables() {
         nameLabel.text = viewModel?.name
         if let description = viewModel?.description {
@@ -73,7 +73,7 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
         } else {
             descriptionView.isHidden = true
         }
-        
+
         if let posterURL = viewModel?.posterURL {
             posterImageView.contentMode = .scaleAspectFill
             posterImageView.setImage(with: posterURL)

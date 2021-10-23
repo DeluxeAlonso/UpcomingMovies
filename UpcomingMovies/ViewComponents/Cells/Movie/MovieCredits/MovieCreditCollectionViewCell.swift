@@ -9,18 +9,18 @@
 import UIKit
 
 final class MovieCreditCollectionViewCell: UICollectionViewCell {
-    
+
     @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var overlayView: UIView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
-    
+
     var viewModel: MovieCreditCellViewModelProtocol? {
         didSet {
             setupBindables()
         }
     }
-    
+
     override var isSelected: Bool {
         didSet {
             guard oldValue != isSelected else { return }
@@ -31,45 +31,45 @@ final class MovieCreditCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    
+
     // MARK: - Lifecycle
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         profileImageView.cancelImageDownload()
         profileImageView.image = nil
     }
-    
+
     // MARK: - Private
-    
+
     private func setupUI() {
         isAccessibilityElement = true
-        
+
         nameLabel.font = FontHelper.bold(withSize: 15.0)
         nameLabel.textColor = .white
-        
+
         subtitleLabel.font = FontHelper.regular(withSize: 13.0)
         subtitleLabel.textColor = .white
     }
-    
+
     // MARK: - Reactive Behavior
-    
+
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
-        
+
         let creditLabelFormat = LocalizedStrings.movieCreditAccessibility()
         accessibilityLabel = String(format: creditLabelFormat, viewModel.name, viewModel.role)
-        
+
         profileImageView.setImage(with: viewModel.profileURL)
         nameLabel.text = viewModel.name
         subtitleLabel.text = viewModel.role
     }
-    
+
 }
 
 struct Constants {

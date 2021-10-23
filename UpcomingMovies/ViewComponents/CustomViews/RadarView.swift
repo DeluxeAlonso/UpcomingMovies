@@ -11,7 +11,7 @@ import UIKit
 class RadarView: UIView, LoadingView {
 
     // MARK: - Properties
-    
+
     struct Colors {
         static let start = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
         static let end = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 0.5)
@@ -24,7 +24,7 @@ class RadarView: UIView, LoadingView {
     }()
 
     var isPresented: Bool = false
-    
+
     private let circleLayer = CAShapeLayer()
 
     // MARK: - Initializers
@@ -34,12 +34,12 @@ class RadarView: UIView, LoadingView {
                                                   name: UIApplication.willEnterForegroundNotification,
                                                   object: nil)
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
@@ -58,9 +58,9 @@ class RadarView: UIView, LoadingView {
         let bezierPath = UIBezierPath(roundedRect: layerContainerView.bounds, cornerRadius: layerContainerView.bounds.height / 2.0)
         circleLayer.path = bezierPath.cgPath
     }
-    
+
     // MARK: - Private
-    
+
     private func setupUI() {
         backgroundColor = ColorPalette.defaultBackgroundColor
 
@@ -106,9 +106,9 @@ class RadarView: UIView, LoadingView {
     }
 
     // MARK: - Selectors
-    
+
     @objc func willEnterForeground() {
         startLoading()
     }
-    
+
 }
