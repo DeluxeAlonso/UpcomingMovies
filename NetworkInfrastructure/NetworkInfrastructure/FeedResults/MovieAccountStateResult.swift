@@ -7,9 +7,9 @@
 //
 
 struct MovieAccountStateResult: Decodable {
-    
+
     let id: Int
     let favorite: Bool
     let watchlist: Bool
-    
+
 }

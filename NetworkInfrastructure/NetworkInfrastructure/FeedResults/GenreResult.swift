@@ -9,7 +9,7 @@
 import UpcomingMoviesDomain
 
 struct GenreResult: Decodable {
-    
+
     let genres: [Genre]
 
 }

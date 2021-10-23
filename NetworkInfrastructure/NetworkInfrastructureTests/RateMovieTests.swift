@@ -9,7 +9,7 @@ import XCTest
 @testable import NetworkInfrastructure
 
 class RateMovieTests: XCTestCase {
-    
+
     func testMissingStatusCodeFromResponse() throws {
         // Arrange
         let dataResponse = MockResponse.rateMovie.dataResponse
@@ -18,7 +18,7 @@ class RateMovieTests: XCTestCase {
         // Assert
         XCTAssertThrowsError(try JSONDecoder().decode(RateMovieResult.self, from: jsonDataToTest))
     }
-    
+
     func testMissingStatusMessageFromResponse() throws {
         // Arrange
         let dataResponse = MockResponse.rateMovie.dataResponse
@@ -27,7 +27,7 @@ class RateMovieTests: XCTestCase {
         // Assert
         XCTAssertThrowsError(try JSONDecoder().decode(RateMovieResult.self, from: jsonDataToTest))
     }
-    
+
     func testStatusCodeFromResponse() throws {
         // Arrange
         let statusCodeToTest = 200
@@ -38,7 +38,7 @@ class RateMovieTests: XCTestCase {
         // Assert
         XCTAssertEqual(decodedRateMovieResult.statusCode, statusCodeToTest)
     }
-    
+
     func testStatusMessageFromResponse() throws {
         // Arrange
         let statusMessageToTest = "statusMessage"
@@ -49,5 +49,5 @@ class RateMovieTests: XCTestCase {
         // Assert
         XCTAssertEqual(decodedRateMovieResult.statusMessage, statusMessageToTest)
     }
-    
+
 }

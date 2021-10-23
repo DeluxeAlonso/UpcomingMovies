@@ -9,13 +9,13 @@
 import UpcomingMoviesDomain
 
 struct MovieReviewDetailViewModel: MovieReviewDetailViewModelProtocol {
-    
+
     let author: String
     let content: String
-    
+
     init(review: Review) {
         self.author = review.authorName
         self.content = review.content
     }
-    
+
 }

@@ -12,39 +12,39 @@ import UpcomingMoviesDomain
 class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
 
     @IBOutlet private weak var tableView: UITableView!
-    
+
     static var storyboardName = "MovieDetail"
-    
+
     private var dataSource: SimpleTableViewDataSource<MovieReviewCellViewModelProtocol>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
     private var scaleTransitioningDelegate: ScaleTransitioningDelegate!
-    
+
     var viewModel: MovieReviewsViewModelProtocol?
     weak var coordinator: MovieReviewsCoordinatorProtocol?
 
     // MARK: - LoadingDisplayable
 
     var loaderView: LoadingView = RadarView()
-    
+
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupBindables()
     }
-    
+
     private func setupUI() {
         setupTableView()
     }
-    
+
     private func setupTableView() {
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
         tableView.registerNib(cellType: MovieReviewTableViewCell.self)
     }
-    
+
     private func reloadTableView() {
         guard let viewModel = viewModel else { return }
         dataSource = SimpleTableViewDataSource.make(for: viewModel.reviewCells)
@@ -57,7 +57,7 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
         tableView.prefetchDataSource = prefetchDataSource
         tableView.reloadData()
     }
-    
+
     /**
      * Configures the tableview footer given the current state of the view.
      */
@@ -75,9 +75,9 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
             })
         }
     }
-    
+
     // MARK: - Reactive Behavior
-    
+
     private func setupBindables() {
         title = viewModel?.movieTitle
         viewModel?.viewState.bindAndFire({ [weak self] state in
@@ -98,7 +98,7 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
 // MARK: - UITableViewDelegate
 
 extension MovieReviewsViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         // We retrieve the cell which we are going to use for our scale transition
@@ -106,5 +106,5 @@ extension MovieReviewsViewController: UITableViewDelegate {
         guard let selectedCell = tableView.cellForRow(at: indexPath) else { return }
         coordinator?.showReviewDetail(for: viewModel.selectedReview(at: indexPath.row), transitionView: selectedCell)
     }
-    
+
 }

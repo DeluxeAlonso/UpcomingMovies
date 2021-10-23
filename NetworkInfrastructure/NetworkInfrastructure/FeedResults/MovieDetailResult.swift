@@ -9,7 +9,7 @@
 import UpcomingMoviesDomain
 
 struct MovieDetailResult: Decodable {
-    
+
     let id: Int
     let title: String
     let genres: [Genre]?
@@ -18,7 +18,7 @@ struct MovieDetailResult: Decodable {
     let backdropPath: String?
     let releaseDate: String
     let voteAverage: Double?
-    
+
     private enum CodingKeys: String, CodingKey {
         case id
         case title
@@ -29,7 +29,7 @@ struct MovieDetailResult: Decodable {
         case releaseDate = "release_date"
         case voteAverage = "vote_average"
     }
-    
+
     func asMovie() -> Movie {
         let genreIds = genres?.compactMap { $0.id }
         return Movie(id: id, title: title,
@@ -37,5 +37,5 @@ struct MovieDetailResult: Decodable {
                      posterPath: posterPath, backdropPath: backdropPath,
                      releaseDate: releaseDate, voteAverage: voteAverage)
     }
-    
+
 }

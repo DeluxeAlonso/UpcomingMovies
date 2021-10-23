@@ -7,7 +7,7 @@
 //
 
 public protocol UseCaseProviderProtocol {
-    
+
     func movieUseCase() -> MovieUseCaseProtocol
     func genreUseCase() -> GenreUseCaseProtocol
     func movieVisitUseCase() -> MovieVisitUseCaseProtocol
@@ -16,5 +16,5 @@ public protocol UseCaseProviderProtocol {
     func accountUseCase() -> AccountUseCaseProtocol
     func authUseCase() -> AuthUseCaseProtocol
     func configurationUseCase() -> ConfigurationUseCaseProtocol
-    
+
 }

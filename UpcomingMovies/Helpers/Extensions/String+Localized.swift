@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-    
+
     func localized(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
         return NSLocalizedString(self,
                                  tableName: tableName,
@@ -17,5 +17,5 @@ extension String {
                                  value: self,
                                  comment: "")
     }
-    
+
 }

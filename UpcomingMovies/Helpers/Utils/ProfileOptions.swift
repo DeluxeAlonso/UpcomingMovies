@@ -7,7 +7,7 @@
 //
 
 public protocol ProfileOptionProtocol {
-    
+
     var title: String? { get }
     var identifier: String { get }
 

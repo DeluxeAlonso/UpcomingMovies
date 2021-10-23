@@ -20,9 +20,9 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     @IBOutlet private weak var overviewLabel: UILabel!
     @IBOutlet private weak var optionsStackView: UIStackView!
     @IBOutlet private(set) weak var transitionContainerView: UIView!
-    
+
     static var storyboardName: String = "MovieDetail"
-    
+
     private lazy var moreBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(image: UIImage(named: "Ellipsis"),
                                             style: .plain,
@@ -35,7 +35,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         let barButtonItem = FavoriteToggleBarButtonItem()
         barButtonItem.target = self
         barButtonItem.action = #selector(favoriteButtonAction(_:))
-        
+
         return barButtonItem
     }()
 
@@ -45,9 +45,9 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     // MARK: - LoadingDisplayable
 
     var loaderView: LoadingView = RadarView()
-    
+
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -55,7 +55,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
 
         viewModel?.getMovieDetail(showLoader: true)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let viewModel = viewModel, !viewModel.startLoading.value else {
@@ -65,35 +65,35 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     }
 
     // MARK: - Private
-    
+
     private func setupUI() {
         title = LocalizedStrings.movieDetailTitle()
 
         setupNavigationBar()
         transitionContainerView.setShadowBorder()
     }
-    
+
     private func setupNavigationBar() {
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
         navigationItem.rightBarButtonItems = [moreBarButtonItem]
     }
-    
+
     private func showErrorView(error: Error) {
         presentRetryView(with: error.localizedDescription, errorHandler: { [weak self] in
             self?.viewModel?.getMovieDetail(showLoader: false)
         })
     }
-    
+
     // MARK: - Reactive Behavior
-    
+
     private func setupBindables() {
         setupViewBindables()
         setupLoaderBindable()
         setupErrorBindables()
         setupFavoriteBindables()
     }
-    
+
     private func setupViewBindables() {
         viewModel?.didSetupMovieDetail.bindAndFire { [weak self] _ in
             self?.configureUI()
@@ -120,7 +120,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         voteAverageView.voteValue = viewModel.voteAverage
         overviewLabel.text = viewModel.overview
     }
-    
+
     private func configureMovieOptions(_ options: [MovieDetailOption]) {
         guard optionsStackView.arrangedSubviews.isEmpty else { return }
         let optionsViews = options.map { MovieDetailOptionView(option: $0) }
@@ -130,20 +130,20 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
             optionsStackView.addArrangedSubview(optionView)
         }
     }
-    
+
     private func setupLoaderBindable() {
         viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
         })
     }
-    
+
     private func setupErrorBindables() {
         viewModel?.showErrorView.bind({ [weak self] error in
             guard let error = error else { return }
             self?.showErrorView(error: error)
         })
     }
-    
+
     private func setupFavoriteBindables() {
         viewModel?.isFavorite.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
@@ -164,17 +164,17 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
             strongSelf.navigationItem.rightBarButtonItems = [strongSelf.moreBarButtonItem]
         }
     }
-    
+
     // MARK: - Selectors
-    
+
     @objc private func optionAction(_ sender: UITapGestureRecognizer) {
         guard let sender = sender.view as? MovieDetailOptionView else { return }
         let movieDetailOption = sender.option
         coordinator?.showMovieOption(movieDetailOption)
     }
-    
+
     // MARK: - Actions
-    
+
     @IBAction private func moreBarButtonAction(_ sender: Any) {
         guard let movieTitle = viewModel?.title else { return }
         let shareAction = UIAlertAction(title: "Share this movie!", style: .default) { _ in
@@ -188,9 +188,9 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         let shareText = String(format: LocalizedStrings.movieDetailShareText(), movieTitle)
         coordinator?.showSharingOptions(withShareTitle: shareText)
     }
-    
+
     @IBAction private func favoriteButtonAction(_ sender: Any) {
         viewModel?.handleFavoriteMovie()
     }
-    
+
 }

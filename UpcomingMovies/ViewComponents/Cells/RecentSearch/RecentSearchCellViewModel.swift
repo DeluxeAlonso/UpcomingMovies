@@ -9,17 +9,17 @@
 import Foundation
 
 protocol RecentSearchCellViewModelProtocol {
-    
+
     var searchText: String { get }
-    
+
 }
 
 final class RecentSearchCellViewModel: RecentSearchCellViewModelProtocol {
-    
+
     let searchText: String
-    
+
     init(searchText: String) {
         self.searchText = searchText
     }
-    
+
 }

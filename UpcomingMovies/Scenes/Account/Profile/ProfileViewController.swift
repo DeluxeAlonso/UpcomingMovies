@@ -9,51 +9,51 @@
 import UIKit
 
 class ProfileViewController: UITableViewController, Storyboarded {
-    
+
     static var storyboardName: String = "Account"
-    
+
     private var dataSource: ProfileDataSource!
-    
+
     var viewModel: ProfileViewModelProtocol?
     weak var delegate: ProfileViewControllerDelegate?
-    
+
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupBindables()
-        
+
         viewModel?.getAccountDetails()
     }
-    
+
     // MARK: - Private
-    
+
     private func setupUI() {
         setupTableView()
     }
-    
+
     private func setupTableView() {
         tableView.delegate = self
         tableView.registerNib(cellType: ProfileAccountInfoTableViewCell.self)
         tableView.registerNib(cellType: ProfileSelectableOptionTableViewCell.self)
         tableView.register(cellType: ProfileSignOutTableViewCell.self)
-        
+
         setupDataSource()
     }
-    
+
     private func setupDataSource() {
         dataSource = ProfileDataSource(viewModel: viewModel)
         tableView.dataSource = dataSource
     }
-    
+
     private func reloadAccountInfo() {
         setupDataSource()
         tableView.performBatchUpdates({
             self.tableView.reloadSections(IndexSet(integer: 0), with: .none)
         }, completion: nil)
     }
-    
+
     private func showSignOutActionSheet() {
         let signOutAction = UIAlertAction(title: LocalizedStrings.signOut(),
                                           style: .destructive) { _ in
@@ -62,16 +62,16 @@ class ProfileViewController: UITableViewController, Storyboarded {
         showSimpleActionSheet(title: LocalizedStrings.signOutConfirmationTitle(),
                               message: nil, action: signOutAction)
     }
-    
+
     // MARK: - Reactive Behavior
-    
+
     private func setupBindables() {
         viewModel?.reloadAccountInfo = { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.reloadAccountInfo()
         }
     }
-    
+
     // MARK: - Table view delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -88,7 +88,7 @@ class ProfileViewController: UITableViewController, Storyboarded {
             break
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let viewModel = viewModel else { return 0 }
         switch viewModel.section(at: indexPath.section) {

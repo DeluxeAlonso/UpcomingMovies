@@ -9,27 +9,27 @@
 import UIKit
 
 class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate {
-    
+
     private var transitionInteractor: TransitioningInteractor?
     private var verticalSafeAreaOffset: CGFloat
     private var selectedFrame: CGRect?
     private var imageToTransition: UIImage?
-    
+
     weak var parentCoordinator: Coordinator?
-    
+
     // MARK: - Initializers
-    
+
     init(verticalSafeAreaOffset: CGFloat = .zero) {
         self.verticalSafeAreaOffset = verticalSafeAreaOffset
     }
-    
+
     // MARK: - Internal
-    
+
     func configure(selectedFrame: CGRect?, with imageToTransition: UIImage?) {
         self.selectedFrame = selectedFrame
         self.imageToTransition = imageToTransition
     }
-    
+
     func updateOffset(_ verticalSafeAreaOffset: CGFloat) {
         self.verticalSafeAreaOffset = verticalSafeAreaOffset
     }
@@ -49,9 +49,9 @@ class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate {
             return false
         }
     }
-    
+
     // MARK: - UINavigationControllerDelegate
-    
+
     func navigationController(_ navigationController: UINavigationController,
                               animationControllerFor operation: UINavigationController.Operation,
                               from fromVC: UIViewController,
@@ -76,14 +76,14 @@ class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate {
             return nil
         }
     }
-    
+
     func navigationController(_ navigationController: UINavigationController,
                               interactionControllerFor animationController: UIViewControllerAnimatedTransitioning)
         -> UIViewControllerInteractiveTransitioning? {
             guard let transitionInteractor = transitionInteractor else { return nil }
             return transitionInteractor.transitionInProgress ? transitionInteractor : nil
     }
-    
+
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
             return
@@ -94,8 +94,8 @@ class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate {
         if navigationController.viewControllers.contains(fromViewController) {
             return
         }
-        
+
         parentCoordinator?.childDidFinish()
     }
-    
+
 }

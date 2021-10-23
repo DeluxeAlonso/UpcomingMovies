@@ -14,10 +14,10 @@ typealias RetryPlaceHolderable = Displayable & Detailable & RetryActionable
 protocol PlaceholderDisplayable: Retryable, Emptiable {}
 
 extension PlaceholderDisplayable where Self: UIViewController {
-    
+
     func hideDisplayedPlaceholderView() {
         hideEmptyView()
         hideRetryView()
     }
-    
+
 }

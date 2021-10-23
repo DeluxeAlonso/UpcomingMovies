@@ -7,7 +7,7 @@
 //
 
 extension PersistenceStore where Entity == CDMovieVisit {
-    
+
     func saveMovieVisit(with id: Int, title: String, posterPath: String?, completion: ((Bool) -> Void)? = nil) {
         guard let posterPath = posterPath else {
             completion?(false)
@@ -21,7 +21,7 @@ extension PersistenceStore where Entity == CDMovieVisit {
             completion?(true)
         }
     }
-    
+
     func exists() -> Bool {
         return countAll() > 0
     }
@@ -34,7 +34,7 @@ extension PersistenceStore where Entity == CDMovieVisit {
             completion?(movieVisits)
         }
     }
-    
+
     func countAll() -> Int {
         return CDMovieVisit.count(in: managedObjectContext)
     }

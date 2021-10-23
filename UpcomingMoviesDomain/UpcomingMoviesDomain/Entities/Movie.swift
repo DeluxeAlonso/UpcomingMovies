@@ -7,7 +7,7 @@
 //
 
 public struct Movie: Equatable {
-    
+
     public let id: Int
     public let title: String
     public let genreIds: [Int]?
@@ -16,9 +16,9 @@ public struct Movie: Equatable {
     public let backdropPath: String?
     public let releaseDate: String?
     public let voteAverage: Double?
-    
+
     // MARK: - Initializers
-    
+
     public init(id: Int, title: String, genreIds: [Int]?,
                 overview: String, posterPath: String?, backdropPath: String?,
                 releaseDate: String?, voteAverage: Double?) {
@@ -31,5 +31,5 @@ public struct Movie: Equatable {
         self.releaseDate = releaseDate
         self.voteAverage = voteAverage
     }
-    
+
 }

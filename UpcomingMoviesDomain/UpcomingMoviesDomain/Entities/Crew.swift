@@ -7,7 +7,7 @@
 //
 
 public struct Crew: Equatable {
-    
+
     public let id: Int
     public let job: String
     public let name: String
@@ -19,5 +19,5 @@ public struct Crew: Equatable {
         self.name = name
         self.photoPath = photoPath
     }
-    
+
 }

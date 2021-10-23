@@ -11,7 +11,7 @@ import Swinject
 import UpcomingMoviesDomain
 
 final class SearchMoviesAssembly: Assembly {
-    
+
     func assemble(container: Container) {
         container.register(SearchOptionsInteractorProtocol.self) { resolver in
             let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
@@ -21,11 +21,11 @@ final class SearchMoviesAssembly: Assembly {
             let interactor = resolver.resolve(SearchOptionsInteractorProtocol.self)
             return SearchOptionsViewModel(interactor: interactor!)
         }
-        
+
         container.register(SearchMoviesResultInteractorProtocol.self) { resolver in
             let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
             let authHandler = resolver.resolve(AuthenticationHandlerProtocol.self)
-            
+
             return SearchMoviesResultInteractor(useCaseProvider: useCaseProvider!,
                                                 authHandler: authHandler!)
         }
@@ -34,5 +34,5 @@ final class SearchMoviesAssembly: Assembly {
             return SearchMoviesResultViewModel(interactor: interactor!)
         }
     }
-    
+
 }

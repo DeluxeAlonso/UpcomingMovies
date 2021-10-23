@@ -9,13 +9,13 @@
 import UIKit
 
 final class CollectionViewDataSourcePrefetching: NSObject, DataSourcePrefetching, UICollectionViewDataSourcePrefetching {
-    
+
     let cellCount: Int
     let needsPrefetch: Bool
     let prefetchHandler: (() -> Void)
 
     // MARK: - Initializers
-    
+
     init(cellCount: Int, needsPrefetch: Bool, prefetchHandler: @escaping (() -> Void)) {
         self.cellCount = cellCount
         self.needsPrefetch = needsPrefetch
@@ -27,5 +27,5 @@ final class CollectionViewDataSourcePrefetching: NSObject, DataSourcePrefetching
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         prefetchIfNeeded(for: indexPaths)
     }
-    
+
 }

@@ -9,10 +9,10 @@
 import UpcomingMoviesDomain
 
 public protocol MovieSearchLocalDataSourceProtocol {
-    
+
     var didUpdateMovieSearch: (() -> Void)? { get set }
-    
+
     func getMovieSearches() -> [MovieSearch]
     func save(with searchText: String)
-    
+
 }

@@ -12,19 +12,19 @@ import UpcomingMoviesDomain
 class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDisplayable, PlaceholderDisplayable {
 
     @IBOutlet private weak var collectionView: UICollectionView!
-    
+
     static var storyboardName: String = "UpcomingMovies"
-    
+
     var viewModel: UpcomingMoviesViewModelProtocol!
     weak var coordinator: UpcomingMoviesCoordinatorProtocol?
-    
+
     private var dataSource: SimpleCollectionViewDataSource<UpcomingMovieCellViewModelProtocol>!
     private var prefetchDataSource: CollectionViewDataSourcePrefetching!
     private var displayedCellsIndexPaths = Set<IndexPath>()
-    
+
     private var previewLayout: VerticalFlowLayout!
     private var detailLayout: VerticalFlowLayout!
-    
+
     private var isAnimatingPresentation: Bool = false
     private var presentationMode: PresentationMode = .preview
 
@@ -35,7 +35,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     var loaderView: LoadingView = RadarView()
 
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -56,9 +56,9 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
             self.collectionView.collectionViewLayout.invalidateLayout()
         }, completion: nil)
     }
-    
+
     // MARK: - Private
-    
+
     private func setupUI() {
         title = LocalizedStrings.upcomingMoviesTabBarTitle()
         UIAccessibility.post(notification: .screenChanged, argument: self.navigationItem.title)
@@ -67,7 +67,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
         setupCollectionView()
         setupRefreshControl()
     }
-    
+
     private func setupNavigationBar() {
         navigationItem.title = LocalizedStrings.upcomingMoviesTitle()
 
@@ -85,7 +85,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
 
         setupCollectionViewLayout()
     }
-    
+
     private func setupCollectionViewLayout() {
         let detailLayoutWidth = collectionView.frame.width - Constants.detailCellOffset
         detailLayout = VerticalFlowLayout(preferredWidth: detailLayoutWidth,
@@ -183,57 +183,57 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
             updateCollectionViewLayout(previewLayout)
         }
     }
-    
+
 }
 
 // MARK: - TabBarScrollable
 
 extension UpcomingMoviesViewController: TabBarScrollable {
-    
+
     func handleTabBarSelection() {
         collectionView.scrollToTop(animated: true)
     }
-    
+
 }
 
 // MARK: - UICollectionViewDelegate
 
 extension UpcomingMoviesViewController: UICollectionViewDelegate {
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cellAttributes = collectionView.layoutAttributesForItem(at: indexPath),
               let cell = collectionView.cellForItem(at: indexPath) as? UpcomingMovieCollectionViewCellProtocol else {
             return
         }
-        
+
         let imageToTransition = cell.posterImageView.image
         let selectedFrame = collectionView.convert(cellAttributes.frame,
                                                    to: collectionView.superview)
-        
+
         let navigationConfiguration = UpcomingMoviesNavigationConfiguration(selectedFrame: selectedFrame,
                                                                             imageToTransition: imageToTransition,
                                                                             transitionOffset: view.safeAreaInsets.left)
-        
+
         coordinator?.showMovieDetail(for: viewModel.movie(for: indexPath.row), with: navigationConfiguration)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if !displayedCellsIndexPaths.contains(indexPath) {
             displayedCellsIndexPaths.insert(indexPath)
             CollectionViewCellAnimator.fadeAnimate(cell: cell)
         }
     }
-    
+
 }
 
 // MARK: - Presentation Modes
 
 extension UpcomingMoviesViewController {
-    
+
     enum PresentationMode {
         case preview
         case detail
-        
+
         var cellIdentifier: String {
             switch self {
             case .preview:
@@ -243,22 +243,22 @@ extension UpcomingMoviesViewController {
             }
         }
     }
-    
+
 }
 
 // MARK: - Constants
 
 extension UpcomingMoviesViewController {
-    
+
     struct Constants {
-        
+
         static let previewCellHeight: CGFloat = 150.0
-        
+
         static let detailCellHeight: CGFloat = 200.0
         static let detailCellOffset: CGFloat = 32.0
 
         static let previewLayoutMinColumns: Int = 3
-        
+
     }
-    
+
 }

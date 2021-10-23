@@ -9,13 +9,13 @@
 import Foundation
 
 public struct MovieSearch {
-    
+
     public let searchText: String
     public let createdAt: Date
-    
+
     public init(searchText: String, createdAt: Date) {
         self.searchText = searchText
         self.createdAt = createdAt
     }
-    
+
 }

@@ -7,7 +7,7 @@
 //
 
 enum MovieProvider {
-    
+
     case getUpcoming(page: Int)
     case getPopular(page: Int)
     case getTopRated(page: Int)
@@ -20,17 +20,17 @@ enum MovieProvider {
     case getCredits(id: Int)
     case getAccountState(id: Int, sessionId: String)
     case rateMovie(id: Int, sessionId: String, value: Double)
-    
+
 }
 
 // MARK: - Endpoint
 
 extension MovieProvider: Endpoint {
-    
+
     var base: String {
         return NetworkConfiguration.shared.baseAPIURLString
     }
-    
+
     var path: String {
         switch self {
         case .getUpcoming:
@@ -59,11 +59,11 @@ extension MovieProvider: Endpoint {
             return "/3/movie/\(id)/rating"
         }
     }
-    
+
     var headers: [String: String]? {
         return nil
     }
-    
+
     var params: [String: Any]? {
         switch self {
         case .getUpcoming(let page):
@@ -90,7 +90,7 @@ extension MovieProvider: Endpoint {
             return ["value": value]
         }
     }
-    
+
     var parameterEncoding: ParameterEnconding {
         switch self {
         case .getAccountState, .getByGenreId, .getCredits, .getDetail, .getPopular, .getReviews,
@@ -100,7 +100,7 @@ extension MovieProvider: Endpoint {
             return .jsonEncoding
         }
     }
-    
+
     var method: HTTPMethod {
         switch self {
         case .getAccountState, .getByGenreId, .getCredits, .getDetail, .getPopular, .getReviews,
@@ -110,5 +110,5 @@ extension MovieProvider: Endpoint {
             return .post
         }
     }
-    
+
 }

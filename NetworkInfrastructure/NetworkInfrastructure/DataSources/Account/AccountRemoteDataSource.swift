@@ -10,15 +10,15 @@ import UpcomingMoviesDomain
 import UpcomingMoviesData
 
 final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
-  
+
     private let client: AccountClientProtocol
     private let authManager: AuthenticationManager
-    
+
     init(client: AccountClientProtocol, authManager: AuthenticationManager = AuthenticationManager.shared) {
         self.client = client
         self.authManager = authManager
     }
-    
+
     func getFavoriteList(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
         client.getFavoriteList(page: page ?? 1, sessionId: account.sessionId, accountId: account.accountId, completion: { result in
@@ -32,7 +32,7 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
             }
         })
     }
-    
+
     func getWatchlist(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
         client.getWatchlist(page: page ?? 1, sessionId: account.sessionId, accountId: account.accountId, completion: { result in
@@ -63,7 +63,7 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
             }
         }
     }
-    
+
     func getCustomLists(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.List], Error>) -> Void) {
         guard let accountId = authManager.accessToken?.accountId,
             let accessToken = authManager.accessToken?.token else {
@@ -80,7 +80,7 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
             }
         })
     }
-    
+
     func getCustomListMovies(listId: String, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         guard let accessToken = authManager.accessToken?.token else { return }
         client.getCustomListMovies(with: accessToken, listId: listId, completion: { result in
@@ -94,7 +94,7 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
             }
         })
     }
-    
+
     func getAccountDetail(completion: @escaping (Result<UpcomingMoviesDomain.User, Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
         client.getAccountDetail(with: account.sessionId, completion: { result in
@@ -106,7 +106,7 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
             }
         })
     }
-    
+
     func markMovieAsFavorite(movieId: Int, favorite: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
         client.markAsFavorite(movieId, sessionId: account.sessionId, accountId: account.accountId, favorite: favorite, completion: { result in

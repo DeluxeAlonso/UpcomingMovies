@@ -10,13 +10,13 @@ import UIKit
 import UpcomingMoviesDomain
 
 final class SearchMoviesCoordinator: NSObject, SearchMoviesCoordinatorProtocol, RootCoordinator, MovieDetailCoordinable {
-    
+
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
 
     // MARK: - Initializers
-    
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
@@ -26,61 +26,61 @@ final class SearchMoviesCoordinator: NSObject, SearchMoviesCoordinatorProtocol, 
     var rootIdentifier: String {
         return RootCoordinatorIdentifier.searchMovies
     }
-    
+
     func start() {
         let viewController = SearchMoviesViewController.instantiate()
-        
+
         viewController.coordinator = self
 
         navigationController.delegate = self
         navigationController.pushViewController(viewController, animated: true)
     }
-    
+
     func embedSearchOptions(on parentViewController: UIViewController,
                             in containerView: UIView) -> SearchOptionsViewController {
         let viewController = SearchOptionsViewController.instantiate()
- 
+
         viewController.viewModel = DIContainer.shared.resolve()
-        
+
         parentViewController.add(asChildViewController: viewController,
                                  containerView: containerView)
-        
+
         return viewController
     }
 
     func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController {
         let searchResultController = SearchMoviesResultController(viewModel: DIContainer.shared.resolve())
-        
+
         let searchController = DefaultSearchController(searchResultsController: searchResultController)
-        
+
         searchResultController.delegate = parentViewController
         searchResultController.coordinator = self
-        
+
         parentViewController.navigationItem.searchController = searchController
         parentViewController.definesPresentationContext = true
-        
+
         return searchController
     }
-    
+
     func showMovieDetail(for movieId: Int, and movieTitle: String) {
         let coordinator = MovieDetailCoordinator(navigationController: navigationController)
         coordinator.movieInfo = .partial(movieId: movieId, movieTitle: movieTitle)
         coordinator.parentCoordinator = unwrappedParentCoordinator
-        
+
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
-    
+
     func showMoviesByGenre(_ genreId: Int, genreName: String) {
         let coordinator = MoviesByGenreCoordinator(navigationController: navigationController)
         coordinator.genreId = genreId
         coordinator.genreName = genreName
         coordinator.parentCoordinator = unwrappedParentCoordinator
-        
+
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
-    
+
     func showDefaultSearchOption(_ option: DefaultSearchOption) {
         switch option {
         case .popular:
@@ -89,23 +89,23 @@ final class SearchMoviesCoordinator: NSObject, SearchMoviesCoordinatorProtocol, 
             showTopRatedMovies()
         }
     }
-    
+
     private func showPopularMovies() {
         let coordinator = PopularMoviesCoordinator(navigationController: navigationController)
         coordinator.parentCoordinator = unwrappedParentCoordinator
-        
+
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
-    
+
     private func showTopRatedMovies() {
         let coordinator = TopRatedMoviesCoordinator(navigationController: navigationController)
         coordinator.parentCoordinator = unwrappedParentCoordinator
-        
+
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
-    
+
 }
 
 // MARK: - UINavigationControllerDelegate

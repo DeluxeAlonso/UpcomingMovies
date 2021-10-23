@@ -9,18 +9,18 @@
 import UIKit
 
 final class MovieCreditsCoordinator: Coordinator, MovieCreditsCoordinatorProtocol {
-    
+
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
-    
+
     var movieId: Int!
     var movieTitle: String!
-    
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+
     func start() {
         let viewController = MovieCreditsViewController.instantiate()
 
@@ -29,5 +29,5 @@ final class MovieCreditsCoordinator: Coordinator, MovieCreditsCoordinatorProtoco
 
         navigationController.pushViewController(viewController, animated: true)
     }
-    
+
 }

@@ -15,42 +15,42 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
 
     private let list: List
     private let interactor: CustomListDetailInteractorProtocol
-    
+
     // MARK: - Reactive properties
-    
+
     private(set) var viewState: Bindable<CustomListDetailViewState> = Bindable(.loading)
-    
+
     // MARK: - Computed properties
-    
+
     private var movies: [Movie] {
         return viewState.value.currentMovies
     }
-    
+
     var movieCells: [MovieCellViewModel] {
         return movies.map { MovieCellViewModel($0) }
     }
-    
+
     var listName: String? {
         return self.list.name
     }
-    
+
     // MARK: - Initializers
-    
+
     init(_ list: List, interactor: CustomListDetailInteractorProtocol) {
         self.list = list
         self.interactor = interactor
     }
-    
+
     // MARK: - CustomListDetailViewModelProtocol
-    
+
     func buildHeaderViewModel() -> CustomListDetailHeaderViewModelProtocol {
         return CustomListDetailHeaderViewModel(list: list)
     }
-    
+
     func buildSectionViewModel() -> CustomListDetailSectionViewModel {
         return CustomListDetailSectionViewModel(list: list)
     }
-    
+
     func movie(at index: Int) -> Movie {
         return movies[index]
     }
@@ -67,10 +67,10 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
     }
 
     // MARK: - Private
-    
+
     private func processResult(_ movies: [Movie]) -> CustomListDetailViewState {
         guard !movies.isEmpty else { return .empty }
-        
+
         return .populated(movies)
     }
 
