@@ -7,11 +7,11 @@
 //
 
 public struct SortConfiguration {
-    
+
     public private(set) var movieSortKeys: [String]
-    
+
     public init(movieSortKeys: [String]) {
         self.movieSortKeys = movieSortKeys
     }
-    
+
 }
