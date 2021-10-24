@@ -8,16 +8,16 @@
 
 import UpcomingMoviesDomain
 
-public struct List: Decodable {
+struct List: Decodable {
 
-    public let id: String
-    public let name: String
-    public let description: String?
-    public let backdropPath: String?
-    public let averageRating: Double?
-    public let runtime: Int?
-    public let movieCount: Int
-    public let movies: [Movie]?
+    let id: String
+    let name: String
+    let description: String?
+    let backdropPath: String?
+    let averageRating: Double?
+    let runtime: Int?
+    let movieCount: Int
+    let movies: [Movie]?
 
     private enum CodingKeys: String, CodingKey {
         case id, name, description, runtime
@@ -29,7 +29,7 @@ public struct List: Decodable {
 
     // MARK: - Initializer
 
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         // Id key can be either an Int or a String

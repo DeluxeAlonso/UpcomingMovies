@@ -8,16 +8,16 @@
 
 import UpcomingMoviesDomain
 
-public struct Movie: Decodable {
+struct Movie: Decodable {
 
-    public let id: Int
-    public let title: String
-    public let genreIds: [Int]?
-    public let overview: String
-    public let posterPath: String?
-    public let backdropPath: String?
-    public let releaseDate: String?
-    public let voteAverage: Double?
+    let id: Int
+    let title: String
+    let genreIds: [Int]?
+    let overview: String
+    let posterPath: String?
+    let backdropPath: String?
+    let releaseDate: String?
+    let voteAverage: Double?
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -32,7 +32,7 @@ public struct Movie: Decodable {
 
     // MARK: - Initializers
 
-    public init(id: Int, title: String, genreIds: [Int]?,
+    init(id: Int, title: String, genreIds: [Int]?,
                 overview: String, posterPath: String?, backdropPath: String?,
                 releaseDate: String, voteAverage: Double?) {
         self.id = id

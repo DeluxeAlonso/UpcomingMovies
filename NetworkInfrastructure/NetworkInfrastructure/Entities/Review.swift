@@ -8,11 +8,11 @@
 
 import UpcomingMoviesDomain
 
-public struct Review: Decodable {
+struct Review: Decodable {
 
-    public let id: String
-    public let authorName: String
-    public let content: String
+    let id: String
+    let authorName: String
+    let content: String
 
     private enum CodingKeys: String, CodingKey {
         case id
