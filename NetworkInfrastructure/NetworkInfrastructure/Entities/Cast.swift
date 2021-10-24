@@ -8,12 +8,12 @@
 
 import UpcomingMoviesDomain
 
-public struct Cast: Decodable {
+struct Cast: Decodable {
 
-    public let id: Int
-    public let character: String
-    public let name: String
-    public let photoPath: String?
+    let id: Int
+    let character: String
+    let name: String
+    let photoPath: String?
 
     private enum CodingKeys: String, CodingKey {
         case id

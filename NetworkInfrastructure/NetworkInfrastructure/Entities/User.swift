@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-public struct User: Decodable {
+ struct User: Decodable {
 
     public let id: Int
     public let name: String
