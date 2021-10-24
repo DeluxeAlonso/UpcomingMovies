@@ -1,10 +1,11 @@
 //
 //  Account.swift
-//  UpcomingMoviesDomain
+//  NetworkInfrastructure
 //
-//  Created by Alonso on 11/17/19.
-//  Copyright © 2019 Alonso. All rights reserved.
+//  Created by Alonso on 24/10/21.
 //
+
+import Foundation
 
 public struct Account {
 
