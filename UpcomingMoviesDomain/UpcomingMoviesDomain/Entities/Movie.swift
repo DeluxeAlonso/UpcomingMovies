@@ -23,7 +23,7 @@ public struct Movie: Equatable {
 
     public init(id: Int, title: String, genreIds: [Int]?,
                 overview: String, posterPath: String?, backdropPath: String?,
-                releaseDate: String?, voteAverage: Double?, state: AccountState?) {
+                releaseDate: String?, voteAverage: Double?) {
         self.id = id
         self.title = title
         self.genreIds = genreIds
@@ -32,7 +32,6 @@ public struct Movie: Equatable {
         self.backdropPath = backdropPath
         self.releaseDate = releaseDate
         self.voteAverage = voteAverage
-        self.state = state
     }
 
 }
