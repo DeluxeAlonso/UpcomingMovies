@@ -11,10 +11,10 @@ import UpcomingMoviesDomain
 
 final class CDMovieVisit: NSManagedObject {
 
-    @NSManaged fileprivate(set) var id: Int
-    @NSManaged fileprivate(set) var title: String
-    @NSManaged fileprivate(set) var posterPath: String
-    @NSManaged fileprivate(set) var createdAt: Date
+    @NSManaged private(set) var id: Int
+    @NSManaged private(set) var title: String
+    @NSManaged private(set) var posterPath: String
+    @NSManaged private(set) var createdAt: Date
 
     static func insert(into context: NSManagedObjectContext, id: Int, title: String, posterPath: String) -> CDMovieVisit {
         let movieVisit: CDMovieVisit = context.insertObject()

@@ -10,11 +10,11 @@ import Foundation
 
 public struct MovieSearch {
 
-    public let id: UUID
+    public let id: String
     public let searchText: String
     public let createdAt: Date
 
-    public init(id: UUID, searchText: String, createdAt: Date) {
+    public init(id: String, searchText: String, createdAt: Date) {
         self.id = id
         self.searchText = searchText
         self.createdAt = createdAt

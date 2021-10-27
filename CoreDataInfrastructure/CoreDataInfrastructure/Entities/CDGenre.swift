@@ -11,8 +11,8 @@ import UpcomingMoviesDomain
 
 final class CDGenre: NSManagedObject {
 
-    @NSManaged fileprivate(set) var id: Int
-    @NSManaged fileprivate(set) var name: String
+    @NSManaged private(set) var id: Int
+    @NSManaged private(set) var name: String
 
     static func insert(into context: NSManagedObjectContext, id: Int, name: String) -> CDGenre {
         let genre: CDGenre = context.insertObject()

@@ -11,10 +11,10 @@ import UpcomingMoviesDomain
 
 final class CDUser: NSManagedObject {
 
-    @NSManaged fileprivate(set) var id: Int
-    @NSManaged fileprivate(set) var name: String
-    @NSManaged fileprivate(set) var username: String
-    @NSManaged fileprivate(set) var includeAdult: Bool
+    @NSManaged private(set) var id: Int
+    @NSManaged private(set) var name: String
+    @NSManaged private(set) var username: String
+    @NSManaged private(set) var includeAdult: Bool
 
     static func insert(into context: NSManagedObjectContext,
                        id: Int,

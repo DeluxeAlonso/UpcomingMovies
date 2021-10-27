@@ -14,7 +14,7 @@
     </entity>
     <entity name="CDMovieSearch" representedClassName=".CDMovieSearch" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="searchText" optional="YES" attributeType="String"/>
         <fetchIndex name="byCreatedAtPropertyIndex">
             <fetchIndexElement property="createdAt" type="Binary" order="ascending"/>
