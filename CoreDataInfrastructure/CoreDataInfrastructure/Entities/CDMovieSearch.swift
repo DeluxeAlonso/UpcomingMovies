@@ -11,13 +11,13 @@ import UpcomingMoviesDomain
 
 final class CDMovieSearch: NSManagedObject {
 
-    @NSManaged private(set) var id: UUID
+    @NSManaged private(set) var id: String
     @NSManaged private(set) var searchText: String
     @NSManaged private(set) var createdAt: Date
 
     static func insert(into context: NSManagedObjectContext, searchText: String) -> CDMovieSearch {
         let movieSearch: CDMovieSearch = context.insertObject()
-        movieSearch.id = UUID()
+        movieSearch.id = UUID().uuidString
         movieSearch.searchText = searchText
         movieSearch.createdAt = Date()
         return movieSearch
