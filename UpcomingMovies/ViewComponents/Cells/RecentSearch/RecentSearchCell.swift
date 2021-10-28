@@ -1,5 +1,5 @@
 //
-//  RecentSearchTableViewCell.swift
+//  RecentSearchCell.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 11/7/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RecentSearchTableViewCell: UITableViewCell {
+final class RecentSearchCell: UITableViewCell {
 
     @IBOutlet private weak var searchLabel: UILabel!
 

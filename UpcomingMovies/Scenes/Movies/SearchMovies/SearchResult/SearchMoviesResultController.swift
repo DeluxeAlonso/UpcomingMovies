@@ -79,7 +79,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         let tableView = searchMoviesResultView.tableView
         tableView.delegate = self
         tableView.registerNib(cellType: MovieTableViewCell.self)
-        tableView.registerNib(cellType: RecentSearchTableViewCell.self)
+        tableView.registerNib(cellType: RecentSearchCell.self)
     }
 
     private func reloadTableView() {
