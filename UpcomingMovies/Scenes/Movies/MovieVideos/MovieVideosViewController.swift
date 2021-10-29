@@ -43,7 +43,7 @@ class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisp
         tableView.delegate = self
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.registerNib(cellType: MovieVideoTableViewCell.self)
+        tableView.registerNib(cellType: MovieVideoCell.self)
     }
 
     private func reloadTableView() {
