@@ -1,5 +1,5 @@
 //
-//  RecentSearchTableViewCell.swift
+//  RecentSearchCell.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 11/7/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RecentSearchTableViewCell: UITableViewCell {
+final class RecentSearchCell: UITableViewCell {
 
     @IBOutlet private weak var searchLabel: UILabel!
 
@@ -35,7 +35,7 @@ final class RecentSearchTableViewCell: UITableViewCell {
 
     fileprivate func setupSearchLabel() {
         searchLabel.font = FontHelper.Default.mediumLight
-        searchLabel.textColor = ColorPalette.darkGrayColor
+        searchLabel.textColor = ColorPalette.Label.defaultColor
     }
 
     fileprivate func setupBindables() {
