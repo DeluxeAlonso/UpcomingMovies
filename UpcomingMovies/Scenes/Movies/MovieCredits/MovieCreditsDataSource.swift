@@ -30,7 +30,7 @@ class MovieCreditsDataSource: NSObject, UICollectionViewDataSource, CollapsibleH
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(with: MovieCreditCollectionViewCell.self, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(with: MovieCreditCell.self, for: indexPath)
         cell.viewModel = viewModel.creditModel(for: indexPath.section, and: indexPath.row)
         return cell
     }

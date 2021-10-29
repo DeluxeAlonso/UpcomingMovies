@@ -112,8 +112,8 @@
 		E2251B132214ECFA00EE7A51 /* MovieCreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2251B122214ECFA00EE7A51 /* MovieCreditsViewController.swift */; };
 		E2251B152214ED0900EE7A51 /* MovieCreditsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2251B142214ED0900EE7A51 /* MovieCreditsViewModel.swift */; };
 		E2251B1E2214F98F00EE7A51 /* MovieCreditCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2251B1D2214F98F00EE7A51 /* MovieCreditCellViewModel.swift */; };
-		E2251B202214FBB500EE7A51 /* MovieCreditCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2251B1F2214FBB500EE7A51 /* MovieCreditCollectionViewCell.swift */; };
-		E2251B222214FBC700EE7A51 /* MovieCreditCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2251B212214FBC700EE7A51 /* MovieCreditCollectionViewCell.xib */; };
+		E2251B202214FBB500EE7A51 /* MovieCreditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2251B1F2214FBB500EE7A51 /* MovieCreditCell.swift */; };
+		E2251B222214FBC700EE7A51 /* MovieCreditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2251B212214FBC700EE7A51 /* MovieCreditCell.xib */; };
 		E225468D226A3BD500E9042C /* CustomListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E225468C226A3BD500E9042C /* CustomListsViewController.swift */; };
 		E225468F226A3BF000E9042C /* CustomListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E225468E226A3BF000E9042C /* CustomListsViewModel.swift */; };
 		E2254693226A3D6500E9042C /* CustomListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2254691226A3D6500E9042C /* CustomListTableViewCell.swift */; };
@@ -518,8 +518,8 @@
 		E2251B122214ECFA00EE7A51 /* MovieCreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditsViewController.swift; sourceTree = "<group>"; };
 		E2251B142214ED0900EE7A51 /* MovieCreditsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditsViewModel.swift; sourceTree = "<group>"; };
 		E2251B1D2214F98F00EE7A51 /* MovieCreditCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditCellViewModel.swift; sourceTree = "<group>"; };
-		E2251B1F2214FBB500EE7A51 /* MovieCreditCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditCollectionViewCell.swift; sourceTree = "<group>"; };
-		E2251B212214FBC700EE7A51 /* MovieCreditCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCreditCollectionViewCell.xib; sourceTree = "<group>"; };
+		E2251B1F2214FBB500EE7A51 /* MovieCreditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditCell.swift; sourceTree = "<group>"; };
+		E2251B212214FBC700EE7A51 /* MovieCreditCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCreditCell.xib; sourceTree = "<group>"; };
 		E225468C226A3BD500E9042C /* CustomListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListsViewController.swift; sourceTree = "<group>"; };
 		E225468E226A3BF000E9042C /* CustomListsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListsViewModel.swift; sourceTree = "<group>"; };
 		E2254691226A3D6500E9042C /* CustomListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListTableViewCell.swift; sourceTree = "<group>"; };
@@ -1330,9 +1330,9 @@
 		E2251B1C2214F97600EE7A51 /* MovieCredits */ = {
 			isa = PBXGroup;
 			children = (
-				E2251B212214FBC700EE7A51 /* MovieCreditCollectionViewCell.xib */,
+				E2251B212214FBC700EE7A51 /* MovieCreditCell.xib */,
 				E2251B1D2214F98F00EE7A51 /* MovieCreditCellViewModel.swift */,
-				E2251B1F2214FBB500EE7A51 /* MovieCreditCollectionViewCell.swift */,
+				E2251B1F2214FBB500EE7A51 /* MovieCreditCell.swift */,
 			);
 			path = MovieCredits;
 			sourceTree = "<group>";
@@ -2154,7 +2154,7 @@
 				E29E3820230E54CB00C351BF /* Account.storyboard in Resources */,
 				E221168721914E4B0039F8C9 /* Main.storyboard in Resources */,
 				E221F770222BA316008DFF87 /* SavedMovieCollectionViewCell.xib in Resources */,
-				E2251B222214FBC700EE7A51 /* MovieCreditCollectionViewCell.xib in Resources */,
+				E2251B222214FBC700EE7A51 /* MovieCreditCell.xib in Resources */,
 				E29E3812230E4F1300C351BF /* MovieDetail.storyboard in Resources */,
 				E223B08822482A170050277B /* ProfileSelectableOptionTableViewCell.xib in Resources */,
 				E21F37942193F47800D6BFB6 /* RecentSearchCell.xib in Resources */,
@@ -2566,7 +2566,7 @@
 				E21F378A2193ED4000D6BFB6 /* SearchMoviesResultViewModel.swift in Sources */,
 				E2254696226A3D8100E9042C /* CustomListCellViewModel.swift in Sources */,
 				E2E518A824A9991400CC3FA5 /* SearchMoviesResultViewState.swift in Sources */,
-				E2251B202214FBB500EE7A51 /* MovieCreditCollectionViewCell.swift in Sources */,
+				E2251B202214FBB500EE7A51 /* MovieCreditCell.swift in Sources */,
 				E274550E25130090000847A4 /* SearchMoviesAssembly.swift in Sources */,
 				E263FA9C24D52D8400990638 /* PopularMoviesCoordinator.swift in Sources */,
 				E20097F926C8D5F000C653BB /* ToggleBarButtonItemContentProtocol.swift in Sources */,

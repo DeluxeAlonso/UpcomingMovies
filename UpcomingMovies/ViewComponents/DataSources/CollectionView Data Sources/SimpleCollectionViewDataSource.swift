@@ -56,11 +56,11 @@ extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellVie
 extension SimpleCollectionViewDataSource where ViewModel == MovieCreditCellViewModel {
 
     static func make(for cellViewModels: [MovieCreditCellViewModel],
-                     reuseIdentifier: String = MovieCreditCollectionViewCell.dequeueIdentifier) -> SimpleCollectionViewDataSource {
+                     reuseIdentifier: String = MovieCreditCell.dequeueIdentifier) -> SimpleCollectionViewDataSource {
         return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
                                               reuseIdentifier: reuseIdentifier,
                                               cellConfigurator: { (viewModel, cell) in
-                                                let cell = cell as! MovieCreditCollectionViewCell
+                                                let cell = cell as! MovieCreditCell
                                                 cell.viewModel = viewModel
                                               })
     }
