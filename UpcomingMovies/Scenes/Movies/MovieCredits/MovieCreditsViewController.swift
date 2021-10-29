@@ -43,7 +43,7 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.allowsMultipleSelection = false
-        collectionView.registerNib(cellType: MovieCreditCollectionViewCell.self)
+        collectionView.registerNib(cellType: MovieCreditCell.self)
 
         setupCollectionViewLayout()
     }

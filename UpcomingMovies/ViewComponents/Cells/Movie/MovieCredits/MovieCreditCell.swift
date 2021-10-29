@@ -1,5 +1,5 @@
 //
-//  MovieCreditCollectionViewCell.swift
+//  MovieCreditCell.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 2/13/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MovieCreditCollectionViewCell: UICollectionViewCell {
+final class MovieCreditCell: UICollectionViewCell {
 
     @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var overlayView: UIView!

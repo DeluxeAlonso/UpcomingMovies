@@ -1,5 +1,5 @@
 //
-//  MovieReviewTableViewCell.swift
+//  MovieReviewCell.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 2/11/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MovieReviewTableViewCell: UITableViewCell {
+final class MovieReviewCell: UITableViewCell {
 
     @IBOutlet private weak var authorNameLabel: UILabel!
     @IBOutlet private weak var contentLabel: UILabel!

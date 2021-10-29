@@ -1,5 +1,5 @@
 //
-//  MovieVideoTableViewCell.swift
+//  MovieVideoCell.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 2/9/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MovieVideoTableViewCell: UITableViewCell {
+final class MovieVideoCell: UITableViewCell {
 
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var previewImageView: UIImageView!
