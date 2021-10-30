@@ -126,7 +126,7 @@ class VoteAverageView: UIView {
         }
         let toValue = voteValue / 10.0
         loadedLayer.strokeEnd = CGFloat(toValue)
-        voteAverageLabel.text = String(voteValue)
+        voteAverageLabel.text = String(format: "%.1f", voteValue)
         accessibilityLabel = String(format: LocalizedStrings.ratingHint(), voteValue)
     }
 
