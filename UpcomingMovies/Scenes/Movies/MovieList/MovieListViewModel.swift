@@ -31,7 +31,7 @@ final class MovieListViewModel: MovieListViewModelProtocol, SimpleViewStateProce
         return viewState.value.needsPrefetch
     }
 
-    var movieCells: [MovieCellViewModelProtocol] {
+    var movieCells: [MovieListCellViewModelProtocol] {
         return movies.compactMap { MovieCellViewModel($0) }
     }
 

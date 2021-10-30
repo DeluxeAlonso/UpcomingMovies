@@ -49,7 +49,7 @@ class SearchMoviesResultDataSource: NSObject, UITableViewDataSource {
     }
 
     private func searchedMoviesDataSource(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(with: MovieTableViewCell.self, for: indexPath)
+        let cell = tableView.dequeueReusableCell(with: MovieListCell.self, for: indexPath)
         cell.viewModel = viewModel.movieCells[indexPath.row]
         return cell
     }
