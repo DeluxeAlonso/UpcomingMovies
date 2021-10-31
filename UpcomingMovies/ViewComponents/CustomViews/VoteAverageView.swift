@@ -48,7 +48,7 @@ class VoteAverageView: UIView {
 
     var voteValue: Double? {
         didSet {
-            updateVoteValue()
+            updateVoteValue(voteValue)
         }
     }
 
@@ -96,7 +96,7 @@ class VoteAverageView: UIView {
         loadedLayer.strokeColor = loadedLayerColor.cgColor
         layer.addSublayer(loadedLayer)
 
-        updateVoteValue()
+        updateVoteValue(voteValue)
     }
 
     private func setupShapeLayerPath(_ shapeLayer: CAShapeLayer) {
@@ -118,7 +118,7 @@ class VoteAverageView: UIView {
         loadedLayer.strokeColor = loadedLayerColor.cgColor
     }
 
-    private func updateVoteValue() {
+    private func updateVoteValue(_ voteValue: Double?) {
         guard let voteValue = voteValue, voteValue > 0.0 else {
             voteAverageLabel.text = "-"
             loadedLayer.strokeEnd = 0.0
