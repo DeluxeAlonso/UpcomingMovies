@@ -1,5 +1,5 @@
 //
-//  MovieCellViewModel.swift
+//  MovieListCellViewModel.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 11/7/18.
@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-protocol MovieCellViewModelProtocol {
+protocol MovieListCellViewModelProtocol {
 
     var name: String { get }
     var genreName: String? { get }
@@ -19,7 +19,7 @@ protocol MovieCellViewModelProtocol {
 
 }
 
-final class MovieCellViewModel: MovieCellViewModelProtocol {
+final class MovieCellViewModel: MovieListCellViewModelProtocol {
 
     let name: String
     let genreName: String?

@@ -78,7 +78,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
     private func setupTableView() {
         let tableView = searchMoviesResultView.tableView
         tableView.delegate = self
-        tableView.registerNib(cellType: MovieTableViewCell.self)
+        tableView.registerNib(cellType: MovieListCell.self)
         tableView.registerNib(cellType: RecentSearchCell.self)
     }
 

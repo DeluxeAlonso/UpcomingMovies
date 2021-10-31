@@ -39,14 +39,14 @@ final class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSourc
 
 }
 
-extension SimpleTableViewDataSource where ViewModel == MovieCellViewModelProtocol {
+extension SimpleTableViewDataSource where ViewModel == MovieListCellViewModelProtocol {
 
     static func make(for cellViewModels: [ViewModel],
-                     reuseIdentifier: String = MovieTableViewCell.dequeueIdentifier) -> SimpleTableViewDataSource {
+                     reuseIdentifier: String = MovieListCell.dequeueIdentifier) -> SimpleTableViewDataSource {
         return SimpleTableViewDataSource(cellViewModels: cellViewModels,
                                          reuseIdentifier: reuseIdentifier,
                                          cellConfigurator: { (viewModel, cell) in
-                                            let cell = cell as! MovieTableViewCell
+                                            let cell = cell as! MovieListCell
                                             cell.viewModel = viewModel
                                          })
     }

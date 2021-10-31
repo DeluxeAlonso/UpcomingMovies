@@ -30,7 +30,7 @@ protocol SearchMoviesResultViewModelProtocol {
     var viewState: Bindable<SearchMoviesResultViewState> { get }
 
     var recentSearchCells: [RecentSearchCellViewModelProtocol] { get }
-    var movieCells: [MovieCellViewModelProtocol] { get }
+    var movieCells: [MovieListCellViewModelProtocol] { get }
 
     func searchMovies(withSearchText searchText: String)
     func searchedMovie(at index: Int) -> Movie

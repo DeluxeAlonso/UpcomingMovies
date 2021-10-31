@@ -28,7 +28,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
         return searches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
     }
 
-    var movieCells: [MovieCellViewModelProtocol] {
+    var movieCells: [MovieListCellViewModelProtocol] {
         return movies.compactMap { MovieCellViewModel($0)}
     }
 

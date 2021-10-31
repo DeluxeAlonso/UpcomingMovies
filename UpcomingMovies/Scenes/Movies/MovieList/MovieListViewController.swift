@@ -13,7 +13,7 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
 
     @IBOutlet private weak var tableView: UITableView!
 
-    private var dataSource: SimpleTableViewDataSource<MovieCellViewModelProtocol>!
+    private var dataSource: SimpleTableViewDataSource<MovieListCellViewModelProtocol>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
     private var displayedCellsIndexPaths = Set<IndexPath>()
 
@@ -47,7 +47,7 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
-        tableView.registerNib(cellType: MovieTableViewCell.self)
+        tableView.registerNib(cellType: MovieListCell.self)
     }
 
     private func setupRefreshControl() {

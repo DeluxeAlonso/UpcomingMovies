@@ -17,7 +17,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
 
     private var headerView: CustomListDetailHeaderView!
 
-    private var dataSource: SimpleTableViewDataSource<MovieCellViewModelProtocol>!
+    private var dataSource: SimpleTableViewDataSource<MovieListCellViewModelProtocol>!
     private var displayedCellsIndexPaths = Set<IndexPath>()
 
     /// Used to determinate if the header view is being presented or not.
@@ -83,7 +83,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
-        tableView.registerNib(cellType: MovieTableViewCell.self)
+        tableView.registerNib(cellType: MovieListCell.self)
     }
 
     private func setupTableViewHeader() {

@@ -1,5 +1,5 @@
 //
-//  MovieTableViewCell.swift
+//  MovieListCell.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 11/7/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MovieTableViewCell: UITableViewCell {
+final class MovieListCell: UITableViewCell {
 
     @IBOutlet private weak var movieContainerView: UIView!
     @IBOutlet private weak var posterImageView: UIImageView!
@@ -17,7 +17,7 @@ final class MovieTableViewCell: UITableViewCell {
     @IBOutlet private weak var releaseDateLabel: UILabel!
     @IBOutlet private weak var voteAverageView: VoteAverageView!
 
-    var viewModel: MovieCellViewModelProtocol? {
+    var viewModel: MovieListCellViewModelProtocol? {
         didSet {
             setupBindables()
         }
