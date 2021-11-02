@@ -40,8 +40,13 @@ extension Movie {
 
     public struct AccountState: Equatable {
 
-        let favorite: Bool
-        let watchlist: Bool
+        public let favorite: Bool
+        public let watchlist: Bool
+
+        public init(favorite: Bool, watchlist: Bool) {
+            self.favorite = favorite
+            self.watchlist = watchlist
+        }
 
     }
 

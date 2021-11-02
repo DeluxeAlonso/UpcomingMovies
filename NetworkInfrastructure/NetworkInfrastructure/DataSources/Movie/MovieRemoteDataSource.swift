@@ -154,6 +154,22 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         })
     }
 
+    func getMovieState(for movieId: Int,
+                       completion: @escaping (Result<UpcomingMoviesDomain.Movie.AccountState, Error>) -> Void) {
+        guard let account = authManager.userAccount else { return }
+        client.getMovieAccountState(with: movieId, sessionId: account.sessionId, completion: { result in
+            switch result {
+            case .success(let movieAccountStateResult):
+                guard let movieAccountStateResult = movieAccountStateResult else { return }
+                let favorite = movieAccountStateResult.favorite
+                let watchlist = movieAccountStateResult.favorite
+                completion(.success(.init(favorite: favorite, watchlist: watchlist)))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
+    }
+
     func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
         client.getMovieAccountState(with: movieId, sessionId: account.sessionId, completion: { result in
