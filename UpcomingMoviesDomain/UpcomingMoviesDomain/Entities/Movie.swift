@@ -17,8 +17,6 @@ public struct Movie: Equatable {
     public let releaseDate: String?
     public let voteAverage: Double?
 
-    private(set) public var state: AccountState?
-
     // MARK: - Initializers
 
     public init(id: Int, title: String, genreIds: [Int]?,
