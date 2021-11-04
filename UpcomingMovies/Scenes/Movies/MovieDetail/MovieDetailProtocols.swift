@@ -66,6 +66,9 @@ protocol MovieDetailInteractorProtocol {
 
     func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void)
 
+    func getMovieAccountState(for movieId: Int,
+                              completion: @escaping (Result<Movie.AccountState, Error>) -> Void)
+
     func markMovieAsFavorite(movieId: Int, favorite: Bool, completion: @escaping (Result<Bool, Error>) -> Void)
     func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
 

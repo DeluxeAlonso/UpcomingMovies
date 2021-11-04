@@ -37,6 +37,11 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
         movieUseCase.getMovieDetail(for: movieId, completion: completion)
     }
 
+    func getMovieAccountState(for movieId: Int,
+                              completion: @escaping (Result<Movie.AccountState, Error>) -> Void) {
+        movieUseCase.getMovieState(for: movieId, completion: completion)
+    }
+
     func markMovieAsFavorite(movieId: Int, favorite: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
         accountUseCase.markMovieAsFavorite(movieId: movieId, favorite: favorite, completion: completion)
     }
