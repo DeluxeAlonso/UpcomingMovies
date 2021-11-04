@@ -62,7 +62,7 @@ public class MovieRepository: MovieUseCaseProtocol {
                                          completion: completion)
     }
 
-    public func getMovieState(for movieId: Int, completion: @escaping (Result<Movie.AccountState, Error>) -> Void) {
+    public func getMovieAccountState(for movieId: Int, completion: @escaping (Result<Movie.AccountState, Error>) -> Void) {
         remoteDataSource.getMovieState(for: movieId, completion: completion)
     }
 
