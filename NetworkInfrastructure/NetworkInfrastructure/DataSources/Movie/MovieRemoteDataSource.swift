@@ -155,7 +155,7 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
     }
 
     func getMovieAccountState(for movieId: Int,
-                       completion: @escaping (Result<UpcomingMoviesDomain.Movie.AccountState, Error>) -> Void) {
+                              completion: @escaping (Result<UpcomingMoviesDomain.Movie.AccountState, Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
         client.getMovieAccountState(with: movieId, sessionId: account.sessionId, completion: { result in
             switch result {
