@@ -126,6 +126,11 @@ final class MockMovieUseCase: MovieUseCaseProtocol {
         completion(rateMovieResult!)
     }
 
+    var getMovieAccountStateResult: Result<UpcomingMoviesDomain.Movie.AccountState, Error>?
+    func getMovieAccountState(for movieId: Int, completion: @escaping (Result<UpcomingMoviesDomain.Movie.AccountState, Error>) -> Void) {
+        completion(getMovieAccountStateResult!)
+    }
+
 }
 
 final class MockGenreUseCase: GenreUseCaseProtocol {
