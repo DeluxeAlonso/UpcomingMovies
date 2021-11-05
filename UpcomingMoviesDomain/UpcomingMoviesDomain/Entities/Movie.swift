@@ -17,8 +17,6 @@ public struct Movie: Equatable {
     public let releaseDate: String?
     public let voteAverage: Double?
 
-    private(set) public var state: AccountState?
-
     // MARK: - Initializers
 
     public init(id: Int, title: String, genreIds: [Int]?,
@@ -42,8 +40,13 @@ extension Movie {
 
     public struct AccountState: Equatable {
 
-        let favorite: Bool
-        let watchlist: Bool
+        public let favorite: Bool
+        public let watchlist: Bool
+
+        public init(favorite: Bool, watchlist: Bool) {
+            self.favorite = favorite
+            self.watchlist = watchlist
+        }
 
     }
 

@@ -26,6 +26,11 @@ class MockMovieDetailInteractor: MovieDetailInteractorProtocol {
         completion(getMovieDetailResult!)
     }
 
+    var getMovieAccountStateResult: Result<Movie.AccountState, Error>?
+    func getMovieAccountState(for movieId: Int, completion: @escaping (Result<Movie.AccountState, Error>) -> Void) {
+        completion(getMovieAccountStateResult!)
+    }
+
     var markMovieAsFavoriteResult: Result<Bool, Error>?
     func markMovieAsFavorite(movieId: Int, favorite: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
         completion(markMovieAsFavoriteResult!)

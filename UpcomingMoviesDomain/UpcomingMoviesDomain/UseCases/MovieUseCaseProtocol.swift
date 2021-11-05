@@ -40,6 +40,9 @@ public protocol MovieUseCaseProtocol {
     func getMovieCredits(for movieId: Int, page: Int?,
                          completion: @escaping (Result<MovieCredits, Error>) -> Void)
 
+    func getMovieAccountState(for movieId: Int,
+                              completion: @escaping (Result<Movie.AccountState, Error>) -> Void)
+
     func isMovieInFavorites(for movieId: Int,
                             completion: @escaping (Result<Bool, Error>) -> Void)
 
