@@ -12,7 +12,6 @@
 		9033F1CE4305880237811E2B /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC318F5C43F328E870EBF7A /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework */; };
 		9598E1DA49AA2CBA6E0628E0 /* Pods_UpcomingMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811C39C9147DA695B15480ED /* Pods_UpcomingMovies.framework */; };
 		D488AF31441470DAFB7808ED /* Pods_UpcomingMovies_UpcomingMoviesWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CD38AA86EB6EA61D0DD59B /* Pods_UpcomingMovies_UpcomingMoviesWidgetExtension.framework */; };
-		D5B1B66E435BEF1B63825DA4 /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A75CBE42C52DC4A0217395 /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework */; };
 		E200182821EE323200F29220 /* SearchOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E200182721EE323200F29220 /* SearchOptionsViewController.swift */; };
 		E200182A21EE336F00F29220 /* SearchOptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E200182921EE336F00F29220 /* SearchOptionsViewModel.swift */; };
 		E20097F926C8D5F000C653BB /* ToggleBarButtonItemContentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20097F826C8D5F000C653BB /* ToggleBarButtonItemContentProtocol.swift */; };
@@ -798,7 +797,6 @@
 			files = (
 				E2B63B0F24676AE200C0BB13 /* NotificationCenter.framework in Frameworks */,
 				9033F1CE4305880237811E2B /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework in Frameworks */,
-				D5B1B66E435BEF1B63825DA4 /* Pods_UpcomingMovies_UpcomingMoviesTodayExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2088,7 +2086,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1210;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = Alonso;
 				TargetAttributes = {
 					E221167B21914E4B0039F8C9 = {
