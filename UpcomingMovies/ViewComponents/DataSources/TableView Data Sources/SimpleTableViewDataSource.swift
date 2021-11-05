@@ -94,4 +94,3 @@ extension SimpleTableViewDataSource where ViewModel == CustomListCellViewModelPr
     }
 
 }
-

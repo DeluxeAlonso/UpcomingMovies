@@ -20,6 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         navigationHandler = DIContainer.shared.resolve()
 
+        if #available(iOS 15, *) {
+            let navigationBarAppearance = UINavigationBarAppearance()
+            UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+            UINavigationBar.appearance().scrollEdgeAppearance = UINavigationBar.appearance().standardAppearance
+
+            let tabBarAppearance = UITabBarAppearance()
+            UITabBar.appearance().standardAppearance = tabBarAppearance
+            UITabBar.appearance().scrollEdgeAppearance = UITabBar.appearance().standardAppearance
+        }
+
         // We configure the remote data source with the API key and the read access token
         let baseConfiguration: BaseConfiguration = PropertyListHelper.decode()
         let remoteDataSource: RemoteDataSourceProtocol = DIContainer.shared.resolve()
