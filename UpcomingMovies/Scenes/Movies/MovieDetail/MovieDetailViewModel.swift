@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     // MARK: - Dependencies
-    
+
     private let interactor: MovieDetailInteractorProtocol
     private let factory: MovieDetailFactoryProtocol
 
@@ -26,7 +26,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var showGenreName: Bindable<String> = Bindable("-")
     private(set) var showMovieOptions: Bindable<[MovieDetailOption]> = Bindable([])
 
-    private(set) var didUpdateMovieDetail: Bindable<Bool> = Bindable(true)
+    private(set) var didSetupMovieDetail: Bindable<Bool> = Bindable(true)
 
     private(set) var didUpdateFavoriteSuccess: Bindable<Bool> = Bindable(false)
     private(set) var didUpdateFavoriteFailure: Bindable<Error?> = Bindable(nil)
@@ -34,7 +34,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     var shouldHideFavoriteButton: (() -> Void)?
 
     // MARK: - Properties
-    
+
     private(set) var id: Int!
     private(set) var title: String!
     private(set) var releaseDate: String?
@@ -44,7 +44,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var backdropURL: URL?
 
     private(set) var needsFetch = false
-    
+
     // MARK: - Initializers
 
     init(_ movie: Movie,
@@ -52,13 +52,13 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
          factory: MovieDetailFactoryProtocol) {
         self.interactor = interactor
         self.factory = factory
-        
+
         setupMovie(movie)
 
         showGenreName.value = movie.genreName
         showMovieOptions.value = factory.options
     }
-    
+
     init(id: Int, title: String,
          interactor: MovieDetailInteractorProtocol,
          factory: MovieDetailFactoryProtocol) {
@@ -66,28 +66,29 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         self.title = title
         self.interactor = interactor
         self.factory = factory
-        
+
         needsFetch = true
 
         showMovieOptions.value = factory.options
     }
 
     // MARK: - Private
-    
+
     private func setupMovie(_ movie: Movie) {
         id = movie.id
         title = movie.title
-        
+
         releaseDate = movie.releaseDate
         voteAverage = movie.voteAverage
         overview = movie.overview
         posterURL = movie.posterURL
         backdropURL = movie.backdropURL
-        
+
         getMovieGenreName(for: movie.genreIds?.first)
-        saveVisitedMovie()
+
+        didSetupMovieDetail.value = true
     }
-    
+
     private func getMovieGenreName(for genreId: Int?) {
         guard let genreId = genreId else { return }
         interactor.findGenre(with: genreId, completion: { [weak self] result in
@@ -96,9 +97,9 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             strongSelf.showGenreName.value = genre?.name ?? "-"
         })
     }
-    
+
     // MARK: - Networking
-    
+
     func getMovieDetail(showLoader: Bool) {
         fetchMovieDetail(showLoader: showLoader)
     }
@@ -111,20 +112,19 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             case .success(let movie):
                 self.setupMovie(movie)
                 self.checkIfMovieIsFavorite(showLoader: false)
-                self.didUpdateMovieDetail.value = true
             case .failure(let error):
                 self.startLoading.value = false
                 self.showErrorView.value = error
             }
         })
     }
-    
+
     func saveVisitedMovie() {
         interactor.saveMovieVisit(with: id, title: title, posterPath: posterURL?.absoluteString)
     }
-    
+
     // MARK: - User Authentication
-    
+
     func checkIfMovieIsFavorite(showLoader: Bool) {
         startLoading.value = showLoader
         getFavoriteState { result in
@@ -142,9 +142,9 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             }
         }
     }
-    
+
     // MARK: - Favorites
-    
+
     private func getFavoriteState(completion: @escaping (Result<MovieDetailFavoriteState, Error>) -> Void) {
         guard interactor.isUserSignedIn() else {
             completion(.success(.unknown))
@@ -160,7 +160,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             }
         })
     }
-    
+
     func handleFavoriteMovie() {
         let newFavoriteValue = !isFavorite.value
         interactor.markMovieAsFavorite(movieId: id, favorite: newFavoriteValue, completion: { result in

@@ -9,7 +9,7 @@
 import UpcomingMoviesDomain
 
 public struct VideoResult: Decodable {
-    
+
     let results: [Video]
-    
+
 }

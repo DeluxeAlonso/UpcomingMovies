@@ -7,7 +7,7 @@
 //
 
 public struct User: Equatable {
-    
+
     public let id: Int
     public let name: String
     public let username: String

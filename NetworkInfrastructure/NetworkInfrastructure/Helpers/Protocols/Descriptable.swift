@@ -7,9 +7,9 @@
 //
 
 protocol Descriptable {
-    
+
     var description: String { get }
-    
+
 }
 
 protocol ErrorDescriptable: Descriptable {}

@@ -8,36 +8,36 @@
 
 import UpcomingMoviesDomain
 
-public struct Video: Decodable {
-    
-    public let id: String
-    public let key: String
-    public let name: String
-    public let site: String
-    
+struct Video: Decodable {
+
+    let id: String
+    let key: String
+    let name: String
+    let site: String
+
 }
 
 extension Video {
-    
-    public var browserURL: URL? {
+
+    var browserURL: URL? {
         return URL(string: "https://www.youtube.com/watch?v=\(key)")
     }
-    
-    public var deepLinkURL: URL? {
+
+    var deepLinkURL: URL? {
         return URL(string: "youtube://\(key)")
     }
-    
-    public var thumbnailURL: URL? {
+
+    var thumbnailURL: URL? {
         return URL(string: "https://img.youtube.com/vi/\(key)/mqdefault.jpg")
     }
-    
+
 }
 
 extension Video: DomainConvertible {
-    
+
     func asDomain() -> UpcomingMoviesDomain.Video {
         return UpcomingMoviesDomain.Video(id: id, key: key, name: name, site: site,
                                           browserURL: browserURL, deepLinkURL: deepLinkURL, thumbnailURL: thumbnailURL)
     }
-    
+
 }

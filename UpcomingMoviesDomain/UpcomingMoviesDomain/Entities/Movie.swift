@@ -33,3 +33,21 @@ public struct Movie: Equatable {
     }
 
 }
+
+// MARK: - Account state
+
+extension Movie {
+
+    public struct AccountState: Equatable {
+
+        public let favorite: Bool
+        public let watchlist: Bool
+
+        public init(favorite: Bool, watchlist: Bool) {
+            self.favorite = favorite
+            self.watchlist = watchlist
+        }
+
+    }
+
+}

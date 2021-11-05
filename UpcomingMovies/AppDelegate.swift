@@ -14,10 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var navigationHandler: NavigationHandlerProtocol?
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         _ = DIContainer.shared
-        
+
         navigationHandler = DIContainer.shared.resolve()
 
         if #available(iOS 15, *) {
@@ -41,21 +41,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let shortcutItem = launchOptions[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
             navigationHandler?.handleShortcutItem(shortcutItem, and: window)
         }
-        
+
         window?.rootViewController = SplashBuilder.buildViewController()
-        
+
         return true
     }
-    
+
     func application(_ application: UIApplication,
                      performActionFor shortcutItem: UIApplicationShortcutItem,
                      completionHandler: @escaping (Bool) -> Void) {
         navigationHandler?.handleShortcutItem(shortcutItem, and: window)
     }
-    
+
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         navigationHandler?.handleUrlOpeningNavigation(for: url, and: window)
         return true
     }
-    
+
 }

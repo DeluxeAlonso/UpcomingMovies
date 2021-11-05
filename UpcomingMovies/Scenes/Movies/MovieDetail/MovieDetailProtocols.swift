@@ -10,7 +10,7 @@ import Foundation
 import UpcomingMoviesDomain
 
 protocol MovieDetailViewModelProtocol {
-    
+
     var id: Int! { get }
     var title: String! { get }
     var releaseDate: String? { get }
@@ -20,13 +20,13 @@ protocol MovieDetailViewModelProtocol {
     var backdropURL: URL? { get }
 
     var needsFetch: Bool { get }
-    
+
     var startLoading: Bindable<Bool> { get }
     var isFavorite: Bindable<Bool> { get }
     var showErrorView: Bindable<Error?> { get }
     var showGenreName: Bindable<String> { get }
     var showMovieOptions: Bindable<[MovieDetailOption]> { get }
-    var didUpdateMovieDetail: Bindable<Bool> { get }
+    var didSetupMovieDetail: Bindable<Bool> { get }
     var didUpdateFavoriteSuccess: Bindable<Bool> { get }
     var didUpdateFavoriteFailure: Bindable<Error?> { get }
 
@@ -55,7 +55,7 @@ protocol MovieDetailViewModelProtocol {
      * Marks a movie as a favorite or non-favorite given the current favorite state of the presented movie.
      */
     func handleFavoriteMovie()
-    
+
 }
 
 protocol MovieDetailInteractorProtocol {
@@ -65,23 +65,26 @@ protocol MovieDetailInteractorProtocol {
     func findGenre(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void)
 
     func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void)
-    
+
+    func getMovieAccountState(for movieId: Int,
+                              completion: @escaping (Result<Movie.AccountState, Error>) -> Void)
+
     func markMovieAsFavorite(movieId: Int, favorite: Bool, completion: @escaping (Result<Bool, Error>) -> Void)
     func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
-    
+
     func saveMovieVisit(with id: Int, title: String, posterPath: String?)
 
 }
 
 protocol MovieDetailFactoryProtocol {
-    
+
     var options: [MovieDetailOption] { get }
-    
+
 }
 
 protocol MovieDetailCoordinatorProtocol: AnyObject {
 
     func showMovieOption(_ option: MovieDetailOption)
     func showSharingOptions(withShareTitle title: String)
-    
+
 }

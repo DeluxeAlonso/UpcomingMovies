@@ -12,13 +12,13 @@ protocol Placeholderable: UIView {
     var isPresented: Bool { get set }
     var animationDuration: Double { get set }
     var retry: (() -> Void)? { get set }
-    
+
     func show(animated: Bool, completion: ((Bool) -> Void)?)
     func hide(animated: Bool, completion: ((Bool) -> Void)?)
 }
 
 extension Placeholderable {
-    
+
     func show(animated: Bool = true, completion: ((Bool) -> Swift.Void)? = nil) {
         self.superview?.bringSubviewToFront(self)
         if animated {
@@ -28,7 +28,7 @@ extension Placeholderable {
             completion?(true)
         }
     }
-    
+
     func hide(animated: Bool = true, completion: ((Bool) -> Swift.Void)? = nil) {
         self.isPresented = false
         let closure: (Bool) -> Void = { (finished) in
@@ -49,5 +49,5 @@ extension Placeholderable {
             completion?(true)
         }
     }
-    
+
 }

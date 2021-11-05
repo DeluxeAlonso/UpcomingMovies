@@ -9,10 +9,10 @@
 import UpcomingMoviesDomain
 
 public protocol UserLocalDataSourceProtocol {
-    
+
     var didUpdateUser: (() -> Void)? { get set }
-    
+
     func find(with id: Int) -> User?
     func saveUser(_ user: User)
-    
+
 }

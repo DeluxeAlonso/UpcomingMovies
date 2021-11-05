@@ -7,7 +7,7 @@
 //
 
 extension Dictionary {
-    
+
     func percentEscaped() -> String {
         return map { (key, value) in
             let escapedKey = "\(key)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
@@ -16,5 +16,5 @@ extension Dictionary {
             }
             .joined(separator: "&")
     }
-    
+
 }

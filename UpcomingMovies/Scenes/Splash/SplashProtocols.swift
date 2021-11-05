@@ -9,11 +9,11 @@
 import UpcomingMoviesDomain
 
 protocol SplashViewModelProtocol {
-    
+
     var initialDownloadsEnded: (() -> Void)? { get set }
-    
+
     func startInitialDownloads()
-    
+
 }
 
 protocol SplashInteractorProtocol {
@@ -27,5 +27,5 @@ protocol SplashInteractorProtocol {
      * Fetch all the available movie genres
      */
     func getAllGenres(completion: @escaping (Result<[Genre], Error>) -> Void)
-    
+
 }

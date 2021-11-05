@@ -12,7 +12,7 @@ import XCTest
 @testable import NetworkInfrastructure
 
 class ProfileTests: XCTestCase {
-    
+
     private var mockInteractor: MockProfileInteractor!
     private var mockFactory: MockProfileViewFactory!
     private var viewModelToTest: ProfileViewModelProtocol!
@@ -32,7 +32,7 @@ class ProfileTests: XCTestCase {
         viewModelToTest = nil
         try super.tearDownWithError()
     }
-    
+
     func testGetAccountDetailSuccessInfoReloaded() {
         // Arrange
         let userToTest = User.with(name: "Alonso")
@@ -46,7 +46,7 @@ class ProfileTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetAccountDetailSuccessInfoNotReloaded() {
         // Arrange
         let userToTest = User.with()
@@ -61,7 +61,7 @@ class ProfileTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetAccountDetailError() {
         //Arrange
         let errorToTest = APIError.badRequest
@@ -76,7 +76,7 @@ class ProfileTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testCollectionOptionIndex() {
         // Arrange
         let collectionOptionsToTest: [ProfileOptionProtocol] = [ProfileOption.favorites, ProfileOption.watchlist]
@@ -88,7 +88,7 @@ class ProfileTests: XCTestCase {
         // Assert
         XCTAssertEqual(firstCollectionOption.title, collectionOptionsToTest[indexToTest].title)
     }
-    
+
     func testCustomListsOptionIndex() {
         // Arrange
         let customListsOptionsToTest: [ProfileOptionProtocol] = [ProfileOption.customLists]
@@ -100,7 +100,7 @@ class ProfileTests: XCTestCase {
         // Assert
         XCTAssertEqual(firstCustomListsOption.title, customListsOptionsToTest[indexToTest].title)
     }
-    
+
     func testSectionIndex() {
         // Arrange
         let sectionsToTest: [ProfileSection] = [.accountInfo, .collections, .customLists, .signOut]
@@ -111,7 +111,7 @@ class ProfileTests: XCTestCase {
         // Assert
         XCTAssertEqual(section, sectionsToTest[indexToTest])
     }
-    
+
     func testNumberOfSections() {
         // Arrange
         let sectionsToTest: [ProfileSection] = [.accountInfo, .collections, .customLists, .signOut]

@@ -10,13 +10,13 @@ import Foundation
 import UpcomingMoviesDomain
 
 class AccountInteractor: AccountInteractorProtocol {
-    
+
     private let userUseCase: UserUseCaseProtocol
     private let authUseCase: AuthUseCaseProtocol
     private let accountUseCase: AccountUseCaseProtocol
-    
+
     private let authHandler: AuthenticationHandlerProtocol
-    
+
     init(useCaseProvider: UseCaseProviderProtocol,
          authHandler: AuthenticationHandlerProtocol) {
         self.userUseCase = useCaseProvider.userUseCase()
@@ -24,11 +24,11 @@ class AccountInteractor: AccountInteractorProtocol {
         self.authUseCase = useCaseProvider.authUseCase()
         self.authHandler = authHandler
     }
-    
+
     func getAuthPermissionURL(completion: @escaping (Result<URL, Error>) -> Void) {
         authUseCase.getAuthURL(completion: completion)
     }
-    
+
     func signInUser(completion: @escaping (Result<User, Error>) -> Void) {
         authUseCase.signInUser { result in
             switch result {
@@ -40,13 +40,13 @@ class AccountInteractor: AccountInteractorProtocol {
             }
         }
     }
-    
+
     func signOutUser() {
         authHandler.deleteCurrentUser()
     }
-    
+
     func currentUser() -> User? {
         authHandler.currentUser()
     }
-    
+
 }

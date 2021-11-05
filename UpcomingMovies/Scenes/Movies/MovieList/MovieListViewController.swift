@@ -10,22 +10,22 @@ import UIKit
 import UpcomingMoviesDomain
 
 class MovieListViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
-    
+
     @IBOutlet private weak var tableView: UITableView!
-    
-    private var dataSource: SimpleTableViewDataSource<MovieCellViewModelProtocol>!
+
+    private var dataSource: SimpleTableViewDataSource<MovieListCellViewModelProtocol>!
     private var prefetchDataSource: TableViewDataSourcePrefetching!
     private var displayedCellsIndexPaths = Set<IndexPath>()
-    
+
     static var storyboardName: String = "MovieList"
-    
+
     var viewModel: MovieListViewModelProtocol?
     weak var coordinator: MovieListCoordinatorProtocol?
 
     // MARK: - LoadingDisplayable
 
     var loaderView: LoadingView = RadarView()
-    
+
     // MARK: - Lifcycle
 
     override func viewDidLoad() {
@@ -35,21 +35,21 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
 
         viewModel?.getMovies()
     }
-    
+
     // MARK: - Private
-    
+
     private func setupUI() {
         setupTableView()
         setupRefreshControl()
     }
-    
+
     private func setupTableView() {
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
-        tableView.registerNib(cellType: MovieTableViewCell.self)
+        tableView.registerNib(cellType: MovieListCell.self)
     }
-    
+
     private func setupRefreshControl() {
         tableView.refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
                                               backgroundColor: tableView.backgroundColor,
@@ -71,7 +71,7 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
         tableView.reloadData()
         tableView.refreshControl?.endRefreshing(with: 0.5)
     }
-    
+
     /**
      * Configures the tableview footer given the current state of the view.
      */
@@ -92,9 +92,9 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
             })
         }
     }
-    
+
     // MARK: - Reactive Behavior
-    
+
     private func setupBindables() {
         title = viewModel?.displayTitle
         viewModel?.viewState.bindAndFire({ [weak self] state in
@@ -114,18 +114,18 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
 // MARK: - UITableViewDelegate
 
 extension MovieListViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let viewModel = viewModel else { return }
         coordinator?.showMovieDetail(for: viewModel.selectedMovie(at: indexPath.row))
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if !displayedCellsIndexPaths.contains(indexPath) {
             displayedCellsIndexPaths.insert(indexPath)
             TableViewCellAnimator.fadeAnimate(cell: cell)
         }
     }
-    
+
 }

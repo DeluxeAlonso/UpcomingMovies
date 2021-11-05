@@ -9,7 +9,7 @@
 import UpcomingMoviesDomain
 
 public protocol GenreRemoteDataSourceProtocol {
-    
+
     func getAllGenres(completion: @escaping (Result<[Genre], Error>) -> Void)
-    
+
 }

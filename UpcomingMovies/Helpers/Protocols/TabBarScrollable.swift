@@ -9,5 +9,5 @@
 protocol TabBarScrollable {
 
     func handleTabBarSelection()
-    
+
 }

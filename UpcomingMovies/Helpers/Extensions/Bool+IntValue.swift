@@ -7,9 +7,9 @@
 //
 
 extension Bool {
-    
+
     public var intValue: Int {
         return self ? 1 : 0
     }
-    
+
 }

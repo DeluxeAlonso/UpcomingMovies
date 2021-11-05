@@ -12,7 +12,7 @@ import XCTest
 @testable import UpcomingMoviesDomain
 
 class CDMovieSearchStoreTests: XCTestCase {
-    
+
     private var storeToTest: PersistenceStore<CDMovieSearch>!
 
     override func setUp() {

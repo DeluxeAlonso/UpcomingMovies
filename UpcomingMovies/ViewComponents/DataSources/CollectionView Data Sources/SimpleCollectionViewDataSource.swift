@@ -9,38 +9,38 @@
 import UIKit
 
 final class SimpleCollectionViewDataSource<ViewModel>: NSObject, UICollectionViewDataSource {
-    
+
     typealias CellConfigurator = (ViewModel, UICollectionViewCell) -> Void
-    
+
     private let reuseIdentifier: String
     private let cellConfigurator: CellConfigurator
     private let cellViewModels: [ViewModel]
-    
+
     // MARK: - Initializers
-    
+
     init(cellViewModels: [ViewModel], reuseIdentifier: String, cellConfigurator: @escaping CellConfigurator) {
         self.cellViewModels = cellViewModels
         self.reuseIdentifier = reuseIdentifier
         self.cellConfigurator = cellConfigurator
     }
-    
+
     // MARK: - UICollectionViewDataSource
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cellViewModels.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let viewModel = cellViewModels[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         cellConfigurator(viewModel, cell)
         return cell
     }
-    
+
 }
 
 extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellViewModelProtocol {
-    
+
     static func make(for cellViewModels: [ViewModel],
                      presentationMode: UpcomingMoviesViewController.PresentationMode) -> SimpleCollectionViewDataSource {
         return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
@@ -50,25 +50,25 @@ extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellVie
                                                 cell.viewModel = viewModel
                                               })
     }
-    
+
 }
 
 extension SimpleCollectionViewDataSource where ViewModel == MovieCreditCellViewModel {
-    
+
     static func make(for cellViewModels: [MovieCreditCellViewModel],
-                     reuseIdentifier: String = MovieCreditCollectionViewCell.dequeueIdentifier) -> SimpleCollectionViewDataSource {
+                     reuseIdentifier: String = MovieCreditCell.dequeueIdentifier) -> SimpleCollectionViewDataSource {
         return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
                                               reuseIdentifier: reuseIdentifier,
                                               cellConfigurator: { (viewModel, cell) in
-                                                let cell = cell as! MovieCreditCollectionViewCell
+                                                let cell = cell as! MovieCreditCell
                                                 cell.viewModel = viewModel
                                               })
     }
-    
+
 }
 
 extension SimpleCollectionViewDataSource where ViewModel == SavedMovieCellViewModelProtocol {
-    
+
     static func make(for cellViewModels: [ViewModel],
                      reuseIdentifier: String = SavedMovieCollectionViewCell.dequeueIdentifier) -> SimpleCollectionViewDataSource {
         return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
@@ -78,5 +78,5 @@ extension SimpleCollectionViewDataSource where ViewModel == SavedMovieCellViewMo
                                                 cell.viewModel = viewModel
                                               })
     }
-    
+
 }

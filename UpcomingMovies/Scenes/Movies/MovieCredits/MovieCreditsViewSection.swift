@@ -15,7 +15,7 @@ struct MovieCreditsCollapsibleSection {
 
 enum MovieCreditsViewSection {
     case cast, crew
-    
+
     var title: String {
         switch self {
         case .cast:
@@ -24,5 +24,5 @@ enum MovieCreditsViewSection {
             return LocalizedStrings.crew()
         }
     }
-    
+
 }

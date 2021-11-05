@@ -9,7 +9,7 @@
 import UIKit
 
 final class NavigationHandler: NavigationHandlerProtocol {
-    
+
     private var currentSelectedIndex: Int = 0
     private var rootCoordinators: [RootCoordinator]!
 
@@ -34,7 +34,7 @@ final class NavigationHandler: NavigationHandlerProtocol {
                             window.rootViewController = mainTabBarController
         })
     }
-    
+
     func handleUrlOpeningNavigation(for url: URL?, and window: UIWindow?) {
         guard let url = url, let urlHost = url.host else { return }
 
@@ -49,7 +49,7 @@ final class NavigationHandler: NavigationHandlerProtocol {
             }
         }
     }
-    
+
     func handleShortcutItem(_ shortcutItem: UIApplicationShortcutItem, and window: UIWindow?) {
         guard let shorcut = AppShortcutItem(rawValue: shortcutItem.type) else { return }
         switch shorcut {

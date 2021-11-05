@@ -10,21 +10,21 @@ import Foundation
 import UpcomingMoviesDomain
 
 final class AccountViewModel: AccountViewModelProtocol {
-    
+
     private let interactor: AccountInteractorProtocol
-    
+
     var showAuthPermission: Bindable<URL?> = Bindable(nil)
     var didSignIn: (() -> Void)?
     var didReceiveError: (() -> Void)?
-    
+
     // MARK: - Initializers
-    
+
     init(interactor: AccountInteractorProtocol) {
         self.interactor = interactor
     }
-    
+
     // MARK: - AccountViewModelProtocol
-    
+
     func startAuthorizationProcess() {
         interactor.getAuthPermissionURL { result in
             switch result {
@@ -35,7 +35,7 @@ final class AccountViewModel: AccountViewModelProtocol {
             }
         }
     }
-    
+
     func signInUser() {
         interactor.signInUser { result in
             switch result {
@@ -46,15 +46,15 @@ final class AccountViewModel: AccountViewModelProtocol {
             }
         }
     }
-    
+
     func signOutCurrentUser() {
         interactor.signOutUser()
     }
-    
+
     func isUserSignedIn() -> Bool {
         return currentUser() != nil
     }
-    
+
     func currentUser() -> User? {
         return interactor.currentUser()
     }

@@ -16,21 +16,21 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
     private let interactor: MovieReviewsInteractorProtocol
 
     // MARK: - Reactive properties
-    
+
     private(set) var viewState: Bindable<SimpleViewState<Review>> = Bindable(.initial)
     private(set) var startLoading: Bindable<Bool> = Bindable(false)
 
     // MARK: - Computed properties
-    
+
     private var reviews: [Review] {
         return viewState.value.currentEntities
     }
-    
+
     var reviewCells: [MovieReviewCellViewModelProtocol] {
         let reviews = viewState.value.currentEntities
         return reviews.map { MovieReviewCellViewModel($0) }
     }
-    
+
     var needsPrefetch: Bool {
         return viewState.value.needsPrefetch
     }
@@ -38,19 +38,19 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
     // MARK: - Stored properties
 
     var movieTitle: String
-    
+
     // MARK: - Initializers
-    
+
     init(movieId: Int, movieTitle: String,
          interactor: MovieReviewsInteractorProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
-        
+
         self.interactor = interactor
     }
-    
+
     // MARK: - MovieReviewsViewModelProtocol
-    
+
     func selectedReview(at index: Int) -> Review {
         return reviews[index]
     }
@@ -59,13 +59,13 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
         let showLoader = viewState.value.isInitialPage
         fetchMovieReviews(currentPage: viewState.value.currentPage, showLoader: showLoader)
     }
-    
+
     func refreshMovieReviews() {
         fetchMovieReviews(currentPage: 1, showLoader: false)
     }
 
     // MARK: - Private
-    
+
     private func fetchMovieReviews(currentPage: Int, showLoader: Bool = false) {
         startLoading.value = showLoader
         interactor.getMovieReviews(for: movieId, page: currentPage, completion: { result in
@@ -80,5 +80,5 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
             }
         })
     }
-    
+
 }

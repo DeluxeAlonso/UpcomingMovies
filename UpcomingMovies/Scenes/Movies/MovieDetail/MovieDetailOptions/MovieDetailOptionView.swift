@@ -9,7 +9,7 @@
 import UIKit
 
 class MovieDetailOptionView: UIView {
-    
+
     private lazy var optionStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -17,14 +17,14 @@ class MovieDetailOptionView: UIView {
         stackView.spacing = 3.0
         return stackView
     }()
-    
+
     private lazy var optionImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+
     private lazy var optionTitleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -37,52 +37,52 @@ class MovieDetailOptionView: UIView {
     }()
 
     private(set) var option: MovieDetailOption
-    
+
     // MARK: - Initializers
-    
+
     init(option: MovieDetailOption) {
         self.option = option
         super.init(frame: .zero)
         setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError()
     }
-    
+
     // MARK: - Lifecycle
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
     }
-    
+
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         setupUI()
     }
 
     // MARK: - Private
-    
+
     private func setupUI() {
         backgroundColor = ColorPalette.navigationBarBackgroundColor
-        
+
         isAccessibilityElement = true
         accessibilityLabel = option.title
-        
+
         optionTitleLabel.text = option.title
-        optionImageView.image = UIImage(named: option.iconName) 
-        
+        optionImageView.image = UIImage(named: option.iconName)
+
         setupStackView()
     }
-    
+
     private func setupStackView() {
         addSubview(optionStackView)
         optionStackView.fillSuperview(padding: .init(top: 8, left: 8,
                                                      bottom: 8, right: 8))
-        
+
         optionStackView.addArrangedSubview(optionImageView)
         optionStackView.addArrangedSubview(optionTitleLabel)
     }
-    
+
 }

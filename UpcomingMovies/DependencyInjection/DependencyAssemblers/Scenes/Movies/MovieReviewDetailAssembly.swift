@@ -11,11 +11,11 @@ import Swinject
 import UpcomingMoviesDomain
 
 final class MovieReviewDetailAssembly: Assembly {
-    
+
     func assemble(container: Container) {
         container.register(MovieReviewDetailViewModelProtocol.self) { (_, review: Review?) in
             MovieReviewDetailViewModel(review: review!)
         }
     }
-    
+
 }
