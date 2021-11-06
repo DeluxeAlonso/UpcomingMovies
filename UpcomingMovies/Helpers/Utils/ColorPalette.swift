@@ -32,6 +32,7 @@ struct ColorPalette {
     static let whiteColor = UIColor(white: 249 / 255, alpha: 1)
     static let blackColor = UIColor(white: 40 / 255, alpha: 1)
     static let darkGrayColor = UIColor.darkGray
+    static let regularGray = UIColor.systemGray
 
     static var defaultBackgroundColor: UIColor {
         if #available(iOS 13.0, *) {
