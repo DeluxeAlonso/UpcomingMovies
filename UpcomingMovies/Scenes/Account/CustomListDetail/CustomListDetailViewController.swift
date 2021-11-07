@@ -44,7 +44,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
         }
         guard !isNavigationBarConfigured else { return }
         isNavigationBarConfigured = true
-        setClearNavigationBar()
+        hideNavigationBar()
         setupTableViewHeader()
     }
 
@@ -83,6 +83,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
+        if #available(iOS 15.0, *) { tableView.sectionHeaderTopPadding = .zero }
         tableView.registerNib(cellType: MovieListCell.self)
     }
 
@@ -133,7 +134,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
             showNavigationBar()
             setTitleAnimated(viewModel?.listName)
         } else if shouldHideTitle && contentOffsetY <= headerHeight {
-            setClearNavigationBar()
+            hideNavigationBar()
             setTitleAnimated(nil)
         }
     }

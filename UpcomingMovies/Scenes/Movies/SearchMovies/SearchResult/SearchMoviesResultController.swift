@@ -78,6 +78,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
     private func setupTableView() {
         let tableView = searchMoviesResultView.tableView
         tableView.delegate = self
+        if #available(iOS 15.0, *) { tableView.sectionHeaderTopPadding = .zero }
         tableView.registerNib(cellType: MovieListCell.self)
         tableView.registerNib(cellType: RecentSearchCell.self)
     }
