@@ -106,11 +106,6 @@ final class MockMovieUseCase: MovieUseCaseProtocol {
         completion(credits!)
     }
 
-    var isFavorite: Result<Bool, Error>?
-    func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
-        completion(isFavorite!)
-    }
-
     var isInWatchlist: Result<Bool, Error>?
     func isMovieInWatchlist(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
         completion(isInWatchlist!)
