@@ -90,7 +90,6 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
     private func setupTableViewHeader() {
         headerView = CustomListDetailHeaderView.loadFromNib()
         headerView.viewModel = viewModel?.buildHeaderViewModel()
-        headerView.backgroundColor = .red
 
         headerView.setHeaderOffset(navigationBarHeight)
         headerView.frame = CGRect(x: 0, y: 0, width: headerView.frame.width, height: headerView.frame.height - navigationBarHeight)
