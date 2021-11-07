@@ -39,7 +39,7 @@ class ProfileAccountInfoTableViewCell: UITableViewCell {
         usernameLabel.textAlignment = .center
 
         nameLabel.font = FontHelper.light(withSize: 14.0)
-        nameLabel.textColor = ColorPalette.lightGrayColor
+        nameLabel.textColor = ColorPalette.regularGray
         nameLabel.textAlignment = .center
     }
 
