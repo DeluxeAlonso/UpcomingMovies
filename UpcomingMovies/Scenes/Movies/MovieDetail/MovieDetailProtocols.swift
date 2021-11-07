@@ -70,7 +70,6 @@ protocol MovieDetailInteractorProtocol {
                               completion: @escaping (Result<Movie.AccountState, Error>) -> Void)
 
     func markMovieAsFavorite(movieId: Int, favorite: Bool, completion: @escaping (Result<Bool, Error>) -> Void)
-    func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
 
     func saveMovieVisit(with id: Int, title: String, posterPath: String?)
 
