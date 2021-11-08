@@ -170,32 +170,6 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
         })
     }
 
-    func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
-        guard let account = authManager.userAccount else { return }
-        client.getMovieAccountState(with: movieId, sessionId: account.sessionId, completion: { result in
-            switch result {
-            case .success(let movieAccountStateResult):
-                guard let movieAccountStateResult = movieAccountStateResult else { return }
-                completion(.success(movieAccountStateResult.favorite))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        })
-    }
-
-    func isMovieInWatchlist(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
-        guard let account = authManager.userAccount else { return }
-        client.getMovieAccountState(with: movieId, sessionId: account.sessionId, completion: { result in
-            switch result {
-            case .success(let movieAccountStateResult):
-                guard let movieAccountStateResult = movieAccountStateResult else { return }
-                completion(.success(movieAccountStateResult.watchlist))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        })
-    }
-
     func rateMovie(movieId: Int, value: Double, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
         client.rateMovie(movieId: movieId, sessionId: account.sessionId, value: value) { result in

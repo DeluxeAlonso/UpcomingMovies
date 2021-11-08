@@ -66,16 +66,6 @@ public class MovieRepository: MovieUseCaseProtocol {
         remoteDataSource.getMovieAccountState(for: movieId, completion: completion)
     }
 
-    public func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
-        remoteDataSource.isMovieInFavorites(for: movieId,
-                                            completion: completion)
-    }
-
-    public func isMovieInWatchlist(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
-        remoteDataSource.isMovieInWatchlist(for: movieId,
-                                            completion: completion)
-    }
-
     public func rateMovie(movieId: Int, value: Double, completion: @escaping (Result<Void, Error>) -> Void) {
         remoteDataSource.rateMovie(movieId: movieId, value: value, completion: completion)
     }

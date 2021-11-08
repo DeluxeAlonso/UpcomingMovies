@@ -46,10 +46,6 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
         accountUseCase.markMovieAsFavorite(movieId: movieId, favorite: favorite, completion: completion)
     }
 
-    func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
-        movieUseCase.isMovieInFavorites(for: movieId, completion: completion)
-    }
-
     func saveMovieVisit(with id: Int, title: String, posterPath: String?) {
         movieVisitUseCase.save(with: id, title: title, posterPath: posterPath, completion: { _ in })
     }

@@ -150,10 +150,10 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             completion(.success(.unknown))
             return
         }
-        interactor.isMovieInFavorites(for: id, completion: { result in
+        interactor.getMovieAccountState(for: id, completion: { result in
             switch result {
-            case .success(let isFavorite):
-                let favoriteState: MovieDetailFavoriteState = isFavorite ? .favorite : .nonFavorite
+            case .success(let accountState):
+                let favoriteState: MovieDetailFavoriteState = accountState.favorite ? .favorite : .nonFavorite
                 completion(.success(favoriteState))
             case .failure(let error):
                 completion(.failure(error))
