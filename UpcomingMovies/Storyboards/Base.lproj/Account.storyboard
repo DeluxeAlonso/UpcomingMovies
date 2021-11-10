@@ -121,24 +121,14 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yit-hB-YvF" userLabel="Help Button">
-                                <rect key="frame" x="342" y="68" width="48" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="FZK-sF-MXZ"/>
-                                    <constraint firstAttribute="width" secondItem="Yit-hB-YvF" secondAttribute="height" multiplier="1:1" id="WZG-S7-V3d"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="Help"/>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hA2-rz-nWS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="hA2-rz-nWS" firstAttribute="trailing" secondItem="Yit-hB-YvF" secondAttribute="trailing" constant="24" id="6CU-jS-3CM"/>
                             <constraint firstItem="2u0-4E-af1" firstAttribute="centerY" secondItem="0gL-lu-l8M" secondAttribute="centerY" constant="-20" id="JiA-Cz-XHI"/>
                             <constraint firstItem="2u0-4E-af1" firstAttribute="centerX" secondItem="0gL-lu-l8M" secondAttribute="centerX" id="XL0-c2-XpF"/>
                             <constraint firstItem="2u0-4E-af1" firstAttribute="leading" secondItem="hA2-rz-nWS" secondAttribute="leading" constant="24" id="leq-Ss-m4Y"/>
                             <constraint firstItem="hA2-rz-nWS" firstAttribute="trailing" secondItem="2u0-4E-af1" secondAttribute="trailing" constant="24" id="nwO-Jg-l8U"/>
-                            <constraint firstItem="Yit-hB-YvF" firstAttribute="top" secondItem="hA2-rz-nWS" secondAttribute="top" constant="24" id="zsf-iq-bMt"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -259,7 +249,6 @@
     <resources>
         <image name="Back" width="24" height="24"/>
         <image name="Forward" width="24" height="24"/>
-        <image name="Help" width="33" height="33"/>
         <image name="SignInLogoFirst" width="256" height="256"/>
         <namedColor name="SignInGradientColor">
             <color red="0.31000000238418579" green="0.49399998784065247" blue="0.71399998664855957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
