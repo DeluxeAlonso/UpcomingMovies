@@ -7,21 +7,21 @@
 //
 
 enum AuthProvider {
-    
+
     case getRequestToken(readAccessToken: String)
     case getAccessToken(readAccessToken: String, requestToken: String)
     case createSessionId(accessToken: String)
-    
+
 }
 
 // MARK: - Endpoint
 
 extension AuthProvider: Endpoint {
-    
+
     var base: String {
         return NetworkConfiguration.shared.baseAPIURLString
     }
-    
+
     var path: String {
         switch self {
         case .getRequestToken:
@@ -32,7 +32,7 @@ extension AuthProvider: Endpoint {
             return "/3/authentication/session/convert/4"
         }
     }
-    
+
     var headers: [String: String]? {
         switch self {
         case .getRequestToken(let readAccessToken):
@@ -43,7 +43,7 @@ extension AuthProvider: Endpoint {
             return nil
         }
     }
-    
+
     var params: [String: Any]? {
         switch self {
         case .getRequestToken:
@@ -54,7 +54,7 @@ extension AuthProvider: Endpoint {
             return ["access_token": accessToken]
         }
     }
-    
+
     var parameterEncoding: ParameterEnconding {
         switch self {
         case .getRequestToken:
@@ -63,12 +63,12 @@ extension AuthProvider: Endpoint {
             return .jsonEncoding
         }
     }
-    
+
     var method: HTTPMethod {
         switch self {
         case .getRequestToken, .getAccessToken, .createSessionId:
             return .post
         }
     }
-    
+
 }

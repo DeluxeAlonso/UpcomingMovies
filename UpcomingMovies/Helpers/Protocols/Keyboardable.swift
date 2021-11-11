@@ -37,5 +37,5 @@ extension Keyboardable where Self: UIViewController {
                                                                   using: { _  in block?() })
         return notification
     }
-    
+
 }

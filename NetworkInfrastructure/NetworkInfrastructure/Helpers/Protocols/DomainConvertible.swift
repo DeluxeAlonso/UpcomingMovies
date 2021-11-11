@@ -7,9 +7,9 @@
 //
 
 protocol DomainConvertible {
-    
+
     associatedtype Domain
-    
+
     func asDomain() -> Domain
-    
+
 }

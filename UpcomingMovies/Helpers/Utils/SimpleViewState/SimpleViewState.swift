@@ -9,13 +9,13 @@
 import Foundation
 
 enum SimpleViewState<Entity>: Equatable where Entity: Equatable {
-    
+
     case initial
     case paging([Entity], next: Int)
     case populated([Entity])
     case empty
     case error(Error)
-    
+
     static func == (lhs: SimpleViewState, rhs: SimpleViewState) -> Bool {
         switch (lhs, rhs) {
         case (.initial, .initial):
@@ -32,7 +32,7 @@ enum SimpleViewState<Entity>: Equatable where Entity: Equatable {
             return false
         }
     }
-    
+
     var currentEntities: [Entity] {
         switch self {
         case .populated(let entities):
@@ -43,7 +43,7 @@ enum SimpleViewState<Entity>: Equatable where Entity: Equatable {
             return []
         }
     }
-    
+
     var currentPage: Int {
         switch self {
         case .initial, .populated, .empty, .error:
@@ -52,11 +52,11 @@ enum SimpleViewState<Entity>: Equatable where Entity: Equatable {
             return page
         }
     }
-    
+
     var isInitialPage: Bool {
         return currentPage == 1
     }
-    
+
     var needsPrefetch: Bool {
         switch self {
         case .initial, .populated, .empty, .error:
@@ -65,5 +65,5 @@ enum SimpleViewState<Entity>: Equatable where Entity: Equatable {
             return true
         }
     }
-    
+
 }

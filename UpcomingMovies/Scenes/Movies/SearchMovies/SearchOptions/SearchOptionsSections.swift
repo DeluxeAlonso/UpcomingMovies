@@ -10,7 +10,7 @@ import Foundation
 
 enum SearchOptionsSection {
     case recentlyVisited, defaultSearches, genres
-    
+
     var title: String? {
         switch self {
         case .recentlyVisited:
@@ -21,5 +21,5 @@ enum SearchOptionsSection {
             return LocalizedStrings.movieGenresSearchSectionTitle()
         }
     }
-    
+
 }

@@ -9,7 +9,7 @@
 import UpcomingMoviesDomain
 
 public protocol ConfigurationRemoteDataSourceProtocol {
-    
+
     func getConfiguration(completion: @escaping (Result<Configuration, Error>) -> Void)
-    
+
 }

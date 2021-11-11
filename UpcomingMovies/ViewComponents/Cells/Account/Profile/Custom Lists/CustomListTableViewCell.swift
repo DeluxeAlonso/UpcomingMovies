@@ -9,16 +9,16 @@
 import UIKit
 
 class CustomListTableViewCell: UITableViewCell {
-    
+
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
-    
+
     var viewModel: CustomListCellViewModelProtocol? {
         didSet {
             setupBindables()
         }
     }
-    
+
     // MARK: - Lifecycle
 
     override func awakeFromNib() {
@@ -27,21 +27,21 @@ class CustomListTableViewCell: UITableViewCell {
     }
 
     // MARK: - Private
-    
+
     private func setupUI() {
         setupLabels()
     }
-    
+
     private func setupLabels() {
         nameLabel.textColor = ColorPalette.lightBlueColor
         nameLabel.font = FontHelper.regular(withSize: 18.0)
-        
+
         descriptionLabel.textColor = ColorPalette.lightBlueColor
         descriptionLabel.font = FontHelper.light(withSize: 15.0)
     }
-    
+
     // MARK: - Reactive Behavior
-    
+
     private func setupBindables() {
         nameLabel.text = viewModel?.name
         if let description = viewModel?.description {
@@ -50,5 +50,5 @@ class CustomListTableViewCell: UITableViewCell {
             descriptionLabel.isHidden = true
         }
     }
-    
+
 }

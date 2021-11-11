@@ -10,7 +10,7 @@ import KeychainSwift
 
 @propertyWrapper
 struct KeychainStorage {
-    
+
     private let key: String
     private lazy var keychain = KeychainSwift()
 
@@ -30,5 +30,5 @@ struct KeychainStorage {
             }
         }
     }
-    
+
 }

@@ -20,7 +20,7 @@ enum MockResponse {
     case review
     case genre
     case imageConfiguration
-    
+
     var jsonString: String {
         switch self {
         case .accessToken:
@@ -148,9 +148,9 @@ enum MockResponse {
                 """
         }
     }
-    
+
     var dataResponse: Data {
         Data(jsonString.utf8)
     }
-    
+
 }

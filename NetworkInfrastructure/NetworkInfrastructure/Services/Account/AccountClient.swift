@@ -9,24 +9,24 @@
 import Foundation
 
 class AccountClient: APIClient, AccountClientProtocol {
-    
+
     let session: URLSession
 
     // MARK: - Initializers
-    
+
     init(configuration: URLSessionConfiguration) {
         self.session = URLSession(configuration: configuration)
     }
-    
+
     convenience init() {
         let configuration: URLSessionConfiguration = .default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
 
         self.init(configuration: configuration)
     }
-    
+
     // MARK: - Collection List
-    
+
     func getFavoriteList(page: Int, sessionId: String, accountId: Int,
                          completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
         let request = AccountProvider.getFavoriteList(page: page,
@@ -37,7 +37,7 @@ class AccountClient: APIClient, AccountClientProtocol {
             return movieResult
         }, completion: completion)
     }
-    
+
     func getWatchlist(page: Int, sessionId: String, accountId: Int,
                       completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
         let request = AccountProvider.getWatchlist(page: page,
@@ -63,9 +63,9 @@ class AccountClient: APIClient, AccountClientProtocol {
             return movieResult
         }, completion: completion)
     }
-    
+
     // MARK: - Custom Lists
-    
+
     func getCustomLists(page: Int,
                         accessToken: String, accountId: String,
                         completion: @escaping (Result<ListResult?, APIError>) -> Void) {
@@ -79,7 +79,7 @@ class AccountClient: APIClient, AccountClientProtocol {
     }
 
     // MARK: - Custom List Details
-    
+
     func getCustomListMovies(with accessToken: String, listId: String, completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
         let request = AccountProvider.getCustomListDetail(accessToken: accessToken, id: listId).request
         fetch(with: request, decode: { json -> MovieResult? in
@@ -87,18 +87,18 @@ class AccountClient: APIClient, AccountClientProtocol {
             return list
         }, completion: completion)
     }
-    
+
     // MARK: - Account Detail
-    
+
     func getAccountDetail(with sessionId: String, completion: @escaping (Result<User, APIError>) -> Void) {
         fetch(with: AccountProvider.getAccountDetail(sessionId: sessionId).request, decode: { json -> User? in
             guard let user = json as? User else { return  nil }
             return user
         }, completion: completion)
     }
-    
+
     // MARK: - Mark as favorite
-    
+
     func markAsFavorite(_ movieId: Int, sessionId: String,
                         accountId: Int, favorite: Bool,
                         completion: @escaping (Result<MarkAsFavoriteResult, APIError>) -> Void) {
@@ -122,5 +122,5 @@ class AccountClient: APIClient, AccountClientProtocol {
                 return result
         }, completion: completion)
     }
-    
+
 }

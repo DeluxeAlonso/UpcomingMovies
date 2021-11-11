@@ -15,7 +15,7 @@ enum CustomListDetailViewState {
     case empty
     case populated([Movie])
     case error(Error)
-    
+
     var currentMovies: [Movie] {
         switch self {
         case .loading, .empty, .error:
@@ -24,5 +24,5 @@ enum CustomListDetailViewState {
             return movies
         }
     }
-    
+
 }

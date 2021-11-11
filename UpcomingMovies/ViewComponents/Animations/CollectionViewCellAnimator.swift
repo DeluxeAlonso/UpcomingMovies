@@ -9,7 +9,7 @@
 import UIKit
 
 final class CollectionViewCellAnimator {
-    
+
     class func fadeAnimate(cell: UICollectionViewCell) {
         let view = cell.contentView
         view.layer.opacity = 0.1
@@ -17,5 +17,5 @@ final class CollectionViewCellAnimator {
             view.layer.opacity = 1
         }, completion: nil)
     }
-    
+
 }

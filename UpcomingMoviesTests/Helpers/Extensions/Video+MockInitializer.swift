@@ -10,7 +10,7 @@ import Foundation
 import UpcomingMoviesDomain
 
 extension Video {
-    
+
     static func with(id: String = "1",
                      key: String = "ABC",
                      name: String = "Video1",
@@ -21,5 +21,5 @@ extension Video {
         return Video(id: id, key: key, name: name, site: site,
                      browserURL: browserURL, deepLinkURL: deepLinkURL, thumbnailURL: thumnailURL)
     }
-    
+
 }

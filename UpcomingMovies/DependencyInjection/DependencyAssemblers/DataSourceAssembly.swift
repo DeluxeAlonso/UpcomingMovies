@@ -13,7 +13,7 @@ import NetworkInfrastructure
 import Swinject
 
 final class DataSourceAssembly: Assembly {
-    
+
     func assemble(container: Container) {
         container.register(LocalDataSourceProtocol.self) { _ in
             return LocalDataSource(appGroupExtensions: AppGroup.allCasesIdentifiers)
@@ -22,5 +22,5 @@ final class DataSourceAssembly: Assembly {
             return RemoteDataSource()
         }
     }
-    
+
 }

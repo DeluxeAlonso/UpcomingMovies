@@ -9,71 +9,71 @@
 import UIKit
 
 @IBDesignable class ShrinkingButton: UIButton {
-    
+
     @IBInspectable var spinnerColor: UIColor = UIColor.white {
         didSet {
             spiner.spinnerColor = spinnerColor
         }
     }
-    
+
     @IBInspectable var disabledBackgroundColor: UIColor = UIColor.lightGray {
         didSet {
             setBackgroundImage(UIImage(color: disabledBackgroundColor), for: .disabled)
         }
     }
-    
+
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {
             layer.cornerRadius = cornerRadius
             layer.masksToBounds = cornerRadius > 0
         }
     }
-    
+
     private lazy var spiner: SpinerLayer = {
         let spiner = SpinerLayer(frame: self.frame)
         layer.addSublayer(spiner)
         return spiner
     }()
-    
+
     private var cachedTitle: String?
     private var cachedImage: UIImage?
-    
+
     private let shrinkCurve: CAMediaTimingFunction = CAMediaTimingFunction(name: .linear)
     private let shrinkDuration: CFTimeInterval = 0.1
-    
+
     private var isAnimating: Bool = false
-    
+
     // MARK: - Initializers
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
     }
 
     // MARK: - Lifecycle
-    
+
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         setupUI()
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         spiner.updateFrame(frame)
     }
 
     // MARK: - Private
-    
+
     private func setupUI() {
         clipsToBounds = true
         spiner.spinnerColor = spinnerColor
     }
-    
+
     private func setOriginalState(completion: (() -> Void)?) {
         animateToOriginalWidth(completion: completion)
         spiner.stopAnimation()
@@ -83,7 +83,7 @@ import UIKit
         layer.cornerRadius = self.cornerRadius
         isAnimating = false
     }
-    
+
     private func animateToOriginalWidth(completion: (() -> Void)?) {
         let shrinkAnimation = CABasicAnimation(keyPath: "bounds.size.width")
         shrinkAnimation.fromValue = (self.bounds.height)
@@ -92,13 +92,13 @@ import UIKit
         shrinkAnimation.timingFunction = shrinkCurve
         shrinkAnimation.fillMode = .forwards
         shrinkAnimation.isRemovedOnCompletion = false
-        
+
         CATransaction.setCompletionBlock { completion?() }
         layer.add(shrinkAnimation, forKey: shrinkAnimation.keyPath)
-        
+
         CATransaction.commit()
     }
-    
+
     private func shrink() {
         let shrinkAnimation = CABasicAnimation(keyPath: "bounds.size.width")
         shrinkAnimation.fromValue = frame.width
@@ -107,7 +107,7 @@ import UIKit
         shrinkAnimation.timingFunction = shrinkCurve
         shrinkAnimation.fillMode = .forwards
         shrinkAnimation.isRemovedOnCompletion = false
-        
+
         layer.add(shrinkAnimation, forKey: shrinkAnimation.keyPath)
     }
 
@@ -144,7 +144,7 @@ import UIKit
             }
         }
     }
-    
+
 }
 
 private extension UIImage {

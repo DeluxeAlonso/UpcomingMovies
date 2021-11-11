@@ -9,22 +9,22 @@
 import Foundation
 
 protocol Endpoint {
-    
+
     var base: String { get }
     var path: String { get }
     var headers: [String: String]? { get }
     var params: [String: Any]? { get }
     var parameterEncoding: ParameterEnconding { get }
     var method: HTTPMethod { get }
-    
+
 }
 
 extension Endpoint {
-    
+
     var apiKey: String {
         return NetworkConfiguration.shared.apiKey
     }
-    
+
     var urlComponents: URLComponents {
         var components = URLComponents(string: base)!
         components.path = path
@@ -47,24 +47,24 @@ extension Endpoint {
         case .jsonEncoding:
             break
         }
-        
+
         components.queryItems = queryItems
         return components
     }
-    
+
     var request: URLRequest {
         let url = urlComponents.url!
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        
+
         if let headers = headers {
             for (key, value) in headers {
                 request.setHeader(for: key, with: value)
             }
         }
-        
+
         guard let params = params, method != .get else { return request }
-        
+
         switch parameterEncoding {
         case .defaultEncoding:
             request.httpBody = params.percentEscaped().data(using: .utf8)
@@ -79,10 +79,10 @@ extension Endpoint {
                 request.httpBody = jsonData
             }
         }
-        
+
         return request
     }
-    
+
 }
 
 enum HTTPMethod: String {

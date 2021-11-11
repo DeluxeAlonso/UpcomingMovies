@@ -11,14 +11,14 @@ import XCTest
 @testable import UpcomingMoviesDomain
 
 class CDUserStoreTests: XCTestCase {
-    
+
     private var storeToTest: PersistenceStore<CDUser>!
-    
+
     override func setUp() {
         super.setUp()
         storeToTest = PersistenceStore(CoreDataStack.shared.mockPersistantContainer)
     }
-    
+
     override func tearDown() {
         storeToTest = nil
         super.tearDown()

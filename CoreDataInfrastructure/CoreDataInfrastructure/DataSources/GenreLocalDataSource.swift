@@ -42,11 +42,11 @@ final class GenreLocalDataSource: GenreLocalDataSourceProtocol {
 // MARK: - PersistenceStoreDelegate
 
 extension GenreLocalDataSource: PersistenceStoreDelegate {
-    
+
     func persistenceStore(willUpdateEntity shouldPrepare: Bool) {}
-    
+
     func persistenceStore(didUpdateEntity update: Bool) {
         didUpdateGenre?()
     }
-    
+
 }

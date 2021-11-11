@@ -12,7 +12,7 @@ import XCTest
 @testable import NetworkInfrastructure
 
 class AccountTests: XCTestCase {
-    
+
     private var mockInteractor: MockAccountInteractor!
     private var viewModelToTest: AccountViewModelProtocol!
 
@@ -27,7 +27,7 @@ class AccountTests: XCTestCase {
         viewModelToTest = nil
         try super.tearDownWithError()
     }
-    
+
     func testAuthorizationProcessSuccess() {
         // Arrange
         let permissionURLToTest = URL(string: "http://www.google.com")!
@@ -42,7 +42,7 @@ class AccountTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testAuthorizationProcessError() {
         // Arrange
         let errorToTest = APIError.badRequest
@@ -56,7 +56,7 @@ class AccountTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testSignInUserSuccess() {
         // Arrange
         let userToTest = User.with()
@@ -70,7 +70,7 @@ class AccountTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testSignInUserError() {
         // Arrange
         let errorToTest = APIError.badRequest
@@ -84,7 +84,7 @@ class AccountTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testCurrentUserNotNil() {
         // Arrange
         let userToTest = User.with()
@@ -94,7 +94,7 @@ class AccountTests: XCTestCase {
         // Assert
         XCTAssertNotNil(user)
     }
-    
+
     func testCurrentUserNil() {
         // Arrange
         let userToTest: UpcomingMoviesDomain.User? = nil
@@ -104,7 +104,7 @@ class AccountTests: XCTestCase {
         //Assert
         XCTAssertNil(user)
     }
-    
+
     func testIsUserSignedInTrue() {
         // Arrange
         let userToTest = User.with()
@@ -114,7 +114,7 @@ class AccountTests: XCTestCase {
         // Assert
         XCTAssertTrue(isUserSignedIn)
     }
-    
+
     func testIsUserSignedInFalse() {
         // Arrange
         let userToTest: UpcomingMoviesDomain.User? = nil
@@ -124,5 +124,5 @@ class AccountTests: XCTestCase {
         // Assert
         XCTAssertFalse(isUserSignedIn)
     }
-    
+
 }

@@ -7,10 +7,10 @@
 //
 
 public protocol MovieSearchUseCaseProtocol {
-    
+
     var didUpdateMovieSearch: (() -> Void)? { get set }
-    
+
     func getMovieSearches() -> [MovieSearch]
     func save(with searchText: String)
-    
+
 }

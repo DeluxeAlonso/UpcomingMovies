@@ -9,31 +9,31 @@
 import UIKit
 
 class TransitioningInteractor: UIPercentDrivenInteractiveTransition {
-    
+
     private let navigationController: UINavigationController
     private var shouldCompleteTransition: Bool = false
 
     public var transitionInProgress: Bool = false
-    
+
     // MARK: - Initializers
-    
+
     init?(attachTo viewController: UIViewController) {
         guard let navigationController = viewController.navigationController else { return nil }
         self.navigationController = navigationController
         super.init()
         setupBackGesture(view: viewController.view)
     }
-    
+
     // MARK: - Private
-    
+
     private func setupBackGesture(view: UIView) {
         let swipeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleBackGesture(_:)))
         swipeGesture.edges = .left
         view.addGestureRecognizer(swipeGesture)
     }
-    
+
     // MARK: - Selectors
-    
+
     @objc func handleBackGesture(_ gesture: UIScreenEdgePanGestureRecognizer) {
         let viewTranslation = gesture.translation(in: gesture.view?.superview)
         let progress = viewTranslation.x / navigationController.view.frame.width
@@ -56,5 +56,5 @@ class TransitioningInteractor: UIPercentDrivenInteractiveTransition {
             break
         }
     }
-    
+
 }

@@ -10,36 +10,36 @@ import Foundation
 import UpcomingMoviesDomain
 
 final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
-    
+
     // MARK: - Properties
 
     private let interactor: SearchMoviesResultInteractorProtocol
-    
+
     let viewState: Bindable<SearchMoviesResultViewState> = Bindable(.initial)
-    
+
     // MARK: - Computed Properties
-    
+
     private var movies: [Movie] {
         return viewState.value.currentSearchedMovies
     }
-    
+
     var recentSearchCells: [RecentSearchCellViewModelProtocol] {
         let searches = interactor.getMovieSearches().prefix(5)
         return searches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
     }
-    
-    var movieCells: [MovieCellViewModelProtocol] {
+
+    var movieCells: [MovieListCellViewModelProtocol] {
         return movies.compactMap { MovieCellViewModel($0)}
     }
-    
+
     // MARK: - Initilalizers
-    
+
     init(interactor: SearchMoviesResultInteractorProtocol) {
         self.interactor = interactor
     }
-    
+
     // MARK: - Movies handling
-    
+
     func searchMovies(withSearchText searchText: String) {
         viewState.value = .searching
         interactor.saveSearchText(searchText)
@@ -53,13 +53,13 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
             }
         })
     }
-    
+
     func clearMovies() {
         viewState.value = .initial
     }
-    
+
     // MARK: - Movie detail builder
-    
+
     func searchedMovie(at index: Int) -> Movie {
         return movies[index]
     }

@@ -7,7 +7,7 @@
 //
 
 public protocol ConfigurationUseCaseProtocol {
-    
+
     func getConfiguration(completion: @escaping (Result<Configuration, Error>) -> Void)
-    
+
 }

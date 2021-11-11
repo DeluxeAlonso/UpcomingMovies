@@ -9,22 +9,22 @@
 import UIKit
 
 class ProfileDataSource: NSObject, UITableViewDataSource {
-    
+
     private var viewModel: ProfileViewModelProtocol?
 
     // MARK: - Initializers
-    
+
     init(viewModel: ProfileViewModelProtocol?) {
         self.viewModel = viewModel
     }
-    
+
     // MARK: - Table view data source
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         guard let viewModel = viewModel else { return 0 }
         return viewModel.numberOfSections()
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { return 0 }
         switch viewModel.section(at: section) {
@@ -53,5 +53,5 @@ class ProfileDataSource: NSObject, UITableViewDataSource {
             return cell
         }
     }
-    
+
 }

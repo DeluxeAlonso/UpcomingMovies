@@ -9,7 +9,7 @@
 import UIKit
 
 class FavoriteToggleBarButtonItem: ToggleBarButtonItem {
-    
+
     init() {
         let favoriteOff = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "FavoriteOff")),
                                                      accessibilityLabel: LocalizedStrings.addToFavoritesHint())
@@ -17,9 +17,9 @@ class FavoriteToggleBarButtonItem: ToggleBarButtonItem {
                                                     accessibilityLabel: LocalizedStrings.removeFromFavoritesHint())
         super.init(contents: [favoriteOff, favoriteOn])
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
 }

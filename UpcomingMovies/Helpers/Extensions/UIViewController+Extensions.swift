@@ -9,77 +9,84 @@
 import UIKit
 
 extension UIViewController {
-    
+
     func add(asChildViewController viewController: UIViewController?) {
         guard let viewController = viewController else { return }
-        
+
         addChild(viewController)
-        
+
         view.addSubview(viewController.view)
-        
+
         viewController.view.frame = view.bounds
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
+
         viewController.didMove(toParent: self)
     }
-    
+
     func add(asChildViewController viewController: UIViewController?, containerView: UIView) {
         guard let viewController = viewController,
+<<<<<<< HEAD
               containerView.isDescendant(of: view) else {
                   return
               }
         
+=======
+            containerView.isDescendant(of: view) else {
+            return
+        }
+
+>>>>>>> 842aa4dda8fef3f0895d4649dcac5c4dfc202b18
         addChild(viewController)
-        
+
         containerView.addSubview(viewController.view)
-        
+
         viewController.view.frame = containerView.bounds
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
+
         viewController.didMove(toParent: self)
     }
-    
+
     func remove(asChildViewController viewController: UIViewController?) {
         guard let viewController = viewController else { return }
-        
+
         viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
         viewController.removeFromParent()
     }
-    
+
     // MARK: - Navigation Controller
-    
+
     func setTitleAnimated(_ title: String?,
                           with transitionType: CATransitionType = .fade,
                           animated: Bool = false) {
         let fadeTextAnimation = CATransition()
         fadeTextAnimation.duration = animated ? 0.5 : 0.0
         fadeTextAnimation.type = transitionType
-        
+
         navigationController?.navigationBar.layer.add(fadeTextAnimation,
                                                       forKey: "animateText")
         navigationItem.title = title
     }
-    
+
     // MARK: - Action sheets
-    
+
     func showSimpleActionSheet(title: String?, message: String?, action: UIAlertAction) {
         let actionSheet = UIAlertController(title: title,
                                             message: message,
                                             preferredStyle: .actionSheet)
-        
+
         let cancelTitle = LocalizedStrings.cancel()
         let cancelActionButton = UIAlertAction(title: cancelTitle, style: .cancel) { _ in
             self.dismiss(animated: true)
         }
         actionSheet.addAction(cancelActionButton)
-        
+
         actionSheet.addAction(action)
         present(actionSheet, animated: true, completion: nil)
     }
-    
+
     // MARK: - Navigation Bar
-    
+
     func setClearNavigationBar() {
         if #available(iOS 15, *) {
             // It is recommended by apple to set the appearance for the navigation
@@ -110,23 +117,23 @@ extension UIViewController {
             navigationController?.navigationBar.shadowImage = nil
         }
     }
-    
+
     var navigationBarHeight: CGFloat {
         guard let navigationController = navigationController else { return 0 }
-        
+
         let top = navigationController.navigationBar.intrinsicContentSize.height
         let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
         let navBarHeight =  top + statusBarHeight
-        
+
         return navBarHeight
     }
-    
+
     // MARK: - Deep Link Handling
-    
+
     func openDeepLinkURL(_ url: URL?) {
         let application = UIApplication.shared
         guard let url = url, application.canOpenURL(url) else { return }
         application.open(url, options: [:], completionHandler: nil)
     }
-    
+
 }

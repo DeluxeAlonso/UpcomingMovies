@@ -10,10 +10,10 @@
 @testable import UpcomingMoviesDomain
 
 final class MockMovieReviewsInteractor: MovieReviewsInteractorProtocol {
-    
+
     var getMovieReviewsResult: Result<[Review], Error>?
     func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[Review], Error>) -> Void) {
         completion(getMovieReviewsResult!)
     }
-    
+
 }

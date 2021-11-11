@@ -9,18 +9,18 @@
 import Foundation
 
 protocol APIClient {
-    
+
     var session: URLSession { get }
-    
+
     func fetch<T: Decodable>(with request: URLRequest,
                              decode: @escaping (Decodable) -> T?, completion: @escaping (Result<T, APIError>) -> Void)
-    
+
 }
 
 extension APIClient {
-    
+
     typealias JSONTaskCompletionHandler = (Result<Decodable, APIError>) -> Void
-    
+
     private func decodingTask<T: Decodable>(with request: URLRequest,
                                             decodingType: T.Type,
                                             completion: @escaping JSONTaskCompletionHandler) -> URLSessionDataTask {
@@ -47,7 +47,7 @@ extension APIClient {
         }
         return task
     }
-    
+
     func fetch<T: Decodable>(with request: URLRequest,
                              decode: @escaping (Decodable) -> T?,
                              completion: @escaping (Result<T, APIError>) -> Void) {
@@ -67,5 +67,5 @@ extension APIClient {
         }
         task.resume()
     }
-    
+
 }

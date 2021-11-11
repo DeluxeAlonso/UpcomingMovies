@@ -9,12 +9,12 @@
 import UpcomingMoviesDomain
 
 extension User {
-    
+
     static func with(id: Int = 1,
                      name: String = "Test",
                      username: String = "Username",
                      includeAdult: Bool = false) -> User {
         return User(id: id, name: name, username: username, includeAdult: includeAdult)
     }
-    
+
 }

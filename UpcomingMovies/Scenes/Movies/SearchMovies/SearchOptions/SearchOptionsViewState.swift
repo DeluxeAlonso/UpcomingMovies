@@ -9,10 +9,10 @@
 import Foundation
 
 enum SearchOptionsViewState {
-    
+
     case emptyMovieVisits
     case populatedMovieVisits
-    
+
     var sections: [SearchOptionsSection] {
         switch self {
         case .emptyMovieVisits:
@@ -21,5 +21,5 @@ enum SearchOptionsViewState {
             return [.recentlyVisited, .defaultSearches, .genres]
         }
     }
-    
+
 }
