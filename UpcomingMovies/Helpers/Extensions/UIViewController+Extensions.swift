@@ -24,8 +24,7 @@ extension UIViewController {
     }
 
     func add(asChildViewController viewController: UIViewController?, containerView: UIView) {
-        guard let viewController = viewController,
-            containerView.isDescendant(of: view) else {
+        guard let viewController = viewController, containerView.isDescendant(of: view) else {
             return
         }
 
@@ -82,10 +81,13 @@ extension UIViewController {
 
     func setClearNavigationBar() {
         if #available(iOS 15, *) {
+            // It is recommended by apple to set the appearance for the navigation
+            // item when configuring the navigation appearance of a specific view controller
+            // https://developer.apple.com/forums/thread/683590
             let navigationBarAppearance = UINavigationBarAppearance()
             navigationBarAppearance.configureWithTransparentBackground()
-            navigationController?.navigationBar.standardAppearance = navigationBarAppearance
-            navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+            navigationItem.standardAppearance = navigationBarAppearance
+            navigationItem.scrollEdgeAppearance = navigationItem.standardAppearance
         } else {
             navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationController?.navigationBar.shadowImage = UIImage()
@@ -94,10 +96,13 @@ extension UIViewController {
 
     func restoreNavigationBar(with barTintColor: UIColor) {
         if #available(iOS 15, *) {
+            // It is recommended by apple to set the appearance for the navigation
+            // item when configuring the navigation appearance of a specific view controller
+            // https://developer.apple.com/forums/thread/683590
             let navigationBarAppearance = UINavigationBarAppearance()
             navigationBarAppearance.configureWithDefaultBackground()
-            navigationController?.navigationBar.standardAppearance = navigationBarAppearance
-            navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+            navigationItem.standardAppearance = navigationBarAppearance
+            navigationItem.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
         } else {
             navigationController?.navigationBar.barTintColor = barTintColor
             navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
