@@ -24,18 +24,10 @@ extension UIViewController {
     }
 
     func add(asChildViewController viewController: UIViewController?, containerView: UIView) {
-        guard let viewController = viewController,
-<<<<<<< HEAD
-              containerView.isDescendant(of: view) else {
-                  return
-              }
-        
-=======
-            containerView.isDescendant(of: view) else {
+        guard let viewController = viewController, containerView.isDescendant(of: view) else {
             return
         }
 
->>>>>>> 842aa4dda8fef3f0895d4649dcac5c4dfc202b18
         addChild(viewController)
 
         containerView.addSubview(viewController.view)
