@@ -140,7 +140,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
     }
 
     private func showNavigationBar() {
-        restoreNavigationBar(with: ColorPalette.navigationBarBackgroundColor)
+        setDefaultAppearanceNavigationBar(with: ColorPalette.navigationBarBackgroundColor)
     }
 
     private func hideNavigationBar() {
