@@ -30,7 +30,7 @@ class AccountViewController: UIViewController, Storyboarded {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barStyle = .default
         navigationController?.navigationBar.tintColor = view.tintColor
-        restoreNavigationBar(with: ColorPalette.navigationBarBackgroundColor)
+        setDefaultAppearanceNavigationBar(with: ColorPalette.navigationBarBackgroundColor)
     }
 
     // MARK: - Private
