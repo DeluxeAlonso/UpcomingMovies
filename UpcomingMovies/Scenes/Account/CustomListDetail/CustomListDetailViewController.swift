@@ -144,7 +144,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
     }
 
     private func hideNavigationBar() {
-        setClearNavigationBar()
+        setClearAppearanceNavigationBar()
     }
 
     // MARK: - Reactive Behavior

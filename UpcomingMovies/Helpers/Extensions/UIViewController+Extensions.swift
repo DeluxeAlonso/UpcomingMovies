@@ -79,7 +79,7 @@ extension UIViewController {
 
     // MARK: - Navigation Bar
 
-    func setClearNavigationBar() {
+    func setClearAppearanceNavigationBar() {
         if #available(iOS 15, *) {
             // It is recommended by apple to set the appearance for the navigation
             // item when configuring the navigation appearance of a specific view controller
