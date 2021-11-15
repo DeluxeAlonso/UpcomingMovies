@@ -100,22 +100,22 @@ public class ProgressHUD: UIView {
 
     private var timer: Timer?
 
-    private var animationType    = AnimationType.systemActivityIndicator
+    private var animationType = AnimationType.systemActivityIndicator
 
-    private var colorBackground    = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
-    private var colorHUD        = UIColor.systemGray
-    private var colorStatus        = UIColor.label
-    private var colorAnimation    = UIColor.lightGray
-    private var colorProgress    = UIColor.lightGray
+    private var colorBackground = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+    private var colorHUD = UIColor.systemGray
+    private var colorStatus = UIColor.label
+    private var colorAnimation = UIColor.lightGray
+    private var colorProgress = UIColor.lightGray
 
-    private var fontStatus        = UIFont.boldSystemFont(ofSize: 24)
-    private var imageSuccess    = UIImage.checkmark.withTintColor(UIColor.systemGreen, renderingMode: .alwaysOriginal)
-    private var imageError        = UIImage.remove.withTintColor(UIColor.systemRed, renderingMode: .alwaysOriginal)
+    private var fontStatus = UIFont.boldSystemFont(ofSize: 24)
+    private var imageSuccess = UIImage.checkmark.withTintColor(UIColor.systemGreen, renderingMode: .alwaysOriginal)
+    private var imageError = UIImage.remove.withTintColor(UIColor.systemRed, renderingMode: .alwaysOriginal)
 
-    private let keyboardWillShow    = UIResponder.keyboardWillShowNotification
-    private let keyboardWillHide    = UIResponder.keyboardWillHideNotification
-    private let keyboardDidShow        = UIResponder.keyboardDidShowNotification
-    private let keyboardDidHide        = UIResponder.keyboardDidHideNotification
+    private let keyboardWillShow = UIResponder.keyboardWillShowNotification
+    private let keyboardWillHide = UIResponder.keyboardWillHideNotification
+    private let keyboardDidShow = UIResponder.keyboardDidShowNotification
+    private let keyboardDidHide = UIResponder.keyboardDidHideNotification
 
     private let orientationDidChange = UIDevice.orientationDidChangeNotification
 
@@ -125,23 +125,19 @@ public class ProgressHUD: UIView {
     }()
 
     convenience private init() {
-
         self.init(frame: UIScreen.main.bounds)
         self.alpha = 0
     }
 
     required internal init?(coder: NSCoder) {
-
         super.init(coder: coder)
     }
 
     override private init(frame: CGRect) {
-
         super.init(frame: frame)
     }
 
     private func setup(status: String? = nil, staticImage: UIImage? = nil, hide: Bool, interaction: Bool) {
-
         setupNotifications()
         setupBackground(interaction)
         setupToolbar()
@@ -356,7 +352,7 @@ public class ProgressHUD: UIView {
         toolbarHUD?.removeFromSuperview()
         toolbarHUD = nil
 
-        viewBackground?.removeFromSuperview();
+        viewBackground?.removeFromSuperview()
         viewBackground = nil
 
         timer?.invalidate()
