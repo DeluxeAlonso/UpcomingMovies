@@ -63,39 +63,29 @@ public extension ProgressHUD {
 public extension ProgressHUD {
 
     class func dismiss() {
-
         DispatchQueue.main.async {
             shared.hudHide()
         }
     }
 
     class func show(_ status: String? = nil, interaction: Bool = true) {
-
         DispatchQueue.main.async {
             shared.setup(status: status, hide: false, interaction: interaction)
         }
     }
 
     class func showSuccess(_ status: String? = nil, image: UIImage? = nil, interaction: Bool = true) {
-
         DispatchQueue.main.async {
             shared.setup(status: status, staticImage: image ?? shared.imageSuccess, hide: true, interaction: interaction)
         }
     }
 
     class func showError(_ status: String? = nil, image: UIImage? = nil, interaction: Bool = true) {
-
         DispatchQueue.main.async {
             shared.setup(status: status, staticImage: image ?? shared.imageError, hide: true, interaction: interaction)
         }
     }
 
-    class func showProgress(_ status: String?, _ progress: CGFloat, interaction: Bool = false) {
-
-        DispatchQueue.main.async {
-            shared.setup(status: status, progress: progress, hide: false, interaction: interaction)
-        }
-    }
 }
 
 public class ProgressHUD: UIView {
@@ -150,15 +140,15 @@ public class ProgressHUD: UIView {
         super.init(frame: frame)
     }
 
-    private func setup(status: String? = nil, progress: CGFloat? = nil, staticImage: UIImage? = nil, hide: Bool, interaction: Bool) {
+    private func setup(status: String? = nil, staticImage: UIImage? = nil, hide: Bool, interaction: Bool) {
 
         setupNotifications()
         setupBackground(interaction)
         setupToolbar()
         setupLabel(status)
 
-        if (progress == nil) && (staticImage == nil) { setupAnimation() }
-        if (progress == nil) && (staticImage != nil) { setupStaticImage(staticImage)}
+        if (staticImage == nil) { setupAnimation() }
+        if (staticImage != nil) { setupStaticImage(staticImage)}
 
         setupSize()
         setupPosition()
@@ -224,7 +214,6 @@ public class ProgressHUD: UIView {
     }
 
     private func setupAnimation() {
-
         viewAnimatedIcon?.removeFromSuperview()
         staticImageView?.removeFromSuperview()
 
@@ -244,10 +233,10 @@ public class ProgressHUD: UIView {
             $0.removeFromSuperlayer()
         }
 
-        if (animationType == .systemActivityIndicator) { animationSystemActivityIndicator(viewAnimation!)
+        if (animationType == .systemActivityIndicator) {
+            animationSystemActivityIndicator(viewAnimation!)
         }
     }
-
 
     private func setupStaticImage(_ staticImage: UIImage?) {
         viewAnimation?.removeFromSuperview()
@@ -265,10 +254,7 @@ public class ProgressHUD: UIView {
         staticImageView?.contentMode = .scaleAspectFit
     }
 
-    // MARK: -
-
     private func setupSize() {
-
         var width: CGFloat = 120
         var height: CGFloat = 120
 
@@ -312,11 +298,7 @@ public class ProgressHUD: UIView {
                 heightKeyboard = frameKeyboard.size.height
             } else if (notification.name == keyboardWillHide) || (notification.name == keyboardDidHide) {
                 heightKeyboard = 0
-            } else {
-                heightKeyboard = keyboardHeight()
             }
-        } else {
-            heightKeyboard = keyboardHeight()
         }
 
         let mainWindow = UIApplication.shared.windows.first ?? UIWindow()
@@ -329,33 +311,11 @@ public class ProgressHUD: UIView {
         }, completion: nil)
     }
 
-    private func keyboardHeight() -> CGFloat {
-        if let keyboardWindowClass = NSClassFromString("UIRemoteKeyboardWindow"),
-            let inputSetContainerView = NSClassFromString("UIInputSetContainerView"),
-            let inputSetHostView = NSClassFromString("UIInputSetHostView") {
-
-            for window in UIApplication.shared.windows {
-                if window.isKind(of: keyboardWindowClass) {
-                    for firstSubView in window.subviews {
-                        if firstSubView.isKind(of: inputSetContainerView) {
-                            for secondSubView in firstSubView.subviews {
-                                if secondSubView.isKind(of: inputSetHostView) {
-                                    return secondSubView.frame.size.height
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return 0
-    }
-
     private func hudShow() {
         timer?.invalidate()
         timer = nil
 
-        if (self.alpha != 1) {
+        if self.alpha != 1 {
             self.alpha = 1
             toolbarHUD?.alpha = 0
             toolbarHUD?.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
@@ -368,11 +328,11 @@ public class ProgressHUD: UIView {
     }
 
     private func hudHide() {
-        if (self.alpha == 1) {
+        if self.alpha == 1 {
             UIView.animate(withDuration: 0.15, delay: 0, options: [.allowUserInteraction, .curveEaseIn], animations: {
                 self.toolbarHUD?.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
                 self.toolbarHUD?.alpha = 0
-            }, completion: { isFinished in
+            }, completion: { _ in
                 self.hudDestroy()
                 self.alpha = 0
             })
@@ -380,14 +340,24 @@ public class ProgressHUD: UIView {
     }
 
     private func hudDestroy() {
-        _ = NotificationCenter.default.removeObserver(self)
-        staticImageView?.removeFromSuperview();        staticImageView = nil
-        viewAnimatedIcon?.removeFromSuperview();    viewAnimatedIcon = nil
-        viewAnimation?.removeFromSuperview();        viewAnimation = nil
+        NotificationCenter.default.removeObserver(self)
+        staticImageView?.removeFromSuperview()
+        staticImageView = nil
 
-        labelStatus?.removeFromSuperview();            labelStatus = nil
-        toolbarHUD?.removeFromSuperview();            toolbarHUD = nil
-        viewBackground?.removeFromSuperview();        viewBackground = nil
+        viewAnimatedIcon?.removeFromSuperview()
+        viewAnimatedIcon = nil
+
+        viewAnimation?.removeFromSuperview()
+        viewAnimation = nil
+
+        labelStatus?.removeFromSuperview()
+        labelStatus = nil
+
+        toolbarHUD?.removeFromSuperview()
+        toolbarHUD = nil
+
+        viewBackground?.removeFromSuperview();
+        viewBackground = nil
 
         timer?.invalidate()
         timer = nil
