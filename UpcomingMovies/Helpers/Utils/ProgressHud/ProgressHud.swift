@@ -39,11 +39,6 @@ public extension ProgressHUD {
         set { shared.colorAnimation = newValue }
     }
 
-    class var colorProgress: UIColor {
-        get { shared.colorProgress }
-        set { shared.colorProgress = newValue }
-    }
-
     class var fontStatus: UIFont {
         get { shared.fontStatus }
         set { shared.fontStatus = newValue }
@@ -90,12 +85,12 @@ public extension ProgressHUD {
 
 public class ProgressHUD: UIView {
 
-    private var viewBackground: UIView?
-    private var toolbarHUD: UIToolbar?
+    private var containerView: UIView?
+
+    private var hudContentView: UIView?
     private var labelStatus: UILabel?
 
     private var viewAnimation: UIView?
-    private var viewAnimatedIcon: UIView?
     private var staticImageView: UIImageView?
 
     private var timer: Timer?
@@ -103,10 +98,9 @@ public class ProgressHUD: UIView {
     private var animationType = AnimationType.systemActivityIndicator
 
     private var colorBackground = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
-    private var colorHUD = UIColor.systemGray
+    private var colorHUD = UIColor.systemBlue
     private var colorStatus = UIColor.label
     private var colorAnimation = UIColor.lightGray
-    private var colorProgress = UIColor.lightGray
 
     private var fontStatus = UIFont.boldSystemFont(ofSize: 24)
     private var imageSuccess = UIImage.checkmark.withTintColor(UIColor.systemGreen, renderingMode: .alwaysOriginal)
@@ -123,6 +117,10 @@ public class ProgressHUD: UIView {
         let instance = ProgressHUD()
         return instance
     }()
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     convenience private init() {
         self.init(frame: UIScreen.main.bounds)
@@ -161,7 +159,7 @@ public class ProgressHUD: UIView {
     }
 
     private func setupNotifications() {
-        if (viewBackground == nil) {
+        if (containerView == nil) {
             NotificationCenter.default.addObserver(self, selector: #selector(setupPosition(_:)), name: keyboardWillShow, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(setupPosition(_:)), name: keyboardWillHide, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(setupPosition(_:)), name: keyboardDidShow, object: nil)
@@ -171,27 +169,26 @@ public class ProgressHUD: UIView {
     }
 
     private func setupBackground(_ interaction: Bool) {
-        if (viewBackground == nil) {
+        if (containerView == nil) {
             let mainWindow = UIApplication.shared.windows.first ?? UIWindow()
-            viewBackground = UIView(frame: self.bounds)
-            mainWindow.addSubview(viewBackground!)
+            containerView = UIView(frame: self.bounds)
+            mainWindow.addSubview(containerView!)
         }
 
-        viewBackground?.backgroundColor = interaction ? .clear : colorBackground
-        viewBackground?.isUserInteractionEnabled = (interaction == false)
+        containerView?.backgroundColor = interaction ? .clear : colorBackground
+        containerView?.isUserInteractionEnabled = (interaction == false)
     }
 
     private func setupToolbar() {
-        if (toolbarHUD == nil) {
-            toolbarHUD = UIToolbar(frame: CGRect.zero)
-            toolbarHUD?.isTranslucent = true
-            toolbarHUD?.clipsToBounds = true
-            toolbarHUD?.layer.cornerRadius = 10
-            toolbarHUD?.layer.masksToBounds = true
-            viewBackground?.addSubview(toolbarHUD!)
+        if (hudContentView == nil) {
+            hudContentView = UIView(frame: CGRect.zero)
+            hudContentView?.clipsToBounds = true
+            hudContentView?.layer.cornerRadius = 10
+            hudContentView?.layer.masksToBounds = true
+            containerView?.addSubview(hudContentView!)
         }
 
-        toolbarHUD?.backgroundColor = colorHUD
+        hudContentView?.backgroundColor = colorHUD
     }
 
     private func setupLabel(_ status: String?) {
@@ -200,7 +197,7 @@ public class ProgressHUD: UIView {
             labelStatus?.textAlignment = .center
             labelStatus?.baselineAdjustment = .alignCenters
             labelStatus?.numberOfLines = 0
-            toolbarHUD?.addSubview(labelStatus!)
+            hudContentView?.addSubview(labelStatus!)
         }
 
         labelStatus?.text = (status != "") ? status : nil
@@ -210,7 +207,6 @@ public class ProgressHUD: UIView {
     }
 
     private func setupAnimation() {
-        viewAnimatedIcon?.removeFromSuperview()
         staticImageView?.removeFromSuperview()
 
         if (viewAnimation == nil) {
@@ -218,7 +214,7 @@ public class ProgressHUD: UIView {
         }
 
         if (viewAnimation?.superview == nil) {
-            toolbarHUD?.addSubview(viewAnimation!)
+            hudContentView?.addSubview(viewAnimation!)
         }
 
         viewAnimation?.subviews.forEach {
@@ -236,14 +232,13 @@ public class ProgressHUD: UIView {
 
     private func setupStaticImage(_ staticImage: UIImage?) {
         viewAnimation?.removeFromSuperview()
-        viewAnimatedIcon?.removeFromSuperview()
 
         if (staticImageView == nil) {
             staticImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
         }
 
         if (staticImageView?.superview == nil) {
-            toolbarHUD?.addSubview(staticImageView!)
+            hudContentView?.addSubview(staticImageView!)
         }
 
         staticImageView?.image = staticImage
@@ -270,14 +265,13 @@ public class ProgressHUD: UIView {
             labelStatus?.frame = rectLabel
         }
 
-        toolbarHUD?.bounds = CGRect(x: 0, y: 0, width: width, height: height)
+        hudContentView?.bounds = CGRect(x: 0, y: 0, width: width, height: height)
 
         let centerX = width/2
         var centerY = height/2
 
         if (labelStatus?.text != nil) { centerY = 55 }
         viewAnimation?.center = CGPoint(x: centerX, y: centerY)
-        viewAnimatedIcon?.center = CGPoint(x: centerX, y: centerY)
         staticImageView?.center = CGPoint(x: centerX, y: centerY)
     }
 
@@ -302,8 +296,8 @@ public class ProgressHUD: UIView {
         let center = CGPoint(x: screen.size.width/2, y: (screen.size.height-heightKeyboard)/2)
 
         UIView.animate(withDuration: animationDuration, delay: 0, options: .allowUserInteraction, animations: {
-            self.toolbarHUD?.center = center
-            self.viewBackground?.frame = screen
+            self.hudContentView?.center = center
+            self.containerView?.frame = screen
         }, completion: nil)
     }
 
@@ -313,12 +307,12 @@ public class ProgressHUD: UIView {
 
         if self.alpha != 1 {
             self.alpha = 1
-            toolbarHUD?.alpha = 0
-            toolbarHUD?.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
+            hudContentView?.alpha = 0
+            hudContentView?.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
 
             UIView.animate(withDuration: 0.15, delay: 0, options: [.allowUserInteraction, .curveEaseIn], animations: {
-                self.toolbarHUD?.transform = CGAffineTransform(scaleX: 1/1.4, y: 1/1.4)
-                self.toolbarHUD?.alpha = 1
+                self.hudContentView?.transform = CGAffineTransform(scaleX: 1/1.4, y: 1/1.4)
+                self.hudContentView?.alpha = 1
             }, completion: nil)
         }
     }
@@ -326,8 +320,8 @@ public class ProgressHUD: UIView {
     private func hudHide() {
         if self.alpha == 1 {
             UIView.animate(withDuration: 0.15, delay: 0, options: [.allowUserInteraction, .curveEaseIn], animations: {
-                self.toolbarHUD?.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
-                self.toolbarHUD?.alpha = 0
+                self.hudContentView?.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
+                self.hudContentView?.alpha = 0
             }, completion: { _ in
                 self.hudDestroy()
                 self.alpha = 0
@@ -336,12 +330,8 @@ public class ProgressHUD: UIView {
     }
 
     private func hudDestroy() {
-        NotificationCenter.default.removeObserver(self)
         staticImageView?.removeFromSuperview()
         staticImageView = nil
-
-        viewAnimatedIcon?.removeFromSuperview()
-        viewAnimatedIcon = nil
 
         viewAnimation?.removeFromSuperview()
         viewAnimation = nil
@@ -349,11 +339,11 @@ public class ProgressHUD: UIView {
         labelStatus?.removeFromSuperview()
         labelStatus = nil
 
-        toolbarHUD?.removeFromSuperview()
-        toolbarHUD = nil
+        hudContentView?.removeFromSuperview()
+        hudContentView = nil
 
-        viewBackground?.removeFromSuperview()
-        viewBackground = nil
+        containerView?.removeFromSuperview()
+        containerView = nil
 
         timer?.invalidate()
         timer = nil
