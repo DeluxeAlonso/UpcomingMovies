@@ -96,7 +96,7 @@ class HudActivityIndicatorView: UIView {
 
     private lazy var activityIndicatorView: UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.style = .large
+        activityIndicatorView.style = .whiteLarge
         activityIndicatorView.color = .darkGray
         activityIndicatorView.startAnimating()
         return activityIndicatorView
