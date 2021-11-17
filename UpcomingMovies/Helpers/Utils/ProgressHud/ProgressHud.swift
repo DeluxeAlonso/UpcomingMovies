@@ -8,6 +8,24 @@
 
 import UIKit
 
+class DefaultHudConfiguration: HudConfigurationProtocol {
+
+    static let shared = DefaultHudConfiguration()
+
+    init() {}
+
+    var backgroundColor: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+
+    var hudColor: UIColor = UIColor.systemBlue
+
+    var activityIndicatorColor: UIColor = UIColor.lightGray
+
+    var textColor: UIColor = UIColor.black
+
+    var textFont: UIFont = UIFont.boldSystemFont(ofSize: 24)
+
+}
+
 class ProgressHud {
 
     static let shared = ProgressHud()
@@ -26,7 +44,8 @@ class ProgressHud {
         let mainWindow = UIApplication.shared.windows.first ?? UIWindow()
         mainWindow.addSubview(hudContainerView)
 
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.0,
+                       options: [.curveEaseOut, .allowUserInteraction], animations: {
             hudContainerView.alpha = 1.0
         }, completion: { completed in
             completion?(completed)
@@ -37,6 +56,16 @@ class ProgressHud {
         self.hudContainerView?.alpha = 0.0
         self.hudContainerView?.removeFromSuperview()
         self.hudContainerView = nil
+    }
+
+    func hide(with animationDuration: TimeInterval) {
+        UIView.animate(withDuration: animationDuration, delay: 0.0,
+                       options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.hudContainerView?.alpha = 0.0
+        }, completion: { _ in
+            self.hudContainerView?.removeFromSuperview()
+            self.hudContainerView = nil
+        })
     }
 
 }
@@ -75,13 +104,6 @@ class HudContainerView: UIView {
 }
 
 protocol HudConfigurationProtocol {
-
-//    private var colorBackground = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
-//    private var colorHUD = UIColor.systemBlue
-//    private var colorStatus = UIColor.label
-//    private var colorAnimation = UIColor.lightGray
-//
-//    private var fontStatus = UIFont.boldSystemFont(ofSize: 24)
 
     var backgroundColor: UIColor { get }
     var hudColor: UIColor { get }
