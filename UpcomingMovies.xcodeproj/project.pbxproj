@@ -1197,7 +1197,6 @@
 		E22116B2219156F10039F8C9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				E23179772740C746007E623B /* ProgressHud */,
 				E26EB50925CF508300AFE4A6 /* BaseConfiguration */,
 				E208FC4C263523D0008593D8 /* SimpleViewState */,
 				E22116B3219157020039F8C9 /* Bindable.swift */,
@@ -1648,6 +1647,7 @@
 		E260116A2193883100E53095 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				E23179772740C746007E623B /* ProgressHud */,
 				E2C085AE261651A300AC5383 /* ToastView */,
 				E21F379D219401CF00D6BFB6 /* SimpleHeaderView.swift */,
 				E21F37992193FEB000D6BFB6 /* LoadingFooterView.swift */,
