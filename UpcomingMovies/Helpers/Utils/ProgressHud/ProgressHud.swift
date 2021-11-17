@@ -8,24 +8,6 @@
 
 import UIKit
 
-class DefaultHudConfiguration: HudConfigurationProtocol {
-
-    static let shared = DefaultHudConfiguration()
-
-    init() {}
-
-    var backgroundColor: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
-
-    var hudColor: UIColor = UIColor.systemBlue
-
-    var activityIndicatorColor: UIColor = UIColor.lightGray
-
-    var textColor: UIColor = UIColor.black
-
-    var textFont: UIFont = UIFont.boldSystemFont(ofSize: 24)
-
-}
-
 class ProgressHud {
 
     enum Mode {
@@ -49,8 +31,7 @@ class ProgressHud {
         let mainWindow = UIApplication.shared.windows.first ?? UIWindow()
         mainWindow.addSubview(hudContainerView)
 
-        UIView.animate(withDuration: 0.5, delay: 0.0,
-                       options: [.curveEaseOut, .allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseOut], animations: {
             hudContainerView.alpha = 1.0
         }, completion: { completed in
             completion?(completed)
@@ -64,8 +45,7 @@ class ProgressHud {
     }
 
     func hide(with animationDuration: TimeInterval) {
-        UIView.animate(withDuration: animationDuration, delay: 0.0,
-                       options: [.curveEaseOut, .allowUserInteraction], animations: {
+        UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseOut], animations: {
             self.hudContainerView?.alpha = 0.0
         }, completion: { _ in
             self.hudContainerView?.removeFromSuperview()
@@ -120,17 +100,6 @@ class HudContainerView: UIView {
 
 }
 
-protocol HudConfigurationProtocol {
-
-    var backgroundColor: UIColor { get }
-    var hudColor: UIColor { get }
-    var activityIndicatorColor: UIColor { get }
-
-    var textColor: UIColor { get }
-    var textFont: UIFont { get }
-
-}
-
 class HudActivityIndicatorView: UIView {
 
     private lazy var activityIndicatorView: UIActivityIndicatorView = {
@@ -147,30 +116,6 @@ class HudActivityIndicatorView: UIView {
 
         addSubview(activityIndicatorView)
         activityIndicatorView.centerInSuperview()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-}
-
-class HudSuccessView: UIView {
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-}
-
-class HudErrorView: UIView {
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
     }
 
     required init?(coder aDecoder: NSCoder) {

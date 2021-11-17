@@ -349,6 +349,8 @@
 		E2EBDC36256A26090026319B /* UpcomingMoviesWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E2EBDC29256A26060026319B /* UpcomingMoviesWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E2F789F82598401700002CAD /* AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F789F72598401700002CAD /* AppExtension.swift */; };
 		E2F78A0125985D5A00002CAD /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F78A0025985D5A00002CAD /* RootCoordinator.swift */; };
+		E2F8BD3D2744BCC00092E95E /* DefaultHudConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F8BD3C2744BCC00092E95E /* DefaultHudConfiguration.swift */; };
+		E2F8BD3F2744BCE40092E95E /* HudConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F8BD3E2744BCE40092E95E /* HudConfigurationProtocol.swift */; };
 		E2F9F7182201F3C300C62089 /* TransitioningInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F7162201F3C300C62089 /* TransitioningInteractor.swift */; };
 		E2F9F7202201FC1100C62089 /* Transitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F71F2201FC1100C62089 /* Transitionable.swift */; };
 		E2F9F7222202787F00C62089 /* TransitioningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F7212202787E00C62089 /* TransitioningAnimator.swift */; };
@@ -768,6 +770,8 @@
 		E2EBDC33256A26090026319B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2F789F72598401700002CAD /* AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtension.swift; sourceTree = "<group>"; };
 		E2F78A0025985D5A00002CAD /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		E2F8BD3C2744BCC00092E95E /* DefaultHudConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHudConfiguration.swift; sourceTree = "<group>"; };
+		E2F8BD3E2744BCE40092E95E /* HudConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudConfigurationProtocol.swift; sourceTree = "<group>"; };
 		E2F9F7162201F3C300C62089 /* TransitioningInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitioningInteractor.swift; sourceTree = "<group>"; };
 		E2F9F71F2201FC1100C62089 /* Transitionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitionable.swift; sourceTree = "<group>"; };
 		E2F9F7212202787E00C62089 /* TransitioningAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitioningAnimator.swift; sourceTree = "<group>"; };
@@ -1484,6 +1488,7 @@
 		E23179772740C746007E623B /* ProgressHud */ = {
 			isa = PBXGroup;
 			children = (
+				E2F8BD3B2744BC9E0092E95E /* Configuration */,
 				E23179782740C783007E623B /* ProgressHud.swift */,
 			);
 			path = ProgressHud;
@@ -2001,6 +2006,15 @@
 			path = UpcomingMoviesWidgetExtension;
 			sourceTree = "<group>";
 		};
+		E2F8BD3B2744BC9E0092E95E /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				E2F8BD3E2744BCE40092E95E /* HudConfigurationProtocol.swift */,
+				E2F8BD3C2744BCC00092E95E /* DefaultHudConfiguration.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		E2F9F71D2201FBE600C62089 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2413,6 +2427,7 @@
 				E263FA9E24D52D9E00990638 /* TopRatedMoviesCoordinator.swift in Sources */,
 				E229AFB524A84CBE002AB427 /* CustomListDetailProtocols.swift in Sources */,
 				E2058B6E247F6BBD00A6AB52 /* NavigationHandler.swift in Sources */,
+				E2F8BD3D2744BCC00092E95E /* DefaultHudConfiguration.swift in Sources */,
 				E2E518A624A997D700CC3FA5 /* SearchMoviesProtocols.swift in Sources */,
 				E28A68D124D79F9900D20E52 /* MovieVideosInteractor.swift in Sources */,
 				E2940803220A152700A74F68 /* MainTabBarController.swift in Sources */,
@@ -2474,6 +2489,7 @@
 				E265C2612495392900712284 /* MoviesByGenreInteractor.swift in Sources */,
 				E2009F4F2515BD8600D4B48F /* SplashBuilder.swift in Sources */,
 				E21662E025EB672D001C2905 /* LoadingView.swift in Sources */,
+				E2F8BD3F2744BCE40092E95E /* HudConfigurationProtocol.swift in Sources */,
 				E22447742234BC3500A59FEF /* UpcomingMovieExpandedCollectionViewCell.swift in Sources */,
 				E2254693226A3D6500E9042C /* CustomListTableViewCell.swift in Sources */,
 				E2912676250DE651007AD101 /* DIContainer.swift in Sources */,
