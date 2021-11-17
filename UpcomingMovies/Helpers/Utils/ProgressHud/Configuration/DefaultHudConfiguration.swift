@@ -14,9 +14,9 @@ class DefaultHudConfiguration: HudConfigurationProtocol {
 
     init() {}
 
-    var backgroundColor: UIColor = UIColor(white: 0.8, alpha: 0.36)//UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+    var backgroundColor: UIColor = .clear
 
-    var hudColor: UIColor = UIColor.systemBlue
+    var hudColor: UIColor = UIColor(white: 0.8, alpha: 0.36)
 
     var activityIndicatorColor: UIColor = UIColor.lightGray
 

@@ -351,6 +351,7 @@
 		E2F78A0125985D5A00002CAD /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F78A0025985D5A00002CAD /* RootCoordinator.swift */; };
 		E2F8BD3D2744BCC00092E95E /* DefaultHudConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F8BD3C2744BCC00092E95E /* DefaultHudConfiguration.swift */; };
 		E2F8BD3F2744BCE40092E95E /* HudConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F8BD3E2744BCE40092E95E /* HudConfigurationProtocol.swift */; };
+		E2F8BD412744C56E0092E95E /* HudContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F8BD402744C56E0092E95E /* HudContainerView.swift */; };
 		E2F9F7182201F3C300C62089 /* TransitioningInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F7162201F3C300C62089 /* TransitioningInteractor.swift */; };
 		E2F9F7202201FC1100C62089 /* Transitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F71F2201FC1100C62089 /* Transitionable.swift */; };
 		E2F9F7222202787F00C62089 /* TransitioningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F7212202787E00C62089 /* TransitioningAnimator.swift */; };
@@ -772,6 +773,7 @@
 		E2F78A0025985D5A00002CAD /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		E2F8BD3C2744BCC00092E95E /* DefaultHudConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHudConfiguration.swift; sourceTree = "<group>"; };
 		E2F8BD3E2744BCE40092E95E /* HudConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudConfigurationProtocol.swift; sourceTree = "<group>"; };
+		E2F8BD402744C56E0092E95E /* HudContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudContainerView.swift; sourceTree = "<group>"; };
 		E2F9F7162201F3C300C62089 /* TransitioningInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitioningInteractor.swift; sourceTree = "<group>"; };
 		E2F9F71F2201FC1100C62089 /* Transitionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitionable.swift; sourceTree = "<group>"; };
 		E2F9F7212202787E00C62089 /* TransitioningAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitioningAnimator.swift; sourceTree = "<group>"; };
@@ -1490,6 +1492,7 @@
 			children = (
 				E2F8BD3B2744BC9E0092E95E /* Configuration */,
 				E23179782740C783007E623B /* ProgressHud.swift */,
+				E2F8BD402744C56E0092E95E /* HudContainerView.swift */,
 			);
 			path = ProgressHud;
 			sourceTree = "<group>";
@@ -2500,6 +2503,7 @@
 				E228430F250ED1A900F053DE /* HandlerAssembly.swift in Sources */,
 				E2709630247B686100AE694E /* Entities+ImageConfiguration.swift in Sources */,
 				E208FC472635238A008593D8 /* SimpleViewStateProcessable.swift in Sources */,
+				E2F8BD412744C56E0092E95E /* HudContainerView.swift in Sources */,
 				E223B086224828FB0050277B /* ProfileSelectableOptionCellViewModel.swift in Sources */,
 				E284EF4D21F127FB004E705F /* VisitedMovieCellViewModel.swift in Sources */,
 				E2D1040F220CD1BC005F310C /* UIRefreshControl+Extensions.swift in Sources */,
