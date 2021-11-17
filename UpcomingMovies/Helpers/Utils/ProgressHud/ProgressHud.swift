@@ -28,15 +28,20 @@ class DefaultHudConfiguration: HudConfigurationProtocol {
 
 class ProgressHud {
 
+    enum Mode {
+        case activityIndicator
+    }
+
     static let shared = ProgressHud()
 
     private var hudContainerView: HudContainerView?
 
     init() {}
 
-    func show(with configuration: HudConfigurationProtocol, completion: ((Bool) -> Void)? = nil) {
+    func show(with configuration: HudConfigurationProtocol = DefaultHudConfiguration.shared,
+              completion: ((Bool) -> Void)? = nil) {
         if hudContainerView != nil { hideHudContainerView() }
-        hudContainerView = HudContainerView(configuration: configuration)
+        hudContainerView = HudContainerView(configuration: configuration, mode: .activityIndicator)
 
         guard let hudContainerView = hudContainerView else { return }
         hudContainerView.alpha = 0.0
@@ -82,10 +87,14 @@ class HudContainerView: UIView {
     }()
 
     private let configuration: HudConfigurationProtocol
+    private let mode: ProgressHud.Mode
 
-    init(configuration: HudConfigurationProtocol) {
+    init(configuration: HudConfigurationProtocol, mode: ProgressHud.Mode) {
         self.configuration = configuration
+        self.mode = mode
         super.init(frame: UIScreen.main.bounds)
+
+        setupUI()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -99,6 +108,14 @@ class HudContainerView: UIView {
         hudContentView.centerInSuperview()
         hudContentView.constraintHeight(constant: 120)
         hudContentView.constraintWidth(constant: 120)
+
+        switch mode {
+        case .activityIndicator:
+            let indicatorView = HudActivityIndicatorView()
+            indicatorView.translatesAutoresizingMaskIntoConstraints = false
+            hudContentView.addSubview(indicatorView)
+            indicatorView.fillSuperview()
+        }
     }
 
 }
@@ -121,11 +138,15 @@ class HudActivityIndicatorView: UIView {
         activityIndicatorView.style = .whiteLarge
         activityIndicatorView.color = .darkGray
         activityIndicatorView.startAnimating()
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicatorView
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        addSubview(activityIndicatorView)
+        activityIndicatorView.centerInSuperview()
     }
 
     required init?(coder aDecoder: NSCoder) {
