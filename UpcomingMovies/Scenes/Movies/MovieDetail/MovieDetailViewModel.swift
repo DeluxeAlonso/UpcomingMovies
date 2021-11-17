@@ -165,7 +165,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         let newFavoriteValue = !isFavorite.value
         ProgressHud.shared.show()
         interactor.markMovieAsFavorite(movieId: id, favorite: newFavoriteValue, completion: { result in
-            ProgressHud.shared.hide(with: 0.1)
+            ProgressHud.shared.dismiss(with: 0.1)
             switch result {
             case .success:
                 self.isFavorite.value = newFavoriteValue

@@ -10,10 +10,6 @@ import UIKit
 
 class ProgressHud {
 
-    enum Mode {
-        case activityIndicator
-    }
-
     static let shared = ProgressHud()
 
     private var hudContainerView: HudContainerView?
@@ -22,9 +18,10 @@ class ProgressHud {
 
     func show(with configuration: HudConfigurationProtocol = DefaultHudConfiguration.shared,
               completion: ((Bool) -> Void)? = nil) {
-        if hudContainerView != nil { hideHudContainerView() }
-        hudContainerView = HudContainerView(configuration: configuration, mode: .activityIndicator)
+        // If hud is already being shown we dismiss it.
+        if hudContainerView != nil { dismiss() }
 
+        hudContainerView = HudContainerView(configuration: configuration)
         guard let hudContainerView = hudContainerView else { return }
         hudContainerView.alpha = 0.0
 
@@ -38,13 +35,13 @@ class ProgressHud {
         })
     }
 
-    func hideHudContainerView() {
+    func dismiss() {
         self.hudContainerView?.alpha = 0.0
         self.hudContainerView?.removeFromSuperview()
         self.hudContainerView = nil
     }
 
-    func hide(with animationDuration: TimeInterval) {
+    func dismiss(with animationDuration: TimeInterval) {
         UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseOut], animations: {
             self.hudContainerView?.alpha = 0.0
         }, completion: { _ in
@@ -67,11 +64,9 @@ class HudContainerView: UIView {
     }()
 
     private let configuration: HudConfigurationProtocol
-    private let mode: ProgressHud.Mode
 
-    init(configuration: HudConfigurationProtocol, mode: ProgressHud.Mode) {
+    init(configuration: HudConfigurationProtocol) {
         self.configuration = configuration
-        self.mode = mode
         super.init(frame: UIScreen.main.bounds)
 
         setupUI()
@@ -89,13 +84,10 @@ class HudContainerView: UIView {
         hudContentView.constraintHeight(constant: 120)
         hudContentView.constraintWidth(constant: 120)
 
-        switch mode {
-        case .activityIndicator:
-            let indicatorView = HudActivityIndicatorView()
-            indicatorView.translatesAutoresizingMaskIntoConstraints = false
-            hudContentView.addSubview(indicatorView)
-            indicatorView.fillSuperview()
-        }
+        let indicatorView = HudActivityIndicatorView()
+        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+        hudContentView.addSubview(indicatorView)
+        indicatorView.fillSuperview()
     }
 
 }
