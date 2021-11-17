@@ -54,8 +54,8 @@ class ProgressHud {
 
 class HudContainerView: UIView {
 
-    private lazy var hudContentView: UIView = {
-        let view = UIView()
+    private lazy var hudContentView: UIVisualEffectView = {
+        let view = UIVisualEffectView(effect: UIBlurEffect(style: .light))
         view.clipsToBounds = true
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
@@ -86,7 +86,7 @@ class HudContainerView: UIView {
 
         let indicatorView = HudActivityIndicatorView()
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
-        hudContentView.addSubview(indicatorView)
+        hudContentView.contentView.addSubview(indicatorView)
         indicatorView.fillSuperview()
     }
 
