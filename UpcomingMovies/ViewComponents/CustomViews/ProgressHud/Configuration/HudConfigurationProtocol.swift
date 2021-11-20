@@ -17,4 +17,7 @@ protocol HudConfigurationProtocol {
     var textColor: UIColor { get }
     var textFont: UIFont { get }
 
+    var preferredHudContentWidth: CGFloat { get }
+    var preferredHudContentHeight: CGFloat { get }
+
 }
