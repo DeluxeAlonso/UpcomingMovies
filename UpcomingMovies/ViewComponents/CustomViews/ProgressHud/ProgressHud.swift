@@ -28,7 +28,9 @@ class ProgressHud {
         let mainWindow = UIApplication.shared.windows.first ?? UIWindow()
         mainWindow.addSubview(hudContainerView)
 
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: configuration.presentationAnimationDuration,
+                       delay: 0.0,
+                       options: [.curveEaseOut], animations: {
             hudContainerView.alpha = 1.0
         }, completion: { completed in
             completion?(completed)

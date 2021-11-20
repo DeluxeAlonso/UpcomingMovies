@@ -28,4 +28,6 @@ class DefaultHudConfiguration: HudConfigurationProtocol {
 
     var preferredHudContentHeight: CGFloat = 120.0
 
+    var presentationAnimationDuration: CGFloat = 0.5
+
 }
