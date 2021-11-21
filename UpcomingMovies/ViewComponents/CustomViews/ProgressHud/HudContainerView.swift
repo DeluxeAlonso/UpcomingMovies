@@ -39,8 +39,8 @@ class HudContainerView: UIView {
 
         addSubview(hudContentView)
         hudContentView.centerInSuperview()
-        hudContentView.constraintHeight(constant: 120)
-        hudContentView.constraintWidth(constant: 120)
+        hudContentView.constraintHeight(constant: configuration.preferredHudContentHeight)
+        hudContentView.constraintWidth(constant: configuration.preferredHudContentWidth)
 
         let indicatorView = HudActivityIndicatorView()
         indicatorView.translatesAutoresizingMaskIntoConstraints = false

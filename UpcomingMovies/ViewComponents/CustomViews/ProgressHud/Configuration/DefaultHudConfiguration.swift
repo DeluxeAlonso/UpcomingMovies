@@ -24,4 +24,10 @@ class DefaultHudConfiguration: HudConfigurationProtocol {
 
     var textFont: UIFont = UIFont.boldSystemFont(ofSize: 24)
 
+    var preferredHudContentWidth: CGFloat = 120.0
+
+    var preferredHudContentHeight: CGFloat = 120.0
+
+    var presentationAnimationDuration: CGFloat = 0.5
+
 }
