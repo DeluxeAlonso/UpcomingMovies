@@ -17,8 +17,10 @@ protocol HudConfigurationProtocol {
     var textColor: UIColor { get }
     var textFont: UIFont { get }
 
-    var preferredHudContentWidth: CGFloat { get }
-    var preferredHudContentHeight: CGFloat { get }
+    var hudContentPreferredWidth: CGFloat { get }
+    var hudContentPreferredHeight: CGFloat { get }
+
+    var hudContentCornerRadius: CGFloat { get }
 
     var presentationAnimationDuration: CGFloat { get }
 

@@ -36,11 +36,12 @@ class HudContainerView: UIView {
         backgroundColor = configuration.backgroundColor
 
         hudContentView.backgroundColor = configuration.hudColor
+        hudContentView.layer.cornerRadius = configuration.hudContentCornerRadius
 
         addSubview(hudContentView)
         hudContentView.centerInSuperview()
-        hudContentView.constraintHeight(constant: configuration.preferredHudContentHeight)
-        hudContentView.constraintWidth(constant: configuration.preferredHudContentWidth)
+        hudContentView.constraintHeight(constant: configuration.hudContentPreferredHeight)
+        hudContentView.constraintWidth(constant: configuration.hudContentPreferredWidth)
 
         let indicatorView = HudActivityIndicatorView()
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
