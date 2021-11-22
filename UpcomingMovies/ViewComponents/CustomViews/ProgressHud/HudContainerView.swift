@@ -36,6 +36,7 @@ class HudContainerView: UIView {
         backgroundColor = configuration.backgroundColor
 
         hudContentView.backgroundColor = configuration.hudColor
+        hudContentView.layer.cornerRadius = configuration.hudContentCornerRadius
 
         addSubview(hudContentView)
         hudContentView.centerInSuperview()

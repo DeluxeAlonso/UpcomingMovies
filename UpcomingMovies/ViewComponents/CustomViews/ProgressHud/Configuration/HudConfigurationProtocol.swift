@@ -20,6 +20,8 @@ protocol HudConfigurationProtocol {
     var preferredHudContentWidth: CGFloat { get }
     var preferredHudContentHeight: CGFloat { get }
 
+    var hudContentCornerRadius: CGFloat { get }
+
     var presentationAnimationDuration: CGFloat { get }
 
 }
