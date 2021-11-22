@@ -24,9 +24,9 @@ class DefaultHudConfiguration: HudConfigurationProtocol {
 
     var textFont: UIFont = UIFont.boldSystemFont(ofSize: 24)
 
-    var preferredHudContentWidth: CGFloat = 120.0
+    var hudContentPreferredWidth: CGFloat = 120.0
 
-    var preferredHudContentHeight: CGFloat = 120.0
+    var hudContentPreferredHeight: CGFloat = 120.0
 
     var hudContentCornerRadius: CGFloat = 10.0
 
