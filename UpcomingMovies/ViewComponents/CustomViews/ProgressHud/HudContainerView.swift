@@ -13,7 +13,6 @@ class HudContainerView: UIView {
     private lazy var hudContentView: UIVisualEffectView = {
         let view = UIVisualEffectView(effect: UIBlurEffect(style: .light))
         view.clipsToBounds = true
-        view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view

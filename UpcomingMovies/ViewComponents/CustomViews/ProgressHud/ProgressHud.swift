@@ -37,11 +37,7 @@ class ProgressHud {
         })
     }
 
-    func dismiss() {
-        dismiss(with: 0.0)
-    }
-
-    func dismiss(with animationDuration: TimeInterval) {
+    func dismiss(with animationDuration: TimeInterval = 0.0) {
         UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseOut], animations: {
             self.hudContainerView?.alpha = 0.0
         }, completion: { _ in
