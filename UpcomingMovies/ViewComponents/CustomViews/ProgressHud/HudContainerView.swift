@@ -42,7 +42,7 @@ class HudContainerView: UIView {
         hudContentView.constraintHeight(constant: configuration.hudContentPreferredHeight)
         hudContentView.constraintWidth(constant: configuration.hudContentPreferredWidth)
 
-        let indicatorView = HudActivityIndicatorView()
+        let indicatorView = HudActivityIndicatorView(configuration: configuration)
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
         hudContentView.contentView.addSubview(indicatorView)
         indicatorView.fillSuperview()
@@ -54,22 +54,30 @@ class HudActivityIndicatorView: UIView {
 
     private lazy var activityIndicatorView: UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.style = .whiteLarge
-        activityIndicatorView.color = .darkGray
         activityIndicatorView.startAnimating()
         activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicatorView
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private let configuration: HudConfigurationProtocol
 
-        addSubview(activityIndicatorView)
-        activityIndicatorView.centerInSuperview()
+    init(configuration: HudConfigurationProtocol) {
+        self.configuration = configuration
+        super.init(frame: UIScreen.main.bounds)
+
+        setupUI()
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError()
+    }
+
+    private func setupUI() {
+        activityIndicatorView.color = configuration.activityIndicatorColor
+        activityIndicatorView.style = configuration.activityIndicatorStyle
+
+        addSubview(activityIndicatorView)
+        activityIndicatorView.centerInSuperview()
     }
 
 }
