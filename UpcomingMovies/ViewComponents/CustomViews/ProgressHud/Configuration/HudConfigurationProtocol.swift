@@ -13,6 +13,7 @@ protocol HudConfigurationProtocol {
     var backgroundColor: UIColor { get }
     var hudColor: UIColor { get }
     var activityIndicatorColor: UIColor { get }
+    var activityIndicatorStyle: UIActivityIndicatorView.Style { get }
 
     var textColor: UIColor { get }
     var textFont: UIFont { get }

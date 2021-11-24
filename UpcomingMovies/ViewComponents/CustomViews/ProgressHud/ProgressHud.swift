@@ -10,6 +10,11 @@ import UIKit
 
 class ProgressHud {
 
+    enum Mode {
+        case activityIndicator
+        case activityIndicatorWithText(text: String)
+    }
+
     static let shared = ProgressHud()
 
     private var hudContainerView: HudContainerView?
