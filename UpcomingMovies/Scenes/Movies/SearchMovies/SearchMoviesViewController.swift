@@ -67,14 +67,16 @@ class SearchMoviesViewController: UIViewController, Storyboarded {
 // MARK: - TabBarScrollable
 
 extension SearchMoviesViewController: TabBarScrollable {
-    
+
     func handleTabBarSelection() {
-        let tableView = searchOptionsContainerView.tableView
-        if tableView?.contentOffset.y != 0 {
-            searchOptionsContainerView.tableView.scrollToTop(animated: true)
+        guard let tableView = searchOptionsContainerView.tableView else { return}
+        if tableView.isScrolledToTop() {
+            searchController.isActive = true
+        } else {
+           tableView.scrollToTop(animated: true)
         }
     }
-    
+
 }
 
 // MARK: - UISearchResultsUpdating
