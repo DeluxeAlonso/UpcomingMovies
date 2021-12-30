@@ -69,7 +69,10 @@ class SearchMoviesViewController: UIViewController, Storyboarded {
 extension SearchMoviesViewController: TabBarScrollable {
     
     func handleTabBarSelection() {
-        searchOptionsContainerView.tableView.scrollToTop(animated: true)
+        let tableView = searchOptionsContainerView.tableView
+        if tableView?.contentOffset.y != 0 {
+            searchOptionsContainerView.tableView.scrollToTop(animated: true)
+        }
     }
     
 }
