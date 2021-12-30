@@ -53,7 +53,7 @@ extension MainTabBarController: UITabBarControllerDelegate {
                 return
         }
         guard let navigationController = viewController as? UINavigationController,
-            let tabBarScrollable = navigationController.topViewController as? TabBarScrollable else { return }
+            let tabBarScrollable = navigationController.topViewController as? TabBarSelectable else { return }
         tabBarScrollable.handleTabBarSelection()
     }
     

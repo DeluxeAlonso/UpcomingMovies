@@ -66,7 +66,7 @@ class SearchMoviesViewController: UIViewController, Storyboarded {
 
 // MARK: - TabBarScrollable
 
-extension SearchMoviesViewController: TabBarScrollable {
+extension SearchMoviesViewController: TabBarSelectable {
 
     func handleTabBarSelection() {
         guard let tableView = searchOptionsContainerView.tableView else { return}
