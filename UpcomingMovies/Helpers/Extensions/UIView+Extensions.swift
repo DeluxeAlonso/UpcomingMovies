@@ -9,14 +9,14 @@
 import UIKit
 
 extension UIView {
-    
+
     /**
      * Frame of the view relative to another view.
      */
     func absoluteFrame(relativeTo view: UIView?) -> CGRect? {
         return convert(bounds, to: view)
     }
-    
+
     /**
      * Show a single shadow around the border of the view.
      */
@@ -26,7 +26,7 @@ extension UIView {
         self.layer.shadowRadius = shadowRadious
         self.layer.shadowOpacity = 0.5
     }
-    
+
     func rotate(_ toValue: CGFloat, duration: CFTimeInterval = 0.2) {
         guard duration != .zero else {
             self.layer.removeAllAnimations()
@@ -40,7 +40,7 @@ extension UIView {
         animation.fillMode = CAMediaTimingFillMode.forwards
         self.layer.add(animation, forKey: nil)
     }
-    
+
     /**
      * Fade in animation.
      */
@@ -49,7 +49,7 @@ extension UIView {
         self.alpha = alpha
       })
     }
-    
+
     /**
      * Fade out animation.
      */
@@ -58,9 +58,9 @@ extension UIView {
         self.alpha = 0.0
       })
     }
-    
+
     // MARK: - Overlay
-    
+
     func addOverlay(with backgroundColor: UIColor = .black, and alpha: CGFloat = 0.35) {
         let overlayView = UIView()
         overlayView.backgroundColor = backgroundColor
@@ -69,5 +69,5 @@ extension UIView {
         addSubview(overlayView)
         overlayView.fillSuperview()
     }
-    
+
 }

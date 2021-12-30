@@ -14,7 +14,7 @@ import XCTest
 class UpcomingMoviesTests: XCTestCase {
 
     typealias MoviesViewState = SimpleViewState<UpcomingMoviesDomain.Movie>
-    
+
     private var mockInteractor: MockUpcomingMoviesInteractor!
     private var viewModelToTest: UpcomingMoviesViewModelProtocol!
 
@@ -29,7 +29,7 @@ class UpcomingMoviesTests: XCTestCase {
         viewModelToTest = nil
         try super.tearDownWithError()
     }
-    
+
     func testGetMoviesEmpty() {
         // Arrange
         let moviesToTest: [UpcomingMoviesDomain.Movie] = []
@@ -44,7 +44,7 @@ class UpcomingMoviesTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetMoviesPopulated() {
         // Arrange
         let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
@@ -63,7 +63,7 @@ class UpcomingMoviesTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetMoviesPaging() {
         // Arrange
         let moviestoTest = [Movie.with(id: 1), Movie.with(id: 2)]
@@ -78,7 +78,7 @@ class UpcomingMoviesTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetMoviesError() {
         // Arrange
         let errorToTest = APIError.badRequest
@@ -93,7 +93,7 @@ class UpcomingMoviesTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testUpcomingMovieCellPosterURL() {
         // Arrange
         let cellViewModel = UpcomingMovieCellViewModel(Movie.with())
@@ -102,7 +102,7 @@ class UpcomingMoviesTests: XCTestCase {
         // Assert
         XCTAssertEqual(posterURL, URL(string: "https://image.tmdb.org/t/p/w185/poster.jpg"))
     }
-    
+
     func testUpcomingMovieCellBackdropURL() {
         // Arrange
         let cellViewModel = UpcomingMovieCellViewModel(Movie.with())

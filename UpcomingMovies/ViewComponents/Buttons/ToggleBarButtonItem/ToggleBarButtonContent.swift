@@ -7,11 +7,11 @@
 //
 
 struct ToggleBarButtonItemContent: ToggleBarButtonItemContentProtocol {
-    
+
     let display: ToggleBarButtonItemDisplay
     let accessibilityLabel: String?
     let accessibilityHint: String?
-    
+
     init(display: ToggleBarButtonItemDisplay,
          accessibilityLabel: String? = nil,
          accessibilityHint: String? = nil) {
@@ -19,5 +19,5 @@ struct ToggleBarButtonItemContent: ToggleBarButtonItemContentProtocol {
         self.accessibilityLabel = accessibilityLabel
         self.accessibilityHint = accessibilityHint
     }
-    
+
 }

@@ -9,9 +9,9 @@ import XCTest
 @testable import NetworkInfrastructure
 
 class MovieCreditsTests: XCTestCase {
-    
+
     // MARK: - Cast tests
-    
+
     func testMissingIdFromCastResponse() throws {
         // Arrange
         let dataResponse = MockResponse.cast.dataResponse
@@ -20,7 +20,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertThrowsError(try JSONDecoder().decode(Cast.self, from: jsonDataToTest))
     }
-    
+
     func testMissingCharacterFromCastResponse() throws {
         // Arrange
         let dataResponse = MockResponse.cast.dataResponse
@@ -29,7 +29,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertThrowsError(try JSONDecoder().decode(Cast.self, from: jsonDataToTest))
     }
-    
+
     func testMissingNameFromCastResponse() throws {
         // Arrange
         let dataResponse = MockResponse.cast.dataResponse
@@ -38,7 +38,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertThrowsError(try JSONDecoder().decode(Cast.self, from: jsonDataToTest))
     }
-    
+
     func testIdFromCastResponse() throws {
         // Arrange
         let idToTest = 123456
@@ -49,7 +49,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertEqual(decodedCast.id, idToTest)
     }
-    
+
     func testCharacterFromCastResponse() throws {
         // Arrange
         let characterToTest = "Hero"
@@ -60,7 +60,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertEqual(decodedCast.character, characterToTest)
     }
-    
+
     func testNameFromCastResponse() throws {
         // Arrange
         let nameToTest = "name"
@@ -71,9 +71,9 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertEqual(decodedCast.name, nameToTest)
     }
-    
+
     // MARK: - Crew tests
-    
+
     func testMissingIdFromCrewResponse() throws {
         // Arrange
         let dataResponse = MockResponse.cast.dataResponse
@@ -82,7 +82,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertThrowsError(try JSONDecoder().decode(Crew.self, from: jsonDataToTest))
     }
-    
+
     func testMissingJobFromCrewResponse() throws {
         // Arrange
         let dataResponse = MockResponse.cast.dataResponse
@@ -91,7 +91,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertThrowsError(try JSONDecoder().decode(Crew.self, from: jsonDataToTest))
     }
-    
+
     func testMissingNameFromCrewResponse() throws {
         // Arrange
         let dataResponse = MockResponse.cast.dataResponse
@@ -100,7 +100,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertThrowsError(try JSONDecoder().decode(Crew.self, from: jsonDataToTest))
     }
-    
+
     func testIdFromCrewResponse() throws {
         // Arrange
         let idToTest = 123456
@@ -111,7 +111,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertEqual(decodedCrew.id, idToTest)
     }
-    
+
     func testJobFromCrewResponse() throws {
         // Arrange
         let jobToTest = "Director"
@@ -122,7 +122,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertEqual(decodedCrew.job, jobToTest)
     }
-    
+
     func testNameFromCrewResponse() throws {
         // Arrange
         let nameToTest = "name"
@@ -133,5 +133,5 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertEqual(decodedCrew.name, nameToTest)
     }
-    
+
 }

@@ -16,7 +16,7 @@ final class VerticalFlowLayout: UICollectionViewFlowLayout {
     private let minColumns: Int
 
     // MARK: - Initializers
-    
+
     init(preferredWidth: CGFloat,
          preferredHeight: CGFloat,
          margin: CGFloat = 16.0,
@@ -29,7 +29,7 @@ final class VerticalFlowLayout: UICollectionViewFlowLayout {
 
         sectionInsetReference = .fromSafeArea
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }

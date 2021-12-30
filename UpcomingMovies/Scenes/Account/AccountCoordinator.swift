@@ -9,14 +9,14 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
-    
+final class AccountCoordinator: NSObject, AccountCoordinatorProtocol, RootCoordinator {
+
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
 
     // MARK: - Initializers
-    
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
@@ -26,49 +26,48 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
     var rootIdentifier: String {
         return RootCoordinatorIdentifier.account
     }
-    
+
     func start() {
         let viewController = AccountViewController.instantiate()
-        
+
         viewController.viewModel = DIContainer.shared.resolve()
         viewController.coordinator = self
-        
+
+        navigationController.delegate = self
         navigationController.pushViewController(viewController, animated: true)
     }
-    
-    @discardableResult
+
     func embedSignInViewController(on parentViewController: SignInViewControllerDelegate) -> SignInViewController {
         navigationController.setNavigationBarHidden(true, animated: true)
-        
+
         let viewController = SignInViewController.instantiate()
         viewController.delegate = parentViewController
-        
+
         parentViewController.add(asChildViewController: viewController)
-        
+
         return viewController
     }
-    
-    @discardableResult
+
     func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate,
                                     for user: User?) -> ProfileViewController {
         navigationController.setNavigationBarHidden(false, animated: true)
-        
+
         let viewController = ProfileViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(argument: user)
         viewController.delegate = parentViewController
-        
+
         parentViewController.add(asChildViewController: viewController)
-        
+
         return viewController
     }
-    
+
     func removeChildViewController<T: UIViewController>(_ viewController: inout T?,
                                                         from parentViewController: UIViewController) {
         parentViewController.remove(asChildViewController: viewController)
         viewController = nil
     }
-    
+
     func showAuthPermission(for authPermissionURL: URL?,
                             and authPermissionDelegate: AuthPermissionViewControllerDelegate) {
         let navigationController = UINavigationController()
@@ -78,7 +77,7 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
         coordinator.authPermissionDelegate = authPermissionDelegate
         coordinator.presentingViewController = self.navigationController.topViewController
         coordinator.parentCoordinator = unwrappedParentCoordinator
-        
+
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
@@ -98,23 +97,23 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
             break
         }
     }
-    
+
     // MARK: - Saved Collection Options
 
     private func showFavoritesSavedMovies() {
         let coordinator = FavoritesSavedMoviesCoordinator(navigationController: navigationController)
-        
+
         coordinator.parentCoordinator = unwrappedParentCoordinator
-        
+
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
-    
+
     private func showWatchlistSavedMovies() {
         let coordinator = WatchlistSavedMoviesCoordinator(navigationController: navigationController)
-        
+
         coordinator.parentCoordinator = unwrappedParentCoordinator
-        
+
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
@@ -129,16 +128,34 @@ final class AccountCoordinator: AccountCoordinatorProtocol, RootCoordinator {
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
-    
+
     // MARK: - Profile Group Options
-    
+
     private func showCustomLists() {
         let coordinator = CustomListsCoordinator(navigationController: navigationController)
 
         coordinator.parentCoordinator = unwrappedParentCoordinator
-        
+
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
     }
-    
+
 }
+
+// MARK: - UINavigationControllerDelegate
+
+ extension AccountCoordinator: UINavigationControllerDelegate {
+
+     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+         guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
+             return
+         }
+         // Check whether our view controller array already contains that view controller.
+         // If it does it means we’re pushing a different view controller on top rather than popping it, so exit.
+         if navigationController.viewControllers.contains(fromViewController) {
+             return
+         }
+         unwrappedParentCoordinator.childDidFinish()
+     }
+
+ }

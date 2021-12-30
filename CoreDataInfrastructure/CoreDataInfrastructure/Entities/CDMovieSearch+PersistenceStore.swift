@@ -7,7 +7,7 @@
 //
 
 extension PersistenceStore where Entity == CDMovieSearch {
-    
+
     func saveMovieSearch(with searchText: String, completion: ((Bool) -> Void)? = nil) {
         managedObjectContext.performChanges {
             _ = CDMovieSearch.insert(into: self.managedObjectContext,
@@ -19,5 +19,5 @@ extension PersistenceStore where Entity == CDMovieSearch {
     func findAll() -> [CDMovieSearch] {
         return CDMovieSearch.fetch(in: managedObjectContext)
     }
-    
+
 }

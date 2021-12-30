@@ -10,12 +10,12 @@
 @testable import UpcomingMoviesDomain
 
 class MockProfileInteractor: ProfileInteractorProtocol {
-    
+
     var getAccountDetailResult: Result<User, Error>?
     func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void) {
         completion(getAccountDetailResult!)
     }
-    
+
 }
 
 class MockProfileViewFactory: ProfileFactoryProtocol {
@@ -40,5 +40,5 @@ class MockProfileViewFactory: ProfileFactoryProtocol {
     }
 
     var sections: [ProfileSection] = []
-    
+
 }

@@ -9,47 +9,47 @@
 import UIKit
 
 class SearchMoviesViewController: UIViewController, Storyboarded {
-    
+
     @IBOutlet private weak var containerView: UIView!
-    
+
     static var storyboardName: String = "SearchMovies"
-    
+
     private var searchController: DefaultSearchController!
     private var searchOptionsContainerView: SearchOptionsViewController!
-    
+
     weak var coordinator: SearchMoviesCoordinatorProtocol?
-    
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
-    
+
     // MARK: - Private
-    
+
     private func setupUI() {
         title = LocalizedStrings.searchMoviesTabBarTitle()
-        
+
         setupNavigationBar()
         setupContainerView()
         setupSearchController()
     }
-    
+
     private func setupNavigationBar() {
         navigationItem.title = LocalizedStrings.searchMoviesTabBarTitle()
         navigationItem.hidesSearchBarWhenScrolling = false
     }
-    
+
     private func setupContainerView() {
         guard let coordinator = coordinator else { return }
         searchOptionsContainerView = coordinator.embedSearchOptions(on: self, in: containerView)
         searchOptionsContainerView.delegate = self
     }
-    
+
     private func setupSearchController() {
         guard let coordinator = coordinator else { return }
-        
+
         searchController = coordinator.embedSearchController(on: self)
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
@@ -57,11 +57,11 @@ class SearchMoviesViewController: UIViewController, Storyboarded {
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
-    
+
     private func startSearch(_ resultController: SearchMoviesResultController, withSearchText searchText: String) {
         resultController.startSearch(withSearchText: searchText)
     }
-    
+
 }
 
 // MARK: - TabBarScrollable
@@ -82,7 +82,7 @@ extension SearchMoviesViewController: TabBarSelectable {
 // MARK: - UISearchResultsUpdating
 
 extension SearchMoviesViewController: UISearchResultsUpdating {
-    
+
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchResultsController = searchController.searchResultsController as? SearchMoviesResultController else {
             return
@@ -93,13 +93,13 @@ extension SearchMoviesViewController: UISearchResultsUpdating {
             searchResultsController.resetSearch()
         }
     }
-    
+
 }
 
 // MARK: - UISearchBarDelegate
 
 extension SearchMoviesViewController: UISearchBarDelegate {
-    
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text,
             !searchText.isEmpty,
@@ -108,14 +108,14 @@ extension SearchMoviesViewController: UISearchBarDelegate {
         }
         startSearch(searchResultsController, withSearchText: searchText)
     }
-    
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         guard let searchResultsController = searchController.searchResultsController as? SearchMoviesResultController else {
             return
         }
         searchResultsController.resetSearch()
     }
-    
+
 }
 
 // MARK: - SearchMoviesResultControllerDelegate
@@ -132,26 +132,26 @@ extension SearchMoviesViewController: SearchMoviesResultControllerDelegate {
         searchController.searchBar.endEditing(true)
         startSearch(searchResultsController, withSearchText: searchText)
     }
-    
+
 }
 
 // MARK: - SearchOptionsViewControllerDelegate
 
 extension SearchMoviesViewController: SearchOptionsViewControllerDelegate {
-    
+
     func searchOptionsViewController(_ searchOptionsViewController: SearchOptionsViewController,
                                      didSelectDefaultSearchOption option: DefaultSearchOption) {
         coordinator?.showDefaultSearchOption(option)
     }
-    
+
     func searchOptionsViewController(_ searchOptionsViewController: SearchOptionsViewController,
                                      didSelectMovieGenreWithId genreId: Int, andGenreName genreName: String) {
         coordinator?.showMoviesByGenre(genreId, genreName: genreName)
     }
-    
+
     func searchOptionsViewController(_ searchOptionsViewController: SearchOptionsViewController,
                                      didSelectRecentlyVisitedMovie id: Int, title: String) {
         coordinator?.showMovieDetail(for: id, and: title)
     }
-    
+
 }

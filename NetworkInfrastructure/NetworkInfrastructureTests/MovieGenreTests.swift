@@ -9,7 +9,7 @@ import XCTest
 @testable import NetworkInfrastructure
 
 class MovieGenreTests: XCTestCase {
-    
+
     func testMissingIdFromResponse() throws {
         // Arrange
         let dataResponse = MockResponse.genre.dataResponse
@@ -18,7 +18,7 @@ class MovieGenreTests: XCTestCase {
         // Assert
         XCTAssertThrowsError(try JSONDecoder().decode(Genre.self, from: jsonDataToTest))
     }
-    
+
     func testMissingNameFromResponse() throws {
         // Arrange
         let dataResponse = MockResponse.genre.dataResponse
@@ -27,7 +27,7 @@ class MovieGenreTests: XCTestCase {
         // Assert
         XCTAssertThrowsError(try JSONDecoder().decode(Genre.self, from: jsonDataToTest))
     }
-    
+
     func testIdFromResponse() throws {
         // Arrange
         let idToTest = 123456
@@ -38,7 +38,7 @@ class MovieGenreTests: XCTestCase {
         // Assert
         XCTAssertEqual(decodedGenre.id, idToTest)
     }
-    
+
     func testNameFromResponse() throws {
         // Arrange
         let nameToTest = "name"
@@ -49,5 +49,5 @@ class MovieGenreTests: XCTestCase {
         // Assert
         XCTAssertEqual(decodedGenre.name, nameToTest)
     }
-    
+
 }

@@ -12,7 +12,7 @@ import XCTest
 @testable import NetworkInfrastructure
 
 class MovieVideosTests: XCTestCase {
-    
+
     private var mockInteractor: MockMovieVideosInteractor!
     private var viewModelToTest: MovieVideosViewModelProtocol!
 
@@ -30,14 +30,14 @@ class MovieVideosTests: XCTestCase {
         try super.tearDownWithError()
 
     }
-    
+
     func testMovieVideosTitle() {
         // Act
         let title = viewModelToTest.movieTitle
         // Assert
         XCTAssertEqual(title, "Movie Test")
     }
-    
+
     func testGetVideosPopulated() {
         // Arrange
         let videostoTest = [Video.with(id: "1"), Video.with(id: "2")]
@@ -52,7 +52,7 @@ class MovieVideosTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetVideosEmpty() {
         // Arrange
         let expectation = XCTestExpectation(description: "Should get empty state")
@@ -66,7 +66,7 @@ class MovieVideosTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetVideosError() {
         // Arrange
         let expectation = XCTestExpectation(description: "Should get error state")
@@ -80,7 +80,7 @@ class MovieVideosTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testMovieVideoCellName() {
         // Arrange
         let videoNametoTest = "Video1"
@@ -90,7 +90,7 @@ class MovieVideosTests: XCTestCase {
         // Assert
         XCTAssertEqual(name, videoNametoTest)
     }
-    
+
     func testMovieVideoCellKey() {
         // Arrange
         let videoKeytoTest = "ABC"
@@ -100,7 +100,7 @@ class MovieVideosTests: XCTestCase {
         // Assert
         XCTAssertEqual(key, videoKeytoTest)
     }
-    
+
     func testMovieVideoCellThumbnailURL() {
         // Arrange
         let cellViewModel = MovieVideoCellViewModel(Video.with())

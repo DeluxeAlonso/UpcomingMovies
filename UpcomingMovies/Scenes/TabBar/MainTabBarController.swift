@@ -9,7 +9,7 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-    
+
     private var currentSelectedItemIndex: Int!
     private var coordinators: [Coordinator]!
 
@@ -44,7 +44,7 @@ class MainTabBarController: UITabBarController {
 // MARK: - UITabBarControllerDelegate
 
 extension MainTabBarController: UITabBarControllerDelegate {
-    
+
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         guard let currentTabBarIndex = viewControllers?.firstIndex(of: viewController),
             currentTabBarIndex == selectedIndex,
@@ -56,5 +56,5 @@ extension MainTabBarController: UITabBarControllerDelegate {
             let tabBarScrollable = navigationController.topViewController as? TabBarSelectable else { return }
         tabBarScrollable.handleTabBarSelection()
     }
-    
+
 }

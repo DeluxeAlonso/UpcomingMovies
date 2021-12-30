@@ -12,7 +12,7 @@ import XCTest
 @testable import NetworkInfrastructure
 
 class SavedMoviesTests: XCTestCase {
-    
+
     private var mockInteractor: MockSavedMoviesInteractor!
     private var viewModelToTest: SavedMoviesViewModelProtocol!
 
@@ -36,7 +36,7 @@ class SavedMoviesTests: XCTestCase {
         // Assert
         XCTAssertEqual(title, "Test title")
     }
-    
+
     func testGetCollectionListPopulated() {
         // Arrange
         let moviestoTest = [Movie.with(id: 1), Movie.with(id: 2)]
@@ -55,7 +55,7 @@ class SavedMoviesTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetCollectionListPaging() {
         // Arrange
         let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
@@ -70,7 +70,7 @@ class SavedMoviesTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetCollectionListEmpty() {
         // Arrange
         let moviesToTest: [UpcomingMoviesDomain.Movie] = []
@@ -85,7 +85,7 @@ class SavedMoviesTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetCollectionListError() {
         // Arrange
         let errorToTest = APIError.badRequest
@@ -100,7 +100,7 @@ class SavedMoviesTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testMovieCellsCount() {
         // Arrange
         let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
@@ -111,7 +111,7 @@ class SavedMoviesTests: XCTestCase {
         // Assert
         XCTAssertEqual(cellsCount, moviesToTest.count)
     }
-    
+
     func testMovieCellsZeroCount() {
         // Arrange
         let moviesToTest: [UpcomingMoviesDomain.Movie] = []
@@ -122,7 +122,7 @@ class SavedMoviesTests: XCTestCase {
         // Assert
         XCTAssertEqual(cellsCount, .zero)
     }
-    
+
     func testMovieIndex() {
         // Arrange
         let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]

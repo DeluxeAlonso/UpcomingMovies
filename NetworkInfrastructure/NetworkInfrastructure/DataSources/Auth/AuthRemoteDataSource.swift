@@ -10,17 +10,17 @@ import UpcomingMoviesDomain
 import UpcomingMoviesData
 
 final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
-    
+
     private let authClient: AuthClientProtocol
     private let accountClient: AccountClientProtocol
     private let authManager: AuthenticationManager
-    
+
     init(authClient: AuthClientProtocol, accountClient: AccountClientProtocol, authManager: AuthenticationManager = AuthenticationManager.shared) {
         self.authClient = authClient
         self.accountClient = accountClient
         self.authManager = authManager
     }
-    
+
     func getAuthURL(completion: @escaping (Result<URL, Error>) -> Void) {
         let readAccessToken = authManager.readAccessToken
         authClient.getRequestToken(with: readAccessToken) { result in
@@ -35,7 +35,7 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
             }
         }
     }
-    
+
     func signInUser(completion: @escaping (Result<UpcomingMoviesDomain.User, Error>) -> Void) {
         let readAccessToken = authManager.readAccessToken
         guard let requestToken = authManager.requestToken else { return }
@@ -49,7 +49,7 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
             }
         }
     }
-    
+
     private func createSessionId(with accessToken: String,
                                  completion: @escaping (Result<UpcomingMoviesDomain.User, Error>) -> Void) {
         authClient.createSessionId(with: accessToken) { result in
@@ -62,7 +62,7 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
             }
         }
     }
-    
+
     private func getAccountDetails(_ sessionId: String,
                                    completion: @escaping (Result<UpcomingMoviesDomain.User, Error>) -> Void) {
         accountClient.getAccountDetail(with: sessionId) { result in
@@ -76,17 +76,17 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
             }
         }
     }
-    
+
     func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void) {
         authManager.deleteCurrentUser()
         completion(.success(true))
     }
-    
+
     func currentUserId() -> Int? {
         guard let account = authManager.userAccount else { return nil }
         return account.accountId
     }
-    
+
 }
 
 extension AuthRemoteDataSource {

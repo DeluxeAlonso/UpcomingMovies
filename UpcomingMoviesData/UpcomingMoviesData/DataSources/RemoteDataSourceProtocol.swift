@@ -15,5 +15,5 @@ public protocol RemoteDataSourceProtocol {
     func accountDataSource() -> AccountRemoteDataSourceProtocol
     func authDataSource() -> AuthRemoteDataSourceProtocol
     func configurationDataSource() -> ConfigurationRemoteDataSourceProtocol
-    
+
 }

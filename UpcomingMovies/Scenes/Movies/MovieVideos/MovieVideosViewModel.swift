@@ -15,14 +15,14 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol, SimpleViewStateP
 
     private let movieId: Int
     private let interactor: MovieVideosInteractorProtocol
-    
+
     // MARK: - Reactive properties
 
     private(set) var viewState: Bindable<SimpleViewState<Video>> = Bindable(.initial)
     private(set) var startLoading: Bindable<Bool> = Bindable(false)
 
     // MARK: - Computed properties
-    
+
     var videoCells: [MovieVideoCellViewModelProtocol] {
         return videos.map { MovieVideoCellViewModel($0) }
     }
@@ -34,19 +34,19 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol, SimpleViewStateP
     // MARK: - Stored properties
 
     let movieTitle: String
-    
+
     // MARK: - Initializers
-    
+
     init(movieId: Int, movieTitle: String,
          interactor: MovieVideosInteractorProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
-        
+
         self.interactor = interactor
     }
-    
+
     // MARK: - MovieVideosViewModelProtocol
-    
+
     func videoURL(at index: Int) -> URL? {
         let video = videos[index]
         if let url = video.deepLinkURL {

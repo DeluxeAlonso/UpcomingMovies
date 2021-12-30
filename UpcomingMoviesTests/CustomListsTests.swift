@@ -14,7 +14,7 @@ import XCTest
 class CustomListsTests: XCTestCase {
 
     typealias CustomListsState = SimpleViewState<UpcomingMoviesDomain.List>
-    
+
     private var mockInteractor: MockCustomListsInteractor!
     private var viewModelToTest: CustomListsViewModelProtocol!
 
@@ -29,7 +29,7 @@ class CustomListsTests: XCTestCase {
         viewModelToTest = nil
         try super.tearDownWithError()
     }
-    
+
     func testGetCustomListsEmpty() {
         // Arrange
         let customListsToTest: [UpcomingMoviesDomain.List] = []
@@ -44,7 +44,7 @@ class CustomListsTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetCustomListsPopulated() {
         // Arrange
         let customListsToTest: [UpcomingMoviesDomain.List] = [List.with(id: "1"), List.with(id: "2")]
@@ -63,7 +63,7 @@ class CustomListsTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetCustomListsPaging() {
         // Arrange
         let customListsToTest: [UpcomingMoviesDomain.List] = [List.with(id: "1"), List.with(id: "2")]
@@ -78,7 +78,7 @@ class CustomListsTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetCustomListsError() {
         // Arrange
         let errorToTest = APIError.badRequest

@@ -39,7 +39,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertEqual(title, "Movie 1")
     }
-    
+
     func testGetMovieCreditsEmpty() {
         // Arrange
         let expectation = XCTestExpectation(description: "Should get empty state")
@@ -53,7 +53,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetMovieCreditsPopulated() {
         // Arrange
         let expectation = XCTestExpectation(description: "Should get populated state")
@@ -67,7 +67,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testGetMovieCreditsError() {
         // Arrange
         let expectation = XCTestExpectation(description: "Should get error state")
@@ -81,7 +81,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testNumberOfSections() {
         // Arrange
         let sectionsToTest: [MovieCreditsCollapsibleSection] = [
@@ -94,7 +94,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertEqual(numberOfSections, sectionsToTest.count)
     }
-    
+
     func testNumberOfItemsCastSection() {
         // Arrange
         let sectionsToTest: [MovieCreditsCollapsibleSection] = [
@@ -102,7 +102,7 @@ class MovieCreditsTests: XCTestCase {
             MovieCreditsCollapsibleSection(type: .crew, opened: true)
         ]
         mockFactory.sections = sectionsToTest
-        
+
         let castToTest = [Cast.with()]
         let crewToTest = [Crew.with()]
         let movieCreditsToTest = MovieCredits(cast: castToTest, crew: crewToTest)
@@ -113,7 +113,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertEqual(numberOfItems, castToTest.count)
     }
-    
+
     func testNumberOfItemsCrewSection() {
         // Arrange
         let sectionsToTest: [MovieCreditsCollapsibleSection] = [
@@ -121,7 +121,7 @@ class MovieCreditsTests: XCTestCase {
             MovieCreditsCollapsibleSection(type: .crew, opened: true)
         ]
         mockFactory.sections = sectionsToTest
-        
+
         let castToTest = [Cast.with()]
         let crewToTest = [Crew.with()]
         let movieCreditsToTest = MovieCredits(cast: castToTest, crew: crewToTest)
@@ -132,7 +132,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         XCTAssertEqual(numberOfItems, crewToTest.count)
     }
-    
+
     func testToggleClosedSection() {
         // Arrange
         let sectionsToTest: [MovieCreditsCollapsibleSection] = [
@@ -152,7 +152,7 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testToggleOpenedSection() {
         // Arrange
         let sectionsToTest: [MovieCreditsCollapsibleSection] = [
@@ -172,5 +172,5 @@ class MovieCreditsTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
 }

@@ -7,7 +7,7 @@
 //
 
 enum AppShortcutItem: String {
-    
+
     case searchMovies
-    
+
 }

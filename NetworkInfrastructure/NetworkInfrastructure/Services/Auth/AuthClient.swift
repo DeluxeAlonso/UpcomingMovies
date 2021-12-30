@@ -9,15 +9,15 @@
 import Foundation
 
 class AuthClient: APIClient, AuthClientProtocol {
-    
+
     let session: URLSession
 
     // MARK: - Initializers
-    
+
     init(configuration: URLSessionConfiguration) {
         self.session = URLSession(configuration: configuration)
     }
-    
+
     convenience init() {
         let configuration: URLSessionConfiguration = .default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
@@ -26,7 +26,7 @@ class AuthClient: APIClient, AuthClientProtocol {
     }
 
     // MARK: - AuthClientProtocol
-    
+
     func getRequestToken(with readAccessToken: String, completion: @escaping (Result<RequestTokenResult, APIError>) -> Void) {
         fetch(with: AuthProvider.getRequestToken(readAccessToken: readAccessToken).request, decode: { json -> RequestTokenResult? in
             guard let requestToken = json as? RequestTokenResult else { return nil }
@@ -48,5 +48,5 @@ class AuthClient: APIClient, AuthClientProtocol {
             return sessionResult
         }, completion: completion)
     }
-    
+
 }

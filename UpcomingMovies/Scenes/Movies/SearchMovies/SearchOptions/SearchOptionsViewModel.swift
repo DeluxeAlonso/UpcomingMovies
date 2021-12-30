@@ -16,22 +16,22 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     private var interactor: SearchOptionsInteractorProtocol
 
     // MARK: - Reactive properties
-    
+
     let viewState: Bindable<SearchOptionsViewState> = Bindable(.emptyMovieVisits)
-    
+
     var needsContentReload: (() -> Void)?
     var updateVisitedMovies: Bindable<Int?> = Bindable(nil)
-    
+
     var selectedDefaultSearchOption: Bindable<DefaultSearchOption?> = Bindable(nil)
     var selectedMovieGenre: Bindable<(Int?, String?)> = Bindable((nil, nil))
     var selectedRecentlyVisitedMovie: ((Int, String) -> Void)?
 
     // MARK: - Computed properties
-    
+
     var visitedMovieCells: [VisitedMovieCellViewModelProtocol] {
         return movieVisits.map { VisitedMovieCellViewModel(movieVisit: $0) }
     }
-    
+
     var genreCells: [GenreSearchOptionCellViewModelProtocol] {
         return genres.map { GenreSearchOptionCellViewModel(genre: $0) }
     }
@@ -45,20 +45,20 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     private var movieVisits: [MovieVisit] = []
     private var genres: [Genre] = []
     private let defaultSearchOptions: [DefaultSearchOption] = [.popular, .topRated]
-    
+
     // MARK: - Initializers
-    
+
     init(interactor: SearchOptionsInteractorProtocol) {
         self.interactor = interactor
-        
+
         self.interactor.didUpdateMovieVisit = { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.loadVisitedMovies()
         }
     }
-    
+
     // MARK: - SearchOptionsViewModelProtocol
-    
+
     func loadGenres() {
         interactor.getGenres(completion: { [weak self] result in
             guard let strongSelf = self else { return }
@@ -84,30 +84,30 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
             }
         }
     }
-    
+
     func section(at index: Int) -> SearchOptionsSection {
         return viewState.value.sections[index]
     }
-    
+
     func sectionIndex(for section: SearchOptionsSection) -> Int? {
         let sections = viewState.value.sections
         return sections.firstIndex(of: section)
     }
-    
+
     func buildRecentlyVisitedMoviesCell() -> RecentlyVisitedMoviesCellViewModelProtocol {
         return RecentlyVisitedMoviesCellViewModel(visitedMovieCells: visitedMovieCells)
     }
-    
+
     func getDefaultSearchSelection(by index: Int) {
         let defaultSearchOption = defaultSearchOptions[index]
         selectedDefaultSearchOption.value = defaultSearchOption
     }
-    
+
     func getMovieGenreSelection(by index: Int) {
         let selectedGenre = genres[index]
         selectedMovieGenre.value = (selectedGenre.id, selectedGenre.name)
     }
-    
+
     func getRecentlyVisitedMovieSelection(by index: Int) {
         let selectedVisitedMovie = movieVisits[index]
         selectedRecentlyVisitedMovie?(selectedVisitedMovie.id, selectedVisitedMovie.title)
@@ -119,7 +119,6 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
      * Configures the state of the view according to the saved movie visits
      * quantity. Returns true if the state changed and false if not.
      */
-    @discardableResult
     private func configureViewState(movieVisits: [MovieVisit]) -> Bool {
         let oldViewState = viewState.value
         viewState.value = movieVisits.isEmpty ? .emptyMovieVisits : .populatedMovieVisits

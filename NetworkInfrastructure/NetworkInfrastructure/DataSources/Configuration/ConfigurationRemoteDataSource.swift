@@ -10,13 +10,13 @@ import UpcomingMoviesDomain
 import UpcomingMoviesData
 
 final class ConfigurationRemoteDataSource: ConfigurationRemoteDataSourceProtocol {
-    
+
     private let client: ConfigurationClientProtocol
-    
+
     init(client: ConfigurationClientProtocol) {
         self.client = client
     }
-    
+
     func getConfiguration(completion: @escaping (Result<UpcomingMoviesDomain.Configuration, Error>) -> Void) {
         let sortConfigurationResult = SortConfigurationResult(movieSortKeys: [])
         client.getImagesConfiguration { result in
@@ -30,5 +30,5 @@ final class ConfigurationRemoteDataSource: ConfigurationRemoteDataSourceProtocol
             }
         }
     }
-    
+
 }

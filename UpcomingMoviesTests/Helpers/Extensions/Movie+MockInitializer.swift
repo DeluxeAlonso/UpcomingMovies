@@ -9,7 +9,7 @@
 import UpcomingMoviesDomain
 
 extension Movie {
-    
+
     static func with(id: Int = 1,
                      title: String = "Movie 1",
                      genreIds: [Int] = [],
@@ -22,5 +22,5 @@ extension Movie {
                      backdropPath: backdropPath, releaseDate: releaseDate,
                      voteAverage: voteAverage)
     }
-    
+
 }

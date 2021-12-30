@@ -10,13 +10,13 @@ import UpcomingMoviesDomain
 import UpcomingMoviesData
 
 final class GenreRemoteDataSource: GenreRemoteDataSourceProtocol {
-    
+
     private let client: GenreClientProtocol
-    
+
     init(client: GenreClientProtocol) {
         self.client = client
     }
-    
+
     func getAllGenres(completion: @escaping (Result<[UpcomingMoviesDomain.Genre], Error>) -> Void) {
         client.getAllGenres(completion: { result in
             switch result {
@@ -28,5 +28,5 @@ final class GenreRemoteDataSource: GenreRemoteDataSourceProtocol {
             }
         })
     }
-    
+
 }

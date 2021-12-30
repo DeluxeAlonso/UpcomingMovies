@@ -10,49 +10,49 @@ import UIKit
 import UpcomingMoviesDomain
 
 class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
-    
+
     @IBOutlet private weak var tableView: UITableView!
-    
+
     static var storyboardName = "MovieDetail"
-    
+
     private var dataSource: SimpleTableViewDataSource<MovieVideoCellViewModelProtocol>!
     private var displayedCellsIndexPaths = Set<IndexPath>()
-    
+
     var viewModel: MovieVideosViewModelProtocol?
     weak var coordinator: MovieVideosCoordinatorProtocol?
 
     // MARK: - LoadingDisplayable
 
     var loaderView: LoadingView = RadarView()
-    
+
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupBindables()
     }
-    
+
     // MARK: - Private
-    
+
     private func setupUI() {
         setupTableView()
     }
-    
+
     private func setupTableView() {
         tableView.delegate = self
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.registerNib(cellType: MovieVideoTableViewCell.self)
+        tableView.registerNib(cellType: MovieVideoCell.self)
     }
-    
+
     private func reloadTableView() {
         guard let viewModel = viewModel else { return }
         dataSource = SimpleTableViewDataSource.make(for: viewModel.videoCells)
         tableView.dataSource = dataSource
         tableView.reloadData()
     }
-    
+
     /**
      * Configures the tableview footer given the current state of the view.
      */
@@ -75,7 +75,7 @@ class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisp
     }
 
     // MARK: - Reactive Behavior
-    
+
     private func setupBindables() {
         title = viewModel?.movieTitle
         viewModel?.viewState.bindAndFire({ [weak self] viewState in
@@ -96,18 +96,18 @@ class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisp
 // MARK: - UITableViewDelegate
 
 extension MovieVideosViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let videoURL = viewModel?.videoURL(at: indexPath.row)
         openDeepLinkURL(videoURL)
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if !displayedCellsIndexPaths.contains(indexPath) {
             displayedCellsIndexPaths.insert(indexPath)
             TableViewCellAnimator.fadeAnimate(cell: cell)
         }
     }
-    
+
 }

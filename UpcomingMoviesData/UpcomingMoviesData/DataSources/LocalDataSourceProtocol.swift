@@ -12,5 +12,5 @@ public protocol LocalDataSourceProtocol {
     func movieVisitDataSource() -> MovieVisitLocalDataSourceProtocol
     func movieSearchDataSource() -> MovieSearchLocalDataSourceProtocol
     func userDataSource() -> UserLocalDataSourceProtocol
-    
+
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -75,7 +75,7 @@
         <!--Sign In View Controller-->
         <scene sceneID="qVO-mx-whY">
             <objects>
-                <viewController storyboardIdentifier="SignInViewController" id="A5c-4P-QZW" customClass="SignInViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="A5c-4P-QZW" customClass="SignInViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0gL-lu-l8M" customClass="GradientView" customModule="UpcomingMovies" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,24 +121,14 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yit-hB-YvF" userLabel="Help Button">
-                                <rect key="frame" x="342" y="68" width="48" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="FZK-sF-MXZ"/>
-                                    <constraint firstAttribute="width" secondItem="Yit-hB-YvF" secondAttribute="height" multiplier="1:1" id="WZG-S7-V3d"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="Help"/>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hA2-rz-nWS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="hA2-rz-nWS" firstAttribute="trailing" secondItem="Yit-hB-YvF" secondAttribute="trailing" constant="24" id="6CU-jS-3CM"/>
                             <constraint firstItem="2u0-4E-af1" firstAttribute="centerY" secondItem="0gL-lu-l8M" secondAttribute="centerY" constant="-20" id="JiA-Cz-XHI"/>
                             <constraint firstItem="2u0-4E-af1" firstAttribute="centerX" secondItem="0gL-lu-l8M" secondAttribute="centerX" id="XL0-c2-XpF"/>
                             <constraint firstItem="2u0-4E-af1" firstAttribute="leading" secondItem="hA2-rz-nWS" secondAttribute="leading" constant="24" id="leq-Ss-m4Y"/>
                             <constraint firstItem="hA2-rz-nWS" firstAttribute="trailing" secondItem="2u0-4E-af1" secondAttribute="trailing" constant="24" id="nwO-Jg-l8U"/>
-                            <constraint firstItem="Yit-hB-YvF" firstAttribute="top" secondItem="hA2-rz-nWS" secondAttribute="top" constant="24" id="zsf-iq-bMt"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -259,7 +249,6 @@
     <resources>
         <image name="Back" width="24" height="24"/>
         <image name="Forward" width="24" height="24"/>
-        <image name="Help" width="33" height="33"/>
         <image name="SignInLogoFirst" width="256" height="256"/>
         <namedColor name="SignInGradientColor">
             <color red="0.31000000238418579" green="0.49399998784065247" blue="0.71399998664855957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

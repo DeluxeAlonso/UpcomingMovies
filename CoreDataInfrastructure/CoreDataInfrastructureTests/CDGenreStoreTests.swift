@@ -11,7 +11,7 @@ import XCTest
 @testable import UpcomingMoviesDomain
 
 class CDGenreStoreTests: XCTestCase {
-    
+
     private var storeToTest: PersistenceStore<CDGenre>!
 
     override func setUp() {
@@ -37,7 +37,7 @@ class CDGenreStoreTests: XCTestCase {
         //Assert
         wait(for: [saveExpectation], timeout: 1.0)
     }
-    
+
     func testFindAllGenres() {
         //Arrange
         let genreToTest = Genre(id: 2, name: "Comedy")

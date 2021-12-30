@@ -4,7 +4,6 @@ function_parameter_count: 5
 line_length: 150
 disabled_rules: # rule identifiers to exclude from running
  - force_cast
- - trailing_whitespace
  - todo
  - weak_delegate
  - class_delegate_protocol

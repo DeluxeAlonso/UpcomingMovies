@@ -7,7 +7,7 @@
 //
 
 final class ProfileFactory: ProfileFactoryProtocol {
-    
+
     var sections: [ProfileSection] {
         return [
             .accountInfo,
@@ -30,5 +30,5 @@ final class ProfileFactory: ProfileFactoryProtocol {
             return [ProfileOption.customLists]
         }
     }
-    
+
 }

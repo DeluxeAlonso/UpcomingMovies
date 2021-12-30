@@ -26,7 +26,7 @@ struct SearchMoviesWidgetEntryView: View {
                         backgroundColor: backgroundColor)
             .widgetURL(AppExtension.url(for: .searchMovies))
     }
-    
+
 }
 
 struct SearchMoviesWidget: Widget {

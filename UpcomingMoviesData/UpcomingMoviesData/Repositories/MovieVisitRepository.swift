@@ -11,13 +11,13 @@ import UpcomingMoviesDomain
 public final class MovieVisitRepository: MovieVisitUseCaseProtocol {
 
     private var localDataSource: MovieVisitLocalDataSourceProtocol
-    
+
     public var didUpdateMovieVisit: (() -> Void)? {
         didSet {
             self.localDataSource.didUpdateMovieVisit = didUpdateMovieVisit
         }
     }
-    
+
     init(localDataSource: MovieVisitLocalDataSourceProtocol) {
         self.localDataSource = localDataSource
     }

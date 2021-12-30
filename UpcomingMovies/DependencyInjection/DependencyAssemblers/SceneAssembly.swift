@@ -10,7 +10,7 @@ import Foundation
 import Swinject
 
 final class SceneAssembly: Assembly {
-    
+
     func assemble(container: Container) {
         let assemblies: [Assembly] = [
             SplashAssembly(),
@@ -31,5 +31,5 @@ final class SceneAssembly: Assembly {
         ]
         assemblies.forEach { $0.assemble(container: container) }
     }
-    
+
 }

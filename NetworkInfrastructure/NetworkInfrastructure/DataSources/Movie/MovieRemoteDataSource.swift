@@ -10,15 +10,15 @@ import UpcomingMoviesDomain
 import UpcomingMoviesData
 
 final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
-    
+
     private let client: MovieClientProtocol
     private let authManager: AuthenticationManager
-    
+
     init(client: MovieClientProtocol, authManager: AuthenticationManager = AuthenticationManager.shared) {
         self.client = client
         self.authManager = authManager
     }
-    
+
     func getUpcomingMovies(page: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         client.getUpcomingMovies(page: page, completion: { result in
             switch result {
@@ -31,7 +31,7 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             }
         })
     }
-    
+
     func getPopularMovies(page: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         client.getPopularMovies(page: page, completion: { result in
             switch result {
@@ -44,7 +44,7 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             }
         })
     }
-    
+
     func getTopRatedMovies(page: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         client.getTopRatedMovies(page: page, completion: { result in
             switch result {
@@ -57,7 +57,7 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             }
         })
     }
-    
+
     func getSimilarMovies(page: Int, movieId: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         client.getSimilarMovies(page: page, movieId: movieId, completion: { result in
             switch result {
@@ -70,7 +70,7 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             }
         })
     }
-    
+
     func getMoviesByGenre(page: Int, genreId: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         client.getMoviesByGenre(page: page, genreId: genreId, completion: { result in
             switch result {
@@ -83,7 +83,7 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             }
         })
     }
-    
+
     func getMovieDetail(with movieId: Int,
                         completion: @escaping (Result<UpcomingMoviesDomain.Movie, Error>) -> Void) {
         client.getMovieDetail(with: movieId, completion: { result in
@@ -96,7 +96,7 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             }
         })
     }
-    
+
     func searchMovies(searchText: String,
                       includeAdult: Bool,
                       page: Int?,
@@ -112,7 +112,7 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             }
         })
     }
-    
+
     func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Review], Error>) -> Void) {
         client.getMovieReviews(page: page ?? 1, with: movieId, completion: { result in
             switch result {
@@ -125,7 +125,7 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             }
         })
     }
-    
+
     func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Video], Error>) -> Void) {
         client.getMovieVideos(with: movieId, completion: { result in
             switch result {
@@ -138,7 +138,7 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             }
         })
     }
-    
+
     func getMovieCredits(for movieId: Int, page: Int?, completion: @escaping (Result<MovieCredits, Error>) -> Void) {
         client.getMovieCredits(with: movieId, completion: { result in
             switch result {
@@ -153,27 +153,17 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             }
         })
     }
-    
-    func isMovieInFavorites(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+
+    func getMovieAccountState(for movieId: Int,
+                              completion: @escaping (Result<UpcomingMoviesDomain.Movie.AccountState, Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
         client.getMovieAccountState(with: movieId, sessionId: account.sessionId, completion: { result in
             switch result {
             case .success(let movieAccountStateResult):
                 guard let movieAccountStateResult = movieAccountStateResult else { return }
-                completion(.success(movieAccountStateResult.favorite))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        })
-    }
-    
-    func isMovieInWatchlist(for movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
-        guard let account = authManager.userAccount else { return }
-        client.getMovieAccountState(with: movieId, sessionId: account.sessionId, completion: { result in
-            switch result {
-            case .success(let movieAccountStateResult):
-                guard let movieAccountStateResult = movieAccountStateResult else { return }
-                completion(.success(movieAccountStateResult.watchlist))
+                let favorite = movieAccountStateResult.favorite
+                let watchlist = movieAccountStateResult.favorite
+                completion(.success(.init(favorite: favorite, watchlist: watchlist)))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -191,5 +181,5 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             }
         }
     }
-    
+
 }
