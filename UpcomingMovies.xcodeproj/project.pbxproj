@@ -257,7 +257,7 @@
 		E29407FE2209E83600A74F68 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */; };
 		E29408002209E85000A74F68 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */; };
 		E2940803220A152700A74F68 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2940802220A152700A74F68 /* MainTabBarController.swift */; };
-		E2940805220A188100A74F68 /* TabBarScrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2940804220A188000A74F68 /* TabBarScrollable.swift */; };
+		E2940805220A188100A74F68 /* TabBarSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2940804220A188000A74F68 /* TabBarSelectable.swift */; };
 		E294C7472216282D0007F0A5 /* CollapsibleCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E294C7462216282D0007F0A5 /* CollapsibleCollectionHeaderView.swift */; };
 		E2958F84235375D800171D80 /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2958F83235375D800171D80 /* UIImageView+Kingfisher.swift */; };
 		E297A766248C6C5700AC89B9 /* ImageTransitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297A765248C6C5700AC89B9 /* ImageTransitionHandler.swift */; };
@@ -664,7 +664,7 @@
 		E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		E2940802220A152700A74F68 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		E2940804220A188000A74F68 /* TabBarScrollable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScrollable.swift; sourceTree = "<group>"; };
+		E2940804220A188000A74F68 /* TabBarSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSelectable.swift; sourceTree = "<group>"; };
 		E294C7462216282D0007F0A5 /* CollapsibleCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleCollectionHeaderView.swift; sourceTree = "<group>"; };
 		E2958F83235375D800171D80 /* UIImageView+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kingfisher.swift"; sourceTree = "<group>"; };
 		E297A765248C6C5700AC89B9 /* ImageTransitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTransitionHandler.swift; sourceTree = "<group>"; };
@@ -1556,7 +1556,7 @@
 				E2DBF2F2220532BD00CBB365 /* Animatable.swift */,
 				E2EB92442213D9700067F011 /* Dequeueable.swift */,
 				E26011682193876500E53095 /* NibLoadable.swift */,
-				E2940804220A188000A74F68 /* TabBarScrollable.swift */,
+				E2940804220A188000A74F68 /* TabBarSelectable.swift */,
 				E2060332226D8C610006FB2E /* Keyboardable.swift */,
 				E26DB218236C73250054CC95 /* Storyboarded.swift */,
 				E26911762478D7690039F144 /* RetryActionable.swift */,
@@ -2386,7 +2386,7 @@
 				E2BCD6F724A068CB00FA4A1C /* MovieReviewsCoordinator.swift in Sources */,
 				E2E518A024A9910000CC3FA5 /* MovieReviewDetailProtocols.swift in Sources */,
 				E22116CA219167B50039F8C9 /* UpcomingMoviesViewController.swift in Sources */,
-				E2940805220A188100A74F68 /* TabBarScrollable.swift in Sources */,
+				E2940805220A188100A74F68 /* TabBarSelectable.swift in Sources */,
 				E26B4F7B24CE266000F9089E /* CustomListsInteractor.swift in Sources */,
 				E21F37A121941D2900D6BFB6 /* SplashViewController.swift in Sources */,
 				E2033DC324D90CEE00185664 /* SplashProtocols.swift in Sources */,

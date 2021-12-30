@@ -188,7 +188,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
 
 // MARK: - TabBarScrollable
 
-extension UpcomingMoviesViewController: TabBarScrollable {
+extension UpcomingMoviesViewController: TabBarSelectable {
 
     func handleTabBarSelection() {
         collectionView.scrollToTop(animated: true)
