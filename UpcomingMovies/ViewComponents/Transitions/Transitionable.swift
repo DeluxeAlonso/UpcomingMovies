@@ -13,3 +13,5 @@ protocol Transitionable: UIViewController {
     var transitionContainerView: UIView! { get }
 
 }
+
+protocol TransitionableInitiator: UIViewController {}

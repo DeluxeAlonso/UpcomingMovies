@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDisplayable, PlaceholderDisplayable {
+class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDisplayable, PlaceholderDisplayable, TransitionableInitiator {
 
     @IBOutlet private weak var collectionView: UICollectionView!
 
