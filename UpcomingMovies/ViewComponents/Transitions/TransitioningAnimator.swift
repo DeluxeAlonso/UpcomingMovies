@@ -57,7 +57,8 @@ extension TransitioningAnimator: UIViewControllerAnimatedTransitioning {
         let transitionableView: UIView = transitionableViewController.view
 
         guard let transitionable = transitionableViewController as? Transitionable else {
-            fatalError()
+            assertionFailure("There is no transitionable view controller in the transition.")
+            return
         }
 
         guard let transitionContainerView = transitionable.transitionContainerView,
