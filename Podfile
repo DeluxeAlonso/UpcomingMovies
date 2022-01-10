@@ -12,6 +12,7 @@ target 'UpcomingMovies' do
   pod 'Kingfisher'
   pod 'Kingfisher/SwiftUI'
   pod 'CollectionViewSlantedLayout', '~> 3.1'
+  pod 'DLProgressHUD'
 
   pod 'UpcomingMoviesDomain', :path => 'UpcomingMoviesDomain/', :testspecs => ['UpcomingMoviesDomainTests']
   pod 'UpcomingMoviesData', :path => 'UpcomingMoviesData/', :testspecs => ['UpcomingMoviesDataTests']
