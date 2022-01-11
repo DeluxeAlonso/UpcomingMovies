@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DLProgressHUD
 
 class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Transitionable, LoadingDisplayable {
 
@@ -153,6 +154,11 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         viewModel?.didUpdateFavoriteSuccess.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
             let message = isFavorite ? LocalizedStrings.addToFavoritesSuccess() : LocalizedStrings.removeFromFavoritesSuccess()
+            DLProgressHUD.show(.textOnly(message)) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    DLProgressHUD.dismiss(with: 0.5)
+                }
+            }
             strongSelf.view.showSuccessToast(withMessage: message)
         })
         viewModel?.didUpdateFavoriteFailure.bind({ [weak self] error in
