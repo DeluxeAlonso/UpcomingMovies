@@ -36,7 +36,6 @@ target 'UpcomingMovies' do
     pi.pods_project.targets.each do |t|
       t.build_configurations.each do |config|
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = deployment_target
-        config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'No'
       end
     end
   end
