@@ -87,3 +87,9 @@ protocol MovieDetailCoordinatorProtocol: AnyObject {
     func showSharingOptions(withShareTitle title: String)
 
 }
+
+protocol MovieDetailUIHelperProtocol {
+
+    func showHUD(with text: String)
+
+}
