@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DLProgressHUD
 
 class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Transitionable, LoadingDisplayable {
 
@@ -40,6 +41,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     }()
 
     var viewModel: MovieDetailViewModelProtocol?
+    var userInterfaceHelper: MovieDetailUIHelperProtocol?
     weak var coordinator: MovieDetailCoordinatorProtocol?
 
     // MARK: - LoadingDisplayable
@@ -153,7 +155,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
         viewModel?.didUpdateFavoriteSuccess.bind({ [weak self] isFavorite in
             guard let strongSelf = self else { return }
             let message = isFavorite ? LocalizedStrings.addToFavoritesSuccess() : LocalizedStrings.removeFromFavoritesSuccess()
-            strongSelf.view.showSuccessToast(withMessage: message)
+            strongSelf.userInterfaceHelper?.showHUD(with: message)
         })
         viewModel?.didUpdateFavoriteFailure.bind({ [weak self] error in
             guard let strongSelf = self, let error = error else { return }
