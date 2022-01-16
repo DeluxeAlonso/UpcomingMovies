@@ -25,7 +25,7 @@ Movies app written in Swift 5 using the TMDb API and demonstrating Clean Archite
 
 ### Requirements
 
-1. Xcode 12.0+
+1. Xcode 13.0+
 2. Cocoapods 1.9.0+
 3. Fastlane 2.1.0+ (only needed if you want to run the unit tests and swift lint scans via the CLI).
 
@@ -36,6 +36,11 @@ Movies app written in Swift 5 using the TMDb API and demonstrating Clean Archite
 3. Open the workspace file and you are ready to go.
 
 *Note: you can run the tests either using `CMD+U` on Xcode or running `fastlane tests` via the CLI.* 
+
+## First-party libraries
+
+### DLProgressHUD (https://github.com/DeluxeAlonso/DLProgressHUD)
+Lightweight Progress HUD implementation for iOS.
 
 ## Third-party libraries
 
