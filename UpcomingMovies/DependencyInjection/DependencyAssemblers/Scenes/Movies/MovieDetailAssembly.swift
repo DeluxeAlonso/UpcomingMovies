@@ -17,6 +17,8 @@ final class MovieDetailAssembly: Assembly {
             MovieDetailFactory()
         }
 
+        // MovieDetailViewModelProtocol register
+
         container.register(MovieDetailInteractorProtocol.self) { resolver in
             let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
             let authHandler = resolver.resolve(AuthenticationHandlerProtocol.self)
@@ -39,6 +41,13 @@ final class MovieDetailAssembly: Assembly {
             return MovieDetailViewModel(id: movieId, title: movieTitle,
                                         interactor: interactor!,
                                         factory: factory!)
+        }
+
+        // MovieDetailUIHelperProtocol register
+
+        container.register(MovieDetailUIHelperProtocol.self) { resolver in
+            let progressHUDHelper = resolver.resolve(ProgressHUDHelperProtocol.self)
+            return MovieDetailUIHelper(progressHUDHelper: progressHUDHelper!)
         }
     }
 

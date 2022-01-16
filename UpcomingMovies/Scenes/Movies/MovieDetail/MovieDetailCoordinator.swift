@@ -24,9 +24,13 @@ final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol 
 
     var movieInfo: MovieDetailInfo!
 
+    // MARK: - Initializers
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
+
+    // MARK: - MovieDetailCoordinatorProtocol
 
     func start() {
         let viewController = MovieDetailViewController.instantiate()
