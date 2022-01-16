@@ -36,6 +36,7 @@ final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol 
         let viewController = MovieDetailViewController.instantiate()
 
         viewController.viewModel = viewModel(for: movieInfo)
+        viewController.userInterfaceHelper = DIContainer.shared.resolve()
         viewController.coordinator = self
 
         navigationController.pushViewController(viewController, animated: true)
