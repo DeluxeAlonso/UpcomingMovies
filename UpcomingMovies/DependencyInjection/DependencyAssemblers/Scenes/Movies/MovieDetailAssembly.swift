@@ -46,8 +46,8 @@ final class MovieDetailAssembly: Assembly {
         // MovieDetailUIHelperProtocol register
 
         container.register(MovieDetailUIHelperProtocol.self) { resolver in
-            let progressHUDHelper = resolver.resolve(ProgressHUDHelperProtocol.self)
-            return MovieDetailUIHelper(progressHUDHelper: progressHUDHelper!)
+            let progressHUDAdapter = resolver.resolve(ProgressHUDAdapterProtocol.self)
+            return MovieDetailUIHelper(progressHUDAdapter: progressHUDAdapter!)
         }
     }
 

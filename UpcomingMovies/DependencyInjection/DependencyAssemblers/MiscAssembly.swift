@@ -13,8 +13,8 @@ import Swinject
 final class MiscAssembly: Assembly {
 
     func assemble(container: Container) {
-        container.register(ProgressHUDHelperProtocol.self) { _ in
-            ProgressHUDHelper()
+        container.register(ProgressHUDAdapterProtocol.self) { _ in
+        ProgressHUDAdapter()
         }.inObjectScope(.container)
     }
 
