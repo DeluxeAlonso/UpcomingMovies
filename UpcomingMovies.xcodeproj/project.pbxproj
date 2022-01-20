@@ -360,7 +360,7 @@
 		E2FD140C23F972EF00455495 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FD140B23F972EF00455495 /* SceneDelegate.swift */; };
 		E2FEDD992793E04E001A016E /* MovieDetailUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEDD982793E04E001A016E /* MovieDetailUIHelper.swift */; };
 		E2FEDD9B2793E0D5001A016E /* ProgressHUDAdapterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEDD9A2793E0D5001A016E /* ProgressHUDAdapterProtocol.swift */; };
-		E2FEDDA12793E559001A016E /* MiscAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEDDA02793E559001A016E /* MiscAssembly.swift */; };
+		E2FEDDA12793E559001A016E /* AdapterAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEDDA02793E559001A016E /* AdapterAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -790,7 +790,7 @@
 		E2FE24E0223E24A800E6E664 /* UpcomingMovies.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UpcomingMovies.entitlements; sourceTree = "<group>"; };
 		E2FEDD982793E04E001A016E /* MovieDetailUIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailUIHelper.swift; sourceTree = "<group>"; };
 		E2FEDD9A2793E0D5001A016E /* ProgressHUDAdapterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUDAdapterProtocol.swift; sourceTree = "<group>"; };
-		E2FEDDA02793E559001A016E /* MiscAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscAssembly.swift; sourceTree = "<group>"; };
+		E2FEDDA02793E559001A016E /* AdapterAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterAssembly.swift; sourceTree = "<group>"; };
 		EB68C485F4F421EF862191C2 /* Pods-UpcomingMovies-UpcomingMoviesTodayWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMovies-UpcomingMoviesTodayWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMovies-UpcomingMoviesTodayWidget/Pods-UpcomingMovies-UpcomingMoviesTodayWidget.release.xcconfig"; sourceTree = "<group>"; };
 		EDA53591DC0D3E6F2A6A2B6D /* Pods-UpcomingMoviesTodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMoviesTodayExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMoviesTodayExtension/Pods-UpcomingMoviesTodayExtension.release.xcconfig"; sourceTree = "<group>"; };
 		FA9563025AF85A0AF271A4FF /* Pods-UpcomingMoviesWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMoviesWidgetExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMoviesWidgetExtension/Pods-UpcomingMoviesWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1842,7 +1842,7 @@
 				E2912673250DD358007AD101 /* ProviderAssembly.swift */,
 				E228430E250ED1A900F053DE /* HandlerAssembly.swift */,
 				E2284313250EE33A00F053DE /* SceneAssembly.swift */,
-				E2FEDDA02793E559001A016E /* MiscAssembly.swift */,
+				E2FEDDA02793E559001A016E /* AdapterAssembly.swift */,
 			);
 			path = DependencyAssemblers;
 			sourceTree = "<group>";
@@ -2505,7 +2505,7 @@
 				E2EB923E221375190067F011 /* CollectionViewDataSourcePrefetching.swift in Sources */,
 				E2EB923D221375190067F011 /* SimpleCollectionViewDataSource.swift in Sources */,
 				E225468D226A3BD500E9042C /* CustomListsViewController.swift in Sources */,
-				E2FEDDA12793E559001A016E /* MiscAssembly.swift in Sources */,
+				E2FEDDA12793E559001A016E /* AdapterAssembly.swift in Sources */,
 				E2EB923B221375190067F011 /* SimpleTableViewDataSource.swift in Sources */,
 				E2F9F7182201F3C300C62089 /* TransitioningInteractor.swift in Sources */,
 				E284EF4F21F12A12004E705F /* VisitedMovieCollectionViewCell.swift in Sources */,

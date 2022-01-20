@@ -23,7 +23,7 @@ final class DIContainer {
                 ProviderAssembly(),
                 HandlerAssembly(),
                 SceneAssembly(),
-                MiscAssembly()
+                AdapterAssembly()
             ],
             container: container)
     }
