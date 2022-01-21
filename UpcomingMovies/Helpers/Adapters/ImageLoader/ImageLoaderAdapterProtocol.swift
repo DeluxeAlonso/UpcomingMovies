@@ -12,5 +12,5 @@ protocol ImageLoaderAdapterProtocol {
 
     func loadURL(_ url: URL?, on imageView: UIImageView)
     func cancelImageLoading(on imageView: UIImageView)
-    
+
 }
