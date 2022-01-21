@@ -6,4 +6,11 @@
 //  Copyright © 2022 Alonso. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+protocol ImageLoaderAdapterProtocol {
+
+    func loadURL(_ url: URL?, on imageView: UIImageView)
+    func cancelImageLoading(on imageView: UIImageView)
+    
+}

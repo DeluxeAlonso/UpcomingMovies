@@ -2053,8 +2053,8 @@
 		E2ED5D5127991EBB006F4316 /* ImageLoader */ = {
 			isa = PBXGroup;
 			children = (
-				E23203A62797E82E0080EF7D /* ImageLoaderHelper.swift */,
 				E2849032279A6E1C00798C03 /* ImageLoaderAdapterProtocol.swift */,
+				E23203A62797E82E0080EF7D /* ImageLoaderHelper.swift */,
 			);
 			path = ImageLoader;
 			sourceTree = "<group>";
