@@ -8,14 +8,14 @@
 
 final class MovieDetailUIHelper: MovieDetailUIHelperProtocol {
 
-    private let progressHUDHelper: ProgressHUDHelperProtocol
+    private let progressHUDAdapter: ProgressHUDAdapterProtocol
 
-    init(progressHUDHelper: ProgressHUDHelperProtocol) {
-        self.progressHUDHelper = progressHUDHelper
+    init(progressHUDAdapter: ProgressHUDAdapterProtocol) {
+        self.progressHUDAdapter = progressHUDAdapter
     }
 
     func showHUD(with text: String) {
-        progressHUDHelper.showHUDWithOnlyText(text)
+        progressHUDAdapter.showHUDWithOnlyText(text)
     }
 
 }

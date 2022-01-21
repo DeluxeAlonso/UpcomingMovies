@@ -1,5 +1,5 @@
 //
-//  MiscAssembly.swift
+//  AdapterAssembly.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 16/01/22.
@@ -9,12 +9,11 @@
 import Foundation
 import Swinject
 
-/// Miscellaneous Assembly
-final class MiscAssembly: Assembly {
+final class AdapterAssembly: Assembly {
 
     func assemble(container: Container) {
-        container.register(ProgressHUDHelperProtocol.self) { _ in
-            ProgressHUDHelper()
+        container.register(ProgressHUDAdapterProtocol.self) { _ in
+        ProgressHUDAdapter()
         }.inObjectScope(.container)
     }
 

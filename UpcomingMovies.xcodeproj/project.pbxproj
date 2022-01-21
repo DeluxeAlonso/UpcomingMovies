@@ -147,6 +147,7 @@
 		E229AFB724A8597C002AB427 /* MovieCreditsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFB624A8597C002AB427 /* MovieCreditsProtocols.swift */; };
 		E229AFB924A85A17002AB427 /* MovieCreditsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFB824A85A17002AB427 /* MovieCreditsViewState.swift */; };
 		E23179792740C783007E623B /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23179782740C783007E623B /* ProgressHud.swift */; };
+		E23203A72797E82E0080EF7D /* ImageLoaderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23203A62797E82E0080EF7D /* ImageLoaderHelper.swift */; };
 		E233772A249EFA280061D90D /* AccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2337729249EFA280061D90D /* AccountCoordinator.swift */; };
 		E235E44F24959C1600831F0A /* AuthPermissionWebViewNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E235E44E24959C1600831F0A /* AuthPermissionWebViewNavigation.swift */; };
 		E241FE0722434B9B00144FD3 /* AuthPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241FE0622434B9B00144FD3 /* AuthPermissionViewController.swift */; };
@@ -347,6 +348,7 @@
 		E2EBDC30256A26060026319B /* MoviesWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EBDC2F256A26060026319B /* MoviesWidgets.swift */; };
 		E2EBDC32256A26090026319B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2EBDC31256A26090026319B /* Assets.xcassets */; };
 		E2EBDC36256A26090026319B /* UpcomingMoviesWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E2EBDC29256A26060026319B /* UpcomingMoviesWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E2ED5D53279920C5006F4316 /* ProgressHUDAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ED5D52279920C5006F4316 /* ProgressHUDAdapter.swift */; };
 		E2F789F82598401700002CAD /* AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F789F72598401700002CAD /* AppExtension.swift */; };
 		E2F78A0125985D5A00002CAD /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F78A0025985D5A00002CAD /* RootCoordinator.swift */; };
 		E2F8BD3D2744BCC00092E95E /* DefaultHudConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F8BD3C2744BCC00092E95E /* DefaultHudConfiguration.swift */; };
@@ -357,8 +359,8 @@
 		E2F9F7222202787F00C62089 /* TransitioningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F7212202787E00C62089 /* TransitioningAnimator.swift */; };
 		E2FD140C23F972EF00455495 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FD140B23F972EF00455495 /* SceneDelegate.swift */; };
 		E2FEDD992793E04E001A016E /* MovieDetailUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEDD982793E04E001A016E /* MovieDetailUIHelper.swift */; };
-		E2FEDD9B2793E0D5001A016E /* ProgressHUDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEDD9A2793E0D5001A016E /* ProgressHUDHelper.swift */; };
-		E2FEDDA12793E559001A016E /* MiscAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEDDA02793E559001A016E /* MiscAssembly.swift */; };
+		E2FEDD9B2793E0D5001A016E /* ProgressHUDAdapterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEDD9A2793E0D5001A016E /* ProgressHUDAdapterProtocol.swift */; };
+		E2FEDDA12793E559001A016E /* AdapterAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEDDA02793E559001A016E /* AdapterAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -563,6 +565,7 @@
 		E229AFB624A8597C002AB427 /* MovieCreditsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditsProtocols.swift; sourceTree = "<group>"; };
 		E229AFB824A85A17002AB427 /* MovieCreditsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditsViewState.swift; sourceTree = "<group>"; };
 		E23179782740C783007E623B /* ProgressHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHud.swift; sourceTree = "<group>"; };
+		E23203A62797E82E0080EF7D /* ImageLoaderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderHelper.swift; sourceTree = "<group>"; };
 		E2337729249EFA280061D90D /* AccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCoordinator.swift; sourceTree = "<group>"; };
 		E235E44E24959C1600831F0A /* AuthPermissionWebViewNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionWebViewNavigation.swift; sourceTree = "<group>"; };
 		E241FE0622434B9B00144FD3 /* AuthPermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionViewController.swift; sourceTree = "<group>"; };
@@ -774,6 +777,7 @@
 		E2EBDC2F256A26060026319B /* MoviesWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesWidgets.swift; sourceTree = "<group>"; };
 		E2EBDC31256A26090026319B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2EBDC33256A26090026319B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2ED5D52279920C5006F4316 /* ProgressHUDAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUDAdapter.swift; sourceTree = "<group>"; };
 		E2F789F72598401700002CAD /* AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtension.swift; sourceTree = "<group>"; };
 		E2F78A0025985D5A00002CAD /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		E2F8BD3C2744BCC00092E95E /* DefaultHudConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHudConfiguration.swift; sourceTree = "<group>"; };
@@ -785,8 +789,8 @@
 		E2FD140B23F972EF00455495 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E2FE24E0223E24A800E6E664 /* UpcomingMovies.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UpcomingMovies.entitlements; sourceTree = "<group>"; };
 		E2FEDD982793E04E001A016E /* MovieDetailUIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailUIHelper.swift; sourceTree = "<group>"; };
-		E2FEDD9A2793E0D5001A016E /* ProgressHUDHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUDHelper.swift; sourceTree = "<group>"; };
-		E2FEDDA02793E559001A016E /* MiscAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscAssembly.swift; sourceTree = "<group>"; };
+		E2FEDD9A2793E0D5001A016E /* ProgressHUDAdapterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUDAdapterProtocol.swift; sourceTree = "<group>"; };
+		E2FEDDA02793E559001A016E /* AdapterAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterAssembly.swift; sourceTree = "<group>"; };
 		EB68C485F4F421EF862191C2 /* Pods-UpcomingMovies-UpcomingMoviesTodayWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMovies-UpcomingMoviesTodayWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMovies-UpcomingMoviesTodayWidget/Pods-UpcomingMovies-UpcomingMoviesTodayWidget.release.xcconfig"; sourceTree = "<group>"; };
 		EDA53591DC0D3E6F2A6A2B6D /* Pods-UpcomingMoviesTodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMoviesTodayExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMoviesTodayExtension/Pods-UpcomingMoviesTodayExtension.release.xcconfig"; sourceTree = "<group>"; };
 		FA9563025AF85A0AF271A4FF /* Pods-UpcomingMoviesWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpcomingMoviesWidgetExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpcomingMoviesWidgetExtension/Pods-UpcomingMoviesWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1200,6 +1204,7 @@
 		E22116B1219156EA0039F8C9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E2ED5D4F27991E64006F4316 /* Adapters */,
 				E221F75A222AE44D008DFF87 /* Handlers */,
 				E25F9CEF225B083A0069A6A1 /* Protocols */,
 				E2143DB422571A43003E939F /* Extensions */,
@@ -1225,7 +1230,6 @@
 				E2F789F72598401700002CAD /* AppExtension.swift */,
 				E26EB50325CF503600AFE4A6 /* PropertyListHelper.swift */,
 				E2671D7E25D8AD4400E457FF /* AppGroup.swift */,
-				E2FEDD9A2793E0D5001A016E /* ProgressHUDHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1838,7 +1842,7 @@
 				E2912673250DD358007AD101 /* ProviderAssembly.swift */,
 				E228430E250ED1A900F053DE /* HandlerAssembly.swift */,
 				E2284313250EE33A00F053DE /* SceneAssembly.swift */,
-				E2FEDDA02793E559001A016E /* MiscAssembly.swift */,
+				E2FEDDA02793E559001A016E /* AdapterAssembly.swift */,
 			);
 			path = DependencyAssemblers;
 			sourceTree = "<group>";
@@ -2024,6 +2028,32 @@
 				E2EBDC33256A26090026319B /* Info.plist */,
 			);
 			path = UpcomingMoviesWidgetExtension;
+			sourceTree = "<group>";
+		};
+		E2ED5D4F27991E64006F4316 /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				E2ED5D5127991EBB006F4316 /* ImageLoader */,
+				E2ED5D5027991EB1006F4316 /* ProgressHUD */,
+			);
+			path = Adapters;
+			sourceTree = "<group>";
+		};
+		E2ED5D5027991EB1006F4316 /* ProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				E2FEDD9A2793E0D5001A016E /* ProgressHUDAdapterProtocol.swift */,
+				E2ED5D52279920C5006F4316 /* ProgressHUDAdapter.swift */,
+			);
+			path = ProgressHUD;
+			sourceTree = "<group>";
+		};
+		E2ED5D5127991EBB006F4316 /* ImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				E23203A62797E82E0080EF7D /* ImageLoaderHelper.swift */,
+			);
+			path = ImageLoader;
 			sourceTree = "<group>";
 		};
 		E2F8BD3B2744BC9E0092E95E /* Configuration */ = {
@@ -2464,6 +2494,7 @@
 				E225468F226A3BF000E9042C /* CustomListsViewModel.swift in Sources */,
 				E2E518B024A9A71500CC3FA5 /* MovieDetailProtocols.swift in Sources */,
 				E20118E125FF251E0091D248 /* AuthenticationHandlerProtocol.swift in Sources */,
+				E23203A72797E82E0080EF7D /* ImageLoaderHelper.swift in Sources */,
 				E221168021914E4B0039F8C9 /* AppDelegate.swift in Sources */,
 				E28FF49B24B19A3E0015CB2F /* UpcomingMoviesViewFactory.swift in Sources */,
 				E22116B4219157020039F8C9 /* Bindable.swift in Sources */,
@@ -2474,7 +2505,7 @@
 				E2EB923E221375190067F011 /* CollectionViewDataSourcePrefetching.swift in Sources */,
 				E2EB923D221375190067F011 /* SimpleCollectionViewDataSource.swift in Sources */,
 				E225468D226A3BD500E9042C /* CustomListsViewController.swift in Sources */,
-				E2FEDDA12793E559001A016E /* MiscAssembly.swift in Sources */,
+				E2FEDDA12793E559001A016E /* AdapterAssembly.swift in Sources */,
 				E2EB923B221375190067F011 /* SimpleTableViewDataSource.swift in Sources */,
 				E2F9F7182201F3C300C62089 /* TransitioningInteractor.swift in Sources */,
 				E284EF4F21F12A12004E705F /* VisitedMovieCollectionViewCell.swift in Sources */,
@@ -2492,6 +2523,7 @@
 				E274551025130BCC000847A4 /* MovieListAssembly.swift in Sources */,
 				E25F9CEE225AF6D80069A6A1 /* Emptiable.swift in Sources */,
 				E22447722234AFA000A59FEF /* VerticalFlowLayout.swift in Sources */,
+				E2ED5D53279920C5006F4316 /* ProgressHUDAdapter.swift in Sources */,
 				E22447782234BF0300A59FEF /* UpcomingMovieCollectionViewCellProtocol.swift in Sources */,
 				E2FEDD992793E04E001A016E /* MovieDetailUIHelper.swift in Sources */,
 				E2A4D9382511B06000571893 /* ProfileAssembly.swift in Sources */,
@@ -2558,7 +2590,7 @@
 				E2D4DD7221F018980004B7BF /* RecentlyVisitedMoviesCellViewModel.swift in Sources */,
 				E22588A22243121F00E1327E /* AccountViewModel.swift in Sources */,
 				E2033DC524D90D7600185664 /* SplashInteractor.swift in Sources */,
-				E2FEDD9B2793E0D5001A016E /* ProgressHUDHelper.swift in Sources */,
+				E2FEDD9B2793E0D5001A016E /* ProgressHUDAdapterProtocol.swift in Sources */,
 				E2E518A224A9944300CC3FA5 /* UpcomingMoviesProtocols.swift in Sources */,
 				E26DB217236C71C90054CC95 /* MainTabBarBuilder.swift in Sources */,
 				E265C25F2495391E00712284 /* SimilarMoviesInteractor.swift in Sources */,
