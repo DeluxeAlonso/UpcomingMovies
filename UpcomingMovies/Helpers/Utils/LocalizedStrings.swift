@@ -56,6 +56,7 @@ enum LocalizedStrings: String, Localizable {
     case emptyCreditReults
 
     case movieDetailTitle
+    case movieDetailShareActionTitle
     case movieDetailShareText
     case reviewsDetailOptions
     case trailersDetailOptions

@@ -179,7 +179,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
 
     @IBAction private func moreBarButtonAction(_ sender: Any) {
         guard let movieTitle = viewModel?.title else { return }
-        let shareAction = UIAlertAction(title: "Share this movie!", style: .default) { _ in
+        let shareAction = UIAlertAction(title: LocalizedStrings.movieDetailShareActionTitle(), style: .default) { _ in
             self.shareMovie()
         }
         showSimpleActionSheet(title: movieTitle, message: nil, action: shareAction)
