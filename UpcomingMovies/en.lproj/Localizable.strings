@@ -37,6 +37,7 @@
 "emptyCreditReults" = "No credits to show.";
 
 "movieDetailTitle" = "Movie detail";
+"movieDetailShareActionTitle" = "Share this movie!";
 "movieDetailShareText" = "Come with me to watch %@!";
 "reviewsDetailOptions" = "Reviews";
 "trailersDetailOptions" = "Trailers";
