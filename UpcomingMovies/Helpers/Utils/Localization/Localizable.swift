@@ -6,8 +6,6 @@
 //  Copyright © 2022 Alonso. All rights reserved.
 //
 
-import Foundation
-
 protocol Localizable {
 
     var tableName: String { get }
