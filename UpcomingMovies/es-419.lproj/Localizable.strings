@@ -37,6 +37,7 @@
 "emptyCreditReults" = "No hay créditos que mostrar.";
 
 "movieDetailTitle" = "Detalle";
+"movieDetailShareActionTitle" = "Comparte esta película";
 "movieDetailShareText" = "Te invito a ver %@";
 "reviewsDetailOptions" = "Reviews";
 "trailersDetailOptions" = "Trailers";
