@@ -6,23 +6,6 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import Foundation
-
-protocol Localizable {
-
-    var tableName: String { get }
-    var localized: String { get }
-
-}
-
-extension Localizable where Self: RawRepresentable, Self.RawValue == String {
-
-    var localized: String {
-        return rawValue.localized(tableName: tableName)
-    }
-
-}
-
 enum LocalizedStrings: String, Localizable {
 
     case upcomingMoviesTabBarTitle
@@ -85,13 +68,5 @@ enum LocalizedStrings: String, Localizable {
     case cancel
 
     case shareMovieActionSheetItemTitle
-
-    var tableName: String {
-        return "Localizable"
-    }
-
-    func callAsFunction() -> String {
-        return self.localized
-    }
 
 }
