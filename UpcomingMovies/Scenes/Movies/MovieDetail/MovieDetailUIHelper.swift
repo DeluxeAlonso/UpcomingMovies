@@ -6,6 +6,8 @@
 //  Copyright © 2022 Alonso. All rights reserved.
 //
 
+import UIKit
+
 final class MovieDetailUIHelper: MovieDetailUIHelperProtocol, LoadingDisplayable {
 
     private let progressHUDAdapter: ProgressHUDAdapterProtocol
@@ -24,6 +26,14 @@ final class MovieDetailUIHelper: MovieDetailUIHelperProtocol, LoadingDisplayable
 
     func showHUD(with text: String) {
         progressHUDAdapter.showHUDWithOnlyText(text)
+    }
+
+    func showFullscreenLoader(in view: UIView) {
+        showLoader(in: view)
+    }
+
+    func dismissFullscreenLoader() {
+        hideLoader()
     }
 
 }
