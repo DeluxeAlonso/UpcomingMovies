@@ -44,10 +44,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     var userInterfaceHelper: MovieDetailUIHelperProtocol?
     weak var coordinator: MovieDetailCoordinatorProtocol?
 
-//    // MARK: - LoadingDisplayable
-//
-//    var loaderView: LoadingView = RadarView()
-
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
