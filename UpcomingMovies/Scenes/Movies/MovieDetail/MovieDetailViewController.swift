@@ -9,7 +9,7 @@
 import UIKit
 import DLProgressHUD
 
-class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Transitionable, LoadingDisplayable {
+class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Transitionable {
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var backdropImageView: UIImageView!
@@ -43,10 +43,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     var viewModel: MovieDetailViewModelProtocol?
     var userInterfaceHelper: MovieDetailUIHelperProtocol?
     weak var coordinator: MovieDetailCoordinatorProtocol?
-
-    // MARK: - LoadingDisplayable
-
-    var loaderView: LoadingView = RadarView()
 
     // MARK: - Lifecycle
 
@@ -135,7 +131,12 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
 
     private func setupLoaderBindable() {
         viewModel?.startLoading.bind({ [weak self] start in
-            start ? self?.showLoader() : self?.hideLoader()
+            guard let strongSelf = self else { return }
+            if start {
+                strongSelf.userInterfaceHelper?.showFullscreenLoader(in: strongSelf.view)
+            } else {
+                strongSelf.userInterfaceHelper?.dismissFullscreenLoader()
+            }
         })
     }
 

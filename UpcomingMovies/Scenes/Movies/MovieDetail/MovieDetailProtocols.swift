@@ -6,7 +6,7 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import UpcomingMoviesDomain
 
 protocol MovieDetailViewModelProtocol {
@@ -91,5 +91,8 @@ protocol MovieDetailCoordinatorProtocol: AnyObject {
 protocol MovieDetailUIHelperProtocol {
 
     func showHUD(with text: String)
+
+    func showFullscreenLoader(in view: UIView)
+    func dismissFullscreenLoader()
 
 }
