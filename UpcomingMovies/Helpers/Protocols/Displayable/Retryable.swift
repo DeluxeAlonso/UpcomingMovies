@@ -14,9 +14,11 @@ private struct AssociatedKeys {
 
 protocol Retryable: AnyObject {
 
-//    func presentRetryView(in view: UIView,
-//                          with errorMessage: String?,
-//                          errorHandler: @escaping () -> Void)
+    func presentRetryView(in view: UIView,
+                          with errorMessage: String?,
+                          retryHandler: @escaping () -> Void)
+
+    func hideRetryView()
 
 }
 
@@ -34,11 +36,9 @@ extension Retryable {
         }
     }
 
-}
-
-extension Retryable where Self: UIViewController {
-
-    func presentRetryView(with errorMessage: String?, retryHandler: @escaping () -> Void) {
+    func presentRetryView(in view: UIView,
+                          with errorMessage: String?,
+                          retryHandler: @escaping () -> Void) {
         let isPresented = retryView?.isPresented ?? false
         if isPresented {
             self.retryView?.resetState()
@@ -46,12 +46,20 @@ extension Retryable where Self: UIViewController {
             self.retryView = ErrorPlaceholderView.loadFromNib()
             retryView?.retry = retryHandler
             retryView?.detailText = errorMessage
-            self.retryView?.show(in: self.view, animated: true, completion: nil)
+            self.retryView?.show(in: view, animated: true, completion: nil)
         }
     }
 
     func hideRetryView() {
         retryView?.hide(animated: true, completion: nil)
+    }
+
+}
+
+extension Retryable where Self: UIViewController {
+
+    func presentRetryView(with errorMessage: String?, retryHandler: @escaping () -> Void) {
+        presentRetryView(in: self.view, with: errorMessage, retryHandler: retryHandler)
     }
 
 }
