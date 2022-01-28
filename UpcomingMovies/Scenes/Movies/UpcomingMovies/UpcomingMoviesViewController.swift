@@ -146,7 +146,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
             presentEmptyView(with: LocalizedStrings.emptyMovieResults())
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
-                             errorHandler: { [weak self] in
+                             retryHandler: { [weak self] in
                                 self?.viewModel?.refreshMovies()
                              })
         }

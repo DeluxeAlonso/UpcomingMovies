@@ -85,7 +85,7 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
             presentEmptyView(with: "No created lists to show")
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
-                             errorHandler: { [weak self] in
+                             retryHandler: { [weak self] in
                                 self?.viewModel?.refreshCustomLists()
             })
         }

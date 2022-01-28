@@ -68,7 +68,7 @@ class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisp
             presentEmptyView(with: LocalizedStrings.emptyVideoResults())
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
-                                       errorHandler: { [weak self] in
+                                       retryHandler: { [weak self] in
                                         self?.viewModel?.getMovieVideos(showLoader: false)
             })
         }

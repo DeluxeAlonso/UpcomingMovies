@@ -87,7 +87,7 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
             presentEmptyView(with: LocalizedStrings.emptyMovieResults.localized)
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
-                                       errorHandler: { [weak self] in
+                                       retryHandler: { [weak self] in
                                         self?.viewModel?.refreshMovies()
             })
         }
