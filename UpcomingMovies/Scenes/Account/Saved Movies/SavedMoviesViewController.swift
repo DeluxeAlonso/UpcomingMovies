@@ -106,7 +106,7 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
             presentEmptyView(with: "No movies to show")
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
-                                       errorHandler: { [weak self] in
+                                       retryHandler: { [weak self] in
                                         self?.viewModel?.refreshCollectionList()
             })
         }

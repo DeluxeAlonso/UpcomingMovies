@@ -67,7 +67,7 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
             presentEmptyView(with: LocalizedStrings.emptyCreditReults())
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
-                                       errorHandler: { [weak self] in
+                                       retryHandler: { [weak self] in
                                         self?.viewModel?.getMovieCredits(showLoader: false)
             })
         }

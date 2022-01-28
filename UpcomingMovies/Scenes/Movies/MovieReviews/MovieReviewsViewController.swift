@@ -70,7 +70,7 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
             presentEmptyView(with: "There are no reviews to show right now.")
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
-                                       errorHandler: { [weak self] in
+                                       retryHandler: { [weak self] in
                                         self?.viewModel?.refreshMovieReviews()
             })
         }
