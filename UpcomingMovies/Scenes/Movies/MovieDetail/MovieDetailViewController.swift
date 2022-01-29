@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DLProgressHUD
 
 class MovieDetailViewController: UIViewController, Storyboarded, Transitionable {
 
