@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MovieDetailUIHelper: MovieDetailUIHelperProtocol, LoadingDisplayable {
+final class MovieDetailUIHelper: MovieDetailUIHelperProtocol, LoadingDisplayable, Retryable {
 
     private let progressHUDAdapter: ProgressHUDAdapterProtocol
 

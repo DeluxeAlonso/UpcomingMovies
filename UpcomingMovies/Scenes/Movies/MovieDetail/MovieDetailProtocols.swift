@@ -95,4 +95,9 @@ protocol MovieDetailUIHelperProtocol {
     func showFullscreenLoader(in view: UIView)
     func dismissFullscreenLoader()
 
+    func presentRetryView(in view: UIView,
+                          with errorMessage: String?,
+                          retryHandler: @escaping () -> Void)
+    func hideRetryView()
+
 }
