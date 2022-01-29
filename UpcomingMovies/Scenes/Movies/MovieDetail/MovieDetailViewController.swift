@@ -9,7 +9,7 @@
 import UIKit
 import DLProgressHUD
 
-class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Transitionable {
+class MovieDetailViewController: UIViewController, Storyboarded, Transitionable {
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var backdropImageView: UIImageView!
@@ -78,7 +78,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     }
 
     private func showErrorView(error: Error) {
-        presentRetryView(with: error.localizedDescription, retryHandler: { [weak self] in
+        userInterfaceHelper?.presentRetryView(in: self.view, with: error.localizedDescription, retryHandler: { [weak self] in
             self?.viewModel?.getMovieDetail(showLoader: false)
         })
     }
@@ -95,7 +95,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Retryable, Tran
     private func setupViewBindables() {
         viewModel?.didSetupMovieDetail.bindAndFire { [weak self] _ in
             self?.configureUI()
-            self?.hideRetryView()
+            self?.userInterfaceHelper?.hideRetryView()
             self?.viewModel?.saveVisitedMovie()
         }
         viewModel?.showGenreName.bindAndFire({ [weak self] genreName in
