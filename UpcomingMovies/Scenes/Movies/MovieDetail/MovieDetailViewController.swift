@@ -131,11 +131,11 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
 
     private func setupLoaderBindable() {
         viewModel?.startLoading.bind({ [weak self] start in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             if start {
-                strongSelf.userInterfaceHelper?.showFullscreenLoader(in: strongSelf.view)
+                self.userInterfaceHelper?.showFullscreenLoader(in: self.view)
             } else {
-                strongSelf.userInterfaceHelper?.dismissFullscreenLoader()
+                self.userInterfaceHelper?.dismissFullscreenLoader()
             }
         })
     }
@@ -149,22 +149,22 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
 
     private func setupFavoriteBindables() {
         viewModel?.isFavorite.bind({ [weak self] isFavorite in
-            guard let strongSelf = self else { return }
-            strongSelf.favoriteBarButtonItem.toggle(to: isFavorite.intValue)
-            strongSelf.navigationItem.rightBarButtonItems = [strongSelf.moreBarButtonItem, strongSelf.favoriteBarButtonItem]
+            guard let self = self else { return }
+            self.favoriteBarButtonItem.toggle(to: isFavorite.intValue)
+            self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem, self.favoriteBarButtonItem]
         })
         viewModel?.didUpdateFavoriteSuccess.bind({ [weak self] isFavorite in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             let message = isFavorite ? LocalizedStrings.addToFavoritesSuccess() : LocalizedStrings.removeFromFavoritesSuccess()
-            strongSelf.userInterfaceHelper?.showHUD(with: message)
+            self.userInterfaceHelper?.showHUD(with: message)
         })
         viewModel?.didUpdateFavoriteFailure.bind({ [weak self] error in
-            guard let strongSelf = self, let error = error else { return }
-            strongSelf.view.showFailureToast(withMessage: error.localizedDescription)
+            guard let self = self, let error = error else { return }
+            self.view.showFailureToast(withMessage: error.localizedDescription)
         })
         viewModel?.shouldHideFavoriteButton = { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.navigationItem.rightBarButtonItems = [strongSelf.moreBarButtonItem]
+            guard let self = self else { return }
+            self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem]
         }
     }
 
