@@ -1,0 +1,13 @@
+workflows:
+  macos-workflow:
+    name: iOS Workflow
+    environment:
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Run swiftlint
+        script: |
+          bundle exec fastlane lint
+      - name: Run unit tests
+        script: |
+          bundle exec fastlane tests
