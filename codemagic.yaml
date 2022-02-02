@@ -8,7 +8,9 @@ workflows:
       - name: Install pods
         script: |
           pod install
-      - name: Run unit tests
+      - name: Bundle install
         script: |
-          - bundle install
-          - bundle exec fastlane tests
+          bundle install
+      - name: Run tests
+        script: |
+          bundle exec fastlane tests
