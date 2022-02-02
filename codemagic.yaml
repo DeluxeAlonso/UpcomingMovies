@@ -5,9 +5,9 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
-      - name: Run swiftlint
+      - name: Install pods
         script: |
-          bundle exec fastlane lint
+          pod install
       - name: Run unit tests
         script: |
           bundle exec fastlane tests
