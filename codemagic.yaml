@@ -10,4 +10,5 @@ workflows:
           pod install
       - name: Run unit tests
         script: |
-          bundle exec fastlane tests
+          - bundle install
+          - bundle exec fastlane tests
