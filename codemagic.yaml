@@ -1,5 +1,5 @@
 workflows:
-  macos-workflow:
+  ios-workflow:
     name: iOS Workflow
     environment:
       xcode: latest
