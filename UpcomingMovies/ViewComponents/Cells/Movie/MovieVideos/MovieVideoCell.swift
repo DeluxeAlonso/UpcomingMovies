@@ -35,7 +35,7 @@ final class MovieVideoCell: UITableViewCell {
     // MARK: - Private
 
     private func setupUI() {
-        nameLabel.font = FontHelper.light(withSize: 16.0)
+        nameLabel.font = FontHelper.calloutLight
         nameLabel.textColor = ColorPalette.Label.defaultColor
     }
 

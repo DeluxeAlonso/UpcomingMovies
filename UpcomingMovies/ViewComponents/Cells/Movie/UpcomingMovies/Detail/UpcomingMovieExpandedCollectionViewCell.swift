@@ -41,8 +41,8 @@ final class UpcomingMovieExpandedCollectionViewCell: UICollectionViewCell, Upcom
     private func setupUI() {
         isAccessibilityElement = true
 
-        titleLabel.font = FontHelper.bold(withSize: 21.0)
-        releaseDateLabel.font = FontHelper.regular(withSize: 17.0)
+        titleLabel.font = FontHelper.headlineBold
+        releaseDateLabel.font = FontHelper.body
     }
 
     // MARK: - Reactive Behavior

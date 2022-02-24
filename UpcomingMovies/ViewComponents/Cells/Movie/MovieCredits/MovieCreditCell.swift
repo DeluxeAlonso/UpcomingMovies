@@ -50,10 +50,10 @@ final class MovieCreditCell: UICollectionViewCell {
     private func setupUI() {
         isAccessibilityElement = true
 
-        nameLabel.font = FontHelper.bold(withSize: 15.0)
+        nameLabel.font = FontHelper.subheadBold
         nameLabel.textColor = .white
 
-        subtitleLabel.font = FontHelper.regular(withSize: 13.0)
+        subtitleLabel.font = FontHelper.footnote
         subtitleLabel.textColor = .white
     }
 

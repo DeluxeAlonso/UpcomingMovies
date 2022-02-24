@@ -28,7 +28,7 @@ final class GenreSearchOptionTableViewCell: UITableViewCell {
     // MARK: - Private
 
     private func setupUI() {
-        nameLabel.font = FontHelper.light(withSize: 14.0)
+        nameLabel.font = FontHelper.subheadLight
         nameLabel.textColor = ColorPalette.lightBlueColor
     }
 
