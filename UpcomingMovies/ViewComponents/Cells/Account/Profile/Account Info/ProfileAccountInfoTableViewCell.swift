@@ -34,11 +34,11 @@ class ProfileAccountInfoTableViewCell: UITableViewCell {
     }
 
     private func setupLabels() {
-        usernameLabel.font = FontHelper.regular(withSize: 18.0)
+        usernameLabel.font = FontHelper.body
         usernameLabel.textColor = ColorPalette.Label.defaultColor
         usernameLabel.textAlignment = .center
 
-        nameLabel.font = FontHelper.light(withSize: 14.0)
+        nameLabel.font = FontHelper.footnote
         nameLabel.textColor = ColorPalette.regularGray
         nameLabel.textAlignment = .center
     }
