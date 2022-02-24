@@ -13,7 +13,7 @@ class SimpleHeaderView: UIView {
     private lazy var headerTitleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = FontHelper.Default.mediumLight
+        label.font = FontHelper.Default.subheadLight
         return label
     }()
 

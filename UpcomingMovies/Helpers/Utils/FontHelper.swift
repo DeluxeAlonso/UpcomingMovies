@@ -43,7 +43,7 @@ extension FontHelper {
         static let callout = FontHelper.regular(withSize: 16.0)
 
         static let subhead = FontHelper.regular(withSize: 15.0)
-        static let subheadLight = FontHelper.regular(withSize: 15.0)
+        static let subheadLight = FontHelper.light(withSize: 15.0)
 
         static let footnote = FontHelper.regular(withSize: 13.0)
         static let caption1 = FontHelper.regular(withSize: 12.0)
