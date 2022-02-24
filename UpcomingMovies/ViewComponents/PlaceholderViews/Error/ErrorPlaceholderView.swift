@@ -57,7 +57,7 @@ class ErrorPlaceholderView: UIView, NibLoadable, RetryPlaceHolderable {
     private func setupErrorDetailLabel() {
         errorDetailLabel.text = Constants.errorDetail
         errorDetailLabel.textColor = ColorPalette.lightGrayColor
-        errorDetailLabel.font = FontHelper.light(withSize: 15.0)
+        errorDetailLabel.font = FontHelper.subheadLight
     }
 
     private func setupRetryButton() {
