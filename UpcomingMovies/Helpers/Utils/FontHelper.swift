@@ -11,19 +11,23 @@ import UIKit
 struct FontHelper {
 
     static func bold(withSize size: CGFloat) -> UIFont {
-        return UIFont.systemFont(ofSize: size, weight: UIFont.Weight.bold)
+        let font = UIFont.systemFont(ofSize: size, weight: UIFont.Weight.bold)
+        return UIFontMetrics.default.scaledFont(for: font)
     }
 
     static func semiBold(withSize size: CGFloat) -> UIFont {
-        return UIFont.systemFont(ofSize: size, weight: UIFont.Weight.semibold)
+        let font = UIFont.systemFont(ofSize: size, weight: UIFont.Weight.semibold)
+        return UIFontMetrics.default.scaledFont(for: font)
     }
 
     static func light(withSize size: CGFloat) -> UIFont {
-        return UIFont.systemFont(ofSize: size, weight: UIFont.Weight.light)
+        let font = UIFont.systemFont(ofSize: size, weight: UIFont.Weight.light)
+        return UIFontMetrics.default.scaledFont(for: font)
     }
 
     static func regular(withSize size: CGFloat) -> UIFont {
-        return UIFont.systemFont(ofSize: size, weight: UIFont.Weight.regular)
+        let font = UIFont.systemFont(ofSize: size, weight: UIFont.Weight.regular)
+        return UIFontMetrics.default.scaledFont(for: font)
     }
 
 }
