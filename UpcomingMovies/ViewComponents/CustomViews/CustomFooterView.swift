@@ -15,7 +15,7 @@ class CustomFooterView: UIView {
     private lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = FontHelper.Default.subheadLight
+        label.font = FontHelper.subheadLight
         label.textAlignment = .center
         label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true

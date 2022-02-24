@@ -13,7 +13,7 @@ class ToastView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = FontHelper.Default.subheadLight
+        label.font = FontHelper.subheadLight
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
