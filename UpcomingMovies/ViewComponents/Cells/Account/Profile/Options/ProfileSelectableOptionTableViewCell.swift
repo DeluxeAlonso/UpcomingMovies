@@ -30,6 +30,7 @@ class ProfileSelectableOptionTableViewCell: UITableViewCell {
     private func setupUI() {
         titlelabel.font = FontHelper.calloutLight
         titlelabel.textColor = ColorPalette.lightBlueColor
+        titlelabel.adjustsFontForContentSizeCategory = true
     }
 
     // MARK: - Reactive Behavior

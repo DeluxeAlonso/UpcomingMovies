@@ -52,9 +52,11 @@ final class MovieCreditCell: UICollectionViewCell {
 
         nameLabel.font = FontHelper.subheadBold
         nameLabel.textColor = .white
+        nameLabel.adjustsFontForContentSizeCategory = true
 
         subtitleLabel.font = FontHelper.footnote
         subtitleLabel.textColor = .white
+        subtitleLabel.adjustsFontForContentSizeCategory = true
     }
 
     // MARK: - Reactive Behavior

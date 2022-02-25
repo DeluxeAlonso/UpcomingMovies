@@ -32,9 +32,11 @@ final class DefaultSearchOptionTableViewCell: UITableViewCell {
     private func setupUI() {
         textLabel?.font = FontHelper.callout
         textLabel?.textColor = ColorPalette.lightBlueColor
+        textLabel?.adjustsFontForContentSizeCategory = true
 
         detailTextLabel?.font = FontHelper.footnoteLight
         detailTextLabel?.textColor = ColorPalette.lightBlueColor
+        detailTextLabel?.adjustsFontForContentSizeCategory = true
     }
 
     // MARK: - Reactive Behavior

@@ -40,6 +40,7 @@ final class UpcomingMoviePreviewCollectionViewCell: UICollectionViewCell, Upcomi
         titleLabel.textColor = ColorPalette.whiteColor
         titleLabel.numberOfLines = 0
         titleLabel.font = FontHelper.bodySemiBold
+        titleLabel.adjustsFontForContentSizeCategory = true
     }
 
     // MARK: - Reactive Behavior

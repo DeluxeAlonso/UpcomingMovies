@@ -42,7 +42,9 @@ final class UpcomingMovieExpandedCollectionViewCell: UICollectionViewCell, Upcom
         isAccessibilityElement = true
 
         titleLabel.font = FontHelper.headlineBold
+        titleLabel.adjustsFontForContentSizeCategory = true
         releaseDateLabel.font = FontHelper.body
+        releaseDateLabel.adjustsFontForContentSizeCategory = true
     }
 
     // MARK: - Reactive Behavior

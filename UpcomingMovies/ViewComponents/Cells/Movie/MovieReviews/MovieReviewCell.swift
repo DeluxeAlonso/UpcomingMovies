@@ -32,7 +32,9 @@ final class MovieReviewCell: UITableViewCell {
 
     private func setupLabels() {
         authorNameLabel.font = FontHelper.calloutSemiBold
+        authorNameLabel.adjustsFontForContentSizeCategory = true
         contentLabel.font = FontHelper.subheadLight
+        contentLabel.adjustsFontForContentSizeCategory = true
     }
 
     // MARK: - Reactive Behavior

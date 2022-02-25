@@ -30,6 +30,7 @@ final class GenreSearchOptionTableViewCell: UITableViewCell {
     private func setupUI() {
         nameLabel.font = FontHelper.subheadLight
         nameLabel.textColor = ColorPalette.lightBlueColor
+        nameLabel.adjustsFontForContentSizeCategory = true
     }
 
     // MARK: - Reactive Behavior

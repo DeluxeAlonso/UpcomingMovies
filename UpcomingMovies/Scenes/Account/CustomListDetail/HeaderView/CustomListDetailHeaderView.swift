@@ -45,9 +45,11 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
     private func setupLabels() {
         nameLabel.font = FontHelper.body
         nameLabel.textColor = ColorPalette.darkBlueColor
+        nameLabel.adjustsFontForContentSizeCategory = true
 
         descriptionLabel.font = FontHelper.calloutLight
         descriptionLabel.textColor = ColorPalette.darkBlueColor
+        descriptionLabel.adjustsFontForContentSizeCategory = true
     }
 
     private func setupImageViews() {

@@ -33,6 +33,8 @@ class MovieDetailOptionView: UIView {
         label.setContentCompressionResistancePriority(UILayoutPriority.required, for: .vertical)
         label.setContentHuggingPriority(UILayoutPriority.required, for: .vertical)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.adjustsFontForContentSizeCategory = true
+
         return label
     }()
 

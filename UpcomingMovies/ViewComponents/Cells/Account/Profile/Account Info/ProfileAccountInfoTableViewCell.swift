@@ -37,10 +37,12 @@ class ProfileAccountInfoTableViewCell: UITableViewCell {
         usernameLabel.font = FontHelper.body
         usernameLabel.textColor = ColorPalette.Label.defaultColor
         usernameLabel.textAlignment = .center
+        usernameLabel.adjustsFontForContentSizeCategory = true
 
         nameLabel.font = FontHelper.footnote
         nameLabel.textColor = ColorPalette.regularGray
         nameLabel.textAlignment = .center
+        nameLabel.adjustsFontForContentSizeCategory = true
     }
 
     // MARK: - Reactive Behavior

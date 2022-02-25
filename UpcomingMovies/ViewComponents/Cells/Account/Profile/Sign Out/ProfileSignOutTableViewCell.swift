@@ -28,6 +28,7 @@ class ProfileSignOutTableViewCell: UITableViewCell {
         textLabel?.textAlignment = .center
         textLabel?.textColor = ColorPalette.redColor
         textLabel?.font = FontHelper.calloutLight
+        textLabel?.adjustsFontForContentSizeCategory = true
     }
 
 }

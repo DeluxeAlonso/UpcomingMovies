@@ -35,9 +35,11 @@ class CustomListTableViewCell: UITableViewCell {
     private func setupLabels() {
         nameLabel.textColor = ColorPalette.lightBlueColor
         nameLabel.font = FontHelper.body
+        nameLabel.adjustsFontForContentSizeCategory = true
 
         descriptionLabel.textColor = ColorPalette.lightBlueColor
         descriptionLabel.font = FontHelper.subheadLight
+        descriptionLabel.adjustsFontForContentSizeCategory = true
     }
 
     // MARK: - Reactive Behavior

@@ -34,15 +34,21 @@ class CustomListDetailSectionView: UIView, NibLoadable {
     private func setupUI() {
         movieCountLabel.textColor = ColorPalette.whiteColor
         movieCountLabel.font = FontHelper.body
+        movieCountLabel.adjustsFontForContentSizeCategory = true
 
         ratingLabel.textColor = ColorPalette.whiteColor
         ratingLabel.font = FontHelper.body
+        ratingLabel.adjustsFontForContentSizeCategory = true
 
         runtimeLabel.textColor = ColorPalette.whiteColor
         runtimeLabel.font = FontHelper.body
+        runtimeLabel.adjustsFontForContentSizeCategory = true
 
-        titleLabels.forEach { $0.textColor = ColorPalette.whiteColor }
-        titleLabels.forEach { $0.font = FontHelper.caption1Light }
+        titleLabels.forEach {
+            $0.textColor = ColorPalette.whiteColor
+            $0.font = FontHelper.caption1Light
+            $0.adjustsFontForContentSizeCategory = true
+        }
     }
 
     // MARK: - Reactive Behavior

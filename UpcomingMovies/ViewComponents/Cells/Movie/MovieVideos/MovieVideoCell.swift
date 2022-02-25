@@ -37,6 +37,7 @@ final class MovieVideoCell: UITableViewCell {
     private func setupUI() {
         nameLabel.font = FontHelper.calloutLight
         nameLabel.textColor = ColorPalette.Label.defaultColor
+        nameLabel.adjustsFontForContentSizeCategory = true
     }
 
     // MARK: - Reactive Behavior
