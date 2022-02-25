@@ -27,7 +27,8 @@ class ProfileSignOutTableViewCell: UITableViewCell {
         textLabel?.text = LocalizedStrings.signOut()
         textLabel?.textAlignment = .center
         textLabel?.textColor = ColorPalette.redColor
-        textLabel?.font = FontHelper.light(withSize: 16.0)
+        textLabel?.font = FontHelper.calloutLight
+        textLabel?.adjustsFontForContentSizeCategory = true
     }
 
 }

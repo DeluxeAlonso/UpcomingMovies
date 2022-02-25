@@ -29,16 +29,17 @@ final class RecentSearchCell: UITableViewCell {
 
     // MARK: - Private
 
-    fileprivate func setupUI() {
+    private func setupUI() {
         setupSearchLabel()
     }
 
-    fileprivate func setupSearchLabel() {
-        searchLabel.font = FontHelper.Default.mediumLight
+    private func setupSearchLabel() {
+        searchLabel.font = FontHelper.subheadLight
         searchLabel.textColor = ColorPalette.Label.defaultColor
+        searchLabel.adjustsFontForContentSizeCategory = true
     }
 
-    fileprivate func setupBindables() {
+    private func setupBindables() {
         searchLabel.text = viewModel?.searchText
     }
 

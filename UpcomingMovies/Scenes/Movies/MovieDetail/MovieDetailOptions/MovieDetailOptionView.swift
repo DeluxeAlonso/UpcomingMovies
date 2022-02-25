@@ -29,10 +29,12 @@ class MovieDetailOptionView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 1
-        label.font = FontHelper.regular(withSize: 16.0)
+        label.font = FontHelper.callout
         label.setContentCompressionResistancePriority(UILayoutPriority.required, for: .vertical)
         label.setContentHuggingPriority(UILayoutPriority.required, for: .vertical)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.adjustsFontForContentSizeCategory = true
+
         return label
     }()
 

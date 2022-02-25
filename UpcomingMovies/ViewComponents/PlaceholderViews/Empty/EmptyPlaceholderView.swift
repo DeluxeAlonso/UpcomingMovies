@@ -33,8 +33,9 @@ class EmptyPlaceholderView: UIView, NibLoadable, Placeholderable {
 
     private func setupUI() {
         imageView.image = #imageLiteral(resourceName: "EmptyPlaceholder")
-        messageLabel.font = FontHelper.regular(withSize: 18.0)
+        messageLabel.font = FontHelper.bodySemiBold
         messageLabel.textColor = ColorPalette.lightBlueColor
+        messageLabel.adjustsFontForContentSizeCategory = true
     }
 
 }

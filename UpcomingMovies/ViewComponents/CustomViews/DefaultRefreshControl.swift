@@ -23,7 +23,7 @@ class DefaultRefreshControl: UIRefreshControl {
         self.tintColor = tintColor
         self.backgroundColor = backgroundColor
         self.attributedTitle = NSAttributedString(string: attributedTitle,
-                                                  attributes: [NSAttributedString.Key.font: FontHelper.light(withSize: 12.0),
+                                                  attributes: [NSAttributedString.Key.font: FontHelper.caption1Light,
                                                                NSAttributedString.Key.foregroundColor: tintColor])
         addTarget(self, action: #selector(refreshControlAction), for: .valueChanged)
     }
