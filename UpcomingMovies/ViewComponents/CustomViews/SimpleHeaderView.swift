@@ -14,6 +14,7 @@ class SimpleHeaderView: UIView {
         let label = UILabel()
         label.textAlignment = .left
         label.font = FontHelper.subheadLight
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 

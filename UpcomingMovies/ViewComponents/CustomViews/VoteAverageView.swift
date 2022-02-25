@@ -15,6 +15,7 @@ class VoteAverageView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.font = FontHelper.caption1Light
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 

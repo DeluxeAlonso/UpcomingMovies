@@ -14,6 +14,7 @@ class ToastView: UIView {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = FontHelper.subheadLight
+        label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
