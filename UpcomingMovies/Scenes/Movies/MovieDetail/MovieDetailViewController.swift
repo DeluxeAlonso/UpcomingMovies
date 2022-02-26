@@ -115,7 +115,11 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
         posterImageView.setImage(with: viewModel.posterURL)
 
         voteAverageView.voteValue = viewModel.voteAverage
+        
+
         overviewLabel.text = viewModel.overview
+        overviewLabel.font = FontHelper.body
+        overviewLabel.adjustsFontForContentSizeCategory = true
     }
 
     private func configureMovieOptions(_ options: [MovieDetailOption]) {
