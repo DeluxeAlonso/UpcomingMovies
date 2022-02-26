@@ -109,13 +109,17 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
         guard let viewModel = viewModel else { return }
 
         titleLabel.text = viewModel.title
+        titleLabel.font = FontHelper.headline
+        titleLabel.adjustsFontForContentSizeCategory = true
+
         releaseDateLabel.text = viewModel.releaseDate
+        releaseDateLabel.font = FontHelper.body
+        releaseDateLabel.adjustsFontForContentSizeCategory = true
 
         backdropImageView.setImage(with: viewModel.backdropURL)
         posterImageView.setImage(with: viewModel.posterURL)
 
         voteAverageView.voteValue = viewModel.voteAverage
-        
 
         overviewLabel.text = viewModel.overview
         overviewLabel.font = FontHelper.body
