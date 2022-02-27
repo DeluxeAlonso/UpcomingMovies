@@ -67,6 +67,8 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
         title = LocalizedStrings.movieDetailTitle()
 
         setupNavigationBar()
+        setupLabels()
+
         transitionContainerView.setShadowBorder()
     }
 
@@ -76,10 +78,18 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
         navigationItem.rightBarButtonItems = [moreBarButtonItem]
     }
 
-    private func showErrorView(error: Error) {
-        userInterfaceHelper?.presentRetryView(in: self.view, with: error.localizedDescription, retryHandler: { [weak self] in
-            self?.viewModel?.getMovieDetail(showLoader: false)
-        })
+    private func setupLabels() {
+        titleLabel.font = FontHelper.headline
+        titleLabel.adjustsFontForContentSizeCategory = true
+
+        genreLabel.font = FontHelper.body
+        genreLabel.adjustsFontForContentSizeCategory = true
+
+        releaseDateLabel.font = FontHelper.body
+        releaseDateLabel.adjustsFontForContentSizeCategory = true
+
+        overviewLabel.font = FontHelper.body
+        overviewLabel.adjustsFontForContentSizeCategory = true
     }
 
     // MARK: - Reactive Behavior
@@ -109,12 +119,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
         guard let viewModel = viewModel else { return }
 
         titleLabel.text = viewModel.title
-        titleLabel.font = FontHelper.headline
-        titleLabel.adjustsFontForContentSizeCategory = true
-
         releaseDateLabel.text = viewModel.releaseDate
-        releaseDateLabel.font = FontHelper.body
-        releaseDateLabel.adjustsFontForContentSizeCategory = true
 
         backdropImageView.setImage(with: viewModel.backdropURL)
         posterImageView.setImage(with: viewModel.posterURL)
@@ -122,8 +127,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
         voteAverageView.voteValue = viewModel.voteAverage
 
         overviewLabel.text = viewModel.overview
-        overviewLabel.font = FontHelper.body
-        overviewLabel.adjustsFontForContentSizeCategory = true
     }
 
     private func configureMovieOptions(_ options: [MovieDetailOption]) {
@@ -173,6 +176,12 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
             guard let self = self else { return }
             self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem]
         }
+    }
+
+    private func showErrorView(error: Error) {
+        userInterfaceHelper?.presentRetryView(in: self.view, with: error.localizedDescription, retryHandler: { [weak self] in
+            self?.viewModel?.getMovieDetail(showLoader: false)
+        })
     }
 
     // MARK: - Selectors

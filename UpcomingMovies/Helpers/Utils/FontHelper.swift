@@ -10,23 +10,27 @@ import UIKit
 
 struct FontHelper {
 
-    static func bold(withSize size: CGFloat) -> UIFont {
+    static func bold(withSize size: CGFloat, dynamic: Bool = true) -> UIFont {
         let font = UIFont.systemFont(ofSize: size, weight: UIFont.Weight.bold)
+        if !dynamic { return font }
         return UIFontMetrics.default.scaledFont(for: font)
     }
 
-    static func semiBold(withSize size: CGFloat) -> UIFont {
+    static func semiBold(withSize size: CGFloat, dynamic: Bool = true) -> UIFont {
         let font = UIFont.systemFont(ofSize: size, weight: UIFont.Weight.semibold)
+        if !dynamic { return font }
         return UIFontMetrics.default.scaledFont(for: font)
     }
 
-    static func light(withSize size: CGFloat) -> UIFont {
+    static func light(withSize size: CGFloat, dynamic: Bool = true) -> UIFont {
         let font = UIFont.systemFont(ofSize: size, weight: UIFont.Weight.light)
+        if !dynamic { return font }
         return UIFontMetrics.default.scaledFont(for: font)
     }
 
-    static func regular(withSize size: CGFloat) -> UIFont {
+    static func regular(withSize size: CGFloat, dynamic: Bool = true) -> UIFont {
         let font = UIFont.systemFont(ofSize: size, weight: UIFont.Weight.regular)
+        if !dynamic { return font }
         return UIFontMetrics.default.scaledFont(for: font)
     }
 
