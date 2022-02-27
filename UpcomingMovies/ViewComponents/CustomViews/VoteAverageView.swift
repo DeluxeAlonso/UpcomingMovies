@@ -14,8 +14,7 @@ class VoteAverageView: UIView {
     private lazy var voteAverageLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = FontHelper.caption1Light
-        label.adjustsFontForContentSizeCategory = true
+        label.font = FontHelper.light(withSize: 12.0, dynamic: false)
         return label
     }()
 
