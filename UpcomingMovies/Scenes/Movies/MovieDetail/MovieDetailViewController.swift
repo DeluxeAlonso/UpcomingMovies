@@ -82,17 +82,14 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
         titleLabel.font = FontHelper.headline
         titleLabel.adjustsFontForContentSizeCategory = true
 
+        genreLabel.font = FontHelper.body
+        genreLabel.adjustsFontForContentSizeCategory = true
+
         releaseDateLabel.font = FontHelper.body
         releaseDateLabel.adjustsFontForContentSizeCategory = true
 
         overviewLabel.font = FontHelper.body
         overviewLabel.adjustsFontForContentSizeCategory = true
-    }
-
-    private func showErrorView(error: Error) {
-        userInterfaceHelper?.presentRetryView(in: self.view, with: error.localizedDescription, retryHandler: { [weak self] in
-            self?.viewModel?.getMovieDetail(showLoader: false)
-        })
     }
 
     // MARK: - Reactive Behavior
@@ -179,6 +176,12 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
             guard let self = self else { return }
             self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem]
         }
+    }
+
+    private func showErrorView(error: Error) {
+        userInterfaceHelper?.presentRetryView(in: self.view, with: error.localizedDescription, retryHandler: { [weak self] in
+            self?.viewModel?.getMovieDetail(showLoader: false)
+        })
     }
 
     // MARK: - Selectors
