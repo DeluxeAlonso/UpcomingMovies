@@ -151,10 +151,10 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
 
     private func setupBindables() {
         viewModel?.viewState.bindAndFire({ [weak self] state in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                strongSelf.reloadTableView()
-                strongSelf.configureView(with: state)
+                self.reloadTableView()
+                self.configureView(with: state)
             }
         })
         viewModel?.getListMovies()
