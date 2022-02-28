@@ -61,41 +61,41 @@ class SearchOptionsViewController: UITableViewController, Storyboarded {
 
     private func setupBindables() {
         viewModel?.needsContentReload = { [weak self] in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                strongSelf.reloadTableView()
+                self.reloadTableView()
             }
         }
 
         viewModel?.updateVisitedMovies.bind({ [weak self] section in
-            guard let strongSelf = self,
+            guard let self = self,
                 let section = section else {
                     return
             }
             DispatchQueue.main.async {
-                strongSelf.reloadSection(section)
+                self.reloadSection(section)
             }
         })
 
         viewModel?.selectedDefaultSearchOption.bind({ [weak self] option in
-            guard let strongSelf = self, let option = option else { return }
-            strongSelf.delegate?.searchOptionsViewController(strongSelf, didSelectDefaultSearchOption: option)
+            guard let self = self, let option = option else { return }
+            self.delegate?.searchOptionsViewController(self, didSelectDefaultSearchOption: option)
         })
 
         viewModel?.selectedMovieGenre.bind({ [weak self] (genreId, genreName) in
-            guard let strongSelf = self,
+            guard let self = self,
                 let genreId = genreId,
                 let genreName = genreName else {
                     return
             }
-            strongSelf.delegate?.searchOptionsViewController(strongSelf,
+            self.delegate?.searchOptionsViewController(self,
                                                                   didSelectMovieGenreWithId: genreId,
                                                                   andGenreName: genreName)
         })
 
         viewModel?.selectedRecentlyVisitedMovie = { [weak self] id, title in
-            guard let strongSelf = self else { return }
-            strongSelf.delegate?.searchOptionsViewController(strongSelf, didSelectRecentlyVisitedMovie: id, title: title)
+            guard let self = self else { return }
+            self.delegate?.searchOptionsViewController(self, didSelectRecentlyVisitedMovie: id, title: title)
         }
     }
 

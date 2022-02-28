@@ -156,10 +156,10 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
 
     private func setupBindables() {
         viewModel?.viewState.bind({ [weak self] state in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                strongSelf.configureView(withState: state)
-                strongSelf.reloadCollectionView()
+                self.configureView(withState: state)
+                self.reloadCollectionView()
             }
         })
         viewModel?.startLoading.bind({ [weak self] startLoading in
