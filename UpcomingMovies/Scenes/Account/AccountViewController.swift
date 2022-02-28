@@ -66,20 +66,20 @@ class AccountViewController: UIViewController, Storyboarded {
 
     private func setupBindables() {
         viewModel.showAuthPermission.bind { [weak self] authPermissionURL in
-            guard let strongSelf = self else { return }
-            strongSelf.coordinator?.showAuthPermission(for: authPermissionURL,
-                                                       and: strongSelf)
+            guard let self = self else { return }
+            self.coordinator?.showAuthPermission(for: authPermissionURL,
+                                                       and: self)
         }
         viewModel.didSignIn = { [weak self] in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                strongSelf.showProfileView(withAnimatedNavigationBar: true)
+                self.showProfileView(withAnimatedNavigationBar: true)
             }
         }
         viewModel.didReceiveError = { [weak self] in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                strongSelf.signInViewController?.stopLoading()
+                self.signInViewController?.stopLoading()
             }
         }
     }
