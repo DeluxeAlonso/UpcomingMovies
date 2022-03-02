@@ -33,7 +33,7 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
 
     // MARK: - Initializers
 
-    init() {}
+    private init() {}
 
     // MARK: - AuthenticationManagerProtocol
 

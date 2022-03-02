@@ -146,7 +146,6 @@
 		E229AFB524A84CBE002AB427 /* CustomListDetailProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFB424A84CBE002AB427 /* CustomListDetailProtocols.swift */; };
 		E229AFB724A8597C002AB427 /* MovieCreditsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFB624A8597C002AB427 /* MovieCreditsProtocols.swift */; };
 		E229AFB924A85A17002AB427 /* MovieCreditsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFB824A85A17002AB427 /* MovieCreditsViewState.swift */; };
-		E23179792740C783007E623B /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23179782740C783007E623B /* ProgressHud.swift */; };
 		E233772A249EFA280061D90D /* AccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2337729249EFA280061D90D /* AccountCoordinator.swift */; };
 		E235E44F24959C1600831F0A /* AuthPermissionWebViewNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E235E44E24959C1600831F0A /* AuthPermissionWebViewNavigation.swift */; };
 		E241FE0722434B9B00144FD3 /* AuthPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241FE0622434B9B00144FD3 /* AuthPermissionViewController.swift */; };
@@ -351,9 +350,6 @@
 		E2ED5D53279920C5006F4316 /* ProgressHUDAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ED5D52279920C5006F4316 /* ProgressHUDAdapter.swift */; };
 		E2F789F82598401700002CAD /* AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F789F72598401700002CAD /* AppExtension.swift */; };
 		E2F78A0125985D5A00002CAD /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F78A0025985D5A00002CAD /* RootCoordinator.swift */; };
-		E2F8BD3D2744BCC00092E95E /* DefaultHudConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F8BD3C2744BCC00092E95E /* DefaultHudConfiguration.swift */; };
-		E2F8BD3F2744BCE40092E95E /* HudConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F8BD3E2744BCE40092E95E /* HudConfigurationProtocol.swift */; };
-		E2F8BD412744C56E0092E95E /* HudContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F8BD402744C56E0092E95E /* HudContainerView.swift */; };
 		E2F9F7182201F3C300C62089 /* TransitioningInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F7162201F3C300C62089 /* TransitioningInteractor.swift */; };
 		E2F9F7202201FC1100C62089 /* Transitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F71F2201FC1100C62089 /* Transitionable.swift */; };
 		E2F9F7222202787F00C62089 /* TransitioningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F7212202787E00C62089 /* TransitioningAnimator.swift */; };
@@ -564,7 +560,6 @@
 		E229AFB424A84CBE002AB427 /* CustomListDetailProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailProtocols.swift; sourceTree = "<group>"; };
 		E229AFB624A8597C002AB427 /* MovieCreditsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditsProtocols.swift; sourceTree = "<group>"; };
 		E229AFB824A85A17002AB427 /* MovieCreditsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditsViewState.swift; sourceTree = "<group>"; };
-		E23179782740C783007E623B /* ProgressHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHud.swift; sourceTree = "<group>"; };
 		E2337729249EFA280061D90D /* AccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCoordinator.swift; sourceTree = "<group>"; };
 		E235E44E24959C1600831F0A /* AuthPermissionWebViewNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionWebViewNavigation.swift; sourceTree = "<group>"; };
 		E241FE0622434B9B00144FD3 /* AuthPermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionViewController.swift; sourceTree = "<group>"; };
@@ -780,9 +775,6 @@
 		E2ED5D52279920C5006F4316 /* ProgressHUDAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUDAdapter.swift; sourceTree = "<group>"; };
 		E2F789F72598401700002CAD /* AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtension.swift; sourceTree = "<group>"; };
 		E2F78A0025985D5A00002CAD /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
-		E2F8BD3C2744BCC00092E95E /* DefaultHudConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHudConfiguration.swift; sourceTree = "<group>"; };
-		E2F8BD3E2744BCE40092E95E /* HudConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudConfigurationProtocol.swift; sourceTree = "<group>"; };
-		E2F8BD402744C56E0092E95E /* HudContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudContainerView.swift; sourceTree = "<group>"; };
 		E2F9F7162201F3C300C62089 /* TransitioningInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitioningInteractor.swift; sourceTree = "<group>"; };
 		E2F9F71F2201FC1100C62089 /* Transitionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitionable.swift; sourceTree = "<group>"; };
 		E2F9F7212202787E00C62089 /* TransitioningAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitioningAnimator.swift; sourceTree = "<group>"; };
@@ -1505,16 +1497,6 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
-		E23179772740C746007E623B /* ProgressHud */ = {
-			isa = PBXGroup;
-			children = (
-				E2F8BD3B2744BC9E0092E95E /* Configuration */,
-				E23179782740C783007E623B /* ProgressHud.swift */,
-				E2F8BD402744C56E0092E95E /* HudContainerView.swift */,
-			);
-			path = ProgressHud;
-			sourceTree = "<group>";
-		};
 		E241FE0522434B7000144FD3 /* AuthPermission */ = {
 			isa = PBXGroup;
 			children = (
@@ -1666,7 +1648,6 @@
 		E260116A2193883100E53095 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				E23179772740C746007E623B /* ProgressHud */,
 				E2C085AE261651A300AC5383 /* ToastView */,
 				E21F379D219401CF00D6BFB6 /* SimpleHeaderView.swift */,
 				E21F37992193FEB000D6BFB6 /* LoadingFooterView.swift */,
@@ -2056,15 +2037,6 @@
 			path = ProgressHUD;
 			sourceTree = "<group>";
 		};
-		E2F8BD3B2744BC9E0092E95E /* Configuration */ = {
-			isa = PBXGroup;
-			children = (
-				E2F8BD3E2744BCE40092E95E /* HudConfigurationProtocol.swift */,
-				E2F8BD3C2744BCC00092E95E /* DefaultHudConfiguration.swift */,
-			);
-			path = Configuration;
-			sourceTree = "<group>";
-		};
 		E2F9F71D2201FBE600C62089 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2407,7 +2379,6 @@
 			files = (
 				E29408002209E85000A74F68 /* UICollectionView+Extensions.swift in Sources */,
 				E2A65E5121FEC39800485B4E /* VoteAverageView.swift in Sources */,
-				E23179792740C783007E623B /* ProgressHud.swift in Sources */,
 				E241FE0922434D4900144FD3 /* AuthPermissionViewModel.swift in Sources */,
 				E235E44F24959C1600831F0A /* AuthPermissionWebViewNavigation.swift in Sources */,
 				E2825DCD24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift in Sources */,
@@ -2477,7 +2448,6 @@
 				E263FA9E24D52D9E00990638 /* TopRatedMoviesCoordinator.swift in Sources */,
 				E229AFB524A84CBE002AB427 /* CustomListDetailProtocols.swift in Sources */,
 				E2058B6E247F6BBD00A6AB52 /* NavigationHandler.swift in Sources */,
-				E2F8BD3D2744BCC00092E95E /* DefaultHudConfiguration.swift in Sources */,
 				E2E518A624A997D700CC3FA5 /* SearchMoviesProtocols.swift in Sources */,
 				E28A68D124D79F9900D20E52 /* MovieVideosInteractor.swift in Sources */,
 				E2940803220A152700A74F68 /* MainTabBarController.swift in Sources */,
@@ -2543,7 +2513,6 @@
 				E265C2612495392900712284 /* MoviesByGenreInteractor.swift in Sources */,
 				E2009F4F2515BD8600D4B48F /* SplashBuilder.swift in Sources */,
 				E21662E025EB672D001C2905 /* LoadingView.swift in Sources */,
-				E2F8BD3F2744BCE40092E95E /* HudConfigurationProtocol.swift in Sources */,
 				E22447742234BC3500A59FEF /* UpcomingMovieExpandedCollectionViewCell.swift in Sources */,
 				E2254693226A3D6500E9042C /* CustomListTableViewCell.swift in Sources */,
 				E2912676250DE651007AD101 /* DIContainer.swift in Sources */,
@@ -2554,7 +2523,6 @@
 				E228430F250ED1A900F053DE /* HandlerAssembly.swift in Sources */,
 				E2709630247B686100AE694E /* Entities+ImageConfiguration.swift in Sources */,
 				E208FC472635238A008593D8 /* SimpleViewStateProcessable.swift in Sources */,
-				E2F8BD412744C56E0092E95E /* HudContainerView.swift in Sources */,
 				E223B086224828FB0050277B /* ProfileSelectableOptionCellViewModel.swift in Sources */,
 				E284EF4D21F127FB004E705F /* VisitedMovieCellViewModel.swift in Sources */,
 				E2D1040F220CD1BC005F310C /* UIRefreshControl+Extensions.swift in Sources */,
