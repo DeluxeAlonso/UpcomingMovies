@@ -16,7 +16,7 @@ final class NetworkConfiguration {
         return "https://api.themoviedb.org"
     }
 
-    init() {}
+    private init() {}
 
     func configure(with apiKey: String, and readAccessToken: String) {
         self.apiKey = apiKey
