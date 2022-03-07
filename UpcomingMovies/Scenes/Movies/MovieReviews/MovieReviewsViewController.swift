@@ -34,6 +34,8 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
         setupBindables()
     }
 
+    // MARK: - Private
+
     private func setupUI() {
         setupTableView()
     }
