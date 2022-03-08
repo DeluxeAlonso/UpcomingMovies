@@ -31,30 +31,30 @@ class MovieReviewsTests: XCTestCase {
     }
 
     func testMovieReviewsTitle() {
-        //Act
+        // Act
         let title = viewModelToTest.movieTitle
-        //Assert
+        // Assert
         XCTAssertEqual(title, "Movie 1")
     }
 
     func testGetReviewsEmpty() {
-        //Arrange
+        // Arrange
         let expectation = XCTestExpectation(description: "Should get empty state")
-        //Act
+        // Act
         viewModelToTest.viewState.bind { state in
             XCTAssertEqual(state, .empty)
             expectation.fulfill()
         }
         mockInteractor.getMovieReviewsResult = Result.success([])
         viewModelToTest.getMovieReviews()
-        //Assert
+        // Assert
         wait(for: [expectation], timeout: 1.0)
     }
 
     func testGetReviewsPopulated() {
-        //Arrange
+        // Arrange
         let expectation = XCTestExpectation(description: "Should get populated state")
-        //Act
+        // Act
         viewModelToTest.viewState.bind { state in
             XCTAssertEqual(state, .populated([Review.with(id: "1"), Review.with(id: "2")]))
             expectation.fulfill()
@@ -63,28 +63,28 @@ class MovieReviewsTests: XCTestCase {
         viewModelToTest.getMovieReviews()
         mockInteractor.getMovieReviewsResult = Result.success([])
         viewModelToTest.getMovieReviews()
-        //Assert
+        // Assert
         wait(for: [expectation], timeout: 1.0)
     }
 
     func testGetReviewsPaging() {
-        //Arrange
+        // Arrange
         let expectation = XCTestExpectation(description: "Should get paging state")
-        //Act
+        // Act
         viewModelToTest.viewState.bind { state in
             XCTAssertEqual(state, .paging([Review.with(id: "1"), Review.with(id: "2")], next: 2))
             expectation.fulfill()
         }
         mockInteractor.getMovieReviewsResult = Result.success([Review.with(id: "1"), Review.with(id: "2")])
         viewModelToTest.getMovieReviews()
-        //Assert
+        // Assert
         wait(for: [expectation], timeout: 1.0)
     }
 
     func testGetReviewsError() {
-        //Arrange
+        // Arrange
         let expectation = XCTestExpectation(description: "Should get error state")
-        //Act
+        // Act
         viewModelToTest.viewState.bind { state in
             XCTAssertEqual(state, .error(APIError.badRequest))
             expectation.fulfill()
