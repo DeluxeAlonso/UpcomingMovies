@@ -53,13 +53,15 @@ class MovieReviewsTests: XCTestCase {
 
     func testGetReviewsPopulated() {
         // Arrange
+        let reviewsToTest = [Review.with(id: "1"), Review.with(id: "2")]
         let expectation = XCTestExpectation(description: "Should get populated state")
+        var statesToReceive: [SimpleViewState<UpcomingMoviesDomain.Review>] = [.paging(reviewsToTest, next: 2), .populated(reviewsToTest)]
         // Act
         viewModelToTest.viewState.bind { state in
-            XCTAssertEqual(state, .populated([Review.with(id: "1"), Review.with(id: "2")]))
+            XCTAssertEqual(state, statesToReceive.removeFirst())
             expectation.fulfill()
         }
-        mockInteractor.getMovieReviewsResult = Result.success([Review.with(id: "1"), Review.with(id: "2")])
+        mockInteractor.getMovieReviewsResult = Result.success(reviewsToTest)
         viewModelToTest.getMovieReviews()
         mockInteractor.getMovieReviewsResult = Result.success([])
         viewModelToTest.getMovieReviews()
