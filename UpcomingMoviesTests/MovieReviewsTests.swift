@@ -31,48 +31,70 @@ class MovieReviewsTests: XCTestCase {
     }
 
     func testMovieReviewsTitle() {
-        //Act
+        // Act
         let title = viewModelToTest.movieTitle
-        //Assert
+        // Assert
         XCTAssertEqual(title, "Movie 1")
     }
 
     func testGetReviewsEmpty() {
-        //Arrange
+        // Arrange
+        let expectation = XCTestExpectation(description: "Should get empty state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .empty)
+            expectation.fulfill()
+        }
         mockInteractor.getMovieReviewsResult = Result.success([])
-        //Act
         viewModelToTest.getMovieReviews()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .empty)
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
 
     func testGetReviewsPopulated() {
-        //Arrange
-        mockInteractor.getMovieReviewsResult = Result.success([Review.with(id: "1"), Review.with(id: "2")])
-        //Act
+        // Arrange
+        let reviewsToTest = [Review.with(id: "1"), Review.with(id: "2")]
+        let expectation = XCTestExpectation(description: "Should get populated state")
+        var statesToReceive: [SimpleViewState<UpcomingMoviesDomain.Review>] = [.paging(reviewsToTest, next: 2), .populated(reviewsToTest)]
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, statesToReceive.removeFirst())
+            expectation.fulfill()
+        }
+        mockInteractor.getMovieReviewsResult = Result.success(reviewsToTest)
         viewModelToTest.getMovieReviews()
         mockInteractor.getMovieReviewsResult = Result.success([])
         viewModelToTest.getMovieReviews()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .populated([Review.with(id: "1"), Review.with(id: "2")]))
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
 
     func testGetReviewsPaging() {
-        //Arrange
+        // Arrange
+        let expectation = XCTestExpectation(description: "Should get paging state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .paging([Review.with(id: "1"), Review.with(id: "2")], next: 2))
+            expectation.fulfill()
+        }
         mockInteractor.getMovieReviewsResult = Result.success([Review.with(id: "1"), Review.with(id: "2")])
-        //Act
         viewModelToTest.getMovieReviews()
-        //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .paging([Review.with(id: "1"), Review.with(id: "2")], next: 2))
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
 
     func testGetReviewsError() {
-        //Arrange
+        // Arrange
+        let expectation = XCTestExpectation(description: "Should get error state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .error(APIError.badRequest))
+            expectation.fulfill()
+        }
         mockInteractor.getMovieReviewsResult = Result.failure(APIError.badRequest)
-        //Act
         viewModelToTest.getMovieReviews()
         //Assert
-        XCTAssertEqual(viewModelToTest.viewState.value, .error(APIError.badRequest))
+        wait(for: [expectation], timeout: 1.0)
     }
 
     func testMovieReviewCellAuthorName() {
