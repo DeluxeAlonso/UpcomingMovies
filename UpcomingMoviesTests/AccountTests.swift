@@ -101,7 +101,7 @@ class AccountTests: XCTestCase {
         // Act
         mockInteractor.currentUserResult = userToTest
         let user = viewModelToTest.currentUser()
-        //Assert
+        // Assert
         XCTAssertNil(user)
     }
 
