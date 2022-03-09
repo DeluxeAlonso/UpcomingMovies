@@ -14,6 +14,8 @@ import XCTest
 
 class MovieReviewsTests: XCTestCase {
 
+    typealias MovieReviewsState = SimpleViewState<UpcomingMoviesDomain.Review>
+
     private var mockInteractor: MockMovieReviewsInteractor!
     private var viewModelToTest: MovieReviewsViewModelProtocol!
 
@@ -55,7 +57,7 @@ class MovieReviewsTests: XCTestCase {
         // Arrange
         let reviewsToTest = [Review.with(id: "1"), Review.with(id: "2")]
         let expectation = XCTestExpectation(description: "Should get populated state")
-        var statesToReceive: [SimpleViewState<UpcomingMoviesDomain.Review>] = [.paging(reviewsToTest, next: 2), .populated(reviewsToTest)]
+        var statesToReceive: [MovieReviewsState] = [.paging(reviewsToTest, next: 2), .populated(reviewsToTest)]
         // Act
         viewModelToTest.viewState.bind { state in
             XCTAssertEqual(state, statesToReceive.removeFirst())
