@@ -20,8 +20,8 @@ final class AccountAssembly: Assembly {
             guard let authHandler = resolver.resolve(AuthenticationHandlerProtocol.self) else {
                 fatalError("AuthenticationHandlerProtocol dependency could not be resolved")
             }
-            return AccountInteractor(useCaseProvider: useCaseProvider!,
-                                     authHandler: authHandler!)
+            return AccountInteractor(useCaseProvider: useCaseProvider,
+                                     authHandler: authHandler)
         }
 
         container.register(AccountViewModelProtocol.self) { resolver in
