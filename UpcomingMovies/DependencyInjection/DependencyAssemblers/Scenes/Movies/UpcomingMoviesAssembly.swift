@@ -24,7 +24,7 @@ final class UpcomingMoviesAssembly: Assembly {
             guard let interactor = resolver.resolve(MoviesInteractorProtocol.self, name: "UpcomingMovies") else {
                 fatalError("MoviesInteractorProtocol dependency could not be resolved")
             }
-            return UpcomingMoviesViewModel(interactor: interactor!)
+            return UpcomingMoviesViewModel(interactor: interactor)
         }
     }
 
