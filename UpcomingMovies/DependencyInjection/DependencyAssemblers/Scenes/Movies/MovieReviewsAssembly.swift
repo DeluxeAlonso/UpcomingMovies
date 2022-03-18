@@ -13,8 +13,10 @@ final class MovieReviewsAssembly: Assembly {
 
     func assemble(container: Container) {
         container.register(MovieReviewsInteractorProtocol.self) { resolver in
-            let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
-            return MovieReviewsInteractor(useCaseProvider: useCaseProvider!)
+            guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
+                fatalError("UseCaseProviderProtocol dependency could not be resolved")
+            }
+            return MovieReviewsInteractor(useCaseProvider: useCaseProvider)
         }
 
         container.register(MovieReviewsViewModelProtocol.self) { (resolver, movieId: Int, movieTitle: String) in

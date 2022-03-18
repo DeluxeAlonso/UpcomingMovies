@@ -25,7 +25,10 @@ final class AccountAssembly: Assembly {
         }
 
         container.register(AccountViewModelProtocol.self) { resolver in
-            AccountViewModel(interactor: resolver.resolve(AccountInteractorProtocol.self)!)
+            guard let interactor = resolver.resolve(AccountInteractorProtocol.self) else {
+                fatalError("AccountInteractorProtocol dependency could not be resolved")
+            }
+            return AccountViewModel(interactor: interactor)
         }
     }
 
