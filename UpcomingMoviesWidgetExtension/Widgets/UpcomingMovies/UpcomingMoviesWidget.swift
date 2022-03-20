@@ -37,8 +37,8 @@ struct UpcomingMoviesWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             UpcomingMoviesWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Upcoming movies")
-        .description("Keep up to date with the latest releases")
+        .configurationDisplayName(Text("upcomingMoviesTitle"))
+        .description(Text("upcomingMoviesWidgetDescription"))
         .supportedFamilies([.systemSmall])
     }
 

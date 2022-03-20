@@ -146,6 +146,8 @@
 		E229AFB524A84CBE002AB427 /* CustomListDetailProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFB424A84CBE002AB427 /* CustomListDetailProtocols.swift */; };
 		E229AFB724A8597C002AB427 /* MovieCreditsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFB624A8597C002AB427 /* MovieCreditsProtocols.swift */; };
 		E229AFB924A85A17002AB427 /* MovieCreditsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229AFB824A85A17002AB427 /* MovieCreditsViewState.swift */; };
+		E22E74CD27E45E4A00152156 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E222DC1D2192A76700A2EDF4 /* Localizable.strings */; };
+		E22E74CE27E45E4B00152156 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E222DC1D2192A76700A2EDF4 /* Localizable.strings */; };
 		E233772A249EFA280061D90D /* AccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2337729249EFA280061D90D /* AccountCoordinator.swift */; };
 		E235E44F24959C1600831F0A /* AuthPermissionWebViewNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E235E44E24959C1600831F0A /* AuthPermissionWebViewNavigation.swift */; };
 		E241FE0722434B9B00144FD3 /* AuthPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241FE0622434B9B00144FD3 /* AuthPermissionViewController.swift */; };
@@ -2234,6 +2236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2B63B25246775C000C0BB13 /* Assets.xcassets in Resources */,
+				E22E74CE27E45E4B00152156 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2242,6 +2245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2EBDC32256A26090026319B /* Assets.xcassets in Resources */,
+				E22E74CD27E45E4A00152156 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
