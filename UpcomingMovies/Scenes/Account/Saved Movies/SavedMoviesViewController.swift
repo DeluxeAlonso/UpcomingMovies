@@ -117,11 +117,11 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
     private func setupBindables() {
         title = viewModel?.displayTitle
         viewModel?.viewState.bindAndFire({ [weak self] state in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                strongSelf.configureView(withState: state)
-                strongSelf.updateCollectionViewLayout()
-                strongSelf.reloadCollectionView()
+                self.configureView(withState: state)
+                self.updateCollectionViewLayout()
+                self.reloadCollectionView()
             }
         })
         viewModel?.startLoading.bind({ [weak self] start in

@@ -14,6 +14,8 @@ public class CoreDataStack: CoreDataStackProtocol {
 
     private var persistentStoreDescriptions: [NSPersistentStoreDescription] = []
 
+    private init() {}
+
     // MARK: - CoreDataStackProtocol
 
     func setExtensionPersistentStoreDescriptions(_ groupExtensionIds: [String]) {

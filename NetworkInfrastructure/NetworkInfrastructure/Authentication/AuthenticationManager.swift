@@ -12,9 +12,9 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
 
     static let shared = AuthenticationManager()
 
-    lazy var readAccessToken: String = {
+    var readAccessToken: String {
         return NetworkConfiguration.shared.readAccessToken
-    }()
+    }
 
     @KeychainStorage(key: Constants.sessionIdKey)
     private var sessionId: String?
@@ -33,7 +33,7 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
 
     // MARK: - Initializers
 
-    init() {}
+    private init() {}
 
     // MARK: - AuthenticationManagerProtocol
 

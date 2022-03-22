@@ -88,17 +88,17 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
         title = viewModel.movieTitle
 
         viewModel.viewState.bind({ [weak self] state in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                strongSelf.configureView(with: state)
-                strongSelf.reloadCollectionView()
+                self.configureView(with: state)
+                self.reloadCollectionView()
             }
         })
 
         viewModel.didToggleSection.bind({ [weak self] sectionToggled in
-            guard let strongSelf = self else { return }
-            strongSelf.collectionView.performBatchUpdates({
-                strongSelf.collectionView.reloadSections(IndexSet(integer: sectionToggled))
+            guard let self = self else { return }
+            self.collectionView.performBatchUpdates({
+                self.collectionView.reloadSections(IndexSet(integer: sectionToggled))
             }, completion: nil)
         })
 

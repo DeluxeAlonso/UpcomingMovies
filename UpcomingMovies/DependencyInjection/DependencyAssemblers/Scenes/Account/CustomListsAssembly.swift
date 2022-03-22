@@ -14,12 +14,17 @@ final class CustomListsAssembly: Assembly {
 
     func assemble(container: Container) {
         container.register(CustomListsInteractorProtocol.self) { resolver in
-            let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
-            return CustomListsInteractor(useCaseProvider: useCaseProvider!)
+            guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
+                fatalError("UseCaseProviderProtocol dependency could not be resolved")
+            }
+            return CustomListsInteractor(useCaseProvider: useCaseProvider)
         }
 
         container.register(CustomListsViewModelProtocol.self) { resolver in
-            CustomListsViewModel(interactor: resolver.resolve(CustomListsInteractorProtocol.self)!)
+            guard let interactor = resolver.resolve(CustomListsInteractorProtocol.self) else {
+                fatalError("CustomListsInteractorProtocol dependency could not be resolved")
+            }
+            return CustomListsViewModel(interactor: interactor)
         }
     }
 

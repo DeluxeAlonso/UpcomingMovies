@@ -28,10 +28,10 @@ class SplashViewController: UIViewController, Storyboarded {
 
     private func setupBindables() {
         viewModel?.initialDownloadsEnded = { [weak self] in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
             DispatchQueue.main.async {
-                navigationHandler.initialTransition(from: strongSelf.view.window)
+                navigationHandler.initialTransition(from: self.view.window)
             }
         }
     }
