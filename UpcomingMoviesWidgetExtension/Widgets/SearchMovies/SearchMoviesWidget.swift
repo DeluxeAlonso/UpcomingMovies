@@ -20,7 +20,7 @@ struct SearchMoviesWidgetEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
-        SmallWidgetView(title: Text("Search"),
+        SmallWidgetView(title: Text("searchMoviesSmallWidgetTitle"),
                         iconName: "magnifyingglass",
                         gradientColors: gradientColors,
                         backgroundColor: backgroundColor)
@@ -37,8 +37,8 @@ struct SearchMoviesWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             SearchMoviesWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Search movies")
-        .description("Search your favorite movies")
+        .configurationDisplayName(Text("searchMoviesTitle"))
+        .description(Text("searchMoviesWidgetDescription"))
         .supportedFamilies([.systemSmall])
     }
 
