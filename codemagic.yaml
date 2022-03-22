@@ -4,13 +4,32 @@ workflows:
     environment:
       xcode: latest
       cocoapods: default
+      groups:
+        - remote_caching
+      vars:
+        XCODE_PROJECT: "UpcomingMovies.xcodeproj"
+        XCODE_WORKSPACE: "UpcomingMovies.xcworkspace"
+        XCODE_TARGET: "UpcomingMovies"
+        XCODE_SCHEME: "UpcomingMovies"
     scripts:
+      - name: Decode RC Config File
+        script: |
+          echo $RC_CONFIG | base64 --decode > $CM_BUILD_DIR/.rcinfo
       - name: Install pods
         script: |
           pod install
+      - name: Update pods
+        script: |
+          pod update
       - name: Bundle install
         script: |
           bundle install
-      - name: Run tests
+      - name: Setup XCRemoteCache
         script: |
-          bundle exec fastlane tests
+          xcremotecache/xcprepare integrate --input "$XCODE_PROJECT" --mode producer --final-producer-target "$XCODE_TARGET"
+      - name: Build IPA
+        script: |
+          xcodebuild build -workspace "$XCODE_WORKSPACE" -scheme "$XCODE_SCHEME" CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log

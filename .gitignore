@@ -92,3 +92,5 @@ iOSInjectionProject/
 .DS_Store
 
 swiftlint.result.json
+
+.rcinfo
