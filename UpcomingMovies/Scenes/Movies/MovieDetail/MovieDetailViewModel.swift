@@ -92,9 +92,9 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private func getMovieGenreName(for genreId: Int?) {
         guard let genreId = genreId else { return }
         interactor.findGenre(with: genreId, completion: { [weak self] result in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             let genre = try? result.get()
-            strongSelf.showGenreName.value = genre?.name ?? "-"
+            self.showGenreName.value = genre?.name ?? "-"
         })
     }
 

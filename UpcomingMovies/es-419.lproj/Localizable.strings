@@ -66,3 +66,9 @@
 "cancel" = "Cancelar";
 
 "shareMovieActionSheetItemTitle" = "Compartir película";
+
+"upcomingMoviesSmallWidgetTitle" = "Próximos";
+"upcomingMoviesWidgetDescription" = "Mantente al día con los últimos lanzamientos";
+
+"searchMoviesSmallWidgetTitle" = "Buscar";
+"searchMoviesWidgetDescription" = "Busca tus películas favoritas";

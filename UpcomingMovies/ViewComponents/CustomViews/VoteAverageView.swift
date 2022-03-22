@@ -14,33 +14,33 @@ class VoteAverageView: UIView {
     private lazy var voteAverageLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = FontHelper.light(withSize: 12.0)
+        label.font = FontHelper.light(withSize: 12.0, dynamic: false)
         return label
     }()
 
     // MARK: - Configurable properties
 
     private let backgroundLayer = CAShapeLayer()
-    @IBInspectable var backgroundLayerColor: UIColor = .gray {
+    @IBInspectable private var backgroundLayerColor: UIColor = .gray {
         didSet {
             updateShapeLayerColors()
         }
     }
 
     private let loadedLayer = CAShapeLayer()
-    @IBInspectable var loadedLayerColor: UIColor = .black {
+    @IBInspectable private var loadedLayerColor: UIColor = .black {
         didSet {
             updateShapeLayerColors()
         }
     }
 
-    @IBInspectable var layerLineWidth: CGFloat = 5.0 {
+    @IBInspectable private var layerLineWidth: CGFloat = 5.0 {
         didSet {
             setupShapeLayers()
         }
     }
 
-    @IBInspectable var layerStartAngle: CGFloat = 45.0 {
+    @IBInspectable private var layerStartAngle: CGFloat = 45.0 {
         didSet {
             setupShapeLayerPath(loadedLayer)
         }

@@ -109,10 +109,10 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
 
     private func setupBindables() {
         viewModel.viewState.bindAndFire({ [weak self] state in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                strongSelf.configureView(with: state)
-                strongSelf.reloadTableView()
+                self.configureView(with: state)
+                self.reloadTableView()
             }
         })
     }

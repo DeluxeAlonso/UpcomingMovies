@@ -67,8 +67,8 @@ class ProfileViewController: UITableViewController, Storyboarded {
 
     private func setupBindables() {
         viewModel?.reloadAccountInfo = { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.reloadAccountInfo()
+            guard let self = self else { return }
+            self.reloadAccountInfo()
         }
     }
 

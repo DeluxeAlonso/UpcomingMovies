@@ -98,10 +98,10 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
     private func setupBindables() {
         title = viewModel?.displayTitle
         viewModel?.viewState.bindAndFire({ [weak self] state in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                strongSelf.configureView(withState: state)
-                strongSelf.reloadTableView()
+                self.configureView(withState: state)
+                self.reloadTableView()
             }
         })
         viewModel?.startLoading.bind({ [weak self] start in

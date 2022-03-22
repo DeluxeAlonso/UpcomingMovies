@@ -40,8 +40,9 @@ class SavedMovieCollectionViewCell: CollectionViewSlantedCell {
     }
 
     private func setupLabels() {
-        titleLabel.font = FontHelper.bold(withSize: 18.0)
+        titleLabel.font = FontHelper.bodyBold
         titleLabel.textColor = ColorPalette.whiteColor
+        titleLabel.adjustsFontForContentSizeCategory = true
     }
 
     // MARK: - Reactive Behavior

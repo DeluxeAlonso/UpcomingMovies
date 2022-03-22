@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SmallWidgetView: View {
 
-    let title: String
+    let title: Text
     let iconName: String
     let gradientColors: [Color]
     let backgroundColor: Color
@@ -26,7 +26,7 @@ struct SmallWidgetView: View {
                         .foregroundColor(.white)
                         .padding(geometry.size.height * 0.15)
                         .background(LinearGradient(gradient: Gradient(colors: gradientColors), startPoint: .topLeading, endPoint: .bottomTrailing))
-                    Text(title)
+                    title
                         .font(.system(size: 13))
                         .fontWeight(.bold)
                         .foregroundColor(.white)

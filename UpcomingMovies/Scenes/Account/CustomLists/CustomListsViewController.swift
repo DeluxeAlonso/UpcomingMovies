@@ -95,10 +95,10 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
 
     private func setupBindables() {
         viewModel?.viewState.bindAndFire({ [weak self] state in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                strongSelf.configureView(withState: state)
-                strongSelf.reloadTableView()
+                self.configureView(withState: state)
+                self.reloadTableView()
             }
         })
         viewModel?.startLoading.bind({ [weak self] start in
