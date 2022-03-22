@@ -20,7 +20,7 @@ struct SearchMoviesWidgetEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
-        SmallWidgetView(title: "Search",
+        SmallWidgetView(title: Text("Search"),
                         iconName: "magnifyingglass",
                         gradientColors: gradientColors,
                         backgroundColor: backgroundColor)
