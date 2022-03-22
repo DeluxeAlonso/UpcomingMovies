@@ -69,3 +69,6 @@
 
 "upcomingMoviesSmallWidgetTitle" = "Upcoming";
 "upcomingMoviesWidgetDescription" = "Keep up to date with the latest releases";
+
+"searchMoviesSmallWidgetTitle" = "Search";
+"searchMoviesWidgetDescription" = "Search your favorite movies";
