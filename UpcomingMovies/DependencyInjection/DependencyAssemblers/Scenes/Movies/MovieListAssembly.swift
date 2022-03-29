@@ -22,14 +22,17 @@ final class MovieListAssembly: Assembly {
 
     private func popularMoviesAssemble(container: Container) {
         container.register(MoviesInteractorProtocol.self, name: "PopularMovies") { resolver in
-            let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
-            return PopularMoviesInteractor(useCaseProvider: useCaseProvider!)
+            guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
+                fatalError("UseCaseProviderProtocol dependency could not be resolved")
+            }
+            return PopularMoviesInteractor(useCaseProvider: useCaseProvider)
         }
 
         container.register(MovieListViewModelProtocol.self, name: "PopularMovies") { (resolver, displayTitle: String) in
-            let interactor = resolver.resolve(MoviesInteractorProtocol.self, name: "PopularMovies")
-
-            let viewModel = MovieListViewModel(interactor: interactor!)
+            guard let interactor = resolver.resolve(MoviesInteractorProtocol.self, name: "PopularMovies") else {
+                fatalError("MoviesInteractorProtocol dependency could not be resolved")
+            }
+            let viewModel = MovieListViewModel(interactor: interactor)
             viewModel.displayTitle = displayTitle
 
             return viewModel
@@ -38,14 +41,18 @@ final class MovieListAssembly: Assembly {
 
     private func topRatedMoviesAssemble(container: Container) {
         container.register(MoviesInteractorProtocol.self, name: "TopRatedMovies") { resolver in
-            let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
-            return TopRatedMoviesInteractor(useCaseProvider: useCaseProvider!)
+            guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
+                fatalError("UseCaseProviderProtocol dependency could not be resolved")
+            }
+            return TopRatedMoviesInteractor(useCaseProvider: useCaseProvider)
         }
 
         container.register(MovieListViewModelProtocol.self, name: "TopRatedMovies") { (resolver, displayTitle: String) in
-            let interactor = resolver.resolve(MoviesInteractorProtocol.self, name: "TopRatedMovies")
+            guard let interactor = resolver.resolve(MoviesInteractorProtocol.self, name: "TopRatedMovies") else {
+                fatalError("MoviesInteractorProtocol dependency could not be resolved")
+            }
 
-            let viewModel = MovieListViewModel(interactor: interactor!)
+            let viewModel = MovieListViewModel(interactor: interactor)
             viewModel.displayTitle = displayTitle
 
             return viewModel
@@ -54,15 +61,19 @@ final class MovieListAssembly: Assembly {
 
     private func similarMoviesAssemble(container: Container) {
         container.register(MoviesInteractorProtocol.self, name: "SimilarMovies") { (resolver, movieId: Int) in
-            let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
-            return SimilarMoviesInteractor(useCaseProvider: useCaseProvider!, movieId: movieId)
+            guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
+                fatalError("UseCaseProviderProtocol dependency could not be resolved")
+            }
+            return SimilarMoviesInteractor(useCaseProvider: useCaseProvider, movieId: movieId)
         }
 
-        container.register(MovieListViewModelProtocol.self, name: "SimilarMovies") { (resolver, displayTitle: String, movieId: Int?) in
-            let interactor = resolver.resolve(MoviesInteractorProtocol.self,
-                                              name: "SimilarMovies", argument: movieId!)
+        container.register(MovieListViewModelProtocol.self, name: "SimilarMovies") { (resolver, displayTitle: String, movieId: Int) in
+            guard let interactor = resolver.resolve(MoviesInteractorProtocol.self,
+                                                    name: "SimilarMovies", argument: movieId) else {
+                fatalError("MoviesInteractorProtocol dependency could not be resolved")
+            }
 
-            let viewModel = MovieListViewModel(interactor: interactor!)
+            let viewModel = MovieListViewModel(interactor: interactor)
             viewModel.displayTitle = displayTitle
 
             return viewModel
@@ -71,17 +82,18 @@ final class MovieListAssembly: Assembly {
 
     private func moviesByGenreAssemble(container: Container) {
         container.register(MoviesInteractorProtocol.self, name: "MoviesByGenre") { (resolver, genreId: Int, genreName: String) in
-            let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
-            return MoviesByGenreInteractor(useCaseProvider: useCaseProvider!,
+            guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
+                fatalError("UseCaseProviderProtocol dependency could not be resolved")
+            }
+            return MoviesByGenreInteractor(useCaseProvider: useCaseProvider,
                                            genreId: genreId, genreName: genreName)
         }
 
-        container.register(MovieListViewModelProtocol.self, name: "MoviesByGenre") { (resolver, genreId: Int?, genreName: String?) in
-            let interactor = resolver.resolve(MoviesInteractorProtocol.self,
-                                              name: "MoviesByGenre",
-                                              arguments: genreId!, genreName!)
-
-            let viewModel = MovieListViewModel(interactor: interactor!)
+        container.register(MovieListViewModelProtocol.self, name: "MoviesByGenre") { (resolver, genreId: Int, genreName: String) in
+            guard let interactor = resolver.resolve(MoviesInteractorProtocol.self, name: "MoviesByGenre", arguments: genreId, genreName) else {
+                fatalError("MoviesInteractorProtocol dependency could not be resolved")
+            }
+            let viewModel = MovieListViewModel(interactor: interactor)
             viewModel.displayTitle = genreName
 
             return viewModel
@@ -90,15 +102,18 @@ final class MovieListAssembly: Assembly {
 
     private func recommendedMoviesAssemble(container: Container) {
         container.register(MoviesInteractorProtocol.self, name: "RecommendedMovies") { resolver in
-            let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self)
-            return RecommendedMoviesInteractor(useCaseProvider: useCaseProvider!)
+            guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
+                fatalError("UseCaseProviderProtocol dependency could not be resolved")
+            }
+            return RecommendedMoviesInteractor(useCaseProvider: useCaseProvider)
         }
 
         container.register(MovieListViewModelProtocol.self, name: "RecommendedMovies") { (resolver, displayTitle: String) in
-            let interactor = resolver.resolve(MoviesInteractorProtocol.self,
-                                              name: "RecommendedMovies")
-
-            let viewModel = MovieListViewModel(interactor: interactor!)
+            guard let interactor = resolver.resolve(MoviesInteractorProtocol.self,
+                                                    name: "RecommendedMovies") else {
+                fatalError("MoviesInteractorProtocol dependency could not be resolved")
+            }
+            let viewModel = MovieListViewModel(interactor: interactor)
             viewModel.displayTitle = displayTitle
 
             return viewModel
