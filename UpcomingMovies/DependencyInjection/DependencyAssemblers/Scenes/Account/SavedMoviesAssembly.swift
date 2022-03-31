@@ -28,7 +28,7 @@ final class SavedMoviesAssembly: Assembly {
             return WatchlistSavedMoviesInteractor(useCaseProvider: useCaseProvider)
         }
 
-        container.register(SavedMoviesViewModelProtocol.self) { (resolver, displayTitle: String?) in
+        container.register(SavedMoviesViewModelProtocol.self) { (resolver, displayTitle: String) in
             guard let interactor = resolver.resolve(SavedMoviesInteractorProtocol.self, name: displayTitle) else {
                 fatalError("SavedMoviesInteractorProtocol dependency could not be resolved")
             }
