@@ -14,7 +14,7 @@ final class AdapterAssembly: Assembly {
     func assemble(container: Container) {
         container.register(ProgressHUDAdapterProtocol.self) { _ in
             ProgressHUDAdapter()
-        }.inObjectScope(.container)
+        }
     }
 
 }
