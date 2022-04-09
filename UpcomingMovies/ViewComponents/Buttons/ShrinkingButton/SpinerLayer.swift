@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SpinerLayer: CAShapeLayer {
+final class SpinerLayer: CAShapeLayer {
 
     var spinnerColor = UIColor.white {
         didSet {
