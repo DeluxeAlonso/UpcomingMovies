@@ -19,11 +19,11 @@ final class CustomListDetailAssembly: Assembly {
             return CustomListDetailInteractor(useCaseProvider: useCaseProvider)
         }
 
-        container.register(CustomListDetailViewModelProtocol.self) { (resolver, list: List) in
+        container.register(CustomListDetailViewModelProtocol.self) { (resolver, list: List?) in
             guard let interactor = resolver.resolve(CustomListDetailInteractorProtocol.self) else {
                 fatalError("CustomListDetailInteractorProtocol dependency could not be resolved")
             }
-            return CustomListDetailViewModel(list, interactor: interactor)
+            return CustomListDetailViewModel(list!, interactor: interactor)
         }
     }
 
