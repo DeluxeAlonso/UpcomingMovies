@@ -42,7 +42,7 @@ protocol AccountCoordinatorProtocol: AnyObject {
     func removeChildViewController<T: UIViewController>(_ viewController: inout T?,
                                                         from parentViewController: UIViewController)
 
-    func showAuthPermission(for authPermissionURL: URL?,
+    func showAuthPermission(for authPermissionURL: URL,
                             and authPermissionDelegate: AuthPermissionViewControllerDelegate)
 
     func showProfileOption(_ profileOption: ProfileOptionProtocol)

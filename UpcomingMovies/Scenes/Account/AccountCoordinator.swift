@@ -68,12 +68,11 @@ final class AccountCoordinator: NSObject, AccountCoordinatorProtocol, RootCoordi
         viewController = nil
     }
 
-    func showAuthPermission(for authPermissionURL: URL?,
+    func showAuthPermission(for authPermissionURL: URL,
                             and authPermissionDelegate: AuthPermissionViewControllerDelegate) {
         let navigationController = UINavigationController()
-        let coordinator = AuthPermissionCoordinator(navigationController: navigationController)
-
-        coordinator.authPermissionURL = authPermissionURL
+        let coordinator = AuthPermissionCoordinator(navigationController: navigationController,
+                                                    authPermissionURL: authPermissionURL)
         coordinator.authPermissionDelegate = authPermissionDelegate
         coordinator.presentingViewController = self.navigationController.topViewController
         coordinator.parentCoordinator = unwrappedParentCoordinator
