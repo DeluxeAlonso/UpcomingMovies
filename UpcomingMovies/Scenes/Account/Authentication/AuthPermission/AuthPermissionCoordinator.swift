@@ -12,14 +12,17 @@ final class AuthPermissionCoordinator: AuthPermissionCoordinatorProtocol {
 
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
-    var navigationController: UINavigationController
 
-    var authPermissionURL: URL?
-    var presentingViewController: UIViewController!
+    var navigationController: UINavigationController
+    var authPermissionURL: URL
+
+    var presentingViewController: UIViewController?
     var authPermissionDelegate: AuthPermissionViewControllerDelegate?
 
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController,
+         authPermissionURL: URL) {
         self.navigationController = navigationController
+        self.authPermissionURL = authPermissionURL
     }
 
     func start() {
@@ -31,7 +34,7 @@ final class AuthPermissionCoordinator: AuthPermissionCoordinatorProtocol {
 
         navigationController.pushViewController(viewController, animated: false)
 
-        presentingViewController.present(navigationController, animated: true, completion: nil)
+        presentingViewController?.present(navigationController, animated: true, completion: nil)
     }
 
     func dismiss(completion: (() -> Void)? = nil) {
