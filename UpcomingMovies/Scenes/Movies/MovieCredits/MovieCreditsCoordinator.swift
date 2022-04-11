@@ -14,11 +14,13 @@ final class MovieCreditsCoordinator: Coordinator, MovieCreditsCoordinatorProtoco
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
 
-    var movieId: Int!
-    var movieTitle: String!
+    var movieId: Int
+    var movieTitle: String
 
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, movieId: Int, movieTitle: String) {
         self.navigationController = navigationController
+        self.movieId = movieId
+        self.movieTitle = movieTitle
     }
 
     func start() {

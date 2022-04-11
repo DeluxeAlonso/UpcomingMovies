@@ -75,12 +75,9 @@ final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol 
     }
 
     private func showMovieCredits() {
-        let coordinator = MovieCreditsCoordinator(navigationController: navigationController)
-
         let movieInfo = getMoviePartialInfo(for: self.movieInfo)
 
-        coordinator.movieId = movieInfo.id
-        coordinator.movieTitle = movieInfo.title
+        let coordinator = MovieCreditsCoordinator(navigationController: navigationController, movieId: movieInfo.id, movieTitle: movieInfo.title)
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
