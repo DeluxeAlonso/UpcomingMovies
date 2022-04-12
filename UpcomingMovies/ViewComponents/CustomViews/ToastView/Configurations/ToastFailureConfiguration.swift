@@ -10,8 +10,6 @@ import UIKit
 
 class ToastFailureConfiguration: ToastConfigurationProtocol {
 
-    static let shared = ToastFailureConfiguration()
-
     init() {}
 
     var backgroundColor: UIColor = .red

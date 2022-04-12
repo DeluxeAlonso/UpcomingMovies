@@ -10,8 +10,6 @@ import UIKit
 
 class ToastSuccessConfiguration: ToastConfigurationProtocol {
 
-    static let shared = ToastSuccessConfiguration()
-
     init() {}
 
     var backgroundColor: UIColor = .black
