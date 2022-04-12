@@ -14,9 +14,9 @@ enum ToastDefaultConfiguration {
     var configuration: ToastConfigurationProtocol {
         switch self {
         case .success:
-            return ToastSuccessConfiguration.shared
+            return ToastSuccessConfiguration()
         case .failure:
-            return ToastFailureConfiguration.shared
+            return ToastFailureConfiguration()
         }
     }
 
