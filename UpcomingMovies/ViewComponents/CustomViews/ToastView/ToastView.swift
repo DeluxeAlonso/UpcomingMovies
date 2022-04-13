@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ToastView: UIView {
+final class ToastView: UIView {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
