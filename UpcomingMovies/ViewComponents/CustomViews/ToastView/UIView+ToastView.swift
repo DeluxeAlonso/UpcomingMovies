@@ -39,8 +39,8 @@ extension UIView {
                    completion: ((Bool) -> Void)? = nil) {
         if toastView != nil { hideToast() }
 
-        self.toastView = ToastView(configuration: configuration)
-        self.toastView?.title = message
+        toastView = ToastView(configuration: configuration)
+        toastView?.title = message
 
         guard let toastView = toastView else { return }
         toastView.translatesAutoresizingMaskIntoConstraints = false
@@ -64,9 +64,9 @@ extension UIView {
 
     /// Hides the current presented toast view without animations.
     func hideToast() {
-        self.toastView?.alpha = 0.0
-        self.toastView?.removeFromSuperview()
-        self.toastView = nil
+        toastView?.alpha = 0.0
+        toastView?.removeFromSuperview()
+        toastView = nil
     }
 
     func hideToast(withAnimationDuration duration: TimeInterval) {
