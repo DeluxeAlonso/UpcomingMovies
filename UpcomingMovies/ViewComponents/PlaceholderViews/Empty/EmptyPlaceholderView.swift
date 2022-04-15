@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmptyPlaceholderView: UIView, NibLoadable, Placeholderable {
+final class EmptyPlaceholderView: UIView, NibLoadable, Placeholderable {
 
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var messageLabel: UILabel!

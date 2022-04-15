@@ -14,7 +14,7 @@ protocol ErrorPlaceholderViewDelegate: AnyObject {
 
 }
 
-class ErrorPlaceholderView: UIView, NibLoadable, RetryPlaceHolderable {
+final class ErrorPlaceholderView: UIView, NibLoadable, RetryPlaceHolderable {
 
     @IBOutlet private weak var errorTitleLabel: UILabel!
     @IBOutlet private weak var errorDetailLabel: UILabel!
