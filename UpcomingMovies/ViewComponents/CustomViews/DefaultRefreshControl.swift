@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DefaultRefreshControl: UIRefreshControl {
+final class DefaultRefreshControl: UIRefreshControl {
 
     private var refreshHandler: () -> Void
 

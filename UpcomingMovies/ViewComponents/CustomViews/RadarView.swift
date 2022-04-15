@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RadarView: UIView, LoadingView {
+final class RadarView: UIView, LoadingView {
 
     // MARK: - Properties
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DefaultSearchController: UISearchController {
+final class DefaultSearchController: UISearchController {
 
     override init(searchResultsController: UIViewController?) {
         super.init(searchResultsController: searchResultsController)
