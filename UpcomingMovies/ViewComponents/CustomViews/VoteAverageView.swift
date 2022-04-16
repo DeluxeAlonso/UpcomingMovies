@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class VoteAverageView: UIView {
+final class VoteAverageView: UIView {
 
     private lazy var voteAverageLabel: UILabel = {
         let label = UILabel()

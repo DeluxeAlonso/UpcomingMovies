@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SimpleHeaderView: UIView {
+final class SimpleHeaderView: UIView {
 
     private lazy var headerTitleLabel: UILabel = {
         let label = UILabel()
