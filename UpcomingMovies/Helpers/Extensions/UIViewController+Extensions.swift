@@ -88,9 +88,7 @@ extension UIViewController {
         }
         actionSheet.addAction(cancelActionButton)
 
-        for action in actions {
-            actionSheet.addAction(action)
-        }
+        for action in actions { actionSheet.addAction(action) }
 
         present(actionSheet, animated: true, completion: nil)
     }

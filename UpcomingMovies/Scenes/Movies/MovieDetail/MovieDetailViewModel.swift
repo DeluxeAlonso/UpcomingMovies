@@ -31,6 +31,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var didUpdateFavoriteSuccess: Bindable<Bool> = Bindable(false)
     private(set) var didUpdateFavoriteFailure: Bindable<Error?> = Bindable(nil)
 
+    private(set) var didSelectShareAction: Bindable<Bool> = Bindable(true)
+
     var shouldHideFavoriteButton: (() -> Void)?
 
     // MARK: - Properties
@@ -172,6 +174,15 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
                 self.didUpdateFavoriteFailure.value = error
             }
         })
+    }
+
+    // MARK: - Alert actions
+
+    func getAvailableAlertActions() -> [AlertActionModel] {
+        let shareAction = AlertActionModel(title: LocalizedStrings.movieDetailShareActionTitle()) {
+            self.didSelectShareAction.value = true
+        }
+        return [shareAction]
     }
 
 }

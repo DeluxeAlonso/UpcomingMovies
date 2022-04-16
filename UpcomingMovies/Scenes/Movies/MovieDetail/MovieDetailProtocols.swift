@@ -29,8 +29,12 @@ protocol MovieDetailViewModelProtocol {
     var didSetupMovieDetail: Bindable<Bool> { get }
     var didUpdateFavoriteSuccess: Bindable<Bool> { get }
     var didUpdateFavoriteFailure: Bindable<Error?> { get }
+    var didSelectShareAction: Bindable<Bool> { get }
 
     var shouldHideFavoriteButton: (() -> Void)? { get set }
+
+    // TODO MovieDetailViewModel.AlertActionModel
+    func getAvailableAlertActions() -> [MovieDetailViewModel.AlertActionModel]
 
     /**
      * Retrieves movie detail information.
