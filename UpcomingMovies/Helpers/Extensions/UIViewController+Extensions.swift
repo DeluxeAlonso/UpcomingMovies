@@ -77,6 +77,24 @@ extension UIViewController {
         present(actionSheet, animated: true, completion: nil)
     }
 
+    func showActionSheet(title: String?, message: String?, actions: [UIAlertAction]) {
+        let actionSheet = UIAlertController(title: title,
+                                            message: message,
+                                            preferredStyle: .actionSheet)
+
+        let cancelTitle = LocalizedStrings.cancel()
+        let cancelActionButton = UIAlertAction(title: cancelTitle, style: .cancel) { _ in
+            self.dismiss(animated: true)
+        }
+        actionSheet.addAction(cancelActionButton)
+
+        for action in actions {
+            actionSheet.addAction(action)
+        }
+
+        present(actionSheet, animated: true, completion: nil)
+    }
+
     // MARK: - Navigation Bar
 
     func setClearAppearanceNavigationBar() {
