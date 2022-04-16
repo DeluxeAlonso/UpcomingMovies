@@ -199,3 +199,16 @@ extension MovieDetailViewModel {
     }
 
 }
+
+// MARK: - AlertActionModel
+
+extension MovieDetailViewModel {
+
+    struct AlertActionModel {
+
+        let title: String
+        let action: () -> Void
+
+    }
+
+}
