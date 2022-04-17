@@ -45,7 +45,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var posterURL: URL?
     private(set) var backdropURL: URL?
 
-    private(set) var needsFetch = false
+    private(set) var needsFetch: Bool
 
     // MARK: - Initializers
 
@@ -57,9 +57,10 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         self.interactor = interactor
         self.factory = factory
 
+        self.needsFetch = false
+
         setupMovie(movie)
 
-        showGenreName.value = movie.genreName
         showMovieOptions.value = factory.options
     }
 
@@ -71,7 +72,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         self.interactor = interactor
         self.factory = factory
 
-        needsFetch = true
+        self.needsFetch = true
 
         showMovieOptions.value = factory.options
     }
