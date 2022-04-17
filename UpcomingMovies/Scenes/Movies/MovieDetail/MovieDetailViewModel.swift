@@ -37,8 +37,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     // MARK: - Properties
 
-    private(set) var id: Int!
-    private(set) var title: String!
+    private(set) var id: Int
+    private(set) var title: String
     private(set) var releaseDate: String?
     private(set) var overview: String?
     private(set) var voteAverage: Double?
@@ -52,6 +52,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     init(_ movie: Movie,
          interactor: MovieDetailInteractorProtocol,
          factory: MovieDetailFactoryProtocol) {
+        self.id = movie.id
+        self.title = movie.title
         self.interactor = interactor
         self.factory = factory
 
@@ -77,9 +79,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     // MARK: - Private
 
     private func setupMovie(_ movie: Movie) {
-        id = movie.id
-        title = movie.title
-
         releaseDate = movie.releaseDate
         voteAverage = movie.voteAverage
         overview = movie.overview
