@@ -33,8 +33,7 @@ protocol MovieDetailViewModelProtocol {
 
     var shouldHideFavoriteButton: (() -> Void)? { get set }
 
-    // TODO MovieDetailViewModel.AlertActionModel
-    func getAvailableAlertActions() -> [MovieDetailViewModel.AlertActionModel]
+    func getAvailableAlertActions() -> [MovieDetailActionModel]
 
     /**
      * Retrieves movie detail information.

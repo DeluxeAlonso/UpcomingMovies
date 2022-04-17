@@ -178,8 +178,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     // MARK: - Alert actions
 
-    func getAvailableAlertActions() -> [AlertActionModel] {
-        let shareAction = AlertActionModel(title: LocalizedStrings.movieDetailShareActionTitle()) {
+    func getAvailableAlertActions() -> [MovieDetailActionModel] {
+        let shareAction = MovieDetailActionModel(title: LocalizedStrings.movieDetailShareActionTitle()) {
             self.didSelectShareAction.value = true
         }
         return [shareAction]
@@ -206,19 +206,6 @@ extension MovieDetailViewModel {
     enum MovieDetailWatchlistState {
 
         case added, notAdded, unknown
-
-    }
-
-}
-
-// MARK: - AlertActionModel
-
-extension MovieDetailViewModel {
-
-    struct AlertActionModel {
-
-        let title: String
-        let action: () -> Void
 
     }
 
