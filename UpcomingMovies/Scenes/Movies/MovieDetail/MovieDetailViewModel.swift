@@ -31,31 +31,36 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var didUpdateFavoriteSuccess: Bindable<Bool> = Bindable(false)
     private(set) var didUpdateFavoriteFailure: Bindable<Error?> = Bindable(nil)
 
+    private(set) var didSelectShareAction: Bindable<Bool> = Bindable(true)
+
     var shouldHideFavoriteButton: (() -> Void)?
 
     // MARK: - Properties
 
-    private(set) var id: Int!
-    private(set) var title: String!
+    private(set) var id: Int
+    private(set) var title: String
     private(set) var releaseDate: String?
     private(set) var overview: String?
     private(set) var voteAverage: Double?
     private(set) var posterURL: URL?
     private(set) var backdropURL: URL?
 
-    private(set) var needsFetch = false
+    private(set) var needsFetch: Bool
 
     // MARK: - Initializers
 
     init(_ movie: Movie,
          interactor: MovieDetailInteractorProtocol,
          factory: MovieDetailFactoryProtocol) {
+        self.id = movie.id
+        self.title = movie.title
         self.interactor = interactor
         self.factory = factory
 
+        self.needsFetch = false
+
         setupMovie(movie)
 
-        showGenreName.value = movie.genreName
         showMovieOptions.value = factory.options
     }
 
@@ -67,7 +72,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         self.interactor = interactor
         self.factory = factory
 
-        needsFetch = true
+        self.needsFetch = true
 
         showMovieOptions.value = factory.options
     }
@@ -75,9 +80,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     // MARK: - Private
 
     private func setupMovie(_ movie: Movie) {
-        id = movie.id
-        title = movie.title
-
         releaseDate = movie.releaseDate
         voteAverage = movie.voteAverage
         overview = movie.overview
@@ -172,6 +174,15 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
                 self.didUpdateFavoriteFailure.value = error
             }
         })
+    }
+
+    // MARK: - Alert actions
+
+    func getAvailableAlertActions() -> [MovieDetailActionModel] {
+        let shareAction = MovieDetailActionModel(title: LocalizedStrings.movieDetailShareActionTitle()) {
+            self.didSelectShareAction.value = true
+        }
+        return [shareAction]
     }
 
 }

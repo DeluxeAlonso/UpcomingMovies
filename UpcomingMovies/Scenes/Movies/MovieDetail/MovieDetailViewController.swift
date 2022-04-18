@@ -45,6 +45,10 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
 
     // MARK: - Lifecycle
 
+    deinit {
+        print("Modie detil")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -112,6 +116,9 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
         })
         viewModel?.showMovieOptions.bindAndFire { [weak self] movieOptions in
             self?.configureMovieOptions(movieOptions)
+        }
+        viewModel?.didSelectShareAction.bind { [weak self] _ in
+            self?.shareMovie()
         }
     }
 
@@ -195,11 +202,12 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
     // MARK: - Actions
 
     @IBAction private func moreBarButtonAction(_ sender: Any) {
-        guard let movieTitle = viewModel?.title else { return }
-        let shareAction = UIAlertAction(title: LocalizedStrings.movieDetailShareActionTitle(), style: .default) { _ in
-            self.shareMovie()
+        guard let movieTitle = viewModel?.title,
+        let actions = viewModel?.getAvailableAlertActions() else { return }
+        let alertActions = actions.map { actionModel in
+            UIAlertAction(title: actionModel.title, style: .default) { _ in actionModel.action() }
         }
-        showSimpleActionSheet(title: movieTitle, message: nil, action: shareAction)
+        showActionSheet(title: movieTitle, message: nil, actions: alertActions)
     }
 
     private func shareMovie() {

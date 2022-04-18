@@ -11,8 +11,8 @@ import UpcomingMoviesDomain
 
 protocol MovieDetailViewModelProtocol {
 
-    var id: Int! { get }
-    var title: String! { get }
+    var id: Int { get }
+    var title: String { get }
     var releaseDate: String? { get }
     var overview: String? { get }
     var voteAverage: Double? { get }
@@ -29,8 +29,11 @@ protocol MovieDetailViewModelProtocol {
     var didSetupMovieDetail: Bindable<Bool> { get }
     var didUpdateFavoriteSuccess: Bindable<Bool> { get }
     var didUpdateFavoriteFailure: Bindable<Error?> { get }
+    var didSelectShareAction: Bindable<Bool> { get }
 
     var shouldHideFavoriteButton: (() -> Void)? { get set }
+
+    func getAvailableAlertActions() -> [MovieDetailActionModel]
 
     /**
      * Retrieves movie detail information.
