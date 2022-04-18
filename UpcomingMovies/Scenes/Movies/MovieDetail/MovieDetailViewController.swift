@@ -45,10 +45,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
 
     // MARK: - Lifecycle
 
-    deinit {
-        print("Modie detil")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
