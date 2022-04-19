@@ -45,10 +45,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
 
     // MARK: - Lifecycle
 
-    deinit {
-        print("Modie detil")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -159,8 +155,8 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
 
     private func setupErrorBindables() {
         viewModel?.showErrorView.bind({ [weak self] error in
-            guard let error = error else { return }
-            self?.showErrorView(error: error)
+            guard let self = self, let error = error else { return }
+            self.showErrorView(error: error)
         })
     }
 
