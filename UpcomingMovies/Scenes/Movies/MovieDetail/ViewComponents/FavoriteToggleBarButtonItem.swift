@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoriteToggleBarButtonItem: ToggleBarButtonItem {
+final class FavoriteToggleBarButtonItem: ToggleBarButtonItem {
 
     init() {
         let favoriteOff = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "FavoriteOff")),
