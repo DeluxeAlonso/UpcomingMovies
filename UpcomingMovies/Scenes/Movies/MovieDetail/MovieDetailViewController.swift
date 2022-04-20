@@ -58,7 +58,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
         guard let viewModel = viewModel, !viewModel.startLoading.value else {
             return
         }
-        viewModel.checkIfMovieIsFavorite(showLoader: false)
+        viewModel.checkMovieAccountState()
     }
 
     // MARK: - Private

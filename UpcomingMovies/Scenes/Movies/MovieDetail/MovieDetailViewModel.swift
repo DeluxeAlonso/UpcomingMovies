@@ -116,15 +116,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             case .success(let movie):
                 self.startLoading.value = false
                 self.setupMovie(movie)
-                self.getMovieAccountState { result in
-                    self.movieAccountState = try? result.get()
-                    // We check if movie is included in user's favorites.
-                    guard let movieAccountState = self.movieAccountState else {
-                        self.shouldHideFavoriteButton?()
-                        return
-                    }
-                    self.isFavorite.value = movieAccountState.favorite
-                }
+                self.checkMovieAccountState()
             case .failure(let error):
                 self.startLoading.value = false
                 self.showErrorView.value = error
@@ -137,6 +129,18 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     }
 
     // MARK: - Movie account state
+
+    func checkMovieAccountState() {
+        getMovieAccountState { result in
+            self.movieAccountState = try? result.get()
+            // We check if movie is included in user's favorites.
+            guard let movieAccountState = self.movieAccountState else {
+                self.shouldHideFavoriteButton?()
+                return
+            }
+            self.isFavorite.value = movieAccountState.favorite
+        }
+    }
 
     private func getMovieAccountState(completion: @escaping (Result<Movie.AccountState?, Error>) -> Void) {
         guard interactor.isUserSignedIn() else {
@@ -152,7 +156,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             }
         })
     }
-
 
     // MARK: - Favorites
 

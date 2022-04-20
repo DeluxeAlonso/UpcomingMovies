@@ -48,11 +48,9 @@ protocol MovieDetailViewModelProtocol {
     func saveVisitedMovie()
 
     /**
-     * Checks if a movie is marked as favorite or not.
-     * - Parameters:
-     *      - showLoader: Indicates if loader should be triggered or not.
+     * Checks the movie account state: if it is included in favorites or watchlist.
      */
-    func checkIfMovieIsFavorite(showLoader: Bool)
+    func checkMovieAccountState()
 
     /**
      * Marks a movie as a favorite or non-favorite given the current favorite state of the presented movie.
