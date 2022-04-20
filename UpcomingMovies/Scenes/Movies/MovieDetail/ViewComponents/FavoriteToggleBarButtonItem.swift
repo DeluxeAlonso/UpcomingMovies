@@ -6,9 +6,9 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class FavoriteToggleBarButtonItem: ToggleBarButtonItem {
+final class FavoriteToggleBarButtonItem: ToggleBarButtonItem {
 
     init() {
         let favoriteOff = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "FavoriteOff")),
