@@ -143,6 +143,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         interactor.markMovieAsFavorite(movieId: id, favorite: newFavoriteValue, completion: { result in
             switch result {
             case .success:
+                // TODO: - Create a mutable model for account state handling
                 self.movieAccountState.value = .init(favorite: newFavoriteValue, watchlist: self.movieAccountState.value?.watchlist ?? false)
                 self.didUpdateFavoriteSuccess.value = newFavoriteValue
             case .failure(let error):
@@ -158,30 +159,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             self.didSelectShareAction.value = true
         }
         return [shareAction]
-    }
-
-}
-
-// MARK: - MovieDetailFavoriteState
-
-extension MovieDetailViewModel {
-
-    enum MovieDetailFavoriteState {
-
-        case favorite, nonFavorite, unknown
-
-    }
-
-}
-
-// MARK: - MovieDetailWatchlistState
-
-extension MovieDetailViewModel {
-
-    enum MovieDetailWatchlistState {
-
-        case added, notAdded, unknown
-
     }
 
 }
