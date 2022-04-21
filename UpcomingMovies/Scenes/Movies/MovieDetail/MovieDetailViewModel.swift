@@ -31,7 +31,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     private(set) var didSelectShareAction: Bindable<Bool> = Bindable(true)
 
-    //private var movieAccountState: Movie.AccountState?
     private(set) var movieAccountState: Bindable<Movie.AccountState?> = Bindable(nil)
 
     // MARK: - Properties
@@ -127,22 +126,12 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     // MARK: - Movie account state
 
     func checkMovieAccountState() {
-        getMovieAccountState { _ in }
-    }
-
-    private func getMovieAccountState(completion: @escaping (Result<Movie.AccountState?, Error>) -> Void) {
         guard interactor.isUserSignedIn() else {
             self.movieAccountState.value = nil
             return
         }
         interactor.getMovieAccountState(for: id, completion: { result in
-            switch result {
-            case .success(let accountState):
-                self.movieAccountState.value = accountState
-                completion(.success(accountState))
-            case .failure(let error):
-                completion(.failure(error))
-            }
+            self.movieAccountState.value = try? result.get()
         })
     }
 
