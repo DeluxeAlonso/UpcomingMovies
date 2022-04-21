@@ -33,6 +33,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     private(set) var didSelectShareAction: Bindable<Bool> = Bindable(true)
 
+    private var movieAccountState: Movie.AccountState?
+
     var shouldHideFavoriteButton: (() -> Void)?
 
     // MARK: - Properties
@@ -112,8 +114,9 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         interactor.getMovieDetail(for: id, completion: { result in
             switch result {
             case .success(let movie):
+                self.startLoading.value = false
                 self.setupMovie(movie)
-                self.checkIfMovieIsFavorite(showLoader: false)
+                self.checkMovieAccountState()
             case .failure(let error):
                 self.startLoading.value = false
                 self.showErrorView.value = error
@@ -125,43 +128,36 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         interactor.saveMovieVisit(with: id, title: title, posterPath: posterURL?.absoluteString)
     }
 
-    // MARK: - User Authentication
+    // MARK: - Movie account state
 
-    func checkIfMovieIsFavorite(showLoader: Bool) {
-        startLoading.value = showLoader
-        getFavoriteState { result in
-            self.startLoading.value = false
-            switch result {
-            case .success(let favoriteState):
-                guard favoriteState != .unknown else {
-                    self.shouldHideFavoriteButton?()
-                    return
-                }
-                self.isFavorite.value = favoriteState == .favorite
-            case .failure(let error):
-                guard self.needsFetch else { return }
-                self.showErrorView.value = error
+    func checkMovieAccountState() {
+        getMovieAccountState { result in
+            self.movieAccountState = try? result.get()
+            // We check if movie is included in user's favorites.
+            guard let movieAccountState = self.movieAccountState else {
+                self.shouldHideFavoriteButton?()
+                return
             }
+            self.isFavorite.value = movieAccountState.favorite
         }
     }
 
-    // MARK: - Favorites
-
-    private func getFavoriteState(completion: @escaping (Result<MovieDetailFavoriteState, Error>) -> Void) {
+    private func getMovieAccountState(completion: @escaping (Result<Movie.AccountState?, Error>) -> Void) {
         guard interactor.isUserSignedIn() else {
-            completion(.success(.unknown))
+            // TODO: - throw custom error
             return
         }
         interactor.getMovieAccountState(for: id, completion: { result in
             switch result {
             case .success(let accountState):
-                let favoriteState: MovieDetailFavoriteState = accountState.favorite ? .favorite : .nonFavorite
-                completion(.success(favoriteState))
+                completion(.success(accountState))
             case .failure(let error):
                 completion(.failure(error))
             }
         })
     }
+
+    // MARK: - Favorites
 
     func handleFavoriteMovie() {
         let newFavoriteValue = !isFavorite.value
