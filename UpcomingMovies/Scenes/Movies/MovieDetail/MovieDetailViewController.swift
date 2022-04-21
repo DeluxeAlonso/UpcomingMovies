@@ -116,6 +116,17 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
         viewModel?.didSelectShareAction.bind { [weak self] _ in
             self?.shareMovie()
         }
+        viewModel?.movieAccountState.bindAndFire({ [weak self] accountState in
+            guard let self = self else { return }
+            guard let accountState = accountState else {
+                // We remove favorite button from navigation bar.
+                self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem]
+                return
+            }
+            let isFavorite = accountState.favorite
+            self.favoriteBarButtonItem.toggle(to: isFavorite.intValue)
+            self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem, self.favoriteBarButtonItem]
+        })
     }
 
     private func configureUI() {
@@ -161,11 +172,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
     }
 
     private func setupFavoriteBindables() {
-        viewModel?.isFavorite.bind({ [weak self] isFavorite in
-            guard let self = self else { return }
-            self.favoriteBarButtonItem.toggle(to: isFavorite.intValue)
-            self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem, self.favoriteBarButtonItem]
-        })
         viewModel?.didUpdateFavoriteSuccess.bind({ [weak self] isFavorite in
             guard let self = self else { return }
             let message = isFavorite ? LocalizedStrings.addToFavoritesSuccess() : LocalizedStrings.removeFromFavoritesSuccess()
@@ -175,10 +181,6 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
             guard let self = self, let error = error else { return }
             self.view.showFailureToast(withMessage: error.localizedDescription)
         })
-        viewModel?.shouldHideFavoriteButton = { [weak self] in
-            guard let self = self else { return }
-            self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem]
-        }
     }
 
     private func showErrorView(error: Error) {
