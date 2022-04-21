@@ -19,8 +19,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     // MARK: - Reactive properties
 
     private(set) var startLoading: Bindable<Bool> = Bindable(false)
-    private(set) var isFavorite: Bindable<Bool> = Bindable(false)
-    private(set) var isInWatchlist: Bindable<Bool> = Bindable(false)
 
     private(set) var showErrorView: Bindable<Error?> = Bindable(nil)
     private(set) var showGenreName: Bindable<String> = Bindable("-")
@@ -33,9 +31,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     private(set) var didSelectShareAction: Bindable<Bool> = Bindable(true)
 
-    private var movieAccountState: Movie.AccountState?
-
-    var shouldHideFavoriteButton: (() -> Void)?
+    private(set) var movieAccountState: Bindable<Movie.AccountState?> = Bindable(nil)
 
     // MARK: - Properties
 
@@ -112,13 +108,12 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         guard needsFetch else { return }
         startLoading.value = showLoader
         interactor.getMovieDetail(for: id, completion: { result in
+            self.startLoading.value = false
             switch result {
             case .success(let movie):
-                self.startLoading.value = false
                 self.setupMovie(movie)
                 self.checkMovieAccountState()
             case .failure(let error):
-                self.startLoading.value = false
                 self.showErrorView.value = error
             }
         })
@@ -131,40 +126,25 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     // MARK: - Movie account state
 
     func checkMovieAccountState() {
-        getMovieAccountState { result in
-            self.movieAccountState = try? result.get()
-            // We check if movie is included in user's favorites.
-            guard let movieAccountState = self.movieAccountState else {
-                self.shouldHideFavoriteButton?()
-                return
-            }
-            self.isFavorite.value = movieAccountState.favorite
-        }
-    }
-
-    private func getMovieAccountState(completion: @escaping (Result<Movie.AccountState?, Error>) -> Void) {
         guard interactor.isUserSignedIn() else {
-            // TODO: - throw custom error
+            self.movieAccountState.value = nil
             return
         }
         interactor.getMovieAccountState(for: id, completion: { result in
-            switch result {
-            case .success(let accountState):
-                completion(.success(accountState))
-            case .failure(let error):
-                completion(.failure(error))
-            }
+            self.movieAccountState.value = try? result.get()
         })
     }
 
     // MARK: - Favorites
 
     func handleFavoriteMovie() {
-        let newFavoriteValue = !isFavorite.value
+        let currentFavoriteValue = movieAccountState.value?.favorite ?? false
+        let newFavoriteValue = !currentFavoriteValue
         interactor.markMovieAsFavorite(movieId: id, favorite: newFavoriteValue, completion: { result in
             switch result {
             case .success:
-                self.isFavorite.value = newFavoriteValue
+                // TODO: - Create a mutable model for account state handling
+                self.movieAccountState.value = .init(favorite: newFavoriteValue, watchlist: self.movieAccountState.value?.watchlist ?? false)
                 self.didUpdateFavoriteSuccess.value = newFavoriteValue
             case .failure(let error):
                 self.didUpdateFavoriteFailure.value = error
@@ -179,30 +159,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             self.didSelectShareAction.value = true
         }
         return [shareAction]
-    }
-
-}
-
-// MARK: - MovieDetailFavoriteState
-
-extension MovieDetailViewModel {
-
-    enum MovieDetailFavoriteState {
-
-        case favorite, nonFavorite, unknown
-
-    }
-
-}
-
-// MARK: - MovieDetailWatchlistState
-
-extension MovieDetailViewModel {
-
-    enum MovieDetailWatchlistState {
-
-        case added, notAdded, unknown
-
     }
 
 }
