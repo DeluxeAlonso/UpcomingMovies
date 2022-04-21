@@ -132,7 +132,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     func checkMovieAccountState() {
         getMovieAccountState { result in
-            self.movieAccountState = try? result.get()
             // We check if movie is included in user's favorites.
             guard let movieAccountState = self.movieAccountState else {
                 self.shouldHideFavoriteButton?()
@@ -150,6 +149,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         interactor.getMovieAccountState(for: id, completion: { result in
             switch result {
             case .success(let accountState):
+                self.movieAccountState = accountState
                 completion(.success(accountState))
             case .failure(let error):
                 completion(.failure(error))
@@ -160,12 +160,23 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     // MARK: - Favorites
 
     func handleFavoriteMovie() {
-        let newFavoriteValue = !isFavorite.value
-        interactor.markMovieAsFavorite(movieId: id, favorite: newFavoriteValue, completion: { result in
+        getMovieAccountState { result in
+            switch result {
+            case .success(let accountState):
+                guard let isFavorite = accountState?.favorite else { fatalError("Favorite state cannot be retrieved") }
+                self.markMovieAsFavorite(movieId: self.id, isFavorite: !isFavorite)
+            case .failure(let error):
+                self.didUpdateFavoriteFailure.value = error
+            }
+        }
+    }
+
+    private func markMovieAsFavorite(movieId: Int, isFavorite: Bool) {
+        interactor.markMovieAsFavorite(movieId: movieId, favorite: isFavorite, completion: { result in
             switch result {
             case .success:
-                self.isFavorite.value = newFavoriteValue
-                self.didUpdateFavoriteSuccess.value = newFavoriteValue
+                self.isFavorite.value = isFavorite
+                self.didUpdateFavoriteSuccess.value = isFavorite
             case .failure(let error):
                 self.didUpdateFavoriteFailure.value = error
             }
