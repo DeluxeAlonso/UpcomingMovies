@@ -161,4 +161,14 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         return [shareAction]
     }
 
+    class AccountStateModel {
+        init(_ accountState: Movie.AccountState) {
+            self.isFavorite = accountState.favorite
+            self.isInWatchlist = accountState.watchlist
+        }
+
+        var isFavorite: Bool
+        var isInWatchlist: Bool
+    }
+
 }
