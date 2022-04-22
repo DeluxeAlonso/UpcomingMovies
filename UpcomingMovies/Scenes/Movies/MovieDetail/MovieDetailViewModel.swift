@@ -31,7 +31,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     private(set) var didSelectShareAction: Bindable<Bool> = Bindable(true)
 
-    private(set) var movieAccountState: Bindable<Movie.AccountState?> = Bindable(nil)
+    private(set) var movieAccountState: Bindable<MovieAccountStateModel?> = Bindable(nil)
 
     // MARK: - Properties
 
@@ -131,20 +131,26 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             return
         }
         interactor.getMovieAccountState(for: id, completion: { result in
-            self.movieAccountState.value = try? result.get()
+            guard let accountState = try? result.get() else {
+                self.movieAccountState.value = nil
+                return
+            }
+            self.movieAccountState.value = MovieAccountStateModel.init(accountState)
         })
     }
 
     // MARK: - Favorites
 
     func handleFavoriteMovie() {
-        let currentFavoriteValue = movieAccountState.value?.favorite ?? false
+        let currentFavoriteValue = movieAccountState.value?.isFavorite ?? false
         let newFavoriteValue = !currentFavoriteValue
         interactor.markMovieAsFavorite(movieId: id, favorite: newFavoriteValue, completion: { result in
             switch result {
             case .success:
                 // TODO: - Create a mutable model for account state handling
-                self.movieAccountState.value = .init(favorite: newFavoriteValue, watchlist: self.movieAccountState.value?.watchlist ?? false)
+                let movieAccountState = self.movieAccountState.value
+                movieAccountState?.isFavorite = newFavoriteValue
+                self.movieAccountState.value = movieAccountState
                 self.didUpdateFavoriteSuccess.value = newFavoriteValue
             case .failure(let error):
                 self.didUpdateFavoriteFailure.value = error
@@ -161,14 +167,16 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         return [shareAction]
     }
 
-    class AccountStateModel {
-        init(_ accountState: Movie.AccountState) {
-            self.isFavorite = accountState.favorite
-            self.isInWatchlist = accountState.watchlist
-        }
+}
 
-        var isFavorite: Bool
-        var isInWatchlist: Bool
+final class MovieAccountStateModel {
+
+    init(_ accountState: Movie.AccountState) {
+        self.isFavorite = accountState.favorite
+        self.isInWatchlist = accountState.watchlist
     }
+
+    var isFavorite: Bool
+    var isInWatchlist: Bool
 
 }
