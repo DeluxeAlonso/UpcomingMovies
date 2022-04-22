@@ -123,7 +123,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
                 self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem]
                 return
             }
-            let isFavorite = accountState.favorite
+            let isFavorite = accountState.isFavorite
             self.favoriteBarButtonItem.toggle(to: isFavorite.intValue)
             self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem, self.favoriteBarButtonItem]
         })

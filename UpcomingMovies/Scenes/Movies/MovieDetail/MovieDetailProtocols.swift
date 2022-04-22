@@ -29,7 +29,7 @@ protocol MovieDetailViewModelProtocol {
     var didUpdateFavoriteSuccess: Bindable<Bool> { get }
     var didUpdateFavoriteFailure: Bindable<Error?> { get }
     var didSelectShareAction: Bindable<Bool> { get }
-    var movieAccountState: Bindable<Movie.AccountState?> { get }
+    var movieAccountState: Bindable<MovieAccountStateModel?> { get }
 
     func getAvailableAlertActions() -> [MovieDetailActionModel]
 
