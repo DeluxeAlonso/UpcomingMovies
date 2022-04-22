@@ -142,12 +142,11 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     // MARK: - Favorites
 
     func handleFavoriteMovie() {
-        let currentFavoriteValue = movieAccountState.value?.isFavorite ?? false
+        guard let currentFavoriteValue = movieAccountState.value?.isFavorite else { return }
         let newFavoriteValue = !currentFavoriteValue
         interactor.markMovieAsFavorite(movieId: id, favorite: newFavoriteValue, completion: { result in
             switch result {
             case .success:
-                // TODO: - Create a mutable model for account state handling
                 let movieAccountState = self.movieAccountState.value
                 movieAccountState?.isFavorite = newFavoriteValue
                 self.movieAccountState.value = movieAccountState
