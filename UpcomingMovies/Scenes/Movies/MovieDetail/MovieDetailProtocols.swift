@@ -22,12 +22,12 @@ protocol MovieDetailViewModelProtocol {
     var needsFetch: Bool { get }
 
     var startLoading: Bindable<Bool> { get }
-    var showErrorView: Bindable<Error?> { get }
+    var showErrorRetryView: Bindable<Error?> { get }
     var showGenreName: Bindable<String> { get }
     var showMovieOptions: Bindable<[MovieDetailOption]> { get }
     var didSetupMovieDetail: Bindable<Bool> { get }
-    var didUpdateFavoriteSuccess: Bindable<Bool> { get }
-    var didUpdateFavoriteFailure: Bindable<Error?> { get }
+    var showSuccessAlert: Bindable<String> { get }
+    var showErrorAlert: Bindable<Error?> { get }
     var didSelectShareAction: Bindable<Bool> { get }
     var movieAccountState: Bindable<MovieAccountStateModel?> { get }
 

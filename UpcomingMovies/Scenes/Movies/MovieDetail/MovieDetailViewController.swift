@@ -165,19 +165,18 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
     }
 
     private func setupErrorBindables() {
-        viewModel?.showErrorView.bind({ [weak self] error in
+        viewModel?.showErrorRetryView.bind({ [weak self] error in
             guard let self = self, let error = error else { return }
             self.showErrorView(error: error)
         })
     }
 
     private func setupFavoriteBindables() {
-        viewModel?.didUpdateFavoriteSuccess.bind({ [weak self] isFavorite in
+        viewModel?.showSuccessAlert.bind({ [weak self] message in
             guard let self = self else { return }
-            let message = isFavorite ? LocalizedStrings.addToFavoritesSuccess() : LocalizedStrings.removeFromFavoritesSuccess()
             self.userInterfaceHelper?.showHUD(with: message)
         })
-        viewModel?.didUpdateFavoriteFailure.bind({ [weak self] error in
+        viewModel?.showErrorAlert.bind({ [weak self] error in
             guard let self = self, let error = error else { return }
             self.view.showFailureToast(withMessage: error.localizedDescription)
         })
