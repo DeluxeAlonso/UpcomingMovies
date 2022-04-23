@@ -6,7 +6,7 @@
 //  Copyright © 2018 Alonso. All rights reserved.
 //
 
-class Bindable<T> {
+final class Bindable<T> {
 
     typealias Listener = ((T) -> Void)
     private var listener: Listener?
