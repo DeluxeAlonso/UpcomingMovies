@@ -147,9 +147,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         interactor.markMovieAsFavorite(movieId: id, favorite: newFavoriteValue, completion: { result in
             switch result {
             case .success:
-                let movieAccountState = self.movieAccountState.value
-                movieAccountState?.isFavorite = newFavoriteValue
-                self.movieAccountState.value = movieAccountState
+                self.movieAccountState.value?.isFavorite = newFavoriteValue
+                self.movieAccountState.fire()
                 self.didUpdateFavoriteSuccess.value = newFavoriteValue
             case .failure(let error):
                 self.didUpdateFavoriteFailure.value = error
