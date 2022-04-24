@@ -46,6 +46,14 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
         accountUseCase.markMovieAsFavorite(movieId: movieId, favorite: favorite, completion: completion)
     }
 
+    func addToWatchlist(movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+        accountUseCase.addToWatchlist(movieId: movieId, watchlist: true, completion: completion)
+    }
+
+    func removeFromWatchlist(movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+        accountUseCase.addToWatchlist(movieId: movieId, watchlist: false, completion: completion)
+    }
+
     func saveMovieVisit(with id: Int, title: String, posterPath: String?) {
         movieVisitUseCase.save(with: id, title: title, posterPath: posterPath, completion: { _ in })
     }

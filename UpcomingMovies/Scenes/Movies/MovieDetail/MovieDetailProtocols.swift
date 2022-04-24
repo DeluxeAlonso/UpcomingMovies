@@ -70,6 +70,10 @@ protocol MovieDetailInteractorProtocol {
 
     func markMovieAsFavorite(movieId: Int, favorite: Bool, completion: @escaping (Result<Bool, Error>) -> Void)
 
+    func addToWatchlist(movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
+
+    func removeFromWatchlist(movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
+
     func saveMovieVisit(with id: Int, title: String, posterPath: String?)
 
 }
