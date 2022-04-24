@@ -20,14 +20,14 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     private(set) var startLoading: Bindable<Bool> = Bindable(false)
 
-    private(set) var showErrorView: Bindable<Error?> = Bindable(nil)
+    private(set) var showErrorRetryView: Bindable<Error?> = Bindable(nil)
     private(set) var showGenreName: Bindable<String> = Bindable("-")
     private(set) var showMovieOptions: Bindable<[MovieDetailOption]> = Bindable([])
 
     private(set) var didSetupMovieDetail: Bindable<Bool> = Bindable(true)
 
-    private(set) var didUpdateFavoriteSuccess: Bindable<Bool> = Bindable(false)
-    private(set) var didUpdateFavoriteFailure: Bindable<Error?> = Bindable(nil)
+    private(set) var showSuccessAlert: Bindable<String> = Bindable("")
+    private(set) var showErrorAlert: Bindable<Error?> = Bindable(nil)
 
     private(set) var didSelectShareAction: Bindable<Bool> = Bindable(true)
 
@@ -114,7 +114,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
                 self.setupMovie(movie)
                 self.checkMovieAccountState()
             case .failure(let error):
-                self.showErrorView.value = error
+                self.showErrorRetryView.value = error
             }
         })
     }
@@ -147,12 +147,12 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         interactor.markMovieAsFavorite(movieId: id, favorite: newFavoriteValue, completion: { result in
             switch result {
             case .success:
-                let movieAccountState = self.movieAccountState.value
-                movieAccountState?.isFavorite = newFavoriteValue
-                self.movieAccountState.value = movieAccountState
-                self.didUpdateFavoriteSuccess.value = newFavoriteValue
+                self.movieAccountState.value?.isFavorite = newFavoriteValue
+                self.movieAccountState.fire()
+                let message = newFavoriteValue ? LocalizedStrings.addToFavoritesSuccess() : LocalizedStrings.removeFromFavoritesSuccess()
+                self.showSuccessAlert.value = message
             case .failure(let error):
-                self.didUpdateFavoriteFailure.value = error
+                self.showErrorAlert.value = error
             }
         })
     }

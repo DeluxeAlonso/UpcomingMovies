@@ -6,10 +6,10 @@
 //  Copyright © 2018 Alonso. All rights reserved.
 //
 
-class Bindable<T> {
+final class Bindable<T> {
 
     typealias Listener = ((T) -> Void)
-    var listener: Listener?
+    private var listener: Listener?
 
     var value: T {
         didSet {
@@ -23,6 +23,10 @@ class Bindable<T> {
 
     func bind(_ listener: Listener?) {
         self.listener = listener
+    }
+
+    func fire() {
+        listener?(value)
     }
 
     func bindAndFire(_ listener: Listener?) {
