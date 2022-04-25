@@ -51,6 +51,11 @@
 "addToFavoritesSuccess" = "¡Agregado a tu lista de favoritos!";
 "removeFromFavoritesSuccess" = "Removido de tu lista de favoritos";
 
+"addToWatchlistHint" = "Añadir a lista de seguimiento";
+"removeFromWatchlistHint" = "Remover de lista de seguimiento";
+"addToWatchlistSuccess" = "Agregado a lista de seguimiento";
+"removeFromWatchlistSuccess" = "Removido de tu lista de seguimiento";
+
 "expandMovieCellsHint" = "Expandir películas";
 "collapseMovieCellsHint" = "Colapsar películas";
 

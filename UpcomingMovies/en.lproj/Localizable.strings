@@ -51,6 +51,11 @@
 "addToFavoritesSuccess" = "Added to favorites!";
 "removeFromFavoritesSuccess" = "Removed from favorites";
 
+"addToWatchlistHint" = "Add to watchlist";
+"removeFromWatchlistHint" = "Remove from watchlist";
+"addToWatchlistSuccess" = "Added to watchlist";
+"removeFromWatchlistSuccess" = "Removed from watchlist";
+
 "expandMovieCellsHint" = "Expand movies";
 "collapseMovieCellsHint" = "Collapse movies";
 

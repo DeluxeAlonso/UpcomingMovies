@@ -184,7 +184,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private func updateWatchlistState(isInWatchlist: Bool) {
         self.movieAccountState.value?.isInWatchlist = true
         self.movieAccountState.fire()
-        self.showSuccessAlert.value = isInWatchlist ? "Added to Watchlist" : "Removed from Watchlist"
+        self.showSuccessAlert.value = isInWatchlist ? LocalizedStrings.addToWatchlistSuccess() : LocalizedStrings.removeFromWatchlistSuccess()
     }
 
     // MARK: - Alert actions
@@ -202,16 +202,10 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     }
 
     private func makeWatchlistAlertAction() -> MovieDetailActionModel? {
-        guard let movieAccountState = movieAccountState.value else {
-            return nil
-        }
-        let title = movieAccountState.isInWatchlist ? "Remove from Watchlist" : "Add to Watchlist"
+        guard let movieAccountState = movieAccountState.value else { return nil }
+        let title = movieAccountState.isInWatchlist ? LocalizedStrings.removeFromWatchlistHint() : LocalizedStrings.addToWatchlistHint()
         let watchlistAction = MovieDetailActionModel(title: title) {
-            if movieAccountState.isInWatchlist {
-                self.removeFromWatchlist()
-            } else {
-                self.addToWatchlist()
-            }
+            movieAccountState.isInWatchlist ? self.removeFromWatchlist() : self.addToWatchlist()
         }
         return watchlistAction
     }
