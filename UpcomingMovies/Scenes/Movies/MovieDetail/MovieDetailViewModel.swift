@@ -157,13 +157,43 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         })
     }
 
+    // MARK: - Watchlist
+
+    private func addToWatchlist() {
+
+    }
+
+    private func removeFromWatchlist() {
+
+    }
+
     // MARK: - Alert actions
 
     func getAvailableAlertActions() -> [MovieDetailActionModel] {
+        var alertActions: [MovieDetailActionModel] = []
         let shareAction = MovieDetailActionModel(title: LocalizedStrings.movieDetailShareActionTitle()) {
             self.didSelectShareAction.value = true
         }
-        return [shareAction]
+        alertActions.append(shareAction)
+        if let watchlistAction = makeWatchlistAlertAction() {
+            alertActions.append(watchlistAction)
+        }
+        return alertActions
+    }
+
+    private func makeWatchlistAlertAction() -> MovieDetailActionModel? {
+        guard let movieAccountState = movieAccountState.value else {
+            return nil
+        }
+        let title = movieAccountState.isInWatchlist ? "Remove from Watchlist" : "Add to Watchlist"
+        let watchlistAction = MovieDetailActionModel(title: title) {
+            if movieAccountState.isInWatchlist {
+                self.removeFromWatchlist()
+            } else {
+                self.addToWatchlist()
+            }
+        }
+        return watchlistAction
     }
 
 }
