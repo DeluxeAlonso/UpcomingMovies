@@ -195,9 +195,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             self.didSelectShareAction.value = true
         }
         alertActions.append(shareAction)
-        if let watchlistAction = makeWatchlistAlertAction() {
-            alertActions.append(watchlistAction)
-        }
+        if let watchlistAction = makeWatchlistAlertAction() { alertActions.append(watchlistAction) }
         return alertActions
     }
 
