@@ -160,11 +160,31 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     // MARK: - Watchlist
 
     private func addToWatchlist() {
-
+        interactor.addToWatchlist(movieId: id) { result in
+            switch result {
+            case .success:
+                self.updateWatchlistState(isInWatchlist: true)
+            case .failure(let error):
+                self.showErrorAlert.value = error
+            }
+        }
     }
 
     private func removeFromWatchlist() {
+        interactor.removeFromWatchlist(movieId: id) { result in
+            switch result {
+            case .success:
+                self.updateWatchlistState(isInWatchlist: false)
+            case .failure(let error):
+                self.showErrorAlert.value = error
+            }
+        }
+    }
 
+    private func updateWatchlistState(isInWatchlist: Bool) {
+        self.movieAccountState.value?.isInWatchlist = true
+        self.movieAccountState.fire()
+        self.showSuccessAlert.value = isInWatchlist ? "Added to Watchlist" : "Removed from Watchlist"
     }
 
     // MARK: - Alert actions
