@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-class MovieDetailInteractor: MovieDetailInteractorProtocol {
+final class MovieDetailInteractor: MovieDetailInteractorProtocol {
 
     private let movieUseCase: MovieUseCaseProtocol
     private let movieVisitUseCase: MovieVisitUseCaseProtocol
