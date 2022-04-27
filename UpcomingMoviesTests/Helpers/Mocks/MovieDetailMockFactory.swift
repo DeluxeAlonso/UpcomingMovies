@@ -36,6 +36,16 @@ class MockMovieDetailInteractor: MovieDetailInteractorProtocol {
         completion(markMovieAsFavoriteResult!)
     }
 
+    var addToWatchlistResult: Result<Bool, Error>?
+    func addToWatchlist(movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+        completion(addToWatchlistResult!)
+    }
+
+    var removeFromWatchlistResult: Result<Bool, Error>?
+    func removeFromWatchlist(movieId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+        completion(removeFromWatchlistResult!)
+    }
+
     func saveMovieVisit(with id: Int, title: String, posterPath: String?) {}
 
 }

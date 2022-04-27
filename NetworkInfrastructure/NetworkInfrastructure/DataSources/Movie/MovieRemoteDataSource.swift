@@ -162,7 +162,7 @@ final class MovieRemoteDataSource: MovieRemoteDataSourceProtocol {
             case .success(let movieAccountStateResult):
                 guard let movieAccountStateResult = movieAccountStateResult else { return }
                 let favorite = movieAccountStateResult.favorite
-                let watchlist = movieAccountStateResult.favorite
+                let watchlist = movieAccountStateResult.watchlist
                 completion(.success(.init(favorite: favorite, watchlist: watchlist)))
             case .failure(let error):
                 completion(.failure(error))

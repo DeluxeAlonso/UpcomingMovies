@@ -53,6 +53,11 @@ enum LocalizedStrings: String, Localizable {
     case addToFavoritesSuccess
     case removeFromFavoritesSuccess
 
+    case addToWatchlistHint
+    case removeFromWatchlistHint
+    case addToWatchlistSuccess
+    case removeFromWatchlistSuccess
+
     case expandMovieCellsHint
     case collapseMovieCellsHint
 

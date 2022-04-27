@@ -44,7 +44,7 @@ extension AccountProvider: Endpoint {
         case .markAsFavorite(_, let accountId, _, _):
             return "/3/account/\(accountId)/favorite"
         case .addToWatchlist(_, let accountId, _, _):
-            return "/account/\(accountId)/watchlist"
+            return "/3/account/\(accountId)/watchlist"
         }
     }
 

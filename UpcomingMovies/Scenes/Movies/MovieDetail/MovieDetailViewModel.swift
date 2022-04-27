@@ -157,13 +157,55 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         })
     }
 
+    // MARK: - Watchlist
+
+    private func addToWatchlist() {
+        interactor.addToWatchlist(movieId: id) { result in
+            switch result {
+            case .success:
+                self.updateWatchlistState(isInWatchlist: true)
+            case .failure(let error):
+                self.showErrorAlert.value = error
+            }
+        }
+    }
+
+    private func removeFromWatchlist() {
+        interactor.removeFromWatchlist(movieId: id) { result in
+            switch result {
+            case .success:
+                self.updateWatchlistState(isInWatchlist: false)
+            case .failure(let error):
+                self.showErrorAlert.value = error
+            }
+        }
+    }
+
+    private func updateWatchlistState(isInWatchlist: Bool) {
+        self.movieAccountState.value?.isInWatchlist = true
+        self.movieAccountState.fire()
+        self.showSuccessAlert.value = isInWatchlist ? LocalizedStrings.addToWatchlistSuccess() : LocalizedStrings.removeFromWatchlistSuccess()
+    }
+
     // MARK: - Alert actions
 
     func getAvailableAlertActions() -> [MovieDetailActionModel] {
+        var alertActions: [MovieDetailActionModel] = []
         let shareAction = MovieDetailActionModel(title: LocalizedStrings.movieDetailShareActionTitle()) {
             self.didSelectShareAction.value = true
         }
-        return [shareAction]
+        alertActions.append(shareAction)
+        if let watchlistAction = makeWatchlistAlertAction() { alertActions.append(watchlistAction) }
+        return alertActions
+    }
+
+    private func makeWatchlistAlertAction() -> MovieDetailActionModel? {
+        guard let movieAccountState = movieAccountState.value else { return nil }
+        let title = movieAccountState.isInWatchlist ? LocalizedStrings.removeFromWatchlistHint() : LocalizedStrings.addToWatchlistHint()
+        let watchlistAction = MovieDetailActionModel(title: title) {
+            movieAccountState.isInWatchlist ? self.removeFromWatchlist() : self.addToWatchlist()
+        }
+        return watchlistAction
     }
 
 }
