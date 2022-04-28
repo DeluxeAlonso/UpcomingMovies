@@ -24,8 +24,8 @@ final class MovieDetailUIHelper: MovieDetailUIHelperProtocol, LoadingDisplayable
 
     // MARK: - MovieDetailUIHelperProtocol
 
-    func showHUD(with text: String) {
-        progressHUDAdapter.showHUDWithOnlyText(text)
+    func showHUD(with text: String, in view: UIView) {
+        progressHUDAdapter.showHUDWithOnlyText(text, in: view)
     }
 
     func showFullscreenLoader(in view: UIView) {
