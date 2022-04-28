@@ -174,7 +174,7 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
     private func setupFavoriteBindables() {
         viewModel?.showSuccessAlert.bind({ [weak self] message in
             guard let self = self else { return }
-            self.userInterfaceHelper?.showHUD(with: message)
+            self.userInterfaceHelper?.showHUD(with: message, in: self.view)
         })
         viewModel?.showErrorAlert.bind({ [weak self] error in
             guard let self = self, let error = error else { return }

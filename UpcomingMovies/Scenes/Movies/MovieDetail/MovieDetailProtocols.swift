@@ -93,7 +93,7 @@ protocol MovieDetailCoordinatorProtocol: AnyObject {
 
 protocol MovieDetailUIHelperProtocol {
 
-    func showHUD(with text: String)
+    func showHUD(with text: String, in view: UIView)
 
     func showFullscreenLoader(in view: UIView)
     func dismissFullscreenLoader()
