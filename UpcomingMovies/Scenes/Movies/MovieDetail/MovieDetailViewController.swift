@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieDetailViewController: UIViewController, Storyboarded, Transitionable {
+final class MovieDetailViewController: UIViewController, Storyboarded, Transitionable {
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var backdropImageView: UIImageView!
@@ -38,6 +38,8 @@ class MovieDetailViewController: UIViewController, Storyboarded, Transitionable 
 
         return barButtonItem
     }()
+
+    // MARK: - Dependencies
 
     var viewModel: MovieDetailViewModelProtocol?
     var userInterfaceHelper: MovieDetailUIHelperProtocol?
