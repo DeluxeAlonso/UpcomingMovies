@@ -43,7 +43,17 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var posterURL: URL?
     private(set) var backdropURL: URL?
 
-    private(set) var needsFetch: Bool
+    private var needsFetch: Bool
+
+    // MARK: - Computed properties
+
+    var screenTitle: String {
+        return LocalizedStrings.movieDetailTitle()
+    }
+
+    var shareTitle: String {
+        return String(format: LocalizedStrings.movieDetailShareText(), title)
+    }
 
     // MARK: - Initializers
 
