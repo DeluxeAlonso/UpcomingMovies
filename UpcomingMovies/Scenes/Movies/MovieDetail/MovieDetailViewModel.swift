@@ -43,7 +43,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var posterURL: URL?
     private(set) var backdropURL: URL?
 
-    private(set) var needsFetch: Bool
+    private var needsFetch: Bool
 
     // MARK: - Initializers
 

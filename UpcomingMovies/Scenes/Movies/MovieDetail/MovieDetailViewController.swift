@@ -185,7 +185,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     }
 
     private func showErrorView(error: Error) {
-        userInterfaceHelper?.presentRetryView(in: self.view, with: error.localizedDescription, retryHandler: { [weak self] in
+        userInterfaceHelper?.presentRetryView(in: view, with: error.localizedDescription, retryHandler: { [weak self] in
             self?.viewModel?.getMovieDetail(showLoader: false)
         })
     }
