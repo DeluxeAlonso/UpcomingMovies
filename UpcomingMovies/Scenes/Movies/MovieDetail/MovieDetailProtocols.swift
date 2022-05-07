@@ -19,6 +19,9 @@ protocol MovieDetailViewModelProtocol {
     var posterURL: URL? { get }
     var backdropURL: URL? { get }
 
+    var screenTitle: String { get }
+    var shareTitle: String { get }
+
     var startLoading: Bindable<Bool> { get }
     var showErrorRetryView: Bindable<Error?> { get }
     var showGenreName: Bindable<String> { get }

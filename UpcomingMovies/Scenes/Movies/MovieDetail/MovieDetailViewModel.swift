@@ -45,6 +45,16 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     private var needsFetch: Bool
 
+    // MARK: - Computed properties
+
+    var screenTitle: String {
+        return LocalizedStrings.movieDetailTitle()
+    }
+
+    var shareTitle: String {
+        return String(format: LocalizedStrings.movieDetailShareText(), title)
+    }
+
     // MARK: - Initializers
 
     init(_ movie: Movie,

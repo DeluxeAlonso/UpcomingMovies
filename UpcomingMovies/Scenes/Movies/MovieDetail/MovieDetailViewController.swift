@@ -66,7 +66,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     // MARK: - Private
 
     private func setupUI() {
-        title = LocalizedStrings.movieDetailTitle()
+        title = viewModel?.screenTitle
 
         setupNavigationBar()
         setupLabels()
@@ -210,9 +210,8 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     }
 
     private func shareMovie() {
-        guard let movieTitle = viewModel?.title else { return }
-        let shareText = String(format: LocalizedStrings.movieDetailShareText(), movieTitle)
-        coordinator?.showSharingOptions(withShareTitle: shareText)
+        guard let viewModel = viewModel else { return }
+        coordinator?.showSharingOptions(withShareTitle: viewModel.shareTitle)
     }
 
     @IBAction private func favoriteButtonAction(_ sender: Any) {
