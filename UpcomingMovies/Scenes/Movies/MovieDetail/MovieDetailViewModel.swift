@@ -158,7 +158,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             switch result {
             case .success:
                 self.movieAccountState.value?.isFavorite = newFavoriteValue
-                self.movieAccountState.fire()
+                //self.movieAccountState.fire()
                 let message = newFavoriteValue ? LocalizedStrings.addToFavoritesSuccess() : LocalizedStrings.removeFromFavoritesSuccess()
                 self.showSuccessAlert.value = message
             case .failure(let error):
@@ -193,7 +193,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     private func updateWatchlistState(isInWatchlist: Bool) {
         self.movieAccountState.value?.isInWatchlist = true
-        self.movieAccountState.fire()
         self.showSuccessAlert.value = isInWatchlist ? LocalizedStrings.addToWatchlistSuccess() : LocalizedStrings.removeFromWatchlistSuccess()
     }
 
@@ -220,7 +219,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
 }
 
-final class MovieAccountStateModel {
+struct MovieAccountStateModel {
 
     init(_ accountState: Movie.AccountState) {
         self.isFavorite = accountState.favorite
