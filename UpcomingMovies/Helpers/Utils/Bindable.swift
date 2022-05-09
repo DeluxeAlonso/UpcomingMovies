@@ -25,10 +25,6 @@ final class Bindable<T> {
         self.listener = listener
     }
 
-    func fire() {
-        listener?(value)
-    }
-
     func bindAndFire(_ listener: Listener?) {
         self.listener = listener
         listener?(value)
