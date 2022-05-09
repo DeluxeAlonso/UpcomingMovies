@@ -89,11 +89,9 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
 
         viewModel.viewState.bind({ [weak self] state in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.configureView(with: state)
-                self.reloadCollectionView()
-            }
-        })
+            self.configureView(with: state)
+            self.reloadCollectionView()
+        }, onMainThread: true)
 
         viewModel.didToggleSection.bind({ [weak self] sectionToggled in
             guard let self = self else { return }
@@ -103,10 +101,8 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
         })
 
         viewModel.startLoading.bind({ [weak self] start in
-            DispatchQueue.main.async {
-                start ? self?.showLoader() : self?.hideLoader()
-            }
-        })
+            start ? self?.showLoader() : self?.hideLoader()
+        }, onMainThread: true)
     }
 
 }
