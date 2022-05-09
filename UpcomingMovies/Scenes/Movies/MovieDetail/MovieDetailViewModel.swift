@@ -158,7 +158,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             switch result {
             case .success:
                 self.movieAccountState.value?.isFavorite = newFavoriteValue
-                //self.movieAccountState.fire()
                 let message = newFavoriteValue ? LocalizedStrings.addToFavoritesSuccess() : LocalizedStrings.removeFromFavoritesSuccess()
                 self.showSuccessAlert.value = message
             case .failure(let error):
