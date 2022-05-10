@@ -68,14 +68,9 @@ class SearchOptionsViewController: UITableViewController, Storyboarded {
         }
 
         viewModel?.updateVisitedMovies.bind({ [weak self] section in
-            guard let self = self,
-                let section = section else {
-                    return
-            }
-            DispatchQueue.main.async {
-                self.reloadSection(section)
-            }
-        })
+            guard let self = self, let section = section else { return }
+            self.reloadSection(section)
+        }, onMainThread: true)
 
         viewModel?.selectedDefaultSearchOption.bind({ [weak self] option in
             guard let self = self, let option = option else { return }
