@@ -84,14 +84,12 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
         title = viewModel?.movieTitle
         viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.configureView(withState: state)
-                self.reloadTableView()
-            }
-        })
+            self.configureView(withState: state)
+            self.reloadTableView()
+        }, onMainThread: true)
         viewModel?.startLoading.bind({[weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
-        })
+        }, onMainThread: true)
         viewModel?.getMovieReviews()
     }
 
