@@ -118,15 +118,13 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
         title = viewModel?.displayTitle
         viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.configureView(withState: state)
-                self.updateCollectionViewLayout()
-                self.reloadCollectionView()
-            }
-        })
+            self.configureView(withState: state)
+            self.updateCollectionViewLayout()
+            self.reloadCollectionView()
+        }, onMainThread: true)
         viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
-        })
+        }, onMainThread: true)
         viewModel?.getCollectionList()
     }
 
