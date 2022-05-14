@@ -47,3 +47,11 @@ final class Bindable<T> {
     }
 
 }
+
+extension Bindable where T == Void {
+
+    func fire() {
+        sendValue()
+    }
+
+}

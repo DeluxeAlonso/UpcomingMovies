@@ -19,7 +19,7 @@ final class SplashViewModel: SplashViewModelProtocol {
 
     // MARK: - Properties
 
-    var initialDownloadsEnded: (() -> Void)?
+    var initialDownloadsEnded: Bindable<Void> = Bindable(())
 
     // MARK: - Initializers
 
@@ -49,7 +49,7 @@ final class SplashViewModel: SplashViewModelProtocol {
         }
 
         dispatchGroup.notify(queue: .global(qos: .userInitiated)) {
-            self.initialDownloadsEnded?()
+            self.initialDownloadsEnded.fire()
         }
     }
 

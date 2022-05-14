@@ -27,13 +27,11 @@ class SplashViewController: UIViewController, Storyboarded {
     // MARK: - Reactive Behavior
 
     private func setupBindables() {
-        viewModel?.initialDownloadsEnded = { [weak self] in
+        viewModel?.initialDownloadsEnded.bind({ [weak self] in
             guard let self = self else { return }
             let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
-            DispatchQueue.main.async {
-                navigationHandler.initialTransition(from: self.view.window)
-            }
-        }
+            navigationHandler.initialTransition(from: self.view.window)
+        }, onMainThread: true)
     }
 
 }
