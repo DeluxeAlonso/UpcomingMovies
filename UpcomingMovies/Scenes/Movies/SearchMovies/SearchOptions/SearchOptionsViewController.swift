@@ -60,12 +60,10 @@ class SearchOptionsViewController: UITableViewController, Storyboarded {
     // MARK: - Reactive Behavior
 
     private func setupBindables() {
-        viewModel?.needsContentReload = { [weak self] in
+        viewModel?.needsContentReload.bind({ [weak self] in
             guard let self = self else { return }
-            DispatchQueue.main.async {
                 self.reloadTableView()
-            }
-        }
+        }, onMainThread: true)
 
         viewModel?.updateVisitedMovies.bind({ [weak self] section in
             guard let self = self, let section = section else { return }
