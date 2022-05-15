@@ -53,7 +53,7 @@ protocol SearchMoviesResultInteractorProtocol {
 protocol SearchOptionsViewModelProtocol {
 
     var viewState: Bindable<SearchOptionsViewState> { get }
-    var needsContentReload: (() -> Void)? { get set }
+    var needsContentReload: Bindable<Void> { get }
     var updateVisitedMovies: Bindable<Int?> { get }
 
     var selectedDefaultSearchOption: Bindable<DefaultSearchOption?> { get }
