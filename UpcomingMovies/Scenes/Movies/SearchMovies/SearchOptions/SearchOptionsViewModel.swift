@@ -9,6 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
+// TODO: - Add tests for this class
 final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
 
     // MARK: - Dependencies
@@ -19,7 +20,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
 
     let viewState: Bindable<SearchOptionsViewState> = Bindable(.emptyMovieVisits)
 
-    var needsContentReload: (() -> Void)?
+    var needsContentReload: Bindable<Void> = Bindable(())
     var updateVisitedMovies: Bindable<Int?> = Bindable(nil)
 
     var selectedDefaultSearchOption: Bindable<DefaultSearchOption?> = Bindable(nil)
@@ -65,7 +66,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
             guard let self = self else { return }
             guard let genres = try? result.get() else { return }
             self.genres = genres
-            self.needsContentReload?()
+            self.needsContentReload.fire()
         })
     }
 
@@ -78,7 +79,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
             let viewStateChanged = self.configureViewState(movieVisits: movieVisits)
             // If the state changed we reload the entire table view
             if viewStateChanged {
-                self.needsContentReload?()
+                self.needsContentReload.fire()
             } else {
                 let index = self.sectionIndex(for: .recentlyVisited)
                 self.updateVisitedMovies.value = index
