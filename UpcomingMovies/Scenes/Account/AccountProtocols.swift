@@ -12,8 +12,8 @@ import UpcomingMoviesDomain
 protocol AccountViewModelProtocol {
 
     var showAuthPermission: Bindable<URL?> { get }
-    var didSignIn: (() -> Void)? { get set }
-    var didReceiveError: (() -> Void)? { get set }
+    var didSignIn: Bindable<Void> { get }
+    var didReceiveError: Bindable<Void> { get }
 
     func startAuthorizationProcess()
     func signInUser()

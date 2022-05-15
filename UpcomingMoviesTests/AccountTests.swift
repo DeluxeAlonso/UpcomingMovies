@@ -48,7 +48,7 @@ class AccountTests: XCTestCase {
         let errorToTest = APIError.badRequest
         let expectation = XCTestExpectation(description: "Get permission URL error")
         // Act
-        viewModelToTest.didReceiveError = {
+        viewModelToTest.didReceiveError.bind {
             expectation.fulfill()
         }
         mockInteractor.permissionURLResult = Result.failure(errorToTest)
@@ -62,7 +62,7 @@ class AccountTests: XCTestCase {
         let userToTest = User.with()
         let expectation = XCTestExpectation(description: "Sign in user")
         // Act
-        viewModelToTest.didSignIn = {
+        viewModelToTest.didSignIn.bind {
             expectation.fulfill()
         }
         mockInteractor.signInUserResult = Result.success(userToTest)
@@ -76,7 +76,7 @@ class AccountTests: XCTestCase {
         let errorToTest = APIError.badRequest
         let expectation = XCTestExpectation(description: "Sign in user error")
         // Act
-        viewModelToTest.didReceiveError = {
+        viewModelToTest.didReceiveError.bind {
             expectation.fulfill()
         }
         mockInteractor.signInUserResult = Result.failure(errorToTest)

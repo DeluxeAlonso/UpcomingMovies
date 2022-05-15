@@ -14,8 +14,8 @@ final class AccountViewModel: AccountViewModelProtocol {
     private let interactor: AccountInteractorProtocol
 
     var showAuthPermission: Bindable<URL?> = Bindable(nil)
-    var didSignIn: (() -> Void)?
-    var didReceiveError: (() -> Void)?
+    var didSignIn: Bindable<Void> = Bindable(())
+    var didReceiveError: Bindable<Void> = Bindable(())
 
     // MARK: - Initializers
 
@@ -31,7 +31,7 @@ final class AccountViewModel: AccountViewModelProtocol {
             case .success(let url):
                 self.showAuthPermission.value = url
             case .failure:
-                self.didReceiveError?()
+                self.didReceiveError.fire()
             }
         }
     }
@@ -40,9 +40,9 @@ final class AccountViewModel: AccountViewModelProtocol {
         interactor.signInUser { result in
             switch result {
             case .success:
-                self.didSignIn?()
+                self.didSignIn.fire()
             case .failure:
-                self.didReceiveError?()
+                self.didReceiveError.fire()
             }
         }
     }

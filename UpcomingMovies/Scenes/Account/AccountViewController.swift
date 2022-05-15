@@ -69,18 +69,14 @@ class AccountViewController: UIViewController, Storyboarded {
             guard let self = self, let authPermissionURL = authPermissionURL else { return }
             self.coordinator?.showAuthPermission(for: authPermissionURL, and: self)
         }
-        viewModel.didSignIn = { [weak self] in
+        viewModel.didSignIn.bind({ [weak self] in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.showProfileView(withAnimatedNavigationBar: true)
-            }
-        }
-        viewModel.didReceiveError = { [weak self] in
+            self.showProfileView(withAnimatedNavigationBar: true)
+        }, onMainThread: true)
+        viewModel.didReceiveError.bind({ [weak self] in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.signInViewController?.stopLoading()
-            }
-        }
+            self.signInViewController?.stopLoading()
+        }, onMainThread: true)
     }
 
 }

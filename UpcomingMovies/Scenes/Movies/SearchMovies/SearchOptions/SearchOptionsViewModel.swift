@@ -24,6 +24,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
 
     var selectedDefaultSearchOption: Bindable<DefaultSearchOption?> = Bindable(nil)
     var selectedMovieGenre: Bindable<(Int?, String?)> = Bindable((nil, nil))
+    // TODO: - Move this to Bindable
     var selectedRecentlyVisitedMovie: ((Int, String) -> Void)?
 
     // MARK: - Computed properties
