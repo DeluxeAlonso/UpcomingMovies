@@ -10,6 +10,7 @@ import XCTest
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 @testable import UpcomingMoviesData
+@testable import NetworkInfrastructure
 @testable import CoreDataInfrastructure
 
 class MovieDetailTests: XCTestCase {
@@ -20,7 +21,7 @@ class MovieDetailTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        let movieToTest = Movie(id: 1,
+        let movieToTest = UpcomingMoviesDomain.Movie(id: 1,
                                 title: "Test 1",
                                 genreIds: [1, 2],
                                 overview: "Overview",
@@ -97,7 +98,21 @@ class MovieDetailTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    private func createSUT(with movie: Movie) -> MovieDetailViewModelProtocol {
+    func testShowErrorRetryView() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        let expectation = XCTestExpectation(description: "didSetupMovieDetail event should be sent")
+        // Act
+        viewModelToTest.showErrorRetryView.bind { _ in
+            expectation.fulfill()
+        }
+        mockInteractor.getMovieDetailResult = Result.failure(APIError.badRequest)
+        viewModelToTest.getMovieDetail(showLoader: false)
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    private func createSUT(with movie: UpcomingMoviesDomain.Movie) -> MovieDetailViewModelProtocol {
         return MovieDetailViewModel(movie,
                                     interactor: mockInteractor,
                                     factory: mockFactory)
