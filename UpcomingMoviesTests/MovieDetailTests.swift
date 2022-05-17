@@ -83,4 +83,31 @@ class MovieDetailTests: XCTestCase {
         XCTAssertEqual(fullBackdropPath!, URL(string: "https://image.tmdb.org/t/p/w500/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg"))
     }
 
+    func testDidSetupMovieDetail() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        let expectation = XCTestExpectation(description: "didSetupMovieDetail event should be sent")
+        // Act
+        viewModelToTest.didSetupMovieDetail.bind { _ in
+            expectation.fulfill()
+        }
+        mockInteractor.getMovieDetailResult = Result.success(Movie.with(id: 1))
+        viewModelToTest.getMovieDetail(showLoader: false)
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    private func createSUT(with movie: Movie) -> MovieDetailViewModelProtocol {
+        return MovieDetailViewModel(movie,
+                                    interactor: mockInteractor,
+                                    factory: mockFactory)
+    }
+
+    private func createSUT(with id: Int, title: String) -> MovieDetailViewModelProtocol {
+        return MovieDetailViewModel(id: id,
+                                    title: title,
+                                    interactor: mockInteractor,
+                                    factory: mockFactory)
+    }
+
 }
