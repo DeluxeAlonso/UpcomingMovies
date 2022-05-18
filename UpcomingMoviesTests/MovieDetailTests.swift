@@ -43,31 +43,43 @@ class MovieDetailTests: XCTestCase {
     }
 
     func testMovieDetailTitle() {
+        // Arrange
+        let titleToTest = "Test 1"
+        let viewModelToTest = createSUT(with: .with(title: titleToTest))
         // Act
         let title = viewModelToTest.title
         // Assert
-        XCTAssertEqual(title, "Test 1")
+        XCTAssertEqual(title, titleToTest)
     }
 
     func testMovieDetailReleaseDate() {
+        // Arrange
+        let releaseDateToTest = "2019-02-01"
+        let viewModelToTest = createSUT(with: .with(releaseDate: releaseDateToTest))
         // Act
         let releaseDate = viewModelToTest.releaseDate
         // Assert
-        XCTAssertEqual(releaseDate, "2019-02-01")
+        XCTAssertEqual(releaseDate, releaseDateToTest)
     }
 
     func testMovieDetailOverview() {
+        // Arrange
+        let overviewToTest = "Overview"
+        let viewModelToTest = createSUT(with: .with(overview: overviewToTest))
         // Act
         let overview = viewModelToTest.overview
         // Assert
-        XCTAssertEqual(overview, "Overview")
+        XCTAssertEqual(overview, overviewToTest)
     }
 
     func testMovieDetailVoteAverage() {
+        // Arrange
+        let voteAverageToTest = 4.5
+        let viewModelToTest = createSUT(with: .with(voteAverage: voteAverageToTest))
         // Act
         let voteAverage = viewModelToTest.voteAverage
         // Assert
-        XCTAssertEqual(voteAverage, 4.5)
+        XCTAssertEqual(voteAverage, voteAverageToTest)
     }
 
     func testMovieDetailPosterPath() {
