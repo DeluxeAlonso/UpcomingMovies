@@ -10,6 +10,7 @@ import XCTest
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 @testable import UpcomingMoviesData
+@testable import NetworkInfrastructure
 @testable import CoreDataInfrastructure
 
 class MovieDetailTests: XCTestCase {
@@ -20,7 +21,7 @@ class MovieDetailTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        let movieToTest = Movie(id: 1,
+        let movieToTest = UpcomingMoviesDomain.Movie(id: 1,
                                 title: "Test 1",
                                 genreIds: [1, 2],
                                 overview: "Overview",
@@ -81,6 +82,47 @@ class MovieDetailTests: XCTestCase {
         let fullBackdropPath = viewModelToTest.backdropURL
         // Assert
         XCTAssertEqual(fullBackdropPath!, URL(string: "https://image.tmdb.org/t/p/w500/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg"))
+    }
+
+    func testDidSetupMovieDetail() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        let expectation = XCTestExpectation(description: "didSetupMovieDetail event should be sent")
+        // Act
+        viewModelToTest.didSetupMovieDetail.bind { _ in
+            expectation.fulfill()
+        }
+        mockInteractor.getMovieDetailResult = Result.success(Movie.with(id: 1))
+        viewModelToTest.getMovieDetail(showLoader: false)
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testShowErrorRetryView() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        let expectation = XCTestExpectation(description: "didSetupMovieDetail event should be sent")
+        // Act
+        viewModelToTest.showErrorRetryView.bind { _ in
+            expectation.fulfill()
+        }
+        mockInteractor.getMovieDetailResult = Result.failure(APIError.badRequest)
+        viewModelToTest.getMovieDetail(showLoader: false)
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    private func createSUT(with movie: UpcomingMoviesDomain.Movie) -> MovieDetailViewModelProtocol {
+        return MovieDetailViewModel(movie,
+                                    interactor: mockInteractor,
+                                    factory: mockFactory)
+    }
+
+    private func createSUT(with id: Int, title: String) -> MovieDetailViewModelProtocol {
+        return MovieDetailViewModel(id: id,
+                                    title: title,
+                                    interactor: mockInteractor,
+                                    factory: mockFactory)
     }
 
 }
