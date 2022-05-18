@@ -71,17 +71,23 @@ class MovieDetailTests: XCTestCase {
     }
 
     func testMovieDetailPosterPath() {
+        // Arrange
+        let posterPathToTest = "pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"
+        let viewModelToTest = createSUT(with: .with(posterPath: posterPathToTest))
         // Act
         let fullPosterPath = viewModelToTest.posterURL
         // Assert
-        XCTAssertEqual(fullPosterPath!, URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
+        XCTAssertEqual(fullPosterPath, URL(string: ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString + posterPathToTest))
     }
 
     func testMovieDetailBackdropPath() {
+        // Arrange
+        let backdropPathToTest = "2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg"
+        let viewModelToTest = createSUT(with: .with(backdropPath: backdropPathToTest))
         // Act
         let fullBackdropPath = viewModelToTest.backdropURL
         // Assert
-        XCTAssertEqual(fullBackdropPath!, URL(string: "https://image.tmdb.org/t/p/w500/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg"))
+        XCTAssertEqual(fullBackdropPath, URL(string: ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString + backdropPathToTest))
     }
 
     func testDidSetupMovieDetail() {
@@ -111,6 +117,8 @@ class MovieDetailTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
+
+    // MARK: - Utils
 
     private func createSUT(with movie: UpcomingMoviesDomain.Movie) -> MovieDetailViewModelProtocol {
         return MovieDetailViewModel(movie,
