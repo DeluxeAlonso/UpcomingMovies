@@ -17,28 +17,16 @@ class MovieDetailTests: XCTestCase {
 
     private var mockInteractor: MockMovieDetailInteractor!
     private var mockFactory: MockMovieDetailViewFactory!
-    private var viewModelToTest: MovieDetailViewModelProtocol!
 
     override func setUp() {
         super.setUp()
-        let movieToTest = UpcomingMoviesDomain.Movie(id: 1,
-                                title: "Test 1",
-                                genreIds: [1, 2],
-                                overview: "Overview",
-                                posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
-                                backdropPath: "/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg",
-                                releaseDate: "2019-02-01", voteAverage: 4.5)
         mockInteractor = MockMovieDetailInteractor()
         mockFactory = MockMovieDetailViewFactory()
-        viewModelToTest = MovieDetailViewModel(movieToTest,
-                                               interactor: mockInteractor,
-                                               factory: mockFactory)
     }
 
     override func tearDown() {
         mockInteractor = nil
         mockFactory = nil
-        viewModelToTest = nil
         super.tearDown()
     }
 
