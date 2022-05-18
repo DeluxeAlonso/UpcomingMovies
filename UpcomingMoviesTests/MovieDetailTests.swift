@@ -17,71 +17,77 @@ class MovieDetailTests: XCTestCase {
 
     private var mockInteractor: MockMovieDetailInteractor!
     private var mockFactory: MockMovieDetailViewFactory!
-    private var viewModelToTest: MovieDetailViewModelProtocol!
 
     override func setUp() {
         super.setUp()
-        let movieToTest = UpcomingMoviesDomain.Movie(id: 1,
-                                title: "Test 1",
-                                genreIds: [1, 2],
-                                overview: "Overview",
-                                posterPath: "/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg",
-                                backdropPath: "/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg",
-                                releaseDate: "2019-02-01", voteAverage: 4.5)
         mockInteractor = MockMovieDetailInteractor()
         mockFactory = MockMovieDetailViewFactory()
-        viewModelToTest = MovieDetailViewModel(movieToTest,
-                                               interactor: mockInteractor,
-                                               factory: mockFactory)
     }
 
     override func tearDown() {
         mockInteractor = nil
         mockFactory = nil
-        viewModelToTest = nil
         super.tearDown()
     }
 
     func testMovieDetailTitle() {
+        // Arrange
+        let titleToTest = "Test 1"
+        let viewModelToTest = createSUT(with: .with(title: titleToTest))
         // Act
         let title = viewModelToTest.title
         // Assert
-        XCTAssertEqual(title, "Test 1")
+        XCTAssertEqual(title, titleToTest)
     }
 
     func testMovieDetailReleaseDate() {
+        // Arrange
+        let releaseDateToTest = "2019-02-01"
+        let viewModelToTest = createSUT(with: .with(releaseDate: releaseDateToTest))
         // Act
         let releaseDate = viewModelToTest.releaseDate
         // Assert
-        XCTAssertEqual(releaseDate, "2019-02-01")
+        XCTAssertEqual(releaseDate, releaseDateToTest)
     }
 
     func testMovieDetailOverview() {
+        // Arrange
+        let overviewToTest = "Overview"
+        let viewModelToTest = createSUT(with: .with(overview: overviewToTest))
         // Act
         let overview = viewModelToTest.overview
         // Assert
-        XCTAssertEqual(overview, "Overview")
+        XCTAssertEqual(overview, overviewToTest)
     }
 
     func testMovieDetailVoteAverage() {
+        // Arrange
+        let voteAverageToTest = 4.5
+        let viewModelToTest = createSUT(with: .with(voteAverage: voteAverageToTest))
         // Act
         let voteAverage = viewModelToTest.voteAverage
         // Assert
-        XCTAssertEqual(voteAverage, 4.5)
+        XCTAssertEqual(voteAverage, voteAverageToTest)
     }
 
     func testMovieDetailPosterPath() {
+        // Arrange
+        let posterPathToTest = "pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"
+        let viewModelToTest = createSUT(with: .with(posterPath: posterPathToTest))
         // Act
         let fullPosterPath = viewModelToTest.posterURL
         // Assert
-        XCTAssertEqual(fullPosterPath!, URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
+        XCTAssertEqual(fullPosterPath, URL(string: ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString + posterPathToTest))
     }
 
     func testMovieDetailBackdropPath() {
+        // Arrange
+        let backdropPathToTest = "2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg"
+        let viewModelToTest = createSUT(with: .with(backdropPath: backdropPathToTest))
         // Act
         let fullBackdropPath = viewModelToTest.backdropURL
         // Assert
-        XCTAssertEqual(fullBackdropPath!, URL(string: "https://image.tmdb.org/t/p/w500/2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg"))
+        XCTAssertEqual(fullBackdropPath, URL(string: ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString + backdropPathToTest))
     }
 
     func testDidSetupMovieDetail() {
@@ -111,6 +117,8 @@ class MovieDetailTests: XCTestCase {
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
+
+    // MARK: - Utils
 
     private func createSUT(with movie: UpcomingMoviesDomain.Movie) -> MovieDetailViewModelProtocol {
         return MovieDetailViewModel(movie,
