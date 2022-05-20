@@ -70,8 +70,10 @@ final class MovieCreditCell: UICollectionViewCell {
         accessibilityLabel = viewModel.accessibilityText
     }
 
-}
+    // MARK: - Constants
 
-struct Constants {
-    static let fadeAnimationDuration: Double = 0.25
+    struct Constants {
+        static let fadeAnimationDuration: Double = 0.25
+    }
+
 }
