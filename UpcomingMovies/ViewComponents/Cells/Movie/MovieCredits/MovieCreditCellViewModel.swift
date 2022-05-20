@@ -30,8 +30,7 @@ final class MovieCreditCellViewModel: MovieCreditCellViewModelProtocol {
         role = cast.character
         profileURL = cast.profileURL
 
-        let creditLabelFormat = LocalizedStrings.movieCreditAccessibility()
-        accessibilityText = String(format: creditLabelFormat, name, role)
+        accessibilityText = String(format: LocalizedStrings.movieCreditAccessibility(), name, role)
     }
 
     init(crew: Crew) {
@@ -39,8 +38,7 @@ final class MovieCreditCellViewModel: MovieCreditCellViewModelProtocol {
         role = crew.job
         profileURL = crew.profileURL
 
-        let creditLabelFormat = LocalizedStrings.movieCreditAccessibility()
-        accessibilityText = String(format: creditLabelFormat, name, role)
+        accessibilityText = String(format: LocalizedStrings.movieCreditAccessibility(), name, role)
     }
 
 }
