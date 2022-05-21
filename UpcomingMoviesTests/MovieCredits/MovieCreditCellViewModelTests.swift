@@ -12,24 +12,42 @@ import XCTest
 
 class MovieCreditCellViewModelTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testNameForCreditModelCreatedWithCast() {
+        // Arrange
+        let nameToTest = "Alonso"
+        let viewModel = createSUT(with: Cast.with(name: nameToTest))
+        // Act
+        let viewModelName = viewModel.name
+        // Assert
+        XCTAssertEqual(nameToTest, viewModelName)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testRoleForCreditModelCreatedWithCast() {
+        // Arrange
+        let characterToTest = "Villain"
+        let viewModel = createSUT(with: Cast.with(character: characterToTest))
+        // Act
+        let viewModelRole = viewModel.role
+        // Assert
+        XCTAssertEqual(characterToTest, viewModelRole)
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testProfileURLForCreditModelCreatedWithCast() {
+        // Arrange
+        let photoPathToTest = "/path"
+        let viewModel = createSUT(with: Cast.with(photoPath: photoPathToTest))
+        // Act
+        let viewModelProfileURL = viewModel.profileURL
+        // Assert
+        XCTAssertEqual(URL(string: photoPathToTest + ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString), viewModelProfileURL)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    private func createSUT(with cast: Cast) -> MovieCreditCellViewModel {
+        return MovieCreditCellViewModel(cast: cast)
+    }
+
+    private func createSUT(with crew: Crew) -> MovieCreditCellViewModel {
+        return MovieCreditCellViewModel(crew: crew)
     }
 
 }
