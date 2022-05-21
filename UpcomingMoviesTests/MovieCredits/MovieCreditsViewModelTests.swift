@@ -1,5 +1,5 @@
 //
-//  MovieCreditsTests.swift
+//  MovieCreditsViewModelTests.swift
 //  UpcomingMoviesTests
 //
 //  Created by Alonso on 7/5/20.
@@ -11,7 +11,7 @@ import XCTest
 @testable import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
-class MovieCreditsTests: XCTestCase {
+class MovieCreditsViewModelTests: XCTestCase {
 
     private var mockInteractor: MockMovieCreditsInteractor!
     private var mockFactory: MockMovieCreditsFactory!
