@@ -39,7 +39,7 @@ class MovieCreditCellViewModelTests: XCTestCase {
         // Act
         let viewModelProfileURL = viewModel.profileURL
         // Assert
-        XCTAssertEqual(URL(string: photoPathToTest + ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString), viewModelProfileURL)
+        XCTAssertEqual(URL(string: ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString + photoPathToTest), viewModelProfileURL)
     }
 
     private func createSUT(with cast: Cast) -> MovieCreditCellViewModel {
