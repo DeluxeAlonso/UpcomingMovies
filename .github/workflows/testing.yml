@@ -32,5 +32,6 @@ jobs:
 
   coverage:
     needs: test
+    runs-on: macos-11
     steps:
     - uses: codecov/codecov-action@v1.2.1
