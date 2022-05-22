@@ -8,7 +8,8 @@ platform :ios do
   	run_tests(
   	  workspace: "UpcomingMovies.xcworkspace",
      	  devices: ["iPhone 8"],
-      	  scheme: "UpcomingMovies"
+      	  scheme: "UpcomingMovies",
+	  code_coverage: true
     	)
 	end
 

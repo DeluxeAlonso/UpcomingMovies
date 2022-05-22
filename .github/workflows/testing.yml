@@ -29,3 +29,5 @@ jobs:
       run: pod install
     - name: Run unit tests
       run: bundle exec fastlane tests
+    - name: Upload coverage
+      uses: codecov/codecov-action@v1.2.1
