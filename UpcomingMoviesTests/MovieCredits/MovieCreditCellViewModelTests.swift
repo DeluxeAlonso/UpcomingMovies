@@ -42,6 +42,36 @@ class MovieCreditCellViewModelTests: XCTestCase {
         XCTAssertEqual(URL(string: ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString + photoPathToTest), viewModelProfileURL)
     }
 
+    func testNameForCreditModelCreatedWithCrew() {
+        // Arrange
+        let nameToTest = "Alonso"
+        let viewModel = createSUT(with: Crew.with(name: nameToTest))
+        // Act
+        let viewModelName = viewModel.name
+        // Assert
+        XCTAssertEqual(nameToTest, viewModelName)
+    }
+
+    func testRoleForCreditModelCreatedWithCrew() {
+        // Arrange
+        let jobToTest = "Assistant"
+        let viewModel = createSUT(with: Crew.with(job: jobToTest))
+        // Act
+        let viewModelRole = viewModel.role
+        // Assert
+        XCTAssertEqual(jobToTest, viewModelRole)
+    }
+
+    func testProfileURLForCreditModelCreatedWithCrew() {
+        // Arrange
+        let photoPathToTest = "/path"
+        let viewModel = createSUT(with: Crew.with(photoPath: photoPathToTest))
+        // Act
+        let viewModelProfileURL = viewModel.profileURL
+        // Assert
+        XCTAssertEqual(URL(string: ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString + photoPathToTest), viewModelProfileURL)
+    }
+
     private func createSUT(with cast: Cast) -> MovieCreditCellViewModel {
         return MovieCreditCellViewModel(cast: cast)
     }
