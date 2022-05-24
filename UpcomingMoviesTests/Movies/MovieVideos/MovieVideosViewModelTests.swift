@@ -1,5 +1,5 @@
 //
-//  MovieVideosTests.swift
+//  MovieVideosViewModelTests.swift
 //  UpcomingMoviesTests
 //
 //  Created by Alonso Alvarez on 2/19/19.
@@ -11,7 +11,7 @@ import XCTest
 @testable import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
-class MovieVideosTests: XCTestCase {
+class MovieVideosViewModelTests: XCTestCase {
 
     private var mockInteractor: MockMovieVideosInteractor!
     private var viewModelToTest: MovieVideosViewModelProtocol!
