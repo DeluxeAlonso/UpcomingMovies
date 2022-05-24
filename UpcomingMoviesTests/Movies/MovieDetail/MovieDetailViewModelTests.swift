@@ -1,5 +1,5 @@
 //
-//  MovieDetailTests.swift
+//  MovieDetailViewModelTests.swift
 //  UpcomingMoviesTests
 //
 //  Created by Alonso on 2/8/19.
@@ -13,7 +13,7 @@ import XCTest
 @testable import NetworkInfrastructure
 @testable import CoreDataInfrastructure
 
-class MovieDetailTests: XCTestCase {
+class MovieDetailViewModelTests: XCTestCase {
 
     private var mockInteractor: MockMovieDetailInteractor!
     private var mockFactory: MockMovieDetailViewFactory!
