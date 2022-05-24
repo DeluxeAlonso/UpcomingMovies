@@ -1,5 +1,5 @@
 //
-//  UpcomingMoviesTests.swift
+//  UpcomingMoviesViewModelTests.swift
 //  UpcomingMoviesTests
 //
 //  Created by Alonso on 11/5/18.
@@ -11,7 +11,7 @@ import XCTest
 @testable import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
-class UpcomingMoviesTests: XCTestCase {
+class UpcomingMoviesViewModelTests: XCTestCase {
 
     typealias MoviesViewState = SimpleViewState<UpcomingMoviesDomain.Movie>
 
