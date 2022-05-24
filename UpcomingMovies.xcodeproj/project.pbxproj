@@ -1129,17 +1129,10 @@
 		E221169521914E4D0039F8C9 /* UpcomingMoviesTests */ = {
 			isa = PBXGroup;
 			children = (
-				E2748DEC2838BDBD00CD2BA2 /* MovieReviews */,
-				E2748DEB2838BDB200CD2BA2 /* MovieVideos */,
-				E2748DEA2838BDA200CD2BA2 /* MovieDetail */,
-				E2748DE72838B7AD00CD2BA2 /* MovieCredits */,
+				E2E6D1FB283CA9F700D63A23 /* Movies */,
+				E2E6D1FA283CA9AD00D63A23 /* Account */,
 				E25AE2FC24B2DD0900DD1EE0 /* Helpers */,
-				E221169621914E4D0039F8C9 /* UpcomingMoviesTests.swift */,
 				E221169821914E4D0039F8C9 /* Info.plist */,
-				E22024FF24BEBFD500465316 /* AccountTests.swift */,
-				E2C42E1524C3F3FC0047A8EF /* ProfileTests.swift */,
-				E2850D2F24CBD13F0036BEAF /* SavedMoviesTests.swift */,
-				E2EAEC4F24CFC67100D89F04 /* CustomListsTests.swift */,
 			);
 			path = UpcomingMoviesTests;
 			sourceTree = "<group>";
@@ -2025,6 +2018,29 @@
 				E20097F826C8D5F000C653BB /* ToggleBarButtonItemContentProtocol.swift */,
 			);
 			path = ToggleBarButtonItem;
+			sourceTree = "<group>";
+		};
+		E2E6D1FA283CA9AD00D63A23 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				E2C42E1524C3F3FC0047A8EF /* ProfileTests.swift */,
+				E22024FF24BEBFD500465316 /* AccountTests.swift */,
+				E2EAEC4F24CFC67100D89F04 /* CustomListsTests.swift */,
+				E2850D2F24CBD13F0036BEAF /* SavedMoviesTests.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		E2E6D1FB283CA9F700D63A23 /* Movies */ = {
+			isa = PBXGroup;
+			children = (
+				E221169621914E4D0039F8C9 /* UpcomingMoviesTests.swift */,
+				E2748DE72838B7AD00CD2BA2 /* MovieCredits */,
+				E2748DEA2838BDA200CD2BA2 /* MovieDetail */,
+				E2748DEB2838BDB200CD2BA2 /* MovieVideos */,
+				E2748DEC2838BDBD00CD2BA2 /* MovieReviews */,
+			);
+			path = Movies;
 			sourceTree = "<group>";
 		};
 		E2EB9233221375190067F011 /* DataSources */ = {
