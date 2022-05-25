@@ -1,5 +1,5 @@
 //
-//  CustomListsTests.swift
+//  CustomListsViewModelTests.swift
 //  UpcomingMoviesTests
 //
 //  Created by Alonso on 7/27/20.
@@ -11,7 +11,7 @@ import XCTest
 @testable import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
-class CustomListsTests: XCTestCase {
+class CustomListsViewModelTests: XCTestCase {
 
     typealias CustomListsState = SimpleViewState<UpcomingMoviesDomain.List>
 

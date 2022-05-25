@@ -1,5 +1,5 @@
 //
-//  ProfileTests.swift
+//  ProfileViewModelTests.swift
 //  UpcomingMoviesTests
 //
 //  Created by Alonso on 7/18/20.
@@ -11,7 +11,7 @@ import XCTest
 @testable import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
-class ProfileTests: XCTestCase {
+class ProfileViewModelTests: XCTestCase {
 
     private var mockInteractor: MockProfileInteractor!
     private var mockFactory: MockProfileViewFactory!

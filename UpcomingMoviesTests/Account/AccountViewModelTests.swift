@@ -1,5 +1,5 @@
 //
-//  AccountTests.swift
+//  AccountViewModelTests.swift
 //  UpcomingMoviesTests
 //
 //  Created by Alonso on 7/14/20.
@@ -11,7 +11,7 @@ import XCTest
 @testable import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
-class AccountTests: XCTestCase {
+class AccountViewModelTests: XCTestCase {
 
     private var mockInteractor: MockAccountInteractor!
     private var viewModelToTest: AccountViewModelProtocol!
