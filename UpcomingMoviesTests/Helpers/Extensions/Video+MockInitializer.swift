@@ -17,9 +17,9 @@ extension Video {
                      site: String = "youtube123",
                      browserURL: URL? = URL(string: "https://www.youtube.com/watch?v=ABC"),
                      deepLinkURL: URL? = URL(string: "youtube://ABC"),
-                     thumnailURL: URL? = URL(string: "https://img.youtube.com/vi/ABC/mqdefault.jpg")) -> Video {
+                     thumbnailURL: URL? = URL(string: "https://img.youtube.com/vi/ABC/mqdefault.jpg")) -> Video {
         return Video(id: id, key: key, name: name, site: site,
-                     browserURL: browserURL, deepLinkURL: deepLinkURL, thumbnailURL: thumnailURL)
+                     browserURL: browserURL, deepLinkURL: deepLinkURL, thumbnailURL: thumbnailURL)
     }
 
 }

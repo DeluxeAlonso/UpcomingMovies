@@ -25,7 +25,7 @@ class MovieVideoCellViewModelTests: XCTestCase {
     func testthumbnailURLForVideoModel() {
         // Arrange
         let urlToTest = URL(string: "google.com")
-        let viewModel = createSUT(with: Video.with(thumnailURL: urlToTest))
+        let viewModel = createSUT(with: Video.with(thumbnailURL: urlToTest))
         // Act
         let viewModelThumbnailURL = viewModel.thumbnailURL
         // Assert
