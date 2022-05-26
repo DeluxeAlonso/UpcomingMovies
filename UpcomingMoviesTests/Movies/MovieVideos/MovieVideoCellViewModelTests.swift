@@ -7,27 +7,35 @@
 //
 
 import XCTest
+@testable import UpcomingMovies
+@testable import UpcomingMoviesDomain
 
 class MovieVideoCellViewModelTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testNameForVideoModel() {
+        // Arrange
+        let nameToTest = "Video1"
+        let viewModel = createSUT(with: Video.with(name: nameToTest))
+        // Act
+        let viewModelName = viewModel.name
+        // Assert
+        XCTAssertEqual(nameToTest, viewModelName)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testthumbnailURLForVideoModel() {
+        // Arrange
+        let urlToTest = URL(string: "google.com")
+        let viewModel = createSUT(with: Video.with(thumnailURL: urlToTest))
+        // Act
+        let viewModelThumbnailURL = viewModel.thumbnailURL
+        // Assert
+        XCTAssertEqual(urlToTest, viewModelThumbnailURL)
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    // MARK: - Utils
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    private func createSUT(with video: Video) -> MovieVideoCellViewModel {
+        return MovieVideoCellViewModel(video)
     }
 
 }
