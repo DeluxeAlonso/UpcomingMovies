@@ -81,33 +81,4 @@ class MovieVideosViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testMovieVideoCellName() {
-        // Arrange
-        let videoNametoTest = "Video1"
-        let cellViewModel = MovieVideoCellViewModel(Video.with(name: videoNametoTest))
-        // Act
-        let name = cellViewModel.name
-        // Assert
-        XCTAssertEqual(name, videoNametoTest)
-    }
-
-    func testMovieVideoCellKey() {
-        // Arrange
-        let videoKeytoTest = "ABC"
-        let cellViewModel = MovieVideoCellViewModel(Video.with(key: videoKeytoTest))
-        // Act
-        let key = cellViewModel.key
-        // Assert
-        XCTAssertEqual(key, videoKeytoTest)
-    }
-
-    func testMovieVideoCellThumbnailURL() {
-        // Arrange
-        let cellViewModel = MovieVideoCellViewModel(Video.with())
-        // Act
-        let thumbnailURL = cellViewModel.thumbnailURL
-        // Assert
-        XCTAssertEqual(thumbnailURL, URL(string: "https://img.youtube.com/vi/ABC/mqdefault.jpg"))
-    }
-
 }

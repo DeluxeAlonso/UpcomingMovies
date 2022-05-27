@@ -1,5 +1,7 @@
 deployment_target = '12.0'
 
+source 'https://github.com/CocoaPods/Specs.git' 
+
 platform :ios, deployment_target
 
 target 'UpcomingMovies' do
