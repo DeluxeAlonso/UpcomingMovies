@@ -95,28 +95,8 @@ class MovieReviewsViewModelTests: XCTestCase {
         }
         mockInteractor.getMovieReviewsResult = Result.failure(APIError.badRequest)
         viewModelToTest.getMovieReviews()
-        //Assert
+        // Assert
         wait(for: [expectation], timeout: 1.0)
-    }
-
-    func testMovieReviewCellAuthorName() {
-        // Arrange
-        let reviewAuthorNametoTest = "Alonso"
-        let cellViewModel = MovieReviewCellViewModel(Review.with(authorName: reviewAuthorNametoTest))
-        // Act
-        let authorName = cellViewModel.authorName
-        // Assert
-        XCTAssertEqual(authorName, reviewAuthorNametoTest)
-    }
-
-    func testMovieReviewCellContent() {
-        // Arrange
-        let reviewContenttoTest = "Review content"
-        let cellViewModel = MovieReviewCellViewModel(Review.with(content: reviewContenttoTest))
-        // Act
-        let content = cellViewModel.content
-        // Assert
-        XCTAssertEqual(content, reviewContenttoTest)
     }
 
 }

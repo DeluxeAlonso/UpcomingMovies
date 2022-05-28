@@ -32,8 +32,6 @@ class MovieReviewCellViewModelTests: XCTestCase {
         XCTAssertEqual(viewModelContent, contentToTest)
     }
 
-    // MARK: - Utils
-
     private func createSUT(with review: Review) -> MovieReviewCellViewModel {
         return MovieReviewCellViewModel(review)
     }
