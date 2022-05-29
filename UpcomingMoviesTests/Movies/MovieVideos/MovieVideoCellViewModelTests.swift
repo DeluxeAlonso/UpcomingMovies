@@ -32,8 +32,6 @@ class MovieVideoCellViewModelTests: XCTestCase {
         XCTAssertEqual(urlToTest, viewModelThumbnailURL)
     }
 
-    // MARK: - Utils
-
     private func createSUT(with video: Video) -> MovieVideoCellViewModel {
         return MovieVideoCellViewModel(video)
     }
