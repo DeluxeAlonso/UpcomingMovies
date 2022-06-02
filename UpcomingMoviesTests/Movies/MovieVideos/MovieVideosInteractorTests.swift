@@ -29,7 +29,7 @@ class MovieVideosInteractorTests: XCTestCase {
 
     func testGetMovieVideosCalled() {
         // Act
-        interactor.getMovieVideos(for: 0, page: 1, completion: { _ in })
+        interactor.getMovieVideos(for: 1, page: 1, completion: { _ in })
         // Assert
         XCTAssertTrue(mockMovieUseCase.getMovieVideosCalled)
     }
