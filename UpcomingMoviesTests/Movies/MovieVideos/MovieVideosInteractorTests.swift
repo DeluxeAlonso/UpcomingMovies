@@ -22,9 +22,9 @@ class MovieVideosInteractorTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        //mockMovieUseCase = nil
         interactor = nil
-        try tearDownWithError()
+        mockMovieUseCase = nil
+        try super.tearDownWithError()
     }
 
     func testGetMovieVideosCalled() {
