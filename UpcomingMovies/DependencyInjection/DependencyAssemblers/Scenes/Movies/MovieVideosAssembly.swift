@@ -16,7 +16,7 @@ final class MovieVideosAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return MovieVideosInteractor(useCaseProvider: useCaseProvider)
+            return MovieVideosInteractor(movieUseCase: useCaseProvider.movieUseCase())
         }
 
         container.register(MovieVideosViewModelProtocol.self) { (resolver, movieId: Int?, movieTitle: String?) in
