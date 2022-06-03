@@ -21,7 +21,7 @@ final class MovieCreditsAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return MovieCreditsInteractor(useCaseProvider: useCaseProvider)
+            return MovieCreditsInteractor(movieUseCase: useCaseProvider.movieUseCase())
         }
 
         container.register(MovieCreditsViewModelProtocol.self) { (resolver, movieId: Int, movieTitle: String) in
