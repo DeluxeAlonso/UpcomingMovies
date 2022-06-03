@@ -13,8 +13,8 @@ struct MovieVideosInteractor: MovieVideosInteractorProtocol {
 
     private let movieUseCase: MovieUseCaseProtocol
 
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        self.movieUseCase = useCaseProvider.movieUseCase()
+    init(movieUseCase: MovieUseCaseProtocol) {
+        self.movieUseCase = movieUseCase
     }
 
     func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[Video], Error>) -> Void) {

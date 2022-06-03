@@ -28,7 +28,6 @@ class MovieVideosViewModelTests: XCTestCase {
         mockInteractor = nil
         viewModelToTest = nil
         try super.tearDownWithError()
-
     }
 
     func testMovieVideosTitle() {
