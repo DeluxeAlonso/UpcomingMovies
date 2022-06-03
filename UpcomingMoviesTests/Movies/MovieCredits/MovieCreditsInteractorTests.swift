@@ -7,27 +7,31 @@
 //
 
 import XCTest
+@testable import UpcomingMovies
+@testable import UpcomingMoviesDomain
 
 class MovieCreditsInteractorTests: XCTestCase {
 
+    private var interactor: MovieCreditsInteractor!
+    private var mockMovieUseCase: MovieUseCaseProtocolMock!
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
+        mockMovieUseCase = MovieUseCaseProtocolMock()
+        interactor = MovieCreditsInteractor(movieUseCase: mockMovieUseCase)
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        interactor = nil
+        mockMovieUseCase = nil
+        try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testGetMovieCreditsCalled() {
+        // Act
+        interactor.getMovieCredits(for: 1, page: 1, completion: { _ in })
+        // Assert
+        XCTAssertTrue(mockMovieUseCase.getMovieCreditsCalled)
     }
 
 }
