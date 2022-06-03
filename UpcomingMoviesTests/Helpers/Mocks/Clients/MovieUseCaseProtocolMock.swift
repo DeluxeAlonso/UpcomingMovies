@@ -70,7 +70,8 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
 
     var searchMoviesResult: Result<[UpcomingMoviesDomain.Movie], Error>?
     var searchMoviesCalled = false
-    func searchMovies(searchText: String, includeAdult: Bool, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+    func searchMovies(searchText: String, includeAdult: Bool, page: Int?,
+                      completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         if let searchMoviesResult = searchMoviesResult {
             completion(searchMoviesResult)
         }
