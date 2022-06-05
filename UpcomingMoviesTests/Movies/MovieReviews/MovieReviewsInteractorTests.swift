@@ -34,5 +34,4 @@ class MovieReviewsInteractorTests: XCTestCase {
         XCTAssertTrue(mockMovieUseCase.getMovieReviewsCalled)
     }
 
-
 }
