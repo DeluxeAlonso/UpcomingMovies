@@ -12,8 +12,8 @@ final class MovieReviewsInteractor: MovieReviewsInteractorProtocol {
 
     private let movieUseCase: MovieUseCaseProtocol
 
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        self.movieUseCase = useCaseProvider.movieUseCase()
+    init(movieUseCase: MovieUseCaseProtocol) {
+        self.movieUseCase = movieUseCase
     }
 
     func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[Review], Error>) -> Void) {
