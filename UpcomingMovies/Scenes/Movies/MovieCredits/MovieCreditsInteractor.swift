@@ -13,8 +13,8 @@ final class MovieCreditsInteractor: MovieCreditsInteractorProtocol {
 
     private let movieUseCase: MovieUseCaseProtocol
 
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        self.movieUseCase = useCaseProvider.movieUseCase()
+    init(movieUseCase: MovieUseCaseProtocol) {
+        self.movieUseCase = movieUseCase
     }
 
     func getMovieCredits(for movieId: Int, page: Int?,
