@@ -29,29 +29,29 @@ class CDMovieVisitStoreTests: XCTestCase {
         super.tearDown()
     }
 
-    func testSaveMovieSearchSuccess() {
-        //Arrange
+    func testSaveMovieVisitSuccess() {
+        // Arrange
         let saveExpectation = XCTestExpectation(description: "Save movie visit")
-        //Act
+        // Act
         storeToTest.saveMovieVisit(with: 1, title: "It", posterPath: "/poster") { _ in
             let existMovieVisit = self.storeToTest.exists()
             XCTAssertTrue(existMovieVisit)
             saveExpectation.fulfill()
         }
-        //Assert
+        // Assert
         wait(for: [saveExpectation], timeout: 1.0)
     }
 
-    func testSaveMovieSearchError() {
-        //Arrange
+    func testSaveMovieVisitError() {
+        // Arrange
         let saveExpectation = XCTestExpectation(description: "Save movie visit")
-        //Act
+        // Act
         storeToTest.saveMovieVisit(with: 1, title: "It", posterPath: nil) { _ in
             let existMovieVisit = self.storeToTest.exists()
             XCTAssertFalse(existMovieVisit)
             saveExpectation.fulfill()
         }
-        //Assert
+        // Assert
         wait(for: [saveExpectation], timeout: 1.0)
     }
 
