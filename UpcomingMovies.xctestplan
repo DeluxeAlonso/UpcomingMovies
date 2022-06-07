@@ -4,7 +4,9 @@
       "id" : "3969EFD3-655C-4818-ADA5-44DB77A82B6D",
       "name" : "Configuration",
       "options" : {
-        "testExecutionOrdering" : "random"
+        "testExecutionOrdering" : "random",
+        "uiTestingScreenshotsLifetime" : "keepNever",
+        "userAttachmentLifetime" : "keepNever"
       }
     }
   ],
