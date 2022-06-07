@@ -10,18 +10,22 @@ import XCTest
 
 @testable import CoreDataInfrastructure
 @testable import UpcomingMoviesDomain
+import CoreData
 
 class CDMovieVisitStoreTests: XCTestCase {
 
     private var storeToTest: PersistenceStore<CDMovieVisit>!
+    private var mockPersistantContainer: NSPersistentContainer!
 
     override func setUp() {
         super.setUp()
+        mockPersistantContainer = CoreDataStack.shared.mockPersistantContainer
         storeToTest = PersistenceStore(CoreDataStack.shared.mockPersistantContainer)
     }
 
     override func tearDown() {
         storeToTest = nil
+        mockPersistantContainer.viewContext.reset()
         super.tearDown()
     }
 
