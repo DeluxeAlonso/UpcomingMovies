@@ -99,4 +99,18 @@ class MovieReviewsViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testRefreshReviews() {
+        // Arrange
+        let expectation = XCTestExpectation(description: "Should get paging state")
+        // Act
+        viewModelToTest.viewState.bind { state in
+            XCTAssertEqual(state, .paging([Review.with(id: "1"), Review.with(id: "2")], next: 2))
+            expectation.fulfill()
+        }
+        mockInteractor.getMovieReviewsResult = Result.success([Review.with(id: "1"), Review.with(id: "2")])
+        viewModelToTest.refreshMovieReviews()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }
