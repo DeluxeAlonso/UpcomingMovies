@@ -9,7 +9,7 @@ import Foundation
 @testable import UpcomingMoviesData
 @testable import UpcomingMoviesDomain
 
-class UserLocalDataSourceProtocolMock: UserLocalDataSourceProtocol {
+final class UserLocalDataSourceProtocolMock: UserLocalDataSourceProtocol {
 
     var didUpdateUser: (() -> Void)?
 
