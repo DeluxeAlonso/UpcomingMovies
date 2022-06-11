@@ -20,7 +20,7 @@ class CDMovieVisitStoreTests: XCTestCase {
     override func setUp() {
         super.setUp()
         mockPersistantContainer = CoreDataStack.shared.mockPersistantContainer
-        storeToTest = PersistenceStore(CoreDataStack.shared.mockPersistantContainer)
+        storeToTest = PersistenceStore(mockPersistantContainer)
     }
 
     override func tearDown() {
