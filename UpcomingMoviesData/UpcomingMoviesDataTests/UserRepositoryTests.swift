@@ -33,7 +33,7 @@ class UserRepositoryTests: XCTestCase {
         XCTAssertEqual(mockUserLocalDataSource.findCallCount, 1)
     }
 
-    func testSaveserCalled() {
+    func testSaveUserCalled() {
         // Act
         repository.saveUser(User.init(id: 1, name: "Alonso", username: "Username", includeAdult: false))
         // Assert

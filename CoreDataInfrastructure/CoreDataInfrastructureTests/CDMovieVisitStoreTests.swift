@@ -25,7 +25,7 @@ class CDMovieVisitStoreTests: XCTestCase {
 
     override func tearDown() {
         storeToTest = nil
-        mockPersistantContainer.viewContext.reset()
+        mockPersistantContainer = nil
         super.tearDown()
     }
 
