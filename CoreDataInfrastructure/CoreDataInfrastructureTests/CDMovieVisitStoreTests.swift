@@ -6,7 +6,10 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
+import CoreData
 import XCTest
+@testable import CoreDataInfrastructure
+@testable import UpcomingMoviesDomain
 
 class CDMovieVisitStoreTests: XCTestCase, CDStoreTestsProtocol {
 
