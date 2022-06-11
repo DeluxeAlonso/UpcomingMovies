@@ -31,7 +31,7 @@ class MovieCreditsInteractorTests: XCTestCase {
         // Act
         interactor.getMovieCredits(for: 1, page: 1, completion: { _ in })
         // Assert
-        XCTAssertTrue(mockMovieUseCase.getMovieCreditsCalled)
+        XCTAssertEqual(mockMovieUseCase.getMovieCreditsCallCount, 1)
     }
 
 }

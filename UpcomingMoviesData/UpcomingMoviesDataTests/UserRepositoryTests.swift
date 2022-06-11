@@ -30,14 +30,14 @@ class UserRepositoryTests: XCTestCase {
         // Act
         _ = repository.find(with: 1)
         // Assert
-        XCTAssertTrue(mockUserLocalDataSource.findCalled)
+        XCTAssertEqual(mockUserLocalDataSource.findCallCount, 1)
     }
 
-    func testSaveserCalled() {
+    func testSaveUserCalled() {
         // Act
         repository.saveUser(User.init(id: 1, name: "Alonso", username: "Username", includeAdult: false))
         // Assert
-        XCTAssertTrue(mockUserLocalDataSource.saveUserCalled)
+        XCTAssertEqual(mockUserLocalDataSource.saveUserCallCount, 1)
     }
 
 }
