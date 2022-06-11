@@ -12,10 +12,31 @@ import XCTest
 @testable import UpcomingMoviesDomain
 import CoreData
 
-class CDMovieVisitStoreTests: XCTestCase {
+protocol CDStoreTestsProtocol {
+    associatedtype CDEntity: NSManagedObject & Managed
 
-    private var storeToTest: PersistenceStore<CDMovieVisit>!
-    private var mockPersistantContainer: NSPersistentContainer!
+    var storeToTest: PersistenceStore<CDEntity>! { get }
+    var mockPersistantContainer: NSPersistentContainer! { get }
+
+    func flush() throws
+}
+
+extension CDStoreTestsProtocol {
+    func flush() throws {
+        guard let context = mockPersistantContainer?.viewContext else { return }
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: CDEntity.entityName)
+        let objs = try context.fetch(fetchRequest)
+        for case let obj as NSManagedObject in objs {
+            context.delete(obj)
+        }
+        try context.save()
+    }
+}
+
+class CDMovieVisitStoreTests: XCTestCase, CDStoreTestsProtocol {
+
+    var storeToTest: PersistenceStore<CDMovieVisit>!
+    var mockPersistantContainer: NSPersistentContainer!
 
     override func setUp() {
         super.setUp()
@@ -24,7 +45,8 @@ class CDMovieVisitStoreTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        try CDMovieVisit.flushData(for: mockPersistantContainer.viewContext)
+        try flush()
+
         storeToTest = nil
         mockPersistantContainer = nil
         super.tearDown()
@@ -55,19 +77,6 @@ class CDMovieVisitStoreTests: XCTestCase {
         }
         // Assert
         wait(for: [saveExpectation], timeout: 1.0)
-    }
-
-}
-
-private extension CDMovieVisit {
-
-    static func flushData(for context: NSManagedObjectContext) throws {
-        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: CDMovieVisit.entityName)
-        let objs = try context.fetch(fetchRequest)
-        for case let obj as NSManagedObject in objs {
-            context.delete(obj)
-        }
-        try context.save()
     }
 
 }
