@@ -15,7 +15,6 @@ import Foundation
 final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
 
     var getUpcomingMoviesResult: Result<[UpcomingMoviesDomain.Movie], Error>?
-    var getUpcomingMoviesCalled = false
     var getUpcomingMoviesCallCount = 0
     func getUpcomingMovies(page: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         if let getUpcomingMoviesResult = getUpcomingMoviesResult {
@@ -26,7 +25,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
     }
 
     var getPopularMoviesResult: Result<[UpcomingMoviesDomain.Movie], Error>?
-    var getPopularMoviesCalled = false
     var getPopularMoviesCallCount = 0
     func getPopularMovies(page: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         if let getPopularMoviesResult = getPopularMoviesResult {
@@ -37,7 +35,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
     }
 
     var getTopRatedMoviesResult: Result<[UpcomingMoviesDomain.Movie], Error>?
-    var getTopRatedMoviesCalled = false
     var getTopRatedMoviesCallCount = 0
     func getTopRatedMovies(page: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         if let getTopRatedMoviesResult = getTopRatedMoviesResult {
@@ -48,7 +45,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
     }
 
     var getMoviesByGenreResult: Result<[UpcomingMoviesDomain.Movie], Error>?
-    var getMoviesByGenreCalled = false
     var getMoviesByGenreCallCount = 0
     func getMoviesByGenre(page: Int, genreId: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         if let getMoviesByGenreResult = getMoviesByGenreResult {
@@ -59,7 +55,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
     }
 
     var getSimilarMoviesResult: Result<[UpcomingMoviesDomain.Movie], Error>?
-    var getSimilarMoviesCalled = false
     var getSimilarMoviesCallCount = 0
     func getSimilarMovies(page: Int, movieId: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         if let getMoviesByGenreResult = getMoviesByGenreResult {
@@ -70,7 +65,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
     }
 
     var getMovieDetailResult: Result<UpcomingMoviesDomain.Movie, Error>?
-    var getMovieDetailCalled = false
     var getMovieDetailCallCount = 0
     func getMovieDetail(for movieId: Int, completion: @escaping (Result<UpcomingMoviesDomain.Movie, Error>) -> Void) {
         if let getMovieDetailResult = getMovieDetailResult {
@@ -81,7 +75,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
     }
 
     var searchMoviesResult: Result<[UpcomingMoviesDomain.Movie], Error>?
-    var searchMoviesCalled = false
     var searchMoviesCallCount = 0
     func searchMovies(searchText: String, includeAdult: Bool, page: Int?,
                       completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
@@ -93,7 +86,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
     }
 
     var getMovieReviewsResult: Result<[UpcomingMoviesDomain.Review], Error>?
-    var getMovieReviewsCalled = false
     var getMovieReviewsCallCount = 0
     func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Review], Error>) -> Void) {
         if let getMovieReviewsResult = getMovieReviewsResult {
@@ -104,7 +96,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
     }
 
     var getMovieVideosResult: Result<[UpcomingMoviesDomain.Video], Error>?
-    var getMovieVideosCalled = false
     var getMovieVideosCallCount = 0
     func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Video], Error>) -> Void) {
         if let getMovieVideosResult = getMovieVideosResult {
@@ -115,7 +106,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
     }
 
     var getMovieCreditsResult: Result<UpcomingMoviesDomain.MovieCredits, Error>?
-    var getMovieCreditsCalled = false
     var getMovieCreditsCallCount = 0
     func getMovieCredits(for movieId: Int, page: Int?, completion: @escaping (Result<UpcomingMoviesDomain.MovieCredits, Error>) -> Void) {
         if let getMovieCreditsResult = getMovieCreditsResult {
@@ -126,7 +116,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
     }
 
     var getMovieAccountStateResult: Result<UpcomingMoviesDomain.Movie.AccountState, Error>?
-    var getMovieAccountStateCalled = false
     var getMovieAccountStateCallCount = 0
     func getMovieAccountState(for movieId: Int, completion: @escaping (Result<UpcomingMoviesDomain.Movie.AccountState, Error>) -> Void) {
         if let getMovieAccountStateResult = getMovieAccountStateResult {
@@ -137,7 +126,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
     }
 
     var rateMovieResult: Result<Void, Error>?
-    var rateMovieCalled = false
     var rateMovieCallCount = 0
     func rateMovie(movieId: Int, value: Double, completion: @escaping (Result<Void, Error>) -> Void) {
         if let rateMovieResult = rateMovieResult {

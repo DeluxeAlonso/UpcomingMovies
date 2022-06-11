@@ -13,19 +13,15 @@ final class UserLocalDataSourceProtocolMock: UserLocalDataSourceProtocol {
 
     var didUpdateUser: (() -> Void)?
 
-    var findCalled = false
-    var findCallCount = 0
+    private (set) var findCallCount = 0
     var foundUser: User?
     func find(with id: Int) -> User? {
-        findCalled = true
         findCallCount += 1
         return foundUser
     }
 
-    var saveUserCalled = false
-    var saveUserCallCount = 0
+    private (set) var saveUserCallCount = 0
     func saveUser(_ user: User) {
-        saveUserCalled = true
         saveUserCallCount += 1
     }
 
