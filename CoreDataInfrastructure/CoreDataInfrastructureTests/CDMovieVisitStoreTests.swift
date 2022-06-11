@@ -23,10 +23,12 @@ class CDMovieVisitStoreTests: XCTestCase {
         storeToTest = PersistenceStore(mockPersistantContainer)
     }
 
-    override func tearDown() {
+    override func tearDownWithError() throws {
+        try CDMovieVisit.flushData(for: mockPersistantContainer.viewContext)
         storeToTest = nil
         mockPersistantContainer = nil
         super.tearDown()
+        try super.tearDownWithError()
     }
 
     func testSaveMovieVisitSuccess() {
@@ -44,7 +46,7 @@ class CDMovieVisitStoreTests: XCTestCase {
 
     func testSaveMovieVisitError() {
         // Arrange
-        let saveExpectation = XCTestExpectation(description: "Save movie visit")
+        let saveExpectation = XCTestExpectation(description: "Should not save movie visit")
         // Act
         storeToTest.saveMovieVisit(with: 1, title: "It", posterPath: nil) { _ in
             let existMovieVisit = self.storeToTest.exists()
@@ -53,6 +55,19 @@ class CDMovieVisitStoreTests: XCTestCase {
         }
         // Assert
         wait(for: [saveExpectation], timeout: 1.0)
+    }
+
+}
+
+private extension CDMovieVisit {
+
+    static func flushData(for context: NSManagedObjectContext) throws {
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: CDMovieVisit.entityName)
+        let objs = try context.fetch(fetchRequest)
+        for case let obj as NSManagedObject in objs {
+            context.delete(obj)
+        }
+        try context.save()
     }
 
 }
