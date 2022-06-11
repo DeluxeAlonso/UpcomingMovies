@@ -67,7 +67,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CollectionViewSlantedLayout: 24397455acd2461960bc45d394e0ef99c17d03ce
-  CoreDataInfrastructure: d204f682e1717de4a6a3e22bce0d3d33a17ff8bd
+  CoreDataInfrastructure: e22628f66e056b79e86cbf35b0cc5959977a9a1b
   DLProgressHUD: fa7314b51e373307f4a1e1cba605d318c2cd0d23
   KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
   Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59

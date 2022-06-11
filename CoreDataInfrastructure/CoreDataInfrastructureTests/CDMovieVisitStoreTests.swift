@@ -6,16 +6,15 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
+import CoreData
 import XCTest
-
 @testable import CoreDataInfrastructure
 @testable import UpcomingMoviesDomain
-import CoreData
 
-class CDMovieVisitStoreTests: XCTestCase {
+class CDMovieVisitStoreTests: XCTestCase, CDStoreTestsProtocol {
 
-    private var storeToTest: PersistenceStore<CDMovieVisit>!
-    private var mockPersistantContainer: NSPersistentContainer!
+    var storeToTest: PersistenceStore<CDMovieVisit>!
+    var mockPersistantContainer: NSPersistentContainer!
 
     override func setUp() {
         super.setUp()
@@ -23,10 +22,13 @@ class CDMovieVisitStoreTests: XCTestCase {
         storeToTest = PersistenceStore(mockPersistantContainer)
     }
 
-    override func tearDown() {
+    override func tearDownWithError() throws {
+        try flush()
+
         storeToTest = nil
         mockPersistantContainer = nil
         super.tearDown()
+        try super.tearDownWithError()
     }
 
     func testSaveMovieVisitSuccess() {
@@ -44,7 +46,7 @@ class CDMovieVisitStoreTests: XCTestCase {
 
     func testSaveMovieVisitError() {
         // Arrange
-        let saveExpectation = XCTestExpectation(description: "Save movie visit")
+        let saveExpectation = XCTestExpectation(description: "Should not save movie visit")
         // Act
         storeToTest.saveMovieVisit(with: 1, title: "It", posterPath: nil) { _ in
             let existMovieVisit = self.storeToTest.exists()
