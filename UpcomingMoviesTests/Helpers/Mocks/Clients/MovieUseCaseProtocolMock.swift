@@ -20,7 +20,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
         if let getUpcomingMoviesResult = getUpcomingMoviesResult {
             completion(getUpcomingMoviesResult)
         }
-        getUpcomingMoviesCalled = true
         getUpcomingMoviesCallCount += 1
     }
 
@@ -30,7 +29,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
         if let getPopularMoviesResult = getPopularMoviesResult {
             completion(getPopularMoviesResult)
         }
-        getPopularMoviesCalled = true
         getPopularMoviesCallCount += 1
     }
 
@@ -40,7 +38,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
         if let getTopRatedMoviesResult = getTopRatedMoviesResult {
             completion(getTopRatedMoviesResult)
         }
-        getTopRatedMoviesCalled = true
         getTopRatedMoviesCallCount += 1
     }
 
@@ -50,7 +47,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
         if let getMoviesByGenreResult = getMoviesByGenreResult {
             completion(getMoviesByGenreResult)
         }
-        getMoviesByGenreCalled = true
         getMoviesByGenreCallCount += 1
     }
 
@@ -60,7 +56,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
         if let getMoviesByGenreResult = getMoviesByGenreResult {
             completion(getMoviesByGenreResult)
         }
-        getSimilarMoviesCalled = true
         getSimilarMoviesCallCount += 1
     }
 
@@ -70,7 +65,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
         if let getMovieDetailResult = getMovieDetailResult {
             completion(getMovieDetailResult)
         }
-        getMovieDetailCalled = true
         getMovieDetailCallCount += 1
     }
 
@@ -81,7 +75,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
         if let searchMoviesResult = searchMoviesResult {
             completion(searchMoviesResult)
         }
-        searchMoviesCalled = true
         searchMoviesCallCount += 1
     }
 
@@ -91,7 +84,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
         if let getMovieReviewsResult = getMovieReviewsResult {
             completion(getMovieReviewsResult)
         }
-        getMovieReviewsCalled = true
         getMovieReviewsCallCount += 1
     }
 
@@ -101,7 +93,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
         if let getMovieVideosResult = getMovieVideosResult {
             completion(getMovieVideosResult)
         }
-        getMovieVideosCalled = true
         getMovieVideosCallCount += 1
     }
 
@@ -111,7 +102,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
         if let getMovieCreditsResult = getMovieCreditsResult {
             completion(getMovieCreditsResult)
         }
-        getMovieCreditsCalled = true
         getMovieCreditsCallCount += 1
     }
 
@@ -121,7 +111,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
         if let getMovieAccountStateResult = getMovieAccountStateResult {
             completion(getMovieAccountStateResult)
         }
-        getMovieAccountStateCalled = true
         getMovieAccountStateCallCount += 1
     }
 
@@ -131,7 +120,6 @@ final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
         if let rateMovieResult = rateMovieResult {
             completion(rateMovieResult)
         }
-        rateMovieCalled = true
         rateMovieCallCount += 1
     }
 
