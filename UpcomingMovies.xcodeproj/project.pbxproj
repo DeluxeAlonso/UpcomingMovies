@@ -979,12 +979,12 @@
 			path = ConfigurationHandler;
 			sourceTree = "<group>";
 		};
-		E2066E6F28487221009A85A0 /* Clients */ = {
+		E2066E6F28487221009A85A0 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
 				E2066E702848723A009A85A0 /* MovieUseCaseProtocolMock.swift */,
 			);
-			path = Clients;
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 		E208FC4C263523D0008593D8 /* SimpleViewState */ = {
@@ -1533,7 +1533,7 @@
 		E2554E5C24B589700043C3EB /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				E2066E6F28487221009A85A0 /* Clients */,
+				E2066E6F28487221009A85A0 /* UseCases */,
 				E26A10DC2383A6A50019CC60 /* MockInjectionFactory.swift */,
 				E2554E5D24B5898C0043C3EB /* UpcomingMoviesMockFactory.swift */,
 				E220250124BEBFEA00465316 /* AccountMockFactory.swift */,
