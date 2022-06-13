@@ -16,8 +16,17 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = "12.0"
 
   spec.source = { :git => "http://DeluxeAlonso/UpcomingMoviesDomain.git", :tag => "#{spec.version}" }
-  spec.source_files  = "UpcomingMoviesDomain", "UpcomingMoviesDomain/**/*.{swift}"
   spec.public_header_files = "UpcomingMoviesDomain/**/*.h"
+
+#  spec.default_subspec = 'Core'
+
+  spec.subspec "Core" do |subspec|
+    subspec.source_files = "UpcomingMoviesDomain/Core", "UpcomingMoviesDomain/Core/**/*.{swift}"
+  end
+
+  spec.subspec "Mocks" do |subspec|
+    subspec.source_files = "UpcomingMoviesDomain/Mocks", "UpcomingMoviesDomain/Mocks/**/*.{swift}"
+  end
 
   spec.test_spec 'UpcomingMoviesDomainTests' do |test_spec|
     test_spec.source_files = 'UpcomingMoviesDomainTests/*.{swift}'
