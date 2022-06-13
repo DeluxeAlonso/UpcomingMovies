@@ -18,14 +18,16 @@ Pod::Spec.new do |spec|
   spec.source = { :git => "http://DeluxeAlonso/UpcomingMoviesDomain.git", :tag => "#{spec.version}" }
   spec.public_header_files = "UpcomingMoviesDomain/**/*.h"
 
-#  spec.default_subspec = 'Core'
+  spec.default_subspec = 'Core'
 
   spec.subspec "Core" do |subspec|
     subspec.source_files = "UpcomingMoviesDomain/Core", "UpcomingMoviesDomain/Core/**/*.{swift}"
+    spec.public_header_files = "UpcomingMoviesDomain/**/*.h"
   end
 
   spec.subspec "Mocks" do |subspec|
     subspec.source_files = "UpcomingMoviesDomain/Mocks", "UpcomingMoviesDomain/Mocks/**/*.{swift}"
+    spec.public_header_files = "UpcomingMoviesDomain/**/*.h"
   end
 
   spec.test_spec 'UpcomingMoviesDomainTests' do |test_spec|
