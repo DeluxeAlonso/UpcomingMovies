@@ -9,8 +9,6 @@
 import Foundation
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
-@testable import UpcomingMoviesData
-@testable import NetworkInfrastructure
 
 final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
 
