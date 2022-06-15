@@ -13,7 +13,7 @@ import XCTest
 class MovieReviewsInteractorTests: XCTestCase {
 
     private var interactor: MovieReviewsInteractor!
-    private var mockMovieUseCase: MovieUseCaseProtocolMock!
+    private var mockMovieUseCase: UpcomingMoviesDomain.MovieUseCaseProtocolMock!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
