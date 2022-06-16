@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import UpcomingMoviesData
 @testable import UpcomingMoviesDomain
 
 final class UserLocalDataSourceProtocolMock: UserLocalDataSourceProtocol {

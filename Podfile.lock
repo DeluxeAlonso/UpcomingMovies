@@ -30,6 +30,9 @@ PODS:
   - UpcomingMoviesData/Core (0.0.1):
     - UpcomingMoviesDomain
     - UpcomingMoviesDomain/Mocks
+  - UpcomingMoviesData/Mocks (0.0.1):
+    - UpcomingMoviesDomain
+    - UpcomingMoviesDomain/Mocks
   - UpcomingMoviesData/UpcomingMoviesDataTests (0.0.1):
     - UpcomingMoviesDomain
     - UpcomingMoviesDomain/Mocks
@@ -51,6 +54,7 @@ DEPENDENCIES:
   - SwiftLint
   - Swinject
   - UpcomingMoviesData (from `UpcomingMoviesData/`)
+  - UpcomingMoviesData/Mocks (from `UpcomingMoviesData/`)
   - UpcomingMoviesData/UpcomingMoviesDataTests (from `UpcomingMoviesData/`)
   - UpcomingMoviesDomain (from `UpcomingMoviesDomain/`)
   - UpcomingMoviesDomain/Mocks (from `UpcomingMoviesDomain/`)
@@ -87,6 +91,6 @@ SPEC CHECKSUMS:
   UpcomingMoviesData: f683800cc41570f64f83d3a3faac515c1f15eff5
   UpcomingMoviesDomain: 4f0d8dfa73936a9ff7f1f9f9097f375a941d279f
 
-PODFILE CHECKSUM: 142042cc713b76347d722328c7ebe83d372c8ed0
+PODFILE CHECKSUM: c9a6856f755a41f7dbb7502366f83e011e36fa2c
 
 COCOAPODS: 1.11.3
