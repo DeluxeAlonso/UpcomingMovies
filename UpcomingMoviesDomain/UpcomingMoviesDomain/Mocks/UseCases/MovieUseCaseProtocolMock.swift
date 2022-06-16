@@ -67,7 +67,7 @@ public final class MovieUseCaseProtocolMock: MovieUseCaseProtocol {
     var searchMoviesResult: Result<[Movie], Error>?
     private (set)  var searchMoviesCallCount = 0
     public func searchMovies(searchText: String, includeAdult: Bool, page: Int?,
-                      completion: @escaping (Result<[Movie], Error>) -> Void) {
+                             completion: @escaping (Result<[Movie], Error>) -> Void) {
         if let searchMoviesResult = searchMoviesResult {
             completion(searchMoviesResult)
         }
