@@ -21,5 +21,5 @@ final class MovieVisitLocalDataSourceProtocolMock: MovieVisitLocalDataSourceProt
     func save(with id: Int, title: String, posterPath: String?, completion: @escaping (Result<Void, Error>) -> Void) {
         saveCallCount += 1
     }
-    
+
 }
