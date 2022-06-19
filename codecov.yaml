@@ -1,3 +1,4 @@
 ignore:
     - "UpcomingMoviesTests"
     - "**/*Tests"
+    - "**/Mocks/*"
