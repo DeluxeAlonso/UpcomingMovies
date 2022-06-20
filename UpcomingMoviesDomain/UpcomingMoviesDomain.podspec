@@ -30,7 +30,7 @@ Pod::Spec.new do |spec|
   end
 
   spec.test_spec 'UpcomingMoviesDomainTests' do |test_spec|
-    test_spec.source_files = 'UpcomingMoviesDomainTests/*.{swift}'
+    test_spec.source_files = 'UpcomingMoviesDomainTests/*.{swift}', 'UpcomingMoviesDomainTests/**/*.{swift}'
   end
 
 end

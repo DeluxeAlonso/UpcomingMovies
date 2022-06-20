@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
   spec.dependency "UpcomingMoviesData"
 
   spec.test_spec 'CoreDataInfrastructureTests' do |test_spec|
-    test_spec.source_files = 'CoreDataInfrastructureTests/*.{swift}', 'CoreDataInfrastructureTests/Helpers/**/*.{swift}'
+    test_spec.source_files = 'CoreDataInfrastructureTests/*.{swift}', 'CoreDataInfrastructureTests/**/*.{swift}'
   end
 
 end

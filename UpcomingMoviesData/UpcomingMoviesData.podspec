@@ -34,7 +34,7 @@ Pod::Spec.new do |spec|
   spec.dependency "UpcomingMoviesDomain/Mocks"
 
   spec.test_spec 'UpcomingMoviesDataTests' do |test_spec|
-    test_spec.source_files = 'UpcomingMoviesDataTests/*.{swift}'
+    test_spec.source_files = 'UpcomingMoviesDataTests/*.{swift}', 'UpcomingMoviesDataTests/**/*.{swift}'
   end
 
 end
