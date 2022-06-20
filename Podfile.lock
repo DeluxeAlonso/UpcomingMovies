@@ -88,8 +88,8 @@ SPEC CHECKSUMS:
   NetworkInfrastructure: 67d6d6ee1302c2afe0889a8a2bde6ae962c224cb
   SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
-  UpcomingMoviesData: f683800cc41570f64f83d3a3faac515c1f15eff5
-  UpcomingMoviesDomain: 4f0d8dfa73936a9ff7f1f9f9097f375a941d279f
+  UpcomingMoviesData: e9061e839a7ba2bb732e523234c78208bc7ed8c3
+  UpcomingMoviesDomain: a87a25d34f4b2fe5a63d1ef45441e5e5e91bada6
 
 PODFILE CHECKSUM: c9a6856f755a41f7dbb7502366f83e011e36fa2c
 
