@@ -34,7 +34,7 @@ class MovieVisitRepositoryTests: XCTestCase {
         movieVisitLocalDataSource.getMovieVisitsResult = Result.success(movieVisitsToTest)
         repository.getMovieVisits { result in
             guard let movieVisits = try? result.get() else {
-                XCTFail()
+                XCTFail("Error while getting movie visits")
                 return
             }
             XCTAssertEqual(movieVisits, movieVisitsToTest)
@@ -55,7 +55,7 @@ class MovieVisitRepositoryTests: XCTestCase {
             case .success:
                 expectation.fulfill()
             case .failure:
-                XCTFail()
+                XCTFail("Error while saving movie visits")
             }
         }
         // Assert
