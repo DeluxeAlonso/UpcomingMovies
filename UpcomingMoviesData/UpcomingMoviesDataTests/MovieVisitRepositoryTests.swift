@@ -26,4 +26,12 @@ class MovieVisitRepositoryTests: XCTestCase {
         try super.tearDownWithError()
     }
 
+    func testGetMovieVisits() {
+        // Arrange
+        let movieVisitsToTest: [UpcomingMoviesDomain.MovieVisit] = []
+        let expectation = XCTestExpectation(description: "Should get movie visits")
+
+        
+    }
+
 }
