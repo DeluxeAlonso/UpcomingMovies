@@ -26,12 +26,12 @@ Pod::Spec.new do |spec|
     subspec.source_files = "UpcomingMoviesData/Core", "UpcomingMoviesData/Core/**/*.{swift}"
   end
 
-  spec.subspec "Mocks" do |subspec|
-    subspec.source_files = "UpcomingMoviesData/Mocks", "UpcomingMoviesData/Mocks/**/*.{swift}"
+  spec.subspec "TestDoubles" do |subspec|
+    subspec.source_files = "UpcomingMoviesData/TestDoubles", "UpcomingMoviesData/TestDoubles/**/*.{swift}"
   end
 
   spec.dependency "UpcomingMoviesDomain"
-  spec.dependency "UpcomingMoviesDomain/Mocks"
+  spec.dependency "UpcomingMoviesDomain/TestDoubles"
 
   spec.test_spec 'UpcomingMoviesDataTests' do |test_spec|
     test_spec.source_files = 'UpcomingMoviesDataTests/*.{swift}', 'UpcomingMoviesDataTests/**/*.{swift}'
