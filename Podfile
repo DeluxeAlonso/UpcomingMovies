@@ -15,10 +15,10 @@ target 'UpcomingMovies' do
   pod 'DLProgressHUD'
 
   pod 'UpcomingMoviesDomain', :path => 'UpcomingMoviesDomain/', :testspecs => ['UpcomingMoviesDomainTests']
-  pod 'UpcomingMoviesDomain/Mocks', :path => 'UpcomingMoviesDomain/'
+  pod 'UpcomingMoviesDomain/TestDoubles', :path => 'UpcomingMoviesDomain/'
 
   pod 'UpcomingMoviesData', :path => 'UpcomingMoviesData/', :testspecs => ['UpcomingMoviesDataTests']
-  pod 'UpcomingMoviesData/Mocks', :path => 'UpcomingMoviesData/'
+  pod 'UpcomingMoviesData/TestDoubles', :path => 'UpcomingMoviesData/'
 
   pod 'CoreDataInfrastructure', :path => 'CoreDataInfrastructure/', :testspecs => ['CoreDataInfrastructureTests']
   pod 'NetworkInfrastructure', :path => 'NetworkInfrastructure/', :testspecs => ['NetworkInfrastructureTests']

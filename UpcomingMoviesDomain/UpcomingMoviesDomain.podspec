@@ -25,8 +25,8 @@ Pod::Spec.new do |spec|
     subspec.source_files = "UpcomingMoviesDomain/Core", "UpcomingMoviesDomain/Core/**/*.{swift}"
   end
 
-  spec.subspec "Mocks" do |subspec|
-    subspec.source_files = "UpcomingMoviesDomain/Mocks", "UpcomingMoviesDomain/Mocks/**/*.{swift}"
+  spec.subspec "TestDoubles" do |subspec|
+    subspec.source_files = "UpcomingMoviesDomain/TestDoubles", "UpcomingMoviesDomain/TestDoubles/**/*.{swift}"
   end
 
   spec.test_spec 'UpcomingMoviesDomainTests' do |test_spec|

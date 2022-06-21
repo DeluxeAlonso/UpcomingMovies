@@ -26,20 +26,20 @@ PODS:
   - UpcomingMoviesData (0.0.1):
     - UpcomingMoviesData/Core (= 0.0.1)
     - UpcomingMoviesDomain
-    - UpcomingMoviesDomain/Mocks
+    - UpcomingMoviesDomain/TestDoubles
   - UpcomingMoviesData/Core (0.0.1):
     - UpcomingMoviesDomain
-    - UpcomingMoviesDomain/Mocks
-  - UpcomingMoviesData/Mocks (0.0.1):
+    - UpcomingMoviesDomain/TestDoubles
+  - UpcomingMoviesData/TestDoubles (0.0.1):
     - UpcomingMoviesDomain
-    - UpcomingMoviesDomain/Mocks
+    - UpcomingMoviesDomain/TestDoubles
   - UpcomingMoviesData/UpcomingMoviesDataTests (0.0.1):
     - UpcomingMoviesDomain
-    - UpcomingMoviesDomain/Mocks
+    - UpcomingMoviesDomain/TestDoubles
   - UpcomingMoviesDomain (0.0.1):
     - UpcomingMoviesDomain/Core (= 0.0.1)
   - UpcomingMoviesDomain/Core (0.0.1)
-  - UpcomingMoviesDomain/Mocks (0.0.1)
+  - UpcomingMoviesDomain/TestDoubles (0.0.1)
   - UpcomingMoviesDomain/UpcomingMoviesDomainTests (0.0.1)
 
 DEPENDENCIES:
@@ -54,10 +54,10 @@ DEPENDENCIES:
   - SwiftLint
   - Swinject
   - UpcomingMoviesData (from `UpcomingMoviesData/`)
-  - UpcomingMoviesData/Mocks (from `UpcomingMoviesData/`)
+  - UpcomingMoviesData/TestDoubles (from `UpcomingMoviesData/`)
   - UpcomingMoviesData/UpcomingMoviesDataTests (from `UpcomingMoviesData/`)
   - UpcomingMoviesDomain (from `UpcomingMoviesDomain/`)
-  - UpcomingMoviesDomain/Mocks (from `UpcomingMoviesDomain/`)
+  - UpcomingMoviesDomain/TestDoubles (from `UpcomingMoviesDomain/`)
   - UpcomingMoviesDomain/UpcomingMoviesDomainTests (from `UpcomingMoviesDomain/`)
 
 SPEC REPOS:
@@ -88,9 +88,9 @@ SPEC CHECKSUMS:
   NetworkInfrastructure: 67d6d6ee1302c2afe0889a8a2bde6ae962c224cb
   SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
-  UpcomingMoviesData: e9061e839a7ba2bb732e523234c78208bc7ed8c3
-  UpcomingMoviesDomain: a87a25d34f4b2fe5a63d1ef45441e5e5e91bada6
+  UpcomingMoviesData: 126fe1e9a9cc7c55a9fc4761c96c6741325ace23
+  UpcomingMoviesDomain: e06d8a483680fd0bde165a9cb37c59a61c603676
 
-PODFILE CHECKSUM: c9a6856f755a41f7dbb7502366f83e011e36fa2c
+PODFILE CHECKSUM: 7570b6f57f610415b998fc861161a8f6fcdad3c4
 
 COCOAPODS: 1.11.3
