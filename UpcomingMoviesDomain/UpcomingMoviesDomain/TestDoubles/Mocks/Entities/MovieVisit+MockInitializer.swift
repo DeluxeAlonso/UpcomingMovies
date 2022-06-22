@@ -5,8 +5,6 @@
 //  Created by Alonso on 19/06/22.
 //
 
-import Foundation
-
 public extension MovieVisit {
 
     static func with(id: Int = 1,
