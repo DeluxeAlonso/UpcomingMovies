@@ -6,7 +6,7 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-extension List {
+public extension List {
 
     static func with(id: String = "1",
                      name: String = "Test",

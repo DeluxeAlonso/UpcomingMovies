@@ -6,7 +6,7 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-extension Review {
+public extension Review {
 
     static func with(id: String = "1",
                      authorName: String = "ABC",

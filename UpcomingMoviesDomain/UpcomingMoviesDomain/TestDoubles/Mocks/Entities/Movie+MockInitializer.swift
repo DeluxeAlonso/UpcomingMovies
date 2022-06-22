@@ -6,7 +6,7 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-extension Movie {
+public extension Movie {
 
     static func with(id: Int = 1,
                      title: String = "Movie 1",
