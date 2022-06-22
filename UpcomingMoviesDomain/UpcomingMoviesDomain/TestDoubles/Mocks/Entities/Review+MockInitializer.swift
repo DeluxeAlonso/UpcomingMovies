@@ -6,9 +6,7 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
-
-extension Review {
+public extension Review {
 
     static func with(id: String = "1",
                      authorName: String = "ABC",

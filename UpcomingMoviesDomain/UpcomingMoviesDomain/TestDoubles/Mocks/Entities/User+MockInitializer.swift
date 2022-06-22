@@ -6,9 +6,7 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
-
-extension User {
+public extension User {
 
     static func with(id: Int = 1,
                      name: String = "Test",

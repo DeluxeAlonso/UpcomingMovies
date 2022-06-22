@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import UpcomingMoviesDomain
 
-extension Video {
+public extension Video {
 
     static func with(id: String = "1",
                      key: String = "ABC",

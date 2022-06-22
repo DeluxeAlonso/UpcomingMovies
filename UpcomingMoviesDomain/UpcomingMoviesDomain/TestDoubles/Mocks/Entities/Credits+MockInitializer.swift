@@ -6,9 +6,7 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
-
-extension MovieCredits {
+public extension MovieCredits {
 
     static func with(cast: [Cast] = [Cast.with()], crew: [Crew] = [Crew.with()]) -> MovieCredits {
         return MovieCredits(cast: cast, crew: crew)
@@ -20,7 +18,7 @@ extension MovieCredits {
 
 }
 
-extension Cast {
+public extension Cast {
 
     static func with(id: Int = 1,
                      character: String = "Batman",
@@ -31,7 +29,7 @@ extension Cast {
 
 }
 
-extension Crew {
+public extension Crew {
 
     static func with(id: Int = 1,
                      job: String = "Test Job",
