@@ -5,7 +5,6 @@
 //  Created by Alonso on 8/06/22.
 //
 
-import Foundation
 @testable import UpcomingMoviesDomain
 
 final class UserLocalDataSourceProtocolMock: UserLocalDataSourceProtocol {
