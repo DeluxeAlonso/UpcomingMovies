@@ -20,7 +20,7 @@ final class MovieSearchLocalDataSourceProtocolMock: MovieSearchLocalDataSourcePr
 
     private (set) var saveCallCount = 0
     func save(with searchText: String) {
-        getMovieSearchesCallCount += 1
+        saveCallCount += 1
     }
 
 }
