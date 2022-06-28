@@ -7,6 +7,7 @@ disabled_rules: # rule identifiers to exclude from running
  - todo
  - weak_delegate
  - class_delegate_protocol
+ - type_name
 excluded: # paths to ignore during linting. Takes precedence over `included`.
  - Carthage
  - Pods
