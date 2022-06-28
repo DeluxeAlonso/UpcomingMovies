@@ -28,7 +28,10 @@ class ConfigurationRepositoryTests: XCTestCase {
 
     func testGetConfiguration() {
         // Arrange
-        let configurationToTest = Configuration(imagesConfiguration: .init(baseURLString: "testBaseURLString", backdropSizes: [""], posterSizes: [""]),
+        let imagesConfiguration: ImagesConfiguration = .init(baseURLString: "testBaseURLString",
+                                                             backdropSizes: [""],
+                                                             posterSizes: [""])
+        let configurationToTest = Configuration(imagesConfiguration: imagesConfiguration,
                                                 sortConfiguration: SortConfiguration(movieSortKeys: [""]))
         let expectation = XCTestExpectation(description: "Should get app configuration")
         // Act
