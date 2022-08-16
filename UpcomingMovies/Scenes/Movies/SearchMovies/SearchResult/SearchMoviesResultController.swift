@@ -151,7 +151,7 @@ extension SearchMoviesResultController: UITableViewDelegate {
         let viewState = viewModel.viewState.value
         switch viewState {
         case .initial:
-            let headerView = SimpleHeaderView()
+            let headerView = HeaderView()
             headerView.headerTitle = LocalizedStrings.recentSearches()
             return headerView
         case .populated:
