@@ -51,7 +51,9 @@ final class SearchMoviesCoordinator: NSObject, SearchMoviesCoordinatorProtocol, 
     func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> SearchController {
         let searchResultController = SearchMoviesResultController(viewModel: DIContainer.shared.resolve())
 
-        let searchController = SearchController(searchResultsController: searchResultController)
+        let searchController = SearchController(searchResultsController: searchResultController,
+                                                hidesNavigationBarDuringPresentation: false,
+                                                searchBarStyle: .minimal)
 
         searchResultController.delegate = parentViewController
         searchResultController.coordinator = self

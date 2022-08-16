@@ -10,18 +10,16 @@ import UIKit
 
 class SearchController: UISearchController {
 
-    override init(searchResultsController: UIViewController?) {
+    init(searchResultsController: UIViewController?,
+         hidesNavigationBarDuringPresentation: Bool,
+         searchBarStyle: UISearchBar.Style) {
         super.init(searchResultsController: searchResultsController)
-        hidesNavigationBarDuringPresentation = false
-        searchBar.searchBarStyle = UISearchBar.Style.minimal
+        self.hidesNavigationBarDuringPresentation = hidesNavigationBarDuringPresentation
+        self.searchBar.searchBarStyle = searchBarStyle
     }
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
 }
