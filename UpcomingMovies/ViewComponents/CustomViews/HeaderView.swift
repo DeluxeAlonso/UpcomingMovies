@@ -1,5 +1,5 @@
 //
-//  RecentSearchesHeaderView.swift
+//  HeaderView.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 11/8/18.

@@ -1,5 +1,5 @@
 //
-//  CustomFooterView.swift
+//  FooterView.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 11/8/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CustomFooterView: UIView {
+final class FooterView: UIView {
 
     static let recommendedFrame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100)
 
@@ -35,7 +35,7 @@ final class CustomFooterView: UIView {
     // MARK: - Initializers
 
     init(message: String) {
-        super.init(frame: CustomFooterView.recommendedFrame)
+        super.init(frame: FooterView.recommendedFrame)
         setupUI()
         messageLabel.text = message
     }
