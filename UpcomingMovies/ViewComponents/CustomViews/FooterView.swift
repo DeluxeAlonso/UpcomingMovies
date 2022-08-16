@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class FooterView: UIView {
+class FooterView: UIView {
 
     static let recommendedFrame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100)
 

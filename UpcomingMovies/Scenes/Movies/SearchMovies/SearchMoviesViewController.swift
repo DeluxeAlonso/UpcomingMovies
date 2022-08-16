@@ -14,7 +14,7 @@ class SearchMoviesViewController: UIViewController, Storyboarded {
 
     static var storyboardName: String = "SearchMovies"
 
-    private var searchController: DefaultSearchController!
+    private var searchController: SearchController!
     private var searchOptionsContainerView: SearchOptionsViewController!
 
     weak var coordinator: SearchMoviesCoordinatorProtocol?

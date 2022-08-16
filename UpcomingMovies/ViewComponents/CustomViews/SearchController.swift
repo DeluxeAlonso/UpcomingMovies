@@ -1,5 +1,5 @@
 //
-//  MovieSearchController.swift
+//  SearchController.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 11/7/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class DefaultSearchController: UISearchController {
+class SearchController: UISearchController {
 
     override init(searchResultsController: UIViewController?) {
         super.init(searchResultsController: searchResultsController)

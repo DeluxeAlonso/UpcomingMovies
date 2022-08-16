@@ -14,7 +14,7 @@ protocol SearchMoviesCoordinatorProtocol: AnyObject {
     func embedSearchOptions(on parentViewController: UIViewController,
                             in containerView: UIView) -> SearchOptionsViewController
 
-    func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> DefaultSearchController
+    func embedSearchController(on parentViewController: SearchMoviesResultControllerDelegate) -> SearchController
 
     func showMovieDetail(for movie: Movie)
     func showMovieDetail(for movieId: Int, and movieTitle: String)
