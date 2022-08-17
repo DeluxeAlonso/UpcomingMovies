@@ -26,14 +26,14 @@ final class Bindable<T> {
         self.value = value
     }
 
-    func bind(_ listener: Listener?, on dispatchQueue: DispatchQueue) {
+    func bind(_ listener: Listener?, on dispatchQueue: DispatchQueue? = nil) {
         self.listener = listener
-        self.dispatchQueue = dispatchQueue
+        self.dispatchQueue = dispatchQueue ?? makeDefaultQueue()
     }
 
-    func bindAndFire(_ listener: Listener?, on dispatchQueue: DispatchQueue) {
+    func bindAndFire(_ listener: Listener?, on dispatchQueue: DispatchQueue? = nil) {
         self.listener = listener
-        self.dispatchQueue = dispatchQueue
+        self.dispatchQueue = dispatchQueue ?? makeDefaultQueue()
         sendValue()
     }
 
@@ -41,6 +41,10 @@ final class Bindable<T> {
 
     private func sendValue() {
         dispatchQueue.async { self.listener?(self.value) }
+    }
+
+    private func makeDefaultQueue() -> DispatchQueue {
+        return .init(label: "\(String(describing: T.self)) - \(UUID())")
     }
 
 }
