@@ -1,5 +1,5 @@
 //
-//  RecentSearchesHeaderView.swift
+//  HeaderView.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 11/8/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SimpleHeaderView: UIView {
+class HeaderView: UIView {
 
     private lazy var headerTitleLabel: UILabel = {
         let label = UILabel()

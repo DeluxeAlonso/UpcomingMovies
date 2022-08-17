@@ -108,13 +108,13 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
     private func configureView(with state: CustomListDetailViewState) {
         switch state {
         case .empty:
-            tableView.tableFooterView = CustomFooterView(message: LocalizedStrings.emptyMovieResults())
+            tableView.tableFooterView = FooterView(message: LocalizedStrings.emptyMovieResults())
         case .populated:
             tableView.tableFooterView = UIView()
         case .loading:
             tableView.tableFooterView = LoadingFooterView()
         case .error(let error):
-            tableView.tableFooterView = CustomFooterView(message: error.localizedDescription)
+            tableView.tableFooterView = FooterView(message: error.localizedDescription)
         }
     }
 

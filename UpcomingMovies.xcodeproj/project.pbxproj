@@ -46,13 +46,13 @@
 		E21AA45424A1B19B00A67337 /* MovieReviewDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21AA45324A1B19B00A67337 /* MovieReviewDetailCoordinator.swift */; };
 		E21F37882193EC8100D6BFB6 /* SearchMoviesResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37872193EC8100D6BFB6 /* SearchMoviesResultController.swift */; };
 		E21F378A2193ED4000D6BFB6 /* SearchMoviesResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37892193ED4000D6BFB6 /* SearchMoviesResultViewModel.swift */; };
-		E21F378C2193F01600D6BFB6 /* DefaultSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F378B2193F01600D6BFB6 /* DefaultSearchController.swift */; };
+		E21F378C2193F01600D6BFB6 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F378B2193F01600D6BFB6 /* SearchController.swift */; };
 		E21F37902193F36300D6BFB6 /* RecentSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F378F2193F36300D6BFB6 /* RecentSearchCell.swift */; };
 		E21F37922193F38300D6BFB6 /* RecentSearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37912193F38300D6BFB6 /* RecentSearchCellViewModel.swift */; };
 		E21F37942193F47800D6BFB6 /* RecentSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E21F37932193F47800D6BFB6 /* RecentSearchCell.xib */; };
 		E21F379A2193FEB000D6BFB6 /* LoadingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37992193FEB000D6BFB6 /* LoadingFooterView.swift */; };
-		E21F379C2193FF1400D6BFB6 /* CustomFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F379B2193FF1400D6BFB6 /* CustomFooterView.swift */; };
-		E21F379E219401CF00D6BFB6 /* SimpleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F379D219401CF00D6BFB6 /* SimpleHeaderView.swift */; };
+		E21F379C2193FF1400D6BFB6 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F379B2193FF1400D6BFB6 /* FooterView.swift */; };
+		E21F379E219401CF00D6BFB6 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F379D219401CF00D6BFB6 /* HeaderView.swift */; };
 		E21F37A121941D2900D6BFB6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37A021941D2900D6BFB6 /* SplashViewController.swift */; };
 		E21F37A321941D3900D6BFB6 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37A221941D3900D6BFB6 /* SplashViewModel.swift */; };
 		E21F37B12194241B00D6BFB6 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F37B02194241B00D6BFB6 /* UIViewController+Extensions.swift */; };
@@ -460,13 +460,13 @@
 		E21DA1D725B4032000E7F66B /* UpcomingMovies.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpcomingMovies.xctestplan; sourceTree = "<group>"; };
 		E21F37872193EC8100D6BFB6 /* SearchMoviesResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesResultController.swift; sourceTree = "<group>"; };
 		E21F37892193ED4000D6BFB6 /* SearchMoviesResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesResultViewModel.swift; sourceTree = "<group>"; };
-		E21F378B2193F01600D6BFB6 /* DefaultSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchController.swift; sourceTree = "<group>"; };
+		E21F378B2193F01600D6BFB6 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		E21F378F2193F36300D6BFB6 /* RecentSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchCell.swift; sourceTree = "<group>"; };
 		E21F37912193F38300D6BFB6 /* RecentSearchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchCellViewModel.swift; sourceTree = "<group>"; };
 		E21F37932193F47800D6BFB6 /* RecentSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentSearchCell.xib; sourceTree = "<group>"; };
 		E21F37992193FEB000D6BFB6 /* LoadingFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingFooterView.swift; sourceTree = "<group>"; };
-		E21F379B2193FF1400D6BFB6 /* CustomFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFooterView.swift; sourceTree = "<group>"; };
-		E21F379D219401CF00D6BFB6 /* SimpleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHeaderView.swift; sourceTree = "<group>"; };
+		E21F379B2193FF1400D6BFB6 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		E21F379D219401CF00D6BFB6 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E21F37A021941D2900D6BFB6 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		E21F37A221941D3900D6BFB6 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		E21F37B02194241B00D6BFB6 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -1634,12 +1634,12 @@
 			isa = PBXGroup;
 			children = (
 				E2C085AE261651A300AC5383 /* ToastView */,
-				E21F379D219401CF00D6BFB6 /* SimpleHeaderView.swift */,
+				E21F379D219401CF00D6BFB6 /* HeaderView.swift */,
 				E21F37992193FEB000D6BFB6 /* LoadingFooterView.swift */,
-				E21F379B2193FF1400D6BFB6 /* CustomFooterView.swift */,
+				E21F379B2193FF1400D6BFB6 /* FooterView.swift */,
 				E2A65E5021FEC39800485B4E /* VoteAverageView.swift */,
 				E222EA75220C724B00664C7F /* DefaultRefreshControl.swift */,
-				E21F378B2193F01600D6BFB6 /* DefaultSearchController.swift */,
+				E21F378B2193F01600D6BFB6 /* SearchController.swift */,
 				E294C7462216282D0007F0A5 /* CollapsibleCollectionHeaderView.swift */,
 				E223DA072217BD1900A3DC58 /* RadarView.swift */,
 				E2234FA52245FB43004B2C7E /* GradientView.swift */,
@@ -2448,7 +2448,7 @@
 				E241FE0922434D4900144FD3 /* AuthPermissionViewModel.swift in Sources */,
 				E235E44F24959C1600831F0A /* AuthPermissionWebViewNavigation.swift in Sources */,
 				E2825DCD24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift in Sources */,
-				E21F378C2193F01600D6BFB6 /* DefaultSearchController.swift in Sources */,
+				E21F378C2193F01600D6BFB6 /* SearchController.swift in Sources */,
 				E22546AF226AF54800E9042C /* CustomListDetailSectionViewModel.swift in Sources */,
 				E2685CA223A092B700483D8D /* MovieDetailFactory.swift in Sources */,
 				E223B084224828EC0050277B /* ProfileSelectableOptionTableViewCell.swift in Sources */,
@@ -2574,7 +2574,7 @@
 				E2E518AA24A9993200CC3FA5 /* SearchMoviesResultSections.swift in Sources */,
 				E2B4751A227EB0960004F621 /* CGRect+Extensions.swift in Sources */,
 				E2C085B02616520400AC5383 /* ToastView.swift in Sources */,
-				E21F379E219401CF00D6BFB6 /* SimpleHeaderView.swift in Sources */,
+				E21F379E219401CF00D6BFB6 /* HeaderView.swift in Sources */,
 				E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */,
 				E260117D21939D7100E53095 /* MovieDetailViewModel.swift in Sources */,
 				E265C2612495392900712284 /* MoviesByGenreInteractor.swift in Sources */,
@@ -2700,7 +2700,7 @@
 				E22588A92243281F00E1327E /* ProfileViewController.swift in Sources */,
 				E223773E21EEB09F000400B7 /* DefaultSearchOptionTableViewCell.swift in Sources */,
 				E28D78A324847E0200D86F66 /* MovieReviewDetailViewModel.swift in Sources */,
-				E21F379C2193FF1400D6BFB6 /* CustomFooterView.swift in Sources */,
+				E21F379C2193FF1400D6BFB6 /* FooterView.swift in Sources */,
 				E2EAEC5824CFEFC900D89F04 /* MovieCreditsFactory.swift in Sources */,
 				E260117621938D6C00E53095 /* Retryable.swift in Sources */,
 				E254348C265A1DBD0008C830 /* Result+Optional.swift in Sources */,
