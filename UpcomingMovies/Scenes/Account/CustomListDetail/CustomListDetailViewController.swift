@@ -154,7 +154,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
             guard let self = self else { return }
             self.reloadTableView()
             self.configureView(with: state)
-        }, onMainThread: true)
+        }, on: .main)
         viewModel?.getListMovies()
     }
 

@@ -159,11 +159,12 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
             guard let self = self else { return }
             self.configureView(withState: state)
             self.reloadCollectionView()
-        }, onMainThread: true)
+        }, on: .main)
+
         viewModel?.startLoading.bind({ [weak self] startLoading in
             guard let self = self else { return }
             startLoading ? self.showLoader() : self.hideLoader()
-        }, onMainThread: true)
+        }, on: .main)
     }
 
     // MARK: - Actions

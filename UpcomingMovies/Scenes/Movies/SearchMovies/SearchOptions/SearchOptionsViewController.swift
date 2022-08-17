@@ -63,17 +63,17 @@ class SearchOptionsViewController: UITableViewController, Storyboarded {
         viewModel?.needsContentReload.bind({ [weak self] in
             guard let self = self else { return }
                 self.reloadTableView()
-        }, onMainThread: true)
+        }, on: .main)
 
         viewModel?.updateVisitedMovies.bind({ [weak self] section in
             guard let self = self, let section = section else { return }
             self.reloadSection(section)
-        }, onMainThread: true)
+        }, on: .main)
 
         viewModel?.selectedDefaultSearchOption.bind({ [weak self] option in
             guard let self = self, let option = option else { return }
             self.delegate?.searchOptionsViewController(self, didSelectDefaultSearchOption: option)
-        })
+        }, on: .main)
 
         viewModel?.selectedMovieGenre.bind({ [weak self] (genreId, genreName) in
             guard let self = self,
@@ -84,7 +84,7 @@ class SearchOptionsViewController: UITableViewController, Storyboarded {
             self.delegate?.searchOptionsViewController(self,
                                                                   didSelectMovieGenreWithId: genreId,
                                                                   andGenreName: genreName)
-        })
+        }, on: .main)
 
         viewModel?.selectedRecentlyVisitedMovie = { [weak self] id, title in
             guard let self = self else { return }

@@ -121,10 +121,12 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
             self.configureView(withState: state)
             self.updateCollectionViewLayout()
             self.reloadCollectionView()
-        }, onMainThread: true)
+        }, on: .main)
+
         viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
-        }, onMainThread: true)
+        }, on: .main)
+        
         viewModel?.getCollectionList()
     }
 

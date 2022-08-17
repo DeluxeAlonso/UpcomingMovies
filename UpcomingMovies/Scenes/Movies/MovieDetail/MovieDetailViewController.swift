@@ -163,25 +163,26 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
             } else {
                 self.userInterfaceHelper?.dismissFullscreenLoader()
             }
-        }, onMainThread: true)
+        }, on: .main)
     }
 
     private func setupErrorBindables() {
         viewModel?.showErrorRetryView.bind({ [weak self] error in
             guard let self = self, let error = error else { return }
             self.showErrorView(error: error)
-        }, onMainThread: true)
+        }, on: .main)
     }
 
     private func setupAlertBindables() {
         viewModel?.showSuccessAlert.bind({ [weak self] message in
             guard let self = self else { return }
             self.userInterfaceHelper?.showHUD(with: message, in: self.view)
-        }, onMainThread: true)
+        }, on: .main)
+
         viewModel?.showErrorAlert.bind({ [weak self] error in
             guard let self = self, let error = error else { return }
             self.view.showFailureToast(withMessage: error.localizedDescription)
-        }, onMainThread: true)
+        }, on: .main)
     }
 
     private func showErrorView(error: Error) {
