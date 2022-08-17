@@ -102,7 +102,7 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
             self.configureView(withState: state)
             self.reloadTableView()
         }, on: .main)
-        
+
         viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
         }, on: .main)

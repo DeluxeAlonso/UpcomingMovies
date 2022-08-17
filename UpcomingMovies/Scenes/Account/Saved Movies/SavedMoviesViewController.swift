@@ -126,7 +126,7 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
         viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
         }, on: .main)
-        
+
         viewModel?.getCollectionList()
     }
 
