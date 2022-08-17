@@ -31,7 +31,7 @@ class SplashViewController: UIViewController, Storyboarded {
             guard let self = self else { return }
             let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
             navigationHandler.initialTransition(from: self.view.window)
-        }, onMainThread: true)
+        }, on: .main)
     }
 
 }

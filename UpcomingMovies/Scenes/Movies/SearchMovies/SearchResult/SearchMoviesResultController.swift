@@ -112,7 +112,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
             guard let self = self else { return }
             self.configureView(with: state)
             self.reloadTableView()
-        }, onMainThread: true)
+        }, on: .main)
     }
 
     // MARK: - Internal

@@ -91,7 +91,7 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
             guard let self = self else { return }
             self.configureView(with: state)
             self.reloadCollectionView()
-        }, onMainThread: true)
+        }, on: .main)
 
         viewModel.didToggleSection.bind({ [weak self] sectionToggled in
             guard let self = self else { return }
@@ -102,7 +102,7 @@ class MovieCreditsViewController: UIViewController, Storyboarded, PlaceholderDis
 
         viewModel.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
-        }, onMainThread: true)
+        }, on: .main)
     }
 
 }

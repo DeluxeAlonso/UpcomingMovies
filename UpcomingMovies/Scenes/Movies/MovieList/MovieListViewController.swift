@@ -101,10 +101,11 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
             guard let self = self else { return }
             self.configureView(withState: state)
             self.reloadTableView()
-        }, onMainThread: true)
+        }, on: .main)
+
         viewModel?.startLoading.bind({ [weak self] start in
             start ? self?.showLoader() : self?.hideLoader()
-        }, onMainThread: true)
+        }, on: .main)
     }
 
 }
