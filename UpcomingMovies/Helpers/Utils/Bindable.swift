@@ -14,7 +14,7 @@ final class Bindable<T> {
     private var listener: Listener?
 
     private var deliverOnMainThread = false
-    private var dispatchQueue: DispatchQueue = .main
+    private var dispatchQueue: DispatchQueue?
 
     var value: T {
         didSet {
@@ -28,19 +28,23 @@ final class Bindable<T> {
 
     func bind(_ listener: Listener?, on dispatchQueue: DispatchQueue? = nil) {
         self.listener = listener
-        self.dispatchQueue = dispatchQueue ?? makeDefaultQueue()
+        self.dispatchQueue = dispatchQueue
     }
 
     func bindAndFire(_ listener: Listener?, on dispatchQueue: DispatchQueue? = nil) {
         self.listener = listener
-        self.dispatchQueue = dispatchQueue ?? makeDefaultQueue()
+        self.dispatchQueue = dispatchQueue
         sendValue()
     }
 
     // MARK: - Private
 
     private func sendValue() {
-        dispatchQueue.async { self.listener?(self.value) }
+        if let dispatchQueue = dispatchQueue {
+            dispatchQueue.async { self.listener?(self.value) }
+        } else {
+            self.listener?(self.value)
+        }
     }
 
     private func makeDefaultQueue() -> DispatchQueue {
