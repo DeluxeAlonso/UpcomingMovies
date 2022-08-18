@@ -13,7 +13,6 @@ final class Bindable<T> {
     typealias Listener = ((T) -> Void)
     private var listener: Listener?
 
-    private var deliverOnMainThread = false
     private var dispatchQueue: DispatchQueue?
 
     var value: T {
@@ -45,10 +44,6 @@ final class Bindable<T> {
         } else {
             self.listener?(self.value)
         }
-    }
-
-    private func makeDefaultQueue() -> DispatchQueue {
-        return .init(label: "\(String(describing: T.self)) - \(UUID())")
     }
 
 }
