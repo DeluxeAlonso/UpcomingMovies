@@ -12,7 +12,6 @@ final class ProfileFactory: ProfileFactoryProtocol {
         return [
             .accountInfo,
             .collections,
-            .recommended,
             .customLists,
             .signOut
         ]
