@@ -25,12 +25,12 @@ final class Bindable<T> {
         self.value = value
     }
 
-    func bind(_ listener: Listener?, on dispatchQueue: DispatchQueue? = nil) {
+    func bind(_ listener: @escaping Listener, on dispatchQueue: DispatchQueue? = nil) {
         self.listener = listener
         self.dispatchQueue = dispatchQueue
     }
 
-    func bindAndFire(_ listener: Listener?, on dispatchQueue: DispatchQueue? = nil) {
+    func bindAndFire(_ listener: @escaping Listener, on dispatchQueue: DispatchQueue? = nil) {
         self.listener = listener
         self.dispatchQueue = dispatchQueue
         sendValue()
