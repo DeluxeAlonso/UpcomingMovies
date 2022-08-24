@@ -66,9 +66,13 @@ extension AccountProvider: Endpoint {
         case .getAccountDetail(let sessionId):
             return ["session_id": sessionId]
         case .getFavoriteList(let page, let sessionId, _):
-            return ["session_id": sessionId, "page": page]
+            return ["session_id": sessionId,
+                    "page": page,
+                    "sort_by": "created_at.desc"]
         case .getWatchlist(let page, let sessionId, _):
-            return ["session_id": sessionId, "page": page]
+            return ["session_id": sessionId,
+                    "page": page,
+                    "sort_by": "created_at.desc"]
         case .getRecommendedList(let page, _, _):
             return ["page": page]
         case .getCustomLists(let page, _, _):
