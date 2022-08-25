@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UpcomingMoviesDomain
 
 class AccountClient: APIClient, AccountClientProtocol {
 
@@ -27,9 +28,9 @@ class AccountClient: APIClient, AccountClientProtocol {
 
     // MARK: - Collection List
 
-    func getFavoriteList(page: Int, sessionId: String, accountId: Int,
+    func getFavoriteList(page: Int, sortBy: MovieSortType.Favorites, sessionId: String, accountId: Int,
                          completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
-        let request = AccountProvider.getFavoriteList(page: page, sortBy: <#String#>,
+        let request = AccountProvider.getFavoriteList(page: page, sortBy: sortBy(),
                                                       sessionId: sessionId,
                                                       accountId: accountId).request
         fetch(with: request, decode: { json -> MovieResult? in
@@ -38,9 +39,10 @@ class AccountClient: APIClient, AccountClientProtocol {
         }, completion: completion)
     }
 
-    func getWatchlist(page: Int, sessionId: String, accountId: Int,
+    func getWatchlist(page: Int, sortBy: MovieSortType.Watchlist, sessionId: String, accountId: Int,
                       completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
         let request = AccountProvider.getWatchlist(page: page,
+                                                   sortBy: sortBy(),
                                                    sessionId: sessionId,
                                                    accountId: accountId).request
         fetch(with: request, decode: { json -> MovieResult? in
