@@ -9,7 +9,7 @@
 public protocol AccountUseCaseProtocol {
 
     func getFavoriteList(page: Int?,
-                         sortBy: MovieSortType.Favorites,
+                         sortBy: MovieSortType.Favorite,
                          completion: @escaping (Result<[Movie], Error>) -> Void)
 
     func getWatchlist(page: Int?,

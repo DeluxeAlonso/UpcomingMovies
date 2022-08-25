@@ -28,7 +28,7 @@ class AccountClient: APIClient, AccountClientProtocol {
 
     // MARK: - Collection List
 
-    func getFavoriteList(page: Int, sortBy: MovieSortType.Favorites, sessionId: String, accountId: Int,
+    func getFavoriteList(page: Int, sortBy: MovieSortType.Favorite, sessionId: String, accountId: Int,
                          completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
         let request = AccountProvider.getFavoriteList(page: page, sortBy: sortBy(),
                                                       sessionId: sessionId,

@@ -19,7 +19,7 @@ public struct MovieSortType {
         }
     }
 
-    public enum Favorites {
+    public enum Favorite {
         case createdAtAsc
         case createdAtDesc
 

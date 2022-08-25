@@ -20,7 +20,7 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
         self.authManager = authManager
     }
 
-    func getFavoriteList(page: Int?, sortBy: MovieSortType.Favorites, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+    func getFavoriteList(page: Int?, sortBy: MovieSortType.Favorite, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         guard let account = authManager.userAccount else { return }
         client.getFavoriteList(page: page ?? 1, sortBy: sortBy, sessionId: account.sessionId, accountId: account.accountId, completion: { result in
             switch result {

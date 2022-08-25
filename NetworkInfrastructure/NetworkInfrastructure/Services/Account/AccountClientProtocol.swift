@@ -10,7 +10,7 @@ import UpcomingMoviesDomain
 
 protocol AccountClientProtocol {
 
-    func getFavoriteList(page: Int, sortBy: MovieSortType.Favorites, sessionId: String, accountId: Int,
+    func getFavoriteList(page: Int, sortBy: MovieSortType.Favorite, sessionId: String, accountId: Int,
                          completion: @escaping (Result<MovieResult?, APIError>) -> Void)
 
     func getWatchlist(page: Int, sortBy: MovieSortType.Watchlist, sessionId: String, accountId: Int,
