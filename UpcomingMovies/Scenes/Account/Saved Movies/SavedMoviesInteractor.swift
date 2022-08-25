@@ -18,7 +18,7 @@ final class FavoritesSavedMoviesInteractor: SavedMoviesInteractorProtocol {
     }
 
     func getSavedMovies(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        accountUseCase.getFavoriteList(page: page, completion: completion)
+        accountUseCase.getFavoriteList(page: page, sortBy: .createdAtDesc, completion: completion)
     }
 
 }
@@ -32,7 +32,7 @@ final class WatchlistSavedMoviesInteractor: SavedMoviesInteractorProtocol {
     }
 
     func getSavedMovies(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        accountUseCase.getWatchlist(page: page, completion: completion)
+        accountUseCase.getWatchlist(page: page, sortBy: .createdAtDesc, completion: completion)
     }
 
 }
