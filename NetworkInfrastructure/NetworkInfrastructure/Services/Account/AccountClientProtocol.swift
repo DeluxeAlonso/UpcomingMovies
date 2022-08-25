@@ -8,10 +8,10 @@
 
 protocol AccountClientProtocol {
 
-    func getFavoriteList(page: Int, sessionId: String, accountId: Int,
+    func getFavoriteList(page: Int, sortBy: String, sessionId: String, accountId: Int,
                          completion: @escaping (Result<MovieResult?, APIError>) -> Void)
 
-    func getWatchlist(page: Int, sessionId: String, accountId: Int,
+    func getWatchlist(page: Int, sortBy: String, sessionId: String, accountId: Int,
                       completion: @escaping (Result<MovieResult?, APIError>) -> Void)
 
     func getRecommendedList(page: Int,

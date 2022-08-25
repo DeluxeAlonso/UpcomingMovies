@@ -21,11 +21,11 @@ final class AccountRepository: AccountUseCaseProtocol {
     // MARK: - AccountUseCaseProtocol
 
     func getFavoriteList(page: Int?, sortBy: MovieSortType, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        remoteDataSource.getFavoriteList(page: page, completion: completion)
+        remoteDataSource.getFavoriteList(page: page, sortBy: sortBy, completion: completion)
     }
 
     func getWatchlist(page: Int?, sortBy: MovieSortType, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        remoteDataSource.getWatchlist(page: page, completion: completion)
+        remoteDataSource.getWatchlist(page: page, sortBy: sortBy, completion: completion)
     }
 
     func getRecommendedList(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {

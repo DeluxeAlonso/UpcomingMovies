@@ -29,7 +29,7 @@ class AccountClient: APIClient, AccountClientProtocol {
 
     func getFavoriteList(page: Int, sessionId: String, accountId: Int,
                          completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
-        let request = AccountProvider.getFavoriteList(page: page,
+        let request = AccountProvider.getFavoriteList(page: page, sortBy: <#String#>,
                                                       sessionId: sessionId,
                                                       accountId: accountId).request
         fetch(with: request, decode: { json -> MovieResult? in
