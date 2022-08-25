@@ -9,8 +9,8 @@
 enum AccountProvider {
 
     case getAccountDetail(sessionId: String)
-    case getFavoriteList(page: Int, sessionId: String, accountId: Int)
-    case getWatchlist(page: Int, sessionId: String, accountId: Int)
+    case getFavoriteList(page: Int, sortBy: String, sessionId: String, accountId: Int)
+    case getWatchlist(page: Int, sortBy: String, sessionId: String, accountId: Int)
     case getRecommendedList(page: Int, accessToken: String, accountId: String)
     case getCustomLists(page: Int, accessToken: String, accountId: String)
     case getCustomListDetail(accessToken: String, id: String)
@@ -31,9 +31,9 @@ extension AccountProvider: Endpoint {
         switch self {
         case .getAccountDetail:
             return "/3/account"
-        case .getFavoriteList(_, _, let accountId):
+        case .getFavoriteList(_, _, _, let accountId):
             return "/3/account/\(accountId)/favorite/movies"
-        case .getWatchlist(_, _, let accountId):
+        case .getWatchlist(_, _, _, let accountId):
             return "/3/account/\(accountId)/watchlist/movies"
         case .getRecommendedList(_, _, let accountId):
             return "/4/account/\(accountId)/movie/recommendations"
@@ -65,14 +65,14 @@ extension AccountProvider: Endpoint {
         switch self {
         case .getAccountDetail(let sessionId):
             return ["session_id": sessionId]
-        case .getFavoriteList(let page, let sessionId, _):
+        case .getFavoriteList(let page, let sortBy, let sessionId, _):
             return ["session_id": sessionId,
                     "page": page,
-                    "sort_by": "created_at.desc"]
-        case .getWatchlist(let page, let sessionId, _):
+                    "sort_by": sortBy]
+        case .getWatchlist(let page, let sortBy, let sessionId, _):
             return ["session_id": sessionId,
                     "page": page,
-                    "sort_by": "created_at.desc"]
+                    "sort_by": sortBy]
         case .getRecommendedList(let page, _, _):
             return ["page": page]
         case .getCustomLists(let page, _, _):

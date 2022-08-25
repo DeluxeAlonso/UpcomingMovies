@@ -6,12 +6,14 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
+import UpcomingMoviesDomain
+
 protocol AccountClientProtocol {
 
-    func getFavoriteList(page: Int, sessionId: String, accountId: Int,
+    func getFavoriteList(page: Int, sortBy: MovieSortType.Favorite, sessionId: String, accountId: Int,
                          completion: @escaping (Result<MovieResult?, APIError>) -> Void)
 
-    func getWatchlist(page: Int, sessionId: String, accountId: Int,
+    func getWatchlist(page: Int, sortBy: MovieSortType.Watchlist, sessionId: String, accountId: Int,
                       completion: @escaping (Result<MovieResult?, APIError>) -> Void)
 
     func getRecommendedList(page: Int,
