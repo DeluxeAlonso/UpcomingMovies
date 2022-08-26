@@ -13,8 +13,8 @@ final class FavoritesSavedMoviesInteractor: SavedMoviesInteractorProtocol {
 
     private let accountUseCase: AccountUseCaseProtocol
 
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        self.accountUseCase = useCaseProvider.accountUseCase()
+    init(accountUseCase: AccountUseCaseProtocol) {
+        self.accountUseCase = accountUseCase
     }
 
     func getSavedMovies(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
@@ -27,8 +27,8 @@ final class WatchlistSavedMoviesInteractor: SavedMoviesInteractorProtocol {
 
     private let accountUseCase: AccountUseCaseProtocol
 
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        self.accountUseCase = useCaseProvider.accountUseCase()
+    init(accountUseCase: AccountUseCaseProtocol) {
+        self.accountUseCase = accountUseCase
     }
 
     func getSavedMovies(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
