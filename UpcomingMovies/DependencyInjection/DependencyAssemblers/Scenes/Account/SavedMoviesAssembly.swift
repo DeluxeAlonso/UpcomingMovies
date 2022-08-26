@@ -17,7 +17,7 @@ final class SavedMoviesAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return FavoritesSavedMoviesInteractor(useCaseProvider: useCaseProvider)
+            return FavoritesSavedMoviesInteractor(accountUseCase: useCaseProvider.accountUseCase())
         }
 
         container.register(SavedMoviesInteractorProtocol.self,
@@ -25,7 +25,7 @@ final class SavedMoviesAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return WatchlistSavedMoviesInteractor(useCaseProvider: useCaseProvider)
+            return WatchlistSavedMoviesInteractor(accountUseCase: useCaseProvider.accountUseCase())
         }
 
         container.register(SavedMoviesViewModelProtocol.self) { (resolver, displayTitle: String?) in
