@@ -32,6 +32,12 @@ PODS:
     - UpcomingMoviesData/TestDoubles
     - UpcomingMoviesDomain
     - UpcomingMoviesDomain/TestDoubles
+  - NetworkInfrastructure/TestDoubles (0.0.1):
+    - KeychainSwift (~> 19.0)
+    - UpcomingMoviesData
+    - UpcomingMoviesData/TestDoubles
+    - UpcomingMoviesDomain
+    - UpcomingMoviesDomain/TestDoubles
   - SwiftLint (0.41.0)
   - Swinject (2.7.1)
   - UpcomingMoviesData (0.0.1):
@@ -62,6 +68,7 @@ DEPENDENCIES:
   - Kingfisher/SwiftUI
   - NetworkInfrastructure (from `NetworkInfrastructure/`)
   - NetworkInfrastructure/NetworkInfrastructureTests (from `NetworkInfrastructure/`)
+  - NetworkInfrastructure/TestDoubles (from `NetworkInfrastructure/`)
   - SwiftLint
   - Swinject
   - UpcomingMoviesData (from `UpcomingMoviesData/`)
@@ -102,6 +109,6 @@ SPEC CHECKSUMS:
   UpcomingMoviesData: 126fe1e9a9cc7c55a9fc4761c96c6741325ace23
   UpcomingMoviesDomain: e06d8a483680fd0bde165a9cb37c59a61c603676
 
-PODFILE CHECKSUM: 7570b6f57f610415b998fc861161a8f6fcdad3c4
+PODFILE CHECKSUM: d30d5bbae972d34cece4673a27853744ceabd885
 
 COCOAPODS: 1.11.3
