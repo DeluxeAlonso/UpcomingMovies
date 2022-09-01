@@ -5,8 +5,6 @@
 //  Created by Alonso on 25/08/22.
 //
 
-import Foundation
-
 public final class AccountUseCaseProtocolMock: AccountUseCaseProtocol {
 
     var getFavoriteListResult: Result<[Movie], Error>?
