@@ -5,7 +5,6 @@
 //  Created by Alonso on 31/08/22.
 //
 
-import Foundation
 import UpcomingMoviesDomain
 
 final class AccountClientProtocolMock: AccountClientProtocol {
