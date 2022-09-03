@@ -5,8 +5,6 @@
 //  Created by Alonso on 2/09/22.
 //
 
-import Foundation
-
 final class AuthenticationManagerProtocolMock: AuthenticationManagerProtocol {
 
     var readAccessToken: String = ""
