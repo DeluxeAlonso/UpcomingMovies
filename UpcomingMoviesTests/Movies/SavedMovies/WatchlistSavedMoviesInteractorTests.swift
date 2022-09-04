@@ -30,6 +30,8 @@ class WatchlistSavedMoviesInteractorTests: XCTestCase {
         // Arrange
         let moviesToTest = [Movie.with(id: 1)]
         accountUseCase.getWatchlistResult = .success(moviesToTest)
+
+        let expectation = XCTestExpectation(description: "Should get saved movies")
         // Act
         interactor.getSavedMovies(page: 1) { movies in
             guard let movies = try? movies.get() else {
@@ -37,9 +39,11 @@ class WatchlistSavedMoviesInteractorTests: XCTestCase {
                 return
             }
             XCTAssertEqual(movies, moviesToTest)
+            expectation.fulfill()
         }
         // Assert
         XCTAssertEqual(accountUseCase.getWatchlistCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
     }
 
 }

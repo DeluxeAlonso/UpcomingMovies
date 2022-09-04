@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum APIError: Error, CustomStringConvertible {
+enum APIError: Error, Equatable, CustomStringConvertible {
 
     case notAuthenticated
     case notFound
