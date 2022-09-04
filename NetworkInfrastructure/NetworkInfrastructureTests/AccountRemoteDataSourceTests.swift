@@ -56,9 +56,8 @@ class AccountRemoteDataSourceTests: XCTestCase {
             switch movies {
             case .success:
                 XCTFail("Should throw an error")
-            case .failure:
-                // TODO: - Make API Error confomr to Equatable
-                break
+            case .failure(let error):
+                XCTAssertEqual(error as? APIError, errorToTest)
             }
         }
         // Assert
