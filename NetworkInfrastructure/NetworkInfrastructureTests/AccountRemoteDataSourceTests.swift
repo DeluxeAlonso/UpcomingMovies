@@ -77,4 +77,52 @@ class AccountRemoteDataSourceTests: XCTestCase {
         XCTAssertEqual(accountClient.getFavoriteListCallCount, 0)
     }
 
+    func testGetWatchlistSuccess() throws {
+        // Arrange
+        authManager.userAccount = .init(accountId: 1, sessionId: "")
+        let moviesToTest = [NetworkInfrastructure.Movie.create(id: 1)]
+        accountClient.getWatchlistResult = .success(MovieResult.init(results: moviesToTest, currentPage: 1, totalPages: 1))
+        // Act
+        dataSource.getWatchlist(page: 1, sortBy: .createdAtDesc) { movies in
+            guard let movies = try? movies.get() else {
+                XCTFail("No valid movies")
+                return
+            }
+            XCTAssertEqual(movies, moviesToTest.map { $0.asDomain() })
+        }
+        // Assert
+        XCTAssertEqual(accountClient.getWatchlistCallCount, 1)
+    }
+
+    func testGetWatchlistFailure() throws {
+        // Arrange
+        authManager.userAccount = .init(accountId: 1, sessionId: "")
+        let errorToTest = APIError.badRequest
+        accountClient.getWatchlistResult = .failure(errorToTest)
+        // Act
+        dataSource.getWatchlist(page: 1, sortBy: .createdAtDesc) { movies in
+            switch movies {
+            case .success:
+                XCTFail("Should throw an error")
+            case .failure(let error):
+                XCTAssertEqual(error as? APIError, errorToTest)
+            }
+        }
+        // Assert
+        XCTAssertEqual(accountClient.getWatchlistCallCount, 1)
+    }
+
+    func testGetWatchlistNilUserAccount() throws {
+        // Arrange
+        authManager.userAccount = nil
+        let moviesToTest = [NetworkInfrastructure.Movie.create(id: 1)]
+        accountClient.getWatchlistResult = .success(MovieResult.init(results: moviesToTest, currentPage: 1, totalPages: 1))
+        // Act
+        dataSource.getWatchlist(page: 1, sortBy: .createdAtDesc) { _ in
+            XCTFail("Should not be called")
+        }
+        // Assert
+        XCTAssertEqual(accountClient.getWatchlistCallCount, 0)
+    }
+
 }
