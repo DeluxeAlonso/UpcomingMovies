@@ -78,9 +78,7 @@ class AccountRemoteDataSourceTests: XCTestCase {
         let moviesToTest = [NetworkInfrastructure.Movie.create(id: 1)]
         accountClient.getFavoriteListResult = .success(MovieResult.init(results: moviesToTest, currentPage: 1, totalPages: 1))
         // Act
-        dataSource.getFavoriteList(page: 1, sortBy: .createdAtDesc) { _ in
-            XCTFail("Should not be called")
-        }
+        dataSource.getFavoriteList(page: 1, sortBy: .createdAtDesc) { _ in }
         // Assert
         XCTAssertEqual(accountClient.getFavoriteListCallCount, 0)
     }
@@ -134,9 +132,7 @@ class AccountRemoteDataSourceTests: XCTestCase {
         let moviesToTest = [NetworkInfrastructure.Movie.create(id: 1)]
         accountClient.getWatchlistResult = .success(MovieResult.init(results: moviesToTest, currentPage: 1, totalPages: 1))
         // Act
-        dataSource.getWatchlist(page: 1, sortBy: .createdAtDesc) { _ in
-            XCTFail("Should not be called")
-        }
+        dataSource.getWatchlist(page: 1, sortBy: .createdAtDesc) { _ in }
         // Assert
         XCTAssertEqual(accountClient.getWatchlistCallCount, 0)
     }
@@ -184,15 +180,13 @@ class AccountRemoteDataSourceTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testGetRecommendedListAccountIdAndToken() throws {
+    func testGetRecommendedListNilAccountIdAndToken() throws {
         // Arrange
         authManager.accessToken = nil
         let moviesToTest = [NetworkInfrastructure.Movie.create(id: 1)]
         accountClient.getRecommendedListResult = .success(MovieResult.init(results: moviesToTest, currentPage: 1, totalPages: 1))
         // Act
-        dataSource.getRecommendedList(page: 1) { _ in
-            XCTFail("Should not be called")
-        }
+        dataSource.getRecommendedList(page: 1) { _ in }
         // Assert
         XCTAssertEqual(accountClient.getRecommendedListCallCount, 0)
     }
