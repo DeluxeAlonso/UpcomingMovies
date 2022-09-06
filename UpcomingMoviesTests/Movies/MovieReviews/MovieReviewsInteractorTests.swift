@@ -28,10 +28,23 @@ class MovieReviewsInteractorTests: XCTestCase {
     }
 
     func testGetMovieReviewssCalled() {
+        // Arrange
+        let reviewToTest = [Review.with()]
+        mockMovieUseCase.getMovieReviewsResult = .success(reviewToTest)
+
+        let expectation = XCTestExpectation(description: "Should get reviews")
         // Act
-        interactor.getMovieReviews(for: 1, page: 1, completion: { _ in })
+        interactor.getMovieReviews(for: 1, page: 1, completion: { reviews in
+            guard let reviews = try? reviews.get() else {
+                XCTFail("No valid reviews")
+                return
+            }
+            XCTAssertEqual(reviews, reviewToTest)
+            expectation.fulfill()
+        })
         // Assert
         XCTAssertEqual(mockMovieUseCase.getMovieReviewsCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
     }
 
 }

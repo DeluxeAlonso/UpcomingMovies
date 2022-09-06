@@ -78,9 +78,7 @@ class AccountRemoteDataSourceTests: XCTestCase {
         let moviesToTest = [NetworkInfrastructure.Movie.create(id: 1)]
         accountClient.getFavoriteListResult = .success(MovieResult.init(results: moviesToTest, currentPage: 1, totalPages: 1))
         // Act
-        dataSource.getFavoriteList(page: 1, sortBy: .createdAtDesc) { _ in
-            XCTFail("Should not be called")
-        }
+        dataSource.getFavoriteList(page: 1, sortBy: .createdAtDesc) { _ in }
         // Assert
         XCTAssertEqual(accountClient.getFavoriteListCallCount, 0)
     }
@@ -134,11 +132,63 @@ class AccountRemoteDataSourceTests: XCTestCase {
         let moviesToTest = [NetworkInfrastructure.Movie.create(id: 1)]
         accountClient.getWatchlistResult = .success(MovieResult.init(results: moviesToTest, currentPage: 1, totalPages: 1))
         // Act
-        dataSource.getWatchlist(page: 1, sortBy: .createdAtDesc) { _ in
-            XCTFail("Should not be called")
-        }
+        dataSource.getWatchlist(page: 1, sortBy: .createdAtDesc) { _ in }
         // Assert
         XCTAssertEqual(accountClient.getWatchlistCallCount, 0)
+    }
+
+    func testRecommendedListSuccess() throws {
+        // Arrange
+        authManager.accessToken = .init(token: "", accountId: "")
+        let moviesToTest = [NetworkInfrastructure.Movie.create(id: 1)]
+        accountClient.getRecommendedListResult = .success(MovieResult.init(results: moviesToTest, currentPage: 1, totalPages: 1))
+
+        let expectation = XCTestExpectation(description: "Should get recommended list")
+        // Act
+        dataSource.getRecommendedList(page: 1) { movies in
+            guard let movies = try? movies.get() else {
+                XCTFail("No valid movies")
+                return
+            }
+            XCTAssertEqual(movies, moviesToTest.map { $0.asDomain() })
+            expectation.fulfill()
+        }
+        // Assert
+        XCTAssertEqual(accountClient.getRecommendedListCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetRecommendedListFailure() throws {
+        // Arrange
+        authManager.accessToken = .init(token: "", accountId: "")
+        let errorToTest = APIError.badRequest
+        accountClient.getRecommendedListResult = .failure(errorToTest)
+
+        let expectation = XCTestExpectation(description: "Should get an error")
+        // Act
+        dataSource.getRecommendedList(page: 1) { movies in
+            switch movies {
+            case .success:
+                XCTFail("Should throw an error")
+            case .failure(let error):
+                XCTAssertEqual(error as? APIError, errorToTest)
+                expectation.fulfill()
+            }
+        }
+        // Assert
+        XCTAssertEqual(accountClient.getRecommendedListCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetRecommendedListNilAccountIdAndToken() throws {
+        // Arrange
+        authManager.accessToken = nil
+        let moviesToTest = [NetworkInfrastructure.Movie.create(id: 1)]
+        accountClient.getRecommendedListResult = .success(MovieResult.init(results: moviesToTest, currentPage: 1, totalPages: 1))
+        // Act
+        dataSource.getRecommendedList(page: 1) { _ in }
+        // Assert
+        XCTAssertEqual(accountClient.getRecommendedListCallCount, 0)
     }
 
 }
