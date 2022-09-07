@@ -191,4 +191,58 @@ class AccountRemoteDataSourceTests: XCTestCase {
         XCTAssertEqual(accountClient.getRecommendedListCallCount, 0)
     }
 
+    func testGetCustomListsSuccess() throws {
+        // Arrange
+        authManager.accessToken = .init(token: "", accountId: "")
+        let listToTest = [NetworkInfrastructure.List.create(id: "1")]
+        accountClient.getCustomListsResult = .success(ListResult.init(results: listToTest, currentPage: 1, totalPages: 1))
+
+        let expectation = XCTestExpectation(description: "Should get custom list")
+        // Act
+        dataSource.getCustomLists(page: 1) { list in
+            guard let list = try? list.get() else {
+                XCTFail("No valid list")
+                return
+            }
+            XCTAssertEqual(list, listToTest.map { $0.asDomain() })
+            expectation.fulfill()
+        }
+        // Assert
+        XCTAssertEqual(accountClient.getCustomListsCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetCustomListFailure() throws {
+        // Arrange
+        authManager.accessToken = .init(token: "", accountId: "")
+        let errorToTest = APIError.badRequest
+        accountClient.getCustomListsResult = .failure(errorToTest)
+
+        let expectation = XCTestExpectation(description: "Should get an error")
+        // Act
+        dataSource.getCustomLists(page: 1) { list in
+            switch list {
+            case .success:
+                XCTFail("Should throw an error")
+            case .failure(let error):
+                XCTAssertEqual(error as? APIError, errorToTest)
+                expectation.fulfill()
+            }
+        }
+        // Assert
+        XCTAssertEqual(accountClient.getCustomListsCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetCustomListNilAccountIdAndToken() throws {
+        // Arrange
+        authManager.accessToken = nil
+        let listToTest = [NetworkInfrastructure.List.create(id: "1")]
+        accountClient.getCustomListsResult = .success(ListResult.init(results: listToTest, currentPage: 1, totalPages: 1))
+        // Act
+        dataSource.getCustomLists(page: 1) { _ in }
+        // Assert
+        XCTAssertEqual(accountClient.getCustomListsCallCount, 0)
+    }
+
 }
