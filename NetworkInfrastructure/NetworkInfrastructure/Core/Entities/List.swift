@@ -29,7 +29,14 @@ struct List: Decodable {
 
     // MARK: - Initializer
 
-    init(id: String, name: String, description: String?, backdropPath: String?, averageRating: Double?, runtime: Int?, movieCount: Int, movies: [Movie]?) {
+    init(id: String,
+         name: String,
+         description: String?,
+         backdropPath: String?,
+         averageRating: Double?,
+         runtime: Int?,
+         movieCount: Int,
+         movies: [Movie]?) {
         self.id = id
         self.name = name
         self.description = description
