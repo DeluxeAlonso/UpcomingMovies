@@ -29,6 +29,24 @@ struct List: Decodable {
 
     // MARK: - Initializer
 
+    init(id: String,
+         name: String,
+         description: String?,
+         backdropPath: String?,
+         averageRating: Double?,
+         runtime: Int?,
+         movieCount: Int,
+         movies: [Movie]?) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.backdropPath = backdropPath
+        self.averageRating = averageRating
+        self.runtime = runtime
+        self.movieCount = movieCount
+        self.movies = movies
+    }
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -56,6 +74,23 @@ extension List: DomainConvertible {
         return UpcomingMoviesDomain.List(id: id, name: name, description: description,
                                          backdropPath: backdropPath, averageRating: averageRating,
                                          runtime: runtime, movieCount: movieCount, movies: movies)
+    }
+
+}
+
+extension List {
+
+    static func create(id: String = "1",
+                       name: String = "Test",
+                       description: String = "Test",
+                       backdropPath: String? = nil,
+                       averageRating: Double? = nil,
+                       runtime: Int? = nil,
+                       movieCount: Int = 1,
+                       movies: [Movie]? = [Movie.create()]) -> List {
+        return List(id: id, name: name, description: description,
+                    backdropPath: backdropPath, averageRating: averageRating,
+                    runtime: runtime, movieCount: movieCount, movies: movies)
     }
 
 }
