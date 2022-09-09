@@ -137,7 +137,7 @@ class AccountRemoteDataSourceTests: XCTestCase {
         XCTAssertEqual(accountClient.getWatchlistCallCount, 0)
     }
 
-    func testRecommendedListSuccess() throws {
+    func testGetRecommendedListSuccess() throws {
         // Arrange
         authManager.accessToken = .init(token: "", accountId: "")
         let moviesToTest = [NetworkInfrastructure.Movie.create(id: 1)]
@@ -243,6 +243,60 @@ class AccountRemoteDataSourceTests: XCTestCase {
         dataSource.getCustomLists(page: 1) { _ in }
         // Assert
         XCTAssertEqual(accountClient.getCustomListsCallCount, 0)
+    }
+
+    func testGetCustomListMoviesSuccess() throws {
+        // Arrange
+        authManager.accessToken = .init(token: "", accountId: "")
+        let moviesToTest = [NetworkInfrastructure.Movie.create(id: 1)]
+        accountClient.getCustomListMoviesResult = .success(MovieResult.init(results: moviesToTest, currentPage: 1, totalPages: 1))
+
+        let expectation = XCTestExpectation(description: "Should get recommended list")
+        // Act
+        dataSource.getCustomListMovies(listId: "1") { movies in
+            guard let movies = try? movies.get() else {
+                XCTFail("No valid movies")
+                return
+            }
+            XCTAssertEqual(movies, moviesToTest.map { $0.asDomain() })
+            expectation.fulfill()
+        }
+        // Assert
+        XCTAssertEqual(accountClient.getCustomListMoviesCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetCustomListMoviesFailure() throws {
+        // Arrange
+        authManager.accessToken = .init(token: "", accountId: "")
+        let errorToTest = APIError.badRequest
+        accountClient.getCustomListMoviesResult = .failure(errorToTest)
+
+        let expectation = XCTestExpectation(description: "Should get an error")
+        // Act
+        dataSource.getCustomListMovies(listId: "1") { movies in
+            switch movies {
+            case .success:
+                XCTFail("Should throw an error")
+            case .failure(let error):
+                XCTAssertEqual(error as? APIError, errorToTest)
+                expectation.fulfill()
+            }
+        }
+        // Assert
+        XCTAssertEqual(accountClient.getCustomListMoviesCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetCustomListMoviesNilAccessToken() throws {
+        // Arrange
+        authManager.accessToken = nil
+        let moviesToTest = [NetworkInfrastructure.Movie.create(id: 1)]
+        accountClient.getCustomListMoviesResult = .success(MovieResult.init(results: moviesToTest, currentPage: 1, totalPages: 1))
+        // Act
+        dataSource.getCustomListMovies(listId: "1") { _ in }
+        // Assert
+        XCTAssertEqual(accountClient.getCustomListMoviesCallCount, 0)
     }
 
 }
