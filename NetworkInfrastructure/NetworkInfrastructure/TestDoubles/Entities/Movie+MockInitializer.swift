@@ -5,8 +5,6 @@
 //  Created by Alonso on 9/09/22.
 //
 
-import Foundation
-
 extension Movie {
 
     static func create(id: Int = 1,
