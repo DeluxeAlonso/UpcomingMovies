@@ -307,7 +307,7 @@ class AccountRemoteDataSourceTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Should get user account")
         // Act
-        dataSource.getAccountDetail() { user in
+        dataSource.getAccountDetail { user in
             guard let user = try? user.get() else {
                 XCTFail("No valid user")
                 return
@@ -328,8 +328,8 @@ class AccountRemoteDataSourceTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Should get an error")
         // Act
-        dataSource.getAccountDetail() { movies in
-            switch movies {
+        dataSource.getAccountDetail { user in
+            switch user {
             case .success:
                 XCTFail("Should throw an error")
             case .failure(let error):
