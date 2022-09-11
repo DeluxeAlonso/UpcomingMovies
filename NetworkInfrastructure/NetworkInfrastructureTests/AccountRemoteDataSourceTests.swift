@@ -299,4 +299,58 @@ class AccountRemoteDataSourceTests: XCTestCase {
         XCTAssertEqual(accountClient.getCustomListMoviesCallCount, 0)
     }
 
+    func testGetAccountDetailSuccess() throws {
+        // Arrange
+        authManager.userAccount = .init(accountId: 1, sessionId: "sessionId")
+        let userToTest = NetworkInfrastructure.User.create()
+        accountClient.getAccountDetailResult = .success(userToTest)
+
+        let expectation = XCTestExpectation(description: "Should get user account")
+        // Act
+        dataSource.getAccountDetail() { user in
+            guard let user = try? user.get() else {
+                XCTFail("No valid user")
+                return
+            }
+            XCTAssertEqual(user, userToTest.asDomain())
+            expectation.fulfill()
+        }
+        // Assert
+        XCTAssertEqual(accountClient.getAccountDetailCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetAccountDetailFailure() throws {
+        // Arrange
+        authManager.userAccount = .init(accountId: 1, sessionId: "sessionId")
+        let errorToTest = APIError.badRequest
+        accountClient.getAccountDetailResult = .failure(errorToTest)
+
+        let expectation = XCTestExpectation(description: "Should get an error")
+        // Act
+        dataSource.getAccountDetail() { movies in
+            switch movies {
+            case .success:
+                XCTFail("Should throw an error")
+            case .failure(let error):
+                XCTAssertEqual(error as? APIError, errorToTest)
+                expectation.fulfill()
+            }
+        }
+        // Assert
+        XCTAssertEqual(accountClient.getAccountDetailCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetAccountDetailNilUserAccount() throws {
+        // Arrange
+        authManager.userAccount = nil
+        let userToTest = NetworkInfrastructure.User.create()
+        accountClient.getAccountDetailResult = .success(userToTest)
+        // Act
+        dataSource.getAccountDetail { _ in }
+        // Assert
+        XCTAssertEqual(accountClient.getAccountDetailCallCount, 0)
+    }
+
 }
