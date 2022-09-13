@@ -25,4 +25,5 @@ attributes:
 private_over_fileprivate:
   validate_extensions: true
 type_body_length:
-  excluded: ".*Test\\.swift"
+  excluded:
+    - NetworkInfrastructure/NetworkInfrastructureTests
