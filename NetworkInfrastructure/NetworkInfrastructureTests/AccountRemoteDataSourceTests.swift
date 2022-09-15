@@ -363,7 +363,7 @@ class AccountRemoteDataSourceTests: XCTestCase {
         // Act
         dataSource.markMovieAsFavorite(movieId: 1, favorite: markedAsFavorite) { favorite in
             guard let favorite = try? favorite.get() else {
-                XCTFail("No valid favorite response")
+                XCTFail("No valid favorite marking response")
                 return
             }
             XCTAssertEqual(favorite, markedAsFavorite)
