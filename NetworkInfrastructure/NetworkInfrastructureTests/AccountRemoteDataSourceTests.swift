@@ -353,4 +353,57 @@ class AccountRemoteDataSourceTests: XCTestCase {
         XCTAssertEqual(accountClient.getAccountDetailCallCount, 0)
     }
 
+    func testMarkMovieAsFavoriteSuccess() throws {
+        // Arrange
+        authManager.userAccount = .init(accountId: 1, sessionId: "sessionId")
+        let markedAsFavorite = true
+        accountClient.markAsFavoriteResult = .success(.init(statusCode: 200, statusMessage: "Success"))
+
+        let expectation = XCTestExpectation(description: "Should get a success response for favorite marking")
+        // Act
+        dataSource.markMovieAsFavorite(movieId: 1, favorite: markedAsFavorite) { favorite in
+            guard let favorite = try? favorite.get() else {
+                XCTFail("No valid favorite marking response")
+                return
+            }
+            XCTAssertEqual(favorite, markedAsFavorite)
+            expectation.fulfill()
+        }
+        // Assert
+        XCTAssertEqual(accountClient.markAsFavoriteCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testMarkMovieAsFavoriteFailure() throws {
+        // Arrange
+        authManager.userAccount = .init(accountId: 1, sessionId: "sessionId")
+        let errorToTest = APIError.badRequest
+        accountClient.markAsFavoriteResult = .failure(errorToTest)
+
+        let expectation = XCTestExpectation(description: "Should get an error")
+        // Act
+        dataSource.markMovieAsFavorite(movieId: 1, favorite: true) { user in
+            switch user {
+            case .success:
+                XCTFail("Should throw an error")
+            case .failure(let error):
+                XCTAssertEqual(error as? APIError, errorToTest)
+                expectation.fulfill()
+            }
+        }
+        // Assert
+        XCTAssertEqual(accountClient.markAsFavoriteCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testMarkMovieAsFavoriteNilUserAccount() throws {
+        // Arrange
+        authManager.userAccount = nil
+        accountClient.markAsFavoriteResult = .success(.init(statusCode: 200, statusMessage: "Success"))
+        // Act
+        dataSource.markMovieAsFavorite(movieId: 1, favorite: true) { _ in }
+        // Assert
+        XCTAssertEqual(accountClient.markAsFavoriteCallCount, 0)
+    }
+
 }
