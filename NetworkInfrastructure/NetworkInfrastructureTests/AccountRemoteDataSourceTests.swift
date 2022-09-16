@@ -245,6 +245,18 @@ class AccountRemoteDataSourceTests: XCTestCase {
         XCTAssertEqual(accountClient.getCustomListsCallCount, 0)
     }
 
+    func testGetCustomListNilListResult() throws {
+        // Arrange
+        authManager.accessToken = .init(token: "", accountId: "")
+        accountClient.getCustomListsResult = .success(nil)
+        // Act
+        dataSource.getCustomLists(page: 1) { _ in
+            XCTFail("Should not receive any custom list")
+        }
+        // Assert
+        XCTAssertEqual(accountClient.getCustomListsCallCount, 1)
+    }
+
     func testGetCustomListMoviesSuccess() throws {
         // Arrange
         authManager.accessToken = .init(token: "", accountId: "")
