@@ -406,4 +406,56 @@ class AccountRemoteDataSourceTests: XCTestCase {
         XCTAssertEqual(accountClient.markAsFavoriteCallCount, 0)
     }
 
+    func testAddToWatchlistSuccess() throws {
+        // Arrange
+        authManager.userAccount = .init(accountId: 1, sessionId: "sessionId")
+        let markedAsFavorite = true
+        accountClient.addToWatchlistResult = .success(.init(statusCode: 200, statusMessage: "Success"))
+
+        let expectation = XCTestExpectation(description: "Should get a success response for watchlist adding")
+        // Act
+        dataSource.addToWatchlist(movieId: 1, watchlist: markedAsFavorite) { favorite in
+            guard let favorite = try? favorite.get() else {
+                XCTFail("No valid watchlist adding response")
+                return
+            }
+            XCTAssertEqual(favorite, markedAsFavorite)
+            expectation.fulfill()
+        }
+        // Assert
+        XCTAssertEqual(accountClient.addToWatchlistCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testAddToWatchlistFailure() throws {
+        // Arrange
+        authManager.userAccount = .init(accountId: 1, sessionId: "sessionId")
+        let errorToTest = APIError.badRequest
+        accountClient.addToWatchlistResult = .failure(errorToTest)
+
+        let expectation = XCTestExpectation(description: "Should get an error")
+        // Act
+        dataSource.addToWatchlist(movieId: 1, watchlist: true) { user in
+            switch user {
+            case .success:
+                XCTFail("Should throw an error")
+            case .failure(let error):
+                XCTAssertEqual(error as? APIError, errorToTest)
+                expectation.fulfill()
+            }
+        }
+        // Assert
+        XCTAssertEqual(accountClient.addToWatchlistCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testAddToWatchlistNilUserAccount() throws {
+        // Arrange
+        authManager.userAccount = nil
+        accountClient.addToWatchlistResult = .success(.init(statusCode: 200, statusMessage: "Success"))
+        // Act
+        dataSource.addToWatchlist(movieId: 1, watchlist: true) { _ in }
+        // Assert
+        XCTAssertEqual(accountClient.addToWatchlistCallCount, 0)
+    }
 }
