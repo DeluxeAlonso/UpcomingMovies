@@ -317,7 +317,7 @@ class AccountRemoteDataSourceTests: XCTestCase {
         accountClient.getCustomListMoviesResult = .success(nil)
         // Act
         dataSource.getCustomListMovies(listId: "1") { _ in
-            XCTFail("Should not receive any custom list movie")
+            XCTFail("Should not receive any custom list movies")
         }
         // Assert
         XCTAssertEqual(accountClient.getCustomListMoviesCallCount, 1)
