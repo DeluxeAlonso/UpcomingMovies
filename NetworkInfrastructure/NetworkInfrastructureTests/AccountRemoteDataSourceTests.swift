@@ -191,6 +191,18 @@ class AccountRemoteDataSourceTests: XCTestCase {
         XCTAssertEqual(accountClient.getRecommendedListCallCount, 0)
     }
 
+    func testGetRecommendedListNilListResult() throws {
+        // Arrange
+        authManager.accessToken = .init(token: "", accountId: "")
+        accountClient.getRecommendedListResult = .success(nil)
+        // Act
+        dataSource.getRecommendedList(page: 1) { _ in
+            XCTFail("Should not receive any recommended list")
+        }
+        // Assert
+        XCTAssertEqual(accountClient.getRecommendedListCallCount, 1)
+    }
+
     func testGetCustomListsSuccess() throws {
         // Arrange
         authManager.accessToken = .init(token: "", accountId: "")
