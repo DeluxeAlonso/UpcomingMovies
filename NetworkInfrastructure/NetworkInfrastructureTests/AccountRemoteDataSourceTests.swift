@@ -197,7 +197,7 @@ class AccountRemoteDataSourceTests: XCTestCase {
         accountClient.getRecommendedListResult = .success(nil)
         // Act
         dataSource.getRecommendedList(page: 1) { _ in
-            XCTFail("Should not receive any custom list")
+            XCTFail("Should not receive any recommended list")
         }
         // Assert
         XCTAssertEqual(accountClient.getRecommendedListCallCount, 1)
