@@ -50,6 +50,10 @@ final class Bindable<T> {
 
 extension Bindable where T == Void {
 
+    convenience init() {
+        self.init(Void())
+    }
+
     func fire() {
         sendValue()
     }
