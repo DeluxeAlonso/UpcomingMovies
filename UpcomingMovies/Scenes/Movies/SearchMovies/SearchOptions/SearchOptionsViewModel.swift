@@ -19,7 +19,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
 
     let viewState: Bindable<SearchOptionsViewState> = Bindable(.emptyMovieVisits)
 
-    var needsContentReload: Bindable<Void> = Bindable(())
+    var needsContentReload: Bindable<Void> = Bindable()
     var updateVisitedMovies: Bindable<Int?> = Bindable(nil)
 
     var selectedDefaultSearchOption: Bindable<DefaultSearchOption?> = Bindable(nil)

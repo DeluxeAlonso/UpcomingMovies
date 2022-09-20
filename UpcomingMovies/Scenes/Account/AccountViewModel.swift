@@ -14,8 +14,8 @@ final class AccountViewModel: AccountViewModelProtocol {
     private let interactor: AccountInteractorProtocol
 
     var showAuthPermission: Bindable<URL?> = Bindable(nil)
-    var didSignIn: Bindable<Void> = Bindable(())
-    var didReceiveError: Bindable<Void> = Bindable(())
+    var didSignIn: Bindable<Void> = Bindable()
+    var didReceiveError: Bindable<Void> = Bindable()
 
     // MARK: - Initializers
 
