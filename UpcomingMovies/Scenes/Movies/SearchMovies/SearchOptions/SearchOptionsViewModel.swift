@@ -25,7 +25,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     var selectedDefaultSearchOption: Bindable<DefaultSearchOption?> = Bindable(nil)
     var selectedMovieGenre: Bindable<(Int?, String?)> = Bindable((nil, nil))
     // TODO: - Move this to Bindable
-    var selectedRecentlyVisitedMovie: ((Int, String) -> Void)?
+    var selectedRecentlyVisitedMovie: Bindable<(Int, String)?> = Bindable(nil)
 
     // MARK: - Computed properties
 
@@ -111,7 +111,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
 
     func getRecentlyVisitedMovieSelection(by index: Int) {
         let selectedVisitedMovie = movieVisits[index]
-        selectedRecentlyVisitedMovie?(selectedVisitedMovie.id, selectedVisitedMovie.title)
+        selectedRecentlyVisitedMovie.value = (selectedVisitedMovie.id, selectedVisitedMovie.title)
     }
 
     // MARK: - Private

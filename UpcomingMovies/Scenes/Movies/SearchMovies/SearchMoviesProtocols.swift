@@ -58,7 +58,7 @@ protocol SearchOptionsViewModelProtocol {
 
     var selectedDefaultSearchOption: Bindable<DefaultSearchOption?> { get }
     var selectedMovieGenre: Bindable<(Int?, String?)> { get }
-    var selectedRecentlyVisitedMovie: ((Int, String) -> Void)? { get set }
+    var selectedRecentlyVisitedMovie: Bindable<(Int, String)?> { get }
 
     var visitedMovieCells: [VisitedMovieCellViewModelProtocol] { get }
     var genreCells: [GenreSearchOptionCellViewModelProtocol] { get }
