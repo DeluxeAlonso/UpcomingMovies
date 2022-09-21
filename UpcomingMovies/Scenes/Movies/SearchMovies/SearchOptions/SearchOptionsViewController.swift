@@ -86,10 +86,10 @@ class SearchOptionsViewController: UITableViewController, Storyboarded {
                                                                   andGenreName: genreName)
         }, on: .main)
 
-        viewModel?.selectedRecentlyVisitedMovie = { [weak self] id, title in
-            guard let self = self else { return }
-            self.delegate?.searchOptionsViewController(self, didSelectRecentlyVisitedMovie: id, title: title)
-        }
+        viewModel?.selectedRecentlyVisitedMovie.bind({ [weak self] movieVisit in
+            guard let self = self, let movieVisit = movieVisit else { return }
+            self.delegate?.searchOptionsViewController(self, didSelectRecentlyVisitedMovie: movieVisit.0, title: movieVisit.1)
+        }, on: .main)
     }
 
     // MARK: - Table view delegate
