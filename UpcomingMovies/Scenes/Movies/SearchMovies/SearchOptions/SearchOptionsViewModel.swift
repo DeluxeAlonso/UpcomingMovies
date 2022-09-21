@@ -23,7 +23,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     let updateVisitedMovies: Bindable<Int?> = Bindable(nil)
 
     let selectedDefaultSearchOption: Bindable<DefaultSearchOption?> = Bindable(nil)
-    let selectedMovieGenre: Bindable<(Int?, String?)> = Bindable((nil, nil))
+    let selectedMovieGenre: Bindable<(Int, String)?> = Bindable(nil)
     let selectedRecentlyVisitedMovie: Bindable<(Int, String)?> = Bindable(nil)
 
     // MARK: - Computed properties
