@@ -75,15 +75,9 @@ class SearchOptionsViewController: UITableViewController, Storyboarded {
             self.delegate?.searchOptionsViewController(self, didSelectDefaultSearchOption: option)
         }, on: .main)
 
-        viewModel?.selectedMovieGenre.bind({ [weak self] (genreId, genreName) in
-            guard let self = self,
-                let genreId = genreId,
-                let genreName = genreName else {
-                    return
-            }
-            self.delegate?.searchOptionsViewController(self,
-                                                                  didSelectMovieGenreWithId: genreId,
-                                                                  andGenreName: genreName)
+        viewModel?.selectedMovieGenre.bind({ [weak self] movieGenre in
+            guard let self = self, let movieGenre = movieGenre else { return }
+            self.delegate?.searchOptionsViewController(self, didSelectMovieGenreWithId: movieGenre.0, andGenreName: movieGenre.1)
         }, on: .main)
 
         viewModel?.selectedRecentlyVisitedMovie.bind({ [weak self] movieVisit in
