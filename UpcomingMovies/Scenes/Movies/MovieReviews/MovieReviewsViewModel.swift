@@ -16,7 +16,7 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
     private let interactor: MovieReviewsInteractorProtocol
 
     // MARK: - Reactive properties
-    
+
     let viewState: Bindable<SimpleViewState<Review>> = Bindable(.initial)
     let startLoading: Bindable<Bool> = Bindable(false)
 
