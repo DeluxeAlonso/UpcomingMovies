@@ -19,7 +19,7 @@ final class SplashViewModel: SplashViewModelProtocol {
 
     // MARK: - Properties
 
-    var initialDownloadsEnded: Bindable<Void> = Bindable()
+    let initialDownloadsEnded: Bindable<Void> = Bindable()
 
     // MARK: - Initializers
 

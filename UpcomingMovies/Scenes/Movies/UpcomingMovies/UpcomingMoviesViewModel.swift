@@ -17,8 +17,8 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
 
     // MARK: - Reactive properties
 
-    private(set) var viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
-    private(set) var startLoading: Bindable<Bool> = Bindable(false)
+    let viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
+    let startLoading: Bindable<Bool> = Bindable(false)
 
     // MARK: - Computed properties
 
