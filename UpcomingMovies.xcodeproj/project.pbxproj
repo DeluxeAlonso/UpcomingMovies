@@ -1211,10 +1211,10 @@
 		E22116B2219156F10039F8C9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E289D88828E15B9C00EA0155 /* Bindable */,
 				E265BCE6279C56BC00BA3176 /* Localization */,
 				E26EB50925CF508300AFE4A6 /* BaseConfiguration */,
 				E208FC4C263523D0008593D8 /* SimpleViewState */,
-				E22116B3219157020039F8C9 /* Bindable.swift */,
 				E289DB9123DCAE03008B2163 /* UIConstants.swift */,
 				E260116D219388B700E53095 /* FontHelper.swift */,
 				E260116F219388C500E53095 /* ColorPalette.swift */,
@@ -1849,6 +1849,14 @@
 				E286770C2485F9FF006685F8 /* ScaleTransitioningDelegate.swift */,
 			);
 			path = ScaleTransition;
+			sourceTree = "<group>";
+		};
+		E289D88828E15B9C00EA0155 /* Bindable */ = {
+			isa = PBXGroup;
+			children = (
+				E22116B3219157020039F8C9 /* Bindable.swift */,
+			);
+			path = Bindable;
 			sourceTree = "<group>";
 		};
 		E291266F250DD03F007AD101 /* DependencyInjection */ = {
