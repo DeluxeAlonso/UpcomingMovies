@@ -27,7 +27,7 @@ protocol MovieDetailViewModelProtocol {
     var showGenreName: Bindable<String> { get }
     var showMovieOptions: Bindable<[MovieDetailOption]> { get }
     var didSetupMovieDetail: Bindable<Bool> { get }
-    var showSuccessAlert: Bindable<String> { get }
+    var showSuccessAlert: PublishBindable<String> { get }
     var showErrorAlert: Bindable<Error?> { get }
     var didSelectShareAction: Bindable<Bool> { get }
     var movieAccountState: Bindable<MovieAccountStateModel?> { get }
