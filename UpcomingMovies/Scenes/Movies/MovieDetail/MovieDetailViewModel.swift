@@ -20,7 +20,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     let startLoading: Bindable<Bool> = Bindable(false)
 
-    let showErrorRetryView: Bindable<Error?> = Bindable(nil)
     let showGenreName: Bindable<String> = Bindable("-")
     let showMovieOptions: Bindable<[MovieDetailOption]> = Bindable([])
 
@@ -28,6 +27,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     let showSuccessAlert: PublishBindable<String> = PublishBindable()
     let showErrorAlert: PublishBindable<Error> = PublishBindable()
+    let showErrorRetryView: PublishBindable<Error> = PublishBindable()
 
     let didSelectShareAction: Bindable<Bool> = Bindable(true)
 
@@ -124,7 +124,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
                 self.setupMovie(movie)
                 self.checkMovieAccountState()
             case .failure(let error):
-                self.showErrorRetryView.value = error
+                self.showErrorRetryView.send(error)
             }
         })
     }
