@@ -27,7 +27,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     let didSetupMovieDetail: Bindable<Bool> = Bindable(true)
 
     let showSuccessAlert: PublishBindable<String> = PublishBindable()
-    let showErrorAlert: Bindable<Error?> = Bindable(nil)
+    let showErrorAlert: PublishBindable<Error> = PublishBindable()
 
     let didSelectShareAction: Bindable<Bool> = Bindable(true)
 
@@ -161,7 +161,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
                 let message = newFavoriteValue ? LocalizedStrings.addToFavoritesSuccess() : LocalizedStrings.removeFromFavoritesSuccess()
                 self.showSuccessAlert.send(message)
             case .failure(let error):
-                self.showErrorAlert.value = error
+                self.showErrorAlert.send(error)
             }
         })
     }
@@ -174,7 +174,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             case .success:
                 self.updateWatchlistState(isInWatchlist: true)
             case .failure(let error):
-                self.showErrorAlert.value = error
+                self.showErrorAlert.send(error)
             }
         }
     }
@@ -185,7 +185,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             case .success:
                 self.updateWatchlistState(isInWatchlist: false)
             case .failure(let error):
-                self.showErrorAlert.value = error
+                self.showErrorAlert.send(error)
             }
         }
     }
