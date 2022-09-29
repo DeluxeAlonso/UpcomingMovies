@@ -20,14 +20,14 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     let startLoading: Bindable<Bool> = Bindable(false)
 
-    let showErrorRetryView: Bindable<Error?> = Bindable(nil)
     let showGenreName: Bindable<String> = Bindable("-")
     let showMovieOptions: Bindable<[MovieDetailOption]> = Bindable([])
 
     let didSetupMovieDetail: Bindable<Bool> = Bindable(true)
 
     let showSuccessAlert: PublishBindable<String> = PublishBindable()
-    let showErrorAlert: Bindable<Error?> = Bindable(nil)
+    let showErrorAlert: PublishBindable<Error> = PublishBindable()
+    let showErrorRetryView: PublishBindable<Error> = PublishBindable()
 
     let didSelectShareAction: Bindable<Bool> = Bindable(true)
 
@@ -124,7 +124,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
                 self.setupMovie(movie)
                 self.checkMovieAccountState()
             case .failure(let error):
-                self.showErrorRetryView.value = error
+                self.showErrorRetryView.send(error)
             }
         })
     }
@@ -161,7 +161,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
                 let message = newFavoriteValue ? LocalizedStrings.addToFavoritesSuccess() : LocalizedStrings.removeFromFavoritesSuccess()
                 self.showSuccessAlert.send(message)
             case .failure(let error):
-                self.showErrorAlert.value = error
+                self.showErrorAlert.send(error)
             }
         })
     }
@@ -174,7 +174,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             case .success:
                 self.updateWatchlistState(isInWatchlist: true)
             case .failure(let error):
-                self.showErrorAlert.value = error
+                self.showErrorAlert.send(error)
             }
         }
     }
@@ -185,7 +185,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             case .success:
                 self.updateWatchlistState(isInWatchlist: false)
             case .failure(let error):
-                self.showErrorAlert.value = error
+                self.showErrorAlert.send(error)
             }
         }
     }

@@ -168,7 +168,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     private func setupErrorBindables() {
         viewModel?.showErrorRetryView.bind({ [weak self] error in
-            guard let self = self, let error = error else { return }
+            guard let self = self else { return }
             self.showErrorView(error: error)
         }, on: .main)
     }
@@ -180,7 +180,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         }, on: .main)
 
         viewModel?.showErrorAlert.bind({ [weak self] error in
-            guard let self = self, let error = error else { return }
+            guard let self = self else { return }
             self.view.showFailureToast(withMessage: error.localizedDescription)
         }, on: .main)
     }
