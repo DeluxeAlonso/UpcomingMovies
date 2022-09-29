@@ -13,7 +13,7 @@ final class AccountViewModel: AccountViewModelProtocol {
 
     private let interactor: AccountInteractorProtocol
 
-    let showAuthPermission: Bindable<URL?> = Bindable(nil)
+    let showAuthPermission: PublishBindable<URL> = PublishBindable()
     let didSignIn: Bindable<Void> = Bindable()
     let didReceiveError: Bindable<Void> = Bindable()
 
@@ -29,7 +29,7 @@ final class AccountViewModel: AccountViewModelProtocol {
         interactor.getAuthPermissionURL { result in
             switch result {
             case .success(let url):
-                self.showAuthPermission.value = url
+                self.showAuthPermission.send(url)
             case .failure:
                 self.didReceiveError.fire()
             }

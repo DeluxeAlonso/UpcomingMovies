@@ -66,7 +66,7 @@ class AccountViewController: UIViewController, Storyboarded {
 
     private func setupBindables() {
         viewModel.showAuthPermission.bind { [weak self] authPermissionURL in
-            guard let self = self, let authPermissionURL = authPermissionURL else { return }
+            guard let self = self else { return }
             self.coordinator?.showAuthPermission(for: authPermissionURL, and: self)
         }
 
