@@ -37,4 +37,3 @@ extension PublishBindable where T == Void {
     }
 
 }
-
