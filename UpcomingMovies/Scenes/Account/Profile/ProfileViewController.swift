@@ -66,10 +66,10 @@ class ProfileViewController: UITableViewController, Storyboarded {
     // MARK: - Reactive Behavior
 
     private func setupBindables() {
-        viewModel?.reloadAccountInfo = { [weak self] in
+        viewModel?.reloadAccountInfo.bind({ [weak self] _ in
             guard let self = self else { return }
             self.reloadAccountInfo()
-        }
+        }, on: .main)
     }
 
     // MARK: - Table view delegate
