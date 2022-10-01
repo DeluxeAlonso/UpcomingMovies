@@ -48,7 +48,7 @@ final class BehaviorBindable<T> {
 
 }
 
-extension Bindable where T == Void {
+extension BehaviorBindable where T == Void {
 
     convenience init() {
         self.init(Void())
