@@ -29,3 +29,12 @@ final class PublishBindable<T> {
     }
 
 }
+
+extension PublishBindable where T == Void {
+
+    func send() {
+        send(())
+    }
+
+}
+
