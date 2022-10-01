@@ -38,7 +38,7 @@ class ProfileViewModelTests: XCTestCase {
         let userToTest = User.with(name: "Alonso")
         let expectation = XCTestExpectation(description: "Reload account info")
         // Act
-        viewModelToTest.reloadAccountInfo = {
+        viewModelToTest.reloadAccountInfo.bind { _ in
             expectation.fulfill()
         }
         mockInteractor.getAccountDetailResult = .success(userToTest)
@@ -53,9 +53,10 @@ class ProfileViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Should not reload account info")
         expectation.isInverted = true
         // Act
-        viewModelToTest.reloadAccountInfo = {
+        viewModelToTest.reloadAccountInfo.bind { _ in
             expectation.fulfill()
         }
+
         mockInteractor.getAccountDetailResult = .success(userToTest)
         viewModelToTest.getAccountDetails()
         // Assert
@@ -68,9 +69,10 @@ class ProfileViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Should not reload account info")
         expectation.isInverted = true
         // Act
-        viewModelToTest.reloadAccountInfo = {
+        viewModelToTest.reloadAccountInfo.bind { _ in
             expectation.fulfill()
         }
+
         mockInteractor.getAccountDetailResult = Result.failure(errorToTest)
         viewModelToTest.getAccountDetails()
         // Assert

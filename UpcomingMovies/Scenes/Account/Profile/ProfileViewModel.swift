@@ -17,7 +17,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     private let interactor: ProfileInteractorProtocol
     private let factory: ProfileFactoryProtocol
 
-    var reloadAccountInfo: (() -> Void)?
+    let reloadAccountInfo: PublishBindable<Void> = PublishBindable()
 
     // MARK: - Computed properties
 
@@ -75,7 +75,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
             // If there is no update to display we don't reload user account info
             if self.userAccount != user {
                 self.userAccount = user
-                self.reloadAccountInfo?()
+                self.reloadAccountInfo.send()
             }
         }
     }

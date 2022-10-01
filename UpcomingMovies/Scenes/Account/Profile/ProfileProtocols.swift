@@ -12,7 +12,7 @@ protocol ProfileViewModelProtocol {
 
     var userInfoCell: ProfileAccountInforCellViewModelProtocol? { get }
 
-    var reloadAccountInfo: (() -> Void)? { get set }
+    var reloadAccountInfo: PublishBindable<Void> { get }
 
     func section(at index: Int) -> ProfileSection
     func numberOfSections() -> Int
