@@ -10,9 +10,9 @@ import Foundation
 
 protocol Bindable {
 
-    associatedtype T
+    associatedtype Model
 
-    func bind(_ listener: @escaping ((T) -> Void), on dispatchQueue: DispatchQueue?)
-    func bindAndFire(_ listener: @escaping ((T) -> Void), on dispatchQueue: DispatchQueue?)
+    func bind(_ listener: @escaping ((Model) -> Void), on dispatchQueue: DispatchQueue?)
+    func bindAndFire(_ listener: @escaping ((Model) -> Void), on dispatchQueue: DispatchQueue?)
 
 }
