@@ -132,6 +132,9 @@
 		E22588A62243280600E1327E /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A52243280600E1327E /* SignInViewController.swift */; };
 		E22588A92243281F00E1327E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A82243281F00E1327E /* ProfileViewController.swift */; };
 		E2266506247E13D900E12326 /* DataSourcePrefetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2266505247E13D900E12326 /* DataSourcePrefetching.swift */; };
+		E22671A928E94BBB003AA27C /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22671A828E94BBB003AA27C /* Bindable.swift */; };
+		E22671AB28E95396003AA27C /* PublishBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22671AA28E95396003AA27C /* PublishBindable.swift */; };
+		E22671AD28E953A1003AA27C /* BehaviorBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22671AC28E953A1003AA27C /* BehaviorBindable.swift */; };
 		E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */; };
 		E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64A21FFA099004AA771 /* UIView+Extensions.swift */; };
 		E228430F250ED1A900F053DE /* HandlerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E228430E250ED1A900F053DE /* HandlerAssembly.swift */; };
@@ -230,7 +233,7 @@
 		E274551025130BCC000847A4 /* MovieListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E274550F25130BCC000847A4 /* MovieListAssembly.swift */; };
 		E2748DE92838B7E200CD2BA2 /* MovieCreditCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2748DE82838B7E200CD2BA2 /* MovieCreditCellViewModelTests.swift */; };
 		E27C019D280BFDD1000C510A /* MovieDetailActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C019C280BFDD1000C510A /* MovieDetailActionModel.swift */; };
-		E27DFD7B28E8D22900A61F3D /* BehaviorBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27DFD7A28E8D22900A61F3D /* BehaviorBindable.swift */; };
+		E27DFD7B28E8D22900A61F3D /* BehaviorStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27DFD7A28E8D22900A61F3D /* BehaviorStream.swift */; };
 		E27DFD7F28E8D3E700A61F3D /* BindableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27DFD7E28E8D3E600A61F3D /* BindableProtocol.swift */; };
 		E2825DCD24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2825DCC24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift */; };
 		E28366762470E641008E2544 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28366752470E641008E2544 /* UIImageView+Extensions.swift */; };
@@ -245,7 +248,7 @@
 		E286770B2485E714006685F8 /* ScaleAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E286770A2485E714006685F8 /* ScaleAnimator.swift */; };
 		E286770D2485F9FF006685F8 /* ScaleTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E286770C2485F9FF006685F8 /* ScaleTransitioningDelegate.swift */; };
 		E288620924B174B800E12487 /* ToggleBarButtonItemDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E288620824B174B800E12487 /* ToggleBarButtonItemDisplay.swift */; };
-		E289D88A28E15C2600EA0155 /* PublishBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E289D88928E15C2600EA0155 /* PublishBindable.swift */; };
+		E289D88A28E15C2600EA0155 /* PublishStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = E289D88928E15C2600EA0155 /* PublishStream.swift */; };
 		E289DB9023DCA25D008B2163 /* ProfileOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E289DB8F23DCA25D008B2163 /* ProfileOptions.swift */; };
 		E289DB9223DCAE04008B2163 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E289DB9123DCAE03008B2163 /* UIConstants.swift */; };
 		E28A68D124D79F9900D20E52 /* MovieVideosInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28A68D024D79F9900D20E52 /* MovieVideosInteractor.swift */; };
@@ -555,6 +558,9 @@
 		E22588A52243280600E1327E /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		E22588A82243281F00E1327E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E2266505247E13D900E12326 /* DataSourcePrefetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourcePrefetching.swift; sourceTree = "<group>"; };
+		E22671A828E94BBB003AA27C /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		E22671AA28E95396003AA27C /* PublishBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishBindable.swift; sourceTree = "<group>"; };
+		E22671AC28E953A1003AA27C /* BehaviorBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorBindable.swift; sourceTree = "<group>"; };
 		E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailBackdropView.swift; sourceTree = "<group>"; };
 		E226C64A21FFA099004AA771 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		E228430E250ED1A900F053DE /* HandlerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerAssembly.swift; sourceTree = "<group>"; };
@@ -649,7 +655,7 @@
 		E274550F25130BCC000847A4 /* MovieListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListAssembly.swift; sourceTree = "<group>"; };
 		E2748DE82838B7E200CD2BA2 /* MovieCreditCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditCellViewModelTests.swift; sourceTree = "<group>"; };
 		E27C019C280BFDD1000C510A /* MovieDetailActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailActionModel.swift; sourceTree = "<group>"; };
-		E27DFD7A28E8D22900A61F3D /* BehaviorBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorBindable.swift; sourceTree = "<group>"; };
+		E27DFD7A28E8D22900A61F3D /* BehaviorStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorStream.swift; sourceTree = "<group>"; };
 		E27DFD7E28E8D3E600A61F3D /* BindableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableProtocol.swift; sourceTree = "<group>"; };
 		E2825DCC24A5B6E20093F0A1 /* SavedMoviesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMoviesCoordinator.swift; sourceTree = "<group>"; };
 		E28366752470E641008E2544 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -664,7 +670,7 @@
 		E286770A2485E714006685F8 /* ScaleAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleAnimator.swift; sourceTree = "<group>"; };
 		E286770C2485F9FF006685F8 /* ScaleTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleTransitioningDelegate.swift; sourceTree = "<group>"; };
 		E288620824B174B800E12487 /* ToggleBarButtonItemDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleBarButtonItemDisplay.swift; sourceTree = "<group>"; };
-		E289D88928E15C2600EA0155 /* PublishBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishBindable.swift; sourceTree = "<group>"; };
+		E289D88928E15C2600EA0155 /* PublishStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishStream.swift; sourceTree = "<group>"; };
 		E289DB8F23DCA25D008B2163 /* ProfileOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOptions.swift; sourceTree = "<group>"; };
 		E289DB9123DCAE03008B2163 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		E28A68D024D79F9900D20E52 /* MovieVideosInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideosInteractor.swift; sourceTree = "<group>"; };
@@ -1860,10 +1866,13 @@
 		E289D88828E15B9C00EA0155 /* Bindable */ = {
 			isa = PBXGroup;
 			children = (
-				E27DFD7E28E8D3E600A61F3D /* BindableProtocol.swift */,
+				E22671A828E94BBB003AA27C /* Bindable.swift */,
 				E22116B3219157020039F8C9 /* Bindable_Deprecated.swift */,
-				E289D88928E15C2600EA0155 /* PublishBindable.swift */,
-				E27DFD7A28E8D22900A61F3D /* BehaviorBindable.swift */,
+				E27DFD7E28E8D3E600A61F3D /* BindableProtocol.swift */,
+				E289D88928E15C2600EA0155 /* PublishStream.swift */,
+				E27DFD7A28E8D22900A61F3D /* BehaviorStream.swift */,
+				E22671AA28E95396003AA27C /* PublishBindable.swift */,
+				E22671AC28E953A1003AA27C /* BehaviorBindable.swift */,
 			);
 			path = Bindable;
 			sourceTree = "<group>";
@@ -2578,6 +2587,7 @@
 				E2EB923B221375190067F011 /* SimpleTableViewDataSource.swift in Sources */,
 				E2F9F7182201F3C300C62089 /* TransitioningInteractor.swift in Sources */,
 				E284EF4F21F12A12004E705F /* VisitedMovieCollectionViewCell.swift in Sources */,
+				E22671AD28E953A1003AA27C /* BehaviorBindable.swift in Sources */,
 				E2009F582515BEE500D4B48F /* SplashAssembly.swift in Sources */,
 				E229AFB724A8597C002AB427 /* MovieCreditsProtocols.swift in Sources */,
 				E25F9CEA225AED440069A6A1 /* EmptyPlaceholderView.swift in Sources */,
@@ -2609,7 +2619,7 @@
 				E21F379E219401CF00D6BFB6 /* HeaderView.swift in Sources */,
 				E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */,
 				E260117D21939D7100E53095 /* MovieDetailViewModel.swift in Sources */,
-				E289D88A28E15C2600EA0155 /* PublishBindable.swift in Sources */,
+				E289D88A28E15C2600EA0155 /* PublishStream.swift in Sources */,
 				E265C2612495392900712284 /* MoviesByGenreInteractor.swift in Sources */,
 				E2009F4F2515BD8600D4B48F /* SplashBuilder.swift in Sources */,
 				E21662E025EB672D001C2905 /* LoadingView.swift in Sources */,
@@ -2624,6 +2634,7 @@
 				E2709630247B686100AE694E /* Entities+ImageConfiguration.swift in Sources */,
 				E208FC472635238A008593D8 /* SimpleViewStateProcessable.swift in Sources */,
 				E223B086224828FB0050277B /* ProfileSelectableOptionCellViewModel.swift in Sources */,
+				E22671AB28E95396003AA27C /* PublishBindable.swift in Sources */,
 				E284EF4D21F127FB004E705F /* VisitedMovieCellViewModel.swift in Sources */,
 				E2D1040F220CD1BC005F310C /* UIRefreshControl+Extensions.swift in Sources */,
 				E221F76C222BA23D008DFF87 /* SavedMovieCollectionViewCell.swift in Sources */,
@@ -2674,6 +2685,7 @@
 				E26882DA251454030000B581 /* MovieCreditsAssembly.swift in Sources */,
 				E26AB93021F8C0ED00D9FEAA /* MovieListViewController.swift in Sources */,
 				E20635A4226E127200FDD85E /* SearchMoviesResultView.swift in Sources */,
+				E22671A928E94BBB003AA27C /* Bindable.swift in Sources */,
 				E2A4D9362511B05500571893 /* AuthenticationAssembly.swift in Sources */,
 				E25E856626632ED30028D607 /* RecommendedMoviesCoordinator.swift in Sources */,
 				E2671D7F25D8AD4400E457FF /* AppGroup.swift in Sources */,
@@ -2719,7 +2731,7 @@
 				E25F9CF2225B090C0069A6A1 /* PlaceholderDisplayable.swift in Sources */,
 				E2DCE7F424B12F4F0041301E /* ToggleBarButtonItem.swift in Sources */,
 				E2251B1E2214F98F00EE7A51 /* MovieCreditCellViewModel.swift in Sources */,
-				E27DFD7B28E8D22900A61F3D /* BehaviorBindable.swift in Sources */,
+				E27DFD7B28E8D22900A61F3D /* BehaviorStream.swift in Sources */,
 				E21F378A2193ED4000D6BFB6 /* SearchMoviesResultViewModel.swift in Sources */,
 				E2254696226A3D8100E9042C /* CustomListCellViewModel.swift in Sources */,
 				E2E518A824A9991400CC3FA5 /* SearchMoviesResultViewState.swift in Sources */,

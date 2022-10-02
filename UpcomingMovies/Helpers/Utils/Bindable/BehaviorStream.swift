@@ -2,13 +2,13 @@
 //  BehaviorBindable.swift
 //  UpcomingMovies
 //
-//  Created by Alonso on 2/10/22.
+//  Created by Alonso on 1/10/22.
 //  Copyright © 2022 Alonso. All rights reserved.
 //
 
 import Foundation
 
-final class BehaviorBindable<T>: Bindable {
+final class BehaviorStream<T> {
 
     typealias Listener = ((T) -> Void)
     private var listener: Listener?

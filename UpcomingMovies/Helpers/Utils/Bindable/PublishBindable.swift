@@ -2,13 +2,13 @@
 //  PublishBindable.swift
 //  UpcomingMovies
 //
-//  Created by Alonso on 25/09/22.
+//  Created by Alonso on 2/10/22.
 //  Copyright © 2022 Alonso. All rights reserved.
 //
 
 import Foundation
 
-final class PublishBindable<T>: BindableProtocol {
+final class PublishBindable<T>: Bindable {
 
     typealias Listener = ((T) -> Void)
     private var listener: Listener?
@@ -21,7 +21,7 @@ final class PublishBindable<T>: BindableProtocol {
     }
 
     func bindAndFire(_ listener: @escaping Listener, on dispatchQueue: DispatchQueue?) {
-        // NO-OP
+        assertionFailure("Bind and fire method is not supported for a PublishBindable")
     }
 
     func send(_ value: T) {
@@ -30,14 +30,6 @@ final class PublishBindable<T>: BindableProtocol {
         } else {
             self.listener?(value)
         }
-    }
-
-}
-
-extension PublishBindable where T == Void {
-
-    func send() {
-        send(())
     }
 
 }
