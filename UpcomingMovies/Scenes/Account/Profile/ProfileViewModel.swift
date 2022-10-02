@@ -75,7 +75,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
             // If there is no update to display we don't reload user account info
             if self.userAccount != user {
                 self.userAccount = user
-                self.reloadAccountInfo.send()
+                self.reloadAccountInfo.send(())
             }
         }
     }

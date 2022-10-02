@@ -16,8 +16,8 @@ final class MovieListViewModel: MovieListViewModelProtocol, SimpleViewStateProce
 
     // MARK: - Reactive properties
 
-    let startLoading: Bindable<Bool> = Bindable(false)
-    let viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
+    let startLoading: Bindable_Deprecated<Bool> = Bindable_Deprecated(false)
+    let viewState: Bindable_Deprecated<SimpleViewState<Movie>> = Bindable_Deprecated(.initial)
 
     var displayTitle: String?
 

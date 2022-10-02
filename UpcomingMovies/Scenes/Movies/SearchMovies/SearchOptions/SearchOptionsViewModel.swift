@@ -17,14 +17,14 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
 
     // MARK: - Reactive properties
 
-    let viewState: Bindable<SearchOptionsViewState> = Bindable(.emptyMovieVisits)
+    let viewState: Bindable_Deprecated<SearchOptionsViewState> = Bindable_Deprecated(.emptyMovieVisits)
 
-    let needsContentReload: Bindable<Void> = Bindable()
-    let updateVisitedMovies: Bindable<Int?> = Bindable(nil)
+    let needsContentReload: Bindable_Deprecated<Void> = Bindable_Deprecated()
+    let updateVisitedMovies: Bindable_Deprecated<Int?> = Bindable_Deprecated(nil)
 
-    let selectedDefaultSearchOption: Bindable<DefaultSearchOption?> = Bindable(nil)
-    let selectedMovieGenre: Bindable<(Int, String)?> = Bindable(nil)
-    let selectedRecentlyVisitedMovie: Bindable<(Int, String)?> = Bindable(nil)
+    let selectedDefaultSearchOption: Bindable_Deprecated<DefaultSearchOption?> = Bindable_Deprecated(nil)
+    let selectedMovieGenre: Bindable_Deprecated<(Int, String)?> = Bindable_Deprecated(nil)
+    let selectedRecentlyVisitedMovie: Bindable_Deprecated<(Int, String)?> = Bindable_Deprecated(nil)
 
     // MARK: - Computed properties
 

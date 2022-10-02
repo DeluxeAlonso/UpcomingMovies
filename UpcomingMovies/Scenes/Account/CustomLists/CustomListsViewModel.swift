@@ -17,8 +17,8 @@ final class CustomListsViewModel: CustomListsViewModelProtocol, SimpleViewStateP
 
     // MARK: - Reactive properties
 
-    let startLoading: Bindable<Bool> = Bindable(false)
-    let viewState: Bindable<SimpleViewState<List>> = Bindable(.initial)
+    let startLoading: Bindable_Deprecated<Bool> = Bindable_Deprecated(false)
+    let viewState: Bindable_Deprecated<SimpleViewState<List>> = Bindable_Deprecated(.initial)
 
     // MARK: - Computed properties
 

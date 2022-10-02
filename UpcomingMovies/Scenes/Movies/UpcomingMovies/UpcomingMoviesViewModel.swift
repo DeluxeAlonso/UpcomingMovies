@@ -17,8 +17,8 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
 
     // MARK: - Reactive properties
 
-    let viewState: Bindable<SimpleViewState<Movie>> = Bindable(.initial)
-    let startLoading: Bindable<Bool> = Bindable(false)
+    let viewState: Bindable_Deprecated<SimpleViewState<Movie>> = Bindable_Deprecated(.initial)
+    let startLoading: Bindable_Deprecated<Bool> = Bindable_Deprecated(false)
 
     // MARK: - Computed properties
 
