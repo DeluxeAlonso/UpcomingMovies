@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class BehaviorBindable<T> {
+final class BehaviorBindable<T>: BindableProtocol {
 
     typealias Listener = ((T) -> Void)
     private var listener: Listener?

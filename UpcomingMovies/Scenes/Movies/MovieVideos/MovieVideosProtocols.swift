@@ -13,8 +13,8 @@ protocol MovieVideosViewModelProtocol {
 
     var movieTitle: String { get }
 
-    var viewState: Bindable<SimpleViewState<Video>> { get }
-    var startLoading: Bindable<Bool> { get }
+    var viewState: Bindable_Deprecated<SimpleViewState<Video>> { get }
+    var startLoading: Bindable_Deprecated<Bool> { get }
 
     var videoCells: [MovieVideoCellViewModelProtocol] { get }
 

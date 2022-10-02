@@ -27,7 +27,7 @@ protocol SearchMoviesCoordinatorProtocol: AnyObject {
 
 protocol SearchMoviesResultViewModelProtocol {
 
-    var viewState: Bindable<SearchMoviesResultViewState> { get }
+    var viewState: Bindable_Deprecated<SearchMoviesResultViewState> { get }
 
     var recentSearchCells: [RecentSearchCellViewModelProtocol] { get }
     var movieCells: [MovieListCellViewModelProtocol] { get }
@@ -52,13 +52,13 @@ protocol SearchMoviesResultInteractorProtocol {
 
 protocol SearchOptionsViewModelProtocol {
 
-    var viewState: Bindable<SearchOptionsViewState> { get }
-    var needsContentReload: Bindable<Void> { get }
-    var updateVisitedMovies: Bindable<Int?> { get }
+    var viewState: Bindable_Deprecated<SearchOptionsViewState> { get }
+    var needsContentReload: Bindable_Deprecated<Void> { get }
+    var updateVisitedMovies: Bindable_Deprecated<Int?> { get }
 
-    var selectedDefaultSearchOption: Bindable<DefaultSearchOption?> { get }
-    var selectedMovieGenre: Bindable<(Int, String)?> { get }
-    var selectedRecentlyVisitedMovie: Bindable<(Int, String)?> { get }
+    var selectedDefaultSearchOption: Bindable_Deprecated<DefaultSearchOption?> { get }
+    var selectedMovieGenre: Bindable_Deprecated<(Int, String)?> { get }
+    var selectedRecentlyVisitedMovie: Bindable_Deprecated<(Int, String)?> { get }
 
     var visitedMovieCells: [VisitedMovieCellViewModelProtocol] { get }
     var genreCells: [GenreSearchOptionCellViewModelProtocol] { get }

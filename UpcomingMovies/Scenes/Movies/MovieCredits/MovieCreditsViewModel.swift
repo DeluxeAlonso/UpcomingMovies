@@ -21,9 +21,9 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
 
     // MARK: - Reactive properties
 
-    let viewState: Bindable<MovieCreditsViewState> = Bindable(.initial)
-    let didToggleSection: Bindable<Int> = Bindable(0)
-    let startLoading: Bindable<Bool> = Bindable(false)
+    let viewState: Bindable_Deprecated<MovieCreditsViewState> = Bindable_Deprecated(.initial)
+    let didToggleSection: Bindable_Deprecated<Int> = Bindable_Deprecated(0)
+    let startLoading: Bindable_Deprecated<Bool> = Bindable_Deprecated(false)
 
     // MARK: - Initializers
 

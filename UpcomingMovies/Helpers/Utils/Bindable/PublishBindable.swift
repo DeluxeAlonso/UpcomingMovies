@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class PublishBindable<T> {
+final class PublishBindable<T>: BindableProtocol {
 
     typealias Listener = ((T) -> Void)
     private var listener: Listener?
@@ -18,6 +18,10 @@ final class PublishBindable<T> {
     func bind(_ listener: @escaping Listener, on dispatchQueue: DispatchQueue? = nil) {
         self.listener = listener
         self.dispatchQueue = dispatchQueue
+    }
+
+    func bindAndFire(_ listener: @escaping Listener, on dispatchQueue: DispatchQueue?) {
+        // NO-OP
     }
 
     func send(_ value: T) {

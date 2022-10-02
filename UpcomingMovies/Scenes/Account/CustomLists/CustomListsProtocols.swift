@@ -11,8 +11,8 @@ import UpcomingMoviesDomain
 
 protocol CustomListsViewModelProtocol {
 
-    var startLoading: Bindable<Bool> { get }
-    var viewState: Bindable<SimpleViewState<List>> { get }
+    var startLoading: Bindable_Deprecated<Bool> { get }
+    var viewState: Bindable_Deprecated<SimpleViewState<List>> { get }
 
     var lists: [List] { get }
     var listCells: [CustomListCellViewModelProtocol] { get }

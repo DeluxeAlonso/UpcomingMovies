@@ -18,7 +18,7 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
 
     // MARK: - Reactive properties
 
-    let viewState: Bindable<CustomListDetailViewState> = Bindable(.loading)
+    let viewState: Bindable_Deprecated<CustomListDetailViewState> = Bindable_Deprecated(.loading)
 
     // MARK: - Computed properties
 
