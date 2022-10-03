@@ -65,10 +65,10 @@ class AccountViewController: UIViewController, Storyboarded {
     // MARK: - Reactive Behavior
 
     private func setupBindables() {
-        viewModel.showAuthPermission.bind { [weak self] authPermissionURL in
+        viewModel.showAuthPermission.bind({ [weak self] authPermissionURL in
             guard let self = self else { return }
             self.coordinator?.showAuthPermission(for: authPermissionURL, and: self)
-        }
+        }, on: .main)
 
         viewModel.didSignIn.bind({ [weak self] in
             guard let self = self else { return }

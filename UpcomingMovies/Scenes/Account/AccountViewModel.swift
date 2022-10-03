@@ -13,9 +13,9 @@ final class AccountViewModel: AccountViewModelProtocol {
 
     private let interactor: AccountInteractorProtocol
 
-    let showAuthPermission: PublishBindable<URL> = PublishBindable()
-    let didSignIn: Bindable_Deprecated<Void> = Bindable_Deprecated()
-    let didReceiveError: Bindable_Deprecated<Void> = Bindable_Deprecated()
+    let showAuthPermission = PublishBindable<URL>()
+    let didSignIn = PublishBindable<Void>()
+    let didReceiveError = PublishBindable<Void>()
 
     // MARK: - Initializers
 
@@ -31,7 +31,7 @@ final class AccountViewModel: AccountViewModelProtocol {
             case .success(let url):
                 self.showAuthPermission.send(url)
             case .failure:
-                self.didReceiveError.fire()
+                self.didReceiveError.send(())
             }
         }
     }
@@ -40,9 +40,9 @@ final class AccountViewModel: AccountViewModelProtocol {
         interactor.signInUser { result in
             switch result {
             case .success:
-                self.didSignIn.fire()
+                self.didSignIn.send(())
             case .failure:
-                self.didReceiveError.fire()
+                self.didReceiveError.send(())
             }
         }
     }
