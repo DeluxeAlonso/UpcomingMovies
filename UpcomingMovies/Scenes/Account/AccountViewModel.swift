@@ -31,7 +31,7 @@ final class AccountViewModel: AccountViewModelProtocol {
             case .success(let url):
                 self.showAuthPermission.send(url)
             case .failure:
-                self.didReceiveError.send(())
+                self.didReceiveError.send()
             }
         }
     }
@@ -40,9 +40,9 @@ final class AccountViewModel: AccountViewModelProtocol {
         interactor.signInUser { result in
             switch result {
             case .success:
-                self.didSignIn.send(())
+                self.didSignIn.send()
             case .failure:
-                self.didReceiveError.send(())
+                self.didReceiveError.send()
             }
         }
     }
