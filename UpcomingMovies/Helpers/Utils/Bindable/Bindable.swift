@@ -16,3 +16,11 @@ protocol Bindable {
     func bindAndFire(_ listener: @escaping ((Model) -> Void), on dispatchQueue: DispatchQueue?)
 
 }
+
+extension Bindable {
+
+    func asAnyBindable() -> AnyBindable<Model> {
+        return AnyBindable(self)
+    }
+
+}
