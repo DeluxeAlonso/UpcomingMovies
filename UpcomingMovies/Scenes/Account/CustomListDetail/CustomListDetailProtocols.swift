@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 protocol CustomListDetailViewModelProtocol {
 
     var listName: String? { get }
-    var viewState: Bindable_Deprecated<CustomListDetailViewState> { get }
+    var viewState: BehaviorBindable<CustomListDetailViewState> { get }
     var movieCells: [MovieCellViewModel] { get }
 
     func buildHeaderViewModel() -> CustomListDetailHeaderViewModelProtocol
