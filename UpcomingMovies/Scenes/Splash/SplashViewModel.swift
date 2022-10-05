@@ -49,7 +49,7 @@ final class SplashViewModel: SplashViewModelProtocol {
         }
 
         dispatchGroup.notify(queue: .global(qos: .userInitiated)) {
-            self.initialDownloadsEnded.fire()
+            self.initialDownloadsEnded.send()
         }
     }
 
