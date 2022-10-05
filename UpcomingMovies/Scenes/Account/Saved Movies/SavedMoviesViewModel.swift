@@ -17,8 +17,8 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol, SimpleViewStateP
 
     // MARK: - Reactive properties
 
-    let startLoading: Bindable_Deprecated<Bool> = Bindable_Deprecated(false)
-    let viewState: Bindable_Deprecated<SimpleViewState<Movie>> = Bindable_Deprecated(.initial)
+    let startLoading: BehaviorBindable<Bool> = BehaviorBindable(false)
+    let viewState: BehaviorBindable<SimpleViewState<Movie>> = BehaviorBindable(.initial)
 
     // MARK: - Computed properties
 
