@@ -19,7 +19,7 @@ final class SplashViewModel: SplashViewModelProtocol {
 
     // MARK: - Properties
 
-    let initialDownloadsEnded: Bindable_Deprecated<Void> = Bindable_Deprecated()
+    let initialDownloadsEnded: PublishBindable<Void> = PublishBindable()
 
     // MARK: - Initializers
 
@@ -49,7 +49,7 @@ final class SplashViewModel: SplashViewModelProtocol {
         }
 
         dispatchGroup.notify(queue: .global(qos: .userInitiated)) {
-            self.initialDownloadsEnded.fire()
+            self.initialDownloadsEnded.send()
         }
     }
 

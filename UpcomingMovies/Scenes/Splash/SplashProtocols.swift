@@ -10,7 +10,7 @@ import UpcomingMoviesDomain
 
 protocol SplashViewModelProtocol {
 
-    var initialDownloadsEnded: Bindable_Deprecated<Void> { get }
+    var initialDownloadsEnded: PublishBindable<Void> { get }
 
     func startInitialDownloads()
 
