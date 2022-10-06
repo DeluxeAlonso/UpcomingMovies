@@ -69,7 +69,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
         setupMovie(movie)
 
-        showMovieOptions.value = factory.options
+        showMovieOptions.send(factory.options)
     }
 
     init(id: Int, title: String,
@@ -82,7 +82,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
         self.needsFetch = true
 
-        showMovieOptions.value = factory.options
+        showMovieOptions.send(factory.options)
     }
 
     // MARK: - Private
@@ -96,7 +96,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
         getMovieGenreName(for: movie.genreIds?.first)
 
-        didSetupMovieDetail.value = true
+        didSetupMovieDetail.send(true)
     }
 
     private func getMovieGenreName(for genreId: Int?) {
@@ -104,7 +104,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         interactor.findGenre(with: genreId, completion: { [weak self] result in
             guard let self = self else { return }
             let genre = try? result.get()
-            self.showGenreName.value = genre?.name ?? "-"
+            self.showGenreName.send(genre?.name ?? "-")
         })
     }
 
@@ -202,7 +202,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     func getAvailableAlertActions() -> [MovieDetailActionModel] {
         var alertActions: [MovieDetailActionModel] = []
         let shareAction = MovieDetailActionModel(title: LocalizedStrings.movieDetailShareActionTitle()) {
-            self.didSelectShareAction.value = true
+            self.didSelectShareAction.send(true)
         }
         alertActions.append(shareAction)
         if let watchlistAction = makeWatchlistAlertAction() { alertActions.append(watchlistAction) }
