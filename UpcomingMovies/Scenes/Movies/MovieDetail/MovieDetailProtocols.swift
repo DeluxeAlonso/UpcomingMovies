@@ -22,15 +22,15 @@ protocol MovieDetailViewModelProtocol {
     var screenTitle: String { get }
     var shareTitle: String { get }
 
-    var startLoading: Bindable_Deprecated<Bool> { get }
-    var showGenreName: Bindable_Deprecated<String> { get }
-    var showMovieOptions: Bindable_Deprecated<[MovieDetailOption]> { get }
-    var didSetupMovieDetail: Bindable_Deprecated<Bool> { get }
+    var startLoading: BehaviorBindable<Bool> { get }
+    var showGenreName: PublishBindable<String> { get }
+    var showMovieOptions: PublishBindable<[MovieDetailOption]> { get }
+    var didSetupMovieDetail: PublishBindable<Bool> { get }
     var showSuccessAlert: PublishBindable<String> { get }
     var showErrorAlert: PublishBindable<Error> { get }
     var showErrorRetryView: PublishBindable<Error> { get }
-    var didSelectShareAction: Bindable_Deprecated<Bool> { get }
-    var movieAccountState: Bindable_Deprecated<MovieAccountStateModel?> { get }
+    var didSelectShareAction: PublishBindable<Bool> { get }
+    var movieAccountState: BehaviorBindable<MovieAccountStateModel?> { get }
 
     func getAvailableAlertActions() -> [MovieDetailActionModel]
 

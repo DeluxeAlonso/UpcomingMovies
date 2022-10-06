@@ -18,20 +18,20 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     // MARK: - Reactive properties
 
-    let startLoading: Bindable_Deprecated<Bool> = Bindable_Deprecated(false)
+    let startLoading: BehaviorBindable<Bool> = BehaviorBindable(false)
 
-    let showGenreName: Bindable_Deprecated<String> = Bindable_Deprecated("-")
-    let showMovieOptions: Bindable_Deprecated<[MovieDetailOption]> = Bindable_Deprecated([])
+    let showGenreName: PublishBindable<String> = PublishBindable()
+    let showMovieOptions: PublishBindable<[MovieDetailOption]> = PublishBindable()
 
-    let didSetupMovieDetail: Bindable_Deprecated<Bool> = Bindable_Deprecated(true)
+    let didSetupMovieDetail: PublishBindable<Bool> = PublishBindable()
 
     let showSuccessAlert: PublishBindable<String> = PublishBindable()
     let showErrorAlert: PublishBindable<Error> = PublishBindable()
     let showErrorRetryView: PublishBindable<Error> = PublishBindable()
 
-    let didSelectShareAction: Bindable_Deprecated<Bool> = Bindable_Deprecated(true)
+    let didSelectShareAction: PublishBindable<Bool> = PublishBindable()
 
-    let movieAccountState: Bindable_Deprecated<MovieAccountStateModel?> = Bindable_Deprecated(nil)
+    let movieAccountState: BehaviorBindable<MovieAccountStateModel?> = BehaviorBindable(nil)
 
     // MARK: - Properties
 
