@@ -20,10 +20,10 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     let startLoading: BehaviorBindable<Bool> = BehaviorBindable(false)
 
-    let showGenreName: PublishBindable<String> = PublishBindable()
-    let showMovieOptions: PublishBindable<[MovieDetailOption]> = PublishBindable()
+    let showGenreName: BehaviorBindable<String> = BehaviorBindable("-")
+    let showMovieOptions: BehaviorBindable<[MovieDetailOption]> = BehaviorBindable([])
 
-    let didSetupMovieDetail: PublishBindable<Bool> = PublishBindable()
+    let didSetupMovieDetail: BehaviorBindable<Bool> = BehaviorBindable(false)
 
     let showSuccessAlert: PublishBindable<String> = PublishBindable()
     let showErrorAlert: PublishBindable<Error> = PublishBindable()
@@ -69,7 +69,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
         setupMovie(movie)
 
-        showMovieOptions.send(factory.options)
+        showMovieOptions.value = factory.options
     }
 
     init(id: Int, title: String,
@@ -82,7 +82,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
         self.needsFetch = true
 
-        showMovieOptions.send(factory.options)
+        showMovieOptions.value = factory.options
     }
 
     // MARK: - Private
@@ -96,7 +96,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
         getMovieGenreName(for: movie.genreIds?.first)
 
-        didSetupMovieDetail.send(true)
+        didSetupMovieDetail.value = true
     }
 
     private func getMovieGenreName(for genreId: Int?) {
@@ -104,7 +104,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         interactor.findGenre(with: genreId, completion: { [weak self] result in
             guard let self = self else { return }
             let genre = try? result.get()
-            self.showGenreName.send(genre?.name ?? "-")
+            self.showGenreName.value = genre?.name ?? "-"
         })
     }
 

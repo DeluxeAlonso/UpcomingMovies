@@ -23,9 +23,9 @@ protocol MovieDetailViewModelProtocol {
     var shareTitle: String { get }
 
     var startLoading: BehaviorBindable<Bool> { get }
-    var showGenreName: PublishBindable<String> { get }
-    var showMovieOptions: PublishBindable<[MovieDetailOption]> { get }
-    var didSetupMovieDetail: PublishBindable<Bool> { get }
+    var showGenreName: BehaviorBindable<String> { get }
+    var showMovieOptions: BehaviorBindable<[MovieDetailOption]> { get }
+    var didSetupMovieDetail: BehaviorBindable<Bool> { get }
     var showSuccessAlert: PublishBindable<String> { get }
     var showErrorAlert: PublishBindable<Error> { get }
     var showErrorRetryView: PublishBindable<Error> { get }

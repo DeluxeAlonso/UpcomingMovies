@@ -118,7 +118,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         viewModel?.didSelectShareAction.bind({ [weak self] _ in
             self?.shareMovie()
         }, on: .main)
-        viewModel?.movieAccountState.bindAndFire({ [weak self] accountState in
+        viewModel?.movieAccountState.bind({ [weak self] accountState in
             guard let self = self else { return }
             guard let accountState = accountState else {
                 // We remove favorite button from navigation bar.
