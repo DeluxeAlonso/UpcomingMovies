@@ -104,21 +104,21 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     }
 
     private func setupViewBindables() {
-        viewModel?.didSetupMovieDetail.bindAndFire { [weak self] _ in
+        viewModel?.didSetupMovieDetail.bindAndFire({ [weak self] _ in
             self?.configureUI()
             self?.userInterfaceHelper?.hideRetryView()
             self?.viewModel?.saveVisitedMovie()
-        }
+        }, on: .main)
         viewModel?.showGenreName.bindAndFire({ [weak self] genreName in
             self?.genreLabel.text = genreName
-        })
-        viewModel?.showMovieOptions.bindAndFire { [weak self] movieOptions in
+        }, on: .main)
+        viewModel?.showMovieOptions.bindAndFire({ [weak self] movieOptions in
             self?.configureMovieOptions(movieOptions)
-        }
-        viewModel?.didSelectShareAction.bind { [weak self] _ in
+        }, on: .main)
+        viewModel?.didSelectShareAction.bind({ [weak self] _ in
             self?.shareMovie()
-        }
-        viewModel?.movieAccountState.bindAndFire({ [weak self] accountState in
+        }, on: .main)
+        viewModel?.movieAccountState.bind({ [weak self] accountState in
             guard let self = self else { return }
             guard let accountState = accountState else {
                 // We remove favorite button from navigation bar.
@@ -128,7 +128,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
             let isFavorite = accountState.isFavorite
             self.favoriteBarButtonItem.toggle(to: isFavorite.intValue)
             self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem, self.favoriteBarButtonItem]
-        })
+        }, on: .main)
     }
 
     private func configureUI() {
