@@ -52,13 +52,13 @@ protocol SearchMoviesResultInteractorProtocol {
 
 protocol SearchOptionsViewModelProtocol {
 
-    var viewState: Bindable_Deprecated<SearchOptionsViewState> { get }
-    var needsContentReload: Bindable_Deprecated<Void> { get }
-    var updateVisitedMovies: Bindable_Deprecated<Int?> { get }
+    var viewState: BehaviorBindable<SearchOptionsViewState> { get }
+    var needsContentReload: PublishBindable<Void> { get }
+    var updateVisitedMovies: PublishBindable<Int> { get }
 
-    var selectedDefaultSearchOption: Bindable_Deprecated<DefaultSearchOption?> { get }
-    var selectedMovieGenre: Bindable_Deprecated<(Int, String)?> { get }
-    var selectedRecentlyVisitedMovie: Bindable_Deprecated<(Int, String)?> { get }
+    var selectedDefaultSearchOption: PublishBindable<DefaultSearchOption> { get }
+    var selectedMovieGenre: PublishBindable<(Int, String)> { get }
+    var selectedRecentlyVisitedMovie: PublishBindable<(Int, String)> { get }
 
     var visitedMovieCells: [VisitedMovieCellViewModelProtocol] { get }
     var genreCells: [GenreSearchOptionCellViewModelProtocol] { get }
