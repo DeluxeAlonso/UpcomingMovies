@@ -8,7 +8,6 @@
 
 import UpcomingMoviesDomain
 
-// TODO: - Add tests for this class
 final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
 
     // MARK: - Dependencies
