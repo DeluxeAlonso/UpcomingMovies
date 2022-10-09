@@ -8,7 +8,6 @@
 
 import UpcomingMoviesDomain
 
-// TODO: - Add tests for this class
 final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
 
     // MARK: - Dependencies
@@ -17,14 +16,14 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
 
     // MARK: - Reactive properties
 
-    let viewState: Bindable_Deprecated<SearchOptionsViewState> = Bindable_Deprecated(.emptyMovieVisits)
+    let viewState: BehaviorBindable<SearchOptionsViewState> = BehaviorBindable(.emptyMovieVisits)
 
-    let needsContentReload: Bindable_Deprecated<Void> = Bindable_Deprecated()
-    let updateVisitedMovies: Bindable_Deprecated<Int?> = Bindable_Deprecated(nil)
+    let needsContentReload: PublishBindable<Void> = PublishBindable()
+    let updateVisitedMovies: PublishBindable<Int> = PublishBindable()
 
-    let selectedDefaultSearchOption: Bindable_Deprecated<DefaultSearchOption?> = Bindable_Deprecated(nil)
-    let selectedMovieGenre: Bindable_Deprecated<(Int, String)?> = Bindable_Deprecated(nil)
-    let selectedRecentlyVisitedMovie: Bindable_Deprecated<(Int, String)?> = Bindable_Deprecated(nil)
+    let selectedDefaultSearchOption: PublishBindable<DefaultSearchOption> = PublishBindable()
+    let selectedMovieGenre: PublishBindable<(Int, String)> = PublishBindable()
+    let selectedRecentlyVisitedMovie: PublishBindable<(Int, String)> = PublishBindable()
 
     // MARK: - Computed properties
 
@@ -64,7 +63,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
             guard let self = self else { return }
             guard let genres = try? result.get() else { return }
             self.genres = genres
-            self.needsContentReload.fire()
+            self.needsContentReload.send()
         })
     }
 
@@ -77,10 +76,10 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
             let viewStateChanged = self.configureViewState(movieVisits: movieVisits)
             // If the state changed we reload the entire table view
             if viewStateChanged {
-                self.needsContentReload.fire()
+                self.needsContentReload.send()
             } else {
-                let index = self.sectionIndex(for: .recentlyVisited)
-                self.updateVisitedMovies.value = index
+                guard let index = self.sectionIndex(for: .recentlyVisited) else { return }
+                self.updateVisitedMovies.send(index)
             }
         }
     }
@@ -100,17 +99,17 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
 
     func getDefaultSearchSelection(by index: Int) {
         let defaultSearchOption = defaultSearchOptions[index]
-        selectedDefaultSearchOption.value = defaultSearchOption
+        selectedDefaultSearchOption.send(defaultSearchOption)
     }
 
     func getMovieGenreSelection(by index: Int) {
         let selectedGenre = genres[index]
-        selectedMovieGenre.value = (selectedGenre.id, selectedGenre.name)
+        selectedMovieGenre.send((selectedGenre.id, selectedGenre.name))
     }
 
     func getRecentlyVisitedMovieSelection(by index: Int) {
         let selectedVisitedMovie = movieVisits[index]
-        selectedRecentlyVisitedMovie.value = (selectedVisitedMovie.id, selectedVisitedMovie.title)
+        selectedRecentlyVisitedMovie.send((selectedVisitedMovie.id, selectedVisitedMovie.title))
     }
 
     // MARK: - Private

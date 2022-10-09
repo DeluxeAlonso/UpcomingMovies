@@ -66,22 +66,22 @@ class SearchOptionsViewController: UITableViewController, Storyboarded {
         }, on: .main)
 
         viewModel?.updateVisitedMovies.bind({ [weak self] section in
-            guard let self = self, let section = section else { return }
+            guard let self = self else { return }
             self.reloadSection(section)
         }, on: .main)
 
         viewModel?.selectedDefaultSearchOption.bind({ [weak self] option in
-            guard let self = self, let option = option else { return }
+            guard let self = self else { return }
             self.delegate?.searchOptionsViewController(self, didSelectDefaultSearchOption: option)
         }, on: .main)
 
         viewModel?.selectedMovieGenre.bind({ [weak self] movieGenre in
-            guard let self = self, let movieGenre = movieGenre else { return }
+            guard let self = self else { return }
             self.delegate?.searchOptionsViewController(self, didSelectMovieGenreWithId: movieGenre.0, andGenreName: movieGenre.1)
         }, on: .main)
 
         viewModel?.selectedRecentlyVisitedMovie.bind({ [weak self] movieVisit in
-            guard let self = self, let movieVisit = movieVisit else { return }
+            guard let self = self else { return }
             self.delegate?.searchOptionsViewController(self, didSelectRecentlyVisitedMovie: movieVisit.0, title: movieVisit.1)
         }, on: .main)
     }

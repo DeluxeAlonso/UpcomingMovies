@@ -15,7 +15,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
 
     private let interactor: SearchMoviesResultInteractorProtocol
 
-    let viewState: Bindable_Deprecated<SearchMoviesResultViewState> = Bindable_Deprecated(.initial)
+    let viewState: BehaviorBindable<SearchMoviesResultViewState> = BehaviorBindable(.initial)
 
     // MARK: - Computed Properties
 
