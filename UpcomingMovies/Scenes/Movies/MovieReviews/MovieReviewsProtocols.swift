@@ -13,8 +13,8 @@ protocol MovieReviewsViewModelProtocol {
 
     var movieTitle: String { get set }
 
-    var viewState: Bindable_Deprecated<SimpleViewState<Review>> { get }
-    var startLoading: Bindable_Deprecated<Bool> { get }
+    var viewState: BehaviorBindable<SimpleViewState<Review>> { get }
+    var startLoading: BehaviorBindable<Bool> { get }
 
     var reviewCells: [MovieReviewCellViewModelProtocol] { get }
     var needsPrefetch: Bool { get }
