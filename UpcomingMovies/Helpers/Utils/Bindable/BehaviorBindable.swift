@@ -6,7 +6,7 @@
 //  Copyright © 2022 Alonso. All rights reserved.
 //
 
-import Foundation
+import Dispatch
 
 final class BehaviorBindable<T>: Bindable {
 
