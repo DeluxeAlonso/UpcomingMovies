@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Deprecated. Use PublishBindable or BehaviorBindable instead.")
 final class Bindable_Deprecated<T> {
 
     typealias Listener = ((T) -> Void)
