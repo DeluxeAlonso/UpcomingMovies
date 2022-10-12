@@ -6,7 +6,7 @@
 //  Copyright © 2018 Alonso. All rights reserved.
 //
 
-import Foundation
+import Dispatch
 
 @available(*, deprecated, message: "Deprecated. Use PublishBindable or BehaviorBindable instead.")
 final class Bindable_Deprecated<T> {

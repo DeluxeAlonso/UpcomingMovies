@@ -10,14 +10,6 @@ import UIKit
 
 extension UITableView {
 
-    func isScrolledToTop() -> Bool {
-        return contentOffset == .zero
-    }
-
-    func scrollToTop(animated: Bool) {
-        setContentOffset(.zero, animated: animated)
-    }
-
     // MARK: - Cell Register
 
     func register<T: UITableViewCell>(cellType: T.Type, bundle: Bundle? = nil) {
