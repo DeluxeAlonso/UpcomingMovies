@@ -366,6 +366,7 @@
 		E2F9F7202201FC1100C62089 /* Transitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F71F2201FC1100C62089 /* Transitionable.swift */; };
 		E2F9F7222202787F00C62089 /* TransitioningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F7212202787E00C62089 /* TransitioningAnimator.swift */; };
 		E2FD140C23F972EF00455495 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FD140B23F972EF00455495 /* SceneDelegate.swift */; };
+		E2FE720A28F738D4002178BA /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FE720928F738D4002178BA /* UIScrollView+Extensions.swift */; };
 		E2FEDD992793E04E001A016E /* MovieDetailUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEDD982793E04E001A016E /* MovieDetailUIHelper.swift */; };
 		E2FEDD9B2793E0D5001A016E /* ProgressHUDAdapterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEDD9A2793E0D5001A016E /* ProgressHUDAdapterProtocol.swift */; };
 		E2FEDDA12793E559001A016E /* AdapterAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEDDA02793E559001A016E /* AdapterAssembly.swift */; };
@@ -802,6 +803,7 @@
 		E2F9F7212202787E00C62089 /* TransitioningAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitioningAnimator.swift; sourceTree = "<group>"; };
 		E2FD140B23F972EF00455495 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E2FE24E0223E24A800E6E664 /* UpcomingMovies.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UpcomingMovies.entitlements; sourceTree = "<group>"; };
+		E2FE720928F738D4002178BA /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
 		E2FEDD982793E04E001A016E /* MovieDetailUIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailUIHelper.swift; sourceTree = "<group>"; };
 		E2FEDD9A2793E0D5001A016E /* ProgressHUDAdapterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUDAdapterProtocol.swift; sourceTree = "<group>"; };
 		E2FEDDA02793E559001A016E /* AdapterAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterAssembly.swift; sourceTree = "<group>"; };
@@ -1012,6 +1014,7 @@
 				E26EB4C625CF4B0900AFE4A6 /* URL+PropertyListDecoder.swift */,
 				E254348B265A1DBD0008C830 /* Result+Optional.swift */,
 				E268CD412736FA4100E764A9 /* AppDelegate+Appearance.swift */,
+				E2FE720928F738D4002178BA /* UIScrollView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2644,6 +2647,7 @@
 				E22671AB28E95396003AA27C /* PublishBindable.swift in Sources */,
 				E284EF4D21F127FB004E705F /* VisitedMovieCellViewModel.swift in Sources */,
 				E2D1040F220CD1BC005F310C /* UIRefreshControl+Extensions.swift in Sources */,
+				E2FE720A28F738D4002178BA /* UIScrollView+Extensions.swift in Sources */,
 				E221F76C222BA23D008DFF87 /* SavedMovieCollectionViewCell.swift in Sources */,
 				E20118CF25FF238F0091D248 /* GenreHandlerProtocol.swift in Sources */,
 				E21F37902193F36300D6BFB6 /* RecentSearchCell.swift in Sources */,
