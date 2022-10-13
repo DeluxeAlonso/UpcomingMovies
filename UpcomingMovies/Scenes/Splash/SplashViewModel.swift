@@ -38,13 +38,13 @@ final class SplashViewModel: SplashViewModelProtocol {
 
         dispatchGroup.enter()
         interactor.getAppConfiguration { result in
-            self.updateAppConfiguration(result.getWrappedValue())
+            self.updateAppConfiguration(result.wrappedValue)
             dispatchGroup.leave()
         }
 
         dispatchGroup.enter()
         interactor.getAllGenres { result in
-            self.updateAvailableMovieGenres(result.getWrappedValue())
+            self.updateAvailableMovieGenres(result.wrappedValue)
             dispatchGroup.leave()
         }
 
