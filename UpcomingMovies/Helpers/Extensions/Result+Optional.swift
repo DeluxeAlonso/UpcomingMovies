@@ -10,8 +10,8 @@ import Foundation
 
 extension Result {
 
-    func getWrappedValue() -> Success? {
-        return try? get()
+    var wrappedValue: Success? {
+        try? get()
     }
 
 }
