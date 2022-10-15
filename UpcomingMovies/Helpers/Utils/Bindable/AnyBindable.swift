@@ -8,7 +8,7 @@
 
 import Dispatch
 
-class AnyBindable<T>: Bindable {
+final class AnyBindable<T>: Bindable {
 
     typealias Model = T
     typealias Listener = ((T) -> Void)
