@@ -48,15 +48,3 @@ final class Bindable_Deprecated<T> {
     }
 
 }
-
-extension Bindable_Deprecated where T == Void {
-
-    convenience init() {
-        self.init(Void())
-    }
-
-    func fire() {
-        sendValue()
-    }
-
-}
