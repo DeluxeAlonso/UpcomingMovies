@@ -8,7 +8,16 @@
 
 import UIKit
 
-struct AnimatableSettings {
+protocol AnimatableSettingsProtocol {
+    var duration: TimeInterval { get }
+    var delay: TimeInterval { get }
+    var springDamping: CGFloat { get }
+    var springVelocity: CGFloat { get }
+    var options: UIView.AnimationOptions { get }
+    var transform: CGAffineTransform { get }
+}
+
+struct AnimatableSettings: AnimatableSettingsProtocol {
 
     var duration: TimeInterval = 0.5
     var delay: TimeInterval = 0.0
@@ -21,13 +30,13 @@ struct AnimatableSettings {
 
 private struct AssociatedKeys {
 
-    static var animationAvailable = "UM_animationAvialable"
+    static var animationAvailable = "UM_animationAvailable"
 
 }
 
 protocol Animatable: AnyObject {
 
-    var settings: AnimatableSettings { get }
+    var settings: AnimatableSettingsProtocol { get }
     func lockAnimation()
     func unlockAnimation()
     func highlight(_ touched: Bool)
@@ -40,10 +49,6 @@ extension Animatable where Self: UIView {
     private var animationAvailable: Bool {
         get { return (objc_getAssociatedObject(self, &AssociatedKeys.animationAvailable) as? Bool) ?? true }
         set { objc_setAssociatedObject(self, &AssociatedKeys.animationAvailable, newValue, .OBJC_ASSOCIATION_ASSIGN) }
-    }
-
-    var settings: AnimatableSettings {
-        return AnimatableSettings()
     }
 
     func lockAnimation() {
