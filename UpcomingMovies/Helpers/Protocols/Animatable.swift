@@ -36,7 +36,7 @@ private struct AssociatedKeys {
 
 protocol Animatable: AnyObject {
 
-    var settings: AnimatableSettings { get }
+    var settings: AnimatableSettingsProtocol { get }
     func lockAnimation()
     func unlockAnimation()
     func highlight(_ touched: Bool)

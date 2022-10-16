@@ -18,7 +18,7 @@ final class VisitedMovieCollectionViewCell: UICollectionViewCell, Animatable {
         }
     }
 
-    var settings: AnimatableSettings {
+    var settings: AnimatableSettingsProtocol {
         var settings = AnimatableSettings()
         settings.transform = .init(scaleX: 0.90, y: 0.90)
         settings.duration = 0.3
