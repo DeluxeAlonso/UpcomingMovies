@@ -21,7 +21,7 @@ struct AnimatableSettings {
 
 private struct AssociatedKeys {
 
-    static var animationAvailable = "UM_animationAvialable"
+    static var animationAvailable = "UM_animationAvailable"
 
 }
 
@@ -40,10 +40,6 @@ extension Animatable where Self: UIView {
     private var animationAvailable: Bool {
         get { return (objc_getAssociatedObject(self, &AssociatedKeys.animationAvailable) as? Bool) ?? true }
         set { objc_setAssociatedObject(self, &AssociatedKeys.animationAvailable, newValue, .OBJC_ASSOCIATION_ASSIGN) }
-    }
-
-    var settings: AnimatableSettings {
-        return AnimatableSettings()
     }
 
     func lockAnimation() {
