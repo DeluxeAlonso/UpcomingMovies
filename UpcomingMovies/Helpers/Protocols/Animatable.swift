@@ -8,7 +8,16 @@
 
 import UIKit
 
-struct AnimatableSettings {
+protocol AnimatableSettingsProtocol {
+    var duration: TimeInterval { get }
+    var delay: TimeInterval { get }
+    var springDamping: CGFloat { get }
+    var springVelocity: CGFloat { get }
+    var options: UIView.AnimationOptions { get }
+    var transform: CGAffineTransform { get }
+}
+
+struct AnimatableSettings: AnimatableSettingsProtocol {
 
     var duration: TimeInterval = 0.5
     var delay: TimeInterval = 0.0
