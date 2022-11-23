@@ -1878,10 +1878,10 @@
 		E289D88828E15B9C00EA0155 /* Bindable */ = {
 			isa = PBXGroup;
 			children = (
+				E2FB564C292DE55B0011E499 /* PublishBindable */,
 				E22671AE28E95BCA003AA27C /* AnyBindable.swift */,
 				E22671A828E94BBB003AA27C /* Bindable.swift */,
 				E22116B3219157020039F8C9 /* Bindable_Deprecated.swift */,
-				E22671AA28E95396003AA27C /* PublishBindable.swift */,
 				E22671AC28E953A1003AA27C /* BehaviorBindable.swift */,
 			);
 			path = Bindable;
@@ -2161,6 +2161,14 @@
 				E2F9F7162201F3C300C62089 /* TransitioningInteractor.swift */,
 			);
 			path = Transitions;
+			sourceTree = "<group>";
+		};
+		E2FB564C292DE55B0011E499 /* PublishBindable */ = {
+			isa = PBXGroup;
+			children = (
+				E22671AA28E95396003AA27C /* PublishBindable.swift */,
+			);
+			path = PublishBindable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
