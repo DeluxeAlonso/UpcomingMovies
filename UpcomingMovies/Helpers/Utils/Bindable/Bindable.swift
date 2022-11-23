@@ -24,12 +24,3 @@ extension Bindable {
     }
 
 }
-
-protocol PublishBindableProtocol {
-
-    associatedtype Model
-
-    func bind(_ listener: @escaping ((Model) -> Void), on dispatchQueue: DispatchQueue?)
-    func send(_ value: Model)
-
-}
