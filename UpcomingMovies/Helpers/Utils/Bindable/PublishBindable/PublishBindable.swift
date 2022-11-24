@@ -8,7 +8,7 @@
 
 import Dispatch
 
-final class PublishBindable<T>: Bindable {
+final class PublishBindable<T>: PublishBindableProtocol {
 
     typealias Listener = ((T) -> Void)
     private var listener: Listener?
@@ -18,10 +18,6 @@ final class PublishBindable<T>: Bindable {
     func bind(_ listener: @escaping Listener, on dispatchQueue: DispatchQueue? = nil) {
         self.listener = listener
         self.dispatchQueue = dispatchQueue
-    }
-
-    func bindAndFire(_ listener: @escaping Listener, on dispatchQueue: DispatchQueue?) {
-        assertionFailure("Bind and fire method is not supported for a PublishBindable")
     }
 
     func send(_ value: T) {
