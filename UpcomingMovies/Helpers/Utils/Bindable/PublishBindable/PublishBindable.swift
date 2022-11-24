@@ -20,10 +20,6 @@ final class PublishBindable<T>: PublishBindableProtocol {
         self.dispatchQueue = dispatchQueue
     }
 
-    func bindAndFire(_ listener: @escaping Listener, on dispatchQueue: DispatchQueue?) {
-        assertionFailure("Bind and fire method is not supported for a PublishBindable")
-    }
-
     func send(_ value: T) {
         if let dispatchQueue = dispatchQueue {
             dispatchQueue.async { self.listener?(value) }
