@@ -154,6 +154,7 @@
 		E22E74CE27E45E4B00152156 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E222DC1D2192A76700A2EDF4 /* Localizable.strings */; };
 		E233772A249EFA280061D90D /* AccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2337729249EFA280061D90D /* AccountCoordinator.swift */; };
 		E235E44F24959C1600831F0A /* AuthPermissionWebViewNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E235E44E24959C1600831F0A /* AuthPermissionWebViewNavigation.swift */; };
+		E23E515D292F2D7400D78334 /* AnyPublishBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23E515C292F2D7400D78334 /* AnyPublishBindable.swift */; };
 		E241FE0722434B9B00144FD3 /* AuthPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241FE0622434B9B00144FD3 /* AuthPermissionViewController.swift */; };
 		E241FE0922434D4900144FD3 /* AuthPermissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241FE0822434D4900144FD3 /* AuthPermissionViewModel.swift */; };
 		E24345EA247CBCEE008A2B66 /* Array+MidElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24345E9247CBCEE008A2B66 /* Array+MidElement.swift */; };
@@ -580,6 +581,7 @@
 		E229AFB824A85A17002AB427 /* MovieCreditsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditsViewState.swift; sourceTree = "<group>"; };
 		E2337729249EFA280061D90D /* AccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCoordinator.swift; sourceTree = "<group>"; };
 		E235E44E24959C1600831F0A /* AuthPermissionWebViewNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionWebViewNavigation.swift; sourceTree = "<group>"; };
+		E23E515C292F2D7400D78334 /* AnyPublishBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyPublishBindable.swift; sourceTree = "<group>"; };
 		E241FE0622434B9B00144FD3 /* AuthPermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionViewController.swift; sourceTree = "<group>"; };
 		E241FE0822434D4900144FD3 /* AuthPermissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionViewModel.swift; sourceTree = "<group>"; };
 		E24345E9247CBCEE008A2B66 /* Array+MidElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+MidElement.swift"; sourceTree = "<group>"; };
@@ -2170,6 +2172,7 @@
 			children = (
 				E22671AA28E95396003AA27C /* PublishBindable.swift */,
 				E2FB564D292DE5930011E499 /* PublishBindableProtocol.swift */,
+				E23E515C292F2D7400D78334 /* AnyPublishBindable.swift */,
 			);
 			path = PublishBindable;
 			sourceTree = "<group>";
@@ -2612,6 +2615,7 @@
 				E284EF4F21F12A12004E705F /* VisitedMovieCollectionViewCell.swift in Sources */,
 				E22671AD28E953A1003AA27C /* BehaviorBindable.swift in Sources */,
 				E2009F582515BEE500D4B48F /* SplashAssembly.swift in Sources */,
+				E23E515D292F2D7400D78334 /* AnyPublishBindable.swift in Sources */,
 				E229AFB724A8597C002AB427 /* MovieCreditsProtocols.swift in Sources */,
 				E25F9CEA225AED440069A6A1 /* EmptyPlaceholderView.swift in Sources */,
 				E2CF112824A809270048AFC0 /* AccountProtocols.swift in Sources */,
