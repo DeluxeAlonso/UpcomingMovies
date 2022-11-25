@@ -13,9 +13,9 @@ final class AccountViewModel: AccountViewModelProtocol {
 
     private let interactor: AccountInteractorProtocol
 
-    let showAuthPermission: AnyPublishBindable<URL> = AnyPublishBindable(PublishBindable<URL>())
-    let didSignIn: AnyPublishBindable<Void> = AnyPublishBindable(PublishBindable<Void>())
-    let didReceiveError: AnyPublishBindable<Void> = AnyPublishBindable(PublishBindable<Void>())
+    let showAuthPermission: AnyPublishBindable<URL> = PublishBindable<URL>().asAnyPublishBindable()
+    let didSignIn: AnyPublishBindable<Void> = PublishBindable<Void>().asAnyPublishBindable()
+    let didReceiveError: AnyPublishBindable<Void> = PublishBindable<Void>().asAnyPublishBindable()
 
     // MARK: - Initializers
 

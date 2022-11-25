@@ -16,3 +16,11 @@ protocol PublishBindableProtocol {
     func send(_ value: Model)
 
 }
+
+extension PublishBindableProtocol {
+
+    func asAnyBindable() -> AnyPublishBindable<Model> {
+        return AnyPublishBindable(self)
+    }
+
+}
