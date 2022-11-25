@@ -30,3 +30,11 @@ final class AnyPublishBindable<T>: PublishBindableProtocol {
     }
 
 }
+
+extension AnyPublishBindable where T == Void {
+
+    func send() {
+        sendClosure(())
+    }
+
+}
