@@ -132,7 +132,6 @@
 		E22588A62243280600E1327E /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A52243280600E1327E /* SignInViewController.swift */; };
 		E22588A92243281F00E1327E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22588A82243281F00E1327E /* ProfileViewController.swift */; };
 		E2266506247E13D900E12326 /* DataSourcePrefetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2266505247E13D900E12326 /* DataSourcePrefetching.swift */; };
-		E22671A928E94BBB003AA27C /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22671A828E94BBB003AA27C /* Bindable.swift */; };
 		E22671AB28E95396003AA27C /* PublishBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22671AA28E95396003AA27C /* PublishBindable.swift */; };
 		E22671AD28E953A1003AA27C /* BehaviorBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22671AC28E953A1003AA27C /* BehaviorBindable.swift */; };
 		E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */; };
@@ -560,7 +559,6 @@
 		E22588A52243280600E1327E /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		E22588A82243281F00E1327E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E2266505247E13D900E12326 /* DataSourcePrefetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourcePrefetching.swift; sourceTree = "<group>"; };
-		E22671A828E94BBB003AA27C /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		E22671AA28E95396003AA27C /* PublishBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishBindable.swift; sourceTree = "<group>"; };
 		E22671AC28E953A1003AA27C /* BehaviorBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorBindable.swift; sourceTree = "<group>"; };
 		E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailBackdropView.swift; sourceTree = "<group>"; };
@@ -1881,7 +1879,6 @@
 			isa = PBXGroup;
 			children = (
 				E2FB564C292DE55B0011E499 /* PublishBindable */,
-				E22671A828E94BBB003AA27C /* Bindable.swift */,
 				E22116B3219157020039F8C9 /* Bindable_Deprecated.swift */,
 				E22671AC28E953A1003AA27C /* BehaviorBindable.swift */,
 			);
@@ -2708,7 +2705,6 @@
 				E26882DA251454030000B581 /* MovieCreditsAssembly.swift in Sources */,
 				E26AB93021F8C0ED00D9FEAA /* MovieListViewController.swift in Sources */,
 				E20635A4226E127200FDD85E /* SearchMoviesResultView.swift in Sources */,
-				E22671A928E94BBB003AA27C /* Bindable.swift in Sources */,
 				E2A4D9362511B05500571893 /* AuthenticationAssembly.swift in Sources */,
 				E25E856626632ED30028D607 /* RecommendedMoviesCoordinator.swift in Sources */,
 				E2671D7F25D8AD4400E457FF /* AppGroup.swift in Sources */,
