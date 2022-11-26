@@ -135,7 +135,6 @@
 		E22671A928E94BBB003AA27C /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22671A828E94BBB003AA27C /* Bindable.swift */; };
 		E22671AB28E95396003AA27C /* PublishBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22671AA28E95396003AA27C /* PublishBindable.swift */; };
 		E22671AD28E953A1003AA27C /* BehaviorBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22671AC28E953A1003AA27C /* BehaviorBindable.swift */; };
-		E22671AF28E95BCA003AA27C /* AnyBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22671AE28E95BCA003AA27C /* AnyBindable.swift */; };
 		E226C64921FF8A19004AA771 /* MovieDetailBackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */; };
 		E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226C64A21FFA099004AA771 /* UIView+Extensions.swift */; };
 		E228430F250ED1A900F053DE /* HandlerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E228430E250ED1A900F053DE /* HandlerAssembly.swift */; };
@@ -564,7 +563,6 @@
 		E22671A828E94BBB003AA27C /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		E22671AA28E95396003AA27C /* PublishBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishBindable.swift; sourceTree = "<group>"; };
 		E22671AC28E953A1003AA27C /* BehaviorBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorBindable.swift; sourceTree = "<group>"; };
-		E22671AE28E95BCA003AA27C /* AnyBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyBindable.swift; sourceTree = "<group>"; };
 		E226C64821FF8A19004AA771 /* MovieDetailBackdropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailBackdropView.swift; sourceTree = "<group>"; };
 		E226C64A21FFA099004AA771 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		E228430E250ED1A900F053DE /* HandlerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerAssembly.swift; sourceTree = "<group>"; };
@@ -1883,7 +1881,6 @@
 			isa = PBXGroup;
 			children = (
 				E2FB564C292DE55B0011E499 /* PublishBindable */,
-				E22671AE28E95BCA003AA27C /* AnyBindable.swift */,
 				E22671A828E94BBB003AA27C /* Bindable.swift */,
 				E22116B3219157020039F8C9 /* Bindable_Deprecated.swift */,
 				E22671AC28E953A1003AA27C /* BehaviorBindable.swift */,
@@ -2608,7 +2605,6 @@
 				E2EB923E221375190067F011 /* CollectionViewDataSourcePrefetching.swift in Sources */,
 				E2EB923D221375190067F011 /* SimpleCollectionViewDataSource.swift in Sources */,
 				E225468D226A3BD500E9042C /* CustomListsViewController.swift in Sources */,
-				E22671AF28E95BCA003AA27C /* AnyBindable.swift in Sources */,
 				E2FEDDA12793E559001A016E /* AdapterAssembly.swift in Sources */,
 				E2EB923B221375190067F011 /* SimpleTableViewDataSource.swift in Sources */,
 				E2F9F7182201F3C300C62089 /* TransitioningInteractor.swift in Sources */,
