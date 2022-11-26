@@ -8,7 +8,7 @@
 
 import Dispatch
 
-final class BehaviorBindable<T>: Bindable {
+final class BehaviorBindable<T> {
 
     typealias Listener = ((T) -> Void)
     private var listener: Listener?
