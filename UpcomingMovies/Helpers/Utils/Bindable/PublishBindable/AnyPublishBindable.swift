@@ -21,12 +21,20 @@ final class AnyPublishBindable<T>: PublishBindableProtocol {
         self.bindClosure = bindable.bind
     }
 
-    func bind(_ listener: @escaping Listener, on dispatchQueue: DispatchQueue?) {
+    func bind(_ listener: @escaping Listener, on dispatchQueue: DispatchQueue? = nil) {
         bindClosure(listener, dispatchQueue)
     }
 
     func send(_ value: T) {
         sendClosure(value)
+    }
+
+}
+
+extension AnyPublishBindable where T == Void {
+
+    func send() {
+        sendClosure(())
     }
 
 }
