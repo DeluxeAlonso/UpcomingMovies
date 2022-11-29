@@ -8,13 +8,13 @@
 
 import Dispatch
 
-protocol BehaviorBindableProtocol {
+protocol BehaviorBindableProtocol: AnyObject {
 
     associatedtype Model
 
     var value: Model { get set }
 
     func bind(_ listener: @escaping ((Model) -> Void), on dispatchQueue: DispatchQueue?)
-    func bindAndFire(_ listener: @escaping ((Model) -> Void), on dispatchQueue: DispatchQueue)
+    func bindAndFire(_ listener: @escaping ((Model) -> Void), on dispatchQueue: DispatchQueue?)
 
 }
