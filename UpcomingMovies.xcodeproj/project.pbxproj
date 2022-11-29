@@ -21,6 +21,7 @@
 		E20118DA25FF24D60091D248 /* NavigationHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20118D925FF24D60091D248 /* NavigationHandlerProtocol.swift */; };
 		E20118E125FF251E0091D248 /* AuthenticationHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20118E025FF251E0091D248 /* AuthenticationHandlerProtocol.swift */; };
 		E20118E825FF258A0091D248 /* ConfigurationHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20118E725FF258A0091D248 /* ConfigurationHandlerProtocol.swift */; };
+		E20191432934735800770948 /* BehaviorBindableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20191422934735800770948 /* BehaviorBindableProtocol.swift */; };
 		E2033DC324D90CEE00185664 /* SplashProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2033DC224D90CED00185664 /* SplashProtocols.swift */; };
 		E2033DC524D90D7600185664 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2033DC424D90D7600185664 /* SplashInteractor.swift */; };
 		E2058B6E247F6BBD00A6AB52 /* NavigationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2058B6D247F6BBD00A6AB52 /* NavigationHandler.swift */; };
@@ -442,6 +443,7 @@
 		E20118D925FF24D60091D248 /* NavigationHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHandlerProtocol.swift; sourceTree = "<group>"; };
 		E20118E025FF251E0091D248 /* AuthenticationHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHandlerProtocol.swift; sourceTree = "<group>"; };
 		E20118E725FF258A0091D248 /* ConfigurationHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationHandlerProtocol.swift; sourceTree = "<group>"; };
+		E20191422934735800770948 /* BehaviorBindableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorBindableProtocol.swift; sourceTree = "<group>"; };
 		E2033DC224D90CED00185664 /* SplashProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashProtocols.swift; sourceTree = "<group>"; };
 		E2033DC424D90D7600185664 /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		E2058B6D247F6BBD00A6AB52 /* NavigationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationHandler.swift; sourceTree = "<group>"; };
@@ -981,6 +983,15 @@
 				E20118E725FF258A0091D248 /* ConfigurationHandlerProtocol.swift */,
 			);
 			path = ConfigurationHandler;
+			sourceTree = "<group>";
+		};
+		E20191412934721800770948 /* BehaviorBindable */ = {
+			isa = PBXGroup;
+			children = (
+				E22671AC28E953A1003AA27C /* BehaviorBindable.swift */,
+				E20191422934735800770948 /* BehaviorBindableProtocol.swift */,
+			);
+			path = BehaviorBindable;
 			sourceTree = "<group>";
 		};
 		E208FC4C263523D0008593D8 /* SimpleViewState */ = {
@@ -1878,9 +1889,9 @@
 		E289D88828E15B9C00EA0155 /* Bindable */ = {
 			isa = PBXGroup;
 			children = (
+				E20191412934721800770948 /* BehaviorBindable */,
 				E2FB564C292DE55B0011E499 /* PublishBindable */,
 				E22116B3219157020039F8C9 /* Bindable_Deprecated.swift */,
-				E22671AC28E953A1003AA27C /* BehaviorBindable.swift */,
 			);
 			path = Bindable;
 			sourceTree = "<group>";
@@ -2779,6 +2790,7 @@
 				E2F789F82598401700002CAD /* AppExtension.swift in Sources */,
 				E2C44C1F2616C6D0004B9C9B /* ToastFailureConfiguration.swift in Sources */,
 				E290DF06249FB23E00BABBB8 /* MovieVideosCoordinator.swift in Sources */,
+				E20191432934735800770948 /* BehaviorBindableProtocol.swift in Sources */,
 				E2A4D93C2511BA4A00571893 /* CustomListDetailAssembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
