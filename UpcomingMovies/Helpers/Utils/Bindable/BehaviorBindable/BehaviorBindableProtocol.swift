@@ -18,3 +18,11 @@ protocol BehaviorBindableProtocol: AnyObject {
     func bindAndFire(_ listener: @escaping ((Model) -> Void), on dispatchQueue: DispatchQueue?)
 
 }
+
+extension BehaviorBindableProtocol {
+
+    func asAnyBindable() -> AnyBehaviorBindable<Model> {
+        return AnyBehaviorBindable(self)
+    }
+
+}
