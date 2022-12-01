@@ -8,7 +8,7 @@
 
 import Dispatch
 
-final class BehaviorBindable<T> {
+final class BehaviorBindable<T>: BehaviorBindableProtocol {
 
     typealias Listener = ((T) -> Void)
     private var listener: Listener?
