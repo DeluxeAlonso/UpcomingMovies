@@ -17,7 +17,7 @@ protocol SavedMoviesViewModelProtocol {
     var needsPrefetch: Bool { get }
 
     var startLoading: AnyBehaviorBindable<Bool> { get }
-    var viewState: AnyBehaviorBindable<SimpleViewState<Movie>> { get }
+    var viewState: AnyBehaviorBindable<SavedMoviesViewState> { get }
 
     func getCollectionList()
     func refreshCollectionList()
