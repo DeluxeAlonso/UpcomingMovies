@@ -6,4 +6,6 @@
 //  Copyright © 2022 Alonso. All rights reserved.
 //
 
-import Foundation
+import UpcomingMoviesDomain
+
+typealias SavedMoviesViewState = SimpleViewState<Movie>
