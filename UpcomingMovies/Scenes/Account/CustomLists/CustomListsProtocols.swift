@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 protocol CustomListsViewModelProtocol {
 
     var startLoading: AnyBehaviorBindable<Bool> { get }
-    var viewState: AnyBehaviorBindable<SimpleViewState<List>> { get }
+    var viewState: AnyBehaviorBindable<CustomListsViewState> { get }
 
     var lists: [List] { get }
     var listCells: [CustomListCellViewModelProtocol] { get }
