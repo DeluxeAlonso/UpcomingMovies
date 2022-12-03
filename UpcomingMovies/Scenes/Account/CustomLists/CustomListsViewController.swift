@@ -76,7 +76,7 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
     /**
      * Configures the tableview given its current state.
      */
-    private func configureView(withState state: SimpleViewState<List>) {
+    private func configureView(withState state: CustomListsViewState) {
         switch state {
         case .populated, .paging, .initial:
             hideDisplayedPlaceholderView()

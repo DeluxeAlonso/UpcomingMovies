@@ -17,8 +17,8 @@ final class CustomListsViewModel: CustomListsViewModelProtocol, SimpleViewStateP
 
     // MARK: - Reactive properties
 
-    let startLoading: BehaviorBindable<Bool> = BehaviorBindable(false)
-    let viewState: BehaviorBindable<SimpleViewState<List>> = BehaviorBindable(.initial)
+    let startLoading: AnyBehaviorBindable<Bool> = BehaviorBindable(false).asAnyBindable()
+    let viewState: AnyBehaviorBindable<CustomListsViewState> = BehaviorBindable(.initial).asAnyBindable()
 
     // MARK: - Computed properties
 
