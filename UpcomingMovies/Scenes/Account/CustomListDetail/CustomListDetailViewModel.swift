@@ -18,7 +18,7 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
 
     // MARK: - Reactive properties
 
-    let viewState: BehaviorBindable<CustomListDetailViewState> = BehaviorBindable(.loading)
+    let viewState: AnyBehaviorBindable<CustomListDetailViewState> = BehaviorBindable(.loading).asAnyBindable()
 
     // MARK: - Computed properties
 
