@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 protocol UpcomingMoviesViewModelProtocol {
 
-    var viewState: AnyBehaviorBindable<SimpleViewState<Movie>> { get }
+    var viewState: AnyBehaviorBindable<UpcomingMoviesViewState> { get }
     var startLoading: AnyBehaviorBindable<Bool> { get }
 
     var movieCells: [UpcomingMovieCellViewModelProtocol] { get }
