@@ -137,7 +137,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     /**
      * Configures the view given the current state of the view.
      */
-    private func configureView(withState state: SimpleViewState<Movie>) {
+    private func configureView(withState state: UpcomingMoviesViewState) {
         switch state {
         case .populated, .paging, .initial:
             hideDisplayedPlaceholderView()
