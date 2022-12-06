@@ -15,7 +15,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
 
     private let interactor: SearchMoviesResultInteractorProtocol
 
-    let viewState: BehaviorBindable<SearchMoviesResultViewState> = BehaviorBindable(.initial)
+    let viewState: AnyBehaviorBindable<SearchMoviesResultViewState> = BehaviorBindable(.initial).asAnyBindable()
 
     // MARK: - Computed Properties
 
