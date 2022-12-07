@@ -17,7 +17,7 @@ final class MovieListViewModel: MovieListViewModelProtocol, SimpleViewStateProce
     // MARK: - Reactive properties
 
     let startLoading: AnyBehaviorBindable<Bool> = BehaviorBindable(false).asAnyBindable()
-    let viewState: AnyBehaviorBindable<SimpleViewState<Movie>> = BehaviorBindable(.initial).asAnyBindable()
+    let viewState: AnyBehaviorBindable<MovieListViewState> = BehaviorBindable(.initial).asAnyBindable()
 
     var displayTitle: String?
 
