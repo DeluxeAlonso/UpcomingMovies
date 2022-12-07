@@ -11,8 +11,8 @@ import UpcomingMoviesDomain
 
 protocol MovieListViewModelProtocol {
 
-    var viewState: BehaviorBindable<SimpleViewState<Movie>> { get }
-    var startLoading: BehaviorBindable<Bool> { get }
+    var viewState: AnyBehaviorBindable<MovieListViewState> { get }
+    var startLoading: AnyBehaviorBindable<Bool> { get }
 
     var needsPrefetch: Bool { get }
 
