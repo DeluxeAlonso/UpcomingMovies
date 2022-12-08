@@ -13,9 +13,9 @@ protocol MovieCreditsViewModelProtocol {
 
     var movieTitle: String { get }
 
-    var viewState: BehaviorBindable<MovieCreditsViewState> { get }
-    var didToggleSection: PublishBindable<Int> { get }
-    var startLoading: BehaviorBindable<Bool> { get }
+    var viewState: AnyBehaviorBindable<MovieCreditsViewState> { get }
+    var didToggleSection: AnyPublishBindable<Int> { get }
+    var startLoading: AnyBehaviorBindable<Bool> { get }
 
     func numberOfSections() -> Int
     func numberOfItems(for section: Int) -> Int

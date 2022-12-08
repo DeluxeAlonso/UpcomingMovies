@@ -21,9 +21,9 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
 
     // MARK: - Reactive properties
 
-    let viewState: BehaviorBindable<MovieCreditsViewState> = BehaviorBindable(.initial)
-    let didToggleSection: PublishBindable<Int> = PublishBindable()
-    let startLoading: BehaviorBindable<Bool> = BehaviorBindable(false)
+    let viewState: AnyBehaviorBindable<MovieCreditsViewState> = BehaviorBindable(.initial).asAnyBindable()
+    let didToggleSection: AnyPublishBindable<Int> = PublishBindable<Int>().asAnyPublishBindable()
+    let startLoading: AnyBehaviorBindable<Bool> = BehaviorBindable(false).asAnyBindable()
 
     // MARK: - Initializers
 
