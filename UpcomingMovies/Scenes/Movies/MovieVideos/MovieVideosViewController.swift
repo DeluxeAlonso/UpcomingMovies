@@ -56,7 +56,7 @@ class MovieVideosViewController: UIViewController, Storyboarded, PlaceholderDisp
     /**
      * Configures the tableview footer given the current state of the view.
      */
-    private func configureView(withState state: SimpleViewState<Video>) {
+    private func configureView(withState state: MovieVideosViewState) {
         switch state {
         case .paging:
             hideDisplayedPlaceholderView()
