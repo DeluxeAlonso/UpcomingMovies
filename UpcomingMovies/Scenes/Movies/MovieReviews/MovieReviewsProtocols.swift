@@ -13,7 +13,7 @@ protocol MovieReviewsViewModelProtocol {
 
     var movieTitle: String { get set }
 
-    var viewState: AnyBehaviorBindable<SimpleViewState<Review>> { get }
+    var viewState: AnyBehaviorBindable<MovieReviewsViewState> { get }
     var startLoading: AnyBehaviorBindable<Bool> { get }
 
     var reviewCells: [MovieReviewCellViewModelProtocol] { get }

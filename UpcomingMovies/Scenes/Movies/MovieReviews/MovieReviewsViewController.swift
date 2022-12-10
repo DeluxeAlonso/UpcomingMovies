@@ -63,7 +63,7 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
     /**
      * Configures the tableview footer given the current state of the view.
      */
-    private func configureView(withState state: SimpleViewState<Review>) {
+    private func configureView(withState state: MovieReviewsViewState) {
         switch state {
         case .populated, .paging, .initial:
             hideDisplayedPlaceholderView()
