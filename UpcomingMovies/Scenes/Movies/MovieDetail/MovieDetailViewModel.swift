@@ -18,20 +18,20 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     // MARK: - Reactive properties
 
-    let startLoading: BehaviorBindable<Bool> = BehaviorBindable(false)
+    let startLoading: AnyBehaviorBindable<Bool> = BehaviorBindable(false).asAnyBindable()
 
-    let showGenreName: BehaviorBindable<String> = BehaviorBindable("-")
-    let showMovieOptions: BehaviorBindable<[MovieDetailOption]> = BehaviorBindable([])
+    let showGenreName: AnyBehaviorBindable<String> = BehaviorBindable("-").asAnyBindable()
+    let showMovieOptions: AnyBehaviorBindable<[MovieDetailOption]> = BehaviorBindable([]).asAnyBindable()
 
-    let didSetupMovieDetail: BehaviorBindable<Bool> = BehaviorBindable(false)
+    let didSetupMovieDetail: AnyBehaviorBindable<Bool> = BehaviorBindable(false).asAnyBindable()
 
-    let showSuccessAlert: PublishBindable<String> = PublishBindable()
-    let showErrorAlert: PublishBindable<Error> = PublishBindable()
-    let showErrorRetryView: PublishBindable<Error> = PublishBindable()
+    let showSuccessAlert: AnyPublishBindable<String> = PublishBindable<String>().asAnyPublishBindable()
+    let showErrorAlert: AnyPublishBindable<Error> = PublishBindable<Error>().asAnyBindable()
+    let showErrorRetryView: AnyPublishBindable<Error> = PublishBindable<Error>().asAnyBindable()
 
-    let didSelectShareAction: PublishBindable<Bool> = PublishBindable()
+    let didSelectShareAction: AnyPublishBindable<Bool> = PublishBindable<Bool>().asAnyBindable()
 
-    let movieAccountState: BehaviorBindable<MovieAccountStateModel?> = BehaviorBindable(nil)
+    let movieAccountState: AnyBehaviorBindable<MovieAccountStateModel?> = BehaviorBindable(nil).asAnyBindable()
 
     // MARK: - Properties
 
