@@ -22,15 +22,15 @@ protocol MovieDetailViewModelProtocol {
     var screenTitle: String { get }
     var shareTitle: String { get }
 
-    var startLoading: BehaviorBindable<Bool> { get }
-    var showGenreName: BehaviorBindable<String> { get }
-    var showMovieOptions: BehaviorBindable<[MovieDetailOption]> { get }
-    var didSetupMovieDetail: BehaviorBindable<Bool> { get }
-    var showSuccessAlert: PublishBindable<String> { get }
-    var showErrorAlert: PublishBindable<Error> { get }
-    var showErrorRetryView: PublishBindable<Error> { get }
-    var didSelectShareAction: PublishBindable<Bool> { get }
-    var movieAccountState: BehaviorBindable<MovieAccountStateModel?> { get }
+    var startLoading: AnyBehaviorBindable<Bool> { get }
+    var showGenreName: AnyBehaviorBindable<String> { get }
+    var showMovieOptions: AnyBehaviorBindable<[MovieDetailOption]> { get }
+    var didSetupMovieDetail: AnyBehaviorBindable<Bool> { get }
+    var showSuccessAlert: AnyPublishBindable<String> { get }
+    var showErrorAlert: AnyPublishBindable<Error> { get }
+    var showErrorRetryView: AnyPublishBindable<Error> { get }
+    var didSelectShareAction: AnyPublishBindable<Bool> { get }
+    var movieAccountState: AnyBehaviorBindable<MovieAccountStateModel?> { get }
 
     func getAvailableAlertActions() -> [MovieDetailActionModel]
 
