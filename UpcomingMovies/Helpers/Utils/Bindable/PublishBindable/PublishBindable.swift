@@ -37,11 +37,3 @@ extension PublishBindable where T == Void {
     }
 
 }
-
-extension PublishBindable {
-
-    func asAnyPublishBindable() -> AnyPublishBindable<Model> {
-        return AnyPublishBindable(self)
-    }
-
-}
