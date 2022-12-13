@@ -19,7 +19,7 @@ protocol PublishBindableProtocol {
 
 extension PublishBindableProtocol {
 
-    func asAnyBindable() -> AnyPublishBindable<Model> {
+    func eraseToAnyBindable() -> AnyPublishBindable<Model> {
         return AnyPublishBindable(self)
     }
 
