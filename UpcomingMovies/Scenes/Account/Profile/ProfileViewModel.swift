@@ -17,7 +17,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     private let interactor: ProfileInteractorProtocol
     private let factory: ProfileFactoryProtocol
 
-    let reloadAccountInfo: AnyPublishBindable<Void> = PublishBindable<Void>().asAnyBindable()
+    let reloadAccountInfo = PublishBindable<Void>().eraseToAnyBindable()
 
     // MARK: - Computed properties
 

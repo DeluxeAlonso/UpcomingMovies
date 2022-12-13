@@ -25,11 +25,11 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     let didSetupMovieDetail: AnyBehaviorBindable<Bool> = BehaviorBindable(false).asAnyBindable()
 
-    let showSuccessAlert: AnyPublishBindable<String> = PublishBindable<String>().asAnyBindable()
-    let showErrorAlert: AnyPublishBindable<Error> = PublishBindable<Error>().asAnyBindable()
-    let showErrorRetryView: AnyPublishBindable<Error> = PublishBindable<Error>().asAnyBindable()
+    let showSuccessAlert = PublishBindable<String>().eraseToAnyBindable()
+    let showErrorAlert = PublishBindable<Error>().eraseToAnyBindable()
+    let showErrorRetryView = PublishBindable<Error>().eraseToAnyBindable()
 
-    let didSelectShareAction: AnyPublishBindable<Bool> = PublishBindable<Bool>().asAnyBindable()
+    let didSelectShareAction = PublishBindable<Bool>().eraseToAnyBindable()
 
     let movieAccountState: AnyBehaviorBindable<MovieAccountStateModel?> = BehaviorBindable(nil).asAnyBindable()
 
