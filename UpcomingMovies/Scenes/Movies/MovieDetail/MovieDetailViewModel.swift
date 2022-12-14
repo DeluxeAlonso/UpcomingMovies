@@ -18,12 +18,12 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     // MARK: - Reactive properties
 
-    let startLoading: AnyBehaviorBindable<Bool> = BehaviorBindable(false).eraseToAnyBindable()
+    let startLoading = BehaviorBindable(false).eraseToAnyBindable()
 
-    let showGenreName: AnyBehaviorBindable<String> = BehaviorBindable("-").eraseToAnyBindable()
-    let showMovieOptions: AnyBehaviorBindable<[MovieDetailOption]> = BehaviorBindable([]).eraseToAnyBindable()
+    let showGenreName = BehaviorBindable("-").eraseToAnyBindable()
+    let showMovieOptions = BehaviorBindable([MovieDetailOption]()).eraseToAnyBindable()
 
-    let didSetupMovieDetail: AnyBehaviorBindable<Bool> = BehaviorBindable(false).eraseToAnyBindable()
+    let didSetupMovieDetail = BehaviorBindable(false).eraseToAnyBindable()
 
     let showSuccessAlert = PublishBindable<String>().eraseToAnyBindable()
     let showErrorAlert = PublishBindable<Error>().eraseToAnyBindable()
