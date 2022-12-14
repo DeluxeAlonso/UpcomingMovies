@@ -18,12 +18,12 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     // MARK: - Reactive properties
 
-    let startLoading: AnyBehaviorBindable<Bool> = BehaviorBindable(false).asAnyBindable()
+    let startLoading = BehaviorBindable(false).eraseToAnyBindable()
 
-    let showGenreName: AnyBehaviorBindable<String> = BehaviorBindable("-").asAnyBindable()
-    let showMovieOptions: AnyBehaviorBindable<[MovieDetailOption]> = BehaviorBindable([]).asAnyBindable()
+    let showGenreName = BehaviorBindable("-").eraseToAnyBindable()
+    let showMovieOptions = BehaviorBindable([MovieDetailOption]()).eraseToAnyBindable()
 
-    let didSetupMovieDetail: AnyBehaviorBindable<Bool> = BehaviorBindable(false).asAnyBindable()
+    let didSetupMovieDetail = BehaviorBindable(false).eraseToAnyBindable()
 
     let showSuccessAlert = PublishBindable<String>().eraseToAnyBindable()
     let showErrorAlert = PublishBindable<Error>().eraseToAnyBindable()
@@ -31,7 +31,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     let didSelectShareAction = PublishBindable<Bool>().eraseToAnyBindable()
 
-    let movieAccountState: AnyBehaviorBindable<MovieAccountStateModel?> = BehaviorBindable(nil).asAnyBindable()
+    let movieAccountState: AnyBehaviorBindable<MovieAccountStateModel?> = BehaviorBindable(nil).eraseToAnyBindable()
 
     // MARK: - Properties
 

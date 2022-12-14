@@ -17,8 +17,8 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
 
     // MARK: - Reactive properties
 
-    let viewState: AnyBehaviorBindable<UpcomingMoviesViewState> = BehaviorBindable(.initial).asAnyBindable()
-    let startLoading: AnyBehaviorBindable<Bool> = BehaviorBindable(false).asAnyBindable()
+    let viewState = BehaviorBindable(UpcomingMoviesViewState.initial).eraseToAnyBindable()
+    let startLoading = BehaviorBindable(false).eraseToAnyBindable()
 
     // MARK: - Computed properties
 
