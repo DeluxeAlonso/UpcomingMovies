@@ -18,8 +18,8 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol, SimpleViewStateP
 
     // MARK: - Reactive properties
 
-    let viewState: AnyBehaviorBindable<MovieVideosViewState> = BehaviorBindable(.initial).asAnyBindable()
-    let startLoading: AnyBehaviorBindable<Bool> = BehaviorBindable(false).asAnyBindable()
+    let viewState: AnyBehaviorBindable<MovieVideosViewState> = BehaviorBindable(.initial).eraseToAnyBindable()
+    let startLoading: AnyBehaviorBindable<Bool> = BehaviorBindable(false).eraseToAnyBindable()
 
     // MARK: - Computed properties
 
