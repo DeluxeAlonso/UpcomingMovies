@@ -113,7 +113,7 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
         client.markAsFavorite(movieId, sessionId: account.sessionId, accountId: account.accountId, favorite: favorite, completion: { result in
             switch result {
             case .success:
-                completion(.success(true))
+                completion(.success(favorite))
             case .failure(let error):
                 completion(.failure(error))
             }
