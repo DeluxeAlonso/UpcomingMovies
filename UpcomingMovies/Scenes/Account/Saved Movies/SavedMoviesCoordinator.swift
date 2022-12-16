@@ -29,7 +29,7 @@ final class FavoritesSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coo
 
 }
 
-class WatchlistSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
+final class WatchlistSavedMoviesCoordinator: SavedMoviesCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
 
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
