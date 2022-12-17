@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-class SearchOptionsInteractor: SearchOptionsInteractorProtocol {
+final class SearchOptionsInteractor: SearchOptionsInteractorProtocol {
 
     private var movieVisitUseCase: MovieVisitUseCaseProtocol
     private let genreUseCase: GenreUseCaseProtocol

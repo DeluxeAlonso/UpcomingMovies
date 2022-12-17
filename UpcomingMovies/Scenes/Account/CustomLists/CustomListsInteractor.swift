@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-class CustomListsInteractor: CustomListsInteractorProtocol {
+final class CustomListsInteractor: CustomListsInteractorProtocol {
 
     private let accountUseCase: AccountUseCaseProtocol
 

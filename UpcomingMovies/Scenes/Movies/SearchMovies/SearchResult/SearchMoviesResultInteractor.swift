@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-class SearchMoviesResultInteractor: SearchMoviesResultInteractorProtocol {
+final class SearchMoviesResultInteractor: SearchMoviesResultInteractorProtocol {
 
     private let movieUseCase: MovieUseCaseProtocol
     private let movieSearchUseCase: MovieSearchUseCaseProtocol
