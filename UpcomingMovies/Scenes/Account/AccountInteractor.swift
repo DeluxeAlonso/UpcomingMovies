@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-class AccountInteractor: AccountInteractorProtocol {
+final class AccountInteractor: AccountInteractorProtocol {
 
     private let userUseCase: UserUseCaseProtocol
     private let authUseCase: AuthUseCaseProtocol
