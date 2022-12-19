@@ -8,24 +8,20 @@
 
 import UIKit
 
-final class AuthPermissionCoordinator: AuthPermissionCoordinatorProtocol {
+final class AuthPermissionCoordinator: BaseCoordinator, AuthPermissionCoordinatorProtocol {
 
-    var childCoordinators: [Coordinator] = []
-    var parentCoordinator: Coordinator?
-
-    var navigationController: UINavigationController
-    var authPermissionURL: URL
+    private let authPermissionURL: URL
 
     var presentingViewController: UIViewController?
     var authPermissionDelegate: AuthPermissionViewControllerDelegate?
 
     init(navigationController: UINavigationController,
          authPermissionURL: URL) {
-        self.navigationController = navigationController
         self.authPermissionURL = authPermissionURL
+        super.init(navigationController: navigationController)
     }
 
-    func start() {
+    override func start() {
         let viewController = AuthPermissionViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(argument: authPermissionURL)
