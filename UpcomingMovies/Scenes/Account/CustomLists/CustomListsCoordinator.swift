@@ -9,22 +9,17 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class CustomListsCoordinator: Coordinator, CustomListsCoordinatorProtocol {
+final class CustomListsCoordinator: BaseCoordinator, CustomListsCoordinatorProtocol {
 
-    var childCoordinators: [Coordinator] = []
-    var parentCoordinator: Coordinator?
-    var navigationController: UINavigationController
-
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-
-    func start() {
+    override func start() {
         let viewController = CustomListsViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve()
         viewController.coordinator = self
 
+        if navigationController.delegate == nil {
+            navigationController.delegate = self
+        }
         navigationController.pushViewController(viewController, animated: true)
     }
 
