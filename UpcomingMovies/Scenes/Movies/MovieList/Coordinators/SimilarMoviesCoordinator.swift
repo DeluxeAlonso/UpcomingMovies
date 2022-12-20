@@ -9,25 +9,21 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class SimilarMoviesCoordinator: MovieListCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
+final class SimilarMoviesCoordinator: BaseCoordinator, MovieListCoordinatorProtocol, MovieDetailCoordinable {
 
-    var childCoordinators: [Coordinator] = []
-    var parentCoordinator: Coordinator?
-    var navigationController: UINavigationController
-
+    // TODO: - Stop force unwrapping in coordinators
     var movieId: Int!
 
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-
-    func start() {
+    override func start() {
         let viewController = MovieListViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(name: "SimilarMovies",
                                                               arguments: LocalizedStrings.similarMoviesTitle.localized, movieId)
         viewController.coordinator = self
 
+        if navigationController.delegate == nil {
+            navigationController.delegate = self
+        }
         navigationController.pushViewController(viewController, animated: true)
     }
 

@@ -9,23 +9,19 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class RecommendedMoviesCoordinator: MovieListCoordinatorProtocol, Coordinator, MovieDetailCoordinable {
+final class RecommendedMoviesCoordinator: BaseCoordinator, MovieListCoordinatorProtocol, MovieDetailCoordinable {
 
-    var childCoordinators: [Coordinator] = []
-    var parentCoordinator: Coordinator?
-    var navigationController: UINavigationController
-
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-
-    func start() {
+    override func start() {
         let viewController = MovieListViewController.instantiate()
 
+        // TODO: - Stop passing title as argument
         viewController.viewModel = DIContainer.shared.resolve(name: "RecommendedMovies",
                                                               argument: "Recommendations")
         viewController.coordinator = self
 
+        if navigationController.delegate == nil {
+            navigationController.delegate = self
+        }
         navigationController.pushViewController(viewController, animated: true)
     }
 
