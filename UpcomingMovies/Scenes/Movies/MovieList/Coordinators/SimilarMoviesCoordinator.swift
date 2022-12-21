@@ -11,8 +11,12 @@ import UpcomingMoviesDomain
 
 final class SimilarMoviesCoordinator: BaseCoordinator, MovieListCoordinatorProtocol, MovieDetailCoordinable {
 
-    // TODO: - Stop force unwrapping in coordinators
-    var movieId: Int!
+    private let movieId: Int!
+
+    init(navigationController: UINavigationController, movieId: Int) {
+        self.movieId = movieId
+        super.init(navigationController: navigationController)
+    }
 
     override func start() {
         let viewController = MovieListViewController.instantiate()
