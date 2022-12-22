@@ -75,9 +75,7 @@ final class SearchMoviesCoordinator: NSObject, SearchMoviesCoordinatorProtocol, 
     }
 
     func showMoviesByGenre(_ genreId: Int, genreName: String) {
-        let coordinator = MoviesByGenreCoordinator(navigationController: navigationController)
-        coordinator.genreId = genreId
-        coordinator.genreName = genreName
+        let coordinator = MoviesByGenreCoordinator(navigationController: navigationController, genreId: genreId, genreName: genreName)
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)

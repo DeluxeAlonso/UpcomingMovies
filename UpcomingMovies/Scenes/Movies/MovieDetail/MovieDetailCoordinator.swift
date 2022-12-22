@@ -18,7 +18,7 @@ enum MovieDetailInfo {
 
 final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProtocol {
 
-    private let movieInfo: MovieDetailInfo!
+    private let movieInfo: MovieDetailInfo
 
     // MARK: - Initializers
 

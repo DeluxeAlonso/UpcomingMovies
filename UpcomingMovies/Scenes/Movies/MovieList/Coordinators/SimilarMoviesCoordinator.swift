@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 final class SimilarMoviesCoordinator: BaseCoordinator, MovieListCoordinatorProtocol, MovieDetailCoordinable {
 
-    private let movieId: Int!
+    private let movieId: Int
 
     init(navigationController: UINavigationController, movieId: Int) {
         self.movieId = movieId
