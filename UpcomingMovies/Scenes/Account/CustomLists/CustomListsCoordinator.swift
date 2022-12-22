@@ -24,9 +24,7 @@ final class CustomListsCoordinator: BaseCoordinator, CustomListsCoordinatorProto
     }
 
     func showListDetail(for customList: List) {
-        let coordinator = CustomListDetailCoordinator(navigationController: navigationController)
-
-        coordinator.customList = customList
+        let coordinator = CustomListDetailCoordinator(navigationController: navigationController, customList: customList)
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)

@@ -11,8 +11,14 @@ import UpcomingMoviesDomain
 
 final class MoviesByGenreCoordinator: BaseCoordinator, MovieListCoordinatorProtocol, MovieDetailCoordinable {
 
-    var genreId: Int!
-    var genreName: String!
+    private let genreId: Int
+    private let genreName: String
+
+    init(navigationController: UINavigationController, genreId: Int, genreName: String) {
+        self.genreId = genreId
+        self.genreName = genreName
+        super.init(navigationController: navigationController)
+    }
 
     override func start() {
         let viewController = MovieListViewController.instantiate()

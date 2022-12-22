@@ -9,17 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class SearchMoviesCoordinator: NSObject, SearchMoviesCoordinatorProtocol, RootCoordinator, MovieDetailCoordinable {
-
-    var childCoordinators: [Coordinator] = []
-    var parentCoordinator: Coordinator?
-    var navigationController: UINavigationController
-
-    // MARK: - Initializers
-
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
+final class SearchMoviesCoordinator: BaseCoordinator, SearchMoviesCoordinatorProtocol, RootCoordinator, MovieDetailCoordinable {
 
     // MARK: - Coordinator
 
@@ -27,12 +17,14 @@ final class SearchMoviesCoordinator: NSObject, SearchMoviesCoordinatorProtocol, 
         return RootCoordinatorIdentifier.searchMovies
     }
 
-    func start() {
+    override func start() {
         let viewController = SearchMoviesViewController.instantiate()
 
         viewController.coordinator = self
 
-        navigationController.delegate = self
+        if navigationController.delegate == nil {
+            navigationController.delegate = self
+        }
         navigationController.pushViewController(viewController, animated: true)
     }
 
@@ -65,8 +57,9 @@ final class SearchMoviesCoordinator: NSObject, SearchMoviesCoordinatorProtocol, 
     }
 
     func showMovieDetail(for movieId: Int, and movieTitle: String) {
-        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
-        coordinator.movieInfo = .partial(movieId: movieId, movieTitle: movieTitle)
+        let movieInfo = MovieDetailInfo.partial(movieId: movieId, movieTitle: movieTitle)
+
+        let coordinator = MovieDetailCoordinator(navigationController: navigationController, movieInfo: movieInfo)
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
@@ -74,9 +67,7 @@ final class SearchMoviesCoordinator: NSObject, SearchMoviesCoordinatorProtocol, 
     }
 
     func showMoviesByGenre(_ genreId: Int, genreName: String) {
-        let coordinator = MoviesByGenreCoordinator(navigationController: navigationController)
-        coordinator.genreId = genreId
-        coordinator.genreName = genreName
+        let coordinator = MoviesByGenreCoordinator(navigationController: navigationController, genreId: genreId, genreName: genreName)
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
@@ -109,21 +100,3 @@ final class SearchMoviesCoordinator: NSObject, SearchMoviesCoordinatorProtocol, 
     }
 
 }
-
-// MARK: - UINavigationControllerDelegate
-
- extension SearchMoviesCoordinator: UINavigationControllerDelegate {
-
-     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-         guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
-             return
-         }
-         // Check whether our view controller array already contains that view controller.
-         // If it does it means we’re pushing a different view controller on top rather than popping it, so exit.
-         if navigationController.viewControllers.contains(fromViewController) {
-             return
-         }
-         unwrappedParentCoordinator.childDidFinish()
-     }
-
- }

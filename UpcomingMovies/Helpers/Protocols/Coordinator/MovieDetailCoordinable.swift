@@ -17,9 +17,9 @@ protocol MovieDetailCoordinable {
 extension MovieDetailCoordinable where Self: Coordinator {
 
     func showMovieDetail(for movie: Movie) {
-        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
+        let movieInfo = MovieDetailInfo.complete(movie: movie)
 
-        coordinator.movieInfo = .complete(movie: movie)
+        let coordinator = MovieDetailCoordinator(navigationController: navigationController, movieInfo: movieInfo)
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
