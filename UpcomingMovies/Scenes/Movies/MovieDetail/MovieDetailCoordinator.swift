@@ -16,29 +16,29 @@ enum MovieDetailInfo {
 
 }
 
-final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol {
+final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProtocol {
 
-    var childCoordinators: [Coordinator] = []
-    var parentCoordinator: Coordinator?
-    var navigationController: UINavigationController
-
-    var movieInfo: MovieDetailInfo!
+    private let movieInfo: MovieDetailInfo!
 
     // MARK: - Initializers
 
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(navigationController: UINavigationController, movieInfo: MovieDetailInfo) {
+        self.movieInfo = movieInfo
+        super.init(navigationController: navigationController)
     }
 
     // MARK: - MovieDetailCoordinatorProtocol
 
-    func start() {
+    override func start() {
         let viewController = MovieDetailViewController.instantiate()
 
         viewController.viewModel = viewModel(for: movieInfo)
         viewController.userInterfaceHelper = DIContainer.shared.resolve()
         viewController.coordinator = self
 
+        if navigationController.delegate == nil {
+            navigationController.delegate = self
+        }
         navigationController.pushViewController(viewController, animated: true)
     }
 

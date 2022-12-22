@@ -65,8 +65,9 @@ final class SearchMoviesCoordinator: NSObject, SearchMoviesCoordinatorProtocol, 
     }
 
     func showMovieDetail(for movieId: Int, and movieTitle: String) {
-        let coordinator = MovieDetailCoordinator(navigationController: navigationController)
-        coordinator.movieInfo = .partial(movieId: movieId, movieTitle: movieTitle)
+        let movieInfo = MovieDetailInfo.partial(movieId: movieId, movieTitle: movieTitle)
+
+        let coordinator = MovieDetailCoordinator(navigationController: navigationController, movieInfo: movieInfo)
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
