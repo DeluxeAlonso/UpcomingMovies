@@ -67,7 +67,7 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
         guard navigationController.delegate == nil else { return }
 
         navigationDelegate = UpcomingMoviesNavigation()
-        navigationDelegate.parentCoordinator = self
+        navigationDelegate?.parentCoordinator = self
 
         navigationController.delegate = navigationDelegate
     }
@@ -76,9 +76,9 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
         guard let navigationConfiguration = navigationConfiguration else { return }
         setupNavigationDelegate()
 
-        navigationDelegate.configure(selectedFrame: navigationConfiguration.selectedFrame,
+        navigationDelegate?.configure(selectedFrame: navigationConfiguration.selectedFrame,
                                      with: navigationConfiguration.imageToTransition)
-        navigationDelegate.updateOffset(navigationConfiguration.transitionOffset)
+        navigationDelegate?.updateOffset(navigationConfiguration.transitionOffset)
     }
 
 }
