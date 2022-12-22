@@ -11,7 +11,12 @@ import UpcomingMoviesDomain
 
 final class CustomListDetailCoordinator: BaseCoordinator, CustomListDetailCoordinatorProtocol, MovieDetailCoordinable {
 
-    var customList: List!
+    private let customList: List
+
+    init(navigationController: UINavigationController, customList: List) {
+        self.customList = customList
+        super.init(navigationController: navigationController)
+    }
 
     override func start() {
         let viewController = CustomListDetailViewController.instantiate()

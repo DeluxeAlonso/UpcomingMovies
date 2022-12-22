@@ -29,7 +29,7 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
 
-    var navigationDelegate: UpcomingMoviesNavigationDelegate!
+    var navigationDelegate: UpcomingMoviesNavigationDelegate?
 
     // MARK: - Initializers
 
