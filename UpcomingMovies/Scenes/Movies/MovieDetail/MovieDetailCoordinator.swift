@@ -98,11 +98,9 @@ final class MovieDetailCoordinator: Coordinator, MovieDetailCoordinatorProtocol 
     }
 
     private func showSimilarMovies() {
-        let coordinator = SimilarMoviesCoordinator(navigationController: navigationController)
-
         let movieInfo = getMoviePartialInfo(for: self.movieInfo)
 
-        coordinator.movieId = movieInfo.id
+        let coordinator = SimilarMoviesCoordinator(navigationController: navigationController, movieId: movieInfo.id)
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
