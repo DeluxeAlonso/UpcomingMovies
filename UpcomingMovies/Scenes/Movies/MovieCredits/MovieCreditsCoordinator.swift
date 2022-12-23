@@ -8,27 +8,26 @@
 
 import UIKit
 
-final class MovieCreditsCoordinator: Coordinator, MovieCreditsCoordinatorProtocol {
+final class MovieCreditsCoordinator: BaseCoordinator, MovieCreditsCoordinatorProtocol {
 
-    var childCoordinators: [Coordinator] = []
-    var parentCoordinator: Coordinator?
-    var navigationController: UINavigationController
-
-    var movieId: Int
-    var movieTitle: String
+    private let movieId: Int
+    private let movieTitle: String
 
     init(navigationController: UINavigationController, movieId: Int, movieTitle: String) {
-        self.navigationController = navigationController
         self.movieId = movieId
         self.movieTitle = movieTitle
+        super.init(navigationController: navigationController)
     }
 
-    func start() {
+    override func start() {
         let viewController = MovieCreditsViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(arguments: movieId, movieTitle)
         viewController.coordinator = self
 
+        if navigationController.delegate == nil {
+            navigationController.delegate = self
+        }
         navigationController.pushViewController(viewController, animated: true)
     }
 
