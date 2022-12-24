@@ -19,12 +19,12 @@ final class MovieReviewsAssembly: Assembly {
             return MovieReviewsInteractor(movieUseCase: useCaseProvider.movieUseCase())
         }
 
-        container.register(MovieReviewsViewModelProtocol.self) { (resolver, movieId: Int?, movieTitle: String?) in
+        container.register(MovieReviewsViewModelProtocol.self) { (resolver, movieId: Int, movieTitle: String) in
             guard let interactor = resolver.resolve(MovieReviewsInteractorProtocol.self) else {
                 fatalError("MovieReviewsInteractorProtocol dependency could not be resolved")
             }
-            return MovieReviewsViewModel(movieId: movieId!,
-                                         movieTitle: movieTitle!,
+            return MovieReviewsViewModel(movieId: movieId,
+                                         movieTitle: movieTitle,
                                          interactor: interactor)
         }
     }

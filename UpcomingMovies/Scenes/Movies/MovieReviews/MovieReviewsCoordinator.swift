@@ -11,12 +11,14 @@ import UpcomingMoviesDomain
 
 final class MovieReviewsCoordinator: BaseCoordinator, MovieReviewsCoordinatorProtocol {
 
-    var movieId: Int!
-    var movieTitle: String!
+    private let movieId: Int
+    private let movieTitle: String
 
-//    init(navigationController: UINavigationController) {
-//        self.navigationController = navigationController
-//    }
+    init(navigationController: UINavigationController, movieId: Int, movieTitle: String) {
+        self.movieId = movieId
+        self.movieTitle = movieTitle
+        super.init(navigationController: navigationController)
+    }
 
     override func start() {
         let viewController = MovieReviewsViewController.instantiate()
