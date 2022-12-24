@@ -9,25 +9,26 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class MovieReviewsCoordinator: Coordinator, MovieReviewsCoordinatorProtocol {
+final class MovieReviewsCoordinator: BaseCoordinator, MovieReviewsCoordinatorProtocol {
 
-    var childCoordinators: [Coordinator] = []
-    var parentCoordinator: Coordinator?
-    var navigationController: UINavigationController
+    private let movieId: Int
+    private let movieTitle: String
 
-    var movieId: Int!
-    var movieTitle: String!
-
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(navigationController: UINavigationController, movieId: Int, movieTitle: String) {
+        self.movieId = movieId
+        self.movieTitle = movieTitle
+        super.init(navigationController: navigationController)
     }
 
-    func start() {
+    override func start() {
         let viewController = MovieReviewsViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(arguments: movieId, movieTitle)
         viewController.coordinator = self
 
+        if navigationController.delegate == nil {
+            navigationController.delegate = self
+        }
         navigationController.pushViewController(viewController, animated: true)
     }
 

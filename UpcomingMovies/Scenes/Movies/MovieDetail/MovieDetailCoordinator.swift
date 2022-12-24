@@ -82,12 +82,11 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
     }
 
     private func showMovieReviews() {
-        let coordinator = MovieReviewsCoordinator(navigationController: navigationController)
-
         let movieInfo = getMoviePartialInfo(for: self.movieInfo)
 
-        coordinator.movieId = movieInfo.id
-        coordinator.movieTitle = movieInfo.title
+        let coordinator = MovieReviewsCoordinator(navigationController: navigationController,
+                                                  movieId: movieInfo.id,
+                                                  movieTitle: movieInfo.title)
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
