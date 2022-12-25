@@ -9,21 +9,17 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class MovieReviewDetailCoordinator: Coordinator, MovieReviewDetailCoordinatorProtocol {
-
-    var childCoordinators: [Coordinator] = []
-    var parentCoordinator: Coordinator?
-    var navigationController: UINavigationController
+final class MovieReviewDetailCoordinator: BaseCoordinator, MovieReviewDetailCoordinatorProtocol {
 
     var review: Review!
     var presentingViewController: UIViewController!
     var transitioningDelegate: UIViewControllerTransitioningDelegate?
 
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
+//    init(navigationController: UINavigationController) {
+//        self.navigationController = navigationController
+//    }
 
-    func start() {
+    override func start() {
         let viewController = MovieReviewDetailViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(argument: review)
@@ -33,6 +29,9 @@ final class MovieReviewDetailCoordinator: Coordinator, MovieReviewDetailCoordina
         navigationController.modalPresentationStyle = .fullScreen
         navigationController.transitioningDelegate = transitioningDelegate
 
+        if navigationController.delegate == nil {
+            navigationController.delegate = self
+        }
         presentingViewController.present(navigationController, animated: true, completion: nil)
     }
 
