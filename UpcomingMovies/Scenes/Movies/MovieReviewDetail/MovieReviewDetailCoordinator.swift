@@ -9,18 +9,21 @@
 import UIKit
 import UpcomingMoviesDomain
 
+// TODO: - Make this class inherit from base coordinator
 final class MovieReviewDetailCoordinator: Coordinator, MovieReviewDetailCoordinatorProtocol {
+
+    private let review: Review
 
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
 
-    var review: Review!
-    var presentingViewController: UIViewController!
+    var presentingViewController: UIViewController?
     var transitioningDelegate: UIViewControllerTransitioningDelegate?
 
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, review: Review) {
         self.navigationController = navigationController
+        self.review = review
     }
 
     func start() {
@@ -33,7 +36,7 @@ final class MovieReviewDetailCoordinator: Coordinator, MovieReviewDetailCoordina
         navigationController.modalPresentationStyle = .fullScreen
         navigationController.transitioningDelegate = transitioningDelegate
 
-        presentingViewController.present(navigationController, animated: true, completion: nil)
+        presentingViewController?.present(navigationController, animated: true, completion: nil)
     }
 
     func dismiss() {

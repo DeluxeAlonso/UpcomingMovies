@@ -34,9 +34,8 @@ final class MovieReviewsCoordinator: BaseCoordinator, MovieReviewsCoordinatorPro
 
     func showReviewDetail(for review: Review, transitionView: UIView? = nil) {
         let navigationController = UINavigationController()
-        let coordinator = MovieReviewDetailCoordinator(navigationController: navigationController)
+        let coordinator = MovieReviewDetailCoordinator(navigationController: navigationController, review: review)
 
-        coordinator.review = review
         coordinator.presentingViewController = self.navigationController.topViewController
         coordinator.parentCoordinator = unwrappedParentCoordinator
         coordinator.transitioningDelegate = ScaleTransitioningDelegate(viewToScale: transitionView)
