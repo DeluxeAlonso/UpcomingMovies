@@ -9,7 +9,6 @@
 import UIKit
 import UpcomingMoviesDomain
 
-// TODO: - Make this class inherit from base coordinator
 final class MovieReviewDetailCoordinator: BaseCoordinator, MovieReviewDetailCoordinatorProtocol {
 
     private let review: Review
