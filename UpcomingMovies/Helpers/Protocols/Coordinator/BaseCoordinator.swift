@@ -23,7 +23,9 @@ class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     }
 
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
+        // We only intend to cover push/pop scenarios here. Present/dismissal handling should be done manually.
+        let isBeingPresented = navigationController.isBeingPresented
+        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from), !isBeingPresented else {
             return
         }
         // Check whether our view controller array already contains that view controller.
