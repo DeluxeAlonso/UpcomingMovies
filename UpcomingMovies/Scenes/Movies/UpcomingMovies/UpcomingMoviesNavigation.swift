@@ -78,14 +78,15 @@ class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate {
     }
 
     func navigationController(_ navigationController: UINavigationController,
-                              interactionControllerFor animationController: UIViewControllerAnimatedTransitioning)
-        -> UIViewControllerInteractiveTransitioning? {
+                              interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
             guard let transitionInteractor = transitionInteractor else { return nil }
             return transitionInteractor.transitionInProgress ? transitionInteractor : nil
     }
 
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from), !navigationController.isBeingPresented else {
+        // We only intend to cover push/pop scenarios here. Present/dismissal handling should be done manually.
+        let isBeingPresented = navigationController.isBeingPresented
+        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from), !isBeingPresented else {
             return
         }
 
