@@ -85,7 +85,7 @@ class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate {
     }
 
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
+        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from), !navigationController.isBeingPresented else {
             return
         }
 

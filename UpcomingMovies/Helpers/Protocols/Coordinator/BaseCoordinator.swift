@@ -23,7 +23,7 @@ class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     }
 
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
+        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from), !navigationController.isBeingPresented else {
             return
         }
         // Check whether our view controller array already contains that view controller.
