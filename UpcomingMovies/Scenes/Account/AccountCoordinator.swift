@@ -9,13 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol, RootCoordinator {
-
-    // MARK: - Coordinator
-
-    var rootIdentifier: String {
-        return RootCoordinatorIdentifier.account
-    }
+final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
 
     override func start() {
         let viewController = AccountViewController.instantiate()
@@ -129,6 +123,14 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol, Roo
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start()
+    }
+
+}
+
+extension AccountCoordinator: RootCoordinator {
+
+    var rootIdentifier: String {
+        return RootCoordinatorIdentifier.account
     }
 
 }
