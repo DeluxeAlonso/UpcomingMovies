@@ -32,6 +32,9 @@ final class WatchlistSavedMoviesCoordinator: BaseCoordinator, SavedMoviesCoordin
         viewController.viewModel = DIContainer.shared.resolve(argument: ProfileOption.watchlist.title)
         viewController.coordinator = self
 
+        if navigationController.delegate == nil {
+            navigationController.delegate = self
+        }
         navigationController.pushViewController(viewController, animated: true)
     }
 
