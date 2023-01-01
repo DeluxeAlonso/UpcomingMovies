@@ -78,9 +78,10 @@ class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate {
     }
 
     func navigationController(_ navigationController: UINavigationController,
-                              interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-            guard let transitionInteractor = transitionInteractor else { return nil }
-            return transitionInteractor.transitionInProgress ? transitionInteractor : nil
+                              interactionControllerFor animationController: UIViewControllerAnimatedTransitioning)
+    -> UIViewControllerInteractiveTransitioning? {
+        guard let transitionInteractor = transitionInteractor else { return nil }
+        return transitionInteractor.transitionInProgress ? transitionInteractor : nil
     }
 
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
