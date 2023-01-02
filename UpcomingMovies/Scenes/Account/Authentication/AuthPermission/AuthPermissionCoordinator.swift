@@ -28,9 +28,7 @@ final class AuthPermissionCoordinator: BaseCoordinator, AuthPermissionCoordinato
         viewController.delegate = authPermissionDelegate
         viewController.coordinator = self
 
-        if navigationController.delegate == nil {
-            navigationController.delegate = self
-        }
+        setNavigationControllerDelegate(self)
         navigationController.pushViewController(viewController, animated: false)
         presentingViewController?.present(navigationController, animated: true, completion: nil)
     }

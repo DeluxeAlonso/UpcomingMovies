@@ -16,9 +16,7 @@ final class FavoritesSavedMoviesCoordinator: BaseCoordinator, SavedMoviesCoordin
         viewController.viewModel = DIContainer.shared.resolve(argument: ProfileOption.favorites.title)
         viewController.coordinator = self
 
-        if navigationController.delegate == nil {
-            navigationController.delegate = self
-        }
+        setNavigationControllerDelegate(self)
         navigationController.pushViewController(viewController, animated: true)
     }
 

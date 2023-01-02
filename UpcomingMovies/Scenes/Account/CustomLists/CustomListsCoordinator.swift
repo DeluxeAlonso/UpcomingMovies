@@ -17,9 +17,7 @@ final class CustomListsCoordinator: BaseCoordinator, CustomListsCoordinatorProto
         viewController.viewModel = DIContainer.shared.resolve()
         viewController.coordinator = self
 
-        if navigationController.delegate == nil {
-            navigationController.delegate = self
-        }
+        setNavigationControllerDelegate(self)
         navigationController.pushViewController(viewController, animated: true)
     }
 
