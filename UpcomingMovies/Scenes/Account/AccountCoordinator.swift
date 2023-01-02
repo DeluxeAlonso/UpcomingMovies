@@ -16,8 +16,7 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
 
         viewController.viewModel = DIContainer.shared.resolve()
         viewController.coordinator = self
-
-        setNavigationControllerDelegate(self)
+        
         navigationController.pushViewController(viewController, animated: true)
     }
 
