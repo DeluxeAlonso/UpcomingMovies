@@ -22,6 +22,13 @@ class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         fatalError("Start method should be implemented")
     }
 
+    func setNavigationControllerDelegate(_ delegate: UINavigationControllerDelegate, shouldForce: Bool = false) {
+        guard !shouldForce && navigationController.delegate == nil else {
+            return
+        }
+        navigationController.delegate = delegate
+    }
+
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         // We only intend to cover push/pop scenarios here. Present/dismissal handling should be done manually.
         let isBeingPresented = navigationController.isBeingPresented
