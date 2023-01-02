@@ -22,8 +22,11 @@ class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         fatalError("Start method should be implemented")
     }
 
-    func setNavigationControllerDelegate(_ delegate: UINavigationBarDelegate, shouldForce: Bool) {
-
+    func setNavigationControllerDelegate(_ delegate: UINavigationControllerDelegate, shouldForce: Bool = false) {
+        guard !shouldForce && navigationController.delegate == nil else {
+            return
+        }
+        navigationController.delegate = delegate
     }
 
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
