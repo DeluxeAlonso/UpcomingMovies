@@ -24,9 +24,6 @@ final class CustomListDetailCoordinator: BaseCoordinator, CustomListDetailCoordi
         viewController.viewModel = DIContainer.shared.resolve(argument: customList)
         viewController.coordinator = self
 
-        if navigationController.delegate == nil {
-            navigationController.delegate = self
-        }
         navigationController.pushViewController(viewController, animated: true)
     }
 

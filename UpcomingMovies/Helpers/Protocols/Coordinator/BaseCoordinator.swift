@@ -8,19 +8,28 @@
 
 import UIKit
 
-class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
 
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
 
-    init(navigationController: UINavigationController) {
+    public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        super.init()
+
+        setNavigationControllerDelegate(self, shouldForce: shouldForceDelegateOverride)
     }
 
-    func start() {
+    open func start() {
         fatalError("Start method should be implemented")
     }
+
+    open var navigationControllerDelegate: UINavigationControllerDelegate? {
+        return self
+    }
+
+    open var shouldForceDelegateOverride: Bool = false
 
     func setNavigationControllerDelegate(_ delegate: UINavigationControllerDelegate, shouldForce: Bool = false) {
         guard !shouldForce && navigationController.delegate == nil else {
@@ -29,7 +38,7 @@ class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         navigationController.delegate = delegate
     }
 
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+    public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         // We only intend to cover push/pop scenarios here. Present/dismissal handling should be done manually.
         let isBeingPresented = navigationController.isBeingPresented
         guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from), !isBeingPresented else {
