@@ -10,7 +10,7 @@ jobs:
   lint:
     runs-on: macos-11
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Install Bundle
       run: bundle install
     - name: Dependencies
@@ -22,7 +22,7 @@ jobs:
     needs: lint
     runs-on: macos-11
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Install Bundle
       run: bundle install
     - name: Dependencies
