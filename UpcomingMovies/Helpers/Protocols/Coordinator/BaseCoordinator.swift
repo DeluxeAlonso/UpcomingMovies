@@ -18,7 +18,7 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
         self.navigationController = navigationController
         super.init()
 
-        setNavigationControllerDelegate(self, shouldForce: shouldForceDelegateOverride)
+        setNavigationControllerDelegate()
     }
 
     open func start() {
@@ -31,11 +31,11 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
 
     open var shouldForceDelegateOverride: Bool = false
 
-    func setNavigationControllerDelegate(_ delegate: UINavigationControllerDelegate, shouldForce: Bool = false) {
-        guard !shouldForce && navigationController.delegate == nil else {
+    private func setNavigationControllerDelegate() {
+        guard !shouldForceDelegateOverride && navigationController.delegate == nil else {
             return
         }
-        navigationController.delegate = delegate
+        navigationController.delegate = navigationControllerDelegate
     }
 
     public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
