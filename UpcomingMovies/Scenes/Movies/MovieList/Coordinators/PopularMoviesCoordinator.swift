@@ -18,9 +18,6 @@ final class PopularMoviesCoordinator: BaseCoordinator, MovieListCoordinatorProto
                                                               argument: LocalizedStrings.popularMoviesTitle())
         viewController.coordinator = self
 
-        if navigationController.delegate == nil {
-            navigationController.delegate = self
-        }
         navigationController.pushViewController(viewController, animated: true)
     }
 

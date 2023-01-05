@@ -22,9 +22,6 @@ final class SearchMoviesCoordinator: BaseCoordinator, SearchMoviesCoordinatorPro
 
         viewController.coordinator = self
 
-        if navigationController.delegate == nil {
-            navigationController.delegate = self
-        }
         navigationController.pushViewController(viewController, animated: true)
     }
 

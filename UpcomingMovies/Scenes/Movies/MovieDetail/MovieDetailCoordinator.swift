@@ -36,9 +36,6 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         viewController.userInterfaceHelper = DIContainer.shared.resolve()
         viewController.coordinator = self
 
-        if navigationController.delegate == nil {
-            navigationController.delegate = self
-        }
         navigationController.pushViewController(viewController, animated: true)
     }
 
