@@ -25,9 +25,6 @@ final class SimilarMoviesCoordinator: BaseCoordinator, MovieListCoordinatorProto
                                                               arguments: LocalizedStrings.similarMoviesTitle.localized, movieId)
         viewController.coordinator = self
 
-        if navigationController.delegate == nil {
-            navigationController.delegate = self
-        }
         navigationController.pushViewController(viewController, animated: true)
     }
 

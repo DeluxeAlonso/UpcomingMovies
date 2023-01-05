@@ -18,9 +18,6 @@ final class TopRatedMoviesCoordinator: BaseCoordinator, MovieListCoordinatorProt
                                                               argument: LocalizedStrings.topRatedMoviesTitle())
         viewController.coordinator = self
 
-        if navigationController.delegate == nil {
-            navigationController.delegate = self
-        }
         navigationController.pushViewController(viewController, animated: true)
     }
 

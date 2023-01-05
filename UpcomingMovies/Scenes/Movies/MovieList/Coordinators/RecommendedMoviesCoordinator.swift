@@ -19,9 +19,6 @@ final class RecommendedMoviesCoordinator: BaseCoordinator, MovieListCoordinatorP
                                                               argument: "Recommendations")
         viewController.coordinator = self
 
-        if navigationController.delegate == nil {
-            navigationController.delegate = self
-        }
         navigationController.pushViewController(viewController, animated: true)
     }
 

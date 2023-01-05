@@ -26,9 +26,6 @@ final class MovieReviewsCoordinator: BaseCoordinator, MovieReviewsCoordinatorPro
         viewController.viewModel = DIContainer.shared.resolve(arguments: movieId, movieTitle)
         viewController.coordinator = self
 
-        if navigationController.delegate == nil {
-            navigationController.delegate = self
-        }
         navigationController.pushViewController(viewController, animated: true)
     }
 

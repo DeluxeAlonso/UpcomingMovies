@@ -31,9 +31,6 @@ final class MovieReviewDetailCoordinator: BaseCoordinator, MovieReviewDetailCoor
         navigationController.modalPresentationStyle = .fullScreen
         navigationController.transitioningDelegate = transitioningDelegate
 
-        if navigationController.delegate == nil {
-            navigationController.delegate = self
-        }
         presentingViewController?.present(navigationController, animated: true, completion: nil)
     }
 
