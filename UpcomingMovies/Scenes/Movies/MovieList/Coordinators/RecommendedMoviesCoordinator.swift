@@ -14,9 +14,8 @@ final class RecommendedMoviesCoordinator: BaseCoordinator, MovieListCoordinatorP
     override func start() {
         let viewController = MovieListViewController.instantiate()
 
-        // TODO: - Stop passing title as argument
         viewController.viewModel = DIContainer.shared.resolve(name: "RecommendedMovies",
-                                                              argument: "Recommendations")
+                                                              argument: LocalizedStrings.movieListRecommendationsTitle())
         viewController.coordinator = self
 
         navigationController.pushViewController(viewController, animated: true)
