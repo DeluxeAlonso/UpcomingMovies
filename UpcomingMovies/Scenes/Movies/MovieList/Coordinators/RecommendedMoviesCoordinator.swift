@@ -15,7 +15,7 @@ final class RecommendedMoviesCoordinator: BaseCoordinator, MovieListCoordinatorP
         let viewController = MovieListViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(name: "RecommendedMovies",
-                                                              argument: "Recommendations")
+                                                              argument: LocalizedStrings.movieListRecommendationsTitle())
         viewController.coordinator = self
 
         navigationController.pushViewController(viewController, animated: true)
