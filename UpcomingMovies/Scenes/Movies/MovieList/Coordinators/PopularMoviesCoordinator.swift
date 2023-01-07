@@ -6,7 +6,6 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import UIKit
 import UpcomingMoviesDomain
 
 final class PopularMoviesCoordinator: BaseCoordinator, MovieListCoordinatorProtocol, MovieDetailCoordinable {
