@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate {
+final class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate {
 
     private var transitionInteractor: TransitioningInteractor?
     private var verticalSafeAreaOffset: CGFloat
