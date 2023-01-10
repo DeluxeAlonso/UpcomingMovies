@@ -28,11 +28,7 @@ final class MovieDetailUIHelper: MovieDetailUIHelperProtocol, LoadingDisplayable
         progressHUDAdapter.showHUDWithOnlyText(text, in: view)
     }
 
-    func showFullscreenLoader(in view: UIView) {
-        showLoader(in: view)
-    }
-
-    func dismissFullscreenLoader() {
+    func dismissLoader() {
         hideLoader()
     }
 
