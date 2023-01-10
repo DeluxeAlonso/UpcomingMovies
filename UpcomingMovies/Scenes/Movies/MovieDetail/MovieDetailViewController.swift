@@ -159,9 +159,9 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         viewModel?.startLoading.bind({ [weak self] start in
             guard let self = self else { return }
             if start {
-                self.userInterfaceHelper?.showFullscreenLoader(in: self.view)
+                self.userInterfaceHelper?.showLoader(in: self.view)
             } else {
-                self.userInterfaceHelper?.dismissFullscreenLoader()
+                self.userInterfaceHelper?.dismissLoader()
             }
         }, on: .main)
     }
