@@ -97,7 +97,7 @@ protocol MovieDetailUIHelperProtocol {
     func showHUD(with text: String, in view: UIView)
 
     func showLoader(in view: UIView)
-    func dismissLoader()
+    func hideLoader()
 
     func presentRetryView(in view: UIView,
                           with errorMessage: String?,
