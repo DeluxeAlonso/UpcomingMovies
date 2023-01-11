@@ -161,7 +161,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
             if start {
                 self.userInterfaceHelper?.showLoader(in: self.view)
             } else {
-                self.userInterfaceHelper?.dismissLoader()
+                self.userInterfaceHelper?.hideLoader()
             }
         }, on: .main)
     }
