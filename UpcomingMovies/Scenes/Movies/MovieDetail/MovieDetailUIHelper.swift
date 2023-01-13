@@ -27,5 +27,5 @@ final class MovieDetailUIHelper: MovieDetailUIHelperProtocol, LoadingDisplayable
     func showHUD(with text: String, in view: UIView) {
         progressHUDAdapter.showHUDWithOnlyText(text, in: view)
     }
-    
+
 }

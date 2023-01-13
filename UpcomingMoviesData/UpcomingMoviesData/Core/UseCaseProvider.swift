@@ -20,44 +20,44 @@ public class UseCaseProvider: UseCaseProviderProtocol {
     }
 
     public func movieUseCase() -> MovieUseCaseProtocol {
-        let remoteDataSource = self.remoteDataSource.movieDataSource()
+        let remoteDataSource = remoteDataSource.movieDataSource()
         return MovieRepository(remoteDataSource: remoteDataSource)
     }
 
     public func genreUseCase() -> GenreUseCaseProtocol {
-        let localDataSource = self.localDataSource.genreDataSource()
-        let remoteDataSource = self.remoteDataSource.genreDataSource()
+        let localDataSource = localDataSource.genreDataSource()
+        let remoteDataSource = remoteDataSource.genreDataSource()
         return GenreRepository(localDataSource: localDataSource,
                                remoteDataSource: remoteDataSource)
     }
 
     public func movieVisitUseCase() -> MovieVisitUseCaseProtocol {
-        let localDataSource = self.localDataSource.movieVisitDataSource()
+        let localDataSource = localDataSource.movieVisitDataSource()
         return MovieVisitRepository(localDataSource: localDataSource)
     }
 
     public func movieSearchUseCase() -> MovieSearchUseCaseProtocol {
-        let localDataSource = self.localDataSource.movieSearchDataSource()
+        let localDataSource = localDataSource.movieSearchDataSource()
         return MovieSearchRepository(localDataSource: localDataSource)
     }
 
     public func userUseCase() -> UserUseCaseProtocol {
-        let localDataSource = self.localDataSource.userDataSource()
+        let localDataSource = localDataSource.userDataSource()
         return UserRepository(localDataSource: localDataSource)
     }
 
     public func accountUseCase() -> AccountUseCaseProtocol {
-        let remoteDataSource = self.remoteDataSource.accountDataSource()
+        let remoteDataSource = remoteDataSource.accountDataSource()
         return AccountRepository(remoteDataSource: remoteDataSource)
     }
 
     public func authUseCase() -> AuthUseCaseProtocol {
-        let remoteDataSource = self.remoteDataSource.authDataSource()
+        let remoteDataSource = remoteDataSource.authDataSource()
         return AuthRepository(remoteDataSource: remoteDataSource)
     }
 
     public func configurationUseCase() -> ConfigurationUseCaseProtocol {
-        let remoteDataSource = self.remoteDataSource.configurationDataSource()
+        let remoteDataSource = remoteDataSource.configurationDataSource()
         return ConfigurationRepository(remoteDataSource: remoteDataSource)
     }
 
