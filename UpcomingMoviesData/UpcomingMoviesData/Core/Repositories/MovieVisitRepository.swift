@@ -10,7 +10,7 @@ import UpcomingMoviesDomain
 
 public final class MovieVisitRepository: MovieVisitUseCaseProtocol {
 
-    private var localDataSource: MovieVisitLocalDataSourceProtocol
+    private(set) var localDataSource: MovieVisitLocalDataSourceProtocol
 
     public var didUpdateMovieVisit: (() -> Void)? {
         didSet {
