@@ -10,7 +10,7 @@ import UpcomingMoviesDomain
 
 public class MovieRepository: MovieUseCaseProtocol {
 
-    private var remoteDataSource: MovieRemoteDataSourceProtocol
+    private let remoteDataSource: MovieRemoteDataSourceProtocol
 
     init(remoteDataSource: MovieRemoteDataSourceProtocol) {
         self.remoteDataSource = remoteDataSource
