@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 final class AuthRepository: AuthUseCaseProtocol {
 
-    private var remoteDataSource: AuthRemoteDataSourceProtocol
+    private let remoteDataSource: AuthRemoteDataSourceProtocol
 
     init(remoteDataSource: AuthRemoteDataSourceProtocol) {
         self.remoteDataSource = remoteDataSource
@@ -30,7 +30,7 @@ final class AuthRepository: AuthUseCaseProtocol {
     }
 
     func currentUserId() -> Int? {
-        return remoteDataSource.currentUserId()
+        remoteDataSource.currentUserId()
     }
 
 }
