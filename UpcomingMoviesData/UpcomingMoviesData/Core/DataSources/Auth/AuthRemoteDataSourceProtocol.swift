@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-public protocol AuthRemoteDataSourceProtocol {
+public protocol AuthRemoteDataSourceProtocol: AnyObject {
 
     func getAuthURL(completion: @escaping (Result<URL, Error>) -> Void)
     func signInUser(completion: @escaping (Result<User, Error>) -> Void)

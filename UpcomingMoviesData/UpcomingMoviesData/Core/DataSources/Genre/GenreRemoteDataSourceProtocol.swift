@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-public protocol GenreRemoteDataSourceProtocol {
+public protocol GenreRemoteDataSourceProtocol: AnyObject {
 
     func getAllGenres(completion: @escaping (Result<[Genre], Error>) -> Void)
 

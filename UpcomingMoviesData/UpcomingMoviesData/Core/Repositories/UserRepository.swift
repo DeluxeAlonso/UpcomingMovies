@@ -10,7 +10,7 @@ import UpcomingMoviesDomain
 
 public final class UserRepository: UserUseCaseProtocol {
 
-    private var localDataSource: UserLocalDataSourceProtocol
+    private let localDataSource: UserLocalDataSourceProtocol
 
     public var didUpdateUser: (() -> Void)? {
         didSet {

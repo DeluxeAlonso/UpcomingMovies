@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-public protocol ConfigurationRemoteDataSourceProtocol {
+public protocol ConfigurationRemoteDataSourceProtocol: AnyObject {
 
     func getConfiguration(completion: @escaping (Result<Configuration, Error>) -> Void)
 

@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-public protocol AccountRemoteDataSourceProtocol {
+public protocol AccountRemoteDataSourceProtocol: AnyObject {
 
     func getFavoriteList(page: Int?, sortBy: MovieSortType.Favorite, completion: @escaping (Result<[Movie], Error>) -> Void)
 

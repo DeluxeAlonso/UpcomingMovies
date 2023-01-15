@@ -10,7 +10,7 @@ import UpcomingMoviesDomain
 
 public final class GenreRepository: GenreUseCaseProtocol {
 
-    private(set) var localDataSource: GenreLocalDataSourceProtocol
+    private let localDataSource: GenreLocalDataSourceProtocol
     private let remoteDataSource: GenreRemoteDataSourceProtocol
 
     init(localDataSource: GenreLocalDataSourceProtocol,
