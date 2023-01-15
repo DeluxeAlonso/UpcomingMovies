@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-public protocol UserLocalDataSourceProtocol {
+public protocol UserLocalDataSourceProtocol: AnyObject {
 
     var didUpdateUser: (() -> Void)? { get set }
 

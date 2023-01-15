@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-public protocol GenreLocalDataSourceProtocol {
+public protocol GenreLocalDataSourceProtocol: AnyObject {
 
     var didUpdateGenre: (() -> Void)? { get set }
 

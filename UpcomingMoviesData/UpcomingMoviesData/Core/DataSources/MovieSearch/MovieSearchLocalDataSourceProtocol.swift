@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-public protocol MovieSearchLocalDataSourceProtocol {
+public protocol MovieSearchLocalDataSourceProtocol: AnyObject {
 
     var didUpdateMovieSearch: (() -> Void)? { get set }
 

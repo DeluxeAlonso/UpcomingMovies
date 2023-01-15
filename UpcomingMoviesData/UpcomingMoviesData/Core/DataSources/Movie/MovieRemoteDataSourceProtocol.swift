@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-public protocol MovieRemoteDataSourceProtocol {
+public protocol MovieRemoteDataSourceProtocol: AnyObject {
 
     func getUpcomingMovies(page: Int,
                            completion: @escaping (Result<[Movie], Error>) -> Void)
