@@ -10,7 +10,7 @@ import UpcomingMoviesDomain
 
 final class AccountRepository: AccountUseCaseProtocol {
 
-    private var remoteDataSource: AccountRemoteDataSourceProtocol
+    private let remoteDataSource: AccountRemoteDataSourceProtocol
 
     // MARK: - Initializers
 
