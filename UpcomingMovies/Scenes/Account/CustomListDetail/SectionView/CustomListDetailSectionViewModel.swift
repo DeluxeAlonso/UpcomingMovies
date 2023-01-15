@@ -29,13 +29,13 @@ final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelPr
         if let runtime = list.runtime { runtimeText = getRuntimeText(for: runtime) }
     }
 
-    func getRuntimeText(for runtime: Int) -> String {
+    private func getRuntimeText(for runtime: Int) -> String {
         let hours = runtime / 60
         let minutes = runtime % 60
         return "\(hours)h \(minutes)m"
     }
 
-    func getTruncatedRating(_ rating: Double) -> Double {
+    private func getTruncatedRating(_ rating: Double) -> Double {
         Double(floor(rating * 100) / 100)
     }
 
