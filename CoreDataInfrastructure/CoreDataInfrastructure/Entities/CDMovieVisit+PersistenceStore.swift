@@ -26,11 +26,11 @@ extension PersistenceStore where Entity == CDMovieVisit {
         return countAll() > 0
     }
 
-    func findAll(completion: (([CDMovieVisit]) -> Void)? = nil) {
+    func findAll(limit: Int? = nil, completion: (([CDMovieVisit]) -> Void)? = nil) {
         let context = createBackgroundContext()
         context.automaticallyMergesChangesFromParent = true
         context.perform {
-            let movieVisits = CDMovieVisit.fetch(in: context)
+            let movieVisits = CDMovieVisit.fetch(in: context, fetchLimit: limit)
             completion?(movieVisits)
         }
     }
