@@ -30,7 +30,7 @@ extension PersistenceStore where Entity == CDMovieVisit {
         let context = createBackgroundContext()
         context.automaticallyMergesChangesFromParent = true
         context.performAndWait {
-            let movieVisits = CDMovieVisit.fetch(in: managedObjectContext)
+            let movieVisits = CDMovieVisit.fetch(in: context)
             completion?(movieVisits)
         }
     }
