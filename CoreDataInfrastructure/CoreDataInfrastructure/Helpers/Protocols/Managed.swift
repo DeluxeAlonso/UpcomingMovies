@@ -37,9 +37,11 @@ extension Managed where Self: NSManagedObject {
 
     static func fetch(in context: NSManagedObjectContext,
                       with sortDescriptors: [NSSortDescriptor] = defaultSortDescriptors,
+                      fetchLimit: Int? = nil,
                       configurationBlock: (NSFetchRequest<Self>) -> Void = { _ in }) -> [Self] {
         let request = NSFetchRequest<Self>(entityName: Self.entityName)
         request.sortDescriptors = sortDescriptors
+        if let fetchLimit = fetchLimit { request.fetchLimit = fetchLimit }
         configurationBlock(request)
         return (try? context.fetch(request)) ?? []
     }

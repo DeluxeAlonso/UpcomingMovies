@@ -17,6 +17,7 @@ final class MovieVisitLocalDataSource: MovieVisitLocalDataSourceProtocol {
 
     // MARK: - Initializers
 
+    // TODO: - Make the limit configurable
     init(store: PersistenceStore<CDMovieVisit>) {
         self.store = store
         self.store.configureResultsContoller(limit: 10, sortDescriptors: CDMovieVisit.defaultSortDescriptors)
@@ -26,7 +27,7 @@ final class MovieVisitLocalDataSource: MovieVisitLocalDataSourceProtocol {
     // MARK: - MovieVisitLocalDataSourceProtocol
 
     func getMovieVisits(completion: @escaping (Result<[MovieVisit], Error>) -> Void) {
-        store.findAll { movieVisits in
+        store.findAll(limit: 10) { movieVisits in
             completion(.success(movieVisits.map { $0.asDomain() }))
         }
     }
