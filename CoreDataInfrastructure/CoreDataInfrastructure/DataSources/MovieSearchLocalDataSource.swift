@@ -26,12 +26,14 @@ final class MovieSearchLocalDataSource: MovieSearchLocalDataSourceProtocol {
 
     // MARK: - MovieSearchLocalDataSourceProtocol
 
-    func getMovieSearches() -> [MovieSearch] {
-        return store.findAll().map { $0.asDomain() }
+    func getMovieSearches(completion: @escaping (Result<[MovieSearch], Error>) -> Void) {
+        let searches = store.findAll().map { $0.asDomain() }
+        completion(.success(searches))
     }
 
-    func save(with searchText: String) {
+    func save(with searchText: String, completion: @escaping (Result<Void, Error>) -> Void) {
         store.saveMovieSearch(with: searchText)
+        completion(.success(Void()))
     }
 
 }
