@@ -12,7 +12,7 @@ public protocol MovieSearchLocalDataSourceProtocol: AnyObject {
 
     var didUpdateMovieSearch: (() -> Void)? { get set }
 
-    func getMovieSearches() -> [MovieSearch]
-    func save(with searchText: String)
+    func getMovieSearches(completion: @escaping (Result<[MovieSearch], Error>) -> Void)
+    func save(with searchText: String, completion: @escaping (Result<Void, Error>) -> Void)
 
 }
