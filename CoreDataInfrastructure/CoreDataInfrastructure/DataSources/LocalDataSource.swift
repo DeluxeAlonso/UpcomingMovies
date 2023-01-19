@@ -23,7 +23,7 @@ final public class LocalDataSource: LocalDataSourceProtocol {
 
     public func genreDataSource() -> GenreLocalDataSourceProtocol {
         let store: PersistenceStore<CDGenre> = PersistenceStore(self.coreDataStack.persistentContainer)
-        return  GenreLocalDataSource(store: store)
+        return GenreLocalDataSource(store: store)
     }
 
     public func movieVisitDataSource() -> MovieVisitLocalDataSourceProtocol {
