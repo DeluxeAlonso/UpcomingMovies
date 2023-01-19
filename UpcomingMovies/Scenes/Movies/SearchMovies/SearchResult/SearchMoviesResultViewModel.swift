@@ -11,26 +11,31 @@ import UpcomingMoviesDomain
 
 final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
 
-    // MARK: - Properties
+    // MARK: - Dependencies
 
     private let interactor: SearchMoviesResultInteractorProtocol
 
+    // MARK: - Reactive properties
+
     let viewState = BehaviorBindable(SearchMoviesResultViewState.initial).eraseToAnyBindable()
 
-    // MARK: - Computed Properties
+    // MARK: - Computed properties
 
     private var movies: [Movie] {
         return viewState.value.currentSearchedMovies
     }
 
     var recentSearchCells: [RecentSearchCellViewModelProtocol] {
-        let searches = interactor.getMovieSearches().prefix(5)
-        return searches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
+        return recentSearches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
     }
 
     var movieCells: [MovieListCellViewModelProtocol] {
         return movies.compactMap { MovieCellViewModel($0)}
     }
+
+    // MARK: - Stored properties
+
+    private var recentSearches: [MovieSearch] = []
 
     // MARK: - Initilalizers
 
@@ -40,9 +45,20 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
 
     // MARK: - Movies handling
 
+    func loadRecentSearches() {
+        interactor.getMovieSearches { [weak self] result in
+            guard let self = self else { return }
+            guard let recentSearches = try? result.get() else { return }
+
+            self.recentSearches = Array(recentSearches.prefix(5))
+            // TODO: - Create a bindable parameter to update recent searches cells
+            self.viewState.value = .initial
+        }
+    }
+
     func searchMovies(withSearchText searchText: String) {
         viewState.value = .searching
-        interactor.saveSearchText(searchText)
+        interactor.saveSearchText(searchText, completion: { _ in })
         interactor.searchMovies(searchText: searchText,
                                   page: nil, completion: { result in
             switch result {

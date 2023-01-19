@@ -52,6 +52,8 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         setupObservers()
         setupUI()
         setupBindables()
+
+        viewModel.loadRecentSearches()
     }
 
     // MARK: - Private

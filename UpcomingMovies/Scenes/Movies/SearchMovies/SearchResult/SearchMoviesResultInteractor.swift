@@ -28,12 +28,12 @@ final class SearchMoviesResultInteractor: SearchMoviesResultInteractorProtocol {
                                   page: page, completion: completion)
     }
 
-    func saveSearchText(_ searchText: String) {
-        movieSearchUseCase.save(with: searchText)
+    func getMovieSearches(completion: @escaping (Result<[MovieSearch], Error>) -> Void) {
+        movieSearchUseCase.getMovieSearches(completion: completion)
     }
 
-    func getMovieSearches() -> [MovieSearch] {
-        return movieSearchUseCase.getMovieSearches()
+    func saveSearchText(_ searchText: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        movieSearchUseCase.save(with: searchText, completion: completion)
     }
 
 }
