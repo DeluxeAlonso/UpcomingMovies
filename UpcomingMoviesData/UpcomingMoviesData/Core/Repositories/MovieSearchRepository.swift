@@ -22,12 +22,12 @@ public final class MovieSearchRepository: MovieSearchUseCaseProtocol {
         self.localDataSource = localDataSource
     }
 
-    public func getMovieSearches() -> [MovieSearch] {
-        return localDataSource.getMovieSearches()
+    public func getMovieSearches(completion: @escaping (Result<[MovieSearch], Error>) -> Void) {
+        localDataSource.getMovieSearches(completion: completion)
     }
 
-    public func save(with searchText: String) {
-        localDataSource.save(with: searchText)
+    public func save(with searchText: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        localDataSource.save(with: searchText, completion: completion)
     }
 
 }
