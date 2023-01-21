@@ -13,7 +13,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
 
     // MARK: - Dependencies
 
-    private let interactor: SearchMoviesResultInteractorProtocol
+    private var interactor: SearchMoviesResultInteractorProtocol
 
     // MARK: - Reactive properties
 
@@ -41,6 +41,11 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
 
     init(interactor: SearchMoviesResultInteractorProtocol) {
         self.interactor = interactor
+
+        self.interactor.didUpdateMovieSearches = { [weak self] in
+            guard let self = self else { return }
+            self.loadRecentSearches()
+        }
     }
 
     // MARK: - Movies handling
@@ -58,7 +63,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
 
     func searchMovies(withSearchText searchText: String) {
         viewState.value = .searching
-        interactor.saveSearchText(searchText, completion: { _ in })
+        interactor.saveSearchText(searchText, completion: nil)
         interactor.searchMovies(searchText: searchText,
                                   page: nil, completion: { result in
             switch result {

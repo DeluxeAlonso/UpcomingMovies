@@ -12,13 +12,19 @@ import UpcomingMoviesDomain
 final class SearchMoviesResultInteractor: SearchMoviesResultInteractorProtocol {
 
     private let movieUseCase: MovieUseCaseProtocol
-    private let movieSearchUseCase: MovieSearchUseCaseProtocol
+    private var movieSearchUseCase: MovieSearchUseCaseProtocol
     private let authHandler: AuthenticationHandlerProtocol
+
+    var didUpdateMovieSearches: (() -> Void)?
 
     init(useCaseProvider: UseCaseProviderProtocol, authHandler: AuthenticationHandlerProtocol) {
         self.movieUseCase = useCaseProvider.movieUseCase()
         self.movieSearchUseCase = useCaseProvider.movieSearchUseCase()
         self.authHandler = authHandler
+
+        self.movieSearchUseCase.didUpdateMovieSearch = { [weak self] in
+            self?.didUpdateMovieSearches?()
+        }
     }
 
     func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
@@ -32,8 +38,8 @@ final class SearchMoviesResultInteractor: SearchMoviesResultInteractorProtocol {
         movieSearchUseCase.getMovieSearches(completion: completion)
     }
 
-    func saveSearchText(_ searchText: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        movieSearchUseCase.save(with: searchText, completion: completion)
+    func saveSearchText(_ searchText: String, completion: ((Result<Void, Error>) -> Void)?) {
+        movieSearchUseCase.save(with: searchText, completion: completion ?? { _ in })
     }
 
 }
