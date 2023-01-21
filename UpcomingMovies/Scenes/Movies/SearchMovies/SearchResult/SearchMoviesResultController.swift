@@ -97,7 +97,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
         switch state {
         case .empty:
             tableView.tableFooterView = FooterView(message: LocalizedStrings.emptySearchResults())
-        case .populated, .initial:
+        case .populated, .recentSearches:
             tableView.tableFooterView = UIView()
             tableView.separatorStyle = .singleLine
         case .searching:
@@ -138,7 +138,7 @@ extension SearchMoviesResultController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let viewState = viewModel.viewState.value
         switch viewState {
-        case .initial:
+        case .recentSearches:
             guard viewModel.recentSearchCells.count > 0 else { return }
             let searchText = viewModel.recentSearchCells[indexPath.row].searchText
             delegate?.searchMoviesResultController(self, didSelectRecentSearch: searchText)
@@ -152,7 +152,7 @@ extension SearchMoviesResultController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let viewState = viewModel.viewState.value
         switch viewState {
-        case .initial:
+        case .recentSearches:
             let headerView = HeaderView()
             headerView.headerTitle = LocalizedStrings.recentSearches()
             return headerView
@@ -168,7 +168,7 @@ extension SearchMoviesResultController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let viewState = viewModel.viewState.value
         switch viewState {
-        case .initial:
+        case .recentSearches:
             return 50
         case .searching, .error, .empty, .populated:
             return 0
