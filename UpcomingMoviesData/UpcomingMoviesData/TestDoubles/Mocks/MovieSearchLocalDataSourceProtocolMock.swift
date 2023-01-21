@@ -11,15 +11,21 @@ final class MovieSearchLocalDataSourceProtocolMock: MovieSearchLocalDataSourcePr
 
     var didUpdateMovieSearch: (() -> Void)?
 
+    var getMovieSearchesResult: Result<[MovieSearch], Error>?
     private (set) var getMovieSearchesCallCount = 0
-    var foundMovieSearches: [MovieSearch] = []
-    func getMovieSearches() -> [MovieSearch] {
+    func getMovieSearches(completion: @escaping (Result<[MovieSearch], Error>) -> Void) {
+        if let getMovieSearchesResult = getMovieSearchesResult {
+            completion(getMovieSearchesResult)
+        }
         getMovieSearchesCallCount += 1
-        return foundMovieSearches
     }
 
+    var saveResult: Result<Void, Error>?
     private (set) var saveCallCount = 0
-    func save(with searchText: String) {
+    func save(with searchText: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        if let saveResult = saveResult {
+            completion(saveResult)
+        }
         saveCallCount += 1
     }
 

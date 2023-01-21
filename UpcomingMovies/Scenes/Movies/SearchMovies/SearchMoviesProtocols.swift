@@ -32,6 +32,8 @@ protocol SearchMoviesResultViewModelProtocol {
     var recentSearchCells: [RecentSearchCellViewModelProtocol] { get }
     var movieCells: [MovieListCellViewModelProtocol] { get }
 
+    func loadRecentSearches()
+
     func searchMovies(withSearchText searchText: String)
     func searchedMovie(at index: Int) -> Movie
 
@@ -41,10 +43,12 @@ protocol SearchMoviesResultViewModelProtocol {
 
 protocol SearchMoviesResultInteractorProtocol {
 
+    var didUpdateMovieSearches: (() -> Void)? { get set }
+
     func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
 
-    func getMovieSearches() -> [MovieSearch]
-    func saveSearchText(_ searchText: String)
+    func getMovieSearches(completion: @escaping (Result<[MovieSearch], Error>) -> Void)
+    func saveSearchText(_ searchText: String, completion: ((Result<Void, Error>) -> Void)?)
 
 }
 

@@ -28,14 +28,14 @@ class MovieSearchRepositoryTests: XCTestCase {
 
     func testGetMovieSearches() {
         // Act
-        _ = repository.getMovieSearches()
+        repository.getMovieSearches(completion: { _ in })
         // Assert
         XCTAssertEqual(movieSearchLocalDataSource.getMovieSearchesCallCount, 1)
     }
 
     func testSaveSearchTextCalled() {
         // Act
-        repository.save(with: "Text")
+        repository.save(with: "Text", completion: { _ in  })
         // Assert
         XCTAssertEqual(movieSearchLocalDataSource.saveCallCount, 1)
     }
