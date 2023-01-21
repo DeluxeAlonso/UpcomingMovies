@@ -17,7 +17,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
 
     // MARK: - Reactive properties
 
-    let viewState = BehaviorBindable(SearchMoviesResultViewState.initial).eraseToAnyBindable()
+    let viewState = BehaviorBindable(SearchMoviesResultViewState.recentSearches).eraseToAnyBindable()
 
     // MARK: - Computed properties
 
@@ -75,7 +75,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
     }
 
     func clearMovies() {
-        viewState.value = .initial
+        viewState.value = .recentSearches
     }
 
     // MARK: - Movie detail builder

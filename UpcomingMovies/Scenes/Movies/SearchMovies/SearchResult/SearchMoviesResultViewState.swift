@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 enum SearchMoviesResultViewState: Equatable {
 
-    case initial
+    case recentSearches
     case empty
     case searching
     case populated([Movie])
@@ -19,7 +19,7 @@ enum SearchMoviesResultViewState: Equatable {
 
     static func == (lhs: SearchMoviesResultViewState, rhs: SearchMoviesResultViewState) -> Bool {
         switch (lhs, rhs) {
-        case (.initial, .initial):
+        case (.recentSearches, .recentSearches):
             return true
         case (.empty, .empty):
             return true
@@ -38,7 +38,7 @@ enum SearchMoviesResultViewState: Equatable {
         switch self {
         case .populated:
             return [.searchedMovies]
-        case .initial:
+        case .recentSearches:
             return [.recentSearches]
         case .searching, .empty, .error:
             return nil
@@ -49,7 +49,7 @@ enum SearchMoviesResultViewState: Equatable {
         switch self {
         case .populated(let entities):
             return entities
-        case .initial, .empty, .error, .searching:
+        case .recentSearches, .empty, .error, .searching:
             return []
         }
     }
