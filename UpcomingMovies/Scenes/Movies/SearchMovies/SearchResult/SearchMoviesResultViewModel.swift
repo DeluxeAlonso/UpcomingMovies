@@ -57,7 +57,6 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
 
             self.recentSearches = Array(recentSearches.prefix(5))
             // TODO: - Create a bindable parameter to update recent searches cells
-            self.viewState.value = .initial
         }
     }
 
