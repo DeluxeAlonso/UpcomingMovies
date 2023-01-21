@@ -9,13 +9,30 @@
 import Foundation
 import UpcomingMoviesDomain
 
-enum SearchMoviesResultViewState {
+enum SearchMoviesResultViewState: Equatable {
 
     case initial
     case empty
     case searching
     case populated([Movie])
     case error(Error)
+
+    static func == (lhs: SearchMoviesResultViewState, rhs: SearchMoviesResultViewState) -> Bool {
+        switch (lhs, rhs) {
+        case (.initial, .initial):
+            return true
+        case (.empty, .empty):
+            return true
+        case (.searching, .searching):
+            return true
+        case (.populated(let lhsMovies), .populated(let rhsMovies)):
+            return lhsMovies == rhsMovies
+        case (.error, .error):
+            return true
+        default:
+            return false
+        }
+    }
 
     var sections: [SearchMoviesResultSections]? {
         switch self {
