@@ -47,7 +47,8 @@ protocol SearchMoviesResultInteractorProtocol {
 
     func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
 
-    func getMovieSearches(completion: @escaping (Result<[MovieSearch], Error>) -> Void)
+    func getMovieSearches(limit: Int? = nil,
+                          completion: @escaping (Result<[MovieSearch], Error>) -> Void)
     func saveSearchText(_ searchText: String, completion: ((Result<Void, Error>) -> Void)?)
 
 }

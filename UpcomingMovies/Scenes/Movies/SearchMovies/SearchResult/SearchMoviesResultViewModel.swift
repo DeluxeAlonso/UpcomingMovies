@@ -54,7 +54,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
             guard let self = self else { return }
             guard let recentSearches = try? result.get() else { return }
 
-            self.recentSearches = Array(recentSearches.prefix(5))
+            self.recentSearches = recentSearches
             // TODO: - Create a bindable parameter to update recent searches cells
             if self.viewState.value == .recentSearches {
                 self.viewState.value = .recentSearches

@@ -34,8 +34,20 @@ final class SearchMoviesResultInteractor: SearchMoviesResultInteractorProtocol {
                                   page: page, completion: completion)
     }
 
-    func getMovieSearches(completion: @escaping (Result<[MovieSearch], Error>) -> Void) {
-        movieSearchUseCase.getMovieSearches(completion: completion)
+    func getMovieSearches(limit: Int? = nil,
+                          completion: @escaping (Result<[MovieSearch], Error>) -> Void) {
+        movieSearchUseCase.getMovieSearches(completion: { result in
+            switch result {
+            case .success(let movieSearches):
+                if let limit = limit {
+                    completion(.success(Array(movieSearches.prefix(limit))))
+                } else {
+                    completion(.success(movieSearches))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
     }
 
     func saveSearchText(_ searchText: String, completion: ((Result<Void, Error>) -> Void)?) {
