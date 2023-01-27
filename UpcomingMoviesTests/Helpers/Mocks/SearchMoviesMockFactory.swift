@@ -15,7 +15,7 @@ class SearchOptionsInteractorMock: SearchOptionsInteractorProtocol {
     var didUpdateMovieVisit: (() -> Void)?
 
     var getGenresResult: Result<[Genre], Error>?
-    private (set) var getGenresCallCount = 0
+    private(set) var getGenresCallCount = 0
     func getGenres(completion: @escaping (Result<[Genre], Error>) -> Void) {
         if let getGenresResult = getGenresResult {
             completion(getGenresResult)
@@ -24,7 +24,7 @@ class SearchOptionsInteractorMock: SearchOptionsInteractorProtocol {
     }
 
     var getMovieVisitsResult: Result<[MovieVisit], Error>?
-    private (set) var getMovieVisitsCallCount = 0
+    private(set) var getMovieVisitsCallCount = 0
     func getMovieVisits(completion: @escaping (Result<[MovieVisit], Error>) -> Void) {
         if let getMovieVisitsResult = getMovieVisitsResult {
             completion(getMovieVisitsResult)
