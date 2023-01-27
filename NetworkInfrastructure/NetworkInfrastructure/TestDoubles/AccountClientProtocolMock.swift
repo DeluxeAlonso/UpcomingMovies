@@ -10,7 +10,7 @@ import UpcomingMoviesDomain
 final class AccountClientProtocolMock: AccountClientProtocol {
 
     var getFavoriteListResult: Result<MovieResult?, APIError>?
-    private (set) var getFavoriteListCallCount = 0
+    private(set) var getFavoriteListCallCount = 0
     func getFavoriteList(page: Int,
                          sortBy: MovieSortType.Favorite,
                          sessionId: String,
@@ -23,7 +23,7 @@ final class AccountClientProtocolMock: AccountClientProtocol {
     }
 
     var getWatchlistResult: Result<MovieResult?, APIError>?
-    private (set) var getWatchlistCallCount = 0
+    private(set) var getWatchlistCallCount = 0
     func getWatchlist(page: Int,
                       sortBy: MovieSortType.Watchlist,
                       sessionId: String,
@@ -36,7 +36,7 @@ final class AccountClientProtocolMock: AccountClientProtocol {
     }
 
     var getRecommendedListResult: Result<MovieResult?, APIError>?
-    private (set) var getRecommendedListCallCount = 0
+    private(set) var getRecommendedListCallCount = 0
     func getRecommendedList(page: Int,
                             accessToken: String,
                             accountId: String,
@@ -48,7 +48,7 @@ final class AccountClientProtocolMock: AccountClientProtocol {
     }
 
     var getCustomListsResult: Result<ListResult?, APIError>?
-    private (set) var getCustomListsCallCount = 0
+    private(set) var getCustomListsCallCount = 0
     func getCustomLists(page: Int,
                         accessToken: String,
                         accountId: String,
@@ -60,7 +60,7 @@ final class AccountClientProtocolMock: AccountClientProtocol {
     }
 
     var getCustomListMoviesResult: Result<MovieResult?, APIError>?
-    private (set) var getCustomListMoviesCallCount = 0
+    private(set) var getCustomListMoviesCallCount = 0
     func getCustomListMovies(with accessToken: String,
                              listId: String,
                              completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
@@ -71,7 +71,7 @@ final class AccountClientProtocolMock: AccountClientProtocol {
     }
 
     var getAccountDetailResult: Result<User, APIError>?
-    private (set) var getAccountDetailCallCount = 0
+    private(set) var getAccountDetailCallCount = 0
     func getAccountDetail(with sessionId: String,
                           completion: @escaping (Result<User, APIError>) -> Void) {
         if let getAccountDetailResult = getAccountDetailResult {
@@ -81,7 +81,7 @@ final class AccountClientProtocolMock: AccountClientProtocol {
     }
 
     var markAsFavoriteResult: Result<MarkAsFavoriteResult, APIError>?
-    private (set) var markAsFavoriteCallCount = 0
+    private(set) var markAsFavoriteCallCount = 0
     func markAsFavorite(_ movieId: Int,
                         sessionId: String,
                         accountId: Int,
@@ -94,7 +94,7 @@ final class AccountClientProtocolMock: AccountClientProtocol {
     }
 
     var addToWatchlistResult: Result<AddToWatchlistResult, APIError>?
-    private (set) var addToWatchlistCallCount = 0
+    private(set) var addToWatchlistCallCount = 0
     func addToWatchlist(_ movieId: Int,
                         sessionId: String,
                         accountId: Int,
