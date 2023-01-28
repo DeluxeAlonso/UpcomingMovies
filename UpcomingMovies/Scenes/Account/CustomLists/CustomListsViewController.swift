@@ -87,7 +87,7 @@ class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisp
             presentRetryView(with: error.localizedDescription,
                              retryHandler: { [weak self] in
                                 self?.viewModel?.refreshCustomLists()
-            })
+                             })
         }
     }
 

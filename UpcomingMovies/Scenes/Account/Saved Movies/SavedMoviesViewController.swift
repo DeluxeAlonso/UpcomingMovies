@@ -37,7 +37,7 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         guard let selectedViewController = tabBarController?.selectedViewController,
-            selectedViewController == self || selectedViewController == navigationController else {
+              selectedViewController == self || selectedViewController == navigationController else {
             return
         }
         updateCollectionViewLayout()
@@ -74,7 +74,7 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
                                                               backgroundColor: collectionView.backgroundColor,
                                                               refreshHandler: { [weak self] in
                                                                 self?.viewModel?.refreshCollectionList()
-        })
+                                                              })
     }
 
     private func reloadCollectionView() {
@@ -82,10 +82,10 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
         dataSource = SimpleCollectionViewDataSource.make(for: viewModel.movieCells)
 
         prefetchDataSource = CollectionViewDataSourcePrefetching(cellCount: viewModel.movieCells.count,
-                                                       needsPrefetch: viewModel.needsPrefetch,
-                                                       prefetchHandler: { [weak self] in
-                                                        self?.viewModel?.getCollectionList()
-        })
+                                                                 needsPrefetch: viewModel.needsPrefetch,
+                                                                 prefetchHandler: { [weak self] in
+                                                                    self?.viewModel?.getCollectionList()
+                                                                 })
 
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = prefetchDataSource
@@ -106,9 +106,9 @@ class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisp
             presentEmptyView(with: "No movies to show")
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
-                                       retryHandler: { [weak self] in
-                                        self?.viewModel?.refreshCollectionList()
-            })
+                             retryHandler: { [weak self] in
+                                self?.viewModel?.refreshCollectionList()
+                             })
         }
     }
 

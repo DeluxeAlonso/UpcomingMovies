@@ -72,9 +72,9 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
 
     var userAccount: Account? {
         guard let sessionId = sessionId,
-            let currentUserId = currentUserId,
-            let accountId = Int(currentUserId) else {
-                return nil
+              let currentUserId = currentUserId,
+              let accountId = Int(currentUserId) else {
+            return nil
         }
         return Account(accountId: accountId, sessionId: sessionId)
     }

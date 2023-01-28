@@ -77,7 +77,7 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
         setupNavigationDelegate()
 
         navigationDelegate?.configure(selectedFrame: navigationConfiguration.selectedFrame,
-                                     with: navigationConfiguration.imageToTransition)
+                                      with: navigationConfiguration.imageToTransition)
         navigationDelegate?.updateOffset(navigationConfiguration.transitionOffset)
     }
 

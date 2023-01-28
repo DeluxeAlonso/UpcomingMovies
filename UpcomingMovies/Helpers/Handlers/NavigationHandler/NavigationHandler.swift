@@ -32,7 +32,7 @@ final class NavigationHandler: NavigationHandlerProtocol {
                             let mainTabBarController = MainTabBarController(coordinators: self.rootCoordinators)
                             mainTabBarController.setSelectedIndex(self.currentSelectedIndex)
                             window.rootViewController = mainTabBarController
-        })
+                          })
     }
 
     func handleUrlOpeningNavigation(for url: URL?, and window: UIWindow?) {

@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // We handle app launch if it was triggered by a shorcut item
         if let launchOptions = launchOptions,
-            let shortcutItem = launchOptions[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+           let shortcutItem = launchOptions[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
             navigationHandler?.handleShortcutItem(shortcutItem, and: window)
         }
 

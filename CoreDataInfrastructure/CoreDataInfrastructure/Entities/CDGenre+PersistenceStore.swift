@@ -14,8 +14,8 @@ extension PersistenceStore where Entity == CDGenre {
     func saveGenre(_ genre: Genre, completion: ((Bool) -> Void)? = nil) {
         managedObjectContext.performChanges {
             _ = CDGenre.insert(into: self.managedObjectContext,
-                           id: genre.id,
-                           name: genre.name)
+                               id: genre.id,
+                               name: genre.name)
             completion?(true)
         }
     }

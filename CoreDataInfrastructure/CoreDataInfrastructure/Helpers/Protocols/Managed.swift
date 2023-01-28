@@ -59,7 +59,7 @@ extension Managed where Self: NSManagedObject {
                 request.predicate = predicate
                 request.returnsObjectsAsFaults = false
                 request.fetchLimit = 1
-                }.first
+            }.first
         }
         return object
     }

@@ -54,7 +54,7 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
                                                             needsPrefetch: viewModel.needsPrefetch,
                                                             prefetchHandler: { [weak self] in
                                                                 self?.viewModel?.getMovieReviews()
-        })
+                                                            })
         tableView.dataSource = dataSource
         tableView.prefetchDataSource = prefetchDataSource
         tableView.reloadData()
@@ -72,9 +72,9 @@ class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDis
             presentEmptyView(with: "There are no reviews to show right now.")
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
-                                       retryHandler: { [weak self] in
-                                        self?.viewModel?.refreshMovieReviews()
-            })
+                             retryHandler: { [weak self] in
+                                self?.viewModel?.refreshMovieReviews()
+                             })
         }
     }
 

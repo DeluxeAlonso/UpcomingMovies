@@ -73,7 +73,7 @@ extension SearchMoviesViewController: TabBarSelectable {
         if tableView.isScrolledToTop() {
             searchController.isActive = true
         } else {
-           tableView.scrollToTop(animated: true)
+            tableView.scrollToTop(animated: true)
         }
     }
 
@@ -89,7 +89,7 @@ extension SearchMoviesViewController: UISearchResultsUpdating {
         }
         searchController.searchResultsController?.view.isHidden = false
         if let isEmpty = searchController.searchBar.text?.isEmpty,
-            isEmpty {
+           isEmpty {
             searchResultsController.resetSearch()
         }
     }
@@ -102,9 +102,9 @@ extension SearchMoviesViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text,
-            !searchText.isEmpty,
-            let searchResultsController = searchController.searchResultsController as? SearchMoviesResultController else {
-                return
+              !searchText.isEmpty,
+              let searchResultsController = searchController.searchResultsController as? SearchMoviesResultController else {
+            return
         }
         startSearch(searchResultsController, withSearchText: searchText)
     }
@@ -125,9 +125,9 @@ extension SearchMoviesViewController: SearchMoviesResultControllerDelegate {
     func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectRecentSearch searchText: String) {
         searchController.searchBar.text = searchText
         guard let searchText = searchController.searchBar.text,
-            !searchText.isEmpty,
-            let searchResultsController = searchController.searchResultsController as? SearchMoviesResultController else {
-                return
+              !searchText.isEmpty,
+              let searchResultsController = searchController.searchResultsController as? SearchMoviesResultController else {
+            return
         }
         searchController.searchBar.endEditing(true)
         startSearch(searchResultsController, withSearchText: searchText)

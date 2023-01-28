@@ -74,7 +74,7 @@ extension Animatable where Self: UIView {
                        options: settings.options,
                        animations: {
                         self.transform = touched ? self.settings.transform : .identity
-        }, completion: completion)
+                       }, completion: completion)
     }
 
 }

@@ -19,8 +19,8 @@ protocol SplashViewModelProtocol {
 protocol SplashInteractorProtocol {
 
     /**
-    * Fetch API configurations.
-    */
+     * Fetch API configurations.
+     */
     func getAppConfiguration(completion: @escaping (Result<Configuration, Error>) -> Void)
 
     /**

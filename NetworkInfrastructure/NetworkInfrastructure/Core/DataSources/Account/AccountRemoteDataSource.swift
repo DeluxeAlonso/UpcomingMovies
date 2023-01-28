@@ -50,7 +50,7 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
 
     func getRecommendedList(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
         guard let accountId = authManager.accessToken?.accountId,
-            let accessToken = authManager.accessToken?.token else {
+              let accessToken = authManager.accessToken?.token else {
             return
         }
         client.getRecommendedList(page: page ?? 1, accessToken: accessToken, accountId: accountId) { result in
@@ -67,7 +67,7 @@ final class AccountRemoteDataSource: AccountRemoteDataSourceProtocol {
 
     func getCustomLists(page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.List], Error>) -> Void) {
         guard let accountId = authManager.accessToken?.accountId,
-            let accessToken = authManager.accessToken?.token else {
+              let accessToken = authManager.accessToken?.token else {
             return
         }
         client.getCustomLists(page: page ?? 1, accessToken: accessToken, accountId: accountId, completion: { result in

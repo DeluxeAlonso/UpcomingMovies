@@ -15,8 +15,8 @@ extension Dictionary {
             let escapedKey = "\(key)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
             let escapedValue = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
             return escapedKey + "=" + escapedValue
-            }
-            .joined(separator: "&")
+        }
+        .joined(separator: "&")
     }
 
 }

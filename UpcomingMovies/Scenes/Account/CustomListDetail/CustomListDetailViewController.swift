@@ -199,8 +199,8 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
 
     private func configureScrollView(_ scrollView: UIScrollView, forceUpdate: Bool = false) {
         guard let tableView = scrollView as? UITableView,
-            let headerView = tableView.tableHeaderView as? CustomListDetailHeaderView else {
-                return
+              let headerView = tableView.tableHeaderView as? CustomListDetailHeaderView else {
+            return
         }
         let contentOffsetY = tableView.contentOffset.y
 
