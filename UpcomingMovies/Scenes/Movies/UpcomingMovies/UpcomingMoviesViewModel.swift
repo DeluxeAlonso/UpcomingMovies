@@ -23,7 +23,7 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
     // MARK: - Computed properties
 
     private var movies: [Movie] {
-        return viewState.value.currentEntities
+         viewState.value.currentEntities
     }
 
     var movieCells: [UpcomingMovieCellViewModelProtocol] {

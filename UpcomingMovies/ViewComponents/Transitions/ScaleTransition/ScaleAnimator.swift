@@ -16,7 +16,7 @@ class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     // MARK: - UIViewControllerAnimatedTransitioning
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.8
+         0.8
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {

@@ -40,7 +40,7 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
     // MARK: - Coordinator
 
     var rootIdentifier: String {
-        return RootCoordinatorIdentifier.upcomingMovies
+         RootCoordinatorIdentifier.upcomingMovies
     }
 
     func start() {

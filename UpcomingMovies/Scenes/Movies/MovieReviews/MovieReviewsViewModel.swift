@@ -23,7 +23,7 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
     // MARK: - Computed properties
 
     private var reviews: [Review] {
-        return viewState.value.currentEntities
+         viewState.value.currentEntities
     }
 
     var reviewCells: [MovieReviewCellViewModelProtocol] {

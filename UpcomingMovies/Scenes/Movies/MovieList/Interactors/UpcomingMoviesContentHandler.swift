@@ -17,8 +17,9 @@ struct UpcomingMoviesInteractor: MoviesInteractorProtocol {
         self.movieUseCase = movieUseCase
     }
 
+    // TODO: - Move this to a view model
     var displayTitle: String {
-        return "Upcoming Movies"
+         "Upcoming Movies"
     }
 
     func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {

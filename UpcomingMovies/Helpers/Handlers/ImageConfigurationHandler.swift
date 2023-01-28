@@ -17,7 +17,7 @@ struct ImageConfigurationHandler {
     }
 
     private var baseURLString: String {
-        return configuration.imagesConfiguration.baseURLString
+         configuration.imagesConfiguration.baseURLString
     }
 
     var regularImageBaseURLString: String {

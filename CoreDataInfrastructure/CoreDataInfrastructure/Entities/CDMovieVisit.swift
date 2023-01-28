@@ -45,7 +45,7 @@ extension CDMovieVisit: DomainConvertible {
 extension CDMovieVisit: Managed {
 
     static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: #keyPath(createdAt), ascending: false)]
+         [NSSortDescriptor(key: #keyPath(createdAt), ascending: false)]
     }
 
 }

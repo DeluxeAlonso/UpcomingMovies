@@ -38,7 +38,7 @@ class TransitioningAnimator: NSObject {
 extension TransitioningAnimator: UIViewControllerAnimatedTransitioning {
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return duration
+         duration
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {

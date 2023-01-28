@@ -39,7 +39,7 @@ final class CustomListsViewModel: CustomListsViewModelProtocol, SimpleViewStateP
     // MARK: - CustomListsViewModelProtocol
 
     func list(at index: Int) -> List {
-        return lists[index]
+         lists[index]
     }
 
     func getCustomLists() {

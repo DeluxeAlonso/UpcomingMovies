@@ -26,7 +26,7 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     }
 
     open var navigationControllerDelegate: UINavigationControllerDelegate? {
-        return self
+         self
     }
 
     open var shouldForceDelegateOverride: Bool = false
