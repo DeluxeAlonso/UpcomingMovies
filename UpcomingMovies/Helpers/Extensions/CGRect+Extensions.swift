@@ -21,7 +21,7 @@ extension CGRect {
 
     var yPos: CGFloat {
         get {
-            return self.origin.y
+            self.origin.y
         }
         set {
             self = CGRect(x: self.xPos, y: newValue, width: self.width, height: self.height)

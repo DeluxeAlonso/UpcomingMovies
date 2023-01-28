@@ -28,7 +28,7 @@ final class CDGenre: NSManagedObject {
 extension CDGenre: DomainConvertible {
 
     func asDomain() -> Genre {
-        return Genre(id: id, name: name)
+        Genre(id: id, name: name)
     }
 
 }

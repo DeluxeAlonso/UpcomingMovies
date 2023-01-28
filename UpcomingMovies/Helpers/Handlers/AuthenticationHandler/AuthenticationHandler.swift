@@ -28,7 +28,7 @@ final class AuthenticationHandler: AuthenticationHandlerProtocol {
     }
 
     func isUserSignedIn() -> Bool {
-        return currentUser() != nil
+        currentUser() != nil
     }
 
     func deleteCurrentUser() {

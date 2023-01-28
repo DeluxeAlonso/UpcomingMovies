@@ -27,7 +27,7 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
     }
 
     var movieCells: [UpcomingMovieCellViewModelProtocol] {
-        return movies.compactMap { UpcomingMovieCellViewModel($0) }
+        movies.compactMap { UpcomingMovieCellViewModel($0) }
     }
 
     var needsPrefetch: Bool {

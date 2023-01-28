@@ -27,7 +27,7 @@ final class SimpleTableViewDataSource<ViewModel>: NSObject, UITableViewDataSourc
     // MARK: - UITableViewDataSource
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellViewModels.count
+        cellViewModels.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

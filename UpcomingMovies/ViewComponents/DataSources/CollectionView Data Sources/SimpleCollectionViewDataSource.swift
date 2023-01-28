@@ -27,7 +27,7 @@ final class SimpleCollectionViewDataSource<ViewModel>: NSObject, UICollectionVie
     // MARK: - UICollectionViewDataSource
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cellViewModels.count
+        cellViewModels.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -43,12 +43,12 @@ extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellVie
 
     static func make(for cellViewModels: [ViewModel],
                      presentationMode: UpcomingMoviesViewController.PresentationMode) -> SimpleCollectionViewDataSource {
-        return SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
-                                              reuseIdentifier: presentationMode.cellIdentifier,
-                                              cellConfigurator: { (viewModel, cell) in
-                                                var cell = cell as! UpcomingMovieCollectionViewCellProtocol
-                                                cell.viewModel = viewModel
-                                              })
+        SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
+                                       reuseIdentifier: presentationMode.cellIdentifier,
+                                       cellConfigurator: { (viewModel, cell) in
+                                        var cell = cell as! UpcomingMovieCollectionViewCellProtocol
+                                        cell.viewModel = viewModel
+                                       })
     }
 
 }

@@ -17,8 +17,8 @@ public extension Video {
                      browserURL: URL? = URL(string: "https://www.youtube.com/watch?v=ABC"),
                      deepLinkURL: URL? = URL(string: "youtube://ABC"),
                      thumbnailURL: URL? = URL(string: "https://img.youtube.com/vi/ABC/mqdefault.jpg")) -> Video {
-        return Video(id: id, key: key, name: name, site: site,
-                     browserURL: browserURL, deepLinkURL: deepLinkURL, thumbnailURL: thumbnailURL)
+        Video(id: id, key: key, name: name, site: site,
+              browserURL: browserURL, deepLinkURL: deepLinkURL, thumbnailURL: thumbnailURL)
     }
 
 }
