@@ -22,7 +22,7 @@ protocol Endpoint {
 extension Endpoint {
 
     var apiKey: String {
-         NetworkConfiguration.shared.apiKey
+        NetworkConfiguration.shared.apiKey
     }
 
     var urlComponents: URLComponents {

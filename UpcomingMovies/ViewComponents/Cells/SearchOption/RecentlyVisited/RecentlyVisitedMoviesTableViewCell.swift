@@ -99,13 +99,13 @@ extension RecentlyVisitedMoviesTableViewCell: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-         0.0
+        0.0
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-         UIEdgeInsets(top: 0.0, left: Constants.cellsVerticalMargin, bottom: 0.0, right: Constants.cellsVerticalMargin)
+        UIEdgeInsets(top: 0.0, left: Constants.cellsVerticalMargin, bottom: 0.0, right: Constants.cellsVerticalMargin)
     }
 
 }

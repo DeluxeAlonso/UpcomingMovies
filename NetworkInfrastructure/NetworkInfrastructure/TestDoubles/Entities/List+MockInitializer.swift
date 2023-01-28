@@ -15,9 +15,9 @@ extension List {
                        runtime: Int? = nil,
                        movieCount: Int = 1,
                        movies: [Movie]? = [Movie.create()]) -> List {
-         List(id: id, name: name, description: description,
-                    backdropPath: backdropPath, averageRating: averageRating,
-                    runtime: runtime, movieCount: movieCount, movies: movies)
+        List(id: id, name: name, description: description,
+             backdropPath: backdropPath, averageRating: averageRating,
+             runtime: runtime, movieCount: movieCount, movies: movies)
     }
 
 }

@@ -24,15 +24,15 @@ final class MovieListViewModel: MovieListViewModelProtocol, SimpleViewStateProce
     // MARK: - Computed Properties
 
     private var movies: [Movie] {
-         viewState.value.currentEntities
+        viewState.value.currentEntities
     }
 
     var needsPrefetch: Bool {
-         viewState.value.needsPrefetch
+        viewState.value.needsPrefetch
     }
 
     var movieCells: [MovieListCellViewModelProtocol] {
-         movies.compactMap { MovieCellViewModel($0) }
+        movies.compactMap { MovieCellViewModel($0) }
     }
 
     // MARK: - Initializers
@@ -53,7 +53,7 @@ final class MovieListViewModel: MovieListViewModelProtocol, SimpleViewStateProce
     }
 
     func selectedMovie(at index: Int) -> Movie {
-         movies[index]
+        movies[index]
     }
 
     // MARK: - Private

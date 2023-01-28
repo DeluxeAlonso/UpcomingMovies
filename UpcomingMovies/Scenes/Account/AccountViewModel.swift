@@ -52,11 +52,11 @@ final class AccountViewModel: AccountViewModelProtocol {
     }
 
     func isUserSignedIn() -> Bool {
-         currentUser() != nil
+        currentUser() != nil
     }
 
     func currentUser() -> User? {
-         interactor.currentUser()
+        interactor.currentUser()
     }
 
 }

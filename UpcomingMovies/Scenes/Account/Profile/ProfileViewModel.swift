@@ -43,7 +43,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     }
 
     func numberOfSections() -> Int {
-         factory.sections.count
+        factory.sections.count
     }
 
     func numberOfRows(for section: Int) -> Int {

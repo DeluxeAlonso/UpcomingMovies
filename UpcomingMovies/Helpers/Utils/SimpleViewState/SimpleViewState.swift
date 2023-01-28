@@ -54,7 +54,7 @@ enum SimpleViewState<Entity>: Equatable where Entity: Equatable {
     }
 
     var isInitialPage: Bool {
-         currentPage == 1
+        currentPage == 1
     }
 
     var needsPrefetch: Bool {

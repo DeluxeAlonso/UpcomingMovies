@@ -34,7 +34,7 @@ public struct Video {
 extension Video: Equatable {
 
     public static func == (lhs: Video, rhs: Video) -> Bool {
-         lhs.id == rhs.id
+        lhs.id == rhs.id
     }
 
 }

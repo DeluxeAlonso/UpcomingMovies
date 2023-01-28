@@ -27,8 +27,8 @@ struct User: Decodable {
 extension User: DomainConvertible {
 
     func asDomain() -> UpcomingMoviesDomain.User {
-         UpcomingMoviesDomain.User(id: id, name: name,
-                                         username: username, includeAdult: includeAdult)
+        UpcomingMoviesDomain.User(id: id, name: name,
+                                  username: username, includeAdult: includeAdult)
     }
 
 }

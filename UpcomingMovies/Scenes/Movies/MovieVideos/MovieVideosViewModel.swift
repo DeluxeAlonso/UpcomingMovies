@@ -24,11 +24,11 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol, SimpleViewStateP
     // MARK: - Computed properties
 
     var videoCells: [MovieVideoCellViewModelProtocol] {
-         videos.map { MovieVideoCellViewModel($0) }
+        videos.map { MovieVideoCellViewModel($0) }
     }
 
     private var videos: [Video] {
-         viewState.value.currentEntities
+        viewState.value.currentEntities
     }
 
     // MARK: - Stored properties

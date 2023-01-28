@@ -23,15 +23,15 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
     // MARK: - Computed properties
 
     private var movies: [Movie] {
-         viewState.value.currentMovies
+        viewState.value.currentMovies
     }
 
     var movieCells: [MovieCellViewModel] {
-         movies.map { MovieCellViewModel($0) }
+        movies.map { MovieCellViewModel($0) }
     }
 
     var listName: String? {
-         self.list.name
+        self.list.name
     }
 
     // MARK: - Initializers
@@ -44,15 +44,15 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
     // MARK: - CustomListDetailViewModelProtocol
 
     func buildHeaderViewModel() -> CustomListDetailHeaderViewModelProtocol {
-         CustomListDetailHeaderViewModel(list: list)
+        CustomListDetailHeaderViewModel(list: list)
     }
 
     func buildSectionViewModel() -> CustomListDetailSectionViewModel {
-         CustomListDetailSectionViewModel(list: list)
+        CustomListDetailSectionViewModel(list: list)
     }
 
     func movie(at index: Int) -> Movie {
-         movies[index]
+        movies[index]
     }
 
     func getListMovies() {

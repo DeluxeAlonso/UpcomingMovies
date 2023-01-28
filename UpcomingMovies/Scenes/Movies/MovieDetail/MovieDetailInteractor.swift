@@ -26,7 +26,7 @@ final class MovieDetailInteractor: MovieDetailInteractorProtocol {
     }
 
     func isUserSignedIn() -> Bool {
-         authHandler.isUserSignedIn()
+        authHandler.isUserSignedIn()
     }
 
     func findGenre(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void) {

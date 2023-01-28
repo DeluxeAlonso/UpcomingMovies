@@ -21,7 +21,7 @@ struct SimilarMoviesInteractor: MoviesInteractorProtocol {
 
     // TODO: - Move this to a view model
     var displayTitle: String {
-         "Similar Movies"
+        "Similar Movies"
     }
 
     func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {

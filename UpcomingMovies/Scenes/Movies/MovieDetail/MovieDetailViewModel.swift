@@ -48,11 +48,11 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     // MARK: - Computed properties
 
     var screenTitle: String {
-         LocalizedStrings.movieDetailTitle()
+        LocalizedStrings.movieDetailTitle()
     }
 
     var shareTitle: String {
-         String(format: LocalizedStrings.movieDetailShareText(), title)
+        String(format: LocalizedStrings.movieDetailShareText(), title)
     }
 
     // MARK: - Initializers

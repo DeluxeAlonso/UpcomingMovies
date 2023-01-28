@@ -57,12 +57,12 @@ extension SimpleTableViewDataSource where ViewModel == MovieVideoCellViewModelPr
 
     static func make(for cellViewModels: [ViewModel],
                      reuseIdentifier: String = MovieVideoCell.dequeueIdentifier) -> SimpleTableViewDataSource {
-         SimpleTableViewDataSource(cellViewModels: cellViewModels,
-                                         reuseIdentifier: reuseIdentifier,
-                                         cellConfigurator: { (viewModel, cell) in
-                                            let cell = cell as! MovieVideoCell
-                                            cell.viewModel = viewModel
-                                         })
+        SimpleTableViewDataSource(cellViewModels: cellViewModels,
+                                  reuseIdentifier: reuseIdentifier,
+                                  cellConfigurator: { (viewModel, cell) in
+                                    let cell = cell as! MovieVideoCell
+                                    cell.viewModel = viewModel
+                                  })
     }
 
 }
@@ -71,12 +71,12 @@ extension SimpleTableViewDataSource where ViewModel == MovieReviewCellViewModelP
 
     static func make(for cellViewModels: [ViewModel],
                      reuseIdentifier: String = MovieReviewCell.dequeueIdentifier) -> SimpleTableViewDataSource {
-         SimpleTableViewDataSource(cellViewModels: cellViewModels,
-                                         reuseIdentifier: reuseIdentifier,
-                                         cellConfigurator: { (viewModel, cell) in
-                                            let cell = cell as! MovieReviewCell
-                                            cell.viewModel = viewModel
-                                         })
+        SimpleTableViewDataSource(cellViewModels: cellViewModels,
+                                  reuseIdentifier: reuseIdentifier,
+                                  cellConfigurator: { (viewModel, cell) in
+                                    let cell = cell as! MovieReviewCell
+                                    cell.viewModel = viewModel
+                                  })
     }
 
 }
@@ -85,12 +85,12 @@ extension SimpleTableViewDataSource where ViewModel == CustomListCellViewModelPr
 
     static func make(for cellViewModels: [ViewModel],
                      reuseIdentifier: String = CustomListTableViewCell.dequeueIdentifier) -> SimpleTableViewDataSource {
-         SimpleTableViewDataSource(cellViewModels: cellViewModels,
-                                         reuseIdentifier: reuseIdentifier,
-                                         cellConfigurator: { (viewModel, cell) in
-                                            let cell = cell as! CustomListTableViewCell
-                                            cell.viewModel = viewModel
-                                         })
+        SimpleTableViewDataSource(cellViewModels: cellViewModels,
+                                  reuseIdentifier: reuseIdentifier,
+                                  cellConfigurator: { (viewModel, cell) in
+                                    let cell = cell as! CustomListTableViewCell
+                                    cell.viewModel = viewModel
+                                  })
     }
 
 }

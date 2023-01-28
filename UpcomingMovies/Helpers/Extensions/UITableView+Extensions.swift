@@ -28,7 +28,7 @@ extension UITableView {
     // MARK: - Dequeuing
 
     func dequeueReusableCell<T: UITableViewCell>(with type: T.Type, for indexPath: IndexPath) -> T {
-         self.dequeueReusableCell(withIdentifier: type.dequeueIdentifier, for: indexPath) as! T
+        self.dequeueReusableCell(withIdentifier: type.dequeueIdentifier, for: indexPath) as! T
     }
 
     // MARK: - Header

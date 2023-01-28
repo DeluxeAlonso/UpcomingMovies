@@ -40,7 +40,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     // MARK: - MovieCreditsViewModelProtocol
 
     func numberOfSections() -> Int {
-         factory.sections.count
+        factory.sections.count
     }
 
     func numberOfItems(for section: Int) -> Int {
