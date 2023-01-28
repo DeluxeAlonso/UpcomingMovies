@@ -33,7 +33,7 @@ class MovieVideoCellViewModelTests: XCTestCase {
     }
 
     private func createSUT(with video: Video) -> MovieVideoCellViewModel {
-        MovieVideoCellViewModel
+        MovieVideoCellViewModel(video)
     }
 
 }
