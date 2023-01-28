@@ -28,7 +28,7 @@ final class CDMovieSearch: NSManagedObject {
 extension CDMovieSearch: DomainConvertible {
 
     func asDomain() -> MovieSearch {
-        return MovieSearch(id: id, searchText: searchText, createdAt: createdAt)
+        MovieSearch(id: id, searchText: searchText, createdAt: createdAt)
     }
 
 }
@@ -36,7 +36,7 @@ extension CDMovieSearch: DomainConvertible {
 extension CDMovieSearch: Managed {
 
     static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: #keyPath(createdAt), ascending: false)]
+        [NSSortDescriptor(key: #keyPath(createdAt), ascending: false)]
     }
 
 }

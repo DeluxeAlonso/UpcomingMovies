@@ -38,7 +38,7 @@ extension CDGenre: DomainConvertible {
 extension CDGenre: Managed {
 
     static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: #keyPath(name), ascending: true)]
+        [NSSortDescriptor(key: #keyPath(name), ascending: true)]
     }
 
 }

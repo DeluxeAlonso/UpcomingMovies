@@ -22,7 +22,7 @@ protocol BehaviorBindableProtocol: AnyObject {
 extension BehaviorBindableProtocol {
 
     func eraseToAnyBindable() -> AnyBehaviorBindable<Model> {
-        return AnyBehaviorBindable(self)
+        AnyBehaviorBindable(self)
     }
 
 }

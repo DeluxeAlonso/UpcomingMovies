@@ -27,7 +27,7 @@ final class UserLocalDataSource: UserLocalDataSourceProtocol {
     // MARK: - UserLocalDataSourceProtocol
 
     func find(with id: Int) -> User? {
-        return store.find(with: id)?.asDomain()
+        store.find(with: id)?.asDomain()
     }
 
     func saveUser(_ user: User) {

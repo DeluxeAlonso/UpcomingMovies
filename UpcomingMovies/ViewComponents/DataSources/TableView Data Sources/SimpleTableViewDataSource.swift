@@ -43,12 +43,12 @@ extension SimpleTableViewDataSource where ViewModel == MovieListCellViewModelPro
 
     static func make(for cellViewModels: [ViewModel],
                      reuseIdentifier: String = MovieListCell.dequeueIdentifier) -> SimpleTableViewDataSource {
-        return SimpleTableViewDataSource(cellViewModels: cellViewModels,
-                                         reuseIdentifier: reuseIdentifier,
-                                         cellConfigurator: { (viewModel, cell) in
-                                            let cell = cell as! MovieListCell
-                                            cell.viewModel = viewModel
-                                         })
+        SimpleTableViewDataSource(cellViewModels: cellViewModels,
+                                  reuseIdentifier: reuseIdentifier,
+                                  cellConfigurator: { (viewModel, cell) in
+                                    let cell = cell as! MovieListCell
+                                    cell.viewModel = viewModel
+                                  })
     }
 
 }

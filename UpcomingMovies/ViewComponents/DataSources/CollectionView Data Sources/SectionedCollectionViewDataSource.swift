@@ -21,7 +21,7 @@ final class SectionedCollectionViewDataSource: NSObject {
 extension SectionedCollectionViewDataSource: UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return dataSources.count
+        dataSources.count
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

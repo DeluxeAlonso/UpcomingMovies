@@ -39,7 +39,7 @@ extension CGRect {
 
     var height: CGFloat {
         get {
-            return self.size.height
+            self.size.height
         }
         set {
             self = CGRect(x: self.xPos, y: self.yPos, width: self.width, height: newValue)
@@ -48,7 +48,7 @@ extension CGRect {
 
     var top: CGFloat {
         get {
-            return self.origin.y
+            self.origin.y
         }
         set {
             yPos = newValue
@@ -57,7 +57,7 @@ extension CGRect {
 
     var bottom: CGFloat {
         get {
-            return self.origin.y + self.size.height
+            self.origin.y + self.size.height
         }
         set {
             self = CGRect(x: xPos, y: newValue - height, width: width, height: height)

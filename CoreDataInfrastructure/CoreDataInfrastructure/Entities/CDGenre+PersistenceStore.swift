@@ -26,7 +26,7 @@ extension PersistenceStore where Entity == CDGenre {
     }
 
     func findAll() -> [CDGenre] {
-        return CDGenre.fetch(in: managedObjectContext)
+        CDGenre.fetch(in: managedObjectContext)
     }
 
 }

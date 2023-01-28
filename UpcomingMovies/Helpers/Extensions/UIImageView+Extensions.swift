@@ -11,7 +11,7 @@ import UIKit
 extension UIImageView {
 
     var isEmpty: Bool {
-        return image == nil
+        image == nil
     }
 
 }

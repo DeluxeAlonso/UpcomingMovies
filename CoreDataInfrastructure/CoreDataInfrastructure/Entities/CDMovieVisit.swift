@@ -32,10 +32,10 @@ final class CDMovieVisit: NSManagedObject {
 extension CDMovieVisit: DomainConvertible {
 
     func asDomain() -> MovieVisit {
-        return MovieVisit(id: id,
-                          title: title,
-                          posterPath: posterPath,
-                          createdAt: createdAt)
+        MovieVisit(id: id,
+                   title: title,
+                   posterPath: posterPath,
+                   createdAt: createdAt)
     }
 
 }

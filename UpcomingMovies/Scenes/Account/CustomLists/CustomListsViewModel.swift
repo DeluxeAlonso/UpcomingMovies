@@ -23,11 +23,11 @@ final class CustomListsViewModel: CustomListsViewModelProtocol, SimpleViewStateP
     // MARK: - Computed properties
 
     var lists: [List] {
-        return viewState.value.currentEntities
+        viewState.value.currentEntities
     }
 
     var listCells: [CustomListCellViewModelProtocol] {
-        return lists.map { CustomListCellViewModel($0) }
+        lists.map { CustomListCellViewModel($0) }
     }
 
     // MARK: - Initializers

@@ -36,7 +36,7 @@ extension PersistenceStore where Entity == CDMovieVisit {
     }
 
     func countAll() -> Int {
-        return CDMovieVisit.count(in: managedObjectContext)
+        CDMovieVisit.count(in: managedObjectContext)
     }
 
 }

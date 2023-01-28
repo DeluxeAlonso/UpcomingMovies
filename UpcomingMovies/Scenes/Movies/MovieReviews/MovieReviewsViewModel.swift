@@ -32,7 +32,7 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
     }
 
     var needsPrefetch: Bool {
-        return viewState.value.needsPrefetch
+        viewState.value.needsPrefetch
     }
 
     // MARK: - Stored properties
