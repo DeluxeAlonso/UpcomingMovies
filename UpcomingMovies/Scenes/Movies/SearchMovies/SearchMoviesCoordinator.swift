@@ -14,7 +14,7 @@ final class SearchMoviesCoordinator: BaseCoordinator, SearchMoviesCoordinatorPro
     // MARK: - Coordinator
 
     var rootIdentifier: String {
-        return RootCoordinatorIdentifier.searchMovies
+         RootCoordinatorIdentifier.searchMovies
     }
 
     override func start() {

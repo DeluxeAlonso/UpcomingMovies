@@ -27,7 +27,7 @@ struct Cast: Decodable {
 extension Cast: DomainConvertible {
 
     func asDomain() -> UpcomingMoviesDomain.Cast {
-        return UpcomingMoviesDomain.Cast(id: id, character: character, name: name, photoPath: photoPath)
+        UpcomingMoviesDomain.Cast(id: id, character: character, name: name, photoPath: photoPath)
     }
 
 }

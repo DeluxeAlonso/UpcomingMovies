@@ -24,7 +24,7 @@ enum AccountProvider {
 extension AccountProvider: Endpoint {
 
     var base: String {
-        return NetworkConfiguration.shared.baseAPIURLString
+        NetworkConfiguration.shared.baseAPIURLString
     }
 
     var path: String {

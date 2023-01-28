@@ -28,7 +28,7 @@ enum MovieProvider {
 extension MovieProvider: Endpoint {
 
     var base: String {
-        return NetworkConfiguration.shared.baseAPIURLString
+        NetworkConfiguration.shared.baseAPIURLString
     }
 
     var path: String {
@@ -61,7 +61,7 @@ extension MovieProvider: Endpoint {
     }
 
     var headers: [String: String]? {
-        return nil
+        nil
     }
 
     var params: [String: Any]? {

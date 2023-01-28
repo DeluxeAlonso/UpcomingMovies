@@ -13,7 +13,7 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
     static let shared = AuthenticationManager()
 
     var readAccessToken: String {
-        return NetworkConfiguration.shared.readAccessToken
+        NetworkConfiguration.shared.readAccessToken
     }
 
     @KeychainStorage(key: Constants.sessionIdKey)

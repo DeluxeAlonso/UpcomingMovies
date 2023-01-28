@@ -11,7 +11,7 @@ import UIKit
 final class MovieDetailFactory: MovieDetailFactoryProtocol {
 
     var options: [MovieDetailOption] {
-        return [.reviews,
+         [.reviews,
                 .trailers,
                 .credits,
                 .similarMovies]

@@ -9,11 +9,11 @@
 public extension MovieCredits {
 
     static func with(cast: [Cast] = [Cast.with()], crew: [Crew] = [Crew.with()]) -> MovieCredits {
-        return MovieCredits(cast: cast, crew: crew)
+         MovieCredits(cast: cast, crew: crew)
     }
 
     static func withEmptyValues() -> MovieCredits {
-        return MovieCredits(cast: [], crew: [])
+         MovieCredits(cast: [], crew: [])
     }
 
 }
@@ -24,7 +24,7 @@ public extension Cast {
                      character: String = "Batman",
                      name: String = "Christian Bale",
                      photoPath: String? = nil) -> Cast {
-        return Cast(id: id, character: character, name: name, photoPath: photoPath)
+         Cast(id: id, character: character, name: name, photoPath: photoPath)
     }
 
 }
@@ -35,7 +35,7 @@ public extension Crew {
                      job: String = "Test Job",
                      name: String = "Test Name",
                      photoPath: String? = nil) -> Crew {
-        return Crew(id: id, job: job, name: name, photoPath: photoPath)
+         Crew(id: id, job: job, name: name, photoPath: photoPath)
     }
 
 }

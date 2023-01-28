@@ -19,7 +19,7 @@ enum AuthProvider {
 extension AuthProvider: Endpoint {
 
     var base: String {
-        return NetworkConfiguration.shared.baseAPIURLString
+        NetworkConfiguration.shared.baseAPIURLString
     }
 
     var path: String {

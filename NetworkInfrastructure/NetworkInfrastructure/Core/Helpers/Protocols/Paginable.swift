@@ -16,11 +16,11 @@ protocol Paginable {
 extension Paginable {
 
     var hasMorePages: Bool {
-        return currentPage < totalPages
+        currentPage < totalPages
     }
 
     var nextPage: Int {
-        return hasMorePages ? currentPage + 1 : currentPage
+        hasMorePages ? currentPage + 1 : currentPage
     }
 
 }

@@ -23,7 +23,7 @@ public final class UserRepository: UserUseCaseProtocol {
     }
 
     public func find(with id: Int) -> User? {
-        return localDataSource.find(with: id)
+         localDataSource.find(with: id)
     }
 
     public func saveUser(_ user: User) {

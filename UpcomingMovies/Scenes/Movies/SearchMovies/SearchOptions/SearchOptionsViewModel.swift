@@ -28,15 +28,15 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     // MARK: - Computed properties
 
     var visitedMovieCells: [VisitedMovieCellViewModelProtocol] {
-        return movieVisits.map { VisitedMovieCellViewModel(movieVisit: $0) }
+         movieVisits.map { VisitedMovieCellViewModel(movieVisit: $0) }
     }
 
     var genreCells: [GenreSearchOptionCellViewModelProtocol] {
-        return genres.map { GenreSearchOptionCellViewModel(genre: $0) }
+         genres.map { GenreSearchOptionCellViewModel(genre: $0) }
     }
 
     var defaultSearchOptionsCells: [DefaultSearchOptionCellViewModelProtocol] {
-        return defaultSearchOptions.map { DefaultSearchOptionCellViewModel(defaultSearchOption: $0) }
+         defaultSearchOptions.map { DefaultSearchOptionCellViewModel(defaultSearchOption: $0) }
     }
 
     // MARK: - Stored properties
@@ -85,7 +85,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     }
 
     func section(at index: Int) -> SearchOptionsSection {
-        return viewState.value.sections[index]
+         viewState.value.sections[index]
     }
 
     func sectionIndex(for section: SearchOptionsSection) -> Int? {
@@ -94,7 +94,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     }
 
     func buildRecentlyVisitedMoviesCell() -> RecentlyVisitedMoviesCellViewModelProtocol {
-        return RecentlyVisitedMoviesCellViewModel(visitedMovieCells: visitedMovieCells)
+         RecentlyVisitedMoviesCellViewModel(visitedMovieCells: visitedMovieCells)
     }
 
     func getDefaultSearchSelection(by index: Int) {

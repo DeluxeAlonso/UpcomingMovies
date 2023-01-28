@@ -20,7 +20,7 @@ struct KeychainStorage {
 
     var wrappedValue: String? {
         mutating get {
-            return keychain.get(key)
+            keychain.get(key)
         }
         set {
             if let newValue = newValue {

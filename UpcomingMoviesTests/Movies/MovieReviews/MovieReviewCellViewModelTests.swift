@@ -33,7 +33,7 @@ class MovieReviewCellViewModelTests: XCTestCase {
     }
 
     private func createSUT(with review: Review) -> MovieReviewCellViewModel {
-        return MovieReviewCellViewModel(review)
+         MovieReviewCellViewModel(review)
     }
 
 }

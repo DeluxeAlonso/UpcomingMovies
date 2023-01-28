@@ -17,7 +17,7 @@ enum GenreProvider {
 extension GenreProvider: Endpoint {
 
     var base: String {
-        return NetworkConfiguration.shared.baseAPIURLString
+        NetworkConfiguration.shared.baseAPIURLString
     }
 
     var path: String {
@@ -28,7 +28,7 @@ extension GenreProvider: Endpoint {
     }
 
     var headers: [String: String]? {
-        return nil
+        nil
     }
 
     var params: [String: Any]? {
@@ -39,7 +39,7 @@ extension GenreProvider: Endpoint {
     }
 
     var parameterEncoding: ParameterEnconding {
-        return .defaultEncoding
+        .defaultEncoding
     }
 
     var method: HTTPMethod {

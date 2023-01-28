@@ -11,7 +11,7 @@ extension User {
                        name: String = "Test",
                        username: String = "Username",
                        includeAdult: Bool = false) -> User {
-        return User(id: id, name: name, username: username, includeAdult: includeAdult)
+         User(id: id, name: name, username: username, includeAdult: includeAdult)
     }
 
 }

@@ -14,7 +14,7 @@ extension UIView {
      * Frame of the view relative to another view.
      */
     func absoluteFrame(relativeTo view: UIView?) -> CGRect? {
-        return convert(bounds, to: view)
+         convert(bounds, to: view)
     }
 
     /**
