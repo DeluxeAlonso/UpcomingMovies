@@ -34,7 +34,7 @@ extension GenreNameable {
 extension Movie: GenreNameable {
 
     var genreId: Int? {
-         genreIds?.first
+        genreIds?.first
     }
 
 }

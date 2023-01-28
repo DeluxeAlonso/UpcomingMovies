@@ -31,7 +31,7 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
     }
 
     var needsPrefetch: Bool {
-         viewState.value.needsPrefetch
+        viewState.value.needsPrefetch
     }
 
     // MARK: - Initializers
@@ -52,7 +52,7 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
     }
 
     func movie(for index: Int) -> Movie {
-         movies[index]
+        movies[index]
     }
 
     // MARK: - Private

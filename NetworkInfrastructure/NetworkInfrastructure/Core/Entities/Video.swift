@@ -20,11 +20,11 @@ struct Video: Decodable {
 extension Video {
 
     var browserURL: URL? {
-         URL(string: "https://www.youtube.com/watch?v=\(key)")
+        URL(string: "https://www.youtube.com/watch?v=\(key)")
     }
 
     var deepLinkURL: URL? {
-         URL(string: "youtube://\(key)")
+        URL(string: "youtube://\(key)")
     }
 
     var thumbnailURL: URL? {
@@ -37,7 +37,7 @@ extension Video: DomainConvertible {
 
     func asDomain() -> UpcomingMoviesDomain.Video {
         UpcomingMoviesDomain.Video(id: id, key: key, name: name, site: site,
-                                          browserURL: browserURL, deepLinkURL: deepLinkURL, thumbnailURL: thumbnailURL)
+                                   browserURL: browserURL, deepLinkURL: deepLinkURL, thumbnailURL: thumbnailURL)
     }
 
 }

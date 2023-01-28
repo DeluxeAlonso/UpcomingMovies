@@ -52,7 +52,7 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
     // MARK: - MovieReviewsViewModelProtocol
 
     func selectedReview(at index: Int) -> Review {
-         reviews[index]
+        reviews[index]
     }
 
     func getMovieReviews() {

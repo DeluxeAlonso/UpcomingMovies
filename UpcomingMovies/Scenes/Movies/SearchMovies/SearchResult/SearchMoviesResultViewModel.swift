@@ -21,15 +21,15 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
     // MARK: - Computed properties
 
     private var movies: [Movie] {
-         viewState.value.currentSearchedMovies
+        viewState.value.currentSearchedMovies
     }
 
     var recentSearchCells: [RecentSearchCellViewModelProtocol] {
-         recentSearches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
+        recentSearches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
     }
 
     var movieCells: [MovieListCellViewModelProtocol] {
-         movies.compactMap { MovieCellViewModel($0)}
+        movies.compactMap { MovieCellViewModel($0)}
     }
 
     // MARK: - Stored properties
@@ -83,6 +83,6 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
     // MARK: - Movie detail builder
 
     func searchedMovie(at index: Int) -> Movie {
-         movies[index]
+        movies[index]
     }
 }

@@ -13,7 +13,7 @@ class MockMovieDetailInteractor: MovieDetailInteractorProtocol {
 
     var isUserSignedInResult: Bool? = false
     func isUserSignedIn() -> Bool {
-         isUserSignedInResult!
+        isUserSignedInResult!
     }
 
     var findGenreResult: Result<Genre?, Error>? = .success(nil)

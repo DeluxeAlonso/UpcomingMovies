@@ -23,11 +23,11 @@ final class MockInjectionFactory {
     }
 
     class func makeLocalDataSource() -> LocalDataSourceProtocol {
-         LocalDataSource()
+        LocalDataSource()
     }
 
     class func makeRemoteDataSource() -> RemoteDataSourceProtocol {
-         RemoteDataSource()
+        RemoteDataSource()
     }
 
 }
@@ -38,11 +38,11 @@ final class MockUseCaseProvider: UseCaseProvider {
     var mockGenreUseCase: MockGenreUseCase!
 
     override func movieUseCase() -> MovieUseCaseProtocol {
-         mockMovieUseCase!
+        mockMovieUseCase!
     }
 
     override func genreUseCase() -> GenreUseCaseProtocol {
-         mockGenreUseCase!
+        mockGenreUseCase!
     }
 
 }

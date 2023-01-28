@@ -25,11 +25,11 @@ class PersistenceStore<Entity: NSManagedObject>: NSObject, NSFetchedResultsContr
     weak var delegate: PersistenceStoreDelegate?
 
     var managedObjectContext: NSManagedObjectContext {
-         persistentContainer.viewContext
+        persistentContainer.viewContext
     }
 
     func createBackgroundContext() -> NSManagedObjectContext {
-         persistentContainer.newBackgroundContext()
+        persistentContainer.newBackgroundContext()
     }
 
     // MARK: - Initializers

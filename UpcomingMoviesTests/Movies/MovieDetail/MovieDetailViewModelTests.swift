@@ -121,16 +121,16 @@ class MovieDetailViewModelTests: XCTestCase {
     // MARK: - Utils
 
     private func createSUT(with movie: UpcomingMoviesDomain.Movie) -> MovieDetailViewModelProtocol {
-         MovieDetailViewModel(movie,
-                                    interactor: mockInteractor,
-                                    factory: mockFactory)
+        MovieDetailViewModel(movie,
+                             interactor: mockInteractor,
+                             factory: mockFactory)
     }
 
     private func createSUT(with id: Int, title: String) -> MovieDetailViewModelProtocol {
-         MovieDetailViewModel(id: id,
-                                    title: title,
-                                    interactor: mockInteractor,
-                                    factory: mockFactory)
+        MovieDetailViewModel(id: id,
+                             title: title,
+                             interactor: mockInteractor,
+                             factory: mockFactory)
     }
 
 }

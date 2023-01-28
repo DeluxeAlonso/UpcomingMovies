@@ -24,7 +24,7 @@ class MockAccountInteractor: AccountInteractorProtocol {
 
     var currentUserResult: User?
     func currentUser() -> User? {
-         currentUserResult
+        currentUserResult
     }
 
     func signOutUser() {}
