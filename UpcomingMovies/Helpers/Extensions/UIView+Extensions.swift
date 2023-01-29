@@ -14,7 +14,7 @@ extension UIView {
      * Frame of the view relative to another view.
      */
     func absoluteFrame(relativeTo view: UIView?) -> CGRect? {
-        return convert(bounds, to: view)
+        convert(bounds, to: view)
     }
 
     /**
@@ -45,18 +45,18 @@ extension UIView {
      * Fade in animation.
      */
     func fadeIn(_ duration: TimeInterval, to alpha: CGFloat = 1.0) {
-      UIView.animate(withDuration: duration, animations: {
-        self.alpha = alpha
-      })
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = alpha
+        })
     }
 
     /**
      * Fade out animation.
      */
     func fadeOut(_ duration: TimeInterval) {
-      UIView.animate(withDuration: duration, animations: {
-        self.alpha = 0.0
-      })
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 0.0
+        })
     }
 
     // MARK: - Overlay

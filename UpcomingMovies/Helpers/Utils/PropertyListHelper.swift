@@ -14,7 +14,7 @@ struct PropertyListHelper {
      Decodes a property list to a specific type.
 
      - Parameters:
-        - resourceName: Name of the property list to be decoded.
+     - resourceName: Name of the property list to be decoded.
 
      - Returns: The already decoded type.
      */

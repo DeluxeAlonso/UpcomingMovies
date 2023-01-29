@@ -21,7 +21,7 @@ protocol SimpleViewStateProcessable {
 extension SimpleViewStateProcessable {
 
     func processResult<T: Equatable>(_ entities: [T]) -> SimpleViewState<T> {
-        return entities.isEmpty ? .empty : .populated(entities)
+        entities.isEmpty ? .empty : .populated(entities)
     }
 
     func processResult<T: Equatable>(_ entities: [T],

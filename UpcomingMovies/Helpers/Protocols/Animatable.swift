@@ -47,7 +47,7 @@ protocol Animatable: AnyObject {
 extension Animatable where Self: UIView {
 
     private var animationAvailable: Bool {
-        get { return (objc_getAssociatedObject(self, &AssociatedKeys.animationAvailable) as? Bool) ?? true }
+        get {  (objc_getAssociatedObject(self, &AssociatedKeys.animationAvailable) as? Bool) ?? true }
         set { objc_setAssociatedObject(self, &AssociatedKeys.animationAvailable, newValue, .OBJC_ASSOCIATION_ASSIGN) }
     }
 
@@ -74,7 +74,7 @@ extension Animatable where Self: UIView {
                        options: settings.options,
                        animations: {
                         self.transform = touched ? self.settings.transform : .identity
-        }, completion: completion)
+                       }, completion: completion)
     }
 
 }

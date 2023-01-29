@@ -47,9 +47,9 @@ final class GradientView: UIView {
         }
     }
 
-    override class var layerClass: AnyClass { return CAGradientLayer.self }
+    override class var layerClass: AnyClass {  CAGradientLayer.self }
 
-    private var gradientLayer: CAGradientLayer { return layer as! CAGradientLayer }
+    private var gradientLayer: CAGradientLayer {  layer as! CAGradientLayer }
 
     // MARK: - Lifecycle
 

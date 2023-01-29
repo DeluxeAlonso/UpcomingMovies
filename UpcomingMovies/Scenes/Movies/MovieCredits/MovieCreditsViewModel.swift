@@ -40,7 +40,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     // MARK: - MovieCreditsViewModelProtocol
 
     func numberOfSections() -> Int {
-        return factory.sections.count
+        factory.sections.count
     }
 
     func numberOfItems(for section: Int) -> Int {
@@ -96,7 +96,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
         let fetchedCast = movieCredits.cast
         let fetchedCrew = movieCredits.crew
         if fetchedCast.isEmpty && fetchedCrew.isEmpty {
-           return .empty
+            return .empty
         } else {
             return .populated(fetchedCast, fetchedCrew)
         }

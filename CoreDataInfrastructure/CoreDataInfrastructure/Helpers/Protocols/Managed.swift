@@ -18,7 +18,7 @@ protocol Managed: NSFetchRequestResult {
 extension Managed {
 
     static var defaultSortDescriptors: [NSSortDescriptor] {
-        return []
+        []
     }
 
     static var sortedFetchRequest: NSFetchRequest<Self> {
@@ -32,7 +32,7 @@ extension Managed {
 extension Managed where Self: NSManagedObject {
 
     static var entityName: String {
-        return entity().name!
+        entity().name!
     }
 
     static func fetch(in context: NSManagedObjectContext,
@@ -59,7 +59,7 @@ extension Managed where Self: NSManagedObject {
                 request.predicate = predicate
                 request.returnsObjectsAsFaults = false
                 request.fetchLimit = 1
-                }.first
+            }.first
         }
         return object
     }

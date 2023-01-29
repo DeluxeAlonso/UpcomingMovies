@@ -42,7 +42,7 @@ final class ImageTransitionHandler {
                                                repeats: true,
                                                block: { [weak self] _ in
                                                 self?.startIconTransition()
-        })
+                                               })
     }
 
     private func startIconTransition() {
@@ -52,16 +52,16 @@ final class ImageTransitionHandler {
                           duration: 0.5,
                           options: .transitionCrossDissolve,
                           animations: {
-          self.imageView.image = image
-        }, completion: nil)
+                            self.imageView.image = image
+                          }, completion: nil)
     }
 
     private func updateTransitionImageIndex() {
-      if currentTransitionImageIndex == transitionImages.count - 1 {
-        currentTransitionImageIndex = 0
-      } else {
-        currentTransitionImageIndex += 1
-      }
+        if currentTransitionImageIndex == transitionImages.count - 1 {
+            currentTransitionImageIndex = 0
+        } else {
+            currentTransitionImageIndex += 1
+        }
     }
 
     // MARK: - Internal

@@ -39,11 +39,11 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     // MARK: - ProfileViewModelProtocol
 
     func section(at index: Int) -> ProfileSection {
-        return factory.sections[index]
+        factory.sections[index]
     }
 
     func numberOfSections() -> Int {
-        return factory.sections.count
+        factory.sections.count
     }
 
     func numberOfRows(for section: Int) -> Int {

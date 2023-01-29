@@ -33,7 +33,7 @@ public enum ProfileOption: String, ProfileOptionProtocol {
     }
 
     public var identifier: String {
-        return self.rawValue
+        self.rawValue
     }
 
 }

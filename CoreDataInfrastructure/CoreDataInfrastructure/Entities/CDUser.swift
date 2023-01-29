@@ -36,7 +36,7 @@ final class CDUser: NSManagedObject {
 extension CDUser: DomainConvertible {
 
     func asDomain() -> User {
-        return User(id: id, name: name, username: username, includeAdult: includeAdult)
+        User(id: id, name: name, username: username, includeAdult: includeAdult)
     }
 
 }

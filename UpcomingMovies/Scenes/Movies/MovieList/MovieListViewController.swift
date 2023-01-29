@@ -52,10 +52,10 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
 
     private func setupRefreshControl() {
         tableView.refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
-                                              backgroundColor: tableView.backgroundColor,
-                                              refreshHandler: { [weak self] in
-                                                self?.viewModel?.refreshMovies()
-        })
+                                                         backgroundColor: tableView.backgroundColor,
+                                                         refreshHandler: { [weak self] in
+                                                            self?.viewModel?.refreshMovies()
+                                                         })
     }
 
     private func reloadTableView() {
@@ -65,7 +65,7 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
                                                             needsPrefetch: viewModel.needsPrefetch,
                                                             prefetchHandler: { [weak self] in
                                                                 self?.viewModel?.getMovies()
-        })
+                                                            })
         tableView.dataSource = dataSource
         tableView.prefetchDataSource = prefetchDataSource
         tableView.reloadData()
@@ -87,9 +87,9 @@ class MovieListViewController: UIViewController, Storyboarded, PlaceholderDispla
             presentEmptyView(with: LocalizedStrings.emptyMovieResults.localized)
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
-                                       retryHandler: { [weak self] in
-                                        self?.viewModel?.refreshMovies()
-            })
+                             retryHandler: { [weak self] in
+                                self?.viewModel?.refreshMovies()
+                             })
         }
     }
 

@@ -22,7 +22,7 @@ protocol Endpoint {
 extension Endpoint {
 
     var apiKey: String {
-        return NetworkConfiguration.shared.apiKey
+        NetworkConfiguration.shared.apiKey
     }
 
     var urlComponents: URLComponents {
@@ -39,7 +39,7 @@ extension Endpoint {
             }
         case .compositeEncoding:
             if let params = params,
-                let queryParams = params["query"] as? [String: Any] {
+               let queryParams = params["query"] as? [String: Any] {
                 queryItems.append(contentsOf: queryParams.map {
                     return URLQueryItem(name: "\($0)", value: "\($1)")
                 })

@@ -21,7 +21,7 @@ final class AuthPermissionViewModel: AuthPermissionViewModelProtocol {
     // MARK: - AuthPermissionViewModelProtocol
 
     var authPermissionURLRequest: URLRequest? {
-        return URLRequest(url: authPermissionURL)
+        URLRequest(url: authPermissionURL)
     }
 
 }

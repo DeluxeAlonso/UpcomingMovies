@@ -32,10 +32,10 @@ final class CDMovieVisit: NSManagedObject {
 extension CDMovieVisit: DomainConvertible {
 
     func asDomain() -> MovieVisit {
-        return MovieVisit(id: id,
-                          title: title,
-                          posterPath: posterPath,
-                          createdAt: createdAt)
+        MovieVisit(id: id,
+                   title: title,
+                   posterPath: posterPath,
+                   createdAt: createdAt)
     }
 
 }
@@ -45,7 +45,7 @@ extension CDMovieVisit: DomainConvertible {
 extension CDMovieVisit: Managed {
 
     static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: #keyPath(createdAt), ascending: false)]
+        [NSSortDescriptor(key: #keyPath(createdAt), ascending: false)]
     }
 
 }

@@ -42,7 +42,7 @@ extension Placeholderable {
                            animations: { self.alpha = 0 }, completion: { (finished) in
                             closure(finished)
                             completion?(finished)
-            })
+                           })
         } else {
             self.alpha = 0
             closure(true)

@@ -23,15 +23,15 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol, SimpleViewStateP
     // MARK: - Computed properties
 
     private var movies: [Movie] {
-        return viewState.value.currentEntities
+        viewState.value.currentEntities
     }
 
     var movieCells: [SavedMovieCellViewModelProtocol] {
-        return movies.compactMap { SavedMovieCellViewModel($0) }
+        movies.compactMap { SavedMovieCellViewModel($0) }
     }
 
     var needsPrefetch: Bool {
-        return viewState.value.needsPrefetch
+        viewState.value.needsPrefetch
     }
 
     var displayTitle: String?
@@ -45,7 +45,7 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol, SimpleViewStateP
     // MARK: - SavedMoviesViewModelProtocol
 
     func movie(at index: Int) -> Movie {
-        return movies[index]
+        movies[index]
     }
 
     func getCollectionList() {

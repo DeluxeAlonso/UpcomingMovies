@@ -24,3 +24,5 @@ attributes:
     - "@objc"
 private_over_fileprivate:
   validate_extensions: true
+opt_in_rules:
+  - implicit_return

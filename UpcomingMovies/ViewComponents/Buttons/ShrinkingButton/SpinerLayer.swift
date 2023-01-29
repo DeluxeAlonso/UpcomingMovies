@@ -43,9 +43,9 @@ final class SpinerLayer: CAShapeLayer {
         let endAngle = Double.pi * 2 - Double.pi/2
         let clockwise: Bool = true
         path = UIBezierPath(arcCenter: center,
-                                 radius: radius,
-                                 startAngle: CGFloat(startAngle),
-                                 endAngle: CGFloat(endAngle), clockwise: clockwise).cgPath
+                            radius: radius,
+                            startAngle: CGFloat(startAngle),
+                            endAngle: CGFloat(endAngle), clockwise: clockwise).cgPath
     }
 
     // MARK: - Internal

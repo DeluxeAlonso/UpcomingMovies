@@ -77,7 +77,7 @@ public class CoreDataStack: CoreDataStackProtocol {
     }()
 
     private func isTesting() -> Bool {
-        return NSClassFromString("XCTest") != nil
+        NSClassFromString("XCTest") != nil
     }
 
 }

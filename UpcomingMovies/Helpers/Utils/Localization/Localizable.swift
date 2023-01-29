@@ -16,15 +16,15 @@ protocol Localizable {
 extension Localizable where Self: RawRepresentable, Self.RawValue == String {
 
     var tableName: String {
-        return "Localizable"
+        "Localizable"
     }
 
     var localized: String {
-        return rawValue.localized(tableName: tableName)
+        rawValue.localized(tableName: tableName)
     }
 
     func callAsFunction() -> String {
-        return self.localized
+        self.localized
     }
 
 }

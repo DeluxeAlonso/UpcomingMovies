@@ -62,7 +62,7 @@ class SearchOptionsViewController: UITableViewController, Storyboarded {
     private func setupBindables() {
         viewModel?.needsContentReload.bind({ [weak self] in
             guard let self = self else { return }
-                self.reloadTableView()
+            self.reloadTableView()
         }, on: .main)
 
         viewModel?.updateVisitedMovies.bind({ [weak self] section in
@@ -109,7 +109,7 @@ class SearchOptionsViewController: UITableViewController, Storyboarded {
         case .defaultSearches:
             return 65.0
         case .genres:
-           return 50.0
+            return 50.0
         }
     }
 

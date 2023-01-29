@@ -38,17 +38,17 @@ class TransitioningAnimator: NSObject {
 extension TransitioningAnimator: UIViewControllerAnimatedTransitioning {
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return duration
+        duration
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let container = transitionContext.containerView
 
         guard let fromViewController = transitionContext.viewController(forKey: .from),
-            let toViewController = transitionContext.viewController(forKey: .to),
-            let fromView = fromViewController.view,
-            let toView = toViewController.view else {
-                return
+              let toViewController = transitionContext.viewController(forKey: .to),
+              let fromView = fromViewController.view,
+              let toView = toViewController.view else {
+            return
         }
 
         isPresenting ? container.addSubview(toView) : container.insertSubview(toView, belowSubview: fromView)
@@ -62,7 +62,7 @@ extension TransitioningAnimator: UIViewControllerAnimatedTransitioning {
         }
 
         guard let transitionContainerView = transitionable.transitionContainerView,
-            var transitionContainerViewFrame = transitionContainerView.absoluteFrame(relativeTo: transitionable.view) else { return }
+              var transitionContainerViewFrame = transitionContainerView.absoluteFrame(relativeTo: transitionable.view) else { return }
 
         transitionContainerViewFrame.origin.x += verticalSafeAreaOffset
 
@@ -78,8 +78,8 @@ extension TransitioningAnimator: UIViewControllerAnimatedTransitioning {
         UIView.animate(withDuration: duration, animations: {
             self.transitionView.frame = self.isPresenting ? transitionContainerViewFrame : self.originFrame
             transitionableView.frame = self.isPresenting ? fromView.frame : CGRect(x: toView.frame.width,
-                                                                           y: 0, width: toView.frame.width,
-                                                                           height: toView.frame.height)
+                                                                                   y: 0, width: toView.frame.width,
+                                                                                   height: toView.frame.height)
             transitionableView.alpha = self.isPresenting ? 1 : 0
         }, completion: { _ in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)

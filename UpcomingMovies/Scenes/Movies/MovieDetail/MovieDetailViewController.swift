@@ -199,7 +199,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     @IBAction private func moreBarButtonAction(_ sender: Any) {
         guard let movieTitle = viewModel?.title,
-        let actions = viewModel?.getAvailableAlertActions() else { return }
+              let actions = viewModel?.getAvailableAlertActions() else { return }
         let alertActions = actions.map { actionModel in
             UIAlertAction(title: actionModel.title, style: .default) { _ in actionModel.action() }
         }

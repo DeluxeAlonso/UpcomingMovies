@@ -20,15 +20,15 @@ struct Video: Decodable {
 extension Video {
 
     var browserURL: URL? {
-        return URL(string: "https://www.youtube.com/watch?v=\(key)")
+        URL(string: "https://www.youtube.com/watch?v=\(key)")
     }
 
     var deepLinkURL: URL? {
-        return URL(string: "youtube://\(key)")
+        URL(string: "youtube://\(key)")
     }
 
     var thumbnailURL: URL? {
-        return URL(string: "https://img.youtube.com/vi/\(key)/mqdefault.jpg")
+        URL(string: "https://img.youtube.com/vi/\(key)/mqdefault.jpg")
     }
 
 }
@@ -36,8 +36,8 @@ extension Video {
 extension Video: DomainConvertible {
 
     func asDomain() -> UpcomingMoviesDomain.Video {
-        return UpcomingMoviesDomain.Video(id: id, key: key, name: name, site: site,
-                                          browserURL: browserURL, deepLinkURL: deepLinkURL, thumbnailURL: thumbnailURL)
+        UpcomingMoviesDomain.Video(id: id, key: key, name: name, site: site,
+                                   browserURL: browserURL, deepLinkURL: deepLinkURL, thumbnailURL: thumbnailURL)
     }
 
 }

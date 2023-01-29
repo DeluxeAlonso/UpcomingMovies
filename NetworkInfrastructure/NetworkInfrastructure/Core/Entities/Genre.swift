@@ -18,7 +18,7 @@ struct Genre: Decodable {
 extension Genre: DomainConvertible {
 
     func asDomain() -> UpcomingMoviesDomain.Genre {
-        return UpcomingMoviesDomain.Genre(id: id, name: name)
+        UpcomingMoviesDomain.Genre(id: id, name: name)
     }
 
 }

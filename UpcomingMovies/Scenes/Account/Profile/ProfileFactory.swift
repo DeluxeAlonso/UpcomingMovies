@@ -9,7 +9,7 @@
 final class ProfileFactory: ProfileFactoryProtocol {
 
     var sections: [ProfileSection] {
-        return [
+        [
             .accountInfo,
             .collections,
             .customLists,

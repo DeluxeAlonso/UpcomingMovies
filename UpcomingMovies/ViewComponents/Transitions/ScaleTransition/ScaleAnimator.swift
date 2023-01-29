@@ -16,16 +16,16 @@ class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     // MARK: - UIViewControllerAnimatedTransitioning
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.8
+        0.8
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
         guard let fromViewController = transitionContext.viewController(forKey: .from),
-            let toViewController = transitionContext.viewController(forKey: .to),
-            let fromView = fromViewController.view,
-            let toView = toViewController.view else {
-                return
+              let toViewController = transitionContext.viewController(forKey: .to),
+              let fromView = fromViewController.view,
+              let toView = toViewController.view else {
+            return
         }
 
         isPresenting ? containerView.addSubview(toView) : containerView.insertSubview(toView, belowSubview: fromView)
@@ -67,10 +67,10 @@ class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             animations: {
                 scaleView.transform = self.isPresenting ? .identity : CGAffineTransform(scaleX: 0.001, y: 0.001)
                 scaleView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
-        }, completion: { _ in
-            transitionContext.completeTransition(true)
+            }, completion: { _ in
+                transitionContext.completeTransition(true)
 
-        })
+            })
     }
 
 }

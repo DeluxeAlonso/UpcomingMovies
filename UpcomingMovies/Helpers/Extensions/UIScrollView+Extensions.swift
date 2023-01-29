@@ -11,7 +11,7 @@ import UIKit
 extension UIScrollView {
 
     func isScrolledToTop() -> Bool {
-        return contentOffset == .zero
+        contentOffset == .zero
     }
 
     func scrollToTop(animated: Bool) {

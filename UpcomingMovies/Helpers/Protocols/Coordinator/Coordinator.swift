@@ -23,7 +23,7 @@ extension Coordinator {
 
     /// If we don't have a parent coordinator set up, the parent coordinator is the coordinator itself.
     var unwrappedParentCoordinator: Coordinator {
-        return parentCoordinator ?? self
+        parentCoordinator ?? self
     }
 
     func childDidFinish(_ child: Coordinator) {

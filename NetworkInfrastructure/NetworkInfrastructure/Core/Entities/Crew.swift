@@ -27,7 +27,7 @@ struct Crew: Decodable {
 extension Crew: DomainConvertible {
 
     func asDomain() -> UpcomingMoviesDomain.Crew {
-        return UpcomingMoviesDomain.Crew(id: id, job: job, name: name, photoPath: photoPath)
+        UpcomingMoviesDomain.Crew(id: id, job: job, name: name, photoPath: photoPath)
     }
 
 }

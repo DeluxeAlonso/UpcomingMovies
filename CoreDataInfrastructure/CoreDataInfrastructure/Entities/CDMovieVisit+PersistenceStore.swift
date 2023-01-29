@@ -23,7 +23,7 @@ extension PersistenceStore where Entity == CDMovieVisit {
     }
 
     func exists() -> Bool {
-        return countAll() > 0
+        countAll() > 0
     }
 
     func findAll(limit: Int? = nil, completion: (([CDMovieVisit]) -> Void)? = nil) {
@@ -36,7 +36,7 @@ extension PersistenceStore where Entity == CDMovieVisit {
     }
 
     func countAll() -> Int {
-        return CDMovieVisit.count(in: managedObjectContext)
+        CDMovieVisit.count(in: managedObjectContext)
     }
 
 }

@@ -109,7 +109,7 @@ class AccountClient: APIClient, AccountClientProtocol {
               decode: { json -> MarkAsFavoriteResult? in
                 guard let result = json as? MarkAsFavoriteResult else { return  nil }
                 return result
-        }, completion: completion)
+              }, completion: completion)
     }
 
     // MARK: - Add to watchlist
@@ -122,7 +122,7 @@ class AccountClient: APIClient, AccountClientProtocol {
               decode: { json -> AddToWatchlistResult? in
                 guard let result = json as? AddToWatchlistResult else { return  nil }
                 return result
-        }, completion: completion)
+              }, completion: completion)
     }
 
 }

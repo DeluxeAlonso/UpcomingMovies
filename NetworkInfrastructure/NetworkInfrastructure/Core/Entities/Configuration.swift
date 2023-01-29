@@ -44,19 +44,19 @@ struct Configuration {
     let sortConfiguration: SortConfigurationResult
 
     var baseURLString: String {
-        return imagesConfiguration.result.baseURLString
+        imagesConfiguration.result.baseURLString
     }
 
     var backdropSizes: [String] {
-        return imagesConfiguration.result.backdropSizes
+        imagesConfiguration.result.backdropSizes
     }
 
     var posterSizes: [String] {
-        return imagesConfiguration.result.posterSizes
+        imagesConfiguration.result.posterSizes
     }
 
     var movieSortKeys: [String] {
-        return sortConfiguration.movieSortKeys
+        sortConfiguration.movieSortKeys
     }
 
 }

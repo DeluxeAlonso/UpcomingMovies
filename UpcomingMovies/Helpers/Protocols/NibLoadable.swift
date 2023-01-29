@@ -17,7 +17,7 @@ protocol NibLoadable: AnyObject {
 extension NibLoadable {
 
     static var nib: UINib {
-        return UINib(nibName: String(describing: self), bundle: Bundle(for: self))
+        UINib(nibName: String(describing: self), bundle: Bundle(for: self))
     }
 
 }

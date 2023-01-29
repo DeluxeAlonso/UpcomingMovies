@@ -25,7 +25,7 @@ struct Review: Decodable {
 extension Review: DomainConvertible {
 
     func asDomain() -> UpcomingMoviesDomain.Review {
-        return UpcomingMoviesDomain.Review(id: id, authorName: authorName, content: content)
+        UpcomingMoviesDomain.Review(id: id, authorName: authorName, content: content)
     }
 
 }

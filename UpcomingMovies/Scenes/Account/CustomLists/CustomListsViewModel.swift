@@ -23,11 +23,11 @@ final class CustomListsViewModel: CustomListsViewModelProtocol, SimpleViewStateP
     // MARK: - Computed properties
 
     var lists: [List] {
-        return viewState.value.currentEntities
+        viewState.value.currentEntities
     }
 
     var listCells: [CustomListCellViewModelProtocol] {
-        return lists.map { CustomListCellViewModel($0) }
+        lists.map { CustomListCellViewModel($0) }
     }
 
     // MARK: - Initializers
@@ -39,7 +39,7 @@ final class CustomListsViewModel: CustomListsViewModelProtocol, SimpleViewStateP
     // MARK: - CustomListsViewModelProtocol
 
     func list(at index: Int) -> List {
-        return lists[index]
+        lists[index]
     }
 
     func getCustomLists() {

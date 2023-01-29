@@ -11,7 +11,7 @@ public extension MovieVisit {
                      title: String = "Title",
                      posterPath: String = "",
                      createdAt: Date? = nil) -> MovieVisit {
-        return MovieVisit(id: id, title: title, posterPath: posterPath, createdAt: createdAt)
+        MovieVisit(id: id, title: title, posterPath: posterPath, createdAt: createdAt)
     }
 
 }

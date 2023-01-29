@@ -17,7 +17,7 @@ extension PersistenceStore where Entity == CDMovieSearch {
     }
 
     func findAll() -> [CDMovieSearch] {
-        return CDMovieSearch.fetch(in: managedObjectContext)
+        CDMovieSearch.fetch(in: managedObjectContext)
     }
 
 }

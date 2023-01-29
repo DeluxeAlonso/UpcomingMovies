@@ -11,7 +11,7 @@ enum AppGroup: String, CaseIterable {
     case movies = "group.movies.extension"
 
     static var allCasesIdentifiers: [String] {
-        return AppGroup.allCases.map { $0.rawValue }
+        AppGroup.allCases.map { $0.rawValue }
     }
 
 }

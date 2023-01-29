@@ -73,11 +73,11 @@ class MovieCreditCellViewModelTests: XCTestCase {
     }
 
     private func createSUT(with cast: Cast) -> MovieCreditCellViewModel {
-        return MovieCreditCellViewModel(cast: cast)
+        MovieCreditCellViewModel(cast: cast)
     }
 
     private func createSUT(with crew: Crew) -> MovieCreditCellViewModel {
-        return MovieCreditCellViewModel(crew: crew)
+        MovieCreditCellViewModel(crew: crew)
     }
 
 }

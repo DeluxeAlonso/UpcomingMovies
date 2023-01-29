@@ -13,7 +13,7 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
     static let shared = AuthenticationManager()
 
     var readAccessToken: String {
-        return NetworkConfiguration.shared.readAccessToken
+        NetworkConfiguration.shared.readAccessToken
     }
 
     @KeychainStorage(key: Constants.sessionIdKey)
@@ -72,9 +72,9 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
 
     var userAccount: Account? {
         guard let sessionId = sessionId,
-            let currentUserId = currentUserId,
-            let accountId = Int(currentUserId) else {
-                return nil
+              let currentUserId = currentUserId,
+              let accountId = Int(currentUserId) else {
+            return nil
         }
         return Account(accountId: accountId, sessionId: sessionId)
     }

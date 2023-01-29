@@ -13,7 +13,7 @@ final class NetworkConfiguration {
     private(set) var readAccessToken = ""
 
     var baseAPIURLString: String {
-        return "https://api.themoviedb.org"
+        "https://api.themoviedb.org"
     }
 
     private init() {}

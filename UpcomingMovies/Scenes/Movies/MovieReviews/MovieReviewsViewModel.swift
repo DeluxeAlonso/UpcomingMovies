@@ -23,7 +23,7 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
     // MARK: - Computed properties
 
     private var reviews: [Review] {
-        return viewState.value.currentEntities
+        viewState.value.currentEntities
     }
 
     var reviewCells: [MovieReviewCellViewModelProtocol] {
@@ -32,7 +32,7 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
     }
 
     var needsPrefetch: Bool {
-        return viewState.value.needsPrefetch
+        viewState.value.needsPrefetch
     }
 
     // MARK: - Stored properties
@@ -52,7 +52,7 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
     // MARK: - MovieReviewsViewModelProtocol
 
     func selectedReview(at index: Int) -> Review {
-        return reviews[index]
+        reviews[index]
     }
 
     func getMovieReviews() {

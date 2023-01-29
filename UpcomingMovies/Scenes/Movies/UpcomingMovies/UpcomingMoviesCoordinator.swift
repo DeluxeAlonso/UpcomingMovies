@@ -40,7 +40,7 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
     // MARK: - Coordinator
 
     var rootIdentifier: String {
-        return RootCoordinatorIdentifier.upcomingMovies
+        RootCoordinatorIdentifier.upcomingMovies
     }
 
     func start() {
@@ -77,7 +77,7 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
         setupNavigationDelegate()
 
         navigationDelegate?.configure(selectedFrame: navigationConfiguration.selectedFrame,
-                                     with: navigationConfiguration.imageToTransition)
+                                      with: navigationConfiguration.imageToTransition)
         navigationDelegate?.updateOffset(navigationConfiguration.transitionOffset)
     }
 

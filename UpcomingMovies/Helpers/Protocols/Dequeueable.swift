@@ -17,7 +17,7 @@ protocol Dequeueable {
 extension Dequeueable where Self: UIView {
 
     static var dequeueIdentifier: String {
-        return String(describing: self)
+        String(describing: self)
     }
 
 }

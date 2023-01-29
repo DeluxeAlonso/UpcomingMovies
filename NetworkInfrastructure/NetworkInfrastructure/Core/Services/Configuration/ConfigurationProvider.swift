@@ -17,7 +17,7 @@ enum ConfigurationProvider {
 extension ConfigurationProvider: Endpoint {
 
     var base: String {
-        return NetworkConfiguration.shared.baseAPIURLString
+        NetworkConfiguration.shared.baseAPIURLString
     }
 
     var path: String {

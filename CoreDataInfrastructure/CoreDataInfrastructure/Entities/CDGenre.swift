@@ -28,7 +28,7 @@ final class CDGenre: NSManagedObject {
 extension CDGenre: DomainConvertible {
 
     func asDomain() -> Genre {
-        return Genre(id: id, name: name)
+        Genre(id: id, name: name)
     }
 
 }
@@ -38,7 +38,7 @@ extension CDGenre: DomainConvertible {
 extension CDGenre: Managed {
 
     static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: #keyPath(name), ascending: true)]
+        [NSSortDescriptor(key: #keyPath(name), ascending: true)]
     }
 
 }

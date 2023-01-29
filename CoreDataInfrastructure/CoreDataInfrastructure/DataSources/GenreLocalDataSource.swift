@@ -30,11 +30,11 @@ final class GenreLocalDataSource: GenreLocalDataSourceProtocol {
     }
 
     func find(with id: Int) -> Genre? {
-        return store.find(with: id)?.asDomain()
+        store.find(with: id)?.asDomain()
     }
 
     func findAll() -> [Genre] {
-        return store.findAll().map { $0.asDomain() }
+        store.findAll().map { $0.asDomain() }
     }
 
 }

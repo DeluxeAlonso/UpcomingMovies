@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
- struct User: Decodable {
+struct User: Decodable {
 
     let id: Int
     let name: String
@@ -27,8 +27,8 @@ import UpcomingMoviesDomain
 extension User: DomainConvertible {
 
     func asDomain() -> UpcomingMoviesDomain.User {
-        return UpcomingMoviesDomain.User(id: id, name: name,
-                                         username: username, includeAdult: includeAdult)
+        UpcomingMoviesDomain.User(id: id, name: name,
+                                  username: username, includeAdult: includeAdult)
     }
 
 }

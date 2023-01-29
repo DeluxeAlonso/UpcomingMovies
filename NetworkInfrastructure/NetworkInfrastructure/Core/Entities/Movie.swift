@@ -50,10 +50,10 @@ struct Movie: Decodable {
 extension Movie: DomainConvertible {
 
     func asDomain() -> UpcomingMoviesDomain.Movie {
-        return UpcomingMoviesDomain.Movie(id: id, title: title,
-                                          genreIds: genreIds, overview: overview,
-                                          posterPath: posterPath, backdropPath: backdropPath,
-                                          releaseDate: releaseDate, voteAverage: voteAverage)
+        UpcomingMoviesDomain.Movie(id: id, title: title,
+                                   genreIds: genreIds, overview: overview,
+                                   posterPath: posterPath, backdropPath: backdropPath,
+                                   releaseDate: releaseDate, voteAverage: voteAverage)
     }
 
 }

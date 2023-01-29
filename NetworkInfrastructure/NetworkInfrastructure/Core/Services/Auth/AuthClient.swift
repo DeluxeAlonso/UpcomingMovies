@@ -37,9 +37,9 @@ class AuthClient: APIClient, AuthClientProtocol {
     func getAccessToken(with readAccessToken: String, requestToken: String, completion: @escaping (Result<AccessToken, APIError>) -> Void) {
         fetch(with: AuthProvider.getAccessToken(readAccessToken: readAccessToken,
                                                 requestToken: requestToken).request, decode: { json -> AccessToken? in
-            guard let requestToken = json as? AccessToken else { return nil }
-            return requestToken
-        }, completion: completion)
+                                                    guard let requestToken = json as? AccessToken else { return nil }
+                                                    return requestToken
+                                                }, completion: completion)
     }
 
     func createSessionId(with accessToken: String, completion: @escaping (Result<SessionResult, APIError>) -> Void) {

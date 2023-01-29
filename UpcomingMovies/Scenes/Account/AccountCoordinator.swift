@@ -127,7 +127,7 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
 extension AccountCoordinator: RootCoordinator {
 
     var rootIdentifier: String {
-        return RootCoordinatorIdentifier.account
+        RootCoordinatorIdentifier.account
     }
 
 }

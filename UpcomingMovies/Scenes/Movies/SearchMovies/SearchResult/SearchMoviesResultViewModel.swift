@@ -21,15 +21,15 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
     // MARK: - Computed properties
 
     private var movies: [Movie] {
-        return viewState.value.currentSearchedMovies
+        viewState.value.currentSearchedMovies
     }
 
     var recentSearchCells: [RecentSearchCellViewModelProtocol] {
-        return recentSearches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
+        recentSearches.map { RecentSearchCellViewModel(searchText: $0.searchText) }
     }
 
     var movieCells: [MovieListCellViewModelProtocol] {
-        return movies.compactMap { MovieCellViewModel($0)}
+        movies.compactMap { MovieCellViewModel($0)}
     }
 
     // MARK: - Stored properties
@@ -66,14 +66,14 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
         viewState.value = .searching
         interactor.saveSearchText(searchText, completion: nil)
         interactor.searchMovies(searchText: searchText,
-                                  page: nil, completion: { result in
-            switch result {
-            case .success(let movies):
-                self.viewState.value = movies.isEmpty ? .empty : .populated(movies)
-            case .failure(let error):
-                self.viewState.value = .error(error)
-            }
-        })
+                                page: nil, completion: { result in
+                                    switch result {
+                                    case .success(let movies):
+                                        self.viewState.value = movies.isEmpty ? .empty : .populated(movies)
+                                    case .failure(let error):
+                                        self.viewState.value = .error(error)
+                                    }
+                                })
     }
 
     func clearMovies() {
@@ -83,6 +83,6 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
     // MARK: - Movie detail builder
 
     func searchedMovie(at index: Int) -> Movie {
-        return movies[index]
+        movies[index]
     }
 }

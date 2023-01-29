@@ -26,7 +26,7 @@ public final class GenreRepository: GenreUseCaseProtocol {
     }
 
     public func find(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void) {
-        return completion(.success(localDataSource.find(with: id)))
+        completion(.success(localDataSource.find(with: id)))
     }
 
     public func fetchAll(completion: @escaping (Result<[Genre], Error>) -> Void) {
