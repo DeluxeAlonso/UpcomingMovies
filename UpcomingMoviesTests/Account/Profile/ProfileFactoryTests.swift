@@ -41,9 +41,55 @@ class ProfileFactoryTests: XCTestCase {
     func testProfileOptionForAccountInfoSection() {
         // Arrange
         let expectedProfileOptions: [ProfileOptionProtocol] = []
+        let expectedProfileOptionsIdentifiers = expectedProfileOptions.map { $0.identifier }
         // Act
         let profileOptions = factory.profileOptions(for: .accountInfo)
+        let profileOptionsIdentifier = profileOptions.map { $0.identifier }
         // Assert
-        XCTAssertEqual(profileOptions, expectedProfileOptions)
+        XCTAssertEqual(profileOptionsIdentifier, expectedProfileOptionsIdentifiers)
+    }
+
+    func testProfileOptionForSignOutSection() {
+        // Arrange
+        let expectedProfileOptions: [ProfileOptionProtocol] = []
+        let expectedProfileOptionsIdentifiers = expectedProfileOptions.map { $0.identifier }
+        // Act
+        let profileOptions = factory.profileOptions(for: .signOut)
+        let profileOptionsIdentifier = profileOptions.map { $0.identifier }
+        // Assert
+        XCTAssertEqual(profileOptionsIdentifier, expectedProfileOptionsIdentifiers)
+    }
+
+    func testProfileOptionForCollectionsSection() {
+        // Arrange
+        let expectedProfileOptions: [ProfileOptionProtocol] = [ProfileOption.favorites, ProfileOption.watchlist]
+        let expectedProfileOptionsIdentifiers = expectedProfileOptions.map { $0.identifier }
+        // Act
+        let profileOptions = factory.profileOptions(for: .collections)
+        let profileOptionsIdentifier = profileOptions.map { $0.identifier }
+        // Assert
+        XCTAssertEqual(profileOptionsIdentifier, expectedProfileOptionsIdentifiers)
+    }
+
+    func testProfileOptionForRecommendedSection() {
+        // Arrange
+        let expectedProfileOptions: [ProfileOptionProtocol] = [ProfileOption.recommended]
+        let expectedProfileOptionsIdentifiers = expectedProfileOptions.map { $0.identifier }
+        // Act
+        let profileOptions = factory.profileOptions(for: .recommended)
+        let profileOptionsIdentifier = profileOptions.map { $0.identifier }
+        // Assert
+        XCTAssertEqual(profileOptionsIdentifier, expectedProfileOptionsIdentifiers)
+    }
+
+    func testProfileOptionForCustomListsSection() {
+        // Arrange
+        let expectedProfileOptions: [ProfileOptionProtocol] = [ProfileOption.customLists]
+        let expectedProfileOptionsIdentifiers = expectedProfileOptions.map { $0.identifier }
+        // Act
+        let profileOptions = factory.profileOptions(for: .customLists)
+        let profileOptionsIdentifier = profileOptions.map { $0.identifier }
+        // Assert
+        XCTAssertEqual(profileOptionsIdentifier, expectedProfileOptionsIdentifiers)
     }
 }
