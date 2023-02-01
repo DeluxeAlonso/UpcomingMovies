@@ -1953,6 +1953,14 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		E29B74C5298A49CF001801D5 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E2C42E1524C3F3FC0047A8EF /* ProfileViewModelTests.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		E2A0244D256F626D00D2018C /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -2098,7 +2106,7 @@
 		E2E6D1FA283CA9AD00D63A23 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				E2C42E1524C3F3FC0047A8EF /* ProfileViewModelTests.swift */,
+				E29B74C5298A49CF001801D5 /* Profile */,
 				E22024FF24BEBFD500465316 /* AccountViewModelTests.swift */,
 				E2EAEC4F24CFC67100D89F04 /* CustomListsViewModelTests.swift */,
 				E2850D2F24CBD13F0036BEAF /* SavedMoviesViewModelTests.swift */,
