@@ -280,6 +280,7 @@
 		E294C7472216282D0007F0A5 /* CollapsibleCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E294C7462216282D0007F0A5 /* CollapsibleCollectionHeaderView.swift */; };
 		E2958F84235375D800171D80 /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2958F83235375D800171D80 /* UIImageView+Kingfisher.swift */; };
 		E297A766248C6C5700AC89B9 /* ImageTransitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297A765248C6C5700AC89B9 /* ImageTransitionHandler.swift */; };
+		E29B74C7298A4A08001801D5 /* ProfileFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29B74C6298A4A08001801D5 /* ProfileFactoryTests.swift */; };
 		E29E3812230E4F1300C351BF /* MovieDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E29E3814230E4F1300C351BF /* MovieDetail.storyboard */; };
 		E29E3819230E547400C351BF /* SearchMovies.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E29E381B230E547400C351BF /* SearchMovies.storyboard */; };
 		E29E3820230E54CB00C351BF /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E29E3822230E54CB00C351BF /* Account.storyboard */; };
@@ -711,6 +712,7 @@
 		E294C7462216282D0007F0A5 /* CollapsibleCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleCollectionHeaderView.swift; sourceTree = "<group>"; };
 		E2958F83235375D800171D80 /* UIImageView+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kingfisher.swift"; sourceTree = "<group>"; };
 		E297A765248C6C5700AC89B9 /* ImageTransitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTransitionHandler.swift; sourceTree = "<group>"; };
+		E29B74C6298A4A08001801D5 /* ProfileFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFactoryTests.swift; sourceTree = "<group>"; };
 		E29E3813230E4F1300C351BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MovieDetail.storyboard; sourceTree = "<group>"; };
 		E29E3816230E4F1B00C351BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MovieDetail.strings; sourceTree = "<group>"; };
 		E29E3818230E4F1E00C351BF /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/MovieDetail.strings"; sourceTree = "<group>"; };
@@ -1957,6 +1959,7 @@
 			isa = PBXGroup;
 			children = (
 				E2C42E1524C3F3FC0047A8EF /* ProfileViewModelTests.swift */,
+				E29B74C6298A4A08001801D5 /* ProfileFactoryTests.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -2858,6 +2861,7 @@
 				E2748DE92838B7E200CD2BA2 /* MovieCreditCellViewModelTests.swift in Sources */,
 				E2116941220E0BDF00595822 /* MovieDetailViewModelTests.swift in Sources */,
 				E2C42E1624C3F3FC0047A8EF /* ProfileViewModelTests.swift in Sources */,
+				E29B74C7298A4A08001801D5 /* ProfileFactoryTests.swift in Sources */,
 				E2554E5E24B5898C0043C3EB /* UpcomingMoviesMockFactory.swift in Sources */,
 				E2EAEC5024CFC67100D89F04 /* CustomListsViewModelTests.swift in Sources */,
 				E27916A028F092C90092B592 /* SearchMoviesMockFactory.swift in Sources */,
