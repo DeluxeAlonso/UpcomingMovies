@@ -7,27 +7,43 @@
 //
 
 import XCTest
+@testable import UpcomingMovies
 
 class ProfileFactoryTests: XCTestCase {
 
+    private var factory: ProfileFactory!
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
+        factory = ProfileFactory()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        factory = nil
+        try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testSections() {
+        // Arrange
+        let expectedSections: [ProfileSection] = [
+            .accountInfo,
+            .collections,
+            .recommended,
+            .customLists,
+            .signOut
+        ]
+        // Act
+        let sections = factory.sections
+        // Assert
+        XCTAssertEqual(sections, expectedSections)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testProfileOptionForAccountInfoSection() {
+        // Arrange
+        let expectedProfileOptions: [ProfileOptionProtocol] = []
+        // Act
+        let profileOptions = factory.profileOptions(for: .accountInfo)
+        // Assert
+        XCTAssertEqual(profileOptions, expectedProfileOptions)
     }
-
 }
