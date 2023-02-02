@@ -2,5 +2,3 @@ ignore:
     - "UpcomingMoviesTests"
     - "**/*Tests"
     - "**/**/TestDoubles"
-fixes:
-  - "::./"         # move root   e.g., "path/" => "./path/"
