@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MovieCreditsCollapsibleSection {
+struct MovieCreditsCollapsibleSection: Equatable {
     let type: MovieCreditsViewSection
     var opened: Bool
 }
