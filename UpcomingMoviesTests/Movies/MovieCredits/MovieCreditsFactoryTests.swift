@@ -7,27 +7,31 @@
 //
 
 import XCTest
+@testable import UpcomingMovies
 
 class MovieCreditsFactoryTests: XCTestCase {
 
+    private var factory: MovieCreditsFactory!
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
+        factory = MovieCreditsFactory()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        factory = nil
+        try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testSections() {
+        // Arrange
+        let expectedSections: [MovieCreditsCollapsibleSection] = [
+            MovieCreditsCollapsibleSection(type: .cast, opened: true),
+            MovieCreditsCollapsibleSection(type: .crew, opened: false)
+        ]
+        // Act
+        let sections = factory.sections
+        // Assert
+        XCTAssertEqual(sections, expectedSections)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
