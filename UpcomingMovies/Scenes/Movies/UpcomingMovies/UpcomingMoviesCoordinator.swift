@@ -23,19 +23,9 @@ struct UpcomingMoviesNavigationConfiguration {
 
 }
 
-final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtocol, RootCoordinator, MovieDetailCoordinable {
-
-    var childCoordinators: [Coordinator] = []
-    var parentCoordinator: Coordinator?
-    var navigationController: UINavigationController
+final class UpcomingMoviesCoordinator: BaseCoordinator, UpcomingMoviesCoordinatorProtocol, RootCoordinator, MovieDetailCoordinable {
 
     var navigationDelegate: UpcomingMoviesNavigationDelegate?
-
-    // MARK: - Initializers
-
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
 
     // MARK: - Coordinator
 
@@ -43,13 +33,11 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
         RootCoordinatorIdentifier.upcomingMovies
     }
 
-    func start() {
+    override func start() {
         let viewController = UpcomingMoviesViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve()
         viewController.coordinator = self
-
-        setupNavigationDelegate()
 
         navigationController.pushViewController(viewController, animated: true)
     }
