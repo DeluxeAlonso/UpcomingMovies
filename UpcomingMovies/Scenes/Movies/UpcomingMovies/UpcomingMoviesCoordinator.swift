@@ -55,7 +55,9 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
     }
 
     func showMovieDetail(for movie: Movie, with navigationConfiguration: UpcomingMoviesNavigationConfiguration?) {
-        configureNavigationDelegate(with: navigationConfiguration)
+        if let navigationConfiguration = navigationConfiguration {
+            configureNavigationDelegate(with: navigationConfiguration)
+        }
 
         showMovieDetail(for: movie)
     }
@@ -72,8 +74,7 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
         navigationController.delegate = navigationDelegate
     }
 
-    private func configureNavigationDelegate(with navigationConfiguration: UpcomingMoviesNavigationConfiguration?) {
-        guard let navigationConfiguration = navigationConfiguration else { return }
+    private func configureNavigationDelegate(with navigationConfiguration: UpcomingMoviesNavigationConfiguration) {
         setupNavigationDelegate()
 
         navigationDelegate?.configure(selectedFrame: navigationConfiguration.selectedFrame,
