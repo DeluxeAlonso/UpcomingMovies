@@ -23,19 +23,9 @@ struct UpcomingMoviesNavigationConfiguration {
 
 }
 
-final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtocol, RootCoordinator, MovieDetailCoordinable {
+final class UpcomingMoviesCoordinator: BaseCoordinator, UpcomingMoviesCoordinatorProtocol, RootCoordinator, MovieDetailCoordinable {
 
-    var childCoordinators: [Coordinator] = []
-    var parentCoordinator: Coordinator?
-    var navigationController: UINavigationController
-
-    var navigationDelegate: UpcomingMoviesNavigationDelegate?
-
-    // MARK: - Initializers
-
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
+    private var navigationDelegate: UpcomingMoviesNavigationDelegate?
 
     // MARK: - Coordinator
 
@@ -43,26 +33,26 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
         RootCoordinatorIdentifier.upcomingMovies
     }
 
-    func start() {
+    override func start() {
         let viewController = UpcomingMoviesViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve()
         viewController.coordinator = self
 
-        setupNavigationDelegate()
-
         navigationController.pushViewController(viewController, animated: true)
     }
 
     func showMovieDetail(for movie: Movie, with navigationConfiguration: UpcomingMoviesNavigationConfiguration?) {
-        configureNavigationDelegate(with: navigationConfiguration)
+        if let navigationConfiguration = navigationConfiguration {
+            configureNavigationDelegate(with: navigationConfiguration)
+        }
 
         showMovieDetail(for: movie)
     }
 
     // MARK: - Navigation Configuration
 
-    private func setupNavigationDelegate() {
+    override func setNavigationControllerDelegate() {
         // We only configure the delegate if it is needed.
         guard navigationController.delegate == nil else { return }
 
@@ -72,9 +62,8 @@ final class UpcomingMoviesCoordinator: NSObject, UpcomingMoviesCoordinatorProtoc
         navigationController.delegate = navigationDelegate
     }
 
-    private func configureNavigationDelegate(with navigationConfiguration: UpcomingMoviesNavigationConfiguration?) {
-        guard let navigationConfiguration = navigationConfiguration else { return }
-        setupNavigationDelegate()
+    private func configureNavigationDelegate(with navigationConfiguration: UpcomingMoviesNavigationConfiguration) {
+        setNavigationControllerDelegate()
 
         navigationDelegate?.configure(selectedFrame: navigationConfiguration.selectedFrame,
                                       with: navigationConfiguration.imageToTransition)
