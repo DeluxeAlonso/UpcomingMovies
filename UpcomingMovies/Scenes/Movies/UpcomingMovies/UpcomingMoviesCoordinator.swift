@@ -52,7 +52,7 @@ final class UpcomingMoviesCoordinator: BaseCoordinator, UpcomingMoviesCoordinato
 
     // MARK: - Navigation Configuration
 
-    override func setNavigationControllerDelegate() {
+    override func setupNavigationControllerDelegate() {
         // We only configure the delegate if it is needed.
         guard navigationController.delegate == nil else { return }
 
@@ -63,7 +63,7 @@ final class UpcomingMoviesCoordinator: BaseCoordinator, UpcomingMoviesCoordinato
     }
 
     private func configureNavigationDelegate(with navigationConfiguration: UpcomingMoviesNavigationConfiguration) {
-        setNavigationControllerDelegate()
+        setupNavigationControllerDelegate()
 
         navigationDelegate?.configure(selectedFrame: navigationConfiguration.selectedFrame,
                                       with: navigationConfiguration.imageToTransition)
