@@ -23,15 +23,22 @@ class MovieCreditsFactoryTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testSections() {
-        // Arrange
-        let expectedSections: [MovieCreditsCollapsibleSection] = [
-            MovieCreditsCollapsibleSection(type: .cast, opened: true),
-            MovieCreditsCollapsibleSection(type: .crew, opened: false)
-        ]
+    func testCastSection() {
         // Act
         let sections = factory.sections
+        let castSection = sections[0]
         // Assert
-        XCTAssertEqual(sections, expectedSections)
+        XCTAssertEqual(castSection.type, .cast)
+        XCTAssertTrue(castSection.opened)
     }
+
+    func testCrewSection() {
+        // Act
+        let sections = factory.sections
+        let crewSection = sections[1]
+        // Assert
+        XCTAssertEqual(crewSection.type, .crew)
+        XCTAssertFalse(crewSection.opened)
+    }
+
 }
