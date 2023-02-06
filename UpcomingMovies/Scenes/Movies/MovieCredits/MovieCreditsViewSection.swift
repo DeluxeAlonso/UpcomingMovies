@@ -8,9 +8,16 @@
 
 import Foundation
 
-struct MovieCreditsCollapsibleSection: Equatable {
+class MovieCreditsCollapsibleSection {
+
     let type: MovieCreditsViewSection
     var opened: Bool
+
+    init(type: MovieCreditsViewSection, opened: Bool) {
+        self.type = type
+        self.opened = opened
+    }
+
 }
 
 enum MovieCreditsViewSection {
