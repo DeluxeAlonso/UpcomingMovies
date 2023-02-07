@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MovieCreditsCollapsibleSection {
+final class MovieCreditsCollapsibleSection {
 
     let type: MovieCreditsViewSection
     var opened: Bool
