@@ -6,9 +6,7 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import Foundation
-
-class MovieCreditsCollapsibleSection {
+final class MovieCreditsCollapsibleSection {
 
     let type: MovieCreditsViewSection
     var opened: Bool
