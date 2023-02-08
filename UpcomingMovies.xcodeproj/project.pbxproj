@@ -24,6 +24,9 @@
 		E20191432934735800770948 /* BehaviorBindableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20191422934735800770948 /* BehaviorBindableProtocol.swift */; };
 		E2033DC324D90CEE00185664 /* SplashProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2033DC224D90CED00185664 /* SplashProtocols.swift */; };
 		E2033DC524D90D7600185664 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2033DC424D90D7600185664 /* SplashInteractor.swift */; };
+		E2040F8A29933C8200ABAE82 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2040F8929933C8200ABAE82 /* UserDefaultsStorage.swift */; };
+		E2040F8D29933F0A00ABAE82 /* UserPreferencesHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2040F8C29933F0A00ABAE82 /* UserPreferencesHandlerProtocol.swift */; };
+		E2040F8F29933FC100ABAE82 /* UpcomingMoviesDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2040F8E29933FC100ABAE82 /* UpcomingMoviesDisplayMode.swift */; };
 		E2058B6E247F6BBD00A6AB52 /* NavigationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2058B6D247F6BBD00A6AB52 /* NavigationHandler.swift */; };
 		E2060333226D8C610006FB2E /* Keyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2060332226D8C610006FB2E /* Keyboardable.swift */; };
 		E20635A4226E127200FDD85E /* SearchMoviesResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20635A3226E127200FDD85E /* SearchMoviesResultView.swift */; };
@@ -457,6 +460,9 @@
 		E20191422934735800770948 /* BehaviorBindableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorBindableProtocol.swift; sourceTree = "<group>"; };
 		E2033DC224D90CED00185664 /* SplashProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashProtocols.swift; sourceTree = "<group>"; };
 		E2033DC424D90D7600185664 /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
+		E2040F8929933C8200ABAE82 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
+		E2040F8C29933F0A00ABAE82 /* UserPreferencesHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesHandlerProtocol.swift; sourceTree = "<group>"; };
+		E2040F8E29933FC100ABAE82 /* UpcomingMoviesDisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesDisplayMode.swift; sourceTree = "<group>"; };
 		E2058B6D247F6BBD00A6AB52 /* NavigationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationHandler.swift; sourceTree = "<group>"; };
 		E2060332226D8C610006FB2E /* Keyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboardable.swift; sourceTree = "<group>"; };
 		E20635A3226E127200FDD85E /* SearchMoviesResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesResultView.swift; sourceTree = "<group>"; };
@@ -1017,6 +1023,14 @@
 			path = BehaviorBindable;
 			sourceTree = "<group>";
 		};
+		E2040F8B29933EEB00ABAE82 /* UserPreferencesHandler */ = {
+			isa = PBXGroup;
+			children = (
+				E2040F8C29933F0A00ABAE82 /* UserPreferencesHandlerProtocol.swift */,
+			);
+			path = UserPreferencesHandler;
+			sourceTree = "<group>";
+		};
 		E208FC4C263523D0008593D8 /* SimpleViewState */ = {
 			isa = PBXGroup;
 			children = (
@@ -1242,6 +1256,7 @@
 				E2E518A124A9944300CC3FA5 /* UpcomingMoviesProtocols.swift */,
 				E28FF49A24B19A3E0015CB2F /* UpcomingMoviesViewFactory.swift */,
 				E211282B293DC5A400336165 /* UpcomingMoviesViewState.swift */,
+				E2040F8E29933FC100ABAE82 /* UpcomingMoviesDisplayMode.swift */,
 			);
 			path = UpcomingMovies;
 			sourceTree = "<group>";
@@ -1275,6 +1290,7 @@
 				E2F789F72598401700002CAD /* AppExtension.swift */,
 				E26EB50325CF503600AFE4A6 /* PropertyListHelper.swift */,
 				E2671D7E25D8AD4400E457FF /* AppGroup.swift */,
+				E2040F8929933C8200ABAE82 /* UserDefaultsStorage.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1282,6 +1298,7 @@
 		E221F75A222AE44D008DFF87 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
+				E2040F8B29933EEB00ABAE82 /* UserPreferencesHandler */,
 				E20118DF25FF25020091D248 /* AuthenticationHandler */,
 				E20118E625FF25760091D248 /* ConfigurationHandler */,
 				E20118CD25FF237A0091D248 /* GenreHandler */,
@@ -2714,11 +2731,13 @@
 				E2D1040F220CD1BC005F310C /* UIRefreshControl+Extensions.swift in Sources */,
 				E2FE720A28F738D4002178BA /* UIScrollView+Extensions.swift in Sources */,
 				E221F76C222BA23D008DFF87 /* SavedMovieCollectionViewCell.swift in Sources */,
+				E2040F8A29933C8200ABAE82 /* UserDefaultsStorage.swift in Sources */,
 				E20118CF25FF238F0091D248 /* GenreHandlerProtocol.swift in Sources */,
 				E21F37902193F36300D6BFB6 /* RecentSearchCell.swift in Sources */,
 				E2251B1022146A4D00EE7A51 /* SimpleViewState.swift in Sources */,
 				E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */,
 				E2B47516227EAFB50004F621 /* ShrinkingButton.swift in Sources */,
+				E2040F8F29933FC100ABAE82 /* UpcomingMoviesDisplayMode.swift in Sources */,
 				E29407FE2209E83600A74F68 /* UITableView+Extensions.swift in Sources */,
 				E26011642193823C00E53095 /* TableViewCellAnimator.swift in Sources */,
 				E25C50DA2241F0DC005639C5 /* UpcomingMoviesNavigation.swift in Sources */,
@@ -2771,6 +2790,7 @@
 				E26EB50425CF503600AFE4A6 /* PropertyListHelper.swift in Sources */,
 				E26EB50B25CF509300AFE4A6 /* BaseConfiguration.swift in Sources */,
 				E200182A21EE336F00F29220 /* SearchOptionsViewModel.swift in Sources */,
+				E2040F8D29933F0A00ABAE82 /* UserPreferencesHandlerProtocol.swift in Sources */,
 				E229AFA924A84259002AB427 /* ProfileSection.swift in Sources */,
 				E25E85642663295D0028D607 /* RecommendedMoviesInteractor.swift in Sources */,
 				E28366762470E641008E2544 /* UIImageView+Extensions.swift in Sources */,

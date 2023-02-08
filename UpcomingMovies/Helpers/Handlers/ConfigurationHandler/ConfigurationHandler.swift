@@ -35,6 +35,7 @@ final class ConfigurationHandler: ConfigurationHandlerProtocol {
 
     // MARK: - XCTest
 
+    // TODO: - Remove this when not necessary
     private func isTesting() -> Bool {
         NSClassFromString("XCTest") != nil
     }
