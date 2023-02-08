@@ -6,4 +6,8 @@
 //  Copyright © 2023 Alonso. All rights reserved.
 //
 
-protocol UserPreferencesHandlerProtocol
+protocol UserPreferencesHandlerProtocol {
+
+    var upcomingMoviesDisplayMode: UpcomingMoviesDisplayMode { get }
+
+}
