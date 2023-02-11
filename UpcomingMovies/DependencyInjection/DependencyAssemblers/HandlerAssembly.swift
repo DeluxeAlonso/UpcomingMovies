@@ -31,6 +31,10 @@ final class HandlerAssembly: Assembly {
         container.register(ConfigurationHandlerProtocol.self) { _ in
             ConfigurationHandler()
         }.inObjectScope(.container)
+
+        container.register(UserPreferencesHandlerProtocol.self) { _ in
+            UserPreferencesHandler()
+        }.inObjectScope(.container)
     }
 
 }
