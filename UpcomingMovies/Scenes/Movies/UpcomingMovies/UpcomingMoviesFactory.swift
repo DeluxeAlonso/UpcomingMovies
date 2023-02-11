@@ -8,15 +8,19 @@
 
 import UIKit
 
-final class UpcomingMoviesViewFactory {
+protocol UpcomingMoviesFactoryProtocol {
 
-    class func makeGridBarButtonItem() -> ToggleBarButtonItem {
+}
+
+final class UpcomingMoviesFactory: UpcomingMoviesFactoryProtocol {
+
+    func makeGridBarButtonItemContents() -> [ToggleBarButtonItemContent] {
         let preview = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "List")),
                                                  accessibilityLabel: LocalizedStrings.expandMovieCellsHint())
         let detail = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "Grid")),
                                                 accessibilityLabel: LocalizedStrings.collapseMovieCellsHint())
 
-        return ToggleBarButtonItem(contents: [preview, detail])
+        return [preview, detail]
     }
 
 }

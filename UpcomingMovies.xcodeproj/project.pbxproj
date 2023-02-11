@@ -271,7 +271,7 @@
 		E28BA95424CA812500E1C3AA /* SavedMoviesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28BA95324CA812500E1C3AA /* SavedMoviesInteractor.swift */; };
 		E28D78A124847DED00D86F66 /* MovieReviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D78A024847DED00D86F66 /* MovieReviewDetailViewController.swift */; };
 		E28D78A324847E0200D86F66 /* MovieReviewDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D78A224847E0200D86F66 /* MovieReviewDetailViewModel.swift */; };
-		E28FF49B24B19A3E0015CB2F /* UpcomingMoviesViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FF49A24B19A3E0015CB2F /* UpcomingMoviesViewFactory.swift */; };
+		E28FF49B24B19A3E0015CB2F /* UpcomingMoviesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FF49A24B19A3E0015CB2F /* UpcomingMoviesFactory.swift */; };
 		E290DF06249FB23E00BABBB8 /* MovieVideosCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DF05249FB23E00BABBB8 /* MovieVideosCoordinator.swift */; };
 		E2912672250DD20F007AD101 /* DataSourceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2912671250DD20F007AD101 /* DataSourceAssembly.swift */; };
 		E2912674250DD358007AD101 /* ProviderAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2912673250DD358007AD101 /* ProviderAssembly.swift */; };
@@ -711,7 +711,7 @@
 		E28BA95324CA812500E1C3AA /* SavedMoviesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMoviesInteractor.swift; sourceTree = "<group>"; };
 		E28D78A024847DED00D86F66 /* MovieReviewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewDetailViewController.swift; sourceTree = "<group>"; };
 		E28D78A224847E0200D86F66 /* MovieReviewDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewDetailViewModel.swift; sourceTree = "<group>"; };
-		E28FF49A24B19A3E0015CB2F /* UpcomingMoviesViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesViewFactory.swift; sourceTree = "<group>"; };
+		E28FF49A24B19A3E0015CB2F /* UpcomingMoviesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesFactory.swift; sourceTree = "<group>"; };
 		E290DF05249FB23E00BABBB8 /* MovieVideosCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideosCoordinator.swift; sourceTree = "<group>"; };
 		E2912671250DD20F007AD101 /* DataSourceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceAssembly.swift; sourceTree = "<group>"; };
 		E2912673250DD358007AD101 /* ProviderAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderAssembly.swift; sourceTree = "<group>"; };
@@ -1259,7 +1259,7 @@
 				E25C50D92241F0DC005639C5 /* UpcomingMoviesNavigation.swift */,
 				E25F5DBA2495E07000DF791C /* UpcomingMoviesCoordinator.swift */,
 				E2E518A124A9944300CC3FA5 /* UpcomingMoviesProtocols.swift */,
-				E28FF49A24B19A3E0015CB2F /* UpcomingMoviesViewFactory.swift */,
+				E28FF49A24B19A3E0015CB2F /* UpcomingMoviesFactory.swift */,
 				E211282B293DC5A400336165 /* UpcomingMoviesViewState.swift */,
 				E2040F8E29933FC100ABAE82 /* UpcomingMoviesDisplayMode.swift */,
 			);
@@ -2672,7 +2672,7 @@
 				E2E518B024A9A71500CC3FA5 /* MovieDetailProtocols.swift in Sources */,
 				E20118E125FF251E0091D248 /* AuthenticationHandlerProtocol.swift in Sources */,
 				E221168021914E4B0039F8C9 /* AppDelegate.swift in Sources */,
-				E28FF49B24B19A3E0015CB2F /* UpcomingMoviesViewFactory.swift in Sources */,
+				E28FF49B24B19A3E0015CB2F /* UpcomingMoviesFactory.swift in Sources */,
 				E22116B4219157020039F8C9 /* Bindable_Deprecated.swift in Sources */,
 				E2EAEC5624CFEF6A00D89F04 /* MovieCreditsViewSection.swift in Sources */,
 				E21F37922193F38300D6BFB6 /* RecentSearchCellViewModel.swift in Sources */,
