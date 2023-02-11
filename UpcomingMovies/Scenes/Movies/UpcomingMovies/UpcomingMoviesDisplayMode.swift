@@ -6,6 +6,6 @@
 //  Copyright © 2023 Alonso. All rights reserved.
 //
 
-enum UpcomingMoviesDisplayMode {
+enum UpcomingMoviesDisplayMode: Int {
     case preview, detail
 }
