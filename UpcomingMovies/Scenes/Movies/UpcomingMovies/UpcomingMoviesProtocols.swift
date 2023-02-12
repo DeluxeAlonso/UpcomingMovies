@@ -31,6 +31,8 @@ protocol UpcomingMoviesViewModelProtocol {
 
     func getToggleBarButtonItemModel() -> ToggleBarButtonItemViewModelProtocol
 
+    func updatePresentationMode()
+
 }
 
 protocol UpcomingMoviesCoordinatorProtocol: AnyObject {

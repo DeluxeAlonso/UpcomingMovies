@@ -26,8 +26,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     private var detailLayout: VerticalFlowLayout!
 
     private var isAnimatingPresentation: Bool = false
-    private var presentationMode: UpcomingMoviesPresentationMode = .preview
-
+    
     private lazy var toggleGridBarButtonItem = ToggleBarButtonItem()
 
     // MARK: - LoadingDisplayable
@@ -173,14 +172,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
         guard !isAnimatingPresentation else { return }
 
         toggleGridBarButtonItem.toggle()
-        switch presentationMode {
-        case .preview:
-            presentationMode = .detail
-            updateCollectionViewLayout(detailLayout)
-        case .detail:
-            presentationMode = .preview
-            updateCollectionViewLayout(previewLayout)
-        }
+        viewModel.updatePresentationMode()
     }
 
 }

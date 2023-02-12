@@ -20,6 +20,7 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
 
     let viewState = BehaviorBindable(UpcomingMoviesViewState.initial).eraseToAnyBindable()
     let startLoading = BehaviorBindable(false).eraseToAnyBindable()
+    let presentationMode = BehaviorBindable(UpcomingMoviesPresentationMode.preview).eraseToAnyBindable()
 
     // MARK: - Computed properties
 
@@ -60,6 +61,15 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
     func getToggleBarButtonItemModel() -> ToggleBarButtonItemViewModelProtocol {
         let contents = factory.makeGridBarButtonItemContents()
         return ToggleBarButtonItemViewModel(contents: contents)
+    }
+
+    func updatePresentationMode() {
+        switch presentationMode.value {
+        case .preview:
+            presentationMode.value = .detail
+        case .detail:
+            presentationMode.value = .preview
+        }
     }
 
     // MARK: - Private
