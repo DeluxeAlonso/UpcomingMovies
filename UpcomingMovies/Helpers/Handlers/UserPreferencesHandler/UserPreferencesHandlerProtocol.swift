@@ -8,6 +8,6 @@
 
 protocol UserPreferencesHandlerProtocol {
 
-    var upcomingMoviesPresentationMode: UpcomingMoviesPresentationMode { get }
+    var upcomingMoviesPresentationMode: UpcomingMoviesPresentationMode { get set }
 
 }
