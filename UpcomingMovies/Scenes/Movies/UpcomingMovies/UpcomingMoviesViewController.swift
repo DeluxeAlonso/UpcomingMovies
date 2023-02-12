@@ -110,7 +110,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     private func reloadCollectionView() {
         guard let viewModel = viewModel else { return }
         dataSource = SimpleCollectionViewDataSource.make(for: viewModel.movieCells,
-                                                         presentationMode: presentationMode)
+                                                            reuseIdentifier: presentationMode.cellIdentifier)
 
         prefetchDataSource = CollectionViewDataSourcePrefetching(cellCount: viewModel.movieCells.count,
                                                                  needsPrefetch: viewModel.needsPrefetch,

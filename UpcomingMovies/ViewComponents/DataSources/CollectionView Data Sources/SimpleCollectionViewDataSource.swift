@@ -42,9 +42,9 @@ final class SimpleCollectionViewDataSource<ViewModel>: NSObject, UICollectionVie
 extension SimpleCollectionViewDataSource where ViewModel == UpcomingMovieCellViewModelProtocol {
 
     static func make(for cellViewModels: [ViewModel],
-                     presentationMode: UpcomingMoviesPresentationMode) -> SimpleCollectionViewDataSource {
+                     reuseIdentifier: String) -> SimpleCollectionViewDataSource {
         SimpleCollectionViewDataSource(cellViewModels: cellViewModels,
-                                       reuseIdentifier: presentationMode.cellIdentifier,
+                                       reuseIdentifier: reuseIdentifier,
                                        cellConfigurator: { (viewModel, cell) in
                                         var cell = cell as! UpcomingMovieCollectionViewCellProtocol
                                         cell.viewModel = viewModel
