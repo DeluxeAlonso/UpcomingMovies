@@ -19,11 +19,21 @@ final class UpcomingMoviesAssembly: Assembly {
             return UpcomingMoviesInteractor(useCaseProvider: useCaseProvider)
         }
 
+        container.register(UpcomingMoviesFactoryProtocol.self) { resolver in
+            guard let userPreferencesHandler = resolver.resolve(UserPreferencesHandlerProtocol.self) else {
+                fatalError("UserPreferencesHandlerProtocol dependency could not be resolved")
+            }
+            return UpcomingMoviesFactory(userPreferencesHandler: userPreferencesHandler)
+        }
+
         container.register(UpcomingMoviesViewModelProtocol.self) { resolver in
             guard let interactor = resolver.resolve(MoviesInteractorProtocol.self, name: "UpcomingMovies") else {
                 fatalError("MoviesInteractorProtocol dependency could not be resolved")
             }
-            return UpcomingMoviesViewModel(interactor: interactor)
+            guard let factory = resolver.resolve(UpcomingMoviesFactoryProtocol.self) else {
+                fatalError("UpcomingMoviesFactoryProtocol dependency could not be resolved")
+            }
+            return UpcomingMoviesViewModel(interactor: interactor, factory: factory)
         }
     }
 

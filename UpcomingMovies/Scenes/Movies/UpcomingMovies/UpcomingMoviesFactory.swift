@@ -10,9 +10,21 @@ import UIKit
 
 protocol UpcomingMoviesFactoryProtocol {
 
+    func makeGridBarButtonItemContents() -> [ToggleBarButtonItemContent]
+
 }
 
 final class UpcomingMoviesFactory: UpcomingMoviesFactoryProtocol {
+
+    private let userPreferencesHandler: UserPreferencesHandlerProtocol
+
+    // MARK: - Initializers
+
+    init(userPreferencesHandler: UserPreferencesHandlerProtocol) {
+        self.userPreferencesHandler = userPreferencesHandler
+    }
+
+    // MARK: - UpcomingMoviesFactoryProtocol
 
     func makeGridBarButtonItemContents() -> [ToggleBarButtonItemContent] {
         let preview = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "List")),

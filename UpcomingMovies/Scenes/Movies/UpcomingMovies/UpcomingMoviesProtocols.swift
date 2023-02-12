@@ -29,6 +29,8 @@ protocol UpcomingMoviesViewModelProtocol {
 
     func movie(for index: Int) -> Movie
 
+    func getToggleBarButtonItemModel() -> ToggleBarButtonItemViewModelProtocol
+
 }
 
 protocol UpcomingMoviesCoordinatorProtocol: AnyObject {

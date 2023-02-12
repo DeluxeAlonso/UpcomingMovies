@@ -26,9 +26,9 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     private var detailLayout: VerticalFlowLayout!
 
     private var isAnimatingPresentation: Bool = false
-    private var presentationMode: PresentationMode = .preview
+    private var presentationMode: UpcomingMoviesPresentationMode = .preview
 
-    private var toggleGridBarButtonItem: ToggleBarButtonItem!
+    private lazy var toggleGridBarButtonItem = ToggleBarButtonItem()
 
     // MARK: - LoadingDisplayable
 
@@ -71,7 +71,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     private func setupNavigationBar() {
         navigationItem.title = LocalizedStrings.upcomingMoviesTitle()
 
-        toggleGridBarButtonItem = UpcomingMoviesViewFactory.makeGridBarButtonItem()
+        toggleGridBarButtonItem.update(with: viewModel.getToggleBarButtonItemModel())
         toggleGridBarButtonItem.target = self
         toggleGridBarButtonItem.action = #selector(toggleGridAction)
         navigationItem.leftBarButtonItem = toggleGridBarButtonItem
@@ -220,26 +220,6 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
         if !displayedCellsIndexPaths.contains(indexPath) {
             displayedCellsIndexPaths.insert(indexPath)
             CollectionViewCellAnimator.fadeAnimate(cell: cell)
-        }
-    }
-
-}
-
-// MARK: - Presentation Modes
-
-extension UpcomingMoviesViewController {
-
-    enum PresentationMode {
-        case preview
-        case detail
-
-        var cellIdentifier: String {
-            switch self {
-            case .preview:
-                return UpcomingMoviePreviewCollectionViewCell.dequeueIdentifier
-            case .detail:
-                return UpcomingMovieExpandedCollectionViewCell.dequeueIdentifier
-            }
         }
     }
 

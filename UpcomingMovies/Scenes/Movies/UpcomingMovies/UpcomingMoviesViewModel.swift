@@ -14,6 +14,7 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
     // MARK: - Dependencies
 
     private let interactor: MoviesInteractorProtocol
+    private let factory: UpcomingMoviesFactoryProtocol
 
     // MARK: - Reactive properties
 
@@ -36,8 +37,9 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
 
     // MARK: - Initializers
 
-    init(interactor: MoviesInteractorProtocol) {
+    init(interactor: MoviesInteractorProtocol, factory: UpcomingMoviesFactoryProtocol) {
         self.interactor = interactor
+        self.factory = factory
     }
 
     // MARK: - UpcomingMoviesViewModelProtocol
@@ -53,6 +55,11 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
 
     func movie(for index: Int) -> Movie {
         movies[index]
+    }
+
+    func getToggleBarButtonItemModel() -> ToggleBarButtonItemViewModelProtocol {
+        let contents = factory.makeGridBarButtonItemContents()
+        return ToggleBarButtonItemViewModel(contents: contents)
     }
 
     // MARK: - Private

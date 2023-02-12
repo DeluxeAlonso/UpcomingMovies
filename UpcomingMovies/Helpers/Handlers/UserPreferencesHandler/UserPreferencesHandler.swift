@@ -10,15 +10,15 @@ import Foundation
 
 final class UserPreferencesHandler: UserPreferencesHandlerProtocol {
 
-    @UserDefaultsStorage(key: "UpcomingMoviesDisplayMode", defaultValue: 0)
-    private var upcomingMoviesDisplayModeRawValue: Int
+    @UserDefaultsStorage(key: "UpcomingMoviesPresentationMode", defaultValue: 0)
+    private var upcomingMoviesPresentationModeRawValue: Int
 
-    var upcomingMoviesDisplayMode: UpcomingMoviesDisplayMode {
+    var upcomingMoviesPresentationMode: UpcomingMoviesPresentationMode {
         get {
-            UpcomingMoviesDisplayMode(rawValue: upcomingMoviesDisplayModeRawValue) ?? .preview
+            UpcomingMoviesPresentationMode(rawValue: upcomingMoviesPresentationModeRawValue) ?? .preview
         }
         set {
-            upcomingMoviesDisplayModeRawValue = newValue.rawValue
+            upcomingMoviesPresentationModeRawValue = newValue.rawValue
         }
     }
 
