@@ -21,6 +21,7 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
 
     let viewState = BehaviorBindable(UpcomingMoviesViewState.initial).eraseToAnyBindable()
     let startLoading = BehaviorBindable(false).eraseToAnyBindable()
+    let didUpdatePresentationMode = PublishBindable<UpcomingMoviesPresentationMode>().eraseToAnyBindable()
 
     // MARK: - Computed properties
 
@@ -72,8 +73,10 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
         switch currentPresentationMode {
         case .preview:
             userPreferencesHandler.upcomingMoviesPresentationMode = .detail
+            didUpdatePresentationMode.send(.detail)
         case .detail:
             userPreferencesHandler.upcomingMoviesPresentationMode = .preview
+            didUpdatePresentationMode.send(.preview)
         }
     }
 

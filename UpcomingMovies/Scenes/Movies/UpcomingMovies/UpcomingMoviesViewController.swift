@@ -164,6 +164,17 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
             guard let self = self else { return }
             startLoading ? self.showLoader() : self.hideLoader()
         }, on: .main)
+
+        viewModel.didUpdatePresentationMode.bind({ [weak self] presentationMode in
+            guard let self = self else { return }
+            // TODO: - Remove previewLayout and detailLayout stored properties
+            switch presentationMode {
+            case .preview:
+                self.updateCollectionViewLayout(self.previewLayout)
+            case .detail:
+                self.updateCollectionViewLayout(self.detailLayout)
+            }
+        }, on: .main)
     }
 
     // MARK: - Actions

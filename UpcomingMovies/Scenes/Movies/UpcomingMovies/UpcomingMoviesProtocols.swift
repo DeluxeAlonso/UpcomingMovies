@@ -13,6 +13,7 @@ protocol UpcomingMoviesViewModelProtocol {
 
     var viewState: AnyBehaviorBindable<UpcomingMoviesViewState> { get }
     var startLoading: AnyBehaviorBindable<Bool> { get }
+    var didUpdatePresentationMode: AnyPublishBindable<UpcomingMoviesPresentationMode> { get }
 
     var movieCells: [UpcomingMovieCellViewModelProtocol] { get }
     var needsPrefetch: Bool { get }
