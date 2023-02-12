@@ -103,8 +103,8 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
         collectionView.refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
                                                               backgroundColor: collectionView.backgroundColor,
                                                               refreshHandler: { [weak self] in
-                                                                self?.viewModel?.refreshMovies()
-                                                              })
+            self?.viewModel?.refreshMovies()
+        })
     }
 
     private func reloadCollectionView() {
@@ -115,8 +115,8 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
         prefetchDataSource = CollectionViewDataSourcePrefetching(cellCount: viewModel.movieCells.count,
                                                                  needsPrefetch: viewModel.needsPrefetch,
                                                                  prefetchHandler: { [weak self] in
-                                                                    self?.viewModel?.getMovies()
-                                                                 })
+            self?.viewModel?.getMovies()
+        })
 
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = prefetchDataSource
