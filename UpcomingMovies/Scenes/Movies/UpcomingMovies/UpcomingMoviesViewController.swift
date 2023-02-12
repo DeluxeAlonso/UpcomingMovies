@@ -95,7 +95,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
                                            preferredHeight: Constants.previewCellHeight,
                                            minColumns: Constants.previewLayoutMinColumns)
 
-        collectionView.collectionViewLayout = presentationMode == .preview ? previewLayout : detailLayout
+        collectionView.collectionViewLayout = viewModel.currentPresentationMode == .preview ? previewLayout : detailLayout
     }
 
     private func setupRefreshControl() {
@@ -109,7 +109,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     private func reloadCollectionView() {
         guard let viewModel = viewModel else { return }
         dataSource = SimpleCollectionViewDataSource.make(for: viewModel.movieCells,
-                                                            reuseIdentifier: presentationMode.cellIdentifier)
+                                                            reuseIdentifier: viewModel.currentPresentationMode.cellIdentifier)
 
         prefetchDataSource = CollectionViewDataSourcePrefetching(cellCount: viewModel.movieCells.count,
                                                                  needsPrefetch: viewModel.needsPrefetch,

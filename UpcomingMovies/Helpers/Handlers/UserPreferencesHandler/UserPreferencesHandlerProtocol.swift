@@ -6,7 +6,7 @@
 //  Copyright © 2023 Alonso. All rights reserved.
 //
 
-protocol UserPreferencesHandlerProtocol {
+protocol UserPreferencesHandlerProtocol: AnyObject {
 
     var upcomingMoviesPresentationMode: UpcomingMoviesPresentationMode { get set }
 
