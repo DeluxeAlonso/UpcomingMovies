@@ -124,9 +124,9 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
         collectionView.refreshControl?.endRefreshing(with: 0.5)
     }
 
-    private func updateCollectionViewLayout(_ layout: UICollectionViewLayout, presentationMode: UpcomingMoviesPresentationMode) {
+    private func updateCollectionViewLayout(_ layout: UICollectionViewLayout) {
         collectionView.collectionViewLayout.invalidateLayout()
-        reloadCollectionView(presentationMode: presentationMode)
+        reloadCollectionView()
         isAnimatingPresentation = true
         collectionView.setCollectionViewLayout(layout, animated: true) { completed in
             self.isAnimatingPresentation = !completed

@@ -15,6 +15,7 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
 
     private let interactor: MoviesInteractorProtocol
     private let factory: UpcomingMoviesFactoryProtocol
+    private let userPreferencesHandler: UserPreferencesHandlerProtocol
 
     // MARK: - Reactive properties
 
@@ -37,14 +38,15 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
     }
 
     var currentPresentationMode: UpcomingMoviesPresentationMode {
-        presentationMode.value
+        userPreferencesHandler.upcomingMoviesPresentationMode
     }
 
     // MARK: - Initializers
 
-    init(interactor: MoviesInteractorProtocol, factory: UpcomingMoviesFactoryProtocol) {
+    init(interactor: MoviesInteractorProtocol, factory: UpcomingMoviesFactoryProtocol, userPreferenceHandler: UserPreferencesHandlerProtocol) {
         self.interactor = interactor
         self.factory = factory
+        self.userPreferencesHandler = userPreferenceHandler
     }
 
     // MARK: - UpcomingMoviesViewModelProtocol
