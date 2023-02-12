@@ -26,7 +26,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     private var detailLayout: VerticalFlowLayout!
 
     private var isAnimatingPresentation: Bool = false
-    
+
     private lazy var toggleGridBarButtonItem = ToggleBarButtonItem()
 
     // MARK: - LoadingDisplayable
@@ -124,9 +124,9 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
         collectionView.refreshControl?.endRefreshing(with: 0.5)
     }
 
-    private func updateCollectionViewLayout(_ layout: UICollectionViewLayout) {
+    private func updateCollectionViewLayout(_ layout: UICollectionViewLayout, presentationMode: UpcomingMoviesPresentationMode) {
         collectionView.collectionViewLayout.invalidateLayout()
-        reloadCollectionView()
+        reloadCollectionView(presentationMode: presentationMode)
         isAnimatingPresentation = true
         collectionView.setCollectionViewLayout(layout, animated: true) { completed in
             self.isAnimatingPresentation = !completed

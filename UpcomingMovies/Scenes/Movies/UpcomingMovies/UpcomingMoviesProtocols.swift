@@ -17,6 +17,8 @@ protocol UpcomingMoviesViewModelProtocol {
     var movieCells: [UpcomingMovieCellViewModelProtocol] { get }
     var needsPrefetch: Bool { get }
 
+    var currentPresentationMode: UpcomingMoviesPresentationMode { get }
+
     /**
      * Retrieves upcoming movies information.
      */

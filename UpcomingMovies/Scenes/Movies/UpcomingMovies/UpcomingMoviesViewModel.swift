@@ -36,6 +36,10 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
         viewState.value.needsPrefetch
     }
 
+    var currentPresentationMode: UpcomingMoviesPresentationMode {
+        presentationMode.value
+    }
+
     // MARK: - Initializers
 
     init(interactor: MoviesInteractorProtocol, factory: UpcomingMoviesFactoryProtocol) {
