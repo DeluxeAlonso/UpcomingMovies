@@ -19,3 +19,12 @@ class MockUpcomingMoviesInteractor: MoviesInteractorProtocol {
     }
 
 }
+
+class MockUpcomingMoviesFactory: UpcomingMoviesFactoryProtocol {
+
+    var makeGridBarButtonItemContentsResult: [ToggleBarButtonItemContent] = []
+    func makeGridBarButtonItemContents() -> [ToggleBarButtonItemContent] {
+        makeGridBarButtonItemContentsResult
+    }
+
+}

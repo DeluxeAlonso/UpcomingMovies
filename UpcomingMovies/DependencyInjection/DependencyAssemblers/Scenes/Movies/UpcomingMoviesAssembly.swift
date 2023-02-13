@@ -36,7 +36,7 @@ final class UpcomingMoviesAssembly: Assembly {
             guard let userPreferencesHandler = resolver.resolve(UserPreferencesHandlerProtocol.self) else {
                 fatalError("UserPreferencesHandlerProtocol dependency could not be resolved")
             }
-            return UpcomingMoviesViewModel(interactor: interactor, factory: factory, userPreferenceHandler: userPreferencesHandler)
+            return UpcomingMoviesViewModel(interactor: interactor, factory: factory, userPreferencesHandler: userPreferencesHandler)
         }
     }
 

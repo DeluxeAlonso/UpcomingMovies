@@ -16,6 +16,7 @@ protocol UpcomingMoviesFactoryProtocol {
 
 final class UpcomingMoviesFactory: UpcomingMoviesFactoryProtocol {
 
+    // TODO: - Remove this dependency and replace it with a parameter in its methods.
     private let userPreferencesHandler: UserPreferencesHandlerProtocol
 
     // MARK: - Initializers

@@ -43,10 +43,10 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
 
     // MARK: - Initializers
 
-    init(interactor: MoviesInteractorProtocol, factory: UpcomingMoviesFactoryProtocol, userPreferenceHandler: UserPreferencesHandlerProtocol) {
+    init(interactor: MoviesInteractorProtocol, factory: UpcomingMoviesFactoryProtocol, userPreferencesHandler: UserPreferencesHandlerProtocol) {
         self.interactor = interactor
         self.factory = factory
-        self.userPreferencesHandler = userPreferenceHandler
+        self.userPreferencesHandler = userPreferencesHandler
     }
 
     // MARK: - UpcomingMoviesViewModelProtocol
