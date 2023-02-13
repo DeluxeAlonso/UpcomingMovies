@@ -65,7 +65,7 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
     }
 
     func getToggleBarButtonItemModel() -> ToggleBarButtonItemViewModelProtocol {
-        let contents = factory.makeGridBarButtonItemContents()
+        let contents = factory.makeGridBarButtonItemContents(for: currentPresentationMode)
         return ToggleBarButtonItemViewModel(contents: contents)
     }
 

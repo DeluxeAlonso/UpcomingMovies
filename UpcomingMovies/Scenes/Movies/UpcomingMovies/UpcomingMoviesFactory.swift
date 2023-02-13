@@ -10,30 +10,26 @@ import UIKit
 
 protocol UpcomingMoviesFactoryProtocol {
 
-    func makeGridBarButtonItemContents() -> [ToggleBarButtonItemContent]
+    func makeGridBarButtonItemContents(for presentationMode: UpcomingMoviesPresentationMode) -> [ToggleBarButtonItemContent]
 
 }
 
 final class UpcomingMoviesFactory: UpcomingMoviesFactoryProtocol {
 
-    // TODO: - Remove this dependency and replace it with a parameter in its methods.
-    private let userPreferencesHandler: UserPreferencesHandlerProtocol
-
-    // MARK: - Initializers
-
-    init(userPreferencesHandler: UserPreferencesHandlerProtocol) {
-        self.userPreferencesHandler = userPreferencesHandler
-    }
-
     // MARK: - UpcomingMoviesFactoryProtocol
 
-    func makeGridBarButtonItemContents() -> [ToggleBarButtonItemContent] {
+    func makeGridBarButtonItemContents(for presentationMode: UpcomingMoviesPresentationMode) -> [ToggleBarButtonItemContent] {
         let preview = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "List")),
                                                  accessibilityLabel: LocalizedStrings.expandMovieCellsHint())
         let detail = ToggleBarButtonItemContent(display: .right(#imageLiteral(resourceName: "Grid")),
                                                 accessibilityLabel: LocalizedStrings.collapseMovieCellsHint())
 
-        return [preview, detail]
+        switch presentationMode {
+        case .preview:
+            return [preview, detail]
+        case .detail:
+            return [detail, preview]
+        }
     }
 
 }

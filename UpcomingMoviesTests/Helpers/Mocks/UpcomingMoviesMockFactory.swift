@@ -23,7 +23,7 @@ class MockUpcomingMoviesInteractor: MoviesInteractorProtocol {
 class MockUpcomingMoviesFactory: UpcomingMoviesFactoryProtocol {
 
     var makeGridBarButtonItemContentsResult: [ToggleBarButtonItemContent] = []
-    func makeGridBarButtonItemContents() -> [ToggleBarButtonItemContent] {
+    func makeGridBarButtonItemContents(for presentationMode: UpcomingMoviesPresentationMode) -> [ToggleBarButtonItemContent] {
         makeGridBarButtonItemContentsResult
     }
 

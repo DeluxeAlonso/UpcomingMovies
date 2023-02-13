@@ -19,11 +19,8 @@ final class UpcomingMoviesAssembly: Assembly {
             return UpcomingMoviesInteractor(useCaseProvider: useCaseProvider)
         }
 
-        container.register(UpcomingMoviesFactoryProtocol.self) { resolver in
-            guard let userPreferencesHandler = resolver.resolve(UserPreferencesHandlerProtocol.self) else {
-                fatalError("UserPreferencesHandlerProtocol dependency could not be resolved")
-            }
-            return UpcomingMoviesFactory(userPreferencesHandler: userPreferencesHandler)
+        container.register(UpcomingMoviesFactoryProtocol.self) { _ in
+            return UpcomingMoviesFactory()
         }
 
         container.register(UpcomingMoviesViewModelProtocol.self) { resolver in
