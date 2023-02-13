@@ -14,11 +14,14 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
     // MARK: - Dependencies
 
     private let interactor: MoviesInteractorProtocol
+    private let factory: UpcomingMoviesFactoryProtocol
+    private let userPreferencesHandler: UserPreferencesHandlerProtocol
 
     // MARK: - Reactive properties
 
     let viewState = BehaviorBindable(UpcomingMoviesViewState.initial).eraseToAnyBindable()
     let startLoading = BehaviorBindable(false).eraseToAnyBindable()
+    let didUpdatePresentationMode = PublishBindable<UpcomingMoviesPresentationMode>().eraseToAnyBindable()
 
     // MARK: - Computed properties
 
@@ -34,10 +37,16 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
         viewState.value.needsPrefetch
     }
 
+    var currentPresentationMode: UpcomingMoviesPresentationMode {
+        userPreferencesHandler.upcomingMoviesPresentationMode
+    }
+
     // MARK: - Initializers
 
-    init(interactor: MoviesInteractorProtocol) {
+    init(interactor: MoviesInteractorProtocol, factory: UpcomingMoviesFactoryProtocol, userPreferencesHandler: UserPreferencesHandlerProtocol) {
         self.interactor = interactor
+        self.factory = factory
+        self.userPreferencesHandler = userPreferencesHandler
     }
 
     // MARK: - UpcomingMoviesViewModelProtocol
@@ -53,6 +62,22 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
 
     func movie(for index: Int) -> Movie {
         movies[index]
+    }
+
+    func getToggleBarButtonItemModel() -> ToggleBarButtonItemViewModelProtocol {
+        let contents = factory.makeGridBarButtonItemContents()
+        return ToggleBarButtonItemViewModel(contents: contents)
+    }
+
+    func updatePresentationMode() {
+        switch currentPresentationMode {
+        case .preview:
+            userPreferencesHandler.upcomingMoviesPresentationMode = .detail
+            didUpdatePresentationMode.send(.detail)
+        case .detail:
+            userPreferencesHandler.upcomingMoviesPresentationMode = .preview
+            didUpdatePresentationMode.send(.preview)
+        }
     }
 
     // MARK: - Private

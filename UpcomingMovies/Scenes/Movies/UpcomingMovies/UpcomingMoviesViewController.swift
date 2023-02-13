@@ -26,9 +26,8 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     private var detailLayout: VerticalFlowLayout!
 
     private var isAnimatingPresentation: Bool = false
-    private var presentationMode: PresentationMode = .preview
 
-    private var toggleGridBarButtonItem: ToggleBarButtonItem!
+    private lazy var toggleGridBarButtonItem = ToggleBarButtonItem()
 
     // MARK: - LoadingDisplayable
 
@@ -71,7 +70,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     private func setupNavigationBar() {
         navigationItem.title = LocalizedStrings.upcomingMoviesTitle()
 
-        toggleGridBarButtonItem = UpcomingMoviesViewFactory.makeGridBarButtonItem()
+        toggleGridBarButtonItem.update(with: viewModel.getToggleBarButtonItemModel())
         toggleGridBarButtonItem.target = self
         toggleGridBarButtonItem.action = #selector(toggleGridAction)
         navigationItem.leftBarButtonItem = toggleGridBarButtonItem
@@ -96,27 +95,27 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
                                            preferredHeight: Constants.previewCellHeight,
                                            minColumns: Constants.previewLayoutMinColumns)
 
-        collectionView.collectionViewLayout = presentationMode == .preview ? previewLayout : detailLayout
+        collectionView.collectionViewLayout = viewModel.currentPresentationMode == .preview ? previewLayout : detailLayout
     }
 
     private func setupRefreshControl() {
         collectionView.refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
                                                               backgroundColor: collectionView.backgroundColor,
                                                               refreshHandler: { [weak self] in
-                                                                self?.viewModel?.refreshMovies()
-                                                              })
+            self?.viewModel?.refreshMovies()
+        })
     }
 
     private func reloadCollectionView() {
         guard let viewModel = viewModel else { return }
         dataSource = SimpleCollectionViewDataSource.make(for: viewModel.movieCells,
-                                                         presentationMode: presentationMode)
+                                                            reuseIdentifier: viewModel.currentPresentationMode.cellIdentifier)
 
         prefetchDataSource = CollectionViewDataSourcePrefetching(cellCount: viewModel.movieCells.count,
                                                                  needsPrefetch: viewModel.needsPrefetch,
                                                                  prefetchHandler: { [weak self] in
-                                                                    self?.viewModel?.getMovies()
-                                                                 })
+            self?.viewModel?.getMovies()
+        })
 
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = prefetchDataSource
@@ -165,6 +164,17 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
             guard let self = self else { return }
             startLoading ? self.showLoader() : self.hideLoader()
         }, on: .main)
+
+        viewModel.didUpdatePresentationMode.bind({ [weak self] presentationMode in
+            guard let self = self else { return }
+            // TODO: - Remove previewLayout and detailLayout stored properties
+            switch presentationMode {
+            case .preview:
+                self.updateCollectionViewLayout(self.previewLayout)
+            case .detail:
+                self.updateCollectionViewLayout(self.detailLayout)
+            }
+        }, on: .main)
     }
 
     // MARK: - Actions
@@ -173,14 +183,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
         guard !isAnimatingPresentation else { return }
 
         toggleGridBarButtonItem.toggle()
-        switch presentationMode {
-        case .preview:
-            presentationMode = .detail
-            updateCollectionViewLayout(detailLayout)
-        case .detail:
-            presentationMode = .preview
-            updateCollectionViewLayout(previewLayout)
-        }
+        viewModel.updatePresentationMode()
     }
 
 }
@@ -220,26 +223,6 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
         if !displayedCellsIndexPaths.contains(indexPath) {
             displayedCellsIndexPaths.insert(indexPath)
             CollectionViewCellAnimator.fadeAnimate(cell: cell)
-        }
-    }
-
-}
-
-// MARK: - Presentation Modes
-
-extension UpcomingMoviesViewController {
-
-    enum PresentationMode {
-        case preview
-        case detail
-
-        var cellIdentifier: String {
-            switch self {
-            case .preview:
-                return UpcomingMoviePreviewCollectionViewCell.dequeueIdentifier
-            case .detail:
-                return UpcomingMovieExpandedCollectionViewCell.dequeueIdentifier
-            }
         }
     }
 

@@ -16,12 +16,16 @@ class UpcomingMoviesViewModelTests: XCTestCase {
     typealias MoviesViewState = SimpleViewState<UpcomingMoviesDomain.Movie>
 
     private var mockInteractor: MockUpcomingMoviesInteractor!
+    private var mockFactory = MockUpcomingMoviesFactory()
+    private var mockUserPreferencesHandler = MockUserPreferencesHandler()
     private var viewModelToTest: UpcomingMoviesViewModelProtocol!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         mockInteractor = MockUpcomingMoviesInteractor()
-        viewModelToTest = UpcomingMoviesViewModel(interactor: mockInteractor)
+        viewModelToTest = UpcomingMoviesViewModel(interactor: mockInteractor,
+                                                  factory: mockFactory,
+                                                  userPreferencesHandler: mockUserPreferencesHandler)
     }
 
     override func tearDownWithError() throws {

@@ -10,16 +10,19 @@ import UIKit
 
 class ToggleBarButtonItem: UIBarButtonItem {
 
-    /// We support more than two items for the ToggleBarButtonItem
     private var contents: [ToggleBarButtonItemContentProtocol]
     private var currentContentIndex: Int = 0
 
     // MARK: - Initializers
 
-    init(contents: [ToggleBarButtonItemContentProtocol]) {
+    init(contents: [ToggleBarButtonItemContentProtocol] = []) {
         self.contents = contents
         super.init()
         configure(for: currentContentIndex)
+    }
+
+    convenience init(viewModel: ToggleBarButtonItemViewModelProtocol) {
+        self.init(contents: viewModel.contents)
     }
 
     required init?(coder: NSCoder) {
@@ -44,6 +47,15 @@ class ToggleBarButtonItem: UIBarButtonItem {
     }
 
     // MARK: - Internal
+
+    func update(with viewModel: ToggleBarButtonItemViewModelProtocol,
+                resetCurrentContentIndex: Bool = true) {
+        if resetCurrentContentIndex {
+            currentContentIndex = 0
+        }
+        contents = viewModel.contents
+        configure(for: currentContentIndex)
+    }
 
     func toggle() {
         currentContentIndex += 1

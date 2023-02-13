@@ -13,9 +13,12 @@ protocol UpcomingMoviesViewModelProtocol {
 
     var viewState: AnyBehaviorBindable<UpcomingMoviesViewState> { get }
     var startLoading: AnyBehaviorBindable<Bool> { get }
+    var didUpdatePresentationMode: AnyPublishBindable<UpcomingMoviesPresentationMode> { get }
 
     var movieCells: [UpcomingMovieCellViewModelProtocol] { get }
     var needsPrefetch: Bool { get }
+
+    var currentPresentationMode: UpcomingMoviesPresentationMode { get }
 
     /**
      * Retrieves upcoming movies information.
@@ -28,6 +31,10 @@ protocol UpcomingMoviesViewModelProtocol {
     func refreshMovies()
 
     func movie(for index: Int) -> Movie
+
+    func getToggleBarButtonItemModel() -> ToggleBarButtonItemViewModelProtocol
+
+    func updatePresentationMode()
 
 }
 
