@@ -19,7 +19,7 @@ final class UpcomingMoviesAssembly: Assembly {
             return UpcomingMoviesInteractor(useCaseProvider: useCaseProvider)
         }
 
-        container.register(UpcomingMoviesFactoryProtocol.self) { resolver in
+        container.register(UpcomingMoviesFactoryProtocol.self) { _ in
             return UpcomingMoviesFactory()
         }
 
