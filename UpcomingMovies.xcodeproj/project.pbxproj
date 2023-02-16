@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -310,7 +310,7 @@
 		E2B4751A227EB0960004F621 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B47519227EB0960004F621 /* CGRect+Extensions.swift */; };
 		E2B63B0F24676AE200C0BB13 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B63ACE246767EE00C0BB13 /* NotificationCenter.framework */; };
 		E2B63B1224676AE200C0BB13 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B63B1124676AE200C0BB13 /* TodayViewController.swift */; };
-		E2B63B1924676AE200C0BB13 /* RecentlyVisited.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E2B63B0E24676AE200C0BB13 /* RecentlyVisited.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E2B63B1924676AE200C0BB13 /* RecentlyVisited.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E2B63B0E24676AE200C0BB13 /* RecentlyVisited.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E2B63B25246775C000C0BB13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E221168821914E4C0039F8C9 /* Assets.xcassets */; };
 		E2B63B2E24677C4F00C0BB13 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22351ED227EAB2000B2544E /* UIView+Layout.swift */; };
 		E2B63B2F24677E7100C0BB13 /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2958F83235375D800171D80 /* UIImageView+Kingfisher.swift */; };
@@ -375,7 +375,7 @@
 		E2EBDC2D256A26060026319B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2EBDC2C256A26060026319B /* SwiftUI.framework */; };
 		E2EBDC30256A26060026319B /* MoviesWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EBDC2F256A26060026319B /* MoviesWidgets.swift */; };
 		E2EBDC32256A26090026319B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2EBDC31256A26090026319B /* Assets.xcassets */; };
-		E2EBDC36256A26090026319B /* UpcomingMoviesWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E2EBDC29256A26060026319B /* UpcomingMoviesWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E2EBDC36256A26090026319B /* UpcomingMoviesWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E2EBDC29256A26060026319B /* UpcomingMoviesWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E2ED5D53279920C5006F4316 /* ProgressHUDAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ED5D52279920C5006F4316 /* ProgressHUDAdapter.swift */; };
 		E2F789F82598401700002CAD /* AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F789F72598401700002CAD /* AppExtension.swift */; };
 		E2F78A0125985D5A00002CAD /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F78A0025985D5A00002CAD /* RootCoordinator.swift */; };
@@ -415,16 +415,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E2B63ADD246767EE00C0BB13 /* Embed App Extensions */ = {
+		E2B63ADD246767EE00C0BB13 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				E2B63B1924676AE200C0BB13 /* RecentlyVisited.appex in Embed App Extensions */,
-				E2EBDC36256A26090026319B /* UpcomingMoviesWidgetExtension.appex in Embed App Extensions */,
+				E2B63B1924676AE200C0BB13 /* RecentlyVisited.appex in Embed Foundation Extensions */,
+				E2EBDC36256A26090026319B /* UpcomingMoviesWidgetExtension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -2262,7 +2262,7 @@
 				E221167A21914E4B0039F8C9 /* Resources */,
 				5EC83C5E01F2A4C789C0A107 /* [CP] Embed Pods Frameworks */,
 				E20198F421FBAEF400ED1FA8 /* ShellScript */,
-				E2B63ADD246767EE00C0BB13 /* Embed App Extensions */,
+				E2B63ADD246767EE00C0BB13 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -2337,7 +2337,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1210;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = Alonso;
 				TargetAttributes = {
 					E221167B21914E4B0039F8C9 = {
@@ -2514,6 +2514,7 @@
 		};
 		E20198F421FBAEF400ED1FA8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
