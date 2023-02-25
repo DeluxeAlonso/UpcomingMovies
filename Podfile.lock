@@ -9,9 +9,6 @@ PODS:
   - DLProgressHUD (0.1.1)
   - KeychainSwift (19.0.0)
   - Kingfisher (7.6.1)
-  - Kingfisher/Core (5.15.8)
-  - Kingfisher/SwiftUI (5.15.8):
-    - Kingfisher/Core
   - NetworkInfrastructure (0.0.1):
     - KeychainSwift (~> 19.0)
     - NetworkInfrastructure/Core (= 0.0.1)
@@ -64,7 +61,6 @@ DEPENDENCIES:
   - CoreDataInfrastructure/CoreDataInfrastructureTests (from `CoreDataInfrastructure/`)
   - DLProgressHUD
   - Kingfisher
-  - Kingfisher/SwiftUI
   - NetworkInfrastructure (from `NetworkInfrastructure/`)
   - NetworkInfrastructure/NetworkInfrastructureTests (from `NetworkInfrastructure/`)
   - NetworkInfrastructure/TestDoubles (from `NetworkInfrastructure/`)
@@ -101,13 +97,13 @@ SPEC CHECKSUMS:
   CoreDataInfrastructure: 24fcc25ad00d4224bb9d3e05a702b003d4c97e6d
   DLProgressHUD: fa7314b51e373307f4a1e1cba605d318c2cd0d23
   KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
-  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
+  Kingfisher: 93a3c6d0d551658a31e19f21747e1d15cb39d525
   NetworkInfrastructure: d13491e3912dcb20152fe960de0bd3be05b31aa8
   SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
   UpcomingMoviesData: 126fe1e9a9cc7c55a9fc4761c96c6741325ace23
   UpcomingMoviesDomain: e06d8a483680fd0bde165a9cb37c59a61c603676
 
-PODFILE CHECKSUM: 589bc9a9ce6a168f88734e9c034be4b96677d4e6
+PODFILE CHECKSUM: c23731a7f0411ee800df8a681f936a8a84ea17ac
 
 COCOAPODS: 1.11.3

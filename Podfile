@@ -10,7 +10,6 @@ target 'UpcomingMovies' do
   pod 'SwiftLint'
   pod 'Swinject'
   pod 'Kingfisher'
-  pod 'Kingfisher/SwiftUI'
   pod 'CollectionViewSlantedLayout', '~> 3.1'
   pod 'DLProgressHUD'
 
@@ -27,10 +26,6 @@ target 'UpcomingMovies' do
   target 'UpcomingMoviesTodayExtension' do
     pod 'Kingfisher'
     pod 'CoreDataInfrastructure', :path => 'CoreDataInfrastructure/'
-  end
-
-  target 'UpcomingMoviesWidgetExtension' do
-    pod 'Kingfisher/SwiftUI'
   end
 
   target 'UpcomingMoviesTests' do
