@@ -1,4 +1,4 @@
-deployment_target = '12.0'
+deployment_target = '13.0'
 
 platform :ios, deployment_target
 
