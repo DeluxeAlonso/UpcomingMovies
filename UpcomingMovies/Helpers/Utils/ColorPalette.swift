@@ -35,44 +35,24 @@ struct ColorPalette {
     static let regularGray = UIColor.systemGray
 
     static var defaultBackgroundColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return UIColor.systemBackground
-        } else {
-            return whiteColor
-        }
+        UIColor.systemBackground
     }
 
     static var defaultGrayBackgroundColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return UIColor.systemGray6
-        } else {
-            return .lightGray
-        }
+        UIColor.systemGray6
     }
 
     static var navigationBarBackgroundColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return UIColor.systemBackground
-        } else {
-            return whiteColor
-        }
+        UIColor.systemBackground
     }
 
     static var groupedCellBackgroundColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return UIColor.secondarySystemGroupedBackground
-        } else {
-            return whiteColor
-        }
+        UIColor.secondarySystemGroupedBackground
     }
 
     struct Label {
         static var defaultColor: UIColor {
-            if #available(iOS 13.0, *) {
-                return UIColor.label
-            } else {
-                return ColorPalette.blackColor
-            }
+            UIColor.label
         }
     }
 

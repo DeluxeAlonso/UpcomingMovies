@@ -14,7 +14,7 @@ final class LoadingFooterView: UIView {
 
     private lazy var activityIndicatorView: UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.style = .whiteLarge
+        activityIndicatorView.style = .large
         activityIndicatorView.color = .darkGray
         activityIndicatorView.startAnimating()
         return activityIndicatorView
