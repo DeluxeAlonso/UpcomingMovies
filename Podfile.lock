@@ -6,7 +6,7 @@ PODS:
   - CoreDataInfrastructure/CoreDataInfrastructureTests (0.0.1):
     - UpcomingMoviesData
     - UpcomingMoviesDomain
-  - DLProgressHUD (0.1.1)
+  - DLProgressHUD (1.0.0)
   - KeychainSwift (19.0.0)
   - Kingfisher (7.6.1)
   - NetworkInfrastructure (0.0.1):
@@ -95,7 +95,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   CollectionViewSlantedLayout: 24397455acd2461960bc45d394e0ef99c17d03ce
   CoreDataInfrastructure: 24fcc25ad00d4224bb9d3e05a702b003d4c97e6d
-  DLProgressHUD: fa7314b51e373307f4a1e1cba605d318c2cd0d23
+  DLProgressHUD: 6316b2f165442924fa0c1779645c72b17a32b3e4
   KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
   Kingfisher: 93a3c6d0d551658a31e19f21747e1d15cb39d525
   NetworkInfrastructure: d13491e3912dcb20152fe960de0bd3be05b31aa8
