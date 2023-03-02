@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomListDetailHeaderView: UIView, NibLoadable {
+final class CustomListDetailHeaderView: UIView, NibLoadable {
 
     @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var posterImageViewHeightConstraint: NSLayoutConstraint!
@@ -17,8 +17,8 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
     @IBOutlet private weak var descriptionView: UIView!
     @IBOutlet private weak var descriptionLabel: UILabel!
 
-    var initialHeightConstraintConstant: CGFloat!
-    var initialTopContstraintConstant: CGFloat!
+    private(set) var initialHeightConstraintConstant: CGFloat!
+    private(set) var initialTopContstraintConstant: CGFloat!
 
     var viewModel: CustomListDetailHeaderViewModelProtocol? {
         didSet {
@@ -80,7 +80,6 @@ class CustomListDetailHeaderView: UIView, NibLoadable {
             posterImageView.contentMode = .scaleAspectFill
             posterImageView.setImage(with: posterURL)
         } else {
-            // TODO: - Adds header offset
             posterImageView.contentMode = .center
             posterImageView.image = #imageLiteral(resourceName: "PosterPlaceholder")
         }
