@@ -17,8 +17,8 @@ final class CustomListDetailHeaderView: UIView, NibLoadable {
     @IBOutlet private weak var descriptionView: UIView!
     @IBOutlet private weak var descriptionLabel: UILabel!
 
-    var initialHeightConstraintConstant: CGFloat!
-    var initialTopContstraintConstant: CGFloat!
+    private(set) var initialHeightConstraintConstant: CGFloat!
+    private(set) var initialTopContstraintConstant: CGFloat!
 
     var viewModel: CustomListDetailHeaderViewModelProtocol? {
         didSet {
