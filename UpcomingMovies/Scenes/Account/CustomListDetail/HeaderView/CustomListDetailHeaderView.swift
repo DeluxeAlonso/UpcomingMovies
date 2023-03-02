@@ -80,7 +80,6 @@ final class CustomListDetailHeaderView: UIView, NibLoadable {
             posterImageView.contentMode = .scaleAspectFill
             posterImageView.setImage(with: posterURL)
         } else {
-            // TODO: - Adds header offset
             posterImageView.contentMode = .center
             posterImageView.image = #imageLiteral(resourceName: "PosterPlaceholder")
         }
