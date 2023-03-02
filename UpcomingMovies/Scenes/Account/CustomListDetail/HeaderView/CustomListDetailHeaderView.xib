@@ -62,7 +62,7 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" systemColor="linkColor"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="5H8-fK-RG1" secondAttribute="trailing" id="2yU-2t-vzv"/>
                 <constraint firstItem="fRO-iW-9EL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3SJ-Wr-b04"/>
@@ -85,8 +85,8 @@
         </view>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

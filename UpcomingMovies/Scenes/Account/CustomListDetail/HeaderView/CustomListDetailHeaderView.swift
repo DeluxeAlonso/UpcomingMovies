@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomListDetailHeaderView: UIView, NibLoadable {
+final class CustomListDetailHeaderView: UIView, NibLoadable {
 
     @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var posterImageViewHeightConstraint: NSLayoutConstraint!
