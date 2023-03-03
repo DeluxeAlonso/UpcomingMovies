@@ -28,6 +28,4 @@ final class CollectionViewDataSourcePrefetching: NSObject, DataSourcePrefetching
         prefetchIfNeeded(for: indexPaths)
     }
 
-    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {}
-
 }

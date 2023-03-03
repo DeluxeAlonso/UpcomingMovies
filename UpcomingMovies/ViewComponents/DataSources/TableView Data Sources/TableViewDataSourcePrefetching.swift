@@ -28,6 +28,4 @@ final class TableViewDataSourcePrefetching: NSObject, DataSourcePrefetching, UIT
         prefetchIfNeeded(for: indexPaths)
     }
 
-    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {}
-
 }
