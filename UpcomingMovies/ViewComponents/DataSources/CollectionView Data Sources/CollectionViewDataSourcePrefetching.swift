@@ -25,12 +25,9 @@ final class CollectionViewDataSourcePrefetching: NSObject, DataSourcePrefetching
     // MARK: - UICollectionViewDataSourcePrefetching
 
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        print("prefetchRowsAt \(indexPaths.map { $0.item })")
         prefetchIfNeeded(for: indexPaths)
     }
 
-    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
-        print("cancelPrefetchingForRowsAt \(indexPaths.map { $0.item })")
-    }
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {}
 
 }
