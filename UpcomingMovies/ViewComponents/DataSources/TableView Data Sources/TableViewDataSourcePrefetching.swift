@@ -25,12 +25,7 @@ final class TableViewDataSourcePrefetching: NSObject, DataSourcePrefetching, UIT
     // MARK: - UITableViewDataSourcePrefetching
 
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        print("prefetchRowsAt \(indexPaths.map { $0.row })")
         prefetchIfNeeded(for: indexPaths)
-    }
-
-    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        print("cancelPrefetchingForRowsAt \(indexPaths.map { $0.row })")
     }
 
 }
