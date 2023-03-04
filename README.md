@@ -25,7 +25,7 @@ Movies app written in Swift 5 using the TMDb API and demonstrating Clean Archite
 
 ### Requirements
 
-1. Xcode 13.0+
+1. Xcode 14.0+
 2. Cocoapods 1.9.0+
 3. Fastlane 2.1.0+ (only needed if you want to run the unit tests and swift lint scans via the CLI).
 
