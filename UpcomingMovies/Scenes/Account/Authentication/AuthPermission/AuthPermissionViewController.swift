@@ -16,7 +16,7 @@ protocol AuthPermissionViewControllerDelegate: AnyObject {
 
 }
 
-class AuthPermissionViewController: UIViewController, Storyboarded {
+final class AuthPermissionViewController: UIViewController, Storyboarded {
 
     @IBOutlet private weak var progressView: UIProgressView!
     @IBOutlet private weak var webView: WKWebView!

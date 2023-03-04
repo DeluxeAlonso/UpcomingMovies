@@ -8,7 +8,13 @@
 
 import UIKit
 
-final class ImageTransitionHandler {
+protocol ImageTransitionHandlerProtocol {
+
+    func invalidate()
+
+}
+
+final class ImageTransitionHandler: ImageTransitionHandlerProtocol {
 
     private let imageView: UIImageView
     private let transitionImages: [UIImage]

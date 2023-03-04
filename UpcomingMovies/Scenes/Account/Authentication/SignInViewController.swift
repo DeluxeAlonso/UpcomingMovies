@@ -14,7 +14,7 @@ protocol SignInViewControllerDelegate: UIViewController {
 
 }
 
-class SignInViewController: UIViewController, Storyboarded {
+final class SignInViewController: UIViewController, Storyboarded {
 
     @IBOutlet private weak var iconImageView: UIImageView!
     @IBOutlet private weak var signInButton: ShrinkingButton!
@@ -25,12 +25,12 @@ class SignInViewController: UIViewController, Storyboarded {
 
     /// Images we are going to display animated  above the sign in button.
     private let transitionImages: [UIImage] = [#imageLiteral(resourceName: "SignInLogoFirst"), #imageLiteral(resourceName: "SignInLogoSecond"), #imageLiteral(resourceName: "SignInLogoThird")]
-    private var imageTransitionHandler: ImageTransitionHandler!
+    private var imageTransitionHandler: ImageTransitionHandlerProtocol?
 
     // MARK: - Lifecycle
 
     deinit {
-        imageTransitionHandler.invalidate()
+        imageTransitionHandler?.invalidate()
     }
 
     override func viewDidLoad() {
