@@ -59,7 +59,7 @@ DEPENDENCIES:
   - CollectionViewSlantedLayout (~> 3.1)
   - CoreDataInfrastructure (from `CoreDataInfrastructure/`)
   - CoreDataInfrastructure/CoreDataInfrastructureTests (from `CoreDataInfrastructure/`)
-  - DLProgressHUD
+  - DLProgressHUD (~> 1.0)
   - Kingfisher
   - NetworkInfrastructure (from `NetworkInfrastructure/`)
   - NetworkInfrastructure/NetworkInfrastructureTests (from `NetworkInfrastructure/`)
@@ -104,6 +104,6 @@ SPEC CHECKSUMS:
   UpcomingMoviesData: 126fe1e9a9cc7c55a9fc4761c96c6741325ace23
   UpcomingMoviesDomain: e06d8a483680fd0bde165a9cb37c59a61c603676
 
-PODFILE CHECKSUM: c23731a7f0411ee800df8a681f936a8a84ea17ac
+PODFILE CHECKSUM: af5a4af4d306e60c881af7d1f6a07e7af5d0a093
 
 COCOAPODS: 1.11.3

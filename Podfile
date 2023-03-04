@@ -11,7 +11,7 @@ target 'UpcomingMovies' do
   pod 'Swinject'
   pod 'Kingfisher'
   pod 'CollectionViewSlantedLayout', '~> 3.1'
-  pod 'DLProgressHUD'
+  pod 'DLProgressHUD', '~> 1.0'
 
   pod 'UpcomingMoviesDomain', :path => 'UpcomingMoviesDomain/', :testspecs => ['UpcomingMoviesDomainTests']
   pod 'UpcomingMoviesDomain/TestDoubles', :path => 'UpcomingMoviesDomain/'
