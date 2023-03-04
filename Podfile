@@ -9,7 +9,7 @@ target 'UpcomingMovies' do
   # Pods for UpcomingMovies
   pod 'SwiftLint'
   pod 'Swinject'
-  pod 'Kingfisher'
+  pod 'Kingfisher', '5.13.4'
   pod 'CollectionViewSlantedLayout', '~> 3.1'
   pod 'DLProgressHUD', '~> 1.0'
 
