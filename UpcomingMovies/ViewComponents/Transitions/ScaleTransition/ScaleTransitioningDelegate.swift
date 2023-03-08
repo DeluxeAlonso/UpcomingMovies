@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ScaleTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
+final class ScaleTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
 
-    private let scaleTransition = ScaleAnimator()
+    private let scaleAnimator = ScaleAnimator(transitionDuration: 0.8)
     private let viewToScale: UIView
 
     init?(viewToScale: UIView?) {
@@ -24,19 +24,19 @@ class ScaleTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegat
         guard let viewToScaleSuperview = viewToScale.superview else { return nil }
 
         let superviewFrame = viewToScaleSuperview.convert(viewToScale.frame, to: nil)
-        scaleTransition.originFrame = CGRect(x: superviewFrame.origin.x + 20,
+        scaleAnimator.originFrame = CGRect(x: superviewFrame.origin.x + 20,
                                              y: superviewFrame.origin.y + 20,
                                              width: superviewFrame.size.width - 40,
                                              height: superviewFrame.size.height - 40)
 
-        scaleTransition.isPresenting = true
+        scaleAnimator.isPresenting = true
 
-        return scaleTransition
+        return scaleAnimator
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        scaleTransition.isPresenting = false
-        return scaleTransition
+        scaleAnimator.isPresenting = false
+        return scaleAnimator
     }
 
 }
