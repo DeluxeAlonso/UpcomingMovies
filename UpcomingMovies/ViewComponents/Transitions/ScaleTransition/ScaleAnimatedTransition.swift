@@ -1,5 +1,5 @@
 //
-//  ScaleAnimator.swift
+//  ScaleAnimatedTransition.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 6/1/20.
@@ -15,7 +15,7 @@ protocol ScaleAnimatedTransitioning: UIViewControllerAnimatedTransitioning {
 
 }
 
-final class ScaleAnimator: NSObject, ScaleAnimatedTransitioning {
+final class ScaleAnimatedTransition: NSObject, ScaleAnimatedTransitioning {
 
     private let transitionDuration: TimeInterval
 
