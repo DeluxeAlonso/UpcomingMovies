@@ -1,5 +1,5 @@
 //
-//  ScaleAnimator.swift
+//  ScaleAnimatedTransition.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 6/1/20.
@@ -8,15 +8,28 @@
 
 import UIKit
 
-class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+protocol ScaleAnimatedTransitioning: UIViewControllerAnimatedTransitioning {
+
+    var isPresenting: Bool { get set }
+    var originFrame: CGRect { get set }
+
+}
+
+final class ScaleAnimatedTransition: NSObject, ScaleAnimatedTransitioning {
+
+    private let transitionDuration: TimeInterval
 
     var isPresenting = true
     var originFrame = CGRect.zero
 
+    init(transitionDuration: TimeInterval) {
+        self.transitionDuration = transitionDuration
+    }
+
     // MARK: - UIViewControllerAnimatedTransitioning
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        0.8
+        transitionDuration
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
