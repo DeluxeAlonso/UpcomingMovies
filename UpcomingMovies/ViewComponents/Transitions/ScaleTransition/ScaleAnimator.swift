@@ -8,15 +8,21 @@
 
 import UIKit
 
-class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+final class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+
+    private let transitionDuration: TimeInterval
 
     var isPresenting = true
     var originFrame = CGRect.zero
 
+    init(transitionDuration: TimeInterval) {
+        self.transitionDuration = transitionDuration
+    }
+
     // MARK: - UIViewControllerAnimatedTransitioning
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        0.8
+        transitionDuration
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
