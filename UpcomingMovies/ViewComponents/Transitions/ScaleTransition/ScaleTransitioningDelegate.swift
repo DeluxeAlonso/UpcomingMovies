@@ -10,12 +10,13 @@ import UIKit
 
 final class ScaleTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
 
-    private let scaleAnimator = ScaleAnimator(transitionDuration: 0.8)
     private let viewToScale: UIView
+    private let scaleAnimator: ScaleAnimatedTransitioning
 
     init?(viewToScale: UIView?) {
         guard let viewToScale = viewToScale else { return nil }
         self.viewToScale = viewToScale
+        self.scaleAnimator = ScaleAnimator(transitionDuration: 0.8)
     }
 
     func animationController(forPresented presented: UIViewController,

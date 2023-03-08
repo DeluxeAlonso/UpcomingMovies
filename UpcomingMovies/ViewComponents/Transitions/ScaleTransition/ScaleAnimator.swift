@@ -8,7 +8,14 @@
 
 import UIKit
 
-final class ScaleAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+protocol ScaleAnimatedTransitioning: UIViewControllerAnimatedTransitioning {
+
+    var isPresenting: Bool { get set }
+    var originFrame: CGRect { get set }
+
+}
+
+final class ScaleAnimator: NSObject, ScaleAnimatedTransitioning {
 
     private let transitionDuration: TimeInterval
 
