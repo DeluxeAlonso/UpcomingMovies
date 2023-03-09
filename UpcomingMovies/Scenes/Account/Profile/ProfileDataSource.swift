@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ProfileDataSource: NSObject, UITableViewDataSource {
+final class ProfileDataSource: NSObject, UITableViewDataSource {
 
-    private var viewModel: ProfileViewModelProtocol?
+    private let viewModel: ProfileViewModelProtocol?
 
     // MARK: - Initializers
 
