@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UITableViewController, Storyboarded {
+final class ProfileViewController: UITableViewController, Storyboarded {
 
     static var storyboardName: String = "Account"
 
