@@ -28,6 +28,7 @@ protocol SearchMoviesCoordinatorProtocol: AnyObject {
 protocol SearchMoviesResultViewModelProtocol {
 
     var viewState: AnyBehaviorBindable<SearchMoviesResultViewState> { get }
+    var needsRefresh: AnyPublishBindable<Void> { get }
 
     var recentSearchCells: [RecentSearchCellViewModelProtocol] { get }
     var movieCells: [MovieListCellViewModelProtocol] { get }
