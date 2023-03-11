@@ -26,7 +26,7 @@ class CDUserStoreTests: XCTestCase {
 
     func testSaveUser() {
         //Arrange
-        let userToTest = User(id: 1, name: "Alonso", username: "DeluxeAlonso", includeAdult: true)
+        let userToTest = User(id: 1, name: "Alonso", username: "DeluxeAlonso", includeAdult: true, avatarPath: nil)
         let saveExpectation = XCTestExpectation(description: "Save user")
         //Act
         storeToTest.saveUser(userToTest) { _ in
