@@ -19,10 +19,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5v-Rq-Bc0" userLabel="Avatar View">
-                        <rect key="frame" x="8" y="16" width="385" height="72"/>
+                        <rect key="frame" x="8" y="16" width="385" height="56"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L2l-bY-GCw">
-                                <rect key="frame" x="164.5" y="8" width="56" height="56"/>
+                                <rect key="frame" x="164.5" y="0.0" width="56" height="56"/>
                                 <color key="backgroundColor" red="0.98823529409999999" green="0.81568627449999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="56" id="kkx-9z-T17"/>
@@ -37,24 +37,24 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="L2l-bY-GCw" firstAttribute="top" secondItem="a5v-Rq-Bc0" secondAttribute="top" constant="8" id="T5i-7n-Vpb"/>
+                            <constraint firstItem="L2l-bY-GCw" firstAttribute="top" secondItem="a5v-Rq-Bc0" secondAttribute="top" id="T5i-7n-Vpb"/>
                             <constraint firstItem="L2l-bY-GCw" firstAttribute="centerX" secondItem="a5v-Rq-Bc0" secondAttribute="centerX" id="UZl-hV-RVw"/>
-                            <constraint firstAttribute="bottom" secondItem="L2l-bY-GCw" secondAttribute="bottom" constant="8" id="XEy-KL-jhS"/>
+                            <constraint firstAttribute="bottom" secondItem="L2l-bY-GCw" secondAttribute="bottom" id="XEy-KL-jhS"/>
                             <constraint firstItem="L2l-bY-GCw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="a5v-Rq-Bc0" secondAttribute="leading" constant="8" id="vpr-l2-Eys"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="L2l-bY-GCw" secondAttribute="trailing" constant="8" id="zU4-4f-Blj"/>
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ecj-mv-22O">
-                        <rect key="frame" x="8" y="96" width="385" height="33"/>
+                        <rect key="frame" x="8" y="84" width="385" height="45"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxZ-jO-3U3" userLabel="Username Label">
-                                <rect key="frame" x="0.0" y="0.0" width="385" height="14.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="385" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YMn-D2-2JL" userLabel="Name Label">
-                                <rect key="frame" x="0.0" y="19.5" width="385" height="13.5"/>
+                                <rect key="frame" x="0.0" y="25" width="385" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -65,7 +65,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="a5v-Rq-Bc0" firstAttribute="top" secondItem="M56-Un-Osm" secondAttribute="top" constant="16" id="2sn-Ck-Qfj"/>
-                    <constraint firstItem="ecj-mv-22O" firstAttribute="top" secondItem="a5v-Rq-Bc0" secondAttribute="bottom" constant="8" id="6cX-Uc-1xf"/>
+                    <constraint firstItem="ecj-mv-22O" firstAttribute="top" secondItem="a5v-Rq-Bc0" secondAttribute="bottom" constant="12" id="6cX-Uc-1xf"/>
                     <constraint firstAttribute="bottom" secondItem="ecj-mv-22O" secondAttribute="bottom" constant="16" id="W2j-0d-ts5"/>
                     <constraint firstAttribute="trailing" secondItem="a5v-Rq-Bc0" secondAttribute="trailing" constant="8" id="WKn-WL-1Nz"/>
                     <constraint firstAttribute="trailing" secondItem="ecj-mv-22O" secondAttribute="trailing" constant="8" id="nDy-9p-A5E"/>
