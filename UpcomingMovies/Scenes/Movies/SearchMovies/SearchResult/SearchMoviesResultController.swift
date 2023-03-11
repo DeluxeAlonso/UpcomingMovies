@@ -111,7 +111,7 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
 
     private func setupBindables() {
         viewModel.viewState.bindAndFire({ [weak self] state in
-            guard let self = self else { return }
+            guard let self else { return }
             self.configureView(with: state)
             self.reloadTableView()
         }, on: .main)
