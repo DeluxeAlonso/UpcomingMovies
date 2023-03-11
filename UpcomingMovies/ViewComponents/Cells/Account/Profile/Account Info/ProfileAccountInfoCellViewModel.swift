@@ -24,10 +24,10 @@ final class ProfileAccountInforCellViewModel: ProfileAccountInforCellViewModelPr
 
     // MARK: - Initializers
 
-    init(userAccount: User) {
-        name = userAccount.name
-        username = userAccount.username
-        avatarURLString = nil
+    init(userAccount: User, avatarURLString: String? = nil) {
+        self.name = userAccount.name
+        self.username = userAccount.username
+        self.avatarURLString = avatarURLString
     }
 
 }
