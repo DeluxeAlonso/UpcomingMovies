@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchMoviesResultDataSource: NSObject, UITableViewDataSource {
+final class SearchMoviesResultDataSource: NSObject, UITableViewDataSource {
 
     private let viewModel: SearchMoviesResultViewModelProtocol
 
