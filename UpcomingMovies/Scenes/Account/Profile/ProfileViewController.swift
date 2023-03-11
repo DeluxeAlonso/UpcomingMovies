@@ -93,7 +93,7 @@ final class ProfileViewController: UITableViewController, Storyboarded {
         guard let viewModel = viewModel else { return 0 }
         switch viewModel.section(at: indexPath.section) {
         case .accountInfo:
-            return 75.0
+            return UITableView.automaticDimension
         case .collections, .recommended, .customLists, .signOut:
             return 50.0
         }
