@@ -20,10 +20,14 @@ final class ProfileAccountInforCellViewModel: ProfileAccountInforCellViewModelPr
 
     let name: String
     let username: String?
+    let avatarURLString: String?
+
+    // MARK: - Initializers
 
     init(userAccount: User) {
         name = userAccount.name
         username = userAccount.username
+        avatarURLString = nil
     }
 
 }

@@ -10,8 +10,9 @@ extension User {
     static func create(id: Int = 1,
                        name: String = "Test",
                        username: String = "Username",
-                       includeAdult: Bool = false) -> User {
-        User(id: id, name: name, username: username, includeAdult: includeAdult)
+                       includeAdult: Bool = false,
+                       avatar: Avatar? = nil) -> User {
+        User(id: id, name: name, username: username, includeAdult: includeAdult, avatar: avatar)
     }
 
 }

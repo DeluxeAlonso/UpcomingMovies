@@ -14,14 +14,24 @@ struct User: Decodable {
     let name: String
     let username: String
     let includeAdult: Bool
+    let avatar: Avatar?
 
     private enum CodingKeys: String, CodingKey {
         case id
         case name
         case username
         case includeAdult = "include_adult"
+        case avatar
     }
 
+}
+
+struct Avatar: Decodable {
+    let gravatar: Gravatar
+}
+
+struct Gravatar: Decodable {
+    let hash: String
 }
 
 extension User: DomainConvertible {
