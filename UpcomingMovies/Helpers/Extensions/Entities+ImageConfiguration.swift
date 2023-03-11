@@ -11,8 +11,8 @@ import UpcomingMoviesDomain
 
 protocol ImageConfigurable {
 
-    var regularImageBaseURLString: String { get }
-    var backdropImageBaseURLString: String { get }
+    var configurationHandler: ConfigurationHandlerProtocol { get }
+
 }
 
 extension ImageConfigurable {
@@ -27,6 +27,10 @@ extension ImageConfigurable {
 
     var backdropImageBaseURLString: String {
         configurationHandler.backdropImageBaseURLString
+    }
+
+    var avatarImageBaseURLString: String {
+        configurationHandler.avatarImageBaseURLString
     }
 
 }
@@ -72,6 +76,16 @@ extension List: ImageConfigurable {
     var backdropURL: URL? {
         guard let backdropPath = backdropPath else { return nil }
         let urlString = backdropImageBaseURLString.appending(backdropPath)
+        return URL(string: urlString)
+    }
+
+}
+
+extension User: ImageConfigurable {
+
+    var avatarImageURL: URL? {
+        guard let avatarPath else { return nil }
+        let urlString = avatarImageBaseURLString.appending(avatarPath)
         return URL(string: urlString)
     }
 
