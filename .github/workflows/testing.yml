@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint:
-    runs-on: macos-11
+    runs-on: macos-12
     steps:
     - uses: actions/checkout@v3
     - name: Install Bundle
@@ -20,7 +20,7 @@ jobs:
 
   test:
     needs: lint
-    runs-on: macos-11
+    runs-on: macos-12
     steps:
     - uses: actions/checkout@v3
     - name: Install Bundle
