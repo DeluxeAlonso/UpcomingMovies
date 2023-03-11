@@ -9,6 +9,7 @@
 import CoreData
 import UpcomingMoviesDomain
 
+// swiftlint:disable function_parameter_count
 final class CDUser: NSManagedObject {
 
     @NSManaged private(set) var id: Int
