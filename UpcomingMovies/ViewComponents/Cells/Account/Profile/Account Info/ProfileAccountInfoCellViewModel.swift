@@ -13,6 +13,7 @@ protocol ProfileAccountInforCellViewModelProtocol {
 
     var name: String { get }
     var username: String? { get }
+    var avatarImageURL: URL? { get }
 
 }
 
@@ -20,14 +21,14 @@ final class ProfileAccountInforCellViewModel: ProfileAccountInforCellViewModelPr
 
     let name: String
     let username: String?
-    let avatarURLString: String?
+    let avatarImageURL: URL?
 
     // MARK: - Initializers
 
-    init(userAccount: User, avatarURLString: String? = nil) {
+    init(userAccount: User) {
         self.name = userAccount.name
         self.username = userAccount.username
-        self.avatarURLString = avatarURLString
+        self.avatarImageURL = userAccount.avatarImageURL
     }
 
 }
