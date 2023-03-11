@@ -29,7 +29,7 @@ extension ImageConfigurable {
         configurationHandler.backdropImageBaseURLString
     }
 
-    var avatarImageBaseURLString: String {
+    var avatarImageBaseURLString: String? {
         configurationHandler.avatarImageBaseURLString
     }
 
@@ -84,7 +84,7 @@ extension List: ImageConfigurable {
 extension User: ImageConfigurable {
 
     var avatarImageURL: URL? {
-        guard let avatarPath else { return nil }
+        guard let avatarPath, let avatarImageBaseURLString else { return nil }
         let urlString = avatarImageBaseURLString.appending(avatarPath)
         return URL(string: urlString)
     }

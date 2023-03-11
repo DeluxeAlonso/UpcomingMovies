@@ -12,7 +12,7 @@ protocol ConfigurationHandlerProtocol {
 
     var regularImageBaseURLString: String { get }
     var backdropImageBaseURLString: String { get }
-    var avatarImageBaseURLString: String { get }
+    var avatarImageBaseURLString: String? { get }
 
     func setConfiguration(_ configuration: Configuration)
 

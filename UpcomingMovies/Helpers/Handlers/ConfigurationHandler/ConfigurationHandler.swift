@@ -29,8 +29,8 @@ final class ConfigurationHandler: ConfigurationHandlerProtocol {
         return imageConfiguration?.backdropImageBaseURLString ??  ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
     }
 
-    var avatarImageBaseURLString: String {
-        imageConfiguration?.avatarImageBaseURLString ?? "" //TODO: - Fix this
+    var avatarImageBaseURLString: String? {
+        imageConfiguration?.avatarImageBaseURLString
     }
 
     func setConfiguration(_ configuration: Configuration) {
