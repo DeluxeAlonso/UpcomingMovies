@@ -115,6 +115,10 @@ class SearchMoviesResultController: UIViewController, Keyboardable {
             self.configureView(with: state)
             self.reloadTableView()
         }, on: .main)
+        viewModel.needsRefresh.bind({ [weak self] in
+            guard let self else { return }
+            self.reloadTableView()
+        }, on: .main)
     }
 
     // MARK: - Internal

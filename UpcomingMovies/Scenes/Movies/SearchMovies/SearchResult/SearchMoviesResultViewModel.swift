@@ -17,6 +17,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
     // MARK: - Reactive properties
 
     let viewState = BehaviorBindable(SearchMoviesResultViewState.recentSearches).eraseToAnyBindable()
+    let needsRefresh = PublishBindable<Void>().eraseToAnyBindable()
 
     // MARK: - Computed properties
 
@@ -34,7 +35,13 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
 
     // MARK: - Stored properties
 
-    private var recentSearches: [MovieSearch] = []
+    private var recentSearches: [MovieSearch] = [] {
+        didSet {
+            if viewState.value == .recentSearches {
+                needsRefresh.send()
+            }
+        }
+    }
 
     // MARK: - Initilalizers
 
@@ -55,10 +62,6 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
             guard let recentSearches = try? result.get() else { return }
 
             self.recentSearches = recentSearches
-            // TODO: - Create a bindable parameter to update recent searches cells
-            if self.viewState.value == .recentSearches {
-                self.viewState.value = .recentSearches
-            }
         }
     }
 
