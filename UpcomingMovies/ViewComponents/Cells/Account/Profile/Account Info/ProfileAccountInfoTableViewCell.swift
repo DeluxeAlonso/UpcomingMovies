@@ -12,6 +12,7 @@ class ProfileAccountInfoTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var usernameLabel: UILabel!
+    @IBOutlet private weak var avatarImageView: UIImageView!
 
     var viewModel: ProfileAccountInforCellViewModelProtocol? {
         didSet {
@@ -51,6 +52,7 @@ class ProfileAccountInfoTableViewCell: UITableViewCell {
         guard let viewModel = viewModel else { return }
         usernameLabel.text = viewModel.username
         nameLabel.text = viewModel.name
+        avatarImageView.setImage(with: viewModel.avatarImageURL)
     }
 
 }

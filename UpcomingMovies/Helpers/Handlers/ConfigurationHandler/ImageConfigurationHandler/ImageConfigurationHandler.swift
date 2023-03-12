@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-struct ImageConfigurationHandler {
+struct ImageConfigurationHandler: ImageConfigurationHandlerProtocol {
 
     private let configuration: Configuration
 
@@ -30,6 +30,10 @@ struct ImageConfigurationHandler {
         return baseURLString + backdropSize
     }
 
+    var avatarImageBaseURLString: String {
+        Constants.avatarImageBaseURLString
+    }
+
 }
 
 // MARK: - Constants
@@ -38,11 +42,13 @@ extension ImageConfigurationHandler {
 
     struct Constants {
 
-        static let defaultRegularSize = "w185"
-        static let defaultBackdropSize = "w500"
+        static let defaultRegularSize: String = "w185"
+        static let defaultBackdropSize: String = "w500"
 
         static let defaultRegularImageBaseURLString: String = "https://image.tmdb.org/t/p/w185"
         static let defaultBackdropImageBaseURLString: String = "https://image.tmdb.org/t/p/w500"
+
+        static let avatarImageBaseURLString = "https://secure.gravatar.com/avatar/"
     }
 
 }

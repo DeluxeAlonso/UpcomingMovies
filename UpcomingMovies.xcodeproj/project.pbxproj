@@ -327,6 +327,7 @@
 		E2C44C192616C6B0004B9C9B /* ToastSuccessConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C44C182616C6B0004B9C9B /* ToastSuccessConfiguration.swift */; };
 		E2C44C1F2616C6D0004B9C9B /* ToastFailureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C44C1E2616C6D0004B9C9B /* ToastFailureConfiguration.swift */; };
 		E2C9C0DC26425AF100DDD067 /* MovieDetailOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9C0DB26425AF000DDD067 /* MovieDetailOptionView.swift */; };
+		E2CBD95629BCE62400F1D102 /* ImageConfigurationHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBD95529BCE62400F1D102 /* ImageConfigurationHandlerProtocol.swift */; };
 		E2CF112124A7F2C10048AFC0 /* CustomListsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF112024A7F2C10048AFC0 /* CustomListsCoordinator.swift */; };
 		E2CF112324A7F4D60048AFC0 /* CustomListDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF112224A7F4D60048AFC0 /* CustomListDetailCoordinator.swift */; };
 		E2CF112524A7FB9A0048AFC0 /* AuthPermissionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF112424A7FB9A0048AFC0 /* AuthPermissionCoordinator.swift */; };
@@ -768,6 +769,7 @@
 		E2C44C182616C6B0004B9C9B /* ToastSuccessConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastSuccessConfiguration.swift; sourceTree = "<group>"; };
 		E2C44C1E2616C6D0004B9C9B /* ToastFailureConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastFailureConfiguration.swift; sourceTree = "<group>"; };
 		E2C9C0DB26425AF000DDD067 /* MovieDetailOptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailOptionView.swift; sourceTree = "<group>"; };
+		E2CBD95529BCE62400F1D102 /* ImageConfigurationHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConfigurationHandlerProtocol.swift; sourceTree = "<group>"; };
 		E2CF112024A7F2C10048AFC0 /* CustomListsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListsCoordinator.swift; sourceTree = "<group>"; };
 		E2CF112224A7F4D60048AFC0 /* CustomListDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailCoordinator.swift; sourceTree = "<group>"; };
 		E2CF112424A7FB9A0048AFC0 /* AuthPermissionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionCoordinator.swift; sourceTree = "<group>"; };
@@ -1005,6 +1007,7 @@
 		E20118E625FF25760091D248 /* ConfigurationHandler */ = {
 			isa = PBXGroup;
 			children = (
+				E2CBD95429BCE60600F1D102 /* ImageConfigurationHandler */,
 				E2709629247B3DC300AE694E /* ConfigurationHandler.swift */,
 				E20118E725FF258A0091D248 /* ConfigurationHandlerProtocol.swift */,
 			);
@@ -1302,7 +1305,6 @@
 				E20118E625FF25760091D248 /* ConfigurationHandler */,
 				E20118CD25FF237A0091D248 /* GenreHandler */,
 				E20118D825FF24A90091D248 /* NavigationHandler */,
-				E270962D247B65D800AE694E /* ImageConfigurationHandler.swift */,
 				E297A765248C6C5700AC89B9 /* ImageTransitionHandler.swift */,
 			);
 			path = Handlers;
@@ -2115,6 +2117,15 @@
 			path = Configurations;
 			sourceTree = "<group>";
 		};
+		E2CBD95429BCE60600F1D102 /* ImageConfigurationHandler */ = {
+			isa = PBXGroup;
+			children = (
+				E270962D247B65D800AE694E /* ImageConfigurationHandler.swift */,
+				E2CBD95529BCE62400F1D102 /* ImageConfigurationHandlerProtocol.swift */,
+			);
+			path = ImageConfigurationHandler;
+			sourceTree = "<group>";
+		};
 		E2DCE7F524B12F740041301E /* ToggleBarButtonItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -2714,6 +2725,7 @@
 				E2040F8A29933C8200ABAE82 /* UserDefaultsStorage.swift in Sources */,
 				E20118CF25FF238F0091D248 /* GenreHandlerProtocol.swift in Sources */,
 				E21F37902193F36300D6BFB6 /* RecentSearchCell.swift in Sources */,
+				E2CBD95629BCE62400F1D102 /* ImageConfigurationHandlerProtocol.swift in Sources */,
 				E2251B1022146A4D00EE7A51 /* SimpleViewState.swift in Sources */,
 				E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */,
 				E2B47516227EAFB50004F621 /* ShrinkingButton.swift in Sources */,

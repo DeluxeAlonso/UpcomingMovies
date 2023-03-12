@@ -11,8 +11,9 @@ public extension User {
     static func with(id: Int = 1,
                      name: String = "Test",
                      username: String = "Username",
-                     includeAdult: Bool = false) -> User {
-        User(id: id, name: name, username: username, includeAdult: includeAdult)
+                     includeAdult: Bool = false,
+                     avatarPath: String? = nil) -> User {
+        User(id: id, name: name, username: username, includeAdult: includeAdult, avatarPath: avatarPath)
     }
 
 }

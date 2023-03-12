@@ -22,7 +22,8 @@ extension PersistenceStore where Entity == CDUser {
                               id: user.id,
                               name: user.name,
                               username: user.username,
-                              includeAdult: user.includeAdult)
+                              includeAdult: user.includeAdult,
+                              avatarPath: user.avatarPath)
             completion?(true)
         }
     }

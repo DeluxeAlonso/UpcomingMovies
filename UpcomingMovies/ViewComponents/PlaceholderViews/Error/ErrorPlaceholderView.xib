@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -38,7 +39,7 @@
                         </label>
                     </subviews>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ej-Of-szu" customClass="ShrinkingButton" customModule="UpcomingMovies" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ej-Of-szu" customClass="ShrinkingButton" customModule="UpcomingMovies" customModuleProvider="target">
                     <rect key="frame" x="127.5" y="234" width="120" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="0ed-Db-fyR"/>
@@ -53,7 +54,8 @@
                     </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <viewLayoutGuide key="safeArea" id="T47-RJ-N5g"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="VvV-04-FUP" firstAttribute="centerY" secondItem="4op-bm-CjR" secondAttribute="centerY" constant="20" id="0X0-7M-lwg"/>
                 <constraint firstItem="VvV-04-FUP" firstAttribute="centerX" secondItem="4op-bm-CjR" secondAttribute="centerX" id="6fo-SN-Yrq"/>
@@ -67,7 +69,6 @@
                 <constraint firstItem="T47-RJ-N5g" firstAttribute="trailing" secondItem="VvV-04-FUP" secondAttribute="trailing" constant="16" id="l9n-jO-NSg"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="T47-RJ-N5g"/>
             <connections>
                 <outlet property="errorDetailLabel" destination="GNK-yP-ZAJ" id="cjy-Ib-ysx"/>
                 <outlet property="errorTitleLabel" destination="mmU-b6-dw7" id="lvv-GB-IiB"/>
@@ -76,7 +77,15 @@
             <point key="canvasLocation" x="647.20000000000005" y="204.64767616191907"/>
         </view>
     </objects>
+    <designables>
+        <designable name="0ej-Of-szu">
+            <size key="intrinsicContentSize" width="87" height="35"/>
+        </designable>
+    </designables>
     <resources>
         <image name="ErrorPlaceholder" width="50" height="50"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

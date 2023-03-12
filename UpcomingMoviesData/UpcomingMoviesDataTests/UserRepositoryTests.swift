@@ -35,7 +35,7 @@ class UserRepositoryTests: XCTestCase {
 
     func testSaveUserCalled() {
         // Act
-        repository.saveUser(User.init(id: 1, name: "Alonso", username: "Username", includeAdult: false))
+        repository.saveUser(User.init(id: 1, name: "Alonso", username: "Username", includeAdult: false, avatarPath: nil))
         // Assert
         XCTAssertEqual(mockUserLocalDataSource.saveUserCallCount, 1)
     }

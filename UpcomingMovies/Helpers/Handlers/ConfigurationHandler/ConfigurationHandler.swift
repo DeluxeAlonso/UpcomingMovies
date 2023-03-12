@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 final class ConfigurationHandler: ConfigurationHandlerProtocol {
 
-    private var imageConfiguration: ImageConfigurationHandler?
+    private var imageConfiguration: ImageConfigurationHandlerProtocol?
 
     // MARK: - ConfigurationHandlerProtocol
 
@@ -27,6 +27,10 @@ final class ConfigurationHandler: ConfigurationHandlerProtocol {
             return ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
         }
         return imageConfiguration?.backdropImageBaseURLString ??  ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
+    }
+
+    var avatarImageBaseURLString: String? {
+        imageConfiguration?.avatarImageBaseURLString
     }
 
     func setConfiguration(_ configuration: Configuration) {
