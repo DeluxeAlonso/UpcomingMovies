@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileAccountInfoTableViewCell: UITableViewCell {
+final class ProfileAccountInfoTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var usernameLabel: UILabel!
