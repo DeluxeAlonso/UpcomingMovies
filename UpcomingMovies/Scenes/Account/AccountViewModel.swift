@@ -67,7 +67,7 @@ final class AccountViewModel: AccountViewModelProtocol {
     func currentUser() -> User? {
         interactor.currentUser()
     }
-    
+
 }
 
 // MARK: - Authentication State
@@ -76,4 +76,3 @@ enum AuthenticationState {
     case currentlySignedIn, justSignedIn
     case currentlySignedOut, justSignedOut
 }
-
