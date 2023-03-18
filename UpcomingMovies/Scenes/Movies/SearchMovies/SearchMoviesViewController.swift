@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchMoviesViewController: UIViewController, Storyboarded {
+final class SearchMoviesViewController: UIViewController, Storyboarded {
 
     @IBOutlet private weak var containerView: UIView!
 
