@@ -22,6 +22,11 @@ class MockAccountInteractor: AccountInteractorProtocol {
         completion(signInUserResult!)
     }
 
+    var signOutUserResult: Result<Bool, Error>?
+    func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void) {
+        completion(signOutUserResult!)
+    }
+
     var currentUserResult: User?
     func currentUser() -> User? {
         currentUserResult

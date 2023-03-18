@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 protocol AccountViewModelProtocol {
 
     var showAuthPermission: AnyPublishBindable<URL> { get }
-    var didSignIn: AnyPublishBindable<Void> { get }
+    var didUpdateAuthenticationState: AnyBehaviorBindable<AuthenticationState?> { get }
     var didReceiveError: AnyPublishBindable<Void> { get }
 
     func startAuthorizationProcess()
@@ -28,7 +28,7 @@ protocol AccountInteractorProtocol {
 
     func getAuthPermissionURL(completion: @escaping (Result<URL, Error>) -> Void)
     func signInUser(completion: @escaping (Result<User, Error>) -> Void)
-    func signOutUser()
+    func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void)
     func currentUser() -> User?
 
 }

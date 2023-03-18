@@ -62,7 +62,8 @@ class AccountViewModelTests: XCTestCase {
         let userToTest = User.with()
         let expectation = XCTestExpectation(description: "Sign in user")
         // Act
-        viewModelToTest.didSignIn.bind {
+        viewModelToTest.didUpdateAuthenticationState.bind { state in
+            XCTAssertEqual(state, .justSignedIn)
             expectation.fulfill()
         }
         mockInteractor.signInUserResult = Result.success(userToTest)
@@ -81,6 +82,34 @@ class AccountViewModelTests: XCTestCase {
         }
         mockInteractor.signInUserResult = Result.failure(errorToTest)
         viewModelToTest.signInUser()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testSignOutUserSuccess() {
+        // Arrange
+        let expectation = XCTestExpectation(description: "Sign out user")
+        // Act
+        viewModelToTest.didUpdateAuthenticationState.bind { state in
+            XCTAssertEqual(state, .justSignedOut)
+            expectation.fulfill()
+        }
+        mockInteractor.signOutUserResult = Result.success(true)
+        viewModelToTest.signOutCurrentUser()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testSignOutUserError() {
+        // Arrange
+        let errorToTest = APIError.badRequest
+        let expectation = XCTestExpectation(description: "Sign out user error")
+        // Act
+        viewModelToTest.didReceiveError.bind {
+            expectation.fulfill()
+        }
+        mockInteractor.signOutUserResult = Result.failure(errorToTest)
+        viewModelToTest.signOutCurrentUser()
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }

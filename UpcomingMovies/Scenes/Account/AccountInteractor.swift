@@ -41,8 +41,8 @@ final class AccountInteractor: AccountInteractorProtocol {
         }
     }
 
-    func signOutUser() {
-        authHandler.deleteCurrentUser()
+    func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void) {
+        authUseCase.signOutUser(completion: completion)
     }
 
     func currentUser() -> User? {
