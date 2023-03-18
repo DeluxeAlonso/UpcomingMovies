@@ -62,7 +62,8 @@ class AccountViewModelTests: XCTestCase {
         let userToTest = User.with()
         let expectation = XCTestExpectation(description: "Sign in user")
         // Act
-        viewModelToTest.didSignIn.bind {
+        viewModelToTest.didUpdateAuthenticationState.bind { state in
+            XCTAssertEqual(state, .justSignedIn)
             expectation.fulfill()
         }
         mockInteractor.signInUserResult = Result.success(userToTest)
