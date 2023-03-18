@@ -69,10 +69,3 @@ final class AccountViewModel: AccountViewModelProtocol {
     }
 
 }
-
-// MARK: - Authentication State
-
-enum AuthenticationState {
-    case currentlySignedIn, justSignedIn
-    case currentlySignedOut, justSignedOut
-}
