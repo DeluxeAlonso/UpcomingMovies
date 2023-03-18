@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, Storyboarded {
+final class AccountViewController: UIViewController, Storyboarded {
 
     private var signInViewController: SignInViewController?
     private var profileViewController: ProfileViewController?
