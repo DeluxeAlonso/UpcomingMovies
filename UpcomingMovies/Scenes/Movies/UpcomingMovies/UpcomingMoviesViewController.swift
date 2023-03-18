@@ -9,17 +9,17 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDisplayable, PlaceholderDisplayable, TransitionableInitiator {
+final class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDisplayable, PlaceholderDisplayable, TransitionableInitiator {
 
     @IBOutlet private weak var collectionView: UICollectionView!
 
     static var storyboardName: String = "UpcomingMovies"
 
-    var viewModel: UpcomingMoviesViewModelProtocol!
+    var viewModel: UpcomingMoviesViewModelProtocol?
     weak var coordinator: UpcomingMoviesCoordinatorProtocol?
 
-    private var dataSource: SimpleCollectionViewDataSource<UpcomingMovieCellViewModelProtocol>!
-    private var prefetchDataSource: CollectionViewDataSourcePrefetching!
+    private var dataSource: SimpleCollectionViewDataSource<UpcomingMovieCellViewModelProtocol>?
+    private var prefetchDataSource: CollectionViewDataSourcePrefetching?
     private var displayedCellsIndexPaths = Set<IndexPath>()
 
     private var previewLayout: VerticalFlowLayout!
@@ -70,9 +70,11 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
     private func setupNavigationBar() {
         navigationItem.title = LocalizedStrings.upcomingMoviesTitle()
 
-        toggleGridBarButtonItem.update(with: viewModel.getToggleBarButtonItemModel())
         toggleGridBarButtonItem.target = self
         toggleGridBarButtonItem.action = #selector(toggleGridAction)
+        if let toggleBarButtonItemModel = viewModel?.getToggleBarButtonItemModel() {
+            toggleGridBarButtonItem.update(with: toggleBarButtonItemModel)
+        }
         navigationItem.leftBarButtonItem = toggleGridBarButtonItem
     }
 
@@ -95,7 +97,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
                                            preferredHeight: Constants.previewCellHeight,
                                            minColumns: Constants.previewLayoutMinColumns)
 
-        collectionView.collectionViewLayout = viewModel.currentPresentationMode == .preview ? previewLayout : detailLayout
+        collectionView.collectionViewLayout = viewModel?.currentPresentationMode == .preview ? previewLayout : detailLayout
     }
 
     private func setupRefreshControl() {
@@ -165,7 +167,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
             startLoading ? self.showLoader() : self.hideLoader()
         }, on: .main)
 
-        viewModel.didUpdatePresentationMode.bind({ [weak self] presentationMode in
+        viewModel?.didUpdatePresentationMode.bind({ [weak self] presentationMode in
             guard let self = self else { return }
             // TODO: - Remove previewLayout and detailLayout stored properties
             switch presentationMode {
@@ -183,7 +185,7 @@ class UpcomingMoviesViewController: UIViewController, Storyboarded, LoadingDispl
         guard !isAnimatingPresentation else { return }
 
         toggleGridBarButtonItem.toggle()
-        viewModel.updatePresentationMode()
+        viewModel?.updatePresentationMode()
     }
 
 }
@@ -216,7 +218,9 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
                                                                             imageToTransition: imageToTransition,
                                                                             transitionOffset: view.safeAreaInsets.left)
 
-        coordinator?.showMovieDetail(for: viewModel.movie(for: indexPath.row), with: navigationConfiguration)
+        if let movieToShow = viewModel?.movie(for: indexPath.row) {
+            coordinator?.showMovieDetail(for: movieToShow, with: navigationConfiguration)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

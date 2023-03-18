@@ -8,14 +8,14 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, Storyboarded {
+final class AccountViewController: UIViewController, Storyboarded {
 
     private var signInViewController: SignInViewController?
     private var profileViewController: ProfileViewController?
 
     static var storyboardName: String = "Account"
 
-    var viewModel: AccountViewModelProtocol!
+    var viewModel: AccountViewModelProtocol?
     weak var coordinator: AccountCoordinatorProtocol?
 
     // MARK: - Lifecycle
@@ -42,6 +42,7 @@ class AccountViewController: UIViewController, Storyboarded {
     }
 
     private func setupContainerView() {
+        guard let viewModel else { return }
         viewModel.isUserSignedIn() ? showProfileView() : showSignInView()
     }
 
@@ -65,17 +66,17 @@ class AccountViewController: UIViewController, Storyboarded {
     // MARK: - Reactive Behavior
 
     private func setupBindables() {
-        viewModel.showAuthPermission.bind({ [weak self] authPermissionURL in
+        viewModel?.showAuthPermission.bind({ [weak self] authPermissionURL in
             guard let self = self else { return }
             self.coordinator?.showAuthPermission(for: authPermissionURL, and: self)
         }, on: .main)
 
-        viewModel.didSignIn.bind({ [weak self] in
+        viewModel?.didSignIn.bind({ [weak self] in
             guard let self = self else { return }
             self.showProfileView(withAnimatedNavigationBar: true)
         }, on: .main)
 
-        viewModel.didReceiveError.bind({ [weak self] in
+        viewModel?.didReceiveError.bind({ [weak self] in
             guard let self = self else { return }
             self.signInViewController?.stopLoading()
         }, on: .main)
@@ -89,7 +90,7 @@ extension AccountViewController: SignInViewControllerDelegate {
 
     func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
         signInViewController.startLoading()
-        viewModel.startAuthorizationProcess()
+        viewModel?.startAuthorizationProcess()
     }
 
 }
@@ -103,7 +104,7 @@ extension AccountViewController: ProfileViewControllerDelegate {
     }
 
     func profileViewController(didSignOut signedOut: Bool) {
-        viewModel.signOutCurrentUser()
+        viewModel?.signOutCurrentUser()
         showSignInView(withAnimatedNavigationBar: true)
     }
 
@@ -115,7 +116,7 @@ extension AccountViewController: AuthPermissionViewControllerDelegate {
 
     func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
                                       didReceiveAuthorization authorized: Bool) {
-        if authorized { viewModel.signInUser() }
+        if authorized { viewModel?.signInUser() }
     }
 
 }
