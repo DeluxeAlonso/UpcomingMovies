@@ -71,9 +71,14 @@ final class AccountViewController: UIViewController, Storyboarded {
             self.coordinator?.showAuthPermission(for: authPermissionURL, and: self)
         }, on: .main)
 
-        viewModel?.didSignIn.bind({ [weak self] in
-            guard let self = self else { return }
-            self.showProfileView(withAnimatedNavigationBar: true)
+        viewModel?.didUpdateAuthenticationState.bindAndFire({ [weak self] authState in
+            guard let self = self, let authState else { return }
+            switch authState {
+            case .justSignedIn: self.showProfileView(withAnimatedNavigationBar: true)
+            case .justSignedOut: self.showSignInView(withAnimatedNavigationBar: true)
+            case .currentlySignedIn: self.showProfileView()
+            case .currentlySignedOut: self.showSignInView()
+            }
         }, on: .main)
 
         viewModel?.didReceiveError.bind({ [weak self] in

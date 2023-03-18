@@ -14,13 +14,15 @@ final class AccountViewModel: AccountViewModelProtocol {
     private let interactor: AccountInteractorProtocol
 
     let showAuthPermission = PublishBindable<URL>().eraseToAnyBindable()
-    let didSignIn = PublishBindable<Void>().eraseToAnyBindable()
+    let didUpdateAuthenticationState = BehaviorBindable<AuthenticationState?>(nil).eraseToAnyBindable()
     let didReceiveError = PublishBindable<Void>().eraseToAnyBindable()
 
     // MARK: - Initializers
 
     init(interactor: AccountInteractorProtocol) {
         self.interactor = interactor
+
+        didUpdateAuthenticationState.value = isUserSignedIn() ? .currentlySignedIn : .currentlySignedOut
     }
 
     // MARK: - AccountViewModelProtocol
@@ -40,7 +42,7 @@ final class AccountViewModel: AccountViewModelProtocol {
         interactor.signInUser { result in
             switch result {
             case .success:
-                self.didSignIn.send()
+                self.didUpdateAuthenticationState.value = .justSignedIn
             case .failure:
                 self.didReceiveError.send()
             }
@@ -48,7 +50,14 @@ final class AccountViewModel: AccountViewModelProtocol {
     }
 
     func signOutCurrentUser() {
-        interactor.signOutUser()
+        interactor.signOutUser { result in
+            switch result {
+            case .success:
+                self.didUpdateAuthenticationState.value = .justSignedOut
+            case .failure:
+                self.didReceiveError.send()
+            }
+        }
     }
 
     func isUserSignedIn() -> Bool {
@@ -58,5 +67,13 @@ final class AccountViewModel: AccountViewModelProtocol {
     func currentUser() -> User? {
         interactor.currentUser()
     }
-
+    
 }
+
+// MARK: - Authentication State
+
+enum AuthenticationState {
+    case currentlySignedIn, justSignedIn
+    case currentlySignedOut, justSignedOut
+}
+
