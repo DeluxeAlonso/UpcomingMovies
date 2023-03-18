@@ -14,8 +14,8 @@ final class SearchMoviesViewController: UIViewController, Storyboarded {
 
     static var storyboardName: String = "SearchMovies"
 
-    private var searchController: SearchController!
-    private var searchOptionsContainerView: SearchOptionsViewController!
+    private var searchController: SearchController?
+    private var searchOptionsContainerView: SearchOptionsViewController?
 
     weak var coordinator: SearchMoviesCoordinatorProtocol?
 
@@ -44,15 +44,15 @@ final class SearchMoviesViewController: UIViewController, Storyboarded {
     private func setupContainerView() {
         guard let coordinator = coordinator else { return }
         searchOptionsContainerView = coordinator.embedSearchOptions(on: self, in: containerView)
-        searchOptionsContainerView.delegate = self
+        searchOptionsContainerView?.delegate = self
     }
 
     private func setupSearchController() {
         guard let coordinator = coordinator else { return }
 
         searchController = coordinator.embedSearchController(on: self)
-        searchController.searchBar.delegate = self
-        searchController.searchResultsUpdater = self
+        searchController?.searchBar.delegate = self
+        searchController?.searchResultsUpdater = self
 
         navigationItem.searchController = searchController
         definesPresentationContext = true
@@ -69,9 +69,9 @@ final class SearchMoviesViewController: UIViewController, Storyboarded {
 extension SearchMoviesViewController: TabBarSelectable {
 
     func handleTabBarSelection() {
-        guard let tableView = searchOptionsContainerView.tableView else { return}
+        guard let tableView = searchOptionsContainerView?.tableView else { return }
         if tableView.isScrolledToTop() {
-            searchController.isActive = true
+            searchController?.isActive = true
         } else {
             tableView.scrollToTop(animated: true)
         }
@@ -103,14 +103,14 @@ extension SearchMoviesViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text,
               !searchText.isEmpty,
-              let searchResultsController = searchController.searchResultsController as? SearchMoviesResultController else {
+              let searchResultsController = searchController?.searchResultsController as? SearchMoviesResultController else {
             return
         }
         startSearch(searchResultsController, withSearchText: searchText)
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchResultsController = searchController.searchResultsController as? SearchMoviesResultController else {
+        guard let searchResultsController = searchController?.searchResultsController as? SearchMoviesResultController else {
             return
         }
         searchResultsController.resetSearch()
@@ -123,13 +123,13 @@ extension SearchMoviesViewController: UISearchBarDelegate {
 extension SearchMoviesViewController: SearchMoviesResultControllerDelegate {
 
     func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectRecentSearch searchText: String) {
-        searchController.searchBar.text = searchText
-        guard let searchText = searchController.searchBar.text,
+        searchController?.searchBar.text = searchText
+        guard let searchText = searchController?.searchBar.text,
               !searchText.isEmpty,
-              let searchResultsController = searchController.searchResultsController as? SearchMoviesResultController else {
+              let searchResultsController = searchController?.searchResultsController as? SearchMoviesResultController else {
             return
         }
-        searchController.searchBar.endEditing(true)
+        searchController?.searchBar.endEditing(true)
         startSearch(searchResultsController, withSearchText: searchText)
     }
 
