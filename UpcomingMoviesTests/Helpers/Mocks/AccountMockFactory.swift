@@ -10,7 +10,7 @@ import Foundation
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 
-class MockAccountInteractor: AccountInteractorProtocol {
+final class MockAccountInteractor: AccountInteractorProtocol {
 
     var permissionURLResult: Result<URL, Error>?
     func getAuthPermissionURL(completion: @escaping (Result<URL, Error>) -> Void) {
