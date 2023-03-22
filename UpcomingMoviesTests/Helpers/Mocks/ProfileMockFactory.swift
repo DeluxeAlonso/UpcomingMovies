@@ -9,16 +9,18 @@
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 
-class MockProfileInteractor: ProfileInteractorProtocol {
+final class MockProfileInteractor: ProfileInteractorProtocol {
 
     var getAccountDetailResult: Result<User, Error>?
     func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void) {
-        completion(getAccountDetailResult!)
+        if let getAccountDetailResult {
+            completion(getAccountDetailResult)
+        }
     }
 
 }
 
-class MockProfileViewFactory: ProfileFactoryProtocol {
+final class MockProfileViewFactory: ProfileFactoryProtocol {
 
     var collectionSectionOptions: [ProfileOptionProtocol] = []
     var recommendedSectionOptions: [ProfileOptionProtocol] = []
