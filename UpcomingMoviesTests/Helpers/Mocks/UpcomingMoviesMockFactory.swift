@@ -9,18 +9,20 @@
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 
-class MockUpcomingMoviesInteractor: MoviesInteractorProtocol {
+final class MockUpcomingMoviesInteractor: MoviesInteractorProtocol {
 
     var displayTitle: String = "Upcoming Movies"
 
     var upcomingMovies: Result<[UpcomingMoviesDomain.Movie], Error>?
     func getMovies(page: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
-        completion(upcomingMovies!)
+        if let upcomingMovies {
+            completion(upcomingMovies)
+        }
     }
 
 }
 
-class MockUpcomingMoviesFactory: UpcomingMoviesFactoryProtocol {
+final class MockUpcomingMoviesFactory: UpcomingMoviesFactoryProtocol {
 
     var makeGridBarButtonItemContentsResult: [ToggleBarButtonItemContent] = []
     func makeGridBarButtonItemContents(for presentationMode: UpcomingMoviesPresentationMode) -> [ToggleBarButtonItemContent] {
