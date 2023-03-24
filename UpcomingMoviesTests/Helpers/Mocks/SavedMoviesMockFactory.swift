@@ -13,7 +13,9 @@ class MockSavedMoviesInteractor: SavedMoviesInteractorProtocol {
 
     var getSavedMoviesResult: Result<[Movie], Error>?
     func getSavedMovies(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        completion(getSavedMoviesResult!)
+        if let getSavedMoviesResult {
+            completion(getSavedMoviesResult)
+        }
     }
 
 }
