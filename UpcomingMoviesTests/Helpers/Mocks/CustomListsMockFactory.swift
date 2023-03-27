@@ -9,11 +9,13 @@
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 
-class MockCustomListsInteractor: CustomListsInteractorProtocol {
+final class MockCustomListsInteractor: CustomListsInteractorProtocol {
 
-    var getCustomListsResult: Result<[List], Error>!
+    var getCustomListsResult: Result<[List], Error>?
     func getCustomLists(page: Int?, completion: @escaping (Result<[List], Error>) -> Void) {
-        completion(getCustomListsResult!)
+        if let getCustomListsResult {
+            completion(getCustomListsResult)
+        }
     }
 
 }
