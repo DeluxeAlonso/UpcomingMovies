@@ -9,7 +9,7 @@
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 
-class MockMovieDetailInteractor: MovieDetailInteractorProtocol {
+final class MockMovieDetailInteractor: MovieDetailInteractorProtocol {
 
     var isUserSignedInResult: Bool = false
     func isUserSignedIn() -> Bool {
@@ -62,7 +62,7 @@ class MockMovieDetailInteractor: MovieDetailInteractorProtocol {
 
 }
 
-class MockMovieDetailViewFactory: MovieDetailFactoryProtocol {
+final class MockMovieDetailViewFactory: MovieDetailFactoryProtocol {
 
     var options: [MovieDetailOption] = []
 
