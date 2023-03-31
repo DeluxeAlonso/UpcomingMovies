@@ -13,7 +13,9 @@ final class MockMovieVideosInteractor: MovieVideosInteractorProtocol {
 
     var getMovieVideosResult: Result<[Video], Error>?
     func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[Video], Error>) -> Void) {
-        completion(getMovieVideosResult!)
+        if let getMovieVideosResult {
+            completion(getMovieVideosResult)
+        }
     }
 
 }
