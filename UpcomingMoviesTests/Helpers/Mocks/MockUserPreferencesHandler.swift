@@ -7,7 +7,6 @@
 //
 
 @testable import UpcomingMovies
-@testable import UpcomingMoviesDomain
 
 final class MockUserPreferencesHandler: UserPreferencesHandlerProtocol {
 
