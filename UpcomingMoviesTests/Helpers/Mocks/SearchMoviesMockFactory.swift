@@ -10,7 +10,7 @@ import Foundation
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 
-class SearchOptionsInteractorMock: SearchOptionsInteractorProtocol {
+final class SearchOptionsInteractorMock: SearchOptionsInteractorProtocol {
 
     var didUpdateMovieVisit: (() -> Void)?
 
