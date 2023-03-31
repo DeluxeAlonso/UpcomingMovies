@@ -7,9 +7,8 @@
 //
 
 @testable import UpcomingMovies
-@testable import UpcomingMoviesDomain
 
-class MockUserPreferencesHandler: UserPreferencesHandlerProtocol {
+final class MockUserPreferencesHandler: UserPreferencesHandlerProtocol {
 
     var upcomingMoviesPresentationMode: UpcomingMoviesPresentationMode = .preview
 
