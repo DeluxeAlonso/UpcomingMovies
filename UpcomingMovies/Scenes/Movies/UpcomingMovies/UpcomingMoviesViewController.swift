@@ -22,8 +22,8 @@ final class UpcomingMoviesViewController: UIViewController, Storyboarded, Loadin
     private var prefetchDataSource: CollectionViewDataSourcePrefetching?
     private var displayedCellsIndexPaths = Set<IndexPath>()
 
-    private var previewLayout: VerticalFlowLayout!
-    private var detailLayout: VerticalFlowLayout!
+//    private var previewLayout: VerticalFlowLayout!
+//    private var detailLayout: VerticalFlowLayout!
 
     private var isAnimatingPresentation: Bool = false
 
@@ -51,8 +51,10 @@ final class UpcomingMoviesViewController: UIViewController, Storyboarded, Loadin
         }
         coordinator.animate(alongsideTransition: { _ in
             let newWidth = self.collectionView.frame.width - Constants.detailCellOffset
-            self.detailLayout.updatePreferredWidth(newWidth)
-            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.setupCollectionViewLayout()
+            
+            //self.detailLayout.updatePreferredWidth(newWidth)
+            //self.collectionView.collectionViewLayout.invalidateLayout()
         }, completion: nil)
     }
 
@@ -88,16 +90,21 @@ final class UpcomingMoviesViewController: UIViewController, Storyboarded, Loadin
     }
 
     private func setupCollectionViewLayout() {
-        let detailLayoutWidth = collectionView.frame.width - Constants.detailCellOffset
-        detailLayout = VerticalFlowLayout(preferredWidth: detailLayoutWidth,
-                                          preferredHeight: Constants.detailCellHeight)
+        guard let viewModel else { return }
+        collectionView.collectionViewLayout = collectionViewLayout(for: viewModel.currentPresentationMode)
+    }
 
-        let previewLayoutWidth = Constants.previewCellHeight / CGFloat(UIConstants.posterAspectRatio)
-        previewLayout = VerticalFlowLayout(preferredWidth: previewLayoutWidth,
-                                           preferredHeight: Constants.previewCellHeight,
-                                           minColumns: Constants.previewLayoutMinColumns)
-
-        collectionView.collectionViewLayout = viewModel?.currentPresentationMode == .preview ? previewLayout : detailLayout
+    private func collectionViewLayout(for presentationMode: UpcomingMoviesPresentationMode) -> UICollectionViewLayout {
+        switch presentationMode {
+        case .detail:
+            let detailLayoutWidth = collectionView.frame.width - Constants.detailCellOffset
+            return VerticalFlowLayout(preferredWidth: detailLayoutWidth, preferredHeight: Constants.detailCellHeight)
+        case .preview:
+            let previewLayoutWidth = Constants.previewCellHeight / CGFloat(UIConstants.posterAspectRatio)
+            return VerticalFlowLayout(preferredWidth: previewLayoutWidth,
+                                      preferredHeight: Constants.previewCellHeight,
+                                      minColumns: Constants.previewLayoutMinColumns)
+        }
     }
 
     private func setupRefreshControl() {
@@ -128,6 +135,7 @@ final class UpcomingMoviesViewController: UIViewController, Storyboarded, Loadin
 
     private func updateCollectionViewLayout(_ layout: UICollectionViewLayout) {
         collectionView.collectionViewLayout.invalidateLayout()
+
         reloadCollectionView()
         isAnimatingPresentation = true
         collectionView.setCollectionViewLayout(layout, animated: true) { completed in
@@ -170,12 +178,13 @@ final class UpcomingMoviesViewController: UIViewController, Storyboarded, Loadin
         viewModel?.didUpdatePresentationMode.bind({ [weak self] presentationMode in
             guard let self = self else { return }
             // TODO: - Remove previewLayout and detailLayout stored properties
-            switch presentationMode {
-            case .preview:
-                self.updateCollectionViewLayout(self.previewLayout)
-            case .detail:
-                self.updateCollectionViewLayout(self.detailLayout)
-            }
+            self.updateCollectionViewLayout(self.collectionViewLayout(for: presentationMode))
+//            switch presentationMode {
+//            case .preview:
+//                self.updateCollectionViewLayout(self.previewLayout)
+//            case .detail:
+//                self.updateCollectionViewLayout(self.detailLayout)
+//            }
         }, on: .main)
     }
 
