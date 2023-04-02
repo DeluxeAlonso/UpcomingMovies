@@ -22,9 +22,6 @@ final class UpcomingMoviesViewController: UIViewController, Storyboarded, Loadin
     private var prefetchDataSource: CollectionViewDataSourcePrefetching?
     private var displayedCellsIndexPaths = Set<IndexPath>()
 
-//    private var previewLayout: VerticalFlowLayout!
-//    private var detailLayout: VerticalFlowLayout!
-
     private var isAnimatingPresentation: Bool = false
 
     private lazy var toggleGridBarButtonItem = ToggleBarButtonItem()
@@ -50,11 +47,7 @@ final class UpcomingMoviesViewController: UIViewController, Storyboarded, Loadin
             return
         }
         coordinator.animate(alongsideTransition: { _ in
-            let newWidth = self.collectionView.frame.width - Constants.detailCellOffset
             self.setupCollectionViewLayout()
-            
-            //self.detailLayout.updatePreferredWidth(newWidth)
-            //self.collectionView.collectionViewLayout.invalidateLayout()
         }, completion: nil)
     }
 
@@ -179,12 +172,6 @@ final class UpcomingMoviesViewController: UIViewController, Storyboarded, Loadin
             guard let self = self else { return }
             // TODO: - Remove previewLayout and detailLayout stored properties
             self.updateCollectionViewLayout(self.collectionViewLayout(for: presentationMode))
-//            switch presentationMode {
-//            case .preview:
-//                self.updateCollectionViewLayout(self.previewLayout)
-//            case .detail:
-//                self.updateCollectionViewLayout(self.detailLayout)
-//            }
         }, on: .main)
     }
 
