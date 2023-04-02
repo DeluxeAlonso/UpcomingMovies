@@ -170,7 +170,6 @@ final class UpcomingMoviesViewController: UIViewController, Storyboarded, Loadin
 
         viewModel?.didUpdatePresentationMode.bind({ [weak self] presentationMode in
             guard let self = self else { return }
-            // TODO: - Remove previewLayout and detailLayout stored properties
             self.updateCollectionViewLayout(self.collectionViewLayout(for: presentationMode))
         }, on: .main)
     }
