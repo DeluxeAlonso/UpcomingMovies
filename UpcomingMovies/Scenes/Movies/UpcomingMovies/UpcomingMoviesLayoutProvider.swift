@@ -8,3 +8,10 @@
 
 import Foundation
 
+protocol UpcomingMoviesLayoutProviderProtocol {
+
+}
+
+struct UpcomingMoviesLayoutProvider: UpcomingMoviesLayoutProviderProtocol {
+
+}
