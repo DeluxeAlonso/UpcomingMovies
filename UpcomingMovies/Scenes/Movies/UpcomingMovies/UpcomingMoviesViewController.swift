@@ -219,20 +219,3 @@ extension UpcomingMoviesViewController: UICollectionViewDelegate {
     }
 
 }
-
-// MARK: - Constants
-
-extension UpcomingMoviesViewController {
-
-    struct Constants {
-
-        static let previewCellHeight: CGFloat = 150.0
-
-        static let detailCellHeight: CGFloat = 200.0
-        static let detailCellOffset: CGFloat = 32.0
-
-        static let previewLayoutMinColumns: Int = 3
-
-    }
-
-}
