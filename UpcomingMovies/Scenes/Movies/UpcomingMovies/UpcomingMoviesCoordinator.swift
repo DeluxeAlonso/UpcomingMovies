@@ -37,6 +37,7 @@ final class UpcomingMoviesCoordinator: BaseCoordinator, UpcomingMoviesCoordinato
         let viewController = UpcomingMoviesViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve()
+        viewController.layoutProvider = DIContainer.shared.resolve()
         viewController.coordinator = self
 
         navigationController.pushViewController(viewController, animated: true)
