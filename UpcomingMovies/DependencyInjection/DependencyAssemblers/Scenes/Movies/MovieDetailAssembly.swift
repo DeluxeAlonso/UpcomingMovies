@@ -16,8 +16,6 @@ final class MovieDetailAssembly: Assembly {
             MovieDetailFactory()
         }
 
-        // MovieDetailViewModelProtocol register
-
         container.register(MovieDetailInteractorProtocol.self) { resolver in
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
@@ -50,8 +48,6 @@ final class MovieDetailAssembly: Assembly {
                                         interactor: interactor,
                                         factory: factory)
         }
-
-        // MovieDetailUIHelperProtocol register
 
         container.register(MovieDetailUIHelperProtocol.self) { resolver in
             guard let progressHUDAdapter = resolver.resolve(ProgressHUDAdapterProtocol.self) else {

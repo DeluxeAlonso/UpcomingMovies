@@ -35,6 +35,10 @@ final class UpcomingMoviesAssembly: Assembly {
             }
             return UpcomingMoviesViewModel(interactor: interactor, factory: factory, userPreferencesHandler: userPreferencesHandler)
         }
+
+        container.register(UpcomingMoviesLayoutProviderProtocol.self) { _ in
+            return UpcomingMoviesLayoutProvider()
+        }
     }
 
 }

@@ -162,6 +162,7 @@
 		E233772A249EFA280061D90D /* AccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2337729249EFA280061D90D /* AccountCoordinator.swift */; };
 		E235E44F24959C1600831F0A /* AuthPermissionWebViewNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E235E44E24959C1600831F0A /* AuthPermissionWebViewNavigation.swift */; };
 		E23E515D292F2D7400D78334 /* AnyPublishBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23E515C292F2D7400D78334 /* AnyPublishBindable.swift */; };
+		E23EDB0429DA851300683EA5 /* UpcomingMoviesLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23EDB0329DA851300683EA5 /* UpcomingMoviesLayoutProvider.swift */; };
 		E241FE0722434B9B00144FD3 /* AuthPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241FE0622434B9B00144FD3 /* AuthPermissionViewController.swift */; };
 		E241FE0922434D4900144FD3 /* AuthPermissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241FE0822434D4900144FD3 /* AuthPermissionViewModel.swift */; };
 		E24345EA247CBCEE008A2B66 /* Array+MidElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24345E9247CBCEE008A2B66 /* Array+MidElement.swift */; };
@@ -604,6 +605,7 @@
 		E2337729249EFA280061D90D /* AccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCoordinator.swift; sourceTree = "<group>"; };
 		E235E44E24959C1600831F0A /* AuthPermissionWebViewNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionWebViewNavigation.swift; sourceTree = "<group>"; };
 		E23E515C292F2D7400D78334 /* AnyPublishBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyPublishBindable.swift; sourceTree = "<group>"; };
+		E23EDB0329DA851300683EA5 /* UpcomingMoviesLayoutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesLayoutProvider.swift; sourceTree = "<group>"; };
 		E241FE0622434B9B00144FD3 /* AuthPermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionViewController.swift; sourceTree = "<group>"; };
 		E241FE0822434D4900144FD3 /* AuthPermissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionViewModel.swift; sourceTree = "<group>"; };
 		E24345E9247CBCEE008A2B66 /* Array+MidElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+MidElement.swift"; sourceTree = "<group>"; };
@@ -1261,6 +1263,7 @@
 				E28FF49A24B19A3E0015CB2F /* UpcomingMoviesFactory.swift */,
 				E211282B293DC5A400336165 /* UpcomingMoviesViewState.swift */,
 				E2040F8E29933FC100ABAE82 /* UpcomingMoviesPresentationMode.swift */,
+				E23EDB0329DA851300683EA5 /* UpcomingMoviesLayoutProvider.swift */,
 			);
 			path = UpcomingMovies;
 			sourceTree = "<group>";
@@ -2600,6 +2603,7 @@
 				E2033DC324D90CEE00185664 /* SplashProtocols.swift in Sources */,
 				E229AFB924A85A17002AB427 /* MovieCreditsViewState.swift in Sources */,
 				E2C085C02616527400AC5383 /* UIView+ToastView.swift in Sources */,
+				E23EDB0429DA851300683EA5 /* UpcomingMoviesLayoutProvider.swift in Sources */,
 				E2251B152214ED0900EE7A51 /* MovieCreditsViewModel.swift in Sources */,
 				E22351EE227EAB2000B2544E /* UIView+Layout.swift in Sources */,
 				E265C25B2495390800712284 /* TopRatedMoviesInteractor.swift in Sources */,
