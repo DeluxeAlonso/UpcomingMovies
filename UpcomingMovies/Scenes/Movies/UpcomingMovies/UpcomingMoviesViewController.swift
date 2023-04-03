@@ -161,7 +161,7 @@ final class UpcomingMoviesViewController: UIViewController, Storyboarded, Loadin
 
         viewModel?.didUpdatePresentationMode.bind({ [weak self] presentationMode in
             guard let self, let layoutProvider = self.layoutProvider else { return }
-            let newCollectionViewLayout = layoutProvider.collectionViewLayout(for: presentationMode, and: collectionView.frame.width)
+            let newCollectionViewLayout = layoutProvider.collectionViewLayout(for: presentationMode, and: self.collectionView.frame.width)
             self.updateCollectionViewLayout(newCollectionViewLayout)
         }, on: .main)
     }
