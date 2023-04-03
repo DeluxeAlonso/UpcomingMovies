@@ -52,3 +52,10 @@ protocol UpcomingMoviesNavigationDelegate: UINavigationControllerDelegate {
     func updateOffset(_ verticalSafeAreaOffset: CGFloat)
 
 }
+
+protocol UpcomingMoviesLayoutProviderProtocol {
+
+    func collectionViewLayout(for presentationMode: UpcomingMoviesPresentationMode,
+                              and width: CGFloat) -> UICollectionViewLayout
+
+}

@@ -8,13 +8,6 @@
 
 import UIKit
 
-protocol UpcomingMoviesLayoutProviderProtocol {
-
-    func collectionViewLayout(for presentationMode: UpcomingMoviesPresentationMode,
-                              and width: CGFloat) -> UICollectionViewLayout
-
-}
-
 struct UpcomingMoviesLayoutProvider: UpcomingMoviesLayoutProviderProtocol {
 
     func collectionViewLayout(for presentationMode: UpcomingMoviesPresentationMode, and width: CGFloat) -> UICollectionViewLayout {
