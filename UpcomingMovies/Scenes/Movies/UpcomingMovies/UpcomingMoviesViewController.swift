@@ -92,19 +92,6 @@ final class UpcomingMoviesViewController: UIViewController, Storyboarded, Loadin
         collectionView.collectionViewLayout = layout
     }
 
-//    private func collectionViewLayout(for presentationMode: UpcomingMoviesPresentationMode) -> UICollectionViewLayout {
-//        switch presentationMode {
-//        case .detail:
-//            let detailLayoutWidth = collectionView.frame.width - Constants.detailCellOffset
-//            return VerticalFlowLayout(preferredWidth: detailLayoutWidth, preferredHeight: Constants.detailCellHeight)
-//        case .preview:
-//            let previewLayoutWidth = Constants.previewCellHeight / CGFloat(UIConstants.posterAspectRatio)
-//            return VerticalFlowLayout(preferredWidth: previewLayoutWidth,
-//                                      preferredHeight: Constants.previewCellHeight,
-//                                      minColumns: Constants.previewLayoutMinColumns)
-//        }
-//    }
-
     private func setupRefreshControl() {
         collectionView.refreshControl = DefaultRefreshControl(tintColor: ColorPalette.lightBlueColor,
                                                               backgroundColor: collectionView.backgroundColor,
