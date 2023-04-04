@@ -10,10 +10,10 @@ import UIKit
 
 struct UpcomingMoviesLayoutProvider: UpcomingMoviesLayoutProviderProtocol {
 
-    func collectionViewLayout(for presentationMode: UpcomingMoviesPresentationMode, and width: CGFloat) -> UICollectionViewLayout {
+    func collectionViewLayout(for presentationMode: UpcomingMoviesPresentationMode, and collectionViewWidth: CGFloat) -> UICollectionViewLayout {
         switch presentationMode {
         case .detail:
-            let detailLayoutWidth = width - Constants.detailCellOffset
+            let detailLayoutWidth = collectionViewWidth - Constants.detailCellOffset
             return VerticalFlowLayout(preferredWidth: detailLayoutWidth, preferredHeight: Constants.detailCellHeight)
         case .preview:
             let previewLayoutWidth = Constants.previewCellHeight / CGFloat(UIConstants.posterAspectRatio)
