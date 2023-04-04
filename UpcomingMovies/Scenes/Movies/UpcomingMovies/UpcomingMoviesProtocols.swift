@@ -56,6 +56,6 @@ protocol UpcomingMoviesNavigationDelegate: UINavigationControllerDelegate {
 protocol UpcomingMoviesLayoutProviderProtocol {
 
     func collectionViewLayout(for presentationMode: UpcomingMoviesPresentationMode,
-                              and width: CGFloat) -> UICollectionViewLayout
+                              and collectionViewWidth: CGFloat) -> UICollectionViewLayout
 
 }
