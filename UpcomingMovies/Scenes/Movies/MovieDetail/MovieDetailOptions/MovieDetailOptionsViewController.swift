@@ -19,21 +19,23 @@ final class MovieDetailOptionsViewController: UIViewController {
 
     @IBOutlet private weak var optionsStackView: UIStackView!
 
+    var viewModel: MovieDetailOptionsViewModelProtocol?
     weak var delegate: MovieDetailOptionsViewControllerDelegate?
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureMovieOptions()
     }
 
     // MARK: - Private
 
-    private func configureMovieOptions(_ options: [MovieDetailOption]) {
+    private func configureMovieOptions() {
+        guard let viewModel else { return }
+        // TODO: - Improve this logic
         guard optionsStackView.arrangedSubviews.isEmpty else { return }
-        let optionsViews = options.map { MovieDetailOptionView(option: $0) }
+        let optionsViews = viewModel.options.map { MovieDetailOptionView(option: $0) }
         for optionView in optionsViews {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(optionAction(_:)))
             optionView.addGestureRecognizer(tapGesture)
