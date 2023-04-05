@@ -8,9 +8,18 @@
 
 import UIKit
 
-class MovieDetailOptionsViewController: UIViewController {
+protocol MovieDetailOptionsViewControllerDelegate: AnyObject {
+
+    func movieDetailOptionsViewController(_ movieDetailOptionsViewController: MovieDetailOptionsViewController,
+                                          didSelectOption option: MovieDetailOption)
+
+}
+
+final class MovieDetailOptionsViewController: UIViewController {
 
     @IBOutlet private weak var optionsStackView: UIStackView!
+
+    weak var delegate: MovieDetailOptionsViewControllerDelegate?
 
     // MARK: - Lifecycle
 
@@ -21,7 +30,7 @@ class MovieDetailOptionsViewController: UIViewController {
     }
 
     // MARK: - Private
-    
+
     private func configureMovieOptions(_ options: [MovieDetailOption]) {
         guard optionsStackView.arrangedSubviews.isEmpty else { return }
         let optionsViews = options.map { MovieDetailOptionView(option: $0) }
@@ -37,7 +46,7 @@ class MovieDetailOptionsViewController: UIViewController {
     @objc private func optionAction(_ sender: UITapGestureRecognizer) {
         guard let sender = sender.view as? MovieDetailOptionView else { return }
         let movieDetailOption = sender.option
-        coordinator?.showMovieOption(movieDetailOption)
+        delegate?.movieDetailOptionsViewController(self, didSelectOption: movieDetailOption)
     }
 
 }
