@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+protocol MovieDetailOptionsViewModelProtocol {
+
+    var options: [MovieDetailOption] { get }
+
+}
+
+struct MovieDetailOptionsViewModel {
+
+    let options: [MovieDetailOption]
+
+}
