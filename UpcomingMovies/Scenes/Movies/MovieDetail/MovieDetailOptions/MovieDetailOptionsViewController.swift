@@ -33,8 +33,9 @@ final class MovieDetailOptionsViewController: UIViewController {
 
     private func configureMovieOptions() {
         guard let viewModel else { return }
-        // TODO: - Improve this logic
-        guard optionsStackView.arrangedSubviews.isEmpty else { return }
+        if !optionsStackView.arrangedSubviews.isEmpty {
+            optionsStackView.arrangedSubviews.forEach(self.optionsStackView.removeArrangedSubview)
+        }
         let optionsViews = viewModel.options.map { MovieDetailOptionView(option: $0) }
         for optionView in optionsViews {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(optionAction(_:)))
