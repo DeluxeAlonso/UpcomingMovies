@@ -56,6 +56,19 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         navigationController.present(activityViewController, animated: true, completion: nil)
     }
 
+    func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
+                                 in containerView: UIView,
+                                 with options: [MovieDetailOption]) -> UIViewController {
+        let viewController = MovieDetailOptionsViewController.instantiate()
+
+        viewController.viewModel = DIContainer.shared.resolve(argument: options)
+        viewController.delegate = parentViewController
+
+        parentViewController.add(asChildViewController: viewController, containerView: containerView)
+
+        return viewController
+    }
+
     // MARK: - Private
 
     private func showMovieVideos() {

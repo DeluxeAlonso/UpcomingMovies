@@ -8,16 +8,18 @@
 
 import UIKit
 
-protocol MovieDetailOptionsViewControllerDelegate: AnyObject {
+protocol MovieDetailOptionsViewControllerDelegate: UIViewController {
 
     func movieDetailOptionsViewController(_ movieDetailOptionsViewController: MovieDetailOptionsViewController,
                                           didSelectOption option: MovieDetailOption)
 
 }
 
-final class MovieDetailOptionsViewController: UIViewController {
+final class MovieDetailOptionsViewController: UIViewController, Storyboarded {
 
     @IBOutlet private weak var optionsStackView: UIStackView!
+
+    static var storyboardName: String = "MovieDetail"
 
     var viewModel: MovieDetailOptionsViewModelProtocol?
     weak var delegate: MovieDetailOptionsViewControllerDelegate?
