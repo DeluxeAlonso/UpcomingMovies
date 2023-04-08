@@ -90,6 +90,10 @@ protocol MovieDetailCoordinatorProtocol: AnyObject {
     func showMovieOption(_ option: MovieDetailOption)
     func showSharingOptions(withShareTitle title: String)
 
+    func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
+                                 in containerView: UIView,
+                                 with options: [MovieDetailOption]) -> UIViewController
+
 }
 
 protocol MovieDetailUIHelperProtocol {
