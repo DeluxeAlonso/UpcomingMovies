@@ -148,16 +148,6 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         overviewLabel.text = viewModel.overview
     }
 
-//    private func configureMovieOptions(_ options: [MovieDetailOption]) {
-//        guard optionsStackView.arrangedSubviews.isEmpty else { return }
-//        let optionsViews = options.map { MovieDetailOptionView(option: $0) }
-//        for optionView in optionsViews {
-//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(optionAction(_:)))
-//            optionView.addGestureRecognizer(tapGesture)
-//            optionsStackView.addArrangedSubview(optionView)
-//        }
-//    }
-
     private func setupLoaderBindable() {
         viewModel?.startLoading.bind({ [weak self] start in
             guard let self = self else { return }
@@ -189,14 +179,6 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
             self?.viewModel?.getMovieDetail(showLoader: false)
         })
     }
-
-    // MARK: - Selectors
-
-//    @objc private func optionAction(_ sender: UITapGestureRecognizer) {
-//        guard let sender = sender.view as? MovieDetailOptionView else { return }
-//        let movieDetailOption = sender.option
-//        coordinator?.showMovieOption(movieDetailOption)
-//    }
 
     // MARK: - Actions
 
