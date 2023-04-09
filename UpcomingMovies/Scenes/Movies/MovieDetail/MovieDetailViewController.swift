@@ -65,8 +65,6 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     // MARK: - Private
 
-    private var movieDetailOptionsViewController: MovieDetailOptionsViewController?
-
     private func setupUI() {
         title = viewModel?.screenTitle
 
@@ -115,10 +113,10 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
             self?.genreLabel.text = genreName
         }, on: .main)
         viewModel?.showMovieOptions.bindAndFire({ [weak self] movieOptions in
-            guard let self, self.movieDetailOptionsViewController == nil else { return }
-            self.movieDetailOptionsViewController = self.coordinator?.embedMovieDetailOptions(on: self,
-                                                                                              in: self.optionsContainerView,
-                                                                                              with: movieOptions)
+            guard let self else { return }
+            self.coordinator?.embedMovieDetailOptions(on: self,
+                                                      in: self.optionsContainerView,
+                                                      with: movieOptions)
         }, on: .main)
         viewModel?.didSelectShareAction.bind({ [weak self] _ in
             self?.shareMovie()

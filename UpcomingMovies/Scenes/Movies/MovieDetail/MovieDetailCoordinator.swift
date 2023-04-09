@@ -69,8 +69,6 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         parentViewController.add(asChildViewController: viewController, containerView: containerView)
 
         self.movieDetailOptionsViewController = viewController
-
-        return viewController
     }
 
     // MARK: - Private
