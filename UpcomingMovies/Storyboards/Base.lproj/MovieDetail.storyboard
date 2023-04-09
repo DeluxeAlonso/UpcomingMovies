@@ -197,20 +197,10 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmX-R4-dMd" userLabel="Options View">
                                                 <rect key="frame" x="0.0" y="257" width="393" height="66"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1.5" translatesAutoresizingMaskIntoConstraints="NO" id="wi6-nq-fos" userLabel="Options Stack View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="66"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </stackView>
-                                                </subviews>
                                                 <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="WmX-R4-dMd" secondAttribute="height" multiplier="15:1" id="1IF-Sj-0Ot"/>
-                                                    <constraint firstItem="wi6-nq-fos" firstAttribute="leading" secondItem="WmX-R4-dMd" secondAttribute="leading" id="Bgk-sJ-wCA"/>
-                                                    <constraint firstAttribute="bottom" secondItem="wi6-nq-fos" secondAttribute="bottom" id="SpT-R0-BPu"/>
                                                     <constraint firstAttribute="width" secondItem="WmX-R4-dMd" secondAttribute="height" multiplier="11:1" id="Vbq-5K-lhT"/>
-                                                    <constraint firstItem="wi6-nq-fos" firstAttribute="top" secondItem="WmX-R4-dMd" secondAttribute="top" id="W1g-OK-P3A"/>
-                                                    <constraint firstAttribute="trailing" secondItem="wi6-nq-fos" secondAttribute="trailing" id="YdH-XL-iHM"/>
                                                     <constraint firstAttribute="width" secondItem="WmX-R4-dMd" secondAttribute="height" multiplier="125:21" id="y6E-e8-5Sp"/>
                                                 </constraints>
                                                 <variation key="default">
@@ -366,7 +356,7 @@
                     <connections>
                         <outlet property="backdropImageView" destination="RsL-2b-bRH" id="s7t-J9-geQ"/>
                         <outlet property="genreLabel" destination="Gkj-So-5cA" id="6cf-Ds-lSf"/>
-                        <outlet property="optionsStackView" destination="wi6-nq-fos" id="Q58-bN-AVn"/>
+                        <outlet property="optionsContainerView" destination="WmX-R4-dMd" id="1pl-MM-Gls"/>
                         <outlet property="overviewLabel" destination="1SK-ri-asW" id="H56-aK-zWQ"/>
                         <outlet property="posterImageView" destination="zXa-53-Cbr" id="BFV-Zl-Ysh"/>
                         <outlet property="releaseDateLabel" destination="slt-aQ-ofO" id="tNa-Gm-6GR"/>
@@ -535,12 +525,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nI4-A1-td5">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1.5" translatesAutoresizingMaskIntoConstraints="NO" id="nI4-A1-td5">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RwR-L3-ceh"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGrayColor"/>
                         <constraints>
                             <constraint firstItem="nI4-A1-td5" firstAttribute="top" secondItem="sEU-Fi-rgD" secondAttribute="top" id="37k-ss-O40"/>
                             <constraint firstItem="nI4-A1-td5" firstAttribute="leading" secondItem="RwR-L3-ceh" secondAttribute="leading" id="VGX-d4-3BF"/>

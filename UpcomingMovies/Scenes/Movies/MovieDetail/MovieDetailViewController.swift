@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MovieDetailViewController: UIViewController, Storyboarded, Transitionable {
+final class MovieDetailViewController: UIViewController, Storyboarded, Transitionable, MovieDetailOptionsViewControllerDelegate {
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var backdropImageView: UIImageView!
@@ -18,7 +18,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     @IBOutlet private weak var genreLabel: UILabel!
     @IBOutlet private weak var releaseDateLabel: UILabel!
     @IBOutlet private weak var overviewLabel: UILabel!
-    @IBOutlet private weak var optionsStackView: UIStackView!
+    @IBOutlet private weak var optionsContainerView: UIView!
     @IBOutlet private(set) weak var transitionContainerView: UIView!
 
     static var storyboardName: String = "MovieDetail"
@@ -64,6 +64,8 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     }
 
     // MARK: - Private
+
+    private var movieDetailOptionsViewController: MovieDetailOptionsViewController?
 
     private func setupUI() {
         title = viewModel?.screenTitle
@@ -113,7 +115,10 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
             self?.genreLabel.text = genreName
         }, on: .main)
         viewModel?.showMovieOptions.bindAndFire({ [weak self] movieOptions in
-            self?.configureMovieOptions(movieOptions)
+            guard let self, self.movieDetailOptionsViewController == nil else { return }
+            self.movieDetailOptionsViewController = self.coordinator?.embedMovieDetailOptions(on: self,
+                                                                                              in: self.optionsContainerView,
+                                                                                              with: movieOptions)
         }, on: .main)
         viewModel?.didSelectShareAction.bind({ [weak self] _ in
             self?.shareMovie()
@@ -145,15 +150,15 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         overviewLabel.text = viewModel.overview
     }
 
-    private func configureMovieOptions(_ options: [MovieDetailOption]) {
-        guard optionsStackView.arrangedSubviews.isEmpty else { return }
-        let optionsViews = options.map { MovieDetailOptionView(option: $0) }
-        for optionView in optionsViews {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(optionAction(_:)))
-            optionView.addGestureRecognizer(tapGesture)
-            optionsStackView.addArrangedSubview(optionView)
-        }
-    }
+//    private func configureMovieOptions(_ options: [MovieDetailOption]) {
+//        guard optionsStackView.arrangedSubviews.isEmpty else { return }
+//        let optionsViews = options.map { MovieDetailOptionView(option: $0) }
+//        for optionView in optionsViews {
+//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(optionAction(_:)))
+//            optionView.addGestureRecognizer(tapGesture)
+//            optionsStackView.addArrangedSubview(optionView)
+//        }
+//    }
 
     private func setupLoaderBindable() {
         viewModel?.startLoading.bind({ [weak self] start in
@@ -189,11 +194,11 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     // MARK: - Selectors
 
-    @objc private func optionAction(_ sender: UITapGestureRecognizer) {
-        guard let sender = sender.view as? MovieDetailOptionView else { return }
-        let movieDetailOption = sender.option
-        coordinator?.showMovieOption(movieDetailOption)
-    }
+//    @objc private func optionAction(_ sender: UITapGestureRecognizer) {
+//        guard let sender = sender.view as? MovieDetailOptionView else { return }
+//        let movieDetailOption = sender.option
+//        coordinator?.showMovieOption(movieDetailOption)
+//    }
 
     // MARK: - Actions
 
@@ -213,6 +218,13 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     @IBAction private func favoriteButtonAction(_ sender: Any) {
         viewModel?.handleFavoriteMovie()
+    }
+
+    // MARK: - MovieDetailOptionsViewControllerDelegate
+
+    func movieDetailOptionsViewController(_ movieDetailOptionsViewController: MovieDetailOptionsViewController,
+                                          didSelectOption option: MovieDetailOption) {
+        coordinator?.showMovieOption(option)
     }
 
 }
