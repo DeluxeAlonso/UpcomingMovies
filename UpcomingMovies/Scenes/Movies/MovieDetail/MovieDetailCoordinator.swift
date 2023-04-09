@@ -61,7 +61,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
                                  with options: [MovieDetailOption]) -> UIViewController {
         let viewController = MovieDetailOptionsViewController.instantiate()
 
-        viewController.viewModel = DIContainer.shared.resolve(argument: options)
+        viewController.viewModel = MovieDetailOptionsViewModel(options: options)
         viewController.delegate = parentViewController
 
         parentViewController.add(asChildViewController: viewController, containerView: containerView)
