@@ -533,8 +533,8 @@
                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                         <constraints>
                             <constraint firstItem="nI4-A1-td5" firstAttribute="top" secondItem="sEU-Fi-rgD" secondAttribute="top" id="37k-ss-O40"/>
-                            <constraint firstItem="nI4-A1-td5" firstAttribute="leading" secondItem="RwR-L3-ceh" secondAttribute="leading" id="VGX-d4-3BF"/>
-                            <constraint firstItem="RwR-L3-ceh" firstAttribute="trailing" secondItem="nI4-A1-td5" secondAttribute="trailing" id="fER-7z-hfm"/>
+                            <constraint firstItem="nI4-A1-td5" firstAttribute="leading" secondItem="sEU-Fi-rgD" secondAttribute="leading" id="VGX-d4-3BF"/>
+                            <constraint firstAttribute="trailing" secondItem="nI4-A1-td5" secondAttribute="trailing" id="fER-7z-hfm"/>
                             <constraint firstAttribute="bottom" secondItem="nI4-A1-td5" secondAttribute="bottom" id="yWv-uc-K5K"/>
                         </constraints>
                     </view>
