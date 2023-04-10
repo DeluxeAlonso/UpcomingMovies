@@ -51,16 +51,14 @@ final class AccountViewController: UIViewController, Storyboarded {
     }
 
     private func showSignInView(withAnimatedNavigationBar animated: Bool = false) {
-        signInViewController = coordinator?.embedSignInViewController(on: self)
-        coordinator?.removeChildViewController(&profileViewController, from: self)
+        coordinator?.embedSignInViewController(on: self)
+        coordinator?.removeProfileViewController(from: self)
     }
 
     private func showProfileView(withAnimatedNavigationBar animated: Bool = false) {
         guard let viewModel = viewModel else { return }
-        profileViewController = coordinator?.embedProfileViewController(on: self,
-                                                                        for: viewModel.currentUser())
-
-        coordinator?.removeChildViewController(&signInViewController, from: self)
+        coordinator?.embedProfileViewController(on: self, for: viewModel.currentUser())
+        coordinator?.removeSignInViewController(from: self)
     }
 
     // MARK: - Reactive Behavior
