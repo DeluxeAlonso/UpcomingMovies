@@ -20,6 +20,8 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
 
     private let movieInfo: MovieDetailInfo
 
+    private var movieDetailOptionsViewController: MovieDetailOptionsViewController?
+
     // MARK: - Initializers
 
     init(navigationController: UINavigationController, movieInfo: MovieDetailInfo) {
@@ -58,15 +60,15 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
 
     func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
                                  in containerView: UIView,
-                                 with options: [MovieDetailOption]) -> UIViewController {
+                                 with options: [MovieDetailOption]) {
         let viewController = MovieDetailOptionsViewController.instantiate()
 
-        viewController.viewModel = DIContainer.shared.resolve(argument: options)
+        viewController.viewModel = MovieDetailOptionsViewModel(options: options)
         viewController.delegate = parentViewController
 
         parentViewController.add(asChildViewController: viewController, containerView: containerView)
 
-        return viewController
+        self.movieDetailOptionsViewController = viewController
     }
 
     // MARK: - Private

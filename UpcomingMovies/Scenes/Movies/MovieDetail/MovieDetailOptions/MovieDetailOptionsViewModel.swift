@@ -14,7 +14,7 @@ protocol MovieDetailOptionsViewModelProtocol {
 
 }
 
-struct MovieDetailOptionsViewModel {
+struct MovieDetailOptionsViewModel: MovieDetailOptionsViewModelProtocol {
 
     let options: [MovieDetailOption]
 

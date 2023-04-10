@@ -92,7 +92,7 @@ protocol MovieDetailCoordinatorProtocol: AnyObject {
 
     func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
                                  in containerView: UIView,
-                                 with options: [MovieDetailOption]) -> UIViewController
+                                 with options: [MovieDetailOption])
 
 }
 
