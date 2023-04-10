@@ -40,7 +40,7 @@ public final class GenreRepository: GenreUseCaseProtocol {
                 self.localDataSource.saveGenres(remoteGenres)
                 if localGenres.isEmpty { completion(.success(remoteGenres)) }
             case .failure(let error):
-                completion(.failure(error))
+                if localGenres.isEmpty { completion(.failure(error)) }
             }
         })
     }
