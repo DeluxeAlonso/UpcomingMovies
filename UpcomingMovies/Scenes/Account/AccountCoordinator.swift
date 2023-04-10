@@ -57,12 +57,6 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
         profileViewController = nil
     }
 
-    func removeChildViewController<T: UIViewController>(_ viewController: inout T?,
-                                                        from parentViewController: UIViewController) {
-        parentViewController.remove(asChildViewController: viewController)
-        viewController = nil
-    }
-
     func showAuthPermission(for authPermissionURL: URL,
                             and authPermissionDelegate: AuthPermissionViewControllerDelegate) {
         let navigationController = UINavigationController()
