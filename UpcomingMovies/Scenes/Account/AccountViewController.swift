@@ -51,7 +51,7 @@ final class AccountViewController: UIViewController, Storyboarded {
     }
 
     private func showSignInView(withAnimatedNavigationBar animated: Bool = false) {
-        signInViewController = coordinator?.embedSignInViewController(on: self)
+        coordinator?.embedSignInViewController(on: self)
         coordinator?.removeChildViewController(&profileViewController, from: self)
     }
 

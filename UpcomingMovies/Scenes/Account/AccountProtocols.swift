@@ -35,12 +35,11 @@ protocol AccountInteractorProtocol {
 
 protocol AccountCoordinatorProtocol: AnyObject {
 
-    func embedSignInViewController(on parentViewController: SignInViewControllerDelegate) -> SignInViewController
-    func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate,
-                                    for user: User?) -> ProfileViewController
+    func embedSignInViewController(on parentViewController: SignInViewControllerDelegate)
+    func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate, for user: User?)
 
-    func removeChildViewController<T: UIViewController>(_ viewController: inout T?,
-                                                        from parentViewController: UIViewController)
+    func removeSignInViewController(from parentViewController: UIViewController)
+    func removeProfileViewController(from parentViewController: UIViewController)
 
     func showAuthPermission(for authPermissionURL: URL,
                             and authPermissionDelegate: AuthPermissionViewControllerDelegate)
