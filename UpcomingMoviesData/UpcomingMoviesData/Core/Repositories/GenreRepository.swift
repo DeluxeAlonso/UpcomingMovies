@@ -29,6 +29,7 @@ public final class GenreRepository: GenreUseCaseProtocol {
         completion(.success(localDataSource.find(with: id)))
     }
 
+    // TODO: - Adds forceRefresh parameter
     public func fetchAll(completion: @escaping (Result<[Genre], Error>) -> Void) {
         let localGenres = localDataSource.findAll()
         if !localGenres.isEmpty { completion(.success(localGenres)) }
@@ -40,7 +41,7 @@ public final class GenreRepository: GenreUseCaseProtocol {
                 self.localDataSource.saveGenres(remoteGenres)
                 if localGenres.isEmpty { completion(.success(remoteGenres)) }
             case .failure(let error):
-                completion(.failure(error))
+                if localGenres.isEmpty { completion(.failure(error)) }
             }
         })
     }
