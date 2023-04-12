@@ -25,7 +25,7 @@ struct SplashInteractor: SplashInteractorProtocol {
     }
 
     func getAllGenres(completion: @escaping (Result<[Genre], Error>) -> Void) {
-        genreUseCase.fetchAll(completion: completion)
+        genreUseCase.fetchAll(completion: completion, forceRefresh: false)
     }
 
 }

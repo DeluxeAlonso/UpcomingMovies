@@ -31,16 +31,18 @@ public final class GenreRepository: GenreUseCaseProtocol {
 
     public func fetchAll(completion: @escaping (Result<[Genre], Error>) -> Void, forceRefresh: Bool) {
         let localGenres = localDataSource.findAll()
-        if !localGenres.isEmpty { completion(.success(localGenres)) }
+        let shouldReturnRemoteResult = localGenres.isEmpty || forceRefresh
+
+        if !shouldReturnRemoteResult { completion(.success(localGenres)) }
 
         remoteDataSource.getAllGenres(completion: { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let remoteGenres):
-                self.localDataSource.saveGenres(remoteGenres)
-                if localGenres.isEmpty { completion(.success(remoteGenres)) }
+                self.localDataSource.saveGenres( remoteGenres)
+                if shouldReturnRemoteResult { completion(.success(remoteGenres)) }
             case .failure(let error):
-                if localGenres.isEmpty { completion(.failure(error)) }
+                if shouldReturnRemoteResult { completion(.failure(error)) }
             }
         })
     }
