@@ -141,7 +141,7 @@ final class MockGenreUseCase: GenreUseCaseProtocol {
     }
 
     var genres: Result<[UpcomingMoviesDomain.Genre], Error>?
-    func fetchAll(completion: @escaping (Result<[UpcomingMoviesDomain.Genre], Error>) -> Void) {
+    func fetchAll(completion: @escaping (Result<[UpcomingMoviesDomain.Genre], Error>) -> Void, forceRefresh: Bool) {
         completion(genres!)
     }
 
