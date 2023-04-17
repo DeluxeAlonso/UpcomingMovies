@@ -7,7 +7,7 @@ platform :ios do
   	lane :tests do
   	run_tests(
   	  workspace: "UpcomingMovies.xcworkspace",
-     	  devices: ["iPhone 8"],
+     	  devices: ["iPhone 14"],
       	  scheme: "UpcomingMovies",
 	  code_coverage: true
     	)
