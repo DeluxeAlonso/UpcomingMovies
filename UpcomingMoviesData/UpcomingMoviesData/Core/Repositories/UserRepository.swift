@@ -14,7 +14,7 @@ public final class UserRepository: UserUseCaseProtocol {
 
     public var didUpdateUser: (() -> Void)? {
         didSet {
-            self.localDataSource.didUpdateUser = didUpdateUser
+            localDataSource.didUpdateUser = didUpdateUser
         }
     }
 
