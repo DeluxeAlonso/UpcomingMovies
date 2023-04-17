@@ -21,7 +21,7 @@ public final class GenreRepository: GenreUseCaseProtocol {
 
     public var didUpdateGenre: (() -> Void)? {
         didSet {
-            self.localDataSource.didUpdateGenre = didUpdateGenre
+            localDataSource.didUpdateGenre = didUpdateGenre
         }
     }
 
@@ -36,7 +36,7 @@ public final class GenreRepository: GenreUseCaseProtocol {
         if !shouldReturnRemoteResult { completion(.success(localGenres)) }
 
         remoteDataSource.getAllGenres(completion: { [weak self] result in
-            guard let self = self else { return }
+            guard let self else { return }
             switch result {
             case .success(let remoteGenres):
                 self.localDataSource.saveGenres( remoteGenres)
