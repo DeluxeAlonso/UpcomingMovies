@@ -39,7 +39,7 @@ public final class GenreRepository: GenreUseCaseProtocol {
             guard let self else { return }
             switch result {
             case .success(let remoteGenres):
-                localDataSource.saveGenres( remoteGenres)
+                self.localDataSource.saveGenres( remoteGenres)
                 if shouldReturnRemoteResult { completion(.success(remoteGenres)) }
             case .failure(let error):
                 if shouldReturnRemoteResult { completion(.failure(error)) }
