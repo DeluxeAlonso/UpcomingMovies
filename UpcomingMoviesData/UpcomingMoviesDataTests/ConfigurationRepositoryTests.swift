@@ -9,7 +9,7 @@ import XCTest
 @testable import UpcomingMoviesData
 @testable import UpcomingMoviesDomain
 
-class ConfigurationRepositoryTests: XCTestCase {
+final class ConfigurationRepositoryTests: XCTestCase {
 
     private var repository: ConfigurationRepository!
     private var configurationRemoteDataSource: ConfigurationRemoteDataSourceProtocolMock!

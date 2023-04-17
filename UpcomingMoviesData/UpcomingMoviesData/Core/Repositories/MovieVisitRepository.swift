@@ -14,7 +14,7 @@ public final class MovieVisitRepository: MovieVisitUseCaseProtocol {
 
     public var didUpdateMovieVisit: (() -> Void)? {
         didSet {
-            self.localDataSource.didUpdateMovieVisit = didUpdateMovieVisit
+            localDataSource.didUpdateMovieVisit = didUpdateMovieVisit
         }
     }
 

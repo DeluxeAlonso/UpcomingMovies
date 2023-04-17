@@ -9,7 +9,7 @@ import XCTest
 @testable import UpcomingMoviesData
 @testable import UpcomingMoviesDomain
 
-class MovieVisitRepositoryTests: XCTestCase {
+final class MovieVisitRepositoryTests: XCTestCase {
 
     private var repository: MovieVisitRepository!
     private var movieVisitLocalDataSource: MovieVisitLocalDataSourceProtocolMock!
