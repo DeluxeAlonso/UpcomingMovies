@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieReviewDetailViewController: UIViewController, Storyboarded {
+final class MovieReviewDetailViewController: UIViewController, Storyboarded {
 
     @IBOutlet private weak var contentLabel: UILabel!
 
