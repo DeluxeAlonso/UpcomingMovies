@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchOptionsViewController: UITableViewController, Storyboarded {
+final class SearchOptionsViewController: UITableViewController, Storyboarded {
 
     static var storyboardName = "SearchMovies"
 

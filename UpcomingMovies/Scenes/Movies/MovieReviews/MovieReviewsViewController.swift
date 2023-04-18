@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
+final class MovieReviewsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
 
     @IBOutlet private weak var tableView: UITableView!
 
