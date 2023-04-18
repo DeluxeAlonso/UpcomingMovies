@@ -1,6 +1,6 @@
 //
 //  UserRepositoryTests.swift
-//  UpcomingMoviesData-Unit-UpcomingMoviesDataTests
+//  UpcomingMoviesData
 //
 //  Created by Alonso on 8/06/22.
 //

@@ -1,6 +1,6 @@
 //
 //  ConfigurationRepositoryTests.swift
-//  UpcomingMoviesData-Unit-UpcomingMoviesDataTests
+//  UpcomingMoviesData
 //
 //  Created by Alonso on 25/06/22.
 //
