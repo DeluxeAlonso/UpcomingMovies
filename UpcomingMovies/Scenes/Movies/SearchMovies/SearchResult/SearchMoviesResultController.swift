@@ -14,7 +14,7 @@ protocol SearchMoviesResultControllerDelegate: UIViewController {
 
 }
 
-class SearchMoviesResultController: UIViewController, Keyboardable {
+final class SearchMoviesResultController: UIViewController, Keyboardable {
 
     private var viewModel: SearchMoviesResultViewModelProtocol
     private var dataSource: SearchMoviesResultDataSource!
