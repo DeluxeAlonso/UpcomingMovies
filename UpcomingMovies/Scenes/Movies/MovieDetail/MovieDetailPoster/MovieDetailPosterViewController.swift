@@ -36,9 +36,13 @@ final class MovieDetailPosterViewController: UIViewController, Storyboarded {
         backdropImageView.setImage(with: viewModel?.backdropURL)
         posterImageView.setImage(with: viewModel?.posterURL)
 
-
         transitionContainerView.setShadowBorder()
         delegate?.movieDetailPosterViewController(self, transitionContainerView: transitionContainerView)
+    }
+
+    func update(with viewModel: MovieDetailPosterViewModelProtocol) {
+        self.viewModel = viewModel
+        setupUI()
     }
 
 }

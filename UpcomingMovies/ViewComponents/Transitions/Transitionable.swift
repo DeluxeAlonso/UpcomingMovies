@@ -10,7 +10,7 @@ import UIKit
 
 protocol Transitionable: UIViewController {
 
-    var transitionContainerView: UIView! { get }
+    var transitionContainerView: UIView? { get }
 
 }
 

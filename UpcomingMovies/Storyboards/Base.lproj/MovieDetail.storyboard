@@ -96,53 +96,12 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ijy-JB-Zii">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="643"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNi-I8-n9k" userLabel="Backdrop View">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNi-I8-n9k" userLabel="Poster Container View">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
-                                                <subviews>
-                                                    <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="W4O-hv-Tc9" customClass="MovieDetailBackdropView" customModule="UpcomingMovies" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
-                                                        <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RsL-2b-bRH" userLabel="Backdrop Image View">
-                                                                <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
-                                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </imageView>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="RsL-2b-bRH" secondAttribute="bottom" id="0Cg-3E-FjH"/>
-                                                            <constraint firstAttribute="trailing" secondItem="RsL-2b-bRH" secondAttribute="trailing" id="6ng-Ro-Blw"/>
-                                                            <constraint firstItem="RsL-2b-bRH" firstAttribute="leading" secondItem="W4O-hv-Tc9" secondAttribute="leading" id="yaJ-lf-lKb"/>
-                                                            <constraint firstItem="RsL-2b-bRH" firstAttribute="top" secondItem="W4O-hv-Tc9" secondAttribute="top" id="zWF-P4-Idb"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bbt-pF-Smm" userLabel="Poster Container View">
-                                                        <rect key="frame" x="16" y="52" width="93.333333333333329" height="140"/>
-                                                        <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zXa-53-Cbr" userLabel="Poster Image View">
-                                                                <rect key="frame" x="0.0" y="0.0" width="93.333333333333329" height="140"/>
-                                                            </imageView>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="140" id="LHQ-eS-ITs"/>
-                                                            <constraint firstItem="zXa-53-Cbr" firstAttribute="top" secondItem="Bbt-pF-Smm" secondAttribute="top" id="LXy-ug-FKZ"/>
-                                                            <constraint firstAttribute="width" secondItem="Bbt-pF-Smm" secondAttribute="height" multiplier="1:1.5" id="kjj-Nr-nYj"/>
-                                                            <constraint firstAttribute="trailing" secondItem="zXa-53-Cbr" secondAttribute="trailing" id="o1g-4G-K2d"/>
-                                                            <constraint firstAttribute="bottom" secondItem="zXa-53-Cbr" secondAttribute="bottom" id="vrL-Uo-4yR"/>
-                                                            <constraint firstItem="zXa-53-Cbr" firstAttribute="leading" secondItem="Bbt-pF-Smm" secondAttribute="leading" id="xeM-XA-9qb"/>
-                                                        </constraints>
-                                                    </view>
-                                                </subviews>
                                                 <viewLayoutGuide key="safeArea" id="pLJ-3U-CFF"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="Axk-rd-rxy"/>
-                                                    <constraint firstItem="W4O-hv-Tc9" firstAttribute="leading" secondItem="dNi-I8-n9k" secondAttribute="leading" id="Lqa-YM-jjS"/>
-                                                    <constraint firstAttribute="bottom" secondItem="W4O-hv-Tc9" secondAttribute="bottom" id="MHd-3l-7kR"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Bbt-pF-Smm" secondAttribute="bottom" constant="8" id="YyM-WY-7W0"/>
-                                                    <constraint firstItem="W4O-hv-Tc9" firstAttribute="top" secondItem="dNi-I8-n9k" secondAttribute="top" id="dZ8-ia-ZSn"/>
-                                                    <constraint firstAttribute="trailing" secondItem="W4O-hv-Tc9" secondAttribute="trailing" id="mR9-Oa-pXW"/>
-                                                    <constraint firstItem="Bbt-pF-Smm" firstAttribute="leading" secondItem="pLJ-3U-CFF" secondAttribute="leading" constant="16" id="vTm-62-9QG"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="OUk-3t-KmG" userLabel="Title View">
@@ -354,15 +313,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="fGP-S3-naS"/>
                     <connections>
-                        <outlet property="backdropImageView" destination="RsL-2b-bRH" id="s7t-J9-geQ"/>
                         <outlet property="genreLabel" destination="Gkj-So-5cA" id="6cf-Ds-lSf"/>
                         <outlet property="optionsContainerView" destination="WmX-R4-dMd" id="1pl-MM-Gls"/>
                         <outlet property="overviewLabel" destination="1SK-ri-asW" id="H56-aK-zWQ"/>
-                        <outlet property="posterImageView" destination="zXa-53-Cbr" id="BFV-Zl-Ysh"/>
+                        <outlet property="posterContainerView" destination="dNi-I8-n9k" id="HTO-qU-vXV"/>
                         <outlet property="releaseDateLabel" destination="slt-aQ-ofO" id="tNa-Gm-6GR"/>
                         <outlet property="scrollView" destination="QLg-25-1il" id="q22-P0-AtW"/>
                         <outlet property="titleLabel" destination="r2f-cr-5vC" id="geG-f4-gTb"/>
-                        <outlet property="transitionContainerView" destination="Bbt-pF-Smm" id="Dt4-HJ-CP4"/>
                         <outlet property="voteAverageView" destination="Tar-Cz-6l1" id="atM-cI-oWs"/>
                     </connections>
                 </viewController>

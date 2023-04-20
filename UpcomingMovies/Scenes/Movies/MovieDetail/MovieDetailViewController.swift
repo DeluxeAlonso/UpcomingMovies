@@ -8,18 +8,18 @@
 
 import UIKit
 
-final class MovieDetailViewController: UIViewController, Storyboarded, Transitionable, MovieDetailOptionsViewControllerDelegate {
+final class MovieDetailViewController: UIViewController, Storyboarded, Transitionable, MovieDetailOptionsViewControllerDelegate, MovieDetailPosterViewControllerDelegate {
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var backdropImageView: UIImageView!
     @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var posterContainerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var voteAverageView: VoteAverageView!
     @IBOutlet private weak var genreLabel: UILabel!
     @IBOutlet private weak var releaseDateLabel: UILabel!
     @IBOutlet private weak var overviewLabel: UILabel!
     @IBOutlet private weak var optionsContainerView: UIView!
-    @IBOutlet private(set) weak var transitionContainerView: UIView!
 
     static var storyboardName: String = "MovieDetail"
 
@@ -44,6 +44,8 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     var viewModel: MovieDetailViewModelProtocol?
     var userInterfaceHelper: MovieDetailUIHelperProtocol?
     weak var coordinator: MovieDetailCoordinatorProtocol?
+
+    var transitionContainerView: UIView?
 
     // MARK: - Lifecycle
 
@@ -71,7 +73,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         setupNavigationBar()
         setupLabels()
 
-        transitionContainerView.setShadowBorder()
+        //transitionContainerView.setShadowBorder()
     }
 
     private func setupNavigationBar() {
@@ -107,7 +109,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         viewModel?.didSetupMovieDetail.bindAndFire({ [weak self] _ in
             guard let self else { return }
             self.configureUI()
-            self.coordinator?.embedMovieDetailPoster(on: self, in: self.backdropImageView,
+            self.coordinator?.embedMovieDetailPoster(on: self, in: self.posterContainerView,
                                                      with: viewModel?.backdropURL,
                                                      and: viewModel?.posterURL)
             self.userInterfaceHelper?.hideRetryView()
@@ -144,8 +146,8 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         titleLabel.text = viewModel.title
         releaseDateLabel.text = viewModel.releaseDate
 
-        backdropImageView.setImage(with: viewModel.backdropURL)
-        posterImageView.setImage(with: viewModel.posterURL)
+        //backdropImageView.setImage(with: viewModel.backdropURL)
+        //posterImageView.setImage(with: viewModel.posterURL)
 
         voteAverageView.voteValue = viewModel.voteAverage
 
@@ -202,6 +204,12 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     @IBAction private func favoriteButtonAction(_ sender: Any) {
         viewModel?.handleFavoriteMovie()
+    }
+
+    // MARK: - MovieDetailPosterViewControllerDelegate
+
+    func movieDetailPosterViewController(_ movieDetailPosterViewController: MovieDetailPosterViewController, transitionContainerView: UIView) {
+        self.transitionContainerView = transitionContainerView
     }
 
     // MARK: - MovieDetailOptionsViewControllerDelegate
