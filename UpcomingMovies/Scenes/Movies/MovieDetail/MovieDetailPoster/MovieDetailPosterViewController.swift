@@ -23,7 +23,6 @@ final class MovieDetailPosterViewController: UIViewController, Storyboarded {
 
         setupUI()
     }
-    
 
     private func setupUI() {
         transitionContainerView.setShadowBorder()
