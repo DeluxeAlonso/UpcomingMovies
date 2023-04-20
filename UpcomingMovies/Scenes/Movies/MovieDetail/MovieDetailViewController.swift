@@ -106,11 +106,11 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
             guard let self else { return }
             self.configureUI()
             self.coordinator?.embedMovieDetailPoster(on: self, in: self.posterContainerView,
-                                                     with: viewModel?.backdropURL,
-                                                     and: viewModel?.posterURL)
+                                                     with: self.viewModel?.backdropURL,
+                                                     and: self.viewModel?.posterURL)
             self.coordinator?.embedMovieDetailOptions(on: self,
                                                       in: self.optionsContainerView,
-                                                      with: viewModel?.movieDetailOptions ?? [])
+                                                      with: self.viewModel?.movieDetailOptions ?? [])
             self.userInterfaceHelper?.hideRetryView()
             self.viewModel?.saveVisitedMovie()
         }, on: .main)
