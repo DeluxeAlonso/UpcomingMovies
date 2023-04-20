@@ -99,7 +99,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNi-I8-n9k" userLabel="Poster Container View">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
                                                 <viewLayoutGuide key="safeArea" id="pLJ-3U-CFF"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="Axk-rd-rxy"/>
                                                 </constraints>

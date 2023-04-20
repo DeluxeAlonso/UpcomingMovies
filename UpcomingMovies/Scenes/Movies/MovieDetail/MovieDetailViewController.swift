@@ -8,11 +8,9 @@
 
 import UIKit
 
-final class MovieDetailViewController: UIViewController, Storyboarded, Transitionable, MovieDetailOptionsViewControllerDelegate, MovieDetailPosterViewControllerDelegate {
+final class MovieDetailViewController: UIViewController, Storyboarded, Transitionable {
 
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var backdropImageView: UIImageView!
-    @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var posterContainerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var voteAverageView: VoteAverageView!
@@ -72,8 +70,6 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
         setupNavigationBar()
         setupLabels()
-
-        //transitionContainerView.setShadowBorder()
     }
 
     private func setupNavigationBar() {
@@ -146,9 +142,6 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         titleLabel.text = viewModel.title
         releaseDateLabel.text = viewModel.releaseDate
 
-        //backdropImageView.setImage(with: viewModel.backdropURL)
-        //posterImageView.setImage(with: viewModel.posterURL)
-
         voteAverageView.voteValue = viewModel.voteAverage
 
         overviewLabel.text = viewModel.overview
@@ -206,13 +199,21 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         viewModel?.handleFavoriteMovie()
     }
 
-    // MARK: - MovieDetailPosterViewControllerDelegate
+}
+
+// MARK: - MovieDetailPosterViewControllerDelegate
+
+extension MovieDetailViewController: MovieDetailPosterViewControllerDelegate {
 
     func movieDetailPosterViewController(_ movieDetailPosterViewController: MovieDetailPosterViewController, transitionContainerView: UIView) {
         self.transitionContainerView = transitionContainerView
     }
 
-    // MARK: - MovieDetailOptionsViewControllerDelegate
+}
+
+// MARK: - MovieDetailOptionsViewControllerDelegate
+
+extension MovieDetailViewController: MovieDetailOptionsViewControllerDelegate {
 
     func movieDetailOptionsViewController(_ movieDetailOptionsViewController: MovieDetailOptionsViewController,
                                           didSelectOption option: MovieDetailOption) {
