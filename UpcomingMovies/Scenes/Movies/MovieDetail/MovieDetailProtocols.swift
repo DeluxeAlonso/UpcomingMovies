@@ -94,6 +94,11 @@ protocol MovieDetailCoordinatorProtocol: AnyObject {
                                  in containerView: UIView,
                                  with options: [MovieDetailOption])
 
+    func embedMovieDetailPoster(on parentViewController: MovieDetailOptionsViewControllerDelegate,
+                                in containerView: UIView,
+                                with backdropURL: URL?,
+                                and posterURL: URL?)
+
 }
 
 protocol MovieDetailUIHelperProtocol {

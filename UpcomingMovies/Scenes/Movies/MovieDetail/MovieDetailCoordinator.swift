@@ -20,6 +20,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
 
     private let movieInfo: MovieDetailInfo
 
+    private var movieDetailPosterViewController: MovieDetailPosterViewController?
     private var movieDetailOptionsViewController: MovieDetailOptionsViewController?
 
     // MARK: - Initializers
@@ -56,6 +57,21 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         let activityViewController = UIActivityViewController(activityItems: [title],
                                                               applicationActivities: nil)
         navigationController.present(activityViewController, animated: true, completion: nil)
+    }
+
+    func embedMovieDetailPoster(on parentViewController: MovieDetailOptionsViewControllerDelegate,
+                                in containerView: UIView,
+                                with backdropURL: URL?,
+                                and posterURL: URL?) {
+        guard movieDetailPosterViewController == nil else { return }
+
+        let viewController = MovieDetailPosterViewController.instantiate()
+
+        viewController.viewModel = MovieDetailPosterViewModel(backdropURL: backdropURL, posterURL: posterURL)
+
+        parentViewController.add(asChildViewController: viewController, containerView: containerView)
+
+        self.movieDetailPosterViewController = viewController
     }
 
     func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,

@@ -105,9 +105,13 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     private func setupViewBindables() {
         viewModel?.didSetupMovieDetail.bindAndFire({ [weak self] _ in
-            self?.configureUI()
-            self?.userInterfaceHelper?.hideRetryView()
-            self?.viewModel?.saveVisitedMovie()
+            guard let self else { return }
+            self.configureUI()
+            self.coordinator?.embedMovieDetailPoster(on: self, in: self.backdropImageView,
+                                                     with: viewModel?.backdropURL,
+                                                     and: viewModel?.posterURL)
+            self.userInterfaceHelper?.hideRetryView()
+            self.viewModel?.saveVisitedMovie()
         }, on: .main)
         viewModel?.showGenreName.bindAndFire({ [weak self] genreName in
             self?.genreLabel.text = genreName

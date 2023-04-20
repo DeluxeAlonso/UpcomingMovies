@@ -8,6 +8,13 @@
 
 import UIKit
 
+protocol MovieDetailPosterViewControllerDelegate: UIViewController {
+
+    func movieDetailPosterViewController(_ movieDetailPosterViewController: MovieDetailPosterViewController,
+                                         transitionContainerView: UIView)
+
+}
+
 final class MovieDetailPosterViewController: UIViewController, Storyboarded {
 
     @IBOutlet private weak var backdropImageView: UIImageView!
@@ -17,6 +24,7 @@ final class MovieDetailPosterViewController: UIViewController, Storyboarded {
     static var storyboardName: String = "MovieDetail"
 
     var viewModel: MovieDetailPosterViewModelProtocol?
+    weak var delegate: MovieDetailPosterViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +33,12 @@ final class MovieDetailPosterViewController: UIViewController, Storyboarded {
     }
 
     private func setupUI() {
-        transitionContainerView.setShadowBorder()
-
         backdropImageView.setImage(with: viewModel?.backdropURL)
         posterImageView.setImage(with: viewModel?.posterURL)
+
+
+        transitionContainerView.setShadowBorder()
+        delegate?.movieDetailPosterViewController(self, transitionContainerView: transitionContainerView)
     }
 
 }

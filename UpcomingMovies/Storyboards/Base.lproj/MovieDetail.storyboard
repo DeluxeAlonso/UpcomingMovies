@@ -615,6 +615,11 @@
                         </constraints>
                     </view>
                     <size key="freeformSize" width="393" height="200"/>
+                    <connections>
+                        <outlet property="backdropImageView" destination="s8L-Za-k9n" id="YPL-hd-CxW"/>
+                        <outlet property="posterImageView" destination="FNV-i2-fjR" id="itG-1e-yIT"/>
+                        <outlet property="transitionContainerView" destination="cdb-DR-h0z" id="99a-C8-NSY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1y-2p-IOb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
