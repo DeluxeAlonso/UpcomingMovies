@@ -108,17 +108,14 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
             self.coordinator?.embedMovieDetailPoster(on: self, in: self.posterContainerView,
                                                      with: viewModel?.backdropURL,
                                                      and: viewModel?.posterURL)
+            self.coordinator?.embedMovieDetailOptions(on: self,
+                                                      in: self.optionsContainerView,
+                                                      with: viewModel?.movieDetailOptions ?? [])
             self.userInterfaceHelper?.hideRetryView()
             self.viewModel?.saveVisitedMovie()
         }, on: .main)
         viewModel?.showGenreName.bindAndFire({ [weak self] genreName in
             self?.genreLabel.text = genreName
-        }, on: .main)
-        viewModel?.showMovieOptions.bindAndFire({ [weak self] movieOptions in
-            guard let self else { return }
-            self.coordinator?.embedMovieDetailOptions(on: self,
-                                                      in: self.optionsContainerView,
-                                                      with: movieOptions)
         }, on: .main)
         viewModel?.didSelectShareAction.bind({ [weak self] _ in
             self?.shareMovie()
