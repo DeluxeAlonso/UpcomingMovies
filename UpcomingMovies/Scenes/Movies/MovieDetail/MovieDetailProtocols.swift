@@ -18,13 +18,13 @@ protocol MovieDetailViewModelProtocol {
     var voteAverage: Double? { get }
     var posterURL: URL? { get }
     var backdropURL: URL? { get }
+    var movieDetailOptions: [MovieDetailOption] { get }
 
     var screenTitle: String { get }
     var shareTitle: String { get }
 
     var startLoading: AnyBehaviorBindable<Bool> { get }
     var showGenreName: AnyBehaviorBindable<String> { get }
-    var showMovieOptions: AnyBehaviorBindable<[MovieDetailOption]> { get }
     var didSetupMovieDetail: AnyBehaviorBindable<Bool> { get }
     var showSuccessAlert: AnyPublishBindable<String> { get }
     var showErrorAlert: AnyPublishBindable<Error> { get }
@@ -93,6 +93,11 @@ protocol MovieDetailCoordinatorProtocol: AnyObject {
     func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
                                  in containerView: UIView,
                                  with options: [MovieDetailOption])
+
+    func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate,
+                                in containerView: UIView,
+                                with backdropURL: URL?,
+                                and posterURL: URL?)
 
 }
 

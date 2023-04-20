@@ -8,18 +8,16 @@
 
 import UIKit
 
-final class MovieDetailViewController: UIViewController, Storyboarded, Transitionable, MovieDetailOptionsViewControllerDelegate {
+final class MovieDetailViewController: UIViewController, Storyboarded, Transitionable {
 
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var backdropImageView: UIImageView!
-    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var posterContainerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var voteAverageView: VoteAverageView!
     @IBOutlet private weak var genreLabel: UILabel!
     @IBOutlet private weak var releaseDateLabel: UILabel!
     @IBOutlet private weak var overviewLabel: UILabel!
     @IBOutlet private weak var optionsContainerView: UIView!
-    @IBOutlet private(set) weak var transitionContainerView: UIView!
 
     static var storyboardName: String = "MovieDetail"
 
@@ -44,6 +42,8 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     var viewModel: MovieDetailViewModelProtocol?
     var userInterfaceHelper: MovieDetailUIHelperProtocol?
     weak var coordinator: MovieDetailCoordinatorProtocol?
+
+    var transitionContainerView: UIView?
 
     // MARK: - Lifecycle
 
@@ -70,8 +70,6 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
         setupNavigationBar()
         setupLabels()
-
-        transitionContainerView.setShadowBorder()
     }
 
     private func setupNavigationBar() {
@@ -105,18 +103,19 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     private func setupViewBindables() {
         viewModel?.didSetupMovieDetail.bindAndFire({ [weak self] _ in
-            self?.configureUI()
-            self?.userInterfaceHelper?.hideRetryView()
-            self?.viewModel?.saveVisitedMovie()
+            guard let self else { return }
+            self.configureUI()
+            self.coordinator?.embedMovieDetailPoster(on: self, in: self.posterContainerView,
+                                                     with: self.viewModel?.backdropURL,
+                                                     and: self.viewModel?.posterURL)
+            self.coordinator?.embedMovieDetailOptions(on: self,
+                                                      in: self.optionsContainerView,
+                                                      with: self.viewModel?.movieDetailOptions ?? [])
+            self.userInterfaceHelper?.hideRetryView()
+            self.viewModel?.saveVisitedMovie()
         }, on: .main)
         viewModel?.showGenreName.bindAndFire({ [weak self] genreName in
             self?.genreLabel.text = genreName
-        }, on: .main)
-        viewModel?.showMovieOptions.bindAndFire({ [weak self] movieOptions in
-            guard let self else { return }
-            self.coordinator?.embedMovieDetailOptions(on: self,
-                                                      in: self.optionsContainerView,
-                                                      with: movieOptions)
         }, on: .main)
         viewModel?.didSelectShareAction.bind({ [weak self] _ in
             self?.shareMovie()
@@ -139,9 +138,6 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
         titleLabel.text = viewModel.title
         releaseDateLabel.text = viewModel.releaseDate
-
-        backdropImageView.setImage(with: viewModel.backdropURL)
-        posterImageView.setImage(with: viewModel.posterURL)
 
         voteAverageView.voteValue = viewModel.voteAverage
 
@@ -200,7 +196,21 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         viewModel?.handleFavoriteMovie()
     }
 
-    // MARK: - MovieDetailOptionsViewControllerDelegate
+}
+
+// MARK: - MovieDetailPosterViewControllerDelegate
+
+extension MovieDetailViewController: MovieDetailPosterViewControllerDelegate {
+
+    func movieDetailPosterViewController(_ movieDetailPosterViewController: MovieDetailPosterViewController, transitionContainerView: UIView) {
+        self.transitionContainerView = transitionContainerView
+    }
+
+}
+
+// MARK: - MovieDetailOptionsViewControllerDelegate
+
+extension MovieDetailViewController: MovieDetailOptionsViewControllerDelegate {
 
     func movieDetailOptionsViewController(_ movieDetailOptionsViewController: MovieDetailOptionsViewController,
                                           didSelectOption option: MovieDetailOption) {

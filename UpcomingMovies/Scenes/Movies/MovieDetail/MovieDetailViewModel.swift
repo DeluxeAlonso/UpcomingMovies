@@ -21,7 +21,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     let startLoading = BehaviorBindable(false).eraseToAnyBindable()
 
     let showGenreName = BehaviorBindable("-").eraseToAnyBindable()
-    let showMovieOptions = BehaviorBindable([MovieDetailOption]()).eraseToAnyBindable()
 
     let didSetupMovieDetail = BehaviorBindable(false).eraseToAnyBindable()
 
@@ -42,6 +41,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var voteAverage: Double?
     private(set) var posterURL: URL?
     private(set) var backdropURL: URL?
+    private(set) var movieDetailOptions: [MovieDetailOption]
 
     private var needsFetch: Bool
 
@@ -62,14 +62,14 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
          factory: MovieDetailFactoryProtocol) {
         self.id = movie.id
         self.title = movie.title
+        self.movieDetailOptions = factory.options
+
         self.interactor = interactor
         self.factory = factory
 
         self.needsFetch = false
 
         setupMovie(movie)
-
-        showMovieOptions.value = factory.options
     }
 
     init(id: Int, title: String,
@@ -77,12 +77,12 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
          factory: MovieDetailFactoryProtocol) {
         self.id = id
         self.title = title
+        self.movieDetailOptions = factory.options
+
         self.interactor = interactor
         self.factory = factory
 
         self.needsFetch = true
-
-        showMovieOptions.value = factory.options
     }
 
     // MARK: - Private
