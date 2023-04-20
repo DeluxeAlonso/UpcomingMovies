@@ -21,6 +21,7 @@
 		E20118E125FF251E0091D248 /* AuthenticationHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20118E025FF251E0091D248 /* AuthenticationHandlerProtocol.swift */; };
 		E20118E825FF258A0091D248 /* ConfigurationHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20118E725FF258A0091D248 /* ConfigurationHandlerProtocol.swift */; };
 		E20191432934735800770948 /* BehaviorBindableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20191422934735800770948 /* BehaviorBindableProtocol.swift */; };
+		E202124229F0F04400F92734 /* MovieDetailPosterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E202124129F0F04400F92734 /* MovieDetailPosterViewModel.swift */; };
 		E2033DC324D90CEE00185664 /* SplashProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2033DC224D90CED00185664 /* SplashProtocols.swift */; };
 		E2033DC524D90D7600185664 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2033DC424D90D7600185664 /* SplashInteractor.swift */; };
 		E2040F8A29933C8200ABAE82 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2040F8929933C8200ABAE82 /* UserDefaultsStorage.swift */; };
@@ -463,6 +464,7 @@
 		E20118E025FF251E0091D248 /* AuthenticationHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHandlerProtocol.swift; sourceTree = "<group>"; };
 		E20118E725FF258A0091D248 /* ConfigurationHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationHandlerProtocol.swift; sourceTree = "<group>"; };
 		E20191422934735800770948 /* BehaviorBindableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorBindableProtocol.swift; sourceTree = "<group>"; };
+		E202124129F0F04400F92734 /* MovieDetailPosterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailPosterViewModel.swift; sourceTree = "<group>"; };
 		E2033DC224D90CED00185664 /* SplashProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashProtocols.swift; sourceTree = "<group>"; };
 		E2033DC424D90D7600185664 /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		E2040F8929933C8200ABAE82 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
@@ -2037,6 +2039,7 @@
 			isa = PBXGroup;
 			children = (
 				E2A104AF29EFA1B400DA0809 /* MovieDetailPosterViewController.swift */,
+				E202124129F0F04400F92734 /* MovieDetailPosterViewModel.swift */,
 			);
 			path = MovieDetailPoster;
 			sourceTree = "<group>";
@@ -2635,6 +2638,7 @@
 				E2D4DD7021F018850004B7BF /* RecentlyVisitedMoviesTableViewCell.swift in Sources */,
 				E2C44C192616C6B0004B9C9B /* ToastSuccessConfiguration.swift in Sources */,
 				E22546AB226AF52400E9042C /* CustomListDetailSectionView.swift in Sources */,
+				E202124229F0F04400F92734 /* MovieDetailPosterViewModel.swift in Sources */,
 				E263808B221288210038AD00 /* MovieReviewCell.swift in Sources */,
 				E223B0802247E7F10050277B /* ProfileViewModel.swift in Sources */,
 				E221F769222B9FA3008DFF87 /* SavedMoviesViewController.swift in Sources */,

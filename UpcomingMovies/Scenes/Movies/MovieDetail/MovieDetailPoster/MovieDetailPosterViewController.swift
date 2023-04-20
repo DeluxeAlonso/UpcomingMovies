@@ -10,23 +10,26 @@ import UIKit
 
 final class MovieDetailPosterViewController: UIViewController, Storyboarded {
 
+    @IBOutlet private weak var backdropImageView: UIImageView!
+    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private(set) weak var transitionContainerView: UIView!
+
     static var storyboardName: String = "MovieDetail"
+
+    var viewModel: MovieDetailPosterViewModelProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setupUI()
     }
     
 
-    /*
-    // MARK: - Navigation
+    private func setupUI() {
+        transitionContainerView.setShadowBorder()
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        backdropImageView.setImage(with: viewModel?.backdropURL)
+        posterImageView.setImage(with: viewModel?.posterURL)
     }
-    */
 
 }
