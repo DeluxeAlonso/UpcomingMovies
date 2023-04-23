@@ -129,19 +129,19 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     private func configureUI() {
         guard let viewModel = viewModel else { return }
-        
+
         self.coordinator?.embedMovieDetailPoster(on: self, in: posterContainerView,
                                                  with: viewModel.backdropURL,
                                                  and: viewModel.posterURL)
         self.coordinator?.embedMovieDetailOptions(on: self,
                                                   in: optionsContainerView,
-                                                  with: viewModel.movieDetailOptions ?? [])
-        
+                                                  with: viewModel.movieDetailOptions)
+
         titleLabel.text = viewModel.title
         releaseDateLabel.text = viewModel.releaseDate
-        
+
         voteAverageView.voteValue = viewModel.voteAverage
-        
+
         overviewLabel.text = viewModel.overview
     }
 
