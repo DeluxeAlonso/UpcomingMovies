@@ -105,12 +105,6 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         viewModel?.didSetupMovieDetail.bindAndFire({ [weak self] _ in
             guard let self else { return }
             self.configureUI()
-            self.coordinator?.embedMovieDetailPoster(on: self, in: self.posterContainerView,
-                                                     with: self.viewModel?.backdropURL,
-                                                     and: self.viewModel?.posterURL)
-            self.coordinator?.embedMovieDetailOptions(on: self,
-                                                      in: self.optionsContainerView,
-                                                      with: self.viewModel?.movieDetailOptions ?? [])
             self.userInterfaceHelper?.hideRetryView()
             self.viewModel?.saveVisitedMovie()
         }, on: .main)
@@ -135,6 +129,13 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     private func configureUI() {
         guard let viewModel = viewModel else { return }
+
+        coordinator?.embedMovieDetailPoster(on: self, in: posterContainerView,
+                                            with: viewModel.backdropURL,
+                                            and: viewModel.posterURL)
+        coordinator?.embedMovieDetailOptions(on: self,
+                                             in: optionsContainerView,
+                                             with: viewModel.movieDetailOptions)
 
         titleLabel.text = viewModel.title
         releaseDateLabel.text = viewModel.releaseDate
