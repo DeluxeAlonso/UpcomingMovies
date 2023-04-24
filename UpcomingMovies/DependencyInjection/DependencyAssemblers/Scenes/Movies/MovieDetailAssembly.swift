@@ -55,6 +55,16 @@ final class MovieDetailAssembly: Assembly {
             }
             return MovieDetailUIHelper(progressHUDAdapter: progressHUDAdapter)
         }
+
+        // MARK: - Movie detail poster
+
+        container.register(MovieDetailPosterViewModelProtocol.self) { (resolver, backdropURL: URL?, posterURL: URL?) in
+            return MovieDetailPosterViewModel(backdropURL: backdropURL, posterURL: posterURL)
+        }
+
+        // MARK: - Movie detail options
+
+
     }
 
 }
