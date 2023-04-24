@@ -71,7 +71,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
 
         let viewController = MovieDetailPosterViewController.instantiate()
 
-        viewController.viewModel = MovieDetailPosterViewModel(backdropURL: backdropURL, posterURL: posterURL)
+        viewController.viewModel = DIContainer.shared.resolve(arguments: backdropURL, posterURL)
         viewController.delegate = parentViewController
 
         parentViewController.add(asChildViewController: viewController, containerView: containerView)
@@ -86,7 +86,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
 
         let viewController = MovieDetailOptionsViewController.instantiate()
 
-        viewController.viewModel = MovieDetailOptionsViewModel(options: options)
+        viewController.viewModel = DIContainer.shared.resolve(argument: options)
         viewController.delegate = parentViewController
 
         parentViewController.add(asChildViewController: viewController, containerView: containerView)
