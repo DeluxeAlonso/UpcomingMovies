@@ -1741,7 +1741,6 @@
 			isa = PBXGroup;
 			children = (
 				E2A104AE29EF99FA00DA0809 /* MovieDetailPoster */,
-				E27C019B280BFD99000C510A /* MovieDetailActions */,
 				E2BE1B35239DEA3300FC47FF /* MovieDetailOptions */,
 				E226C64721FF89DD004AA771 /* ViewComponents */,
 				E2685CA123A092B700483D8D /* MovieDetailFactory.swift */,
@@ -1751,6 +1750,7 @@
 				E2E518AF24A9A71500CC3FA5 /* MovieDetailProtocols.swift */,
 				E2864A3624D66D1A00271EF0 /* MovieDetailInteractor.swift */,
 				E2FEDD982793E04E001A016E /* MovieDetailUIHelper.swift */,
+				E27C019C280BFDD1000C510A /* MovieDetailActionModel.swift */,
 			);
 			path = MovieDetail;
 			sourceTree = "<group>";
@@ -1932,14 +1932,6 @@
 				E279169D28F092360092B592 /* SearchOptionsViewModelTests.swift */,
 			);
 			path = SearchMovies;
-			sourceTree = "<group>";
-		};
-		E27C019B280BFD99000C510A /* MovieDetailActions */ = {
-			isa = PBXGroup;
-			children = (
-				E27C019C280BFDD1000C510A /* MovieDetailActionModel.swift */,
-			);
-			path = MovieDetailActions;
 			sourceTree = "<group>";
 		};
 		E28677092485E6EE006685F8 /* ScaleTransition */ = {
