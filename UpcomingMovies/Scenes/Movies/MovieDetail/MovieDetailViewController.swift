@@ -57,7 +57,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let viewModel = viewModel, !viewModel.startLoading.value else {
+        guard let viewModel, !viewModel.startLoading.value else {
             return
         }
         viewModel.checkMovieAccountState()
@@ -115,8 +115,8 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
             self?.shareMovie()
         }, on: .main)
         viewModel?.movieAccountState.bind({ [weak self] accountState in
-            guard let self = self else { return }
-            guard let accountState = accountState else {
+            guard let self else { return }
+            guard let accountState else {
                 // We remove favorite button from navigation bar.
                 self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem]
                 return
@@ -147,26 +147,26 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     private func setupLoaderBindable() {
         viewModel?.startLoading.bind({ [weak self] start in
-            guard let self = self else { return }
+            guard let self else { return }
             start ? self.userInterfaceHelper?.showLoader(in: self.view) : self.userInterfaceHelper?.hideLoader()
         }, on: .main)
     }
 
     private func setupErrorBindables() {
         viewModel?.showErrorRetryView.bind({ [weak self] error in
-            guard let self = self else { return }
+            guard let self else { return }
             self.showErrorView(error: error)
         }, on: .main)
     }
 
     private func setupAlertBindables() {
         viewModel?.showSuccessAlert.bind({ [weak self] message in
-            guard let self = self else { return }
+            guard let self else { return }
             self.userInterfaceHelper?.showHUD(with: message, in: self.view)
         }, on: .main)
 
         viewModel?.showErrorAlert.bind({ [weak self] error in
-            guard let self = self else { return }
+            guard let self else { return }
             self.view.showFailureToast(withMessage: error.localizedDescription)
         }, on: .main)
     }
@@ -189,7 +189,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     }
 
     private func shareMovie() {
-        guard let viewModel = viewModel else { return }
+        guard let viewModel else { return }
         coordinator?.showSharingOptions(withShareTitle: viewModel.shareTitle)
     }
 
