@@ -59,6 +59,15 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         navigationController.present(activityViewController, animated: true, completion: nil)
     }
 
+    func showActionSheet(title: String?, message: String?, actions: [UIAlertAction]) {
+        let actionSheet = UIAlertController(title: title,
+                                            message: message,
+                                            preferredStyle: .actionSheet)
+
+        for action in actions { actionSheet.addAction(action) }
+        navigationController.present(actionSheet, animated: true, completion: nil)
+    }
+
     func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate,
                                 in containerView: UIView,
                                 with backdropURL: URL?,

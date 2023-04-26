@@ -185,7 +185,12 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         let alertActions = actions.map { actionModel in
             UIAlertAction(title: actionModel.title, style: .default) { _ in actionModel.action() }
         }
-        showActionSheet(title: movieTitle, message: nil, actions: alertActions)
+        //showActionSheet(title: movieTitle, message: nil, actions: alertActions)
+        let cancelTitle = LocalizedStrings.cancel()
+        let cancelActionButton = UIAlertAction(title: cancelTitle, style: .cancel) { _ in
+            //self.dismiss(animated: true)
+        }
+        coordinator?.showActionSheet(title: movieTitle, message: nil, actions: [cancelActionButton] + alertActions)
     }
 
     private func shareMovie() {

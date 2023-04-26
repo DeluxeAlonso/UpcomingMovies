@@ -99,6 +99,8 @@ protocol MovieDetailCoordinatorProtocol: AnyObject {
                                 with backdropURL: URL?,
                                 and posterURL: URL?)
 
+    func showActionSheet(title: String?, message: String?, actions: [UIAlertAction])
+
 }
 
 protocol MovieDetailUIHelperProtocol {
