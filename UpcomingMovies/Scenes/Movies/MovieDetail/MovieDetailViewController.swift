@@ -181,11 +181,15 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     @IBAction private func moreBarButtonAction(_ sender: Any) {
         guard let movieTitle = viewModel?.title,
-              let actions = viewModel?.getAvailableAlertActions() else { return }
-        let alertActions = actions.map { actionModel in
+              let actionModels = viewModel?.getAvailableAlertActions() else { return }
+        let availableActions = actionModels.map { actionModel in
             UIAlertAction(title: actionModel.title, style: .default) { _ in actionModel.action() }
         }
-        showActionSheet(title: movieTitle, message: nil, actions: alertActions)
+        let cancelAction = UIAlertAction(title: LocalizedStrings.cancel(), style: .cancel) { _ in
+            self.dismiss(animated: true)
+        }
+        let actions = [cancelAction] + availableActions
+        coordinator?.showActionSheet(title: movieTitle, message: nil, actions: actions)
     }
 
     private func shareMovie() {
