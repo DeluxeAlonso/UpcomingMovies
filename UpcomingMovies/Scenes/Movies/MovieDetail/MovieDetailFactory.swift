@@ -6,8 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import UIKit
-
 final class MovieDetailFactory: MovieDetailFactoryProtocol {
 
     var options: [MovieDetailOption] {
