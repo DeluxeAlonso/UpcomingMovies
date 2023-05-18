@@ -6,8 +6,6 @@
 //  Copyright © 2022 Alonso. All rights reserved.
 //
 
-import Foundation
-
 struct MovieDetailActionModel {
 
     let title: String
