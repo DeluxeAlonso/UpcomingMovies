@@ -143,7 +143,16 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
         titleLabel.text = viewModel.title
         if FeatureFlags.shared.showRedesignedMovieDetailScreen {
-            subtitleLabel.text = viewModel.
+            if !titleContentStackView.contains(subtitleLabel) {
+                titleContentStackView.addArrangedSubview(subtitleLabel)
+            }
+            subtitleLabel.text = viewModel.subtitle
+            subtitleLabel.isHidden = false
+        } else {
+            if titleContentStackView.contains(subtitleLabel) {
+                titleContentStackView.removeArrangedSubview(subtitleLabel)
+                subtitleLabel.isHidden = true
+            }
         }
         releaseDateLabel.text = viewModel.releaseDate
 
