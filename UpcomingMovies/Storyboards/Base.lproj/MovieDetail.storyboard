@@ -94,7 +94,7 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ijy-JB-Zii">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="643"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="663.33333333333337"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNi-I8-n9k" userLabel="Poster Container View">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
@@ -105,10 +105,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="OUk-3t-KmG" userLabel="Title View">
-                                                <rect key="frame" x="0.0" y="200" width="393" height="56"/>
+                                                <rect key="frame" x="0.0" y="200" width="393" height="76.333333333333314"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1OL-RH-jYt">
-                                                        <rect key="frame" x="16" y="16" width="301" height="24"/>
+                                                        <rect key="frame" x="16" y="16.000000000000004" width="301" height="44.333333333333343"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Movie" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2f-cr-5vC" userLabel="Title Label">
                                                                 <rect key="frame" x="0.0" y="0.0" width="301" height="24"/>
@@ -116,10 +116,16 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEg-oU-YQA" userLabel="Subtitle Label">
+                                                                <rect key="frame" x="0.0" y="24" width="301" height="20.333333333333329"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tar-Cz-6l1" customClass="VoteAverageView" customModule="UpcomingMovies" customModuleProvider="target">
-                                                        <rect key="frame" x="333" y="6" width="44" height="44"/>
+                                                        <rect key="frame" x="333" y="16.333333333333314" width="44" height="44"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="Kma-ST-59C"/>
@@ -153,14 +159,14 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFa-RK-IZ6" userLabel="Separator View">
-                                                <rect key="frame" x="0.0" y="256" width="393" height="1"/>
+                                                <rect key="frame" x="0.0" y="276.33333333333331" width="393" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="fkJ-CZ-gUh"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmX-R4-dMd" userLabel="Options View">
-                                                <rect key="frame" x="0.0" y="257" width="393" height="66"/>
+                                                <rect key="frame" x="0.0" y="277.33333333333331" width="393" height="66"/>
                                                 <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="WmX-R4-dMd" secondAttribute="height" multiplier="15:1" id="1IF-Sj-0Ot"/>
@@ -197,14 +203,14 @@
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jK-m0-ZH0" userLabel="Separator View">
-                                                <rect key="frame" x="0.0" y="323" width="393" height="1"/>
+                                                <rect key="frame" x="0.0" y="343.33333333333331" width="393" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="WF4-nb-41g"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mlz-1r-g6b" userLabel="Info Stack View">
-                                                <rect key="frame" x="0.0" y="324" width="393" height="83"/>
+                                                <rect key="frame" x="0.0" y="344.33333333333331" width="393" height="83"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJt-HO-dKx" userLabel="Genre View">
                                                         <rect key="frame" x="0.0" y="0.0" width="196.66666666666666" height="83"/>
@@ -268,14 +274,14 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g51-3z-gND" userLabel="Separator View">
-                                                <rect key="frame" x="0.0" y="407" width="393" height="1"/>
+                                                <rect key="frame" x="0.0" y="427.33333333333331" width="393" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="O7k-F7-qC5"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lW1-zc-8gr" userLabel="Overview View">
-                                                <rect key="frame" x="0.0" y="408" width="393" height="235"/>
+                                                <rect key="frame" x="0.0" y="428.33333333333326" width="393" height="235"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1SK-ri-asW" userLabel="Overview Label">
                                                         <rect key="frame" x="16" y="16" width="361" height="203"/>
@@ -324,6 +330,8 @@
                         <outlet property="posterContainerView" destination="dNi-I8-n9k" id="HTO-qU-vXV"/>
                         <outlet property="releaseDateLabel" destination="slt-aQ-ofO" id="tNa-Gm-6GR"/>
                         <outlet property="scrollView" destination="QLg-25-1il" id="q22-P0-AtW"/>
+                        <outlet property="subtitleLabel" destination="IEg-oU-YQA" id="0HK-5H-kp9"/>
+                        <outlet property="titleContentStackView" destination="1OL-RH-jYt" id="Uwr-q9-jQ5"/>
                         <outlet property="titleLabel" destination="r2f-cr-5vC" id="geG-f4-gTb"/>
                         <outlet property="voteAverageView" destination="Tar-Cz-6l1" id="atM-cI-oWs"/>
                     </connections>
