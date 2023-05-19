@@ -107,12 +107,17 @@
                                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="OUk-3t-KmG" userLabel="Title View">
                                                 <rect key="frame" x="0.0" y="200" width="393" height="56"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Movie" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2f-cr-5vC" userLabel="Title Label">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1OL-RH-jYt">
                                                         <rect key="frame" x="16" y="16" width="301" height="24"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Movie" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2f-cr-5vC" userLabel="Title Label">
+                                                                <rect key="frame" x="0.0" y="0.0" width="301" height="24"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tar-Cz-6l1" customClass="VoteAverageView" customModule="UpcomingMovies" customModuleProvider="target">
                                                         <rect key="frame" x="333" y="6" width="44" height="44"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -139,12 +144,12 @@
                                                 <viewLayoutGuide key="safeArea" id="ZAr-f7-PzF"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="Tar-Cz-6l1" firstAttribute="leading" secondItem="r2f-cr-5vC" secondAttribute="trailing" constant="16" id="1lF-0x-4ja"/>
+                                                    <constraint firstItem="1OL-RH-jYt" firstAttribute="leading" secondItem="ZAr-f7-PzF" secondAttribute="leading" constant="16" id="8yY-hK-c6I"/>
                                                     <constraint firstItem="Tar-Cz-6l1" firstAttribute="centerY" secondItem="OUk-3t-KmG" secondAttribute="centerY" id="G4g-Uc-vdY"/>
-                                                    <constraint firstItem="r2f-cr-5vC" firstAttribute="leading" secondItem="ZAr-f7-PzF" secondAttribute="leading" constant="16" id="XXE-Jc-e7j"/>
+                                                    <constraint firstItem="ZAr-f7-PzF" firstAttribute="bottom" secondItem="1OL-RH-jYt" secondAttribute="bottom" constant="16" id="JQ6-nI-J9B"/>
+                                                    <constraint firstItem="Tar-Cz-6l1" firstAttribute="leading" secondItem="1OL-RH-jYt" secondAttribute="trailing" constant="16" id="hgJ-si-ow6"/>
                                                     <constraint firstItem="ZAr-f7-PzF" firstAttribute="trailing" secondItem="Tar-Cz-6l1" secondAttribute="trailing" constant="16" id="iTZ-7z-poh"/>
-                                                    <constraint firstItem="r2f-cr-5vC" firstAttribute="top" secondItem="OUk-3t-KmG" secondAttribute="top" constant="16" id="srR-ag-FgF"/>
-                                                    <constraint firstAttribute="bottom" secondItem="r2f-cr-5vC" secondAttribute="bottom" constant="16" id="ykm-XQ-hzz"/>
+                                                    <constraint firstItem="1OL-RH-jYt" firstAttribute="top" secondItem="ZAr-f7-PzF" secondAttribute="top" constant="16" id="zwO-DL-JWm"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFa-RK-IZ6" userLabel="Separator View">
