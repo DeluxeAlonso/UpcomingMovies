@@ -43,6 +43,10 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var backdropURL: URL?
     private(set) var movieDetailOptions: [MovieDetailOption]
 
+    var subtitle: String? {
+        releaseDate
+    }
+
     private var needsFetch: Bool
 
     // MARK: - Computed properties

@@ -13,6 +13,7 @@ protocol MovieDetailViewModelProtocol {
 
     var id: Int { get }
     var title: String { get }
+    var subtitle: String? { get }
     var releaseDate: String? { get }
     var overview: String? { get }
     var voteAverage: Double? { get }

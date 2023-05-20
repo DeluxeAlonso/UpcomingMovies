@@ -12,7 +12,11 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var posterContainerView: UIView!
+
+    @IBOutlet private weak var titleContentStackView: UIStackView!
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subtitleLabel: UILabel!
+
     @IBOutlet private weak var voteAverageView: VoteAverageView!
     @IBOutlet private weak var genreLabel: UILabel!
     @IBOutlet private weak var releaseDateLabel: UILabel!
@@ -138,6 +142,18 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
                                              with: viewModel.movieDetailOptions)
 
         titleLabel.text = viewModel.title
+        if FeatureFlags.shared.showRedesignedMovieDetailScreen {
+            if !titleContentStackView.contains(subtitleLabel) {
+                titleContentStackView.addArrangedSubview(subtitleLabel)
+            }
+            subtitleLabel.text = viewModel.subtitle
+            subtitleLabel.isHidden = false
+        } else {
+            if titleContentStackView.contains(subtitleLabel) {
+                titleContentStackView.removeArrangedSubview(subtitleLabel)
+                subtitleLabel.isHidden = true
+            }
+        }
         releaseDateLabel.text = viewModel.releaseDate
 
         voteAverageView.voteValue = viewModel.voteAverage
