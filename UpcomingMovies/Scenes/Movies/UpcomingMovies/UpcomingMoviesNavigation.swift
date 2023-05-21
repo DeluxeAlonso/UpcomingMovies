@@ -50,6 +50,20 @@ final class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate
         }
     }
 
+//    private func isTransitionableNavigation(between fromVC: UIViewController,
+//                                            and toVC: UIViewController,
+//                                            on operation: UINavigationController.Operation) -> Bool {
+//        guard fromVC is Transitionable || toVC is Transitionable else { return false }
+//        switch operation {
+//        case .push:
+//            return (toVC as? Transitionable)?.transitionContainerView != nil && fromVC is TransitionableInitiator
+//        case .pop, .none:
+//            return (fromVC as? Transitionable)?.transitionContainerView != nil && toVC is TransitionableInitiator
+//        @unknown default:
+//            return false
+//        }
+//    }
+
     // MARK: - UINavigationControllerDelegate
 
     func navigationController(_ navigationController: UINavigationController,

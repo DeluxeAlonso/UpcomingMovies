@@ -72,6 +72,8 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     private func setupUI() {
         title = viewModel?.screenTitle
 
+        coordinator?.embedMovieDetailPoster(on: self, in: posterContainerView)
+
         setupNavigationBar()
         setupLabels()
     }
@@ -134,7 +136,8 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     private func configureUI() {
         guard let viewModel = viewModel else { return }
 
-        coordinator?.embedMovieDetailPoster(on: self, in: posterContainerView,
+        coordinator?.embedMovieDetailPoster(on: self,
+                                            in: posterContainerView,
                                             with: viewModel.backdropURL,
                                             and: viewModel.posterURL)
         coordinator?.embedMovieDetailOptions(on: self,
