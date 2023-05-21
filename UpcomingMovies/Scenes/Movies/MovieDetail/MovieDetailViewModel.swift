@@ -21,6 +21,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     let startLoading = BehaviorBindable(false).eraseToAnyBindable()
 
     let showGenreName = BehaviorBindable("-").eraseToAnyBindable()
+    let showGenresNames = BehaviorBindable("").eraseToAnyBindable()
 
     let didSetupMovieDetail = BehaviorBindable(false).eraseToAnyBindable()
 

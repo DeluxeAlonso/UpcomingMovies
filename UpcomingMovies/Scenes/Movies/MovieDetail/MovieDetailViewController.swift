@@ -101,6 +101,36 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         overviewLabel.adjustsFontForContentSizeCategory = true
     }
 
+    private func configureUI() {
+        guard let viewModel = viewModel else { return }
+
+        coordinator?.embedMovieDetailPoster(on: self, in: posterContainerView,
+                                            with: viewModel.backdropURL,
+                                            and: viewModel.posterURL)
+        coordinator?.embedMovieDetailOptions(on: self,
+                                             in: optionsContainerView,
+                                             with: viewModel.movieDetailOptions)
+
+        titleLabel.text = viewModel.title
+        if FeatureFlags.shared.showRedesignedMovieDetailScreen {
+            if !titleContentStackView.contains(subtitleLabel) {
+                titleContentStackView.addArrangedSubview(subtitleLabel)
+            }
+            subtitleLabel.text = viewModel.subtitle
+            subtitleLabel.isHidden = false
+        } else {
+            if titleContentStackView.contains(subtitleLabel) {
+                titleContentStackView.removeArrangedSubview(subtitleLabel)
+                subtitleLabel.isHidden = true
+            }
+        }
+        releaseDateLabel.text = viewModel.releaseDate
+
+        voteAverageView.voteValue = viewModel.voteAverage
+
+        overviewLabel.text = viewModel.overview
+    }
+
     // MARK: - Reactive Behavior
 
     private func setupBindables() {
@@ -134,36 +164,6 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
             self.favoriteBarButtonItem.toggle(to: isFavorite.intValue)
             self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem, self.favoriteBarButtonItem]
         }, on: .main)
-    }
-
-    private func configureUI() {
-        guard let viewModel = viewModel else { return }
-
-        coordinator?.embedMovieDetailPoster(on: self, in: posterContainerView,
-                                            with: viewModel.backdropURL,
-                                            and: viewModel.posterURL)
-        coordinator?.embedMovieDetailOptions(on: self,
-                                             in: optionsContainerView,
-                                             with: viewModel.movieDetailOptions)
-
-        titleLabel.text = viewModel.title
-        if FeatureFlags.shared.showRedesignedMovieDetailScreen {
-            if !titleContentStackView.contains(subtitleLabel) {
-                titleContentStackView.addArrangedSubview(subtitleLabel)
-            }
-            subtitleLabel.text = viewModel.subtitle
-            subtitleLabel.isHidden = false
-        } else {
-            if titleContentStackView.contains(subtitleLabel) {
-                titleContentStackView.removeArrangedSubview(subtitleLabel)
-                subtitleLabel.isHidden = true
-            }
-        }
-        releaseDateLabel.text = viewModel.releaseDate
-
-        voteAverageView.voteValue = viewModel.voteAverage
-
-        overviewLabel.text = viewModel.overview
     }
 
     private func setupLoaderBindable() {

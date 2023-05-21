@@ -26,6 +26,7 @@ protocol MovieDetailViewModelProtocol {
 
     var startLoading: AnyBehaviorBindable<Bool> { get }
     var showGenreName: AnyBehaviorBindable<String> { get }
+    var showGenresNames: AnyBehaviorBindable<String> { get }
     var didSetupMovieDetail: AnyBehaviorBindable<Bool> { get }
     var showSuccessAlert: AnyPublishBindable<String> { get }
     var showErrorAlert: AnyPublishBindable<Error> { get }
