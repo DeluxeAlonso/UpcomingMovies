@@ -86,6 +86,9 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         titleLabel.font = FontHelper.headline
         titleLabel.adjustsFontForContentSizeCategory = true
 
+        subtitleLabel.font = FontHelper.subheadLight
+        subtitleLabel.adjustsFontForContentSizeCategory = true
+
         genreLabel.font = FontHelper.body
         genreLabel.adjustsFontForContentSizeCategory = true
 
