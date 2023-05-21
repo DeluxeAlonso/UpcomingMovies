@@ -16,6 +16,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     @IBOutlet private weak var titleContentStackView: UIStackView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
+    @IBOutlet private weak var genresLabel: UILabel!
 
     @IBOutlet private weak var voteAverageView: VoteAverageView!
     @IBOutlet private weak var genreLabel: UILabel!
@@ -85,9 +86,10 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     private func setupLabels() {
         titleLabel.font = FontHelper.headline
         titleLabel.adjustsFontForContentSizeCategory = true
-
         subtitleLabel.font = FontHelper.subheadLight
         subtitleLabel.adjustsFontForContentSizeCategory = true
+        genresLabel.font = FontHelper.subheadLight
+        genresLabel.adjustsFontForContentSizeCategory = true
 
         genreLabel.font = FontHelper.body
         genreLabel.adjustsFontForContentSizeCategory = true
