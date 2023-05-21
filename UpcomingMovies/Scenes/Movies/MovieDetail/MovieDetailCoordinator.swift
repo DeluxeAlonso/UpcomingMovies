@@ -68,6 +68,10 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         navigationController.present(actionSheet, animated: true, completion: nil)
     }
 
+    func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate, in containerView: UIView) {
+        embedMovieDetailPoster(on: parentViewController, in: containerView, with: nil, and: nil)
+    }
+
     func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate,
                                 in containerView: UIView,
                                 with backdropURL: URL?,
