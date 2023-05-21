@@ -42,9 +42,9 @@ final class UpcomingMoviesNavigation: NSObject, UpcomingMoviesNavigationDelegate
         guard fromVC is Transitionable || toVC is Transitionable else { return false }
         switch operation {
         case .push:
-            return (toVC as? Transitionable)?.transitionContainerView != nil && fromVC is TransitionableInitiator
+            return toVC is Transitionable && fromVC is TransitionableInitiator
         case .pop, .none:
-            return (fromVC as? Transitionable)?.transitionContainerView != nil && toVC is TransitionableInitiator
+            return fromVC is Transitionable && toVC is TransitionableInitiator
         @unknown default:
             return false
         }
