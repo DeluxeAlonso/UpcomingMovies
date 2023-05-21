@@ -61,7 +61,6 @@ extension TransitioningAnimator: UIViewControllerAnimatedTransitioning {
             return
         }
 
-        // TODO: - Handle this exit condition to make the transition ignoring transition view
         guard let transitionContainerView = transitionable.transitionContainerView,
               var transitionContainerViewFrame = transitionContainerView.absoluteFrame(relativeTo: transitionable.view) else {
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
