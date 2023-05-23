@@ -74,6 +74,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         title = viewModel?.screenTitle
 
         coordinator?.embedMovieDetailPoster(on: self, in: posterContainerView)
+        coordinator?.embedMovieDetailOptions(on: self, in: optionsContainerView)
 
         setupNavigationBar()
         setupLabels()
