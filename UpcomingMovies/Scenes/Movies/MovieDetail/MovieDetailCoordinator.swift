@@ -95,7 +95,11 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
     func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
                                  in containerView: UIView,
                                  with options: [MovieDetailOption]) {
-        guard movieDetailOptionsViewController == nil else { return }
+        guard movieDetailOptionsViewController == nil else {
+            let viewModel: MovieDetailOptionsViewModelProtocol = DIContainer.shared.resolve(argument: options)
+            movieDetailOptionsViewController?.update(with: viewModel)
+            return
+        }
 
         let viewController = MovieDetailOptionsViewController.instantiate()
 
