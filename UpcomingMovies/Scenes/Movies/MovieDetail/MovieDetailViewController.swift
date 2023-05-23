@@ -16,6 +16,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     @IBOutlet private weak var titleContentStackView: UIStackView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
+    @IBOutlet private weak var genresLabel: UILabel!
 
     @IBOutlet private weak var voteAverageView: VoteAverageView!
     @IBOutlet private weak var genreLabel: UILabel!
@@ -87,6 +88,10 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     private func setupLabels() {
         titleLabel.font = FontHelper.headline
         titleLabel.adjustsFontForContentSizeCategory = true
+        subtitleLabel.font = FontHelper.subheadLight
+        subtitleLabel.adjustsFontForContentSizeCategory = true
+        genresLabel.font = FontHelper.subheadLight
+        genresLabel.adjustsFontForContentSizeCategory = true
 
         genreLabel.font = FontHelper.body
         genreLabel.adjustsFontForContentSizeCategory = true
@@ -98,46 +103,10 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         overviewLabel.adjustsFontForContentSizeCategory = true
     }
 
-    // MARK: - Reactive Behavior
-
-    private func setupBindables() {
-        setupViewBindables()
-        setupLoaderBindable()
-        setupErrorBindables()
-        setupAlertBindables()
-    }
-
-    private func setupViewBindables() {
-        viewModel?.didSetupMovieDetail.bindAndFire({ [weak self] _ in
-            guard let self else { return }
-            self.configureUI()
-            self.userInterfaceHelper?.hideRetryView()
-            self.viewModel?.saveVisitedMovie()
-        }, on: .main)
-        viewModel?.showGenreName.bindAndFire({ [weak self] genreName in
-            self?.genreLabel.text = genreName
-        }, on: .main)
-        viewModel?.didSelectShareAction.bind({ [weak self] _ in
-            self?.shareMovie()
-        }, on: .main)
-        viewModel?.movieAccountState.bind({ [weak self] accountState in
-            guard let self else { return }
-            guard let accountState else {
-                // We remove favorite button from navigation bar.
-                self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem]
-                return
-            }
-            let isFavorite = accountState.isFavorite
-            self.favoriteBarButtonItem.toggle(to: isFavorite.intValue)
-            self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem, self.favoriteBarButtonItem]
-        }, on: .main)
-    }
-
     private func configureUI() {
         guard let viewModel = viewModel else { return }
 
-        coordinator?.embedMovieDetailPoster(on: self,
-                                            in: posterContainerView,
+        coordinator?.embedMovieDetailPoster(on: self, in: posterContainerView,
                                             with: viewModel.backdropURL,
                                             and: viewModel.posterURL)
         coordinator?.embedMovieDetailOptions(on: self,
@@ -162,6 +131,56 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         voteAverageView.voteValue = viewModel.voteAverage
 
         overviewLabel.text = viewModel.overview
+    }
+
+    // MARK: - Reactive Behavior
+
+    private func setupBindables() {
+        setupViewBindables()
+        setupLoaderBindable()
+        setupErrorBindables()
+        setupAlertBindables()
+    }
+
+    private func setupViewBindables() {
+        viewModel?.didSetupMovieDetail.bindAndFire({ [weak self] _ in
+            guard let self else { return }
+            self.configureUI()
+            self.userInterfaceHelper?.hideRetryView()
+            self.viewModel?.saveVisitedMovie()
+        }, on: .main)
+        viewModel?.showGenreName.bindAndFire({ [weak self] genreName in
+            self?.genreLabel.text = genreName
+        }, on: .main)
+        viewModel?.showGenresNames.bindAndFire({ [weak self] genresNames in
+            guard let self else { return }
+            guard !genresNames.isEmpty else {
+                if self.titleContentStackView.contains(self.genresLabel) {
+                    self.titleContentStackView.removeArrangedSubview(self.genresLabel)
+                    self.genresLabel.isHidden = true
+                }
+                return
+            }
+            if !self.titleContentStackView.contains(self.genresLabel) {
+                self.titleContentStackView.addArrangedSubview(self.genresLabel)
+            }
+            self.genresLabel.text = genresNames
+            self.genresLabel.isHidden = false
+        }, on: .main)
+        viewModel?.didSelectShareAction.bind({ [weak self] _ in
+            self?.shareMovie()
+        }, on: .main)
+        viewModel?.movieAccountState.bind({ [weak self] accountState in
+            guard let self else { return }
+            guard let accountState else {
+                // We remove favorite button from navigation bar.
+                self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem]
+                return
+            }
+            let isFavorite = accountState.isFavorite
+            self.favoriteBarButtonItem.toggle(to: isFavorite.intValue)
+            self.navigationItem.rightBarButtonItems = [self.moreBarButtonItem, self.favoriteBarButtonItem]
+        }, on: .main)
     }
 
     private func setupLoaderBindable() {

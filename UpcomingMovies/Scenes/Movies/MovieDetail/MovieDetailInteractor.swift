@@ -29,8 +29,25 @@ final class MovieDetailInteractor: MovieDetailInteractorProtocol {
         authHandler.isUserSignedIn()
     }
 
+    // TODO MAKE GENRE NOT OPTIONAL AND USE WRAPPED VALUE IN findGenres METHOD
     func findGenre(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void) {
         genreUseCase.find(with: id, completion: completion)
+    }
+
+    func findGenres(for identifiers: [Int], completion: @escaping (Result<[Genre], Error>) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        var genres: [Genre] = []
+
+        for id in identifiers {
+            dispatchGroup.enter()
+            findGenre(with: id) { result in
+                if let genre = try? result.get() { genres.append(genre) }
+                dispatchGroup.leave()
+            }
+        }
+        dispatchGroup.notify(queue: .global(qos: .userInitiated)) {
+            completion(.success(genres))
+        }
     }
 
     func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void) {

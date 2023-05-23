@@ -21,6 +21,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     let startLoading = BehaviorBindable(false).eraseToAnyBindable()
 
     let showGenreName = BehaviorBindable("-").eraseToAnyBindable()
+    let showGenresNames = BehaviorBindable("").eraseToAnyBindable()
 
     let didSetupMovieDetail = BehaviorBindable(false).eraseToAnyBindable()
 
@@ -99,6 +100,9 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         backdropURL = movie.backdropURL
 
         getMovieGenreName(for: movie.genreIds?.first)
+        if FeatureFlags.shared.showRedesignedMovieDetailScreen {
+            getMoviesGenresNames(for: movie.genreIds ?? [])
+        }
 
         didSetupMovieDetail.value = true
     }
@@ -109,6 +113,14 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             guard let self = self else { return }
             let genre = try? result.get()
             self.showGenreName.value = genre?.name ?? "-"
+        })
+    }
+
+    private func getMoviesGenresNames(for genreIds: [Int]) {
+        interactor.findGenres(for: genreIds, completion: { [weak self] result in
+            guard let self = self else { return }
+            let genres = try? result.get()
+            self.showGenresNames.value = (genres?.compactMap { $0.name }.joined(separator: " • ") ?? "")
         })
     }
 

@@ -26,6 +26,7 @@ protocol MovieDetailViewModelProtocol {
 
     var startLoading: AnyBehaviorBindable<Bool> { get }
     var showGenreName: AnyBehaviorBindable<String> { get }
+    var showGenresNames: AnyBehaviorBindable<String> { get }
     var didSetupMovieDetail: AnyBehaviorBindable<Bool> { get }
     var showSuccessAlert: AnyPublishBindable<String> { get }
     var showErrorAlert: AnyPublishBindable<Error> { get }
@@ -64,6 +65,7 @@ protocol MovieDetailInteractorProtocol {
     func isUserSignedIn() -> Bool
 
     func findGenre(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void)
+    func findGenres(for identifiers: [Int], completion: @escaping (Result<[Genre], Error>) -> Void)
 
     func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void)
 

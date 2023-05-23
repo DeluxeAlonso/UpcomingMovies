@@ -23,6 +23,13 @@ final class MockMovieDetailInteractor: MovieDetailInteractorProtocol {
         }
     }
 
+    var findGenresResult: Result<[Genre], Error>? = .success([])
+    func findGenres(for identifiers: [Int], completion: @escaping (Result<[Genre], Error>) -> Void) {
+        if let findGenresResult {
+            completion(findGenresResult)
+        }
+    }
+
     var getMovieDetailResult: Result<Movie, Error>?
     func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void) {
         if let getMovieDetailResult {
