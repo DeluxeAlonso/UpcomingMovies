@@ -77,7 +77,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
                                 with backdropURL: URL?,
                                 and posterURL: URL?) {
         guard movieDetailPosterViewController == nil else {
-            let viewModel = MovieDetailPosterViewModel(backdropURL: backdropURL, posterURL: posterURL)
+            let viewModel: MovieDetailPosterViewModelProtocol = DIContainer.shared.resolve(arguments: backdropURL, posterURL)
             movieDetailPosterViewController?.update(with: viewModel)
             return
         }
