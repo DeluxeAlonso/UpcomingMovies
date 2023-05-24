@@ -13,12 +13,12 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var posterContainerView: UIView!
 
-    @IBOutlet private weak var titleContentStackView: UIStackView!
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subtitleLabel: UILabel!
-    @IBOutlet private weak var genresLabel: UILabel!
+//    @IBOutlet private weak var titleContentStackView: UIStackView!
+//    @IBOutlet private weak var titleLabel: UILabel!
+//    @IBOutlet private weak var subtitleLabel: UILabel!
+//    @IBOutlet private weak var genresLabel: UILabel!
+//    @IBOutlet private weak var voteAverageView: VoteAverageView!
 
-    @IBOutlet private weak var voteAverageView: VoteAverageView!
     @IBOutlet private weak var genreLabel: UILabel!
     @IBOutlet private weak var releaseDateLabel: UILabel!
     @IBOutlet private weak var overviewLabel: UILabel!
@@ -87,12 +87,12 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     }
 
     private func setupLabels() {
-        titleLabel.font = FontHelper.headline
-        titleLabel.adjustsFontForContentSizeCategory = true
-        subtitleLabel.font = FontHelper.subheadLight
-        subtitleLabel.adjustsFontForContentSizeCategory = true
-        genresLabel.font = FontHelper.subheadLight
-        genresLabel.adjustsFontForContentSizeCategory = true
+//        titleLabel.font = FontHelper.headline
+//        titleLabel.adjustsFontForContentSizeCategory = true
+//        subtitleLabel.font = FontHelper.subheadLight
+//        subtitleLabel.adjustsFontForContentSizeCategory = true
+//        genresLabel.font = FontHelper.subheadLight
+//        genresLabel.adjustsFontForContentSizeCategory = true
 
         genreLabel.font = FontHelper.body
         genreLabel.adjustsFontForContentSizeCategory = true
@@ -114,22 +114,22 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
                                              in: optionsContainerView,
                                              with: viewModel.movieDetailOptions)
 
-        titleLabel.text = viewModel.title
-        if FeatureFlags.shared.showRedesignedMovieDetailScreen {
-            if !titleContentStackView.contains(subtitleLabel) {
-                titleContentStackView.addArrangedSubview(subtitleLabel)
-            }
-            subtitleLabel.text = viewModel.subtitle
-            subtitleLabel.isHidden = false
-        } else {
-            if titleContentStackView.contains(subtitleLabel) {
-                titleContentStackView.removeArrangedSubview(subtitleLabel)
-                subtitleLabel.isHidden = true
-            }
-        }
+//        titleLabel.text = viewModel.title
+//        if FeatureFlags.shared.showRedesignedMovieDetailScreen {
+//            if !titleContentStackView.contains(subtitleLabel) {
+//                titleContentStackView.addArrangedSubview(subtitleLabel)
+//            }
+//            subtitleLabel.text = viewModel.subtitle
+//            subtitleLabel.isHidden = false
+//        } else {
+//            if titleContentStackView.contains(subtitleLabel) {
+//                titleContentStackView.removeArrangedSubview(subtitleLabel)
+//                subtitleLabel.isHidden = true
+//            }
+//        }
         releaseDateLabel.text = viewModel.releaseDate
 
-        voteAverageView.voteValue = viewModel.voteAverage
+//        voteAverageView.voteValue = viewModel.voteAverage
 
         overviewLabel.text = viewModel.overview
     }
@@ -154,19 +154,19 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
             self?.genreLabel.text = genreName
         }, on: .main)
         viewModel?.showGenresNames.bindAndFire({ [weak self] genresNames in
-            guard let self else { return }
-            guard let genresNames else {
-                if self.titleContentStackView.contains(self.genresLabel) {
-                    self.titleContentStackView.removeArrangedSubview(self.genresLabel)
-                    self.genresLabel.isHidden = true
-                }
-                return
-            }
-            if !self.titleContentStackView.contains(self.genresLabel) {
-                self.titleContentStackView.addArrangedSubview(self.genresLabel)
-            }
-            self.genresLabel.text = genresNames
-            self.genresLabel.isHidden = false
+//            guard let self else { return }
+//            guard let genresNames else {
+//                if self.titleContentStackView.contains(self.genresLabel) {
+//                    self.titleContentStackView.removeArrangedSubview(self.genresLabel)
+//                    self.genresLabel.isHidden = true
+//                }
+//                return
+//            }
+//            if !self.titleContentStackView.contains(self.genresLabel) {
+//                self.titleContentStackView.addArrangedSubview(self.genresLabel)
+//            }
+//            self.genresLabel.text = genresNames
+//            self.genresLabel.isHidden = false
         }, on: .main)
         viewModel?.didSelectShareAction.bind({ [weak self] _ in
             self?.shareMovie()

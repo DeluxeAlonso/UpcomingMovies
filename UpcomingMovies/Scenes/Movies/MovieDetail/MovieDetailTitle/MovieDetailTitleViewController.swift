@@ -8,30 +8,30 @@
 
 import UIKit
 
-class MovieDetailTitleViewController: UIViewController {
+class MovieDetailTitleViewController: UIViewController, Storyboarded {
 
     @IBOutlet private weak var titleContentStackView: UIStackView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var genresLabel: UILabel!
-
     @IBOutlet private weak var voteAverageView: VoteAverageView!
+
+    static var storyboardName: String = "MovieDetail"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupUI()
     }
-    
 
-    /*
-    // MARK: - Navigation
+    private func setupUI() {
+        titleLabel.font = FontHelper.headline
+        titleLabel.adjustsFontForContentSizeCategory = true
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        subtitleLabel.font = FontHelper.subheadLight
+        subtitleLabel.adjustsFontForContentSizeCategory = true
+
+        genresLabel.font = FontHelper.subheadLight
+        genresLabel.adjustsFontForContentSizeCategory = true
     }
-    */
 
 }
