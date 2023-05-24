@@ -18,9 +18,16 @@ class MovieDetailTitleViewController: UIViewController, Storyboarded {
 
     static var storyboardName: String = "MovieDetail"
 
+    var viewModel: MovieDetailTitleViewModelProtocol?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+
+    func update(with viewModel: MovieDetailTitleViewModelProtocol) {
+        self.viewModel = viewModel
+        configureUI()
     }
 
     private func setupUI() {
@@ -32,6 +39,25 @@ class MovieDetailTitleViewController: UIViewController, Storyboarded {
 
         genresLabel.font = FontHelper.subheadLight
         genresLabel.adjustsFontForContentSizeCategory = true
+    }
+
+    private func configureUI() {
+        titleLabel.text = viewModel?.title
+        titleLabel.text = viewModel?.title
+        if FeatureFlags.shared.showRedesignedMovieDetailScreen {
+            if !titleContentStackView.contains(subtitleLabel) {
+                titleContentStackView.addArrangedSubview(subtitleLabel)
+            }
+            subtitleLabel.text = viewModel?.subtitle
+            subtitleLabel.isHidden = false
+        } else {
+            if titleContentStackView.contains(subtitleLabel) {
+                titleContentStackView.removeArrangedSubview(subtitleLabel)
+                subtitleLabel.isHidden = true
+            }
+        }
+
+        voteAverageView.voteValue = viewModel?.voteAverage
     }
 
 }
