@@ -104,64 +104,12 @@
                                                     <constraint firstAttribute="height" constant="200" id="Axk-rd-rxy"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="OUk-3t-KmG" userLabel="Title View">
+                                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="OUk-3t-KmG" userLabel="Title Container View">
                                                 <rect key="frame" x="0.0" y="200" width="393" height="104.66666666666669"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="1OL-RH-jYt">
-                                                        <rect key="frame" x="16" y="16" width="301" height="72.666666666666671"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Movie" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2f-cr-5vC" userLabel="Title Label">
-                                                                <rect key="frame" x="0.0" y="0.0" width="301" height="24"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajB-s5-EWC" userLabel="Genres Label">
-                                                                <rect key="frame" x="0.0" y="28" width="301" height="20.333333333333329"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEg-oU-YQA" userLabel="Subtitle Label">
-                                                                <rect key="frame" x="0.0" y="52.333333333333314" width="301" height="20.333333333333329"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tar-Cz-6l1" customClass="VoteAverageView" customModule="UpcomingMovies" customModuleProvider="target">
-                                                        <rect key="frame" x="333" y="30.333333333333314" width="44" height="44"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="44" id="Kma-ST-59C"/>
-                                                            <constraint firstAttribute="width" secondItem="Tar-Cz-6l1" secondAttribute="height" multiplier="1:1" id="qs2-Bp-o3c"/>
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layerLineWidth">
-                                                                <real key="value" value="5"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layerStartAngle">
-                                                                <real key="value" value="270"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundLayerColor">
-                                                                <color key="value" systemColor="systemGrayColor"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="loadedLayerColor">
-                                                                <color key="value" name="VoteAverageFill"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </view>
-                                                </subviews>
                                                 <viewLayoutGuide key="safeArea" id="ZAr-f7-PzF"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="1OL-RH-jYt" firstAttribute="leading" secondItem="ZAr-f7-PzF" secondAttribute="leading" constant="16" id="8yY-hK-c6I"/>
-                                                    <constraint firstItem="Tar-Cz-6l1" firstAttribute="centerY" secondItem="OUk-3t-KmG" secondAttribute="centerY" id="G4g-Uc-vdY"/>
-                                                    <constraint firstItem="ZAr-f7-PzF" firstAttribute="bottom" secondItem="1OL-RH-jYt" secondAttribute="bottom" constant="16" id="JQ6-nI-J9B"/>
-                                                    <constraint firstItem="Tar-Cz-6l1" firstAttribute="leading" secondItem="1OL-RH-jYt" secondAttribute="trailing" constant="16" id="hgJ-si-ow6"/>
-                                                    <constraint firstItem="ZAr-f7-PzF" firstAttribute="trailing" secondItem="Tar-Cz-6l1" secondAttribute="trailing" constant="16" id="iTZ-7z-poh"/>
-                                                    <constraint firstItem="1OL-RH-jYt" firstAttribute="top" secondItem="ZAr-f7-PzF" secondAttribute="top" constant="16" id="zwO-DL-JWm"/>
+                                                    <constraint firstAttribute="height" priority="250" constant="104.67" id="iU5-92-oka"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFa-RK-IZ6" userLabel="Separator View">
@@ -331,16 +279,12 @@
                     <navigationItem key="navigationItem" id="fGP-S3-naS"/>
                     <connections>
                         <outlet property="genreLabel" destination="Gkj-So-5cA" id="6cf-Ds-lSf"/>
-                        <outlet property="genresLabel" destination="ajB-s5-EWC" id="OZR-70-wUU"/>
                         <outlet property="optionsContainerView" destination="WmX-R4-dMd" id="1pl-MM-Gls"/>
                         <outlet property="overviewLabel" destination="1SK-ri-asW" id="H56-aK-zWQ"/>
                         <outlet property="posterContainerView" destination="dNi-I8-n9k" id="HTO-qU-vXV"/>
                         <outlet property="releaseDateLabel" destination="slt-aQ-ofO" id="tNa-Gm-6GR"/>
                         <outlet property="scrollView" destination="QLg-25-1il" id="q22-P0-AtW"/>
-                        <outlet property="subtitleLabel" destination="IEg-oU-YQA" id="0HK-5H-kp9"/>
-                        <outlet property="titleContentStackView" destination="1OL-RH-jYt" id="Uwr-q9-jQ5"/>
-                        <outlet property="titleLabel" destination="r2f-cr-5vC" id="geG-f4-gTb"/>
-                        <outlet property="voteAverageView" destination="Tar-Cz-6l1" id="atM-cI-oWs"/>
+                        <outlet property="titleContainerView" destination="OUk-3t-KmG" id="WFP-tX-4JH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSa-lq-OS1" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -31,7 +31,9 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     let didSelectShareAction = PublishBindable<Bool>().eraseToAnyBindable()
 
-    let movieAccountState: AnyBehaviorBindable<MovieAccountStateModel?> = BehaviorBindable(nil).eraseToAnyBindable()
+    let movieAccountState = BehaviorBindable<MovieAccountStateModel?>(nil).eraseToAnyBindable()
+
+    let movieDetailTitleRenderContent = BehaviorBindable<MovieDetailTitleRenderContent?>(nil).eraseToAnyBindable()
 
     // MARK: - Properties
 
@@ -105,6 +107,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         }
 
         didSetupMovieDetail.value = true
+        movieDetailTitleRenderContent.value = MovieDetailTitleRenderContent(movie: movie)
     }
 
     private func getMovieGenreName(for genreId: Int?) {

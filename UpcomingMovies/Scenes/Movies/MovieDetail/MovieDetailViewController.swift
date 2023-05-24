@@ -12,12 +12,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var posterContainerView: UIView!
-
-//    @IBOutlet private weak var titleContentStackView: UIStackView!
-//    @IBOutlet private weak var titleLabel: UILabel!
-//    @IBOutlet private weak var subtitleLabel: UILabel!
-//    @IBOutlet private weak var genresLabel: UILabel!
-//    @IBOutlet private weak var voteAverageView: VoteAverageView!
+    @IBOutlet private weak var titleContainerView: UIView!
 
     @IBOutlet private weak var genreLabel: UILabel!
     @IBOutlet private weak var releaseDateLabel: UILabel!
@@ -74,6 +69,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         title = viewModel?.screenTitle
 
         coordinator?.embedMovieDetailPoster(on: self, in: posterContainerView)
+        coordinator?.embedMovieDetailTitle(on: self, in: titleContainerView)
         coordinator?.embedMovieDetailOptions(on: self, in: optionsContainerView)
 
         setupNavigationBar()
@@ -87,13 +83,6 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     }
 
     private func setupLabels() {
-//        titleLabel.font = FontHelper.headline
-//        titleLabel.adjustsFontForContentSizeCategory = true
-//        subtitleLabel.font = FontHelper.subheadLight
-//        subtitleLabel.adjustsFontForContentSizeCategory = true
-//        genresLabel.font = FontHelper.subheadLight
-//        genresLabel.adjustsFontForContentSizeCategory = true
-
         genreLabel.font = FontHelper.body
         genreLabel.adjustsFontForContentSizeCategory = true
 
@@ -113,23 +102,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         coordinator?.embedMovieDetailOptions(on: self,
                                              in: optionsContainerView,
                                              with: viewModel.movieDetailOptions)
-
-//        titleLabel.text = viewModel.title
-//        if FeatureFlags.shared.showRedesignedMovieDetailScreen {
-//            if !titleContentStackView.contains(subtitleLabel) {
-//                titleContentStackView.addArrangedSubview(subtitleLabel)
-//            }
-//            subtitleLabel.text = viewModel.subtitle
-//            subtitleLabel.isHidden = false
-//        } else {
-//            if titleContentStackView.contains(subtitleLabel) {
-//                titleContentStackView.removeArrangedSubview(subtitleLabel)
-//                subtitleLabel.isHidden = true
-//            }
-//        }
         releaseDateLabel.text = viewModel.releaseDate
-
-//        voteAverageView.voteValue = viewModel.voteAverage
 
         overviewLabel.text = viewModel.overview
     }
@@ -149,6 +122,10 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
             self.configureUI()
             self.userInterfaceHelper?.hideRetryView()
             self.viewModel?.saveVisitedMovie()
+        }, on: .main)
+        viewModel?.movieDetailTitleRenderContent.bindAndFire({ [weak self] renderContent in
+            guard let self, let renderContent else { return }
+            self.coordinator?.embedMovieDetailTitle(on: self, in: self.titleContainerView, with: renderContent)
         }, on: .main)
         viewModel?.showGenreName.bindAndFire({ [weak self] genreName in
             self?.genreLabel.text = genreName

@@ -96,20 +96,22 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
 
     func embedMovieDetailTitle(on parentViewController: UIViewController,
                                in containerView: UIView) {
-        embedMovieDetailTitle(on: parentViewController, in: containerView, movie: nil)
+        embedMovieDetailTitle(on: parentViewController,
+                              in: containerView,
+                              with: nil)
     }
 
     func embedMovieDetailTitle(on parentViewController: UIViewController,
                                in containerView: UIView,
-                               movie: Movie?) {
+                               with renderContent: MovieDetailTitleRenderContent?) {
+        let viewModel = MovieDetailTitleViewModel(renderContent)
         guard movieDetailTitleViewController == nil else {
-            let viewModel: MovieDetailTitleViewModelProtocol = MovieDetailTitleViewModel(movie: movie)
             movieDetailTitleViewController?.update(with: viewModel)
             return
         }
         let viewController = MovieDetailTitleViewController.instantiate()
 
-        viewController.viewModel = MovieDetailTitleViewModel(movie: movie)
+        viewController.viewModel = viewModel
         parentViewController.add(asChildViewController: viewController, containerView: containerView)
 
         self.movieDetailTitleViewController = viewController
