@@ -31,6 +31,11 @@ final class MovieDetailOptionsViewController: UIViewController, Storyboarded {
         configureMovieOptions()
     }
 
+    func update(with viewModel: MovieDetailOptionsViewModelProtocol) {
+        self.viewModel = viewModel
+        configureMovieOptions()
+    }
+
     // MARK: - Private
 
     private func configureMovieOptions() {

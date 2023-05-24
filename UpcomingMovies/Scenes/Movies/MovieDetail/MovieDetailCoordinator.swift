@@ -16,6 +16,7 @@ enum MovieDetailInfo {
 
 }
 
+// TODO: - Adds unit tests for MovieDetailCoordinator
 final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProtocol {
 
     private let movieInfo: MovieDetailInfo
@@ -77,7 +78,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
                                 with backdropURL: URL?,
                                 and posterURL: URL?) {
         guard movieDetailPosterViewController == nil else {
-            let viewModel = MovieDetailPosterViewModel(backdropURL: backdropURL, posterURL: posterURL)
+            let viewModel: MovieDetailPosterViewModelProtocol = DIContainer.shared.resolve(arguments: backdropURL, posterURL)
             movieDetailPosterViewController?.update(with: viewModel)
             return
         }
@@ -93,9 +94,18 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
     }
 
     func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
+                                 in containerView: UIView) {
+        embedMovieDetailOptions(on: parentViewController, in: containerView, with: [])
+    }
+
+    func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
                                  in containerView: UIView,
                                  with options: [MovieDetailOption]) {
-        guard movieDetailOptionsViewController == nil else { return }
+        guard movieDetailOptionsViewController == nil else {
+            let viewModel: MovieDetailOptionsViewModelProtocol = DIContainer.shared.resolve(argument: options)
+            movieDetailOptionsViewController?.update(with: viewModel)
+            return
+        }
 
         let viewController = MovieDetailOptionsViewController.instantiate()
 
