@@ -21,7 +21,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     let startLoading = BehaviorBindable(false).eraseToAnyBindable()
 
     let showGenreName = BehaviorBindable("-").eraseToAnyBindable()
-    let showGenresNames = BehaviorBindable("").eraseToAnyBindable()
+    let showGenresNames = BehaviorBindable<String?>(nil).eraseToAnyBindable()
 
     let didSetupMovieDetail = BehaviorBindable(false).eraseToAnyBindable()
 
@@ -120,7 +120,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         interactor.findGenres(for: genreIds, completion: { [weak self] result in
             guard let self = self else { return }
             let genres = try? result.get()
-            self.showGenresNames.value = (genres?.compactMap { $0.name }.joined(separator: " • ") ?? "")
+            self.showGenresNames.value = genres?.compactMap { $0.name }.joined(separator: " • ")
         })
     }
 

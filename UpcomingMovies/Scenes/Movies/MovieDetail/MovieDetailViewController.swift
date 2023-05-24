@@ -155,7 +155,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         }, on: .main)
         viewModel?.showGenresNames.bindAndFire({ [weak self] genresNames in
             guard let self else { return }
-            guard !genresNames.isEmpty else {
+            guard let genresNames else {
                 if self.titleContentStackView.contains(self.genresLabel) {
                     self.titleContentStackView.removeArrangedSubview(self.genresLabel)
                     self.genresLabel.isHidden = true
