@@ -602,6 +602,97 @@
             </objects>
             <point key="canvasLocation" x="3073" y="307"/>
         </scene>
+        <!--Movie Detail Title View Controller-->
+        <scene sceneID="cga-Ia-GJP">
+            <objects>
+                <viewController storyboardIdentifier="MovieDetailTitleViewController" id="RHG-Or-7Mv" customClass="MovieDetailTitleViewController" customModule="UpcomingMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="feG-zs-eID">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="104.66666666666667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="L1v-1W-Osp" userLabel="Title View">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="104.66666666666667"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="xaT-CB-UHM">
+                                        <rect key="frame" x="16" y="16" width="301" height="72.666666666666671"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Movie" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2H-6z-1N1" userLabel="Title Label">
+                                                <rect key="frame" x="0.0" y="0.0" width="301" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIf-nz-hfn" userLabel="Genres Label">
+                                                <rect key="frame" x="0.0" y="28" width="301" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7r-FB-BUB" userLabel="Subtitle Label">
+                                                <rect key="frame" x="0.0" y="52.333333333333329" width="301" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uju-Cx-KsU" customClass="VoteAverageView" customModule="UpcomingMovies" customModuleProvider="target">
+                                        <rect key="frame" x="333" y="30.333333333333329" width="44" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="rwY-Vh-KRh"/>
+                                            <constraint firstAttribute="width" secondItem="uju-Cx-KsU" secondAttribute="height" multiplier="1:1" id="sYB-Z4-38g"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layerLineWidth">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layerStartAngle">
+                                                <real key="value" value="270"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundLayerColor">
+                                                <color key="value" systemColor="systemGrayColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="loadedLayerColor">
+                                                <color key="value" name="VoteAverageFill"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="pJQ-Ls-ydR"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="pJQ-Ls-ydR" firstAttribute="trailing" secondItem="uju-Cx-KsU" secondAttribute="trailing" constant="16" id="8lb-Eo-eSG"/>
+                                    <constraint firstItem="xaT-CB-UHM" firstAttribute="leading" secondItem="pJQ-Ls-ydR" secondAttribute="leading" constant="16" id="M6q-17-RO8"/>
+                                    <constraint firstItem="uju-Cx-KsU" firstAttribute="centerY" secondItem="L1v-1W-Osp" secondAttribute="centerY" id="RkJ-JU-9o1"/>
+                                    <constraint firstAttribute="bottom" secondItem="xaT-CB-UHM" secondAttribute="bottom" constant="16" id="dxE-Gw-Xn8"/>
+                                    <constraint firstItem="uju-Cx-KsU" firstAttribute="leading" secondItem="xaT-CB-UHM" secondAttribute="trailing" constant="16" id="oZK-zw-DwR"/>
+                                    <constraint firstItem="xaT-CB-UHM" firstAttribute="top" secondItem="L1v-1W-Osp" secondAttribute="top" constant="16" id="tUI-jt-NhG"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="NOv-az-kWH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="L1v-1W-Osp" firstAttribute="leading" secondItem="NOv-az-kWH" secondAttribute="leading" id="2cm-Zf-wli"/>
+                            <constraint firstItem="L1v-1W-Osp" firstAttribute="top" secondItem="feG-zs-eID" secondAttribute="top" id="DVH-YX-8CK"/>
+                            <constraint firstAttribute="bottom" secondItem="L1v-1W-Osp" secondAttribute="bottom" id="cbq-wK-7rY"/>
+                            <constraint firstAttribute="trailing" secondItem="L1v-1W-Osp" secondAttribute="trailing" id="fl8-Zc-mRn"/>
+                        </constraints>
+                    </view>
+                    <size key="freeformSize" width="393" height="104.67"/>
+                    <connections>
+                        <outlet property="genresLabel" destination="WIf-nz-hfn" id="kmJ-2z-lgK"/>
+                        <outlet property="subtitleLabel" destination="T7r-FB-BUB" id="1fK-5B-8tn"/>
+                        <outlet property="titleContentStackView" destination="xaT-CB-UHM" id="kSq-2F-iaY"/>
+                        <outlet property="titleLabel" destination="j2H-6z-1N1" id="a8V-Gt-7dU"/>
+                        <outlet property="voteAverageView" destination="uju-Cx-KsU" id="vIi-aG-885"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vtC-Jp-JjT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3073" y="485"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CollapsibleArrow" width="33" height="33"/>
