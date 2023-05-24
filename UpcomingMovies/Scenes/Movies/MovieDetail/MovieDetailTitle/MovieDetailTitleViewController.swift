@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieDetailTitleViewController: UIViewController, Storyboarded {
+final class MovieDetailTitleViewController: UIViewController, Storyboarded {
 
     @IBOutlet private weak var titleContentStackView: UIStackView!
     @IBOutlet private weak var titleLabel: UILabel!

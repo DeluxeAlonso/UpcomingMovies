@@ -28,10 +28,10 @@ final class MovieDetailTitleViewModel: MovieDetailTitleViewModelProtocol {
         self.voteAverage = voteAverage
     }
 
-    init(movie: Movie) {
-        self.title = movie.title
-        self.subtitle = movie.releaseDate
-        self.voteAverage = movie.voteAverage
+    init(movie: Movie?) {
+        self.title = movie?.title ?? ""
+        self.subtitle = movie?.releaseDate
+        self.voteAverage = movie?.voteAverage
     }
 
 }

@@ -105,6 +105,12 @@ protocol MovieDetailCoordinatorProtocol: AnyObject {
                                 with backdropURL: URL?,
                                 and posterURL: URL?)
 
+    func embedMovieDetailTitle(on parentViewController: UIViewController,
+                               in containerView: UIView)
+    func embedMovieDetailTitle(on parentViewController: UIViewController,
+                               in containerView: UIView,
+                               movie: Movie?)
+
     func showActionSheet(title: String?, message: String?, actions: [UIAlertAction])
 
 }
