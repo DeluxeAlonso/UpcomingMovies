@@ -104,8 +104,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
     func embedMovieDetailTitle(on parentViewController: UIViewController,
                                in containerView: UIView,
                                with renderContent: MovieDetailTitleRenderContent?) {
-        let interactor: MovieDetailInteractorProtocol = DIContainer.shared.resolve()
-        let viewModel = MovieDetailTitleViewModel(renderContent, interactor: interactor)
+        let viewModel: MovieDetailTitleViewModelProtocol = DIContainer.shared.resolve(argument: renderContent)
         guard movieDetailTitleViewController == nil else {
             movieDetailTitleViewController?.update(with: viewModel)
             return
