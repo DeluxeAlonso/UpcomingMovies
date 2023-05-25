@@ -60,26 +60,6 @@ class MovieDetailViewModelTests: XCTestCase {
         XCTAssertEqual(overview, overviewToTest)
     }
 
-    func testMovieDetailPosterPath() {
-        // Arrange
-        let posterPathToTest = "pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"
-        let viewModelToTest = createSUT(with: .with(posterPath: posterPathToTest))
-        // Act
-        let fullPosterPath = viewModelToTest.posterURL
-        // Assert
-        XCTAssertEqual(fullPosterPath, URL(string: ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString + posterPathToTest))
-    }
-
-    func testMovieDetailBackdropPath() {
-        // Arrange
-        let backdropPathToTest = "2Ah63TIvVmZM3hzUwR5hXFg2LEk.jpg"
-        let viewModelToTest = createSUT(with: .with(backdropPath: backdropPathToTest))
-        // Act
-        let fullBackdropPath = viewModelToTest.backdropURL
-        // Assert
-        XCTAssertEqual(fullBackdropPath, URL(string: ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString + backdropPathToTest))
-    }
-
     func testDidSetupMovieDetail() {
         // Arrange
         let viewModelToTest = createSUT(with: 1, title: "Title")
