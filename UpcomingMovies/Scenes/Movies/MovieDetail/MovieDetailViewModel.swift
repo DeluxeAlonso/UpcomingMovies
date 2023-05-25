@@ -21,7 +21,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     let startLoading = BehaviorBindable(false).eraseToAnyBindable()
 
     let showGenreName = BehaviorBindable("-").eraseToAnyBindable()
-    let showGenresNames = BehaviorBindable("").eraseToAnyBindable()
+    let showGenresNames = BehaviorBindable<String?>(nil).eraseToAnyBindable()
 
     let didSetupMovieDetail = BehaviorBindable(false).eraseToAnyBindable()
 
@@ -31,7 +31,9 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     let didSelectShareAction = PublishBindable<Bool>().eraseToAnyBindable()
 
-    let movieAccountState: AnyBehaviorBindable<MovieAccountStateModel?> = BehaviorBindable(nil).eraseToAnyBindable()
+    let movieAccountState = BehaviorBindable<MovieAccountStateModel?>(nil).eraseToAnyBindable()
+
+    let movieDetailTitleRenderContent = BehaviorBindable<MovieDetailTitleRenderContent?>(nil).eraseToAnyBindable()
 
     // MARK: - Properties
 
@@ -100,11 +102,9 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         backdropURL = movie.backdropURL
 
         getMovieGenreName(for: movie.genreIds?.first)
-        if FeatureFlags.shared.showRedesignedMovieDetailScreen {
-            getMoviesGenresNames(for: movie.genreIds ?? [])
-        }
 
         didSetupMovieDetail.value = true
+        movieDetailTitleRenderContent.value = MovieDetailTitleRenderContent(movie: movie)
     }
 
     private func getMovieGenreName(for genreId: Int?) {
@@ -113,14 +113,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             guard let self = self else { return }
             let genre = try? result.get()
             self.showGenreName.value = genre?.name ?? "-"
-        })
-    }
-
-    private func getMoviesGenresNames(for genreIds: [Int]) {
-        interactor.findGenres(for: genreIds, completion: { [weak self] result in
-            guard let self = self else { return }
-            let genres = try? result.get()
-            self.showGenresNames.value = (genres?.compactMap { $0.name }.joined(separator: " • ") ?? "")
         })
     }
 

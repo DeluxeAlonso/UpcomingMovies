@@ -22,6 +22,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
     private let movieInfo: MovieDetailInfo
 
     private var movieDetailPosterViewController: MovieDetailPosterViewController?
+    private var movieDetailTitleViewController: MovieDetailTitleViewController?
     private var movieDetailOptionsViewController: MovieDetailOptionsViewController?
 
     // MARK: - Initializers
@@ -91,6 +92,31 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         parentViewController.add(asChildViewController: viewController, containerView: containerView)
 
         self.movieDetailPosterViewController = viewController
+    }
+
+    func embedMovieDetailTitle(on parentViewController: UIViewController,
+                               in containerView: UIView) {
+        embedMovieDetailTitle(on: parentViewController,
+                              in: containerView,
+                              with: nil)
+    }
+
+    var viewModel: MovieDetailTitleViewModelProtocol?
+    func embedMovieDetailTitle(on parentViewController: UIViewController,
+                               in containerView: UIView,
+                               with renderContent: MovieDetailTitleRenderContent?) {
+        let viewModel: MovieDetailTitleViewModelProtocol = DIContainer.shared.resolve(argument: renderContent)
+        self.viewModel = viewModel
+        guard movieDetailTitleViewController == nil else {
+            movieDetailTitleViewController?.update(with: viewModel)
+            return
+        }
+        let viewController = MovieDetailTitleViewController.instantiate()
+
+        viewController.viewModel = viewModel
+        parentViewController.add(asChildViewController: viewController, containerView: containerView)
+
+        self.movieDetailTitleViewController = viewController
     }
 
     func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,

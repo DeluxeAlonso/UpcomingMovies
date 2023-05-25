@@ -13,10 +13,8 @@ protocol MovieDetailViewModelProtocol {
 
     var id: Int { get }
     var title: String { get }
-    var subtitle: String? { get }
     var releaseDate: String? { get }
     var overview: String? { get }
-    var voteAverage: Double? { get }
     var posterURL: URL? { get }
     var backdropURL: URL? { get }
     var movieDetailOptions: [MovieDetailOption] { get }
@@ -26,13 +24,14 @@ protocol MovieDetailViewModelProtocol {
 
     var startLoading: AnyBehaviorBindable<Bool> { get }
     var showGenreName: AnyBehaviorBindable<String> { get }
-    var showGenresNames: AnyBehaviorBindable<String> { get }
     var didSetupMovieDetail: AnyBehaviorBindable<Bool> { get }
     var showSuccessAlert: AnyPublishBindable<String> { get }
     var showErrorAlert: AnyPublishBindable<Error> { get }
     var showErrorRetryView: AnyPublishBindable<Error> { get }
     var didSelectShareAction: AnyPublishBindable<Bool> { get }
     var movieAccountState: AnyBehaviorBindable<MovieAccountStateModel?> { get }
+
+    var movieDetailTitleRenderContent: AnyBehaviorBindable<MovieDetailTitleRenderContent?> { get }
 
     func getAvailableAlertActions() -> [MovieDetailActionModel]
 
@@ -104,6 +103,12 @@ protocol MovieDetailCoordinatorProtocol: AnyObject {
                                 in containerView: UIView,
                                 with backdropURL: URL?,
                                 and posterURL: URL?)
+
+    func embedMovieDetailTitle(on parentViewController: UIViewController,
+                               in containerView: UIView)
+    func embedMovieDetailTitle(on parentViewController: UIViewController,
+                               in containerView: UIView,
+                               with renderContent: MovieDetailTitleRenderContent?)
 
     func showActionSheet(title: String?, message: String?, actions: [UIAlertAction])
 

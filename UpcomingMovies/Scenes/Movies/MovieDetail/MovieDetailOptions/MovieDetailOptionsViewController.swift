@@ -28,17 +28,17 @@ final class MovieDetailOptionsViewController: UIViewController, Storyboarded {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureMovieOptions()
+        configureUI()
     }
 
     func update(with viewModel: MovieDetailOptionsViewModelProtocol) {
         self.viewModel = viewModel
-        configureMovieOptions()
+        configureUI()
     }
 
     // MARK: - Private
 
-    private func configureMovieOptions() {
+    private func configureUI() {
         guard let viewModel else { return }
         if !optionsStackView.arrangedSubviews.isEmpty {
             optionsStackView.arrangedSubviews.forEach(self.optionsStackView.removeArrangedSubview)

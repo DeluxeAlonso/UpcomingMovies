@@ -29,7 +29,6 @@ final class MovieDetailInteractor: MovieDetailInteractorProtocol {
         authHandler.isUserSignedIn()
     }
 
-    // TODO MAKE GENRE NOT OPTIONAL AND USE WRAPPED VALUE IN findGenres METHOD
     func findGenre(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void) {
         genreUseCase.find(with: id, completion: completion)
     }

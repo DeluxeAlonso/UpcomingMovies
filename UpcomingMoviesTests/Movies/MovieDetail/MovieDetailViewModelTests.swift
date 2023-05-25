@@ -60,16 +60,6 @@ class MovieDetailViewModelTests: XCTestCase {
         XCTAssertEqual(overview, overviewToTest)
     }
 
-    func testMovieDetailVoteAverage() {
-        // Arrange
-        let voteAverageToTest = 4.5
-        let viewModelToTest = createSUT(with: .with(voteAverage: voteAverageToTest))
-        // Act
-        let voteAverage = viewModelToTest.voteAverage
-        // Assert
-        XCTAssertEqual(voteAverage, voteAverageToTest)
-    }
-
     func testMovieDetailPosterPath() {
         // Arrange
         let posterPathToTest = "pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"
