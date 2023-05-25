@@ -14,6 +14,7 @@ protocol MovieDetailTitleViewModelProtocol {
     var subtitle: String? { get }
     var voteAverage: Double? { get }
 
+    var showSubtitle: AnyBehaviorBindable<String?> { get }
     var showGenresNames: AnyBehaviorBindable<String?> { get }
 
 }
@@ -25,6 +26,7 @@ final class MovieDetailTitleViewModel: MovieDetailTitleViewModelProtocol {
     let voteAverage: Double?
     let genreIds: [Int]
 
+    let showSubtitle = BehaviorBindable<String?>(nil).eraseToAnyBindable()
     let showGenresNames = BehaviorBindable<String?>(nil).eraseToAnyBindable()
 
     private let interactor: MovieDetailInteractorProtocol
@@ -40,6 +42,8 @@ final class MovieDetailTitleViewModel: MovieDetailTitleViewModelProtocol {
         if FeatureFlags.shared.showRedesignedMovieDetailScreen {
             getMoviesGenresNames(for: genreIds)
         }
+
+        showSubtitle.value = FeatureFlags.shared.showRedesignedMovieDetailScreen ? subtitle : nil
     }
 
     private func getMoviesGenresNames(for genreIds: [Int]) {

@@ -29,6 +29,7 @@ final class MovieDetailTitleViewController: UIViewController, Storyboarded {
     func update(with viewModel: MovieDetailTitleViewModelProtocol) {
         self.viewModel = viewModel
         configureUI()
+        setupBindables()
     }
 
     private func setupUI() {
@@ -43,17 +44,20 @@ final class MovieDetailTitleViewController: UIViewController, Storyboarded {
     }
 
     private func setupBindables() {
-        viewModel?.showGenresNames.bindAndFire({ [weak self] genresNames in
+        viewModel?.showSubtitle.bindAndFire({ [weak self] subtitle in
             guard let self else { return }
-            guard let genresNames else {
-                if self.titleContentStackView.contains(self.genresLabel) {
-                    self.titleContentStackView.removeArrangedSubview(self.genresLabel)
-                    self.genresLabel.isHidden = true
-                }
+            guard let subtitle else {
+                self.subtitleLabel.isHidden = true
                 return
             }
-            if !self.titleContentStackView.contains(self.genresLabel) {
-                self.titleContentStackView.addArrangedSubview(self.genresLabel)
+            self.subtitleLabel.text = subtitle
+            self.subtitleLabel.isHidden = false
+        }, on: .main)
+        viewModel?.showGenresNames.bindAndFire({ [weak self] genresNames in
+            guard let self else { return }
+            guard let genresNames, !genresNames.isEmpty else {
+                self.genresLabel.isHidden = true
+                return
             }
             self.genresLabel.text = genresNames
             self.genresLabel.isHidden = false
@@ -63,19 +67,6 @@ final class MovieDetailTitleViewController: UIViewController, Storyboarded {
     private func configureUI() {
         titleLabel.text = viewModel?.title
         titleLabel.text = viewModel?.title
-        if FeatureFlags.shared.showRedesignedMovieDetailScreen {
-            if !titleContentStackView.contains(subtitleLabel) {
-                titleContentStackView.addArrangedSubview(subtitleLabel)
-            }
-            subtitleLabel.text = viewModel?.subtitle
-            subtitleLabel.isHidden = false
-        } else {
-            if titleContentStackView.contains(subtitleLabel) {
-                titleContentStackView.removeArrangedSubview(subtitleLabel)
-                subtitleLabel.isHidden = true
-            }
-        }
-
         voteAverageView.voteValue = viewModel?.voteAverage
     }
 
