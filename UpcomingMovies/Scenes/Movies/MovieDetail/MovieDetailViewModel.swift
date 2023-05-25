@@ -43,7 +43,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var overview: String?
     private(set) var voteAverage: Double?
     private(set) var posterURL: URL?
-    private(set) var backdropURL: URL?
     private(set) var movieDetailOptions: [MovieDetailOption]
 
     private var needsFetch: Bool
@@ -95,7 +94,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         voteAverage = movie.voteAverage
         overview = movie.overview
         posterURL = movie.posterURL
-        backdropURL = movie.backdropURL
 
         getMovieGenreName(for: movie.genreIds?.first)
 
