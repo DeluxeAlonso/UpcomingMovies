@@ -53,20 +53,5 @@ final class MovieDetailTitleViewModel: MovieDetailTitleViewModelProtocol {
             self.showGenresNames.value = genres?.compactMap { $0.name }.joined(separator: " • ")
         })
     }
-}
-
-struct MovieDetailTitleRenderContent {
-
-    let title: String
-    let releaseDate: String?
-    let voteAverage: Double?
-    let genreIds: [Int]
-
-    init(movie: Movie) {
-        self.title = movie.title
-        self.releaseDate = movie.releaseDate
-        self.voteAverage = movie.voteAverage
-        self.genreIds = movie.genreIds ?? []
-    }
 
 }

@@ -21,7 +21,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     let startLoading = BehaviorBindable(false).eraseToAnyBindable()
 
     let showGenreName = BehaviorBindable("-").eraseToAnyBindable()
-    let showGenresNames = BehaviorBindable<String?>(nil).eraseToAnyBindable()
 
     let didSetupMovieDetail = BehaviorBindable(false).eraseToAnyBindable()
 
@@ -45,10 +44,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var posterURL: URL?
     private(set) var backdropURL: URL?
     private(set) var movieDetailOptions: [MovieDetailOption]
-
-    var subtitle: String? {
-        releaseDate
-    }
 
     private var needsFetch: Bool
 
