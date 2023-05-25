@@ -53,4 +53,5 @@ final class MovieDetailTitleViewModel: MovieDetailTitleViewModelProtocol {
             self.showGenresNames.value = genres?.compactMap { $0.name }.joined(separator: " • ")
         })
     }
+
 }

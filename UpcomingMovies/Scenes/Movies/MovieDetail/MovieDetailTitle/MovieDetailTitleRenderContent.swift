@@ -6,18 +6,20 @@
 //  Copyright © 2023 Alonso. All rights reserved.
 //
 
+import UpcomingMoviesDomain
+
 struct MovieDetailTitleRenderContent {
 
     let title: String
     let releaseDate: String?
     let voteAverage: Double?
-    let genreIds: [Int]
+    let genreIds: [Int]?
 
     init(movie: Movie) {
         self.title = movie.title
         self.releaseDate = movie.releaseDate
         self.voteAverage = movie.voteAverage
-        self.genreIds = movie.genreIds ?? []
+        self.genreIds = movie.genreIds
     }
 
 }
