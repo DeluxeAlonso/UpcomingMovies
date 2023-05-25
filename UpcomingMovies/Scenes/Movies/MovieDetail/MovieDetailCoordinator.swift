@@ -71,21 +71,21 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
     }
 
     func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate, in containerView: UIView) {
-        embedMovieDetailPoster(on: parentViewController, in: containerView, with: nil, and: nil)
+        embedMovieDetailPoster(on: parentViewController, in: containerView, with: nil)
     }
 
     func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate,
                                 in containerView: UIView,
-                                with renderContent: MovieDetailPosterRenderContent) {
+                                with renderContent: MovieDetailPosterRenderContent?) {
+        let viewModel: MovieDetailPosterViewModelProtocol = DIContainer.shared.resolve(argument: renderContent)
         guard movieDetailPosterViewController == nil else {
-            let viewModel: MovieDetailPosterViewModelProtocol = DIContainer.shared.resolve(argument: renderContent)
             movieDetailPosterViewController?.update(with: viewModel)
             return
         }
 
         let viewController = MovieDetailPosterViewController.instantiate()
 
-        viewController.viewModel = DIContainer.shared.resolve(arguments: backdropURL, posterURL)
+        viewController.viewModel = viewModel
         viewController.delegate = parentViewController
 
         parentViewController.add(asChildViewController: viewController, containerView: containerView)
