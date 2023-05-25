@@ -12,7 +12,9 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var posterContainerView: UIView!
+
     @IBOutlet private weak var titleContainerView: UIView!
+    @IBOutlet private weak var titleContainerViewHeightConstraint: NSLayoutConstraint!
 
     @IBOutlet private weak var genreLabel: UILabel!
     @IBOutlet private weak var releaseDateLabel: UILabel!
@@ -61,6 +63,13 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
             return
         }
         viewModel.checkMovieAccountState()
+    }
+
+    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
+        super.preferredContentSizeDidChange(forChildContentContainer: container)
+        if let viewController = container as? MovieDetailTitleViewController {
+            titleContainerViewHeightConstraint?.constant = viewController.preferredContentSize.height
+        }
     }
 
     // MARK: - Private

@@ -285,6 +285,7 @@
                         <outlet property="releaseDateLabel" destination="slt-aQ-ofO" id="tNa-Gm-6GR"/>
                         <outlet property="scrollView" destination="QLg-25-1il" id="q22-P0-AtW"/>
                         <outlet property="titleContainerView" destination="OUk-3t-KmG" id="WFP-tX-4JH"/>
+                        <outlet property="titleContainerViewHeightConstraint" destination="iU5-92-oka" id="JRA-JH-Ch7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSa-lq-OS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
