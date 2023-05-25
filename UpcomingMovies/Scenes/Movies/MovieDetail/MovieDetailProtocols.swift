@@ -31,6 +31,7 @@ protocol MovieDetailViewModelProtocol {
     var didSelectShareAction: AnyPublishBindable<Bool> { get }
     var movieAccountState: AnyBehaviorBindable<MovieAccountStateModel?> { get }
 
+    var movieDetailPosterRenderContent: AnyBehaviorBindable<MovieDetailPosterRenderContent?> { get }
     var movieDetailTitleRenderContent: AnyBehaviorBindable<MovieDetailTitleRenderContent?> { get }
 
     func getAvailableAlertActions() -> [MovieDetailActionModel]

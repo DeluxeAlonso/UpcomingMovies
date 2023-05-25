@@ -32,6 +32,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     let movieAccountState = BehaviorBindable<MovieAccountStateModel?>(nil).eraseToAnyBindable()
 
+    let movieDetailPosterRenderContent = BehaviorBindable<MovieDetailPosterRenderContent?>(nil).eraseToAnyBindable()
     let movieDetailTitleRenderContent = BehaviorBindable<MovieDetailTitleRenderContent?>(nil).eraseToAnyBindable()
 
     // MARK: - Properties
@@ -99,6 +100,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         getMovieGenreName(for: movie.genreIds?.first)
 
         didSetupMovieDetail.value = true
+
+        movieDetailPosterRenderContent.value = MovieDetailPosterRenderContent(movie: movie)
         movieDetailTitleRenderContent.value = MovieDetailTitleRenderContent(movie: movie)
     }
 
