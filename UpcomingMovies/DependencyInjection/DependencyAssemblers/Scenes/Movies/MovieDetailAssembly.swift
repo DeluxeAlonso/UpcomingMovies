@@ -58,8 +58,8 @@ final class MovieDetailAssembly: Assembly {
 
         // MARK: - Movie detail poster
 
-        container.register(MovieDetailPosterViewModelProtocol.self) { (_, backdropURL: URL?, posterURL: URL?) in
-            return MovieDetailPosterViewModel(backdropURL: backdropURL, posterURL: posterURL)
+        container.register(MovieDetailPosterViewModelProtocol.self) { (_, renderContent: MovieDetailPosterRenderContent?) in
+            return MovieDetailPosterViewModel(renderContent)
         }
 
         // MARK: - Movie detail title

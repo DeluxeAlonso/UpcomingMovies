@@ -20,4 +20,9 @@ struct MovieDetailPosterViewModel: MovieDetailPosterViewModelProtocol {
     let backdropURL: URL?
     let posterURL: URL?
 
+    init(_ renderContent: MovieDetailPosterRenderContent?) {
+        self.backdropURL = renderContent?.backdropURL
+        self.posterURL = renderContent?.posterURL
+    }
+
 }
