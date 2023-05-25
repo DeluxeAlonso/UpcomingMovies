@@ -130,21 +130,6 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         viewModel?.showGenreName.bindAndFire({ [weak self] genreName in
             self?.genreLabel.text = genreName
         }, on: .main)
-        viewModel?.showGenresNames.bindAndFire({ [weak self] genresNames in
-//            guard let self else { return }
-//            guard let genresNames else {
-//                if self.titleContentStackView.contains(self.genresLabel) {
-//                    self.titleContentStackView.removeArrangedSubview(self.genresLabel)
-//                    self.genresLabel.isHidden = true
-//                }
-//                return
-//            }
-//            if !self.titleContentStackView.contains(self.genresLabel) {
-//                self.titleContentStackView.addArrangedSubview(self.genresLabel)
-//            }
-//            self.genresLabel.text = genresNames
-//            self.genresLabel.isHidden = false
-        }, on: .main)
         viewModel?.didSelectShareAction.bind({ [weak self] _ in
             self?.shareMovie()
         }, on: .main)

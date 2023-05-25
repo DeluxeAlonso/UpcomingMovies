@@ -23,6 +23,7 @@ final class MovieDetailTitleViewController: UIViewController, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindables()
     }
 
     func update(with viewModel: MovieDetailTitleViewModelProtocol) {
@@ -39,6 +40,24 @@ final class MovieDetailTitleViewController: UIViewController, Storyboarded {
 
         genresLabel.font = FontHelper.subheadLight
         genresLabel.adjustsFontForContentSizeCategory = true
+    }
+
+    private func setupBindables() {
+        viewModel?.showGenresNames.bindAndFire({ [weak self] genresNames in
+            guard let self else { return }
+            guard let genresNames else {
+                if self.titleContentStackView.contains(self.genresLabel) {
+                    self.titleContentStackView.removeArrangedSubview(self.genresLabel)
+                    self.genresLabel.isHidden = true
+                }
+                return
+            }
+            if !self.titleContentStackView.contains(self.genresLabel) {
+                self.titleContentStackView.addArrangedSubview(self.genresLabel)
+            }
+            self.genresLabel.text = genresNames
+            self.genresLabel.isHidden = false
+        }, on: .main)
     }
 
     private func configureUI() {
