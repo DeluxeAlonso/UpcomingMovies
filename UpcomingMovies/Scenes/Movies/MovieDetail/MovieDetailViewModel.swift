@@ -32,6 +32,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     let movieAccountState = BehaviorBindable<MovieAccountStateModel?>(nil).eraseToAnyBindable()
 
+    let movieDetailPosterRenderContent = BehaviorBindable<MovieDetailPosterRenderContent?>(nil).eraseToAnyBindable()
     let movieDetailTitleRenderContent = BehaviorBindable<MovieDetailTitleRenderContent?>(nil).eraseToAnyBindable()
 
     // MARK: - Properties
@@ -42,7 +43,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var overview: String?
     private(set) var voteAverage: Double?
     private(set) var posterURL: URL?
-    private(set) var backdropURL: URL?
     private(set) var movieDetailOptions: [MovieDetailOption]
 
     private var needsFetch: Bool
@@ -94,11 +94,12 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         voteAverage = movie.voteAverage
         overview = movie.overview
         posterURL = movie.posterURL
-        backdropURL = movie.backdropURL
 
         getMovieGenreName(for: movie.genreIds?.first)
 
         didSetupMovieDetail.value = true
+
+        movieDetailPosterRenderContent.value = MovieDetailPosterRenderContent(movie: movie)
         movieDetailTitleRenderContent.value = MovieDetailTitleRenderContent(movie: movie)
     }
 

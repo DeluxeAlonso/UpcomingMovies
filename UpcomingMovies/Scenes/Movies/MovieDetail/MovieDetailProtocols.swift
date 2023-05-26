@@ -15,8 +15,6 @@ protocol MovieDetailViewModelProtocol {
     var title: String { get }
     var releaseDate: String? { get }
     var overview: String? { get }
-    var posterURL: URL? { get }
-    var backdropURL: URL? { get }
     var movieDetailOptions: [MovieDetailOption] { get }
 
     var screenTitle: String { get }
@@ -31,6 +29,7 @@ protocol MovieDetailViewModelProtocol {
     var didSelectShareAction: AnyPublishBindable<Bool> { get }
     var movieAccountState: AnyBehaviorBindable<MovieAccountStateModel?> { get }
 
+    var movieDetailPosterRenderContent: AnyBehaviorBindable<MovieDetailPosterRenderContent?> { get }
     var movieDetailTitleRenderContent: AnyBehaviorBindable<MovieDetailTitleRenderContent?> { get }
 
     func getAvailableAlertActions() -> [MovieDetailActionModel]
@@ -101,8 +100,7 @@ protocol MovieDetailCoordinatorProtocol: AnyObject {
     func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate, in containerView: UIView)
     func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate,
                                 in containerView: UIView,
-                                with backdropURL: URL?,
-                                and posterURL: URL?)
+                                with renderContent: MovieDetailPosterRenderContent?)
 
     func embedMovieDetailTitle(on parentViewController: UIViewController,
                                in containerView: UIView)

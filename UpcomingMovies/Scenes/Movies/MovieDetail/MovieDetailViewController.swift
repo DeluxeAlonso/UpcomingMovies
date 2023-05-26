@@ -104,10 +104,6 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     private func configureUI() {
         guard let viewModel = viewModel else { return }
-
-        coordinator?.embedMovieDetailPoster(on: self, in: posterContainerView,
-                                            with: viewModel.backdropURL,
-                                            and: viewModel.posterURL)
         coordinator?.embedMovieDetailOptions(on: self,
                                              in: optionsContainerView,
                                              with: viewModel.movieDetailOptions)
@@ -131,6 +127,10 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
             self.configureUI()
             self.userInterfaceHelper?.hideRetryView()
             self.viewModel?.saveVisitedMovie()
+        }, on: .main)
+        viewModel?.movieDetailPosterRenderContent.bindAndFire({ [weak self] renderContent in
+            guard let self, let renderContent else { return }
+            self.coordinator?.embedMovieDetailPoster(on: self, in: self.titleContainerView, with: renderContent)
         }, on: .main)
         viewModel?.movieDetailTitleRenderContent.bindAndFire({ [weak self] renderContent in
             guard let self, let renderContent else { return }
