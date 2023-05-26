@@ -46,7 +46,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     var userInterfaceHelper: MovieDetailUIHelperProtocol?
     weak var coordinator: MovieDetailCoordinatorProtocol?
 
-    var transitionContainerView: UIView?
+    private(set) var transitionContainerView: UIView?
 
     // MARK: - Lifecycle
 
