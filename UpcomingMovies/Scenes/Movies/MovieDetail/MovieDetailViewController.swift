@@ -16,10 +16,11 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     @IBOutlet private weak var titleContainerView: UIView!
     @IBOutlet private weak var titleContainerViewHeightConstraint: NSLayoutConstraint!
 
+    @IBOutlet private weak var optionsContainerView: UIView!
+
     @IBOutlet private weak var genreLabel: UILabel!
     @IBOutlet private weak var releaseDateLabel: UILabel!
     @IBOutlet private weak var overviewLabel: UILabel!
-    @IBOutlet private weak var optionsContainerView: UIView!
 
     static var storyboardName: String = "MovieDetail"
 
