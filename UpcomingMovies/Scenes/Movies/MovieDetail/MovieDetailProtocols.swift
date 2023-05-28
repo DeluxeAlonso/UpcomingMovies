@@ -15,7 +15,6 @@ protocol MovieDetailViewModelProtocol {
     var title: String { get }
     var releaseDate: String? { get }
     var overview: String? { get }
-    var movieDetailOptions: [MovieDetailOption] { get }
 
     var screenTitle: String { get }
     var shareTitle: String { get }

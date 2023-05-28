@@ -44,7 +44,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var overview: String?
     private(set) var voteAverage: Double?
     private(set) var posterURL: URL?
-    private(set) var movieDetailOptions: [MovieDetailOption]
 
     private var needsFetch: Bool
 
@@ -65,7 +64,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
          factory: MovieDetailFactoryProtocol) {
         self.id = movie.id
         self.title = movie.title
-        self.movieDetailOptions = factory.options
 
         self.interactor = interactor
         self.factory = factory
@@ -80,7 +78,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
          factory: MovieDetailFactoryProtocol) {
         self.id = id
         self.title = title
-        self.movieDetailOptions = factory.options
 
         self.interactor = interactor
         self.factory = factory
