@@ -31,6 +31,7 @@ protocol MovieDetailViewModelProtocol {
 
     var movieDetailPosterRenderContent: AnyBehaviorBindable<MovieDetailPosterRenderContent?> { get }
     var movieDetailTitleRenderContent: AnyBehaviorBindable<MovieDetailTitleRenderContent?> { get }
+    var movieDetailOptionsRenderContent: AnyBehaviorBindable<MovieDetailOptionsRenderContent?> { get }
 
     func getAvailableAlertActions() -> [MovieDetailActionModel]
 

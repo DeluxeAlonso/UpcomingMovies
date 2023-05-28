@@ -18,4 +18,8 @@ struct MovieDetailOptionsViewModel: MovieDetailOptionsViewModelProtocol {
 
     let options: [MovieDetailOption]
 
+    init(_ renderContent: MovieDetailOptionsRenderContent) {
+        self.options = renderContent.options
+    }
+
 }
