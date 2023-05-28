@@ -96,7 +96,7 @@ protocol MovieDetailCoordinatorProtocol: AnyObject {
                                  in containerView: UIView)
     func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
                                  in containerView: UIView,
-                                 with options: [MovieDetailOption])
+                                 with renderContent: MovieDetailOptionsRenderContent?)
 
     func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate, in containerView: UIView)
     func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate,
