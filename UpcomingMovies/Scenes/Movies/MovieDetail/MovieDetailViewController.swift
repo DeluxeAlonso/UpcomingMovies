@@ -16,10 +16,11 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     @IBOutlet private weak var titleContainerView: UIView!
     @IBOutlet private weak var titleContainerViewHeightConstraint: NSLayoutConstraint!
 
+    @IBOutlet private weak var optionsContainerView: UIView!
+
     @IBOutlet private weak var genreLabel: UILabel!
     @IBOutlet private weak var releaseDateLabel: UILabel!
     @IBOutlet private weak var overviewLabel: UILabel!
-    @IBOutlet private weak var optionsContainerView: UIView!
 
     static var storyboardName: String = "MovieDetail"
 
@@ -45,7 +46,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
     var userInterfaceHelper: MovieDetailUIHelperProtocol?
     weak var coordinator: MovieDetailCoordinatorProtocol?
 
-    var transitionContainerView: UIView?
+    private(set) var transitionContainerView: UIView?
 
     // MARK: - Lifecycle
 
@@ -104,11 +105,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
 
     private func configureUI() {
         guard let viewModel = viewModel else { return }
-        coordinator?.embedMovieDetailOptions(on: self,
-                                             in: optionsContainerView,
-                                             with: viewModel.movieDetailOptions)
         releaseDateLabel.text = viewModel.releaseDate
-
         overviewLabel.text = viewModel.overview
     }
 
@@ -135,6 +132,10 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         viewModel?.movieDetailTitleRenderContent.bindAndFire({ [weak self] renderContent in
             guard let self, let renderContent else { return }
             self.coordinator?.embedMovieDetailTitle(on: self, in: self.titleContainerView, with: renderContent)
+        }, on: .main)
+        viewModel?.movieDetailOptionsRenderContent.bindAndFire({ [weak self] renderContent in
+            guard let self, let renderContent else { return }
+            self.coordinator?.embedMovieDetailOptions(on: self, in: self.optionsContainerView, with: renderContent)
         }, on: .main)
         viewModel?.showGenreName.bindAndFire({ [weak self] genreName in
             self?.genreLabel.text = genreName

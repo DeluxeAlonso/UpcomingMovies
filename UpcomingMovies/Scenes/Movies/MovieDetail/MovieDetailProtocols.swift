@@ -15,7 +15,6 @@ protocol MovieDetailViewModelProtocol {
     var title: String { get }
     var releaseDate: String? { get }
     var overview: String? { get }
-    var movieDetailOptions: [MovieDetailOption] { get }
 
     var screenTitle: String { get }
     var shareTitle: String { get }
@@ -31,6 +30,7 @@ protocol MovieDetailViewModelProtocol {
 
     var movieDetailPosterRenderContent: AnyBehaviorBindable<MovieDetailPosterRenderContent?> { get }
     var movieDetailTitleRenderContent: AnyBehaviorBindable<MovieDetailTitleRenderContent?> { get }
+    var movieDetailOptionsRenderContent: AnyBehaviorBindable<MovieDetailOptionsRenderContent?> { get }
 
     func getAvailableAlertActions() -> [MovieDetailActionModel]
 
@@ -95,7 +95,7 @@ protocol MovieDetailCoordinatorProtocol: AnyObject {
                                  in containerView: UIView)
     func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
                                  in containerView: UIView,
-                                 with options: [MovieDetailOption])
+                                 with renderContent: MovieDetailOptionsRenderContent?)
 
     func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate, in containerView: UIView)
     func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate,
