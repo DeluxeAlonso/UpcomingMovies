@@ -73,7 +73,7 @@ final class MovieDetailAssembly: Assembly {
 
         // MARK: - Movie detail options
 
-        container.register(MovieDetailOptionsViewModelProtocol.self) { (_, renderContent: MovieDetailOptionsRenderContent) in
+        container.register(MovieDetailOptionsViewModelProtocol.self) { (_, renderContent: MovieDetailOptionsRenderContent?) in
             return MovieDetailOptionsViewModel(renderContent)
         }
     }
