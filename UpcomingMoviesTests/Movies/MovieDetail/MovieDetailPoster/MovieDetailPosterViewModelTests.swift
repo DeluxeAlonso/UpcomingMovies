@@ -12,48 +12,26 @@ import XCTest
 
 final class MovieDetailPosterViewModelTests: XCTestCase {
 
-    func testMovieDetailTitle() {
+    func testMovieDetailBackdropURL() {
         // Arrange
-        let titleToTest = "Test 1"
-        let renderContent = MovieDetailTitleRenderContent(movie: Movie.with(title: titleToTest))
+        let backdropPathToTest = "pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"
+        let renderContent = MovieDetailPosterRenderContent(movie: Movie.with(backdropPath: backdropPathToTest))
         let viewModelToTest = createSUT(renderContent: renderContent)
         // Act
-        let title = viewModelToTest.title
+        let backdropURL = viewModelToTest.backdropURL
         // Assert
-        XCTAssertEqual(title, titleToTest)
+        XCTAssertEqual(backdropURL, URL(string: ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString + backdropPathToTest))
     }
 
-    func testMovieDetailSubtitle() {
+    func testMovieDetailPosterURL() {
         // Arrange
-        let releaseDateToTest = "Release Date"
-        let renderContent = MovieDetailTitleRenderContent(movie: Movie.with(releaseDate: releaseDateToTest))
+        let posterPathToTest = "pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"
+        let renderContent = MovieDetailPosterRenderContent(movie: Movie.with(posterPath: posterPathToTest))
         let viewModelToTest = createSUT(renderContent: renderContent)
         // Act
-        let subtitle = viewModelToTest.subtitle
+        let posterURL = viewModelToTest.posterURL
         // Assert
-        XCTAssertEqual(subtitle, releaseDateToTest)
-    }
-
-    func testMovieDetailVoteAverage() {
-        // Arrange
-        let voteAverageToTest = 5.0
-        let renderContent = MovieDetailTitleRenderContent(movie: Movie.with(voteAverage: voteAverageToTest))
-        let viewModelToTest = createSUT(renderContent: renderContent)
-        // Act
-        let voteAverage = viewModelToTest.voteAverage
-        // Assert
-        XCTAssertEqual(voteAverage, voteAverageToTest)
-    }
-
-    func testMovieDetailGenreIds() {
-        // Arrange
-        let genreIdsToTest = [1, 2, 3]
-        let renderContent = MovieDetailTitleRenderContent(movie: Movie.with(genreIds: genreIdsToTest))
-        let viewModelToTest = createSUT(renderContent: renderContent)
-        // Act
-        let genreIds = viewModelToTest.genreIds
-        // Assert
-        XCTAssertEqual(genreIds, genreIdsToTest)
+        XCTAssertEqual(posterURL, URL(string: ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString + posterPathToTest))
     }
 
     private func createSUT(renderContent: MovieDetailPosterRenderContent) -> MovieDetailPosterViewModel {
