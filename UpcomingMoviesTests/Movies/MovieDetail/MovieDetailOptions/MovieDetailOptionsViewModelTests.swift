@@ -12,31 +12,19 @@ import XCTest
 
 final class MovieDetailOptionsViewModelTests: XCTestCase {
 
-    func testMovieDetailBackdropURL() {
+    func testMovieDetailOptions() {
         // Arrange
-        let backdropPathToTest = "pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"
-        let renderContent = MovieDetailPosterRenderContent(movie: Movie.with(backdropPath: backdropPathToTest))
+        let optionsToTest: [MovieDetailOption] = [.reviews]
+        let renderContent = MovieDetailOptionsRenderContent(options: optionsToTest)
         let viewModelToTest = createSUT(renderContent: renderContent)
         // Act
-        let backdropURL = viewModelToTest.backdropURL
+        let options = viewModelToTest.options
         // Assert
-        XCTAssertEqual(backdropURL, URL(string: ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString + backdropPathToTest))
+        XCTAssertEqual(options, optionsToTest)
     }
 
-    func testMovieDetailPosterURL() {
-        // Arrange
-        let posterPathToTest = "pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"
-        let renderContent = MovieDetailPosterRenderContent(movie: Movie.with(posterPath: posterPathToTest))
-        let viewModelToTest = createSUT(renderContent: renderContent)
-        // Act
-        let posterURL = viewModelToTest.posterURL
-        // Assert
-        XCTAssertEqual(posterURL, URL(string: ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString + posterPathToTest))
-    }
-
-    private func createSUT(renderContent: MovieDetailPosterRenderContent) -> MovieDetailPosterViewModel {
-        MovieDetailPosterViewModel(renderContent)
+    private func createSUT(renderContent: MovieDetailOptionsRenderContent) -> MovieDetailOptionsViewModel {
+        MovieDetailOptionsViewModel(renderContent)
     }
 
 }
-
