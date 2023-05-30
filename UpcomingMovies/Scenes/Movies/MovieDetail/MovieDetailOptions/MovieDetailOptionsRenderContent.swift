@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 struct MovieDetailOptionsRenderContent {
 
     let options: [MovieDetailOption]
-    
+
     init(options: [MovieDetailOption]) {
         self.options = options
     }
