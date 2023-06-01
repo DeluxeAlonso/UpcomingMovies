@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieDetailOptionView: UIView {
+final class MovieDetailOptionView: UIView {
 
     private lazy var optionStackView: UIStackView = {
         let stackView = UIStackView()
