@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieDetailOptionView: UIView {
+final class MovieDetailOptionView: UIView {
 
     private lazy var optionStackView: UIStackView = {
         let stackView = UIStackView()
@@ -80,8 +80,7 @@ class MovieDetailOptionView: UIView {
 
     private func setupStackView() {
         addSubview(optionStackView)
-        optionStackView.fillSuperview(padding: .init(top: 8, left: 8,
-                                                     bottom: 8, right: 8))
+        optionStackView.fillSuperview(padding: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
 
         optionStackView.addArrangedSubview(optionImageView)
         optionStackView.addArrangedSubview(optionTitleLabel)
