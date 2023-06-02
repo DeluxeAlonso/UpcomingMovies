@@ -7,15 +7,19 @@
 //
 
 import XCTest
+import UIKit
+@testable import UpcomingMovies
 
 final class MovieDetailCoordinatorTests: XCTestCase {
 
+    var coordinator: MovieDetailCoordinator!
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        try super.tearDownWithError()
     }
 
     func testExample() throws {
@@ -31,6 +35,10 @@ final class MovieDetailCoordinatorTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+
+    private func createSUT(movieInfo: MovieDetailInfo) -> MovieDetailCoordinator {
+        MovieDetailCoordinator(navigationController: UINavigationController(), movieInfo: movieInfo)
     }
 
 }
