@@ -12,33 +12,29 @@ import UIKit
 
 final class MovieDetailCoordinatorTests: XCTestCase {
 
-    var coordinator: MovieDetailCoordinator!
+    var navigationController: MockNavigationController!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
+        navigationController = MockNavigationController()
     }
 
     override func tearDownWithError() throws {
+        navigationController = nil
         try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testShowSharingOptions() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        // Act
+        coordinator.showSharingOptions(withShareTitle: "Title")
+        // Assert
+        XCTAssertEqual(navigationController.presentCallCount, 1)
     }
 
     private func createSUT(movieInfo: MovieDetailInfo) -> MovieDetailCoordinator {
-        MovieDetailCoordinator(navigationController: UINavigationController(), movieInfo: movieInfo)
+        MovieDetailCoordinator(navigationController: navigationController, movieInfo: movieInfo)
     }
 
 }
