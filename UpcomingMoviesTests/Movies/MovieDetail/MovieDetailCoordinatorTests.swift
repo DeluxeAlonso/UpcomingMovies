@@ -24,6 +24,24 @@ final class MovieDetailCoordinatorTests: XCTestCase {
         try super.tearDownWithError()
     }
 
+    func testStartWithCompleteMovieInfo() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        // Act
+        coordinator.start()
+        // Assert
+        XCTAssertEqual(navigationController.pushViewControllerCallCount, 1)
+    }
+
+    func testStartWithPartialMovieInfo() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .partial(movieId: 1, movieTitle: "Title"))
+        // Act
+        coordinator.start()
+        // Assert
+        XCTAssertEqual(navigationController.pushViewControllerCallCount, 1)
+    }
+
     func testShowSharingOptions() {
         // Arrange
         let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
@@ -31,6 +49,71 @@ final class MovieDetailCoordinatorTests: XCTestCase {
         coordinator.showSharingOptions(withShareTitle: "Title")
         // Assert
         XCTAssertEqual(navigationController.presentCallCount, 1)
+    }
+
+    func testShowActionSheet() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        // Act
+        coordinator.showActionSheet(title: "Title", message: "message", actions: [.init(title: "action title", style: .default)])
+        // Assert
+        XCTAssertEqual(navigationController.presentCallCount, 1)
+    }
+
+    func testShowCreditsMovieOptions() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        // Act
+        coordinator.showMovieOption(.credits)
+        // Assert
+        XCTAssertEqual(coordinator.unwrappedParentCoordinator.childCoordinators.count, 1)
+        guard let childCoordinator = coordinator.unwrappedParentCoordinator.childCoordinators.first else {
+            XCTFail("No child coordinator available")
+            return
+        }
+        XCTAssertTrue(childCoordinator is MovieCreditsCoordinatorProtocol)
+    }
+
+    func testShowReviewsMovieOptions() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        // Act
+        coordinator.showMovieOption(.reviews)
+        // Assert
+        XCTAssertEqual(coordinator.unwrappedParentCoordinator.childCoordinators.count, 1)
+        guard let childCoordinator = coordinator.unwrappedParentCoordinator.childCoordinators.first else {
+            XCTFail("No child coordinator available")
+            return
+        }
+        XCTAssertTrue(childCoordinator is MovieReviewsCoordinatorProtocol)
+    }
+
+    func testShowVideosMovieOptions() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        // Act
+        coordinator.showMovieOption(.trailers)
+        // Assert
+        XCTAssertEqual(coordinator.unwrappedParentCoordinator.childCoordinators.count, 1)
+        guard let childCoordinator = coordinator.unwrappedParentCoordinator.childCoordinators.first else {
+            XCTFail("No child coordinator available")
+            return
+        }
+        XCTAssertTrue(childCoordinator is MovieVideosCoordinatorProtocol)
+    }
+
+    func testShowSimilarMoviesMovieOptions() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        // Act
+        coordinator.showMovieOption(.similarMovies)
+        // Assert
+        XCTAssertEqual(coordinator.unwrappedParentCoordinator.childCoordinators.count, 1)
+        guard let childCoordinator = coordinator.unwrappedParentCoordinator.childCoordinators.first else {
+            XCTFail("No child coordinator available")
+            return
+        }
+        XCTAssertTrue(childCoordinator is MovieListCoordinatorProtocol)
     }
 
     private func createSUT(movieInfo: MovieDetailInfo) -> MovieDetailCoordinator {
