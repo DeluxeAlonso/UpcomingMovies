@@ -24,11 +24,29 @@ final class MovieDetailCoordinatorTests: XCTestCase {
         try super.tearDownWithError()
     }
 
+    func testStart() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        // Act
+        coordinator.start()
+        // Assert
+        XCTAssertEqual(navigationController.pushViewControllerCallCount, 1)
+    }
+
     func testShowSharingOptions() {
         // Arrange
         let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
         // Act
         coordinator.showSharingOptions(withShareTitle: "Title")
+        // Assert
+        XCTAssertEqual(navigationController.presentCallCount, 1)
+    }
+
+    func testShowActionSheet() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        // Act
+        coordinator.showActionSheet(title: "Title", message: "message", actions: [.init(title: "action title", style: .default)])
         // Assert
         XCTAssertEqual(navigationController.presentCallCount, 1)
     }
