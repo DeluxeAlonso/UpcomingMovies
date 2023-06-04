@@ -29,9 +29,5 @@ jobs:
       run: pod install
     - name: Run unit tests
       run: bundle exec fastlane tests
-    - name: Generate lcov File
-      run: |
-        xcrun llvm-cov report $BUILD_FOLDER -instr-profile $PROFDATA_FOLDER
-        xcrun llvm-cov export -format="lcov" $BUILD_FOLDER -instr-profile $PROFDATA_FOLDER > $LCOV_PATH
     - name: Upload coverage
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v2
