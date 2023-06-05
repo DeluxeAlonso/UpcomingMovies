@@ -19,4 +19,5 @@ final class MockNavigationController: UINavigationController {
     override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
         presentCallCount += 1
     }
+
 }
