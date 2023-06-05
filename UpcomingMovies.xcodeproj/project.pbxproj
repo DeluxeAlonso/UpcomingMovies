@@ -332,6 +332,7 @@
 		E2C085B02616520400AC5383 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C085AF2616520400AC5383 /* ToastView.swift */; };
 		E2C085BA2616521100AC5383 /* ToastConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C085B92616521100AC5383 /* ToastConfigurationProtocol.swift */; };
 		E2C085C02616527400AC5383 /* UIView+ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C085BF2616527400AC5383 /* UIView+ToastView.swift */; };
+		E2C1D3FA2A2D999900D0670C /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1D3F92A2D999900D0670C /* MockViewController.swift */; };
 		E2C39A2624BA558F007938BC /* AccountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C39A2524BA558F007938BC /* AccountInteractor.swift */; };
 		E2C42E1424C3E8900047A8EF /* ProfileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C42E1324C3E8900047A8EF /* ProfileFactory.swift */; };
 		E2C42E1624C3F3FC0047A8EF /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C42E1524C3F3FC0047A8EF /* ProfileViewModelTests.swift */; };
@@ -791,6 +792,7 @@
 		E2C085AF2616520400AC5383 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		E2C085B92616521100AC5383 /* ToastConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastConfigurationProtocol.swift; sourceTree = "<group>"; };
 		E2C085BF2616527400AC5383 /* UIView+ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ToastView.swift"; sourceTree = "<group>"; };
+		E2C1D3F92A2D999900D0670C /* MockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
 		E2C39A2524BA558F007938BC /* AccountInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInteractor.swift; sourceTree = "<group>"; };
 		E2C42E1324C3E8900047A8EF /* ProfileFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFactory.swift; sourceTree = "<group>"; };
 		E2C42E1524C3F3FC0047A8EF /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
@@ -1651,6 +1653,7 @@
 				E279169F28F092C90092B592 /* SearchMoviesMockFactory.swift */,
 				E27F30F52999B74100ACBAE2 /* MockUserPreferencesHandler.swift */,
 				E2A076602A29B02F0089062F /* MockNavigationController.swift */,
+				E2C1D3F92A2D999900D0670C /* MockViewController.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -2976,6 +2979,7 @@
 				E29B74C7298A4A08001801D5 /* ProfileFactoryTests.swift in Sources */,
 				E2554E5E24B5898C0043C3EB /* UpcomingMoviesMockFactory.swift in Sources */,
 				E2EAEC5024CFC67100D89F04 /* CustomListsViewModelTests.swift in Sources */,
+				E2C1D3FA2A2D999900D0670C /* MockViewController.swift in Sources */,
 				E27916A028F092C90092B592 /* SearchMoviesMockFactory.swift in Sources */,
 				E220250224BEBFEA00465316 /* AccountMockFactory.swift in Sources */,
 				E2133F062A25CA680085C82D /* MovieDetailOptionsViewModelTests.swift in Sources */,

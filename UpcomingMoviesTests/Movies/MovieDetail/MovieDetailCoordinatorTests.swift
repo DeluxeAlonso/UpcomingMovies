@@ -76,7 +76,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testShowReviewsMovieOptions() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .partial(movieId: 1, movieTitle: "Title"))
         // Act
         coordinator.showMovieOption(.reviews)
         // Assert
@@ -114,6 +114,120 @@ final class MovieDetailCoordinatorTests: XCTestCase {
             return
         }
         XCTAssertTrue(childCoordinator is MovieListCoordinatorProtocol)
+    }
+
+    func testEmbedMovieDetailPoster() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let parentViewController = MockMovieDetailPosterViewControllerDelegate()
+        let containerView = UIView()
+        parentViewController.view.addSubview(containerView)
+        // Act
+        coordinator.embedMovieDetailPoster(on: parentViewController, in: containerView)
+        // Assert
+        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+    }
+
+    func testEmbedMovieDetailPosterWithRenderContent() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let parentViewController = MockMovieDetailPosterViewControllerDelegate()
+        let containerView = UIView()
+        parentViewController.view.addSubview(containerView)
+        // Act
+        coordinator.embedMovieDetailPoster(on: parentViewController, in: containerView, with: .init(movie: .with(id: 1)))
+        // Assert
+        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+    }
+
+    func testEmbedMovieDetailPosterShouldNotEmbedTwice() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let parentViewController = MockMovieDetailPosterViewControllerDelegate()
+        let containerView = UIView()
+        parentViewController.view.addSubview(containerView)
+        // Act
+        coordinator.embedMovieDetailPoster(on: parentViewController, in: containerView)
+        coordinator.embedMovieDetailPoster(on: parentViewController, in: containerView)
+        coordinator.embedMovieDetailPoster(on: parentViewController, in: containerView)
+        // Assert
+        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+    }
+
+    func testEmbedMovieDetailTitle() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let parentViewController = MockViewController()
+        let containerView = UIView()
+        parentViewController.view.addSubview(containerView)
+        // Act
+        coordinator.embedMovieDetailTitle(on: parentViewController, in: containerView)
+        // Assert
+        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+    }
+
+    func testEmbedMovieDetailTitleWithRenderContent() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let parentViewController = MockViewController()
+        let containerView = UIView()
+        parentViewController.view.addSubview(containerView)
+        // Act
+        coordinator.embedMovieDetailTitle(on: parentViewController, in: containerView, with: .init(movie: .with(id: 1)))
+        // Assert
+        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+    }
+
+    func testEmbedMovieDetailTitleShouldNotEmbedTwice() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let parentViewController = MockViewController()
+        let containerView = UIView()
+        parentViewController.view.addSubview(containerView)
+        // Act
+        coordinator.embedMovieDetailTitle(on: parentViewController, in: containerView)
+        coordinator.embedMovieDetailTitle(on: parentViewController, in: containerView)
+        coordinator.embedMovieDetailTitle(on: parentViewController, in: containerView)
+        // Assert
+        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+    }
+
+    func testEmbedMovieDetailOptions() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let parentViewController = MockMovieDetailOptionsViewControllerDelegate()
+        let containerView = UIView()
+        parentViewController.view.addSubview(containerView)
+        // Act
+        coordinator.embedMovieDetailOptions(on: parentViewController, in: containerView)
+        // Assert
+        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+    }
+
+    func testEmbedMovieDetailOptionsWithRenderContent() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let parentViewController = MockMovieDetailOptionsViewControllerDelegate()
+        let containerView = UIView()
+        parentViewController.view.addSubview(containerView)
+        // Act
+        coordinator.embedMovieDetailOptions(on: parentViewController, in: containerView, with: .init(options: []))
+        // Assert
+        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+    }
+
+    func testEmbedMovieDetailOptionsShouldNotEmbedTwice() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let parentViewController = MockMovieDetailOptionsViewControllerDelegate()
+        let containerView = UIView()
+        parentViewController.view.addSubview(containerView)
+        // Act
+        coordinator.embedMovieDetailOptions(on: parentViewController, in: containerView)
+        coordinator.embedMovieDetailOptions(on: parentViewController, in: containerView)
+        coordinator.embedMovieDetailOptions(on: parentViewController, in: containerView)
+        // Assert
+        XCTAssertEqual(parentViewController.addChildCallCount, 1)
     }
 
     private func createSUT(movieInfo: MovieDetailInfo) -> MovieDetailCoordinator {
