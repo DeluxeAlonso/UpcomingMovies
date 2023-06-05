@@ -116,6 +116,13 @@ final class MovieDetailCoordinatorTests: XCTestCase {
         XCTAssertTrue(childCoordinator is MovieListCoordinatorProtocol)
     }
 
+    func testEmbedMovieDetailPoster() {
+        // Arrange
+        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        // Act
+        coordinator.embedMovieDetailPoster(on: MovieDetailPosterViewControllerDelegate, in: <#T##UIView#>)
+    }
+
     private func createSUT(movieInfo: MovieDetailInfo) -> MovieDetailCoordinator {
         MovieDetailCoordinator(navigationController: navigationController, movieInfo: movieInfo)
     }

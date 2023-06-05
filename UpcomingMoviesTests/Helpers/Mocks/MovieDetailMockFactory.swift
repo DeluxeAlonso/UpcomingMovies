@@ -74,3 +74,12 @@ final class MockMovieDetailViewFactory: MovieDetailFactoryProtocol {
     var options: [MovieDetailOption] = []
 
 }
+
+final class MockMovieDetailPosterViewControllerDelegate: MockViewController, MovieDetailPosterViewControllerDelegate {
+
+    var transitionContainerViewCalled = 0
+    func movieDetailPosterViewController(_ movieDetailPosterViewController: UpcomingMovies.MovieDetailPosterViewController, transitionContainerView: UIView) {
+        transitionContainerViewCalled += 1
+    }
+
+}
