@@ -83,3 +83,12 @@ final class MockMovieDetailPosterViewControllerDelegate: MockViewController, Mov
     }
 
 }
+
+final class MockMovieDetailOptionsViewControllerDelegate: MockViewController, MovieDetailOptionsViewControllerDelegate {
+
+    var didSelectOptionCalled = 0
+    func movieDetailOptionsViewController(_ movieDetailOptionsViewController: UpcomingMovies.MovieDetailOptionsViewController, didSelectOption option: UpcomingMovies.MovieDetailOption) {
+        didSelectOptionCalled += 1
+    }
+
+}
