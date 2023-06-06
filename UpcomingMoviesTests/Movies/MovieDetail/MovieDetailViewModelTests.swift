@@ -107,6 +107,15 @@ class MovieDetailViewModelTests: XCTestCase {
         XCTAssertEqual(screenTitle, String(format: LocalizedStrings.movieDetailShareText(), titleToTest))
     }
 
+//    func testSaveVisitedMovie() {
+//        // Arrange
+//        let viewModelToTest = createSUT(with: 1, title: "Title")
+//        // Act
+//        viewModelToTest.saveVisitedMovie()
+//        // Assert
+//        mockInteractor.sa
+//    }
+
     // MARK: - Utils
 
     private func createSUT(with movie: UpcomingMoviesDomain.Movie) -> MovieDetailViewModelProtocol {
