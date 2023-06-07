@@ -186,16 +186,16 @@ class MovieDetailViewModelTests: XCTestCase {
     func testRemoveFromWatchlistAlertAction() {
         // Arrange
         let viewModelToTest = createSUT(with: 1, title: "Title")
-        viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: false))
-        let addToWatchListAction = viewModelToTest.getAvailableAlertActions().last
-        mockInteractor.addToWatchlistResult = .success(true)
+        viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: true))
+        let removeFromWatchListAction = viewModelToTest.getAvailableAlertActions().last
+        mockInteractor.removeFromWatchlistResult = .success(true)
         let expectation = XCTestExpectation(description: "showSuccessAlert event should be sent")
         viewModelToTest.showSuccessAlert.bind { message in
-            XCTAssertEqual(message, LocalizedStrings.addToWatchlistSuccess())
+            XCTAssertEqual(message, LocalizedStrings.removeFromWatchlistSuccess())
             expectation.fulfill()
         }
         // Act
-        addToWatchListAction?.action()
+        removeFromWatchListAction?.action()
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
