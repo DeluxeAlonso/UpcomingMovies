@@ -116,6 +116,90 @@ class MovieDetailViewModelTests: XCTestCase {
         XCTAssertEqual(mockInteractor.saveMovieVisitCallCount, 1)
     }
 
+    func testGetAvailableAlertActionsWithAccountStateWatchlistTrue() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: true))
+        // Act
+        let actions = viewModelToTest.getAvailableAlertActions()
+        // Assert
+        XCTAssertEqual(actions.count, 2)
+        XCTAssertEqual(actions.first?.title, LocalizedStrings.movieDetailShareActionTitle())
+        XCTAssertEqual(actions.last?.title, LocalizedStrings.removeFromWatchlistHint())
+    }
+
+    func testGetAvailableAlertActionsWithAccountStateWatchlistFalse() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: false))
+        // Act
+        let actions = viewModelToTest.getAvailableAlertActions()
+        // Assert
+        XCTAssertEqual(actions.count, 2)
+        XCTAssertEqual(actions.first?.title, LocalizedStrings.movieDetailShareActionTitle())
+        XCTAssertEqual(actions.last?.title, LocalizedStrings.addToWatchlistHint())
+    }
+
+    func testGetAvailableAlertActionsWithNoAccountState() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        viewModelToTest.movieAccountState.value = nil
+        // Act
+        let actions = viewModelToTest.getAvailableAlertActions()
+        // Assert
+        XCTAssertEqual(actions.count, 1)
+        XCTAssertEqual(actions.first?.title, LocalizedStrings.movieDetailShareActionTitle())
+    }
+
+    func testShareAlertAction() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        viewModelToTest.movieAccountState.value = nil
+        let shareAction = viewModelToTest.getAvailableAlertActions().first
+        let expectation = XCTestExpectation(description: "didSelectShareAction event should be sent")
+        viewModelToTest.didSelectShareAction.bind { _ in
+            expectation.fulfill()
+        }
+        // Act
+        shareAction?.action()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testAddToWatchlistAlertAction() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: false))
+        let addToWatchListAction = viewModelToTest.getAvailableAlertActions().last
+        mockInteractor.addToWatchlistResult = .success(true)
+        let expectation = XCTestExpectation(description: "showSuccessAlert event should be sent")
+        viewModelToTest.showSuccessAlert.bind { message in
+            XCTAssertEqual(message, LocalizedStrings.addToWatchlistSuccess())
+            expectation.fulfill()
+        }
+        // Act
+        addToWatchListAction?.action()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testRemoveFromWatchlistAlertAction() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: false))
+        let addToWatchListAction = viewModelToTest.getAvailableAlertActions().last
+        mockInteractor.addToWatchlistResult = .success(true)
+        let expectation = XCTestExpectation(description: "showSuccessAlert event should be sent")
+        viewModelToTest.showSuccessAlert.bind { message in
+            XCTAssertEqual(message, LocalizedStrings.addToWatchlistSuccess())
+            expectation.fulfill()
+        }
+        // Act
+        addToWatchListAction?.action()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
     // MARK: - Utils
 
     private func createSUT(with movie: UpcomingMoviesDomain.Movie) -> MovieDetailViewModelProtocol {
