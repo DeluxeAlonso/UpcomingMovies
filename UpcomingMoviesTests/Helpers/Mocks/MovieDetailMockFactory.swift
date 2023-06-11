@@ -96,20 +96,26 @@ final class MockMovieDetailViewFactory: MovieDetailFactoryProtocol {
 
 final class MockMovieDetailPosterViewControllerDelegate: MockViewController, MovieDetailPosterViewControllerDelegate {
 
-    var transitionContainerViewCalled = 0
+    var transitionContainerViewCallCount = 0
     func movieDetailPosterViewController(_ movieDetailPosterViewController: UpcomingMovies.MovieDetailPosterViewController,
                                          transitionContainerView: UIView) {
-        transitionContainerViewCalled += 1
+        transitionContainerViewCallCount += 1
     }
 
 }
 
 final class MockMovieDetailOptionsViewControllerDelegate: MockViewController, MovieDetailOptionsViewControllerDelegate {
 
-    var didSelectOptionCalled = 0
+    var didSelectOptionCallCount = 0
     func movieDetailOptionsViewController(_ movieDetailOptionsViewController: UpcomingMovies.MovieDetailOptionsViewController,
                                           didSelectOption option: UpcomingMovies.MovieDetailOption) {
-        didSelectOptionCalled += 1
+        didSelectOptionCallCount += 1
     }
+
+}
+
+final class MockMovieDetailOptionsViewModel: MovieDetailOptionsViewModelProtocol {
+
+    var options: [UpcomingMovies.MovieDetailOption] = []
 
 }
