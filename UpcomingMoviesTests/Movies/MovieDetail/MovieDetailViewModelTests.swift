@@ -166,7 +166,7 @@ class MovieDetailViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testAddToWatchlistAlertAction() {
+    func testAddToWatchlistAlertActionSuccess() {
         // Arrange
         let viewModelToTest = createSUT(with: 1, title: "Title")
         viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: false))
@@ -183,7 +183,25 @@ class MovieDetailViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testRemoveFromWatchlistAlertAction() {
+    func testAddToWatchlistAlertActionError() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: false))
+        let addToWatchListAction = viewModelToTest.getAvailableAlertActions().last
+        let errorToTest = APIError.badRequest
+        mockInteractor.addToWatchlistResult = .failure(errorToTest)
+        let expectation = XCTestExpectation(description: "showErrorAlert event should be sent")
+        viewModelToTest.showErrorAlert.bind { error in
+            XCTAssertEqual(error.localizedDescription, errorToTest.localizedDescription)
+            expectation.fulfill()
+        }
+        // Act
+        addToWatchListAction?.action()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testRemoveFromWatchlistAlertActionSuccess() {
         // Arrange
         let viewModelToTest = createSUT(with: 1, title: "Title")
         viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: true))
@@ -196,6 +214,120 @@ class MovieDetailViewModelTests: XCTestCase {
         }
         // Act
         removeFromWatchListAction?.action()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testRemoveFromWatchlistAlertActionError() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: true))
+        let removeFromWatchListAction = viewModelToTest.getAvailableAlertActions().last
+        let errorToTest = APIError.badRequest
+        mockInteractor.removeFromWatchlistResult = .failure(errorToTest)
+        let expectation = XCTestExpectation(description: "showErrorAlert event should be sent")
+        viewModelToTest.showErrorAlert.bind { error in
+            XCTAssertEqual(error.localizedDescription, errorToTest.localizedDescription)
+            expectation.fulfill()
+        }
+        // Act
+        removeFromWatchListAction?.action()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testHandleFavoriteMovieIsFavoriteNilValue() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        viewModelToTest.movieAccountState.value = nil
+        // Act
+        viewModelToTest.handleFavoriteMovie()
+        // Assert
+        XCTAssertEqual(mockInteractor.markMovieAsFavoriteCallCount, 0)
+    }
+
+    func testHandleFavoriteMovieIsFavoriteTrueSuccessResponse() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: true))
+        mockInteractor.markMovieAsFavoriteResult = .success(true)
+        let movieAccountStateExpectation = XCTestExpectation(description: "movieAccountState event should be sent")
+        let showSuccessAlertExpectation = XCTestExpectation(description: "showSuccessAlert event should be sent")
+        viewModelToTest.movieAccountState.bind { newMovieAccountState in
+            guard let newMovieAccountState else {
+                XCTFail("newMovieAccountState cannot be nil")
+                movieAccountStateExpectation.fulfill()
+                return
+            }
+            XCTAssertFalse(newMovieAccountState.isFavorite)
+            movieAccountStateExpectation.fulfill()
+        }
+        viewModelToTest.showSuccessAlert.bind { message in
+            XCTAssertEqual(message, LocalizedStrings.removeFromFavoritesSuccess())
+            showSuccessAlertExpectation.fulfill()
+        }
+        // Act
+        viewModelToTest.handleFavoriteMovie()
+        // Assert
+        wait(for: [movieAccountStateExpectation, showSuccessAlertExpectation], timeout: 1.0)
+    }
+
+    func testHandleFavoriteMovieIsFavoriteTrueErrorResponse() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: true))
+        let errorToTest = APIError.badRequest
+        mockInteractor.markMovieAsFavoriteResult = .failure(errorToTest)
+        let expectation = XCTestExpectation(description: "showErrorAlert event should be sent")
+        viewModelToTest.showErrorAlert.bind { error in
+            XCTAssertEqual(error.localizedDescription, errorToTest.localizedDescription)
+            expectation.fulfill()
+        }
+        // Act
+        viewModelToTest.handleFavoriteMovie()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testHandleFavoriteMovieIsFavoriteFalseSuccessResponse() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        viewModelToTest.movieAccountState.value = .init(.init(favorite: false, watchlist: true))
+        mockInteractor.markMovieAsFavoriteResult = .success(true)
+        let movieAccountStateExpectation = XCTestExpectation(description: "movieAccountState event should be sent")
+        let showSuccessAlertExpectation = XCTestExpectation(description: "showSuccessAlert event should be sent")
+        viewModelToTest.movieAccountState.bind { newMovieAccountState in
+            guard let newMovieAccountState else {
+                XCTFail("newMovieAccountState cannot be nil")
+                movieAccountStateExpectation.fulfill()
+                return
+            }
+            XCTAssertTrue(newMovieAccountState.isFavorite)
+            movieAccountStateExpectation.fulfill()
+        }
+        viewModelToTest.showSuccessAlert.bind { message in
+            XCTAssertEqual(message, LocalizedStrings.addToFavoritesSuccess())
+            showSuccessAlertExpectation.fulfill()
+        }
+        // Act
+        viewModelToTest.handleFavoriteMovie()
+        // Assert
+        wait(for: [movieAccountStateExpectation, showSuccessAlertExpectation], timeout: 1.0)
+    }
+
+    func testHandleFavoriteMovieIsFavoriteFalseErrorResponse() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        viewModelToTest.movieAccountState.value = .init(.init(favorite: false, watchlist: true))
+        let errorToTest = APIError.badRequest
+        mockInteractor.markMovieAsFavoriteResult = .failure(errorToTest)
+        let expectation = XCTestExpectation(description: "showErrorAlert event should be sent")
+        viewModelToTest.showErrorAlert.bind { error in
+            XCTAssertEqual(error.localizedDescription, errorToTest.localizedDescription)
+            expectation.fulfill()
+        }
+        // Act
+        viewModelToTest.handleFavoriteMovie()
         // Assert
         wait(for: [expectation], timeout: 1.0)
     }
