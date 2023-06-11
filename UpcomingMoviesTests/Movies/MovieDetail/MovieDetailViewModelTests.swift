@@ -332,6 +332,50 @@ class MovieDetailViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testCheckMovieAccountStateSuccess() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        mockInteractor.isUserSignedInResult = true
+        let movieAccountStateToTest = Movie.AccountState(favorite: true, watchlist: true)
+        mockInteractor.getMovieAccountStateResult = .success(movieAccountStateToTest)
+        let expectation = XCTestExpectation(description: "movieAccountState event should be sent")
+        viewModelToTest.movieAccountState.bind { movieAccountStateModel in
+            XCTAssertEqual(movieAccountStateModel?.isFavorite, movieAccountStateToTest.favorite)
+            XCTAssertEqual(movieAccountStateModel?.isInWatchlist, movieAccountStateToTest.watchlist)
+            expectation.fulfill()
+        }
+        // Act
+        viewModelToTest.checkMovieAccountState()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testCheckMovieAccountStateError() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        mockInteractor.isUserSignedInResult = true
+        mockInteractor.getMovieAccountStateResult = .failure(APIError.badRequest)
+        let expectation = XCTestExpectation(description: "movieAccountState event should be sent")
+        viewModelToTest.movieAccountState.bind { movieAccountStateModel in
+            XCTAssertNil(movieAccountStateModel)
+            expectation.fulfill()
+        }
+        // Act
+        viewModelToTest.checkMovieAccountState()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testCheckMovieAccountStateIsUserSignedInFalse() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        mockInteractor.isUserSignedInResult = false
+        // Act
+        viewModelToTest.checkMovieAccountState()
+        // Assert
+        XCTAssertEqual(mockInteractor.getMovieDetailCallCount, 0)
+    }
+
     // MARK: - Utils
 
     private func createSUT(with movie: UpcomingMoviesDomain.Movie) -> MovieDetailViewModelProtocol {
