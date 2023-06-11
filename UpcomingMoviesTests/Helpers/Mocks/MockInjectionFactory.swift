@@ -34,8 +34,8 @@ final class MockInjectionFactory {
 
 final class MockUseCaseProvider: UseCaseProvider {
 
-    var mockMovieUseCase: MockMovieUseCase!
-    var mockGenreUseCase: MockGenreUseCase!
+    var mockMovieUseCase: MovieUseCaseProtocolMock!
+    var mockGenreUseCase: GenreUseCaseProtocolMock!
 
     override func movieUseCase() -> MovieUseCaseProtocol {
         mockMovieUseCase!
@@ -43,106 +43,6 @@ final class MockUseCaseProvider: UseCaseProvider {
 
     override func genreUseCase() -> GenreUseCaseProtocol {
         mockGenreUseCase!
-    }
-
-}
-
-final class MockMovieUseCase: MovieUseCaseProtocol {
-
-    private var remoteDataSource: MovieRemoteDataSourceProtocol
-
-    init(remoteDataSource: MovieRemoteDataSourceProtocol) {
-        self.remoteDataSource = remoteDataSource
-    }
-
-    var upcomingMovies: Result<[UpcomingMoviesDomain.Movie], Error>?
-    func getUpcomingMovies(page: Int,
-                           completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
-        completion(upcomingMovies!)
-    }
-
-    var popularMovies: Result<[UpcomingMoviesDomain.Movie], Error>?
-    func getPopularMovies(page: Int,
-                          completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
-        completion(popularMovies!)
-    }
-
-    var topRatedMovies: Result<[UpcomingMoviesDomain.Movie], Error>?
-    func getTopRatedMovies(page: Int,
-                           completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
-        completion(topRatedMovies!)
-    }
-
-    var moviesbyGenre: Result<[UpcomingMoviesDomain.Movie], Error>?
-    func getMoviesByGenre(page: Int, genreId: Int,
-                          completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
-        completion(moviesbyGenre!)
-    }
-
-    var similarmovies: Result<[UpcomingMoviesDomain.Movie], Error>?
-    func getSimilarMovies(page: Int, movieId: Int,
-                          completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
-        completion(similarmovies!)
-    }
-
-    var movieDetail: Result<UpcomingMoviesDomain.Movie, Error>?
-    func getMovieDetail(for movieId: Int, completion: @escaping (Result<UpcomingMoviesDomain.Movie, Error>) -> Void) {
-        completion(movieDetail!)
-    }
-
-    var searchedMovies: Result<[UpcomingMoviesDomain.Movie], Error>?
-    func searchMovies(searchText: String, includeAdult: Bool,
-                      page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
-        completion(searchedMovies!)
-    }
-
-    var videos: Result<[UpcomingMoviesDomain.Video], Error>?
-    func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Video], Error>) -> Void) {
-        completion(videos!)
-    }
-
-    var credits: Result<MovieCredits, Error>?
-    func getMovieCredits(for movieId: Int, page: Int?, completion: @escaping (Result<MovieCredits, Error>) -> Void) {
-        completion(credits!)
-    }
-
-    var reviews: Result<[UpcomingMoviesDomain.Review], Error>?
-    func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[UpcomingMoviesDomain.Review], Error>) -> Void) {
-        completion(reviews!)
-    }
-
-    var rateMovieResult: Result<Void, Error>?
-    func rateMovie(movieId: Int, value: Double, completion: @escaping (Result<Void, Error>) -> Void) {
-        completion(rateMovieResult!)
-    }
-
-    var getMovieAccountStateResult: Result<UpcomingMoviesDomain.Movie.AccountState, Error>?
-    func getMovieAccountState(for movieId: Int, completion: @escaping (Result<UpcomingMoviesDomain.Movie.AccountState, Error>) -> Void) {
-        completion(getMovieAccountStateResult!)
-    }
-
-}
-
-final class MockGenreUseCase: GenreUseCaseProtocol {
-
-    private var localDataSource: GenreLocalDataSourceProtocol
-    private var remoteDataSource: GenreRemoteDataSourceProtocol
-
-    init(localDataSource: GenreLocalDataSourceProtocol,
-         remoteDataSource: GenreRemoteDataSourceProtocol) {
-        self.localDataSource = localDataSource
-        self.remoteDataSource = remoteDataSource
-    }
-
-    var didUpdateGenre: (() -> Void)?
-
-    func find(with id: Int, completion: @escaping (Result<UpcomingMoviesDomain.Genre?, Error>) -> Void) {
-        completion(.success(Genre(id: 1, name: "Genre 1")))
-    }
-
-    var genres: Result<[UpcomingMoviesDomain.Genre], Error>?
-    func fetchAll(completion: @escaping (Result<[UpcomingMoviesDomain.Genre], Error>) -> Void, forceRefresh: Bool) {
-        completion(genres!)
     }
 
 }
