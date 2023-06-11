@@ -20,4 +20,9 @@ final class MockNavigationController: UINavigationController {
         presentCallCount += 1
     }
 
+    var mockTopViewController: MockViewController?
+    override var topViewController: UIViewController? {
+        mockTopViewController
+    }
+
 }
