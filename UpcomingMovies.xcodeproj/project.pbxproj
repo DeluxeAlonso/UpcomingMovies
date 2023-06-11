@@ -314,6 +314,11 @@
 		E2A65E5321FECC2200485B4E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A65E5221FECC2200485B4E /* Utils.swift */; };
 		E2A958AF2A362ABC0004FC5C /* UpcomingMoviesCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A958AE2A362ABC0004FC5C /* UpcomingMoviesCoordinatorTests.swift */; };
 		E2A958B32A3632820004FC5C /* SearchMoviesCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A958B22A3632820004FC5C /* SearchMoviesCoordinatorTests.swift */; };
+		E2A958B72A363AAB0004FC5C /* PopularMoviesCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A958B62A363AAB0004FC5C /* PopularMoviesCoordinatorTests.swift */; };
+		E2A958B92A363AB80004FC5C /* TopRatedMoviesCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A958B82A363AB80004FC5C /* TopRatedMoviesCoordinatorTests.swift */; };
+		E2A958BB2A363AC50004FC5C /* SimilarMoviesCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A958BA2A363AC50004FC5C /* SimilarMoviesCoordinatorTests.swift */; };
+		E2A958BD2A363B6A0004FC5C /* MoviesByGenreCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A958BC2A363B6A0004FC5C /* MoviesByGenreCoordinatorTests.swift */; };
+		E2A958BF2A363B750004FC5C /* RecommendedMoviesCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A958BE2A363B750004FC5C /* RecommendedMoviesCoordinatorTests.swift */; };
 		E2B084482A1FED1A009F6AC4 /* MovieDetailTitleRenderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B084472A1FED1A009F6AC4 /* MovieDetailTitleRenderContent.swift */; };
 		E2B0844B2A1FEE81009F6AC4 /* MovieDetailTitleViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0844A2A1FEE81009F6AC4 /* MovieDetailTitleViewModelTests.swift */; };
 		E2B0844D2A201F11009F6AC4 /* MovieDetailPosterRenderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0844C2A201F11009F6AC4 /* MovieDetailPosterRenderContent.swift */; };
@@ -777,6 +782,11 @@
 		E2A65E5221FECC2200485B4E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E2A958AE2A362ABC0004FC5C /* UpcomingMoviesCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesCoordinatorTests.swift; sourceTree = "<group>"; };
 		E2A958B22A3632820004FC5C /* SearchMoviesCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesCoordinatorTests.swift; sourceTree = "<group>"; };
+		E2A958B62A363AAB0004FC5C /* PopularMoviesCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesCoordinatorTests.swift; sourceTree = "<group>"; };
+		E2A958B82A363AB80004FC5C /* TopRatedMoviesCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedMoviesCoordinatorTests.swift; sourceTree = "<group>"; };
+		E2A958BA2A363AC50004FC5C /* SimilarMoviesCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMoviesCoordinatorTests.swift; sourceTree = "<group>"; };
+		E2A958BC2A363B6A0004FC5C /* MoviesByGenreCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesByGenreCoordinatorTests.swift; sourceTree = "<group>"; };
+		E2A958BE2A363B750004FC5C /* RecommendedMoviesCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedMoviesCoordinatorTests.swift; sourceTree = "<group>"; };
 		E2B084472A1FED1A009F6AC4 /* MovieDetailTitleRenderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailTitleRenderContent.swift; sourceTree = "<group>"; };
 		E2B0844A2A1FEE81009F6AC4 /* MovieDetailTitleViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailTitleViewModelTests.swift; sourceTree = "<group>"; };
 		E2B0844C2A201F11009F6AC4 /* MovieDetailPosterRenderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailPosterRenderContent.swift; sourceTree = "<group>"; };
@@ -2126,6 +2136,26 @@
 			path = SearchOptions;
 			sourceTree = "<group>";
 		};
+		E2A958B42A363A800004FC5C /* MovieList */ = {
+			isa = PBXGroup;
+			children = (
+				E2A958B52A363A8D0004FC5C /* Coordinators */,
+			);
+			path = MovieList;
+			sourceTree = "<group>";
+		};
+		E2A958B52A363A8D0004FC5C /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				E2A958B62A363AAB0004FC5C /* PopularMoviesCoordinatorTests.swift */,
+				E2A958B82A363AB80004FC5C /* TopRatedMoviesCoordinatorTests.swift */,
+				E2A958BA2A363AC50004FC5C /* SimilarMoviesCoordinatorTests.swift */,
+				E2A958BC2A363B6A0004FC5C /* MoviesByGenreCoordinatorTests.swift */,
+				E2A958BE2A363B750004FC5C /* RecommendedMoviesCoordinatorTests.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		E2B084492A1FEE69009F6AC4 /* MovieDetailTitle */ = {
 			isa = PBXGroup;
 			children = (
@@ -2252,6 +2282,7 @@
 		E2E6D1FB283CA9F700D63A23 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				E2A958B42A363A800004FC5C /* MovieList */,
 				E279169C28F090E20092B592 /* SearchMovies */,
 				E2B8C49928B738D1006A8ECC /* SavedMovies */,
 				E2E6D1FC283CAA7C00D63A23 /* UpcomingMovies */,
@@ -2983,11 +3014,13 @@
 				E26D6B28297439C80082098A /* CustomListDetailSectionViewModelTests.swift in Sources */,
 				E21925632A247CDE0058BA74 /* MovieDetailPosterViewModelTests.swift in Sources */,
 				E25AE2FB24B2DB5800DD1EE0 /* MovieCreditsViewModelTests.swift in Sources */,
+				E2A958BD2A363B6A0004FC5C /* MoviesByGenreCoordinatorTests.swift in Sources */,
 				E279169E28F092360092B592 /* SearchOptionsViewModelTests.swift in Sources */,
 				E2C03B26222502AB00A4C47A /* MovieReviewsViewModelTests.swift in Sources */,
 				E24D57CE2849D74800B5A101 /* MovieCreditsInteractorTests.swift in Sources */,
 				E2C42E1824C3F9BF0047A8EF /* ProfileMockFactory.swift in Sources */,
 				E26859B024D099B500CDCF85 /* MovieCreditsMockFactory.swift in Sources */,
+				E2A958BB2A363AC50004FC5C /* SimilarMoviesCoordinatorTests.swift in Sources */,
 				E2748DE92838B7E200CD2BA2 /* MovieCreditCellViewModelTests.swift in Sources */,
 				E2116941220E0BDF00595822 /* MovieDetailViewModelTests.swift in Sources */,
 				E2C42E1624C3F3FC0047A8EF /* ProfileViewModelTests.swift in Sources */,
@@ -2997,6 +3030,7 @@
 				E2C1D3FA2A2D999900D0670C /* MockViewController.swift in Sources */,
 				E27916A028F092C90092B592 /* SearchMoviesMockFactory.swift in Sources */,
 				E220250224BEBFEA00465316 /* AccountMockFactory.swift in Sources */,
+				E2A958B92A363AB80004FC5C /* TopRatedMoviesCoordinatorTests.swift in Sources */,
 				E2133F062A25CA680085C82D /* MovieDetailOptionsViewModelTests.swift in Sources */,
 				E20F0746298CD4C300993047 /* MovieCreditsFactoryTests.swift in Sources */,
 				E2D9A122283F519300ABFA2D /* MovieVideoCellViewModelTests.swift in Sources */,
@@ -3007,6 +3041,7 @@
 				E2B8C49B28B738E2006A8ECC /* FavoritesSavedMoviesInteractorTests.swift in Sources */,
 				E25DAC8F2A28676D00806501 /* MovieDetailCoordinatorTests.swift in Sources */,
 				E255BD8B2841FAC00076D550 /* MovieReviewCellViewModelTests.swift in Sources */,
+				E2A958B72A363AAB0004FC5C /* PopularMoviesCoordinatorTests.swift in Sources */,
 				E2A076612A29B02F0089062F /* MockNavigationController.swift in Sources */,
 				E2721A50284C61DA00482B65 /* MovieReviewsInteractorTests.swift in Sources */,
 				E243D03628B9EBEB0039D0AA /* WatchlistSavedMoviesInteractorTests.swift in Sources */,
@@ -3014,6 +3049,7 @@
 				E2850D3024CBD13F0036BEAF /* SavedMoviesViewModelTests.swift in Sources */,
 				E2A958AF2A362ABC0004FC5C /* UpcomingMoviesCoordinatorTests.swift in Sources */,
 				E2850D3224CBD1CD0036BEAF /* SavedMoviesMockFactory.swift in Sources */,
+				E2A958BF2A363B750004FC5C /* RecommendedMoviesCoordinatorTests.swift in Sources */,
 				E219859824D2852900D76740 /* MovieReviewsMockFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
