@@ -74,6 +74,18 @@ class MovieDetailViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testDidSetupMovieDetailNeedsFetchFalse() {
+        // Arrange
+        let viewModelToTest = createSUT(with: .with(id: 1))
+        // Act
+        viewModelToTest.didSetupMovieDetail.bind { _ in
+            XCTFail("didSetupMovieDetail event should not be sent")
+        }
+        viewModelToTest.getMovieDetail(showLoader: false)
+        // Assert
+        XCTAssertEqual(mockInteractor.getMovieDetailCallCount, 0)
+    }
+
     func testShowErrorRetryView() {
         // Arrange
         let viewModelToTest = createSUT(with: 1, title: "Title")
@@ -330,6 +342,94 @@ class MovieDetailViewModelTests: XCTestCase {
         viewModelToTest.handleFavoriteMovie()
         // Assert
         wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testCheckMovieAccountStateSuccess() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        mockInteractor.isUserSignedInResult = true
+        let movieAccountStateToTest = Movie.AccountState(favorite: true, watchlist: true)
+        mockInteractor.getMovieAccountStateResult = .success(movieAccountStateToTest)
+        let expectation = XCTestExpectation(description: "movieAccountState event should be sent")
+        viewModelToTest.movieAccountState.bind { movieAccountStateModel in
+            XCTAssertEqual(movieAccountStateModel?.isFavorite, movieAccountStateToTest.favorite)
+            XCTAssertEqual(movieAccountStateModel?.isInWatchlist, movieAccountStateToTest.watchlist)
+            expectation.fulfill()
+        }
+        // Act
+        viewModelToTest.checkMovieAccountState()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testCheckMovieAccountStateError() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        mockInteractor.isUserSignedInResult = true
+        mockInteractor.getMovieAccountStateResult = .failure(APIError.badRequest)
+        let expectation = XCTestExpectation(description: "movieAccountState event should be sent")
+        viewModelToTest.movieAccountState.bind { movieAccountStateModel in
+            XCTAssertNil(movieAccountStateModel)
+            expectation.fulfill()
+        }
+        // Act
+        viewModelToTest.checkMovieAccountState()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testCheckMovieAccountStateIsUserSignedInFalse() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        mockInteractor.isUserSignedInResult = false
+        // Act
+        viewModelToTest.checkMovieAccountState()
+        // Assert
+        XCTAssertEqual(mockInteractor.getMovieDetailCallCount, 0)
+    }
+
+    func testGetMovieGenreName() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        let genreNameToTest = "GenreName"
+        mockInteractor.findGenreResult = .success(.init(id: 1, name: genreNameToTest))
+        mockInteractor.getMovieDetailResult = Result.success(Movie.with(id: 1, title: "Title", genreIds: [1]))
+        let expectation = XCTestExpectation(description: "showGenreName event should be sent")
+        viewModelToTest.showGenreName.bind { genreName in
+            XCTAssertEqual(genreName, genreNameToTest)
+            expectation.fulfill()
+        }
+        // Act
+        viewModelToTest.getMovieDetail(showLoader: false)
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetMovieGenreNameNil() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        mockInteractor.findGenreResult = .success(nil)
+        mockInteractor.getMovieDetailResult = Result.success(Movie.with(id: 1, title: "Title", genreIds: [1]))
+        let expectation = XCTestExpectation(description: "showGenreName event should be sent")
+        viewModelToTest.showGenreName.bind { genreName in
+            XCTAssertEqual(genreName, "-")
+            expectation.fulfill()
+        }
+        // Act
+        viewModelToTest.getMovieDetail(showLoader: false)
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetMovieGenreNameWihtoutId() {
+        // Arrange
+        let viewModelToTest = createSUT(with: 1, title: "Title")
+        mockInteractor.findGenreResult = .success(nil)
+        mockInteractor.getMovieDetailResult = Result.success(Movie.with(id: 1, title: "Title"))
+        // Act
+        viewModelToTest.getMovieDetail(showLoader: false)
+        // Assert
+        XCTAssertEqual(mockInteractor.findGenreCallCount, 0)
     }
 
     // MARK: - Utils

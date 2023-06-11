@@ -104,8 +104,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     private func getMovieGenreName(for genreId: Int?) {
         guard let genreId = genreId else { return }
-        interactor.findGenre(with: genreId, completion: { [weak self] result in
-            guard let self = self else { return }
+        interactor.findGenre(with: genreId, completion: { result in
             let genre = try? result.get()
             self.showGenreName.value = genre?.name ?? "-"
         })
