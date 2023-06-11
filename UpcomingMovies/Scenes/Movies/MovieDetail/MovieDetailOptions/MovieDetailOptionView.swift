@@ -59,11 +59,6 @@ final class MovieDetailOptionView: UIView {
         setupUI()
     }
 
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        setupUI()
-    }
-
     // MARK: - Private
 
     private func setupUI() {
