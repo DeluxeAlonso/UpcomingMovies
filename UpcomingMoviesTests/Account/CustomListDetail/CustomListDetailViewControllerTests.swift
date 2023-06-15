@@ -7,32 +7,57 @@
 //
 
 import XCTest
+@testable import UpcomingMovies
 
 final class CustomListDetailViewControllerTests: XCTestCase {
 
-    private var viewModel: 
+    private var viewModel: MockCustomListDetailViewModel!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
+        viewModel = MockCustomListDetailViewModel()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        viewModel = nil
+        try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testViewWillAppear() {
+        // Arrange
+        let viewController = createSUT()
+        _ = viewController.view
+        // Act
+        viewController.viewWillAppear(false)
+        // Assert
+        XCTAssertEqual(viewController.navigationItem.scrollEdgeAppearance, viewController.navigationItem.standardAppearance)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testHeightForHeaderInSection() {
+        // Arrange
+        let viewController = createSUT()
+        _ = viewController.view
+        // Act
+        let height = viewController.tableView(UITableView(), heightForHeaderInSection: 0)
+        // Assert
+        XCTAssertEqual(height, 60)
+    }
+
+    func testViewForHeaderInSection() {
+        // Arrange
+        let viewController = createSUT()
+        _ = viewController.view
+        // Act
+        _ = viewController.tableView(UITableView(), viewForHeaderInSection: 1)
+        // Assert
+        XCTAssertEqual(viewModel.buildSectionViewModelCallCount, 1)
+    }
+
+    private func createSUT() -> CustomListDetailViewController {
+        let viewController = CustomListDetailViewController.instantiate()
+        viewController.viewModel = viewModel
+
+        return viewController
     }
 
 }
