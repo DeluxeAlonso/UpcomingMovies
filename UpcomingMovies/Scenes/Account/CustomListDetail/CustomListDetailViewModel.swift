@@ -31,7 +31,7 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
     }
 
     var listName: String? {
-        self.list.name
+        list.name
     }
 
     // MARK: - Initializers
