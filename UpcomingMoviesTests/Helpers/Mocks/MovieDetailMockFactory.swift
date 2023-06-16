@@ -116,6 +116,6 @@ final class MockMovieDetailOptionsViewControllerDelegate: MockViewController, Mo
 
 final class MockMovieDetailOptionsViewModel: MovieDetailOptionsViewModelProtocol {
 
-    var options: [UpcomingMovies.MovieDetailOption] = []
+    var options: [MovieDetailOption] = []
 
 }
