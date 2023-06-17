@@ -328,6 +328,7 @@
 		E2A958D72A367DC80004FC5C /* MovieDetailOptionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A958D62A367DC80004FC5C /* MovieDetailOptionViewTests.swift */; };
 		E2A958D92A3680AA0004FC5C /* MovieDetailOptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A958D82A3680AA0004FC5C /* MovieDetailOptionsViewControllerTests.swift */; };
 		E2ACC8AF2A3E4946007FDFC9 /* AuthenticationMockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ACC8AE2A3E4946007FDFC9 /* AuthenticationMockFactory.swift */; };
+		E2ACC8B42A3E4AED007FDFC9 /* AuthPermissionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ACC8B32A3E4AED007FDFC9 /* AuthPermissionViewControllerTests.swift */; };
 		E2B084482A1FED1A009F6AC4 /* MovieDetailTitleRenderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B084472A1FED1A009F6AC4 /* MovieDetailTitleRenderContent.swift */; };
 		E2B0844B2A1FEE81009F6AC4 /* MovieDetailTitleViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0844A2A1FEE81009F6AC4 /* MovieDetailTitleViewModelTests.swift */; };
 		E2B0844D2A201F11009F6AC4 /* MovieDetailPosterRenderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0844C2A201F11009F6AC4 /* MovieDetailPosterRenderContent.swift */; };
@@ -807,6 +808,7 @@
 		E2A958D62A367DC80004FC5C /* MovieDetailOptionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailOptionViewTests.swift; sourceTree = "<group>"; };
 		E2A958D82A3680AA0004FC5C /* MovieDetailOptionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailOptionsViewControllerTests.swift; sourceTree = "<group>"; };
 		E2ACC8AE2A3E4946007FDFC9 /* AuthenticationMockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationMockFactory.swift; sourceTree = "<group>"; };
+		E2ACC8B32A3E4AED007FDFC9 /* AuthPermissionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionViewControllerTests.swift; sourceTree = "<group>"; };
 		E2B084472A1FED1A009F6AC4 /* MovieDetailTitleRenderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailTitleRenderContent.swift; sourceTree = "<group>"; };
 		E2B0844A2A1FEE81009F6AC4 /* MovieDetailTitleViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailTitleViewModelTests.swift; sourceTree = "<group>"; };
 		E2B0844C2A201F11009F6AC4 /* MovieDetailPosterRenderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailPosterRenderContent.swift; sourceTree = "<group>"; };
@@ -2218,6 +2220,22 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
+		E2ACC8B12A3E4ACA007FDFC9 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				E2ACC8B22A3E4ADA007FDFC9 /* AuthPermission */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		E2ACC8B22A3E4ADA007FDFC9 /* AuthPermission */ = {
+			isa = PBXGroup;
+			children = (
+				E2ACC8B32A3E4AED007FDFC9 /* AuthPermissionViewControllerTests.swift */,
+			);
+			path = AuthPermission;
+			sourceTree = "<group>";
+		};
 		E2B084492A1FEE69009F6AC4 /* MovieDetailTitle */ = {
 			isa = PBXGroup;
 			children = (
@@ -2341,6 +2359,7 @@
 		E2E6D1FA283CA9AD00D63A23 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				E2ACC8B12A3E4ACA007FDFC9 /* Authentication */,
 				E2A958CA2A36777C0004FC5C /* SavedMovies */,
 				E2A958C92A36776D0004FC5C /* CustomLists */,
 				E2B428012A3ACB56001DE7E0 /* CustomListDetail */,
@@ -3121,6 +3140,7 @@
 				E2A958CC2A3677B70004FC5C /* AccountInteractorTests.swift in Sources */,
 				E2A958D52A367C970004FC5C /* MovieDetailOptionTests.swift in Sources */,
 				E25DAC8F2A28676D00806501 /* MovieDetailCoordinatorTests.swift in Sources */,
+				E2ACC8B42A3E4AED007FDFC9 /* AuthPermissionViewControllerTests.swift in Sources */,
 				E2A958C82A363FFE0004FC5C /* MovieReviewDetailCoordinatorTests.swift in Sources */,
 				E2B428032A3ACB78001DE7E0 /* CustomListDetailViewControllerTests.swift in Sources */,
 				E255BD8B2841FAC00076D550 /* MovieReviewCellViewModelTests.swift in Sources */,
