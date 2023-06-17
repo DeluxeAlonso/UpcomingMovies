@@ -92,6 +92,8 @@ final class AccountViewController: UIViewController, Storyboarded {
 extension AccountViewController: SignInViewControllerDelegate {
 
     func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
+        // TODO: - Remove this temporal work around. Sign in logic should be placed in sign in scene.
+        self.signInViewController = signInViewController
         signInViewController.startLoading()
         viewModel?.startAuthorizationProcess()
     }
