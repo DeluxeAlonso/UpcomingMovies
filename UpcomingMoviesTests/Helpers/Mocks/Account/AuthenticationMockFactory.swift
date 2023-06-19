@@ -54,3 +54,12 @@ final class MockAuthPermissionViewControllerDelegate: AuthPermissionViewControll
     }
 
 }
+
+final class MockSignInViewControllerDelegate: MockViewController, SignInViewControllerDelegate {
+
+    private(set) var didTapSignInButtonCallCount = 0
+    func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
+        didTapSignInButtonCallCount += 1
+    }
+
+}
