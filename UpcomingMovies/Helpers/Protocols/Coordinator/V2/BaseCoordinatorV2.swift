@@ -37,12 +37,9 @@ open class BaseCoordinatorV2: NSObject, Coordinator, UINavigationControllerDeleg
         fatalError("Build method should be implemented")
     }
 
-    func start() {
+    func start() {}
 
-    }
-
-    @discardableResult
-    open func start(routingMode: RoutingMode = .push) -> UIViewController {
+    open func start(routingMode: RoutingMode = .push) {
         let viewController = build()
 
         switch routingMode {
@@ -62,7 +59,7 @@ open class BaseCoordinatorV2: NSObject, Coordinator, UINavigationControllerDeleg
         }
 
         self.routingMode = routingMode
-        return viewController
+        self.viewController = viewController
     }
 
     open func dismiss() {
