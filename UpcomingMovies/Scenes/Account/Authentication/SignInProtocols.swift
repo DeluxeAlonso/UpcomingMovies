@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol SignInCoordinatorProtocol {
+protocol SignInCoordinatorProtocol: AnyObject {
     
 }

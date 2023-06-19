@@ -10,6 +10,8 @@ import UIKit
 
 open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
 
+    var shouldBeAutomaticallyFinished: Bool = false
+
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController

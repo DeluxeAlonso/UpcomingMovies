@@ -14,6 +14,8 @@ protocol Coordinator: AnyObject {
     var parentCoordinator: Coordinator? { get set }
     var navigationController: UINavigationController { get set }
 
+    var shouldBeAutomaticallyFinished: Bool { get }
+
     func start()
     func childDidFinish(_ child: Coordinator)
 
@@ -35,6 +37,10 @@ extension Coordinator {
 
     func childDidFinish() {
         childCoordinators.removeLast()
+    }
+
+    func childDidFinishV2() {
+        childCoordinators.removeLast(while: \.shouldBeAutomaticallyFinished)
     }
 
 }

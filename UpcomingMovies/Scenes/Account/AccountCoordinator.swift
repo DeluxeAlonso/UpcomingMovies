@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
 
     private var profileViewController: ProfileViewController?
-    private var signInViewController: SignInViewController?
+    private var signInViewController: SignInCoordinator?
 
     override func start() {
         let viewController = AccountViewController.instantiate()
@@ -26,12 +26,13 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
     func embedSignInViewController(on parentViewController: SignInViewControllerDelegate) {
         navigationController.setNavigationBarHidden(true, animated: true)
 
-        let viewController = SignInViewController.instantiate()
-        viewController.delegate = parentViewController
+        let coordinator = SignInCoordinator(navigationController: navigationController,
+                                            delegate: parentViewController)
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        signInViewController = coordinator
 
-        self.signInViewController = viewController
-
-        parentViewController.add(asChildViewController: viewController)
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start(routingMode: .embed(parentViewController: parentViewController, containerView: nil))
     }
 
     func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate, for user: User?) {
@@ -48,7 +49,7 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
     }
 
     func removeSignInViewController(from parentViewController: UIViewController) {
-        parentViewController.remove(asChildViewController: signInViewController)
+        signInViewController?.dismiss()
         signInViewController = nil
     }
 

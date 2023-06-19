@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SignInCoordinator: BaseCoordinator, SignInCoordinatorProtocol {
+final class SignInCoordinator: BaseCoordinatorV2, SignInCoordinatorProtocol {
 
     private weak var delegate: SignInViewControllerDelegate?
 
@@ -17,7 +17,7 @@ final class SignInCoordinator: BaseCoordinator, SignInCoordinatorProtocol {
         super.init(navigationController: navigationController)
     }
 
-    func build() -> SignInViewController {
+    override func build() -> SignInViewController {
         let viewController = SignInViewController.instantiate()
         viewController.delegate = delegate
         return viewController
