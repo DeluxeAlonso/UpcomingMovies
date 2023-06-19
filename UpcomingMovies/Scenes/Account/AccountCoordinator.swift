@@ -11,8 +11,8 @@ import UpcomingMoviesDomain
 
 final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
 
-    private var profileViewController: ProfileViewController?
-    private var signInViewController: SignInCoordinator?
+    private var profileCoordinator: ProfileCoordinator?
+    private var signInCoordinator: SignInCoordinator?
 
     override func start() {
         let viewController = AccountViewController.instantiate()
@@ -29,33 +29,30 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
         let coordinator = SignInCoordinator(navigationController: navigationController,
                                             delegate: parentViewController)
         coordinator.parentCoordinator = unwrappedParentCoordinator
-        signInViewController = coordinator
+        signInCoordinator = coordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start(routingMode: .embed(parentViewController: parentViewController, containerView: nil))
     }
 
-    func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate, for user: User?) {
+    func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate, for user: User) {
         navigationController.setNavigationBarHidden(false, animated: true)
 
-        let viewController = ProfileViewController.instantiate()
+        let coordinator = ProfileCoordinator(navigationController: navigationController, user: user, delegate: parentViewController)
+        profileCoordinator = coordinator
 
-        viewController.viewModel = DIContainer.shared.resolve(argument: user)
-        viewController.delegate = parentViewController
-
-        self.profileViewController = viewController
-
-        parentViewController.add(asChildViewController: viewController)
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start(routingMode: .embed(parentViewController: parentViewController, containerView: nil))
     }
 
     func removeSignInViewController(from parentViewController: UIViewController) {
-        signInViewController?.dismiss()
-        signInViewController = nil
+        signInCoordinator?.dismiss()
+        signInCoordinator = nil
     }
 
     func removeProfileViewController(from parentViewController: UIViewController) {
-        parentViewController.remove(asChildViewController: profileViewController)
-        profileViewController = nil
+        profileCoordinator?.dismiss()
+        profileCoordinator = nil
     }
 
     func showAuthPermission(for authPermissionURL: URL,
