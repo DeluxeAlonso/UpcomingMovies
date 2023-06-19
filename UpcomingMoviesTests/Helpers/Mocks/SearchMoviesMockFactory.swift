@@ -33,3 +33,12 @@ final class SearchOptionsInteractorMock: SearchOptionsInteractorProtocol {
     }
 
 }
+
+final class MockSearchMoviesResultControllerDelegate: MockViewController, SearchMoviesResultControllerDelegate {
+
+    var didSelectRecentSearch = 0
+    func searchMoviesResultController(_ searchMoviesResultController: SearchMoviesResultController, didSelectRecentSearch searchText: String) {
+        didSelectRecentSearch += 1
+    }
+
+}

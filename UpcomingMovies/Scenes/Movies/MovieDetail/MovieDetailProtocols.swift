@@ -13,13 +13,8 @@ protocol MovieDetailViewModelProtocol {
 
     var id: Int { get }
     var title: String { get }
-    var subtitle: String? { get }
     var releaseDate: String? { get }
     var overview: String? { get }
-    var voteAverage: Double? { get }
-    var posterURL: URL? { get }
-    var backdropURL: URL? { get }
-    var movieDetailOptions: [MovieDetailOption] { get }
 
     var screenTitle: String { get }
     var shareTitle: String { get }
@@ -32,6 +27,10 @@ protocol MovieDetailViewModelProtocol {
     var showErrorRetryView: AnyPublishBindable<Error> { get }
     var didSelectShareAction: AnyPublishBindable<Bool> { get }
     var movieAccountState: AnyBehaviorBindable<MovieAccountStateModel?> { get }
+
+    var movieDetailPosterRenderContent: AnyBehaviorBindable<MovieDetailPosterRenderContent?> { get }
+    var movieDetailTitleRenderContent: AnyBehaviorBindable<MovieDetailTitleRenderContent?> { get }
+    var movieDetailOptionsRenderContent: AnyBehaviorBindable<MovieDetailOptionsRenderContent?> { get }
 
     func getAvailableAlertActions() -> [MovieDetailActionModel]
 
@@ -64,6 +63,7 @@ protocol MovieDetailInteractorProtocol {
     func isUserSignedIn() -> Bool
 
     func findGenre(with id: Int, completion: @escaping (Result<Genre?, Error>) -> Void)
+    func findGenres(for identifiers: [Int], completion: @escaping (Result<[Genre], Error>) -> Void)
 
     func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void)
 
@@ -92,13 +92,21 @@ protocol MovieDetailCoordinatorProtocol: AnyObject {
     func showSharingOptions(withShareTitle title: String)
 
     func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
+                                 in containerView: UIView)
+    func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
                                  in containerView: UIView,
-                                 with options: [MovieDetailOption])
+                                 with renderContent: MovieDetailOptionsRenderContent?)
 
+    func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate, in containerView: UIView)
     func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate,
                                 in containerView: UIView,
-                                with backdropURL: URL?,
-                                and posterURL: URL?)
+                                with renderContent: MovieDetailPosterRenderContent?)
+
+    func embedMovieDetailTitle(on parentViewController: UIViewController,
+                               in containerView: UIView)
+    func embedMovieDetailTitle(on parentViewController: UIViewController,
+                               in containerView: UIView,
+                               with renderContent: MovieDetailTitleRenderContent?)
 
     func showActionSheet(title: String?, message: String?, actions: [UIAlertAction])
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomListDetailSectionView: UIView, NibLoadable {
+final class CustomListDetailSectionView: UIView, NibLoadable {
 
     @IBOutlet private weak var movieCountLabel: UILabel!
     @IBOutlet private weak var ratingLabel: UILabel!
@@ -16,7 +16,7 @@ class CustomListDetailSectionView: UIView, NibLoadable {
 
     @IBOutlet var titleLabels: [UILabel]!
 
-    var viewModel: CustomListDetailSectionViewModel? {
+    var viewModel: CustomListDetailSectionViewModelProtocol? {
         didSet {
             setupBindables()
         }

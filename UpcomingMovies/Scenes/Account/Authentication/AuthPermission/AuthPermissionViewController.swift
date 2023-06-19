@@ -106,21 +106,21 @@ final class AuthPermissionViewController: UIViewController, Storyboarded {
 
     // MARK: - Selectors
 
-    @objc func closeBarButtonAction() {
+    @objc private func closeBarButtonAction() {
         dismiss()
     }
 
     // MARK: - Actions
 
-    @IBAction func backButtonAction(_ sender: Any) {
+    @IBAction private func backButtonAction(_ sender: Any) {
         webView.goBack()
     }
 
-    @IBAction func forwardButtonAction(_ sender: Any) {
+    @IBAction private func forwardButtonAction(_ sender: Any) {
         webView.goForward()
     }
 
-    @IBAction func reloadButtonAction(_ sender: Any) {
+    @IBAction private func reloadButtonAction(_ sender: Any) {
         loadURL()
     }
 

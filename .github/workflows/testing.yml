@@ -30,4 +30,6 @@ jobs:
     - name: Run unit tests
       run: bundle exec fastlane tests
     - name: Upload coverage
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v1.2.1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}

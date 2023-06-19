@@ -58,14 +58,23 @@ final class MovieDetailAssembly: Assembly {
 
         // MARK: - Movie detail poster
 
-        container.register(MovieDetailPosterViewModelProtocol.self) { (_, backdropURL: URL?, posterURL: URL?) in
-            return MovieDetailPosterViewModel(backdropURL: backdropURL, posterURL: posterURL)
+        container.register(MovieDetailPosterViewModelProtocol.self) { (_, renderContent: MovieDetailPosterRenderContent?) in
+            return MovieDetailPosterViewModel(renderContent)
+        }
+
+        // MARK: - Movie detail title
+
+        container.register(MovieDetailTitleViewModelProtocol.self) { (resolver, renderContent: MovieDetailTitleRenderContent?) in
+            guard let interactor = resolver.resolve(MovieDetailInteractorProtocol.self) else {
+                fatalError("MovieDetailInteractorProtocol dependency could not be resolved")
+            }
+            return MovieDetailTitleViewModel(renderContent, interactor: interactor)
         }
 
         // MARK: - Movie detail options
 
-        container.register(MovieDetailOptionsViewModelProtocol.self) { (_, options: [MovieDetailOption]) in
-            return MovieDetailOptionsViewModel(options: options)
+        container.register(MovieDetailOptionsViewModelProtocol.self) { (_, renderContent: MovieDetailOptionsRenderContent?) in
+            return MovieDetailOptionsViewModel(renderContent)
         }
     }
 

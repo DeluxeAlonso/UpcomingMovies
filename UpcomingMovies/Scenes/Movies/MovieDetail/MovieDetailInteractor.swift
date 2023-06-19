@@ -33,6 +33,22 @@ final class MovieDetailInteractor: MovieDetailInteractorProtocol {
         genreUseCase.find(with: id, completion: completion)
     }
 
+    func findGenres(for identifiers: [Int], completion: @escaping (Result<[Genre], Error>) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        var genres: [Genre] = []
+
+        for id in identifiers {
+            dispatchGroup.enter()
+            findGenre(with: id) { result in
+                if let genre = try? result.get() { genres.append(genre) }
+                dispatchGroup.leave()
+            }
+        }
+        dispatchGroup.notify(queue: .global(qos: .userInitiated)) {
+            completion(.success(genres))
+        }
+    }
+
     func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void) {
         movieUseCase.getMovieDetail(for: movieId, completion: completion)
     }

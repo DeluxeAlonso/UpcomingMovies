@@ -30,7 +30,11 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     let didSelectShareAction = PublishBindable<Bool>().eraseToAnyBindable()
 
-    let movieAccountState: AnyBehaviorBindable<MovieAccountStateModel?> = BehaviorBindable(nil).eraseToAnyBindable()
+    let movieAccountState = BehaviorBindable<MovieAccountStateModel?>(nil).eraseToAnyBindable()
+
+    let movieDetailPosterRenderContent = BehaviorBindable<MovieDetailPosterRenderContent?>(nil).eraseToAnyBindable()
+    let movieDetailTitleRenderContent = BehaviorBindable<MovieDetailTitleRenderContent?>(nil).eraseToAnyBindable()
+    let movieDetailOptionsRenderContent = BehaviorBindable<MovieDetailOptionsRenderContent?>(nil).eraseToAnyBindable()
 
     // MARK: - Properties
 
@@ -40,12 +44,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var overview: String?
     private(set) var voteAverage: Double?
     private(set) var posterURL: URL?
-    private(set) var backdropURL: URL?
-    private(set) var movieDetailOptions: [MovieDetailOption]
-
-    var subtitle: String? {
-        releaseDate
-    }
 
     private var needsFetch: Bool
 
@@ -66,7 +64,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
          factory: MovieDetailFactoryProtocol) {
         self.id = movie.id
         self.title = movie.title
-        self.movieDetailOptions = factory.options
 
         self.interactor = interactor
         self.factory = factory
@@ -81,7 +78,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
          factory: MovieDetailFactoryProtocol) {
         self.id = id
         self.title = title
-        self.movieDetailOptions = factory.options
 
         self.interactor = interactor
         self.factory = factory
@@ -96,17 +92,19 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         voteAverage = movie.voteAverage
         overview = movie.overview
         posterURL = movie.posterURL
-        backdropURL = movie.backdropURL
 
         getMovieGenreName(for: movie.genreIds?.first)
 
         didSetupMovieDetail.value = true
+
+        movieDetailPosterRenderContent.value = MovieDetailPosterRenderContent(movie: movie)
+        movieDetailTitleRenderContent.value = MovieDetailTitleRenderContent(movie: movie)
+        movieDetailOptionsRenderContent.value = MovieDetailOptionsRenderContent(options: factory.options)
     }
 
     private func getMovieGenreName(for genreId: Int?) {
         guard let genreId = genreId else { return }
-        interactor.findGenre(with: genreId, completion: { [weak self] result in
-            guard let self = self else { return }
+        interactor.findGenre(with: genreId, completion: { result in
             let genre = try? result.get()
             self.showGenreName.value = genre?.name ?? "-"
         })
