@@ -8,12 +8,6 @@
 
 import UIKit
 
-public enum RoutingMode {
-    case push
-    case present(presentingViewController: UIViewController)
-    case embed(parentViewController: UIViewController, containerView: UIView?)
-}
-
 open class BaseCoordinatorV2: NSObject, Coordinator, UINavigationControllerDelegate {
 
     var childCoordinators: [Coordinator] = []
@@ -24,7 +18,7 @@ open class BaseCoordinatorV2: NSObject, Coordinator, UINavigationControllerDeleg
 
     private var viewController: UIViewController?
 
-    private var routingMode: RoutingMode = .push
+    private var coordinatorMode: CoordinatorMode = .push
 
     public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -39,7 +33,7 @@ open class BaseCoordinatorV2: NSObject, Coordinator, UINavigationControllerDeleg
 
     func start() {}
 
-    open func start(routingMode: RoutingMode = .push) {
+    open func start(routingMode: CoordinatorMode = .push) {
         let viewController = build()
 
         switch routingMode {
@@ -58,12 +52,12 @@ open class BaseCoordinatorV2: NSObject, Coordinator, UINavigationControllerDeleg
             shouldBeAutomaticallyFinished = true
         }
 
-        self.routingMode = routingMode
+        self.coordinatorMode = routingMode
         self.viewController = viewController
     }
 
     open func dismiss() {
-        switch routingMode {
+        switch coordinatorMode {
         case .push:
             navigationController.popViewController(animated: true)
         case .present:
