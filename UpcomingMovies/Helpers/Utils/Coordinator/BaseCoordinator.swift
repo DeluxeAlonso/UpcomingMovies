@@ -14,6 +14,8 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
 
+    let shouldBeAutomaticallyFinished: Bool = false
+
     public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         super.init()
@@ -32,7 +34,7 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     open var shouldForceDelegateOverride: Bool = false
 
     open func setupNavigationControllerDelegate() {
-        guard !shouldForceDelegateOverride && navigationController.delegate == nil else {
+        guard shouldForceDelegateOverride || navigationController.delegate == nil else {
             return
         }
         navigationController.delegate = navigationControllerDelegate

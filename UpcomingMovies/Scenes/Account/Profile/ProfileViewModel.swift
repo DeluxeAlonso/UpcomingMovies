@@ -13,7 +13,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
 
     // MARK: - Stored properties
 
-    private var userAccount: User?
+    private var userAccount: User
     private let interactor: ProfileInteractorProtocol
     private let factory: ProfileFactoryProtocol
 
@@ -22,13 +22,12 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     // MARK: - Computed properties
 
     var userInfoCell: ProfileAccountInforCellViewModelProtocol? {
-        guard let userAccount = userAccount else { return nil }
         return ProfileAccountInforCellViewModel(userAccount: userAccount)
     }
 
     // MARK: - Initializers
 
-    init(userAccount: User?,
+    init(userAccount: User,
          interactor: ProfileInteractorProtocol,
          factory: ProfileFactoryProtocol) {
         self.userAccount = userAccount

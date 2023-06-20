@@ -46,3 +46,7 @@ protocol ProfileViewControllerDelegate: UIViewController {
     func profileViewController(didSignOut signedOut: Bool)
 
 }
+
+protocol ProfileCoordinatorProtocol: AnyObject {
+    
+}

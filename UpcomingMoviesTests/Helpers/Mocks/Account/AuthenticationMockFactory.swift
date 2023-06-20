@@ -17,6 +17,8 @@ final class MockAuthPermissionViewModel: AuthPermissionViewModelProtocol {
 
 final class MockAuthPermissionCoordinator: AuthPermissionCoordinatorProtocol {
 
+    var shouldBeAutomaticallyFinished: Bool = false
+
     var dismissResult: Void?
     private(set) var dismissCallCount = 0
     func dismiss(completion: (() -> Void)?) {
@@ -49,6 +51,15 @@ final class MockAuthPermissionViewControllerDelegate: AuthPermissionViewControll
     private(set) var didReceiveAuthorizationCallCount = 0
     func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController, didReceiveAuthorization authorized: Bool) {
         didReceiveAuthorizationCallCount += 1
+    }
+
+}
+
+final class MockSignInViewControllerDelegate: MockViewController, SignInViewControllerDelegate {
+
+    private(set) var didTapSignInButtonCallCount = 0
+    func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
+        didTapSignInButtonCallCount += 1
     }
 
 }

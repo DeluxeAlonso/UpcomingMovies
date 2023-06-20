@@ -21,6 +21,7 @@ final class SignInViewController: UIViewController, Storyboarded {
 
     static var storyboardName: String = "Account"
 
+    weak var coordinator: SignInCoordinatorProtocol?
     weak var delegate: SignInViewControllerDelegate?
 
     /// Images we are going to display animated  above the sign in button.
