@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MockViewController: UIViewController {
+final class MockViewController: UIViewController {
 
     var addChildCallCount = 0
     override func addChild(_ childController: UIViewController) {
