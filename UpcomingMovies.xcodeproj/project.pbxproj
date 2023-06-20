@@ -1390,6 +1390,7 @@
 			isa = PBXGroup;
 			children = (
 				E289D88828E15B9C00EA0155 /* Bindable */,
+				E26B4F7C24CE907700F9089E /* Coordinator */,
 				E265BCE6279C56BC00BA3176 /* Localization */,
 				E26EB50925CF508300AFE4A6 /* BaseConfiguration */,
 				E208FC4C263523D0008593D8 /* SimpleViewState */,
@@ -1737,7 +1738,6 @@
 		E25F9CEF225B083A0069A6A1 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				E26B4F7C24CE907700F9089E /* Coordinator */,
 				E25F9CF0225B08F20069A6A1 /* Displayable */,
 				E21662DE25EB670A001C2905 /* Loading */,
 				E2DBF2F2220532BD00CBB365 /* Animatable.swift */,
