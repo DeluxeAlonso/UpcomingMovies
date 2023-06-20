@@ -7,30 +7,90 @@
 //
 
 import XCTest
+@testable import UpcomingMovies
 
 final class BaseCoordinatorTests: XCTestCase {
 
+    private var navigationController: MockNavigationController!
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
+        navigationController = MockNavigationController()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        navigationController = nil
+        try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testSetupNavigationControllerDelegate() {
+        // Arrange
+        let coordinator = createSUT()
+        coordinator.navigationController.delegate = nil
+        // Act
+        coordinator.setupNavigationControllerDelegate()
+        // Assert
+        XCTAssertNotNil(navigationController.delegate)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testNavigationControllerDidShow() {
+        // Arrange
+        let coordinator = createSUT()
+        let transitionCoordinator = MockViewControllerTransitionCoordinator()
+        let viewController = MockViewController()
+        transitionCoordinator.viewControllerForKeyResult = viewController
+
+        navigationController.viewControllersResult = []
+        navigationController.transitionCoordinatorResult = transitionCoordinator
+        navigationController.isBeingPresentedResult = false
+
+        let parentCoordinator = MockCoordinator()
+        coordinator.parentCoordinator = parentCoordinator
+        // Act
+        coordinator.navigationController(navigationController, didShow: MockViewController(), animated: true)
+        // Assert
+        XCTAssertEqual(parentCoordinator.childDidFinishCallCount, 1)
+    }
+
+    func testNavigationControllerDidShowViewControllerIsBeingPresentedTrue() {
+        // Arrange
+        let coordinator = createSUT()
+        let transitionCoordinator = MockViewControllerTransitionCoordinator()
+        let viewController = MockViewController()
+        transitionCoordinator.viewControllerForKeyResult = viewController
+
+        navigationController.transitionCoordinatorResult = transitionCoordinator
+        navigationController.isBeingPresentedResult = true
+
+        let parentCoordinator = MockCoordinator()
+        coordinator.parentCoordinator = parentCoordinator
+        // Act
+        coordinator.navigationController(navigationController, didShow: MockViewController(), animated: true)
+        // Assert
+        XCTAssertEqual(parentCoordinator.childDidFinishCallCount, 0)
+    }
+
+    func testNavigationControllerDidShowViewControllerContainedInStack() {
+        // Arrange
+        let coordinator = createSUT()
+        let transitionCoordinator = MockViewControllerTransitionCoordinator()
+        let viewController = MockViewController()
+        transitionCoordinator.viewControllerForKeyResult = viewController
+
+        navigationController.viewControllersResult = [viewController]
+        navigationController.transitionCoordinatorResult = transitionCoordinator
+        navigationController.isBeingPresentedResult = false
+
+        let parentCoordinator = MockCoordinator()
+        coordinator.parentCoordinator = parentCoordinator
+        // Act
+        coordinator.navigationController(navigationController, didShow: MockViewController(), animated: true)
+        // Assert
+        XCTAssertEqual(parentCoordinator.childDidFinishCallCount, 0)
+    }
+
+    private func createSUT() -> BaseCoordinator {
+        BaseCoordinator(navigationController: navigationController)
     }
 
 }

@@ -17,6 +17,24 @@ final class MockCoordinator: Coordinator {
 
     var shouldBeAutomaticallyFinished: Bool = false
 
-    func start() {}
+    private(set) var startCallCount = 0
+    func start() {
+        startCallCount += 1
+    }
+
+    private(set) var childDidFinishChildCoordinatorCallCount = 0
+    func childDidFinish(_ child: Coordinator) {
+        childDidFinishChildCoordinatorCallCount += 1
+    }
+
+    private(set) var childDidFinishCallCount = 0
+    func childDidFinish() {
+        childDidFinishCallCount += 1
+    }
+
+    private(set) var childDidFinishV2CallCount = 0
+    func childDidFinishV2() {
+        childDidFinishV2CallCount += 1
+    }
 
 }

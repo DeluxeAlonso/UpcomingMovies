@@ -34,7 +34,7 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     open var shouldForceDelegateOverride: Bool = false
 
     open func setupNavigationControllerDelegate() {
-        guard !shouldForceDelegateOverride && navigationController.delegate == nil else {
+        guard shouldForceDelegateOverride || navigationController.delegate == nil else {
             return
         }
         navigationController.delegate = navigationControllerDelegate
