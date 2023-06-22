@@ -40,7 +40,9 @@ extension Coordinator {
 
     func childDidFinish() {
         childCoordinators.removeLast(while: \.shouldBeAutomaticallyFinished)
-        childCoordinators.removeLast()
+        if !childCoordinators.isEmpty {
+            childCoordinators.removeLast()
+        }
     }
 
 }
