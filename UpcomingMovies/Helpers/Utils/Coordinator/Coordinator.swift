@@ -17,6 +17,8 @@ protocol Coordinator: AnyObject {
     var shouldBeAutomaticallyFinished: Bool { get }
 
     func start()
+    func start(coordinatorMode: CoordinatorMode)
+
     func childDidFinish()
     func childDidFinish(_ child: Coordinator)
 

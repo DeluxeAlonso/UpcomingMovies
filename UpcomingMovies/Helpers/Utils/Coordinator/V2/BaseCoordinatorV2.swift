@@ -33,10 +33,10 @@ open class BaseCoordinatorV2: NSObject, Coordinator, UINavigationControllerDeleg
 
     func start() {}
 
-    open func start(routingMode: CoordinatorMode = .push) {
+    open func start(coordinatorMode: CoordinatorMode = .push) {
         let viewController = build()
 
-        switch routingMode {
+        switch coordinatorMode {
         case .push:
             navigationController.pushViewController(viewController, animated: true)
         case .present(let presentingViewController):
@@ -52,7 +52,7 @@ open class BaseCoordinatorV2: NSObject, Coordinator, UINavigationControllerDeleg
             shouldBeAutomaticallyFinished = true
         }
 
-        self.coordinatorMode = routingMode
+        self.coordinatorMode = coordinatorMode
         self.viewController = viewController
     }
 

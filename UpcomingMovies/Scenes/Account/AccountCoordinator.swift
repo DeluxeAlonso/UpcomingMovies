@@ -32,7 +32,7 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
         signInCoordinator = coordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start(routingMode: .embed(parentViewController: parentViewController, containerView: nil))
+        coordinator.start(coordinatorMode: .embed(parentViewController: parentViewController, containerView: nil))
     }
 
     func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate, for user: User) {
@@ -42,7 +42,7 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
         profileCoordinator = coordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start(routingMode: .embed(parentViewController: parentViewController, containerView: nil))
+        coordinator.start(coordinatorMode: .embed(parentViewController: parentViewController, containerView: nil))
     }
 
     func removeSignInViewController(from parentViewController: UIViewController) {
