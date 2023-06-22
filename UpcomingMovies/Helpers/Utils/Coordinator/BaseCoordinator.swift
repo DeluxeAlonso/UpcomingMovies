@@ -64,11 +64,11 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
         case .present:
             let presentedViewController = navigationController.topViewController
             presentedViewController?.dismiss(animated: true) { [weak self] in
-                self?.unwrappedParentCoordinator.childDidFinishV2()
+                self?.unwrappedParentCoordinator.childDidFinish()
             }
         case .embed(let parentViewController, _):
             parentViewController.remove(asChildViewController: viewController)
-            unwrappedParentCoordinator.childDidFinishV2()
+            unwrappedParentCoordinator.childDidFinish()
         }
     }
 

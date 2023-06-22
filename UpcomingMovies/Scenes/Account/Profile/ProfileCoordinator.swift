@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-final class ProfileCoordinator: BaseCoordinatorV2, ProfileCoordinatorProtocol {
+final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorProtocol {
 
     private let user: User
     private weak var delegate: ProfileViewControllerDelegate?
