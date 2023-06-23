@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SignInCoordinator: BaseCoordinatorV2, SignInCoordinatorProtocol {
+final class SignInCoordinator: BaseCoordinator, SignInCoordinatorProtocol {
 
     private weak var delegate: SignInViewControllerDelegate?
 

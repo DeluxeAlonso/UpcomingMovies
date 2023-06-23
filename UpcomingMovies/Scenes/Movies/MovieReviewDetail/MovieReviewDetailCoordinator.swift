@@ -34,7 +34,7 @@ final class MovieReviewDetailCoordinator: BaseCoordinator, MovieReviewDetailCoor
         presentingViewController?.present(navigationController, animated: true, completion: nil)
     }
 
-    func dismiss() {
+    override func dismiss() {
         let presentedViewController = navigationController.topViewController
         presentedViewController?.dismiss(animated: true) { [weak self] in
             self?.parentCoordinator?.childDidFinish()

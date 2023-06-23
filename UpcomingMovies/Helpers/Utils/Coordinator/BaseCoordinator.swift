@@ -14,7 +14,10 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
 
-    let shouldBeAutomaticallyFinished: Bool = false
+    private(set) var shouldBeAutomaticallyFinished: Bool = false
+
+    private var viewController: UIViewController?
+    private var coordinatorMode: CoordinatorMode = .push
 
     public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -25,6 +28,48 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
 
     open func start() {
         fatalError("Start method should be implemented")
+    }
+
+    open func build() -> UIViewController {
+        fatalError("Build method should be implemented")
+    }
+
+    open func start(coordinatorMode: CoordinatorMode = .push) {
+        let viewController = build()
+
+        switch coordinatorMode {
+        case .push:
+            navigationController.pushViewController(viewController, animated: true)
+        case .present(let presentingViewController):
+            presentingViewController.present(navigationController, animated: true, completion: nil)
+        case .embed(let parentViewController, let containerView):
+            if let containerView {
+                parentViewController.add(asChildViewController: viewController,
+                                         containerView: containerView)
+            } else {
+                parentViewController.add(asChildViewController: viewController)
+            }
+            self.viewController = viewController
+            shouldBeAutomaticallyFinished = true
+        }
+
+        self.coordinatorMode = coordinatorMode
+        self.viewController = viewController
+    }
+
+    open func dismiss() {
+        switch coordinatorMode {
+        case .push:
+            navigationController.popViewController(animated: true)
+        case .present:
+            let presentedViewController = navigationController.topViewController
+            presentedViewController?.dismiss(animated: true) { [weak self] in
+                self?.unwrappedParentCoordinator.childDidFinish()
+            }
+        case .embed(let parentViewController, _):
+            parentViewController.remove(asChildViewController: viewController)
+            unwrappedParentCoordinator.childDidFinish()
+        }
     }
 
     open var navigationControllerDelegate: UINavigationControllerDelegate? {

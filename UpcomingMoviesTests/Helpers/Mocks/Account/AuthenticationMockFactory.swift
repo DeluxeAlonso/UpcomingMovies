@@ -44,6 +44,11 @@ final class MockAuthPermissionCoordinator: AuthPermissionCoordinatorProtocol {
         startCallCount += 1
     }
 
+    private(set) var startWithCoordinatorModeCallCount = 0
+    func start(coordinatorMode: CoordinatorMode) {
+        startWithCoordinatorModeCallCount += 1
+    }
+
 }
 
 final class MockAuthPermissionViewControllerDelegate: AuthPermissionViewControllerDelegate {

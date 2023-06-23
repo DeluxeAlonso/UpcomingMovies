@@ -22,6 +22,11 @@ final class MockCoordinator: Coordinator {
         startCallCount += 1
     }
 
+    private(set) var startWithCoordinatorModeCallCount = 0
+    func start(coordinatorMode: CoordinatorMode) {
+        startWithCoordinatorModeCallCount += 1
+    }
+
     private(set) var childDidFinishChildCoordinatorCallCount = 0
     func childDidFinish(_ child: Coordinator) {
         childDidFinishChildCoordinatorCallCount += 1
