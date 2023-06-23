@@ -89,8 +89,35 @@ final class BaseCoordinatorTests: XCTestCase {
         XCTAssertEqual(parentCoordinator.childDidFinishCallCount, 0)
     }
 
+    func testStartPushCoordinatorMode() {
+        // Arrange
+        let coordinator = createSUT()
+        // Act
+        coordinator.start(coordinatorMode: .push)
+        // Assert
+        XCTAssertEqual(navigationController.pushViewControllerCallCount, 1)
+    }
+
+    func testStartPresentCoordinatorMode() {
+        // Arrange
+        let coordinator = createSUT()
+        let presentingViewController = MockViewController()
+        // Act
+        coordinator.start(coordinatorMode: .present(presentingViewController: presentingViewController))
+        // Assert
+        XCTAssertEqual(presentingViewController.presentCount, 1)
+    }
+
     private func createSUT() -> BaseCoordinator {
-        BaseCoordinator(navigationController: navigationController)
+        TestBaseCoordinator(navigationController: navigationController)
+    }
+
+}
+
+private final class TestBaseCoordinator: BaseCoordinator {
+
+    override func build() -> UIViewController {
+        UIViewController()
     }
 
 }
