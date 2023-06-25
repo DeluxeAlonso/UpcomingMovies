@@ -33,12 +33,13 @@ final class MovieReviewsCoordinator: BaseCoordinator, MovieReviewsCoordinatorPro
         guard let presentingViewController = navigationController.topViewController else { return }
 
         let coordinator = MovieReviewDetailCoordinator(navigationController: UINavigationController(), review: review)
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+
         let transitioningDelegate = ScaleTransitioningDelegate(viewToScale: transitionView)
         let coordinatorModeConfig = CoordinatorModePresentConfiguration(modalPresentationStyle: .fullScreen,
                                                                         transitioningDelegate: transitioningDelegate)
-
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
         coordinator.start(coordinatorMode: .present(presentingViewController: presentingViewController,
                                                     configuration: coordinatorModeConfig))
     }

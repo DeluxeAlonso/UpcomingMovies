@@ -127,7 +127,7 @@ final class BaseCoordinatorTests: XCTestCase {
         let coordinator = createSUT()
         let presentingViewController = MockViewController()
         // Act
-        coordinator.start(coordinatorMode: .present(presentingViewController: presentingViewController))
+        coordinator.start(coordinatorMode: .present(presentingViewController: presentingViewController, configuration: nil))
         // Assert
         XCTAssertEqual(presentingViewController.presentCallCount, 1)
     }
@@ -175,7 +175,7 @@ final class BaseCoordinatorTests: XCTestCase {
         let parentCoordinator = MockCoordinator()
         coordinator.parentCoordinator = parentCoordinator
         // Act
-        coordinator.start(coordinatorMode: .present(presentingViewController: presentingViewController))
+        coordinator.start(coordinatorMode: .present(presentingViewController: presentingViewController, configuration: nil))
         coordinator.dismiss()
         // Assert
         XCTAssertEqual(viewController.dismissCallCount, 1)
