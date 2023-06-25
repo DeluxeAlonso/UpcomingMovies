@@ -108,6 +108,28 @@ final class BaseCoordinatorTests: XCTestCase {
         XCTAssertEqual(presentingViewController.presentCount, 1)
     }
 
+    func testStartEmbedWithContainerViewCoordinatorMode() {
+        // Arrange
+        let coordinator = createSUT()
+        let parentViewController = MockViewController()
+        let containerView = UIView()
+        parentViewController.view.addSubview(containerView)
+        // Act
+        coordinator.start(coordinatorMode: .embed(parentViewController: parentViewController, containerView: containerView))
+        // Assert
+        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+    }
+
+    func testStartEmbedWithoutContainerViewCoordinatorMode() {
+        // Arrange
+        let coordinator = createSUT()
+        let parentViewController = MockViewController()
+        // Act
+        coordinator.start(coordinatorMode: .embed(parentViewController: parentViewController, containerView: nil))
+        // Assert
+        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+    }
+
     private func createSUT() -> BaseCoordinator {
         TestBaseCoordinator(navigationController: navigationController)
     }
