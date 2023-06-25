@@ -36,6 +36,7 @@ final class MovieReviewsCoordinatorTests: XCTestCase {
     func testShowReviewDetail() {
         // Arrange
         let coordinator = MovieReviewsCoordinator(navigationController: navigationController, movieId: 1, movieTitle: "Title")
+        navigationController.topViewControllerResult = MockViewController()
         // Act
         coordinator.showReviewDetail(for: .with())
         // Assert
@@ -45,6 +46,16 @@ final class MovieReviewsCoordinatorTests: XCTestCase {
             return
         }
         XCTAssertTrue(childCoordinator is MovieReviewDetailCoordinatorProtocol)
+    }
+
+    func testShowReviewDetailWithoutTopViewController() {
+        // Arrange
+        let coordinator = MovieReviewsCoordinator(navigationController: navigationController, movieId: 1, movieTitle: "Title")
+        navigationController.topViewControllerResult = nil
+        // Act
+        coordinator.showReviewDetail(for: .with())
+        // Assert
+        XCTAssertEqual(coordinator.unwrappedParentCoordinator.childCoordinators.count, 0)
     }
 
 }

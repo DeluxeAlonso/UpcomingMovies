@@ -9,6 +9,7 @@
 import XCTest
 import UIKit
 @testable import UpcomingMovies
+import UpcomingMoviesDomain
 
 final class MovieReviewDetailCoordinatorTests: XCTestCase {
 
@@ -24,29 +25,18 @@ final class MovieReviewDetailCoordinatorTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testStart() {
+    func testBuild() {
         // Arrange
-        let coordinator = MovieReviewDetailCoordinator(navigationController: navigationController,
-                                                       review: .with())
-        let presentingViewController = MockViewController()
-        coordinator.presentingViewController = presentingViewController
+        let coordinator = createSUT(review: .with())
         // Act
-        coordinator.start()
+        let viewController = coordinator.build()
         // Assert
-        XCTAssertEqual(navigationController.pushViewControllerCallCount, 1)
-        XCTAssertEqual(presentingViewController.presentCallCount, 1)
+        XCTAssertNotNil(viewController.viewModel)
+        XCTAssertNotNil(viewController.coordinator)
     }
 
-    func testDismiss() {
-        // Arrange
-        let coordinator = MovieReviewDetailCoordinator(navigationController: navigationController,
-                                                       review: .with())
-        let topViewController = MockViewController()
-        navigationController.topViewControllerResult = topViewController
-        // Act
-        coordinator.dismiss()
-        // Assert
-        XCTAssertEqual(topViewController.dismissCallCount, 1)
+    private func createSUT(review: Review) -> MovieReviewDetailCoordinator {
+        MovieReviewDetailCoordinator(navigationController: navigationController, review: review)
     }
 
 }

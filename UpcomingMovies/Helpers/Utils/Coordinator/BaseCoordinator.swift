@@ -40,7 +40,10 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
         switch coordinatorMode {
         case .push:
             navigationController.pushViewController(viewController, animated: true)
-        case .present(let presentingViewController):
+        case .present(let presentingViewController, let configuration):
+            navigationController.pushViewController(viewController, animated: false)
+            navigationController.modalPresentationStyle = configuration?.modalPresentationStyle ?? .automatic
+            navigationController.transitioningDelegate = configuration?.transitioningDelegate
             presentingViewController.present(navigationController, animated: true, completion: nil)
         case .embed(let parentViewController, let containerView):
             if let containerView {
