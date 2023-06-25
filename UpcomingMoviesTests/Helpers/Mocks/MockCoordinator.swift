@@ -36,10 +36,4 @@ final class MockCoordinator: Coordinator {
     func childDidFinish() {
         childDidFinishCallCount += 1
     }
-
-    private(set) var childDidFinishV2CallCount = 0
-    func childDidFinishV2() {
-        childDidFinishV2CallCount += 1
-    }
-
 }

@@ -33,6 +33,30 @@ final class BaseCoordinatorTests: XCTestCase {
         XCTAssertNotNil(navigationController.delegate)
     }
 
+    func testSetupNavigationControllerDelegateExistingDelegateShouldNotOverride() {
+        // Arrange
+        let coordinator = createSUT()
+        let delegate = MockNavigationControllerDelegate()
+        coordinator.navigationController.delegate = delegate
+        coordinator.shouldForceDelegateOverride = false
+        // Act
+        coordinator.setupNavigationControllerDelegate()
+        // Assert
+        XCTAssertTrue(navigationController.delegate is MockNavigationControllerDelegate)
+    }
+
+    func testSetupNavigationControllerDelegateExistingDelegateShouldOverride() {
+        // Arrange
+        let coordinator = createSUT()
+        let delegate = MockNavigationControllerDelegate()
+        coordinator.navigationController.delegate = delegate
+        coordinator.shouldForceDelegateOverride = true
+        // Act
+        coordinator.setupNavigationControllerDelegate()
+        // Assert
+        XCTAssertFalse(navigationController.delegate is MockNavigationControllerDelegate)
+    }
+
     func testNavigationControllerDidShow() {
         // Arrange
         let coordinator = createSUT()
@@ -105,19 +129,90 @@ final class BaseCoordinatorTests: XCTestCase {
         // Act
         coordinator.start(coordinatorMode: .present(presentingViewController: presentingViewController))
         // Assert
-        XCTAssertEqual(presentingViewController.presentCount, 1)
+        XCTAssertEqual(presentingViewController.presentCallCount, 1)
     }
 
-    private func createSUT() -> BaseCoordinator {
-        TestBaseCoordinator(navigationController: navigationController)
+    func testStartEmbedWithContainerViewCoordinatorMode() {
+        // Arrange
+        let coordinator = createSUT()
+        let parentViewController = MockViewController()
+        let containerView = UIView()
+        parentViewController.view.addSubview(containerView)
+        // Act
+        coordinator.start(coordinatorMode: .embed(parentViewController: parentViewController, containerView: containerView))
+        // Assert
+        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+    }
+
+    func testStartEmbedWithoutContainerViewCoordinatorMode() {
+        // Arrange
+        let coordinator = createSUT()
+        let parentViewController = MockViewController()
+        // Act
+        coordinator.start(coordinatorMode: .embed(parentViewController: parentViewController, containerView: nil))
+        // Assert
+        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+    }
+
+    func testDismissPushCoordinatorMode() {
+        // Arrange
+        let coordinator = createSUT()
+        // Act
+        coordinator.start(coordinatorMode: .push)
+        coordinator.dismiss()
+        // Assert
+        XCTAssertEqual(navigationController.popViewControllerCallCount, 1)
+    }
+
+    func testDismissPresentCoordinatorMode() {
+        // Arrange
+        let coordinator = createSUT()
+        let presentingViewController = MockViewController()
+
+        let viewController = MockViewController()
+        navigationController.topViewControllerResult = viewController
+
+        let parentCoordinator = MockCoordinator()
+        coordinator.parentCoordinator = parentCoordinator
+        // Act
+        coordinator.start(coordinatorMode: .present(presentingViewController: presentingViewController))
+        coordinator.dismiss()
+        // Assert
+        XCTAssertEqual(viewController.dismissCallCount, 1)
+        XCTAssertEqual(parentCoordinator.childDidFinishCallCount, 1)
+    }
+
+    func testDismissEmbedWithoutContainerViewCoordinatorMode() {
+        // Arrange
+        let builtViewController = MockViewController()
+        let coordinator = createSUT(buildResult: builtViewController)
+        let parentViewController = MockViewController()
+
+        let parentCoordinator = MockCoordinator()
+        coordinator.parentCoordinator = parentCoordinator
+        // Act
+        coordinator.start(coordinatorMode: .embed(parentViewController: parentViewController, containerView: nil))
+        coordinator.dismiss()
+        // Assert
+        XCTAssertEqual(builtViewController.removeFromParentCallCount, 1)
+        XCTAssertEqual(parentCoordinator.childDidFinishCallCount, 1)
+    }
+
+    private func createSUT(buildResult: UIViewController? = nil) -> BaseCoordinator {
+        let coordinator = TestBaseCoordinator(navigationController: navigationController)
+        if let buildResult {
+            coordinator.buildResult = buildResult
+        }
+        return coordinator
     }
 
 }
 
 private final class TestBaseCoordinator: BaseCoordinator {
 
+    var buildResult: UIViewController = UIViewController()
     override func build() -> UIViewController {
-        UIViewController()
+        buildResult
     }
 
 }

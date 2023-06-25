@@ -20,9 +20,16 @@ final class MockNavigationController: UINavigationController {
         presentCallCount += 1
     }
 
-    var mockTopViewController: MockViewController?
+    var popViewControllerCallCount = 0
+    var popViewControllerResult: UIViewController?
+    override func popViewController(animated: Bool) -> UIViewController? {
+        popViewControllerCallCount += 1
+        return popViewControllerResult
+    }
+
+    var topViewControllerResult: MockViewController?
     override var topViewController: UIViewController? {
-        mockTopViewController
+        topViewControllerResult
     }
 
     var isBeingPresentedResult: Bool = false
@@ -32,11 +39,11 @@ final class MockNavigationController: UINavigationController {
 
     var viewControllersResult: [UIViewController] = []
     override var viewControllers: [UIViewController] {
-        set {
-            super.viewControllers = newValue
-        }
         get {
             return viewControllersResult
+        }
+        set {
+            super.viewControllers = newValue
         }
     }
 
