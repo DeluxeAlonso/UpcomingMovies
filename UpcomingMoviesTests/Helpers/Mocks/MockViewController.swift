@@ -15,14 +15,19 @@ class MockViewController: UIViewController {
         addChildCallCount += 1
     }
 
-    var presentCount = 0
-    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        presentCount += 1
+    var removeFromParentCallCount = 0
+    override func removeFromParent() {
+        removeFromParentCallCount += 1
     }
 
-    var dismissCount = 0
+    var presentCallCount = 0
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+        presentCallCount += 1
+    }
+
+    var dismissCallCount = 0
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        dismissCount += 1
+        dismissCallCount += 1
         if let completion {
             completion()
         }

@@ -34,7 +34,7 @@ final class MovieReviewDetailCoordinatorTests: XCTestCase {
         coordinator.start()
         // Assert
         XCTAssertEqual(navigationController.pushViewControllerCallCount, 1)
-        XCTAssertEqual(presentingViewController.presentCount, 1)
+        XCTAssertEqual(presentingViewController.presentCallCount, 1)
     }
 
     func testDismiss() {
@@ -42,11 +42,11 @@ final class MovieReviewDetailCoordinatorTests: XCTestCase {
         let coordinator = MovieReviewDetailCoordinator(navigationController: navigationController,
                                                        review: .with())
         let topViewController = MockViewController()
-        navigationController.mockTopViewController = topViewController
+        navigationController.topViewControllerResult = topViewController
         // Act
         coordinator.dismiss()
         // Assert
-        XCTAssertEqual(topViewController.dismissCount, 1)
+        XCTAssertEqual(topViewController.dismissCallCount, 1)
     }
 
 }
