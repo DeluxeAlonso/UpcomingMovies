@@ -151,7 +151,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
     private func showMovieCredits() {
@@ -173,7 +173,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
     private func showSimilarMovies() {

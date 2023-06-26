@@ -20,13 +20,13 @@ final class MovieReviewsCoordinator: BaseCoordinator, MovieReviewsCoordinatorPro
         super.init(navigationController: navigationController)
     }
 
-    override func start() {
+    override func build() -> MovieReviewsViewController {
         let viewController = MovieReviewsViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(arguments: movieId, movieTitle)
         viewController.coordinator = self
 
-        navigationController.pushViewController(viewController, animated: true)
+        return viewController
     }
 
     func showReviewDetail(for review: Review, transitionView: UIView? = nil) {
