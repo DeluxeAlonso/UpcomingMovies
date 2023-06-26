@@ -25,7 +25,7 @@ final class MainTabBarBuilder {
 
         let searchMoviesNavigationController = createNavigationController(title: "Search", image: #imageLiteral(resourceName: "Search"))
         let searchMoviesCoordinator = SearchMoviesCoordinator(navigationController: searchMoviesNavigationController)
-        searchMoviesCoordinator.start()
+        searchMoviesCoordinator.start(coordinatorMode: .push)
 
         let accountNavigationController = createNavigationController(title: "Account", image: #imageLiteral(resourceName: "Account"))
         let accountCoordinator = AccountCoordinator(navigationController: accountNavigationController)

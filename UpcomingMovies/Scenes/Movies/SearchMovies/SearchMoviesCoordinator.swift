@@ -25,6 +25,13 @@ final class SearchMoviesCoordinator: BaseCoordinator, SearchMoviesCoordinatorPro
         navigationController.pushViewController(viewController, animated: true)
     }
 
+    override func build() -> SearchMoviesViewController {
+        let viewController = SearchMoviesViewController.instantiate()
+        viewController.coordinator = self
+
+        return viewController
+    }
+
     func embedSearchOptions(on parentViewController: UIViewController,
                             in containerView: UIView) -> SearchOptionsViewController {
         let viewController = SearchOptionsViewController.instantiate()
