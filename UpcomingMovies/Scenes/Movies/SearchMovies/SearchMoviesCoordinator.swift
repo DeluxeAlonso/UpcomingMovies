@@ -68,7 +68,7 @@ final class SearchMoviesCoordinator: BaseCoordinator, SearchMoviesCoordinatorPro
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
     func showDefaultSearchOption(_ option: DefaultSearchOption) {
@@ -85,7 +85,7 @@ final class SearchMoviesCoordinator: BaseCoordinator, SearchMoviesCoordinatorPro
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
     private func showTopRatedMovies() {
@@ -93,7 +93,7 @@ final class SearchMoviesCoordinator: BaseCoordinator, SearchMoviesCoordinatorPro
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
 }

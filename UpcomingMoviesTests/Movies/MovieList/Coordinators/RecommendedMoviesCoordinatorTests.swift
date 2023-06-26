@@ -24,13 +24,14 @@ final class RecommendedMoviesCoordinatorTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testStart() {
+    func testBuild() {
         // Arrange
         let coordinator = RecommendedMoviesCoordinator(navigationController: navigationController)
         // Act
-        coordinator.start()
+        let viewController = coordinator.build()
         // Assert
-        XCTAssertEqual(navigationController.pushViewControllerCallCount, 1)
+        XCTAssertNotNil(viewController.viewModel)
+        XCTAssertNotNil(viewController.coordinator)
     }
 
 }

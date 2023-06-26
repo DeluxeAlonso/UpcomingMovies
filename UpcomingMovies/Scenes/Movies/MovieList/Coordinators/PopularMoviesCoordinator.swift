@@ -10,14 +10,14 @@ import UpcomingMoviesDomain
 
 final class PopularMoviesCoordinator: BaseCoordinator, MovieListCoordinatorProtocol, MovieDetailCoordinable {
 
-    override func start() {
+    override func build() -> MovieListViewController {
         let viewController = MovieListViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(name: "PopularMovies",
                                                               argument: LocalizedStrings.popularMoviesTitle())
         viewController.coordinator = self
 
-        navigationController.pushViewController(viewController, animated: true)
+        return viewController
     }
 
 }

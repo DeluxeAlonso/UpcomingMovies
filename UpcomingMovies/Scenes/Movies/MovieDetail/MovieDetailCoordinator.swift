@@ -161,7 +161,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
     private func showMovieReviews() {
@@ -183,7 +183,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
     private func viewModel(for movieInfo: MovieDetailInfo) -> MovieDetailViewModelProtocol {
