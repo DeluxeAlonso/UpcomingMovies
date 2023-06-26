@@ -17,14 +17,6 @@ final class SearchMoviesCoordinator: BaseCoordinator, SearchMoviesCoordinatorPro
         RootCoordinatorIdentifier.searchMovies
     }
 
-    override func start() {
-        let viewController = SearchMoviesViewController.instantiate()
-
-        viewController.coordinator = self
-
-        navigationController.pushViewController(viewController, animated: true)
-    }
-
     override func build() -> SearchMoviesViewController {
         let viewController = SearchMoviesViewController.instantiate()
         viewController.coordinator = self
