@@ -24,13 +24,13 @@ final class MovieCreditsCoordinatorTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testStart() {
+    func testBuild() {
         // Arrange
         let coordinator = MovieCreditsCoordinator(navigationController: navigationController, movieId: 1, movieTitle: "Title")
         // Act
-        coordinator.start()
+        let viewController = coordinator.build()
         // Assert
-        XCTAssertEqual(navigationController.pushViewControllerCallCount, 1)
+        XCTAssertNotNil(viewController.viewModel)
+        XCTAssertNotNil(viewController.coordinator)
     }
-
 }

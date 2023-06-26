@@ -19,13 +19,13 @@ final class MovieCreditsCoordinator: BaseCoordinator, MovieCreditsCoordinatorPro
         super.init(navigationController: navigationController)
     }
 
-    override func start() {
+    override func build() -> MovieCreditsViewController {
         let viewController = MovieCreditsViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(arguments: movieId, movieTitle)
         viewController.coordinator = self
 
-        navigationController.pushViewController(viewController, animated: true)
+        return viewController
     }
 
 }
