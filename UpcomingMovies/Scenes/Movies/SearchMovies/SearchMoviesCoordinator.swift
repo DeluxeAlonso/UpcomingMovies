@@ -67,7 +67,7 @@ final class SearchMoviesCoordinator: BaseCoordinator, SearchMoviesCoordinatorPro
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
     func showMoviesByGenre(_ genreId: Int, genreName: String) {

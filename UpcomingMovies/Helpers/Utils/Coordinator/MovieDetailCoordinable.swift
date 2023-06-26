@@ -23,7 +23,7 @@ extension MovieDetailCoordinable where Self: Coordinator {
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
 }

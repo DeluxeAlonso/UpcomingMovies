@@ -34,14 +34,14 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
 
     // MARK: - MovieDetailCoordinatorProtocol
 
-    override func start() {
+    override func build() -> MovieDetailViewController {
         let viewController = MovieDetailViewController.instantiate()
 
         viewController.viewModel = viewModel(for: movieInfo)
         viewController.userInterfaceHelper = DIContainer.shared.resolve()
         viewController.coordinator = self
 
-        navigationController.pushViewController(viewController, animated: true)
+        return viewController
     }
 
     // MARK: - MovieDetailCoordinatorProtocol
