@@ -19,13 +19,13 @@ final class MovieVideosCoordinator: BaseCoordinator, MovieVideosCoordinatorProto
         super.init(navigationController: navigationController)
     }
 
-    override func start() {
+    override func build() -> MovieVideosViewController {
         let viewController = MovieVideosViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(arguments: movieId, movieTitle)
         viewController.coordinator = self
 
-        navigationController.pushViewController(viewController, animated: true)
+        return viewController
     }
 
 }
