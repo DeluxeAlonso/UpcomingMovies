@@ -34,14 +34,14 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
 
     // MARK: - MovieDetailCoordinatorProtocol
 
-    override func start() {
+    override func build() -> MovieDetailViewController {
         let viewController = MovieDetailViewController.instantiate()
 
         viewController.viewModel = viewModel(for: movieInfo)
         viewController.userInterfaceHelper = DIContainer.shared.resolve()
         viewController.coordinator = self
 
-        navigationController.pushViewController(viewController, animated: true)
+        return viewController
     }
 
     // MARK: - MovieDetailCoordinatorProtocol
@@ -161,7 +161,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
     private func showMovieReviews() {
@@ -183,7 +183,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
     private func viewModel(for movieInfo: MovieDetailInfo) -> MovieDetailViewModelProtocol {

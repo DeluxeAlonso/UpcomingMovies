@@ -24,22 +24,26 @@ final class MovieDetailCoordinatorTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testStartWithCompleteMovieInfo() {
+    func testBuildWithCompleteMovieInfo() {
         // Arrange
         let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
         // Act
-        coordinator.start()
+        let viewController = coordinator.build()
         // Assert
-        XCTAssertEqual(navigationController.pushViewControllerCallCount, 1)
+        XCTAssertNotNil(viewController.viewModel)
+        XCTAssertNotNil(viewController.userInterfaceHelper)
+        XCTAssertNotNil(viewController.coordinator)
     }
 
-    func testStartWithPartialMovieInfo() {
+    func testBuildWithPartialMovieInfo() {
         // Arrange
         let coordinator = createSUT(movieInfo: .partial(movieId: 1, movieTitle: "Title"))
         // Act
-        coordinator.start()
+        let viewController = coordinator.build()
         // Assert
-        XCTAssertEqual(navigationController.pushViewControllerCallCount, 1)
+        XCTAssertNotNil(viewController.viewModel)
+        XCTAssertNotNil(viewController.userInterfaceHelper)
+        XCTAssertNotNil(viewController.coordinator)
     }
 
     func testShowSharingOptions() {

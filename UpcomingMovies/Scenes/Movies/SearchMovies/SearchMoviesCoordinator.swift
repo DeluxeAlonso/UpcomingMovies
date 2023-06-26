@@ -17,12 +17,11 @@ final class SearchMoviesCoordinator: BaseCoordinator, SearchMoviesCoordinatorPro
         RootCoordinatorIdentifier.searchMovies
     }
 
-    override func start() {
+    override func build() -> SearchMoviesViewController {
         let viewController = SearchMoviesViewController.instantiate()
-
         viewController.coordinator = self
 
-        navigationController.pushViewController(viewController, animated: true)
+        return viewController
     }
 
     func embedSearchOptions(on parentViewController: UIViewController,
@@ -60,7 +59,7 @@ final class SearchMoviesCoordinator: BaseCoordinator, SearchMoviesCoordinatorPro
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
     func showMoviesByGenre(_ genreId: Int, genreName: String) {
@@ -68,7 +67,7 @@ final class SearchMoviesCoordinator: BaseCoordinator, SearchMoviesCoordinatorPro
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
     func showDefaultSearchOption(_ option: DefaultSearchOption) {
@@ -85,7 +84,7 @@ final class SearchMoviesCoordinator: BaseCoordinator, SearchMoviesCoordinatorPro
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
     private func showTopRatedMovies() {
@@ -93,7 +92,7 @@ final class SearchMoviesCoordinator: BaseCoordinator, SearchMoviesCoordinatorPro
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
 }

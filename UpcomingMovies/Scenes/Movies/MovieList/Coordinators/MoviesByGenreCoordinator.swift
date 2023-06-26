@@ -20,14 +20,14 @@ final class MoviesByGenreCoordinator: BaseCoordinator, MovieListCoordinatorProto
         super.init(navigationController: navigationController)
     }
 
-    override func start() {
+    override func build() -> MovieListViewController {
         let viewController = MovieListViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(name: "MoviesByGenre",
                                                               arguments: genreId, genreName)
         viewController.coordinator = self
 
-        navigationController.pushViewController(viewController, animated: true)
+        return viewController
     }
 
 }

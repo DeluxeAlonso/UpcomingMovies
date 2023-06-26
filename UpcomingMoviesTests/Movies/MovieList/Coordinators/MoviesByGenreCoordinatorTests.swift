@@ -24,13 +24,14 @@ final class MoviesByGenreCoordinatorTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testStart() {
+    func testBuild() {
         // Arrange
         let coordinator = MoviesByGenreCoordinator(navigationController: navigationController, genreId: 1, genreName: "Genre Name")
         // Act
-        coordinator.start()
+        let viewController = coordinator.build()
         // Assert
-        XCTAssertEqual(navigationController.pushViewControllerCallCount, 1)
+        XCTAssertNotNil(viewController.viewModel)
+        XCTAssertNotNil(viewController.coordinator)
     }
 
 }

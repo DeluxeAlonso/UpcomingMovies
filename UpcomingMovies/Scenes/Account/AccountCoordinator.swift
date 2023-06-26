@@ -112,7 +112,7 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .push)
     }
 
     // MARK: - Profile Group Options

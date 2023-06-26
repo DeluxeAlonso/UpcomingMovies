@@ -33,13 +33,15 @@ final class UpcomingMoviesCoordinatorTests: XCTestCase {
         XCTAssertEqual(rootIdentifier, RootCoordinatorIdentifier.upcomingMovies)
     }
 
-    func testStart() {
+    func testBuild() {
         // Arrange
         let coordinator = createSUT()
         // Act
-        coordinator.start()
+        let viewController = coordinator.build()
         // Assert
-        XCTAssertEqual(navigationController.pushViewControllerCallCount, 1)
+        XCTAssertNotNil(viewController.viewModel)
+        XCTAssertNotNil(viewController.layoutProvider)
+        XCTAssertNotNil(viewController.coordinator)
     }
 
     func testShowMovieDetail() {

@@ -33,13 +33,13 @@ final class SearchMoviesCoordinatorTests: XCTestCase {
         XCTAssertEqual(rootIdentifier, RootCoordinatorIdentifier.searchMovies)
     }
 
-    func testStart() {
+    func testBuild() {
         // Arrange
         let coordinator = createSUT()
         // Act
-        coordinator.start()
+        let viewController = coordinator.build()
         // Assert
-        XCTAssertEqual(navigationController.pushViewControllerCallCount, 1)
+        XCTAssertNotNil(viewController.coordinator)
     }
 
     func testEmbedSearchOptions() {

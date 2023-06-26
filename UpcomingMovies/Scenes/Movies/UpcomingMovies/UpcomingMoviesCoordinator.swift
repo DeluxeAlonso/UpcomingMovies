@@ -33,14 +33,14 @@ final class UpcomingMoviesCoordinator: BaseCoordinator, UpcomingMoviesCoordinato
         RootCoordinatorIdentifier.upcomingMovies
     }
 
-    override func start() {
+    override func build() -> UpcomingMoviesViewController {
         let viewController = UpcomingMoviesViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve()
         viewController.layoutProvider = DIContainer.shared.resolve()
         viewController.coordinator = self
 
-        navigationController.pushViewController(viewController, animated: true)
+        return viewController
     }
 
     func showMovieDetail(for movie: Movie, with navigationConfiguration: UpcomingMoviesNavigationConfiguration?) {
