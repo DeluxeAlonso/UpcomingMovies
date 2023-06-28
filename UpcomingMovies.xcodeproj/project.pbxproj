@@ -336,6 +336,12 @@
 		E2A958D52A367C970004FC5C /* MovieDetailOptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A958D42A367C970004FC5C /* MovieDetailOptionTests.swift */; };
 		E2A958D72A367DC80004FC5C /* MovieDetailOptionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A958D62A367DC80004FC5C /* MovieDetailOptionViewTests.swift */; };
 		E2A958D92A3680AA0004FC5C /* MovieDetailOptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A958D82A3680AA0004FC5C /* MovieDetailOptionsViewControllerTests.swift */; };
+		E2A991932A4BF1E40006C9C3 /* MovieDetailPosterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A991922A4BF1E40006C9C3 /* MovieDetailPosterCoordinator.swift */; };
+		E2A991952A4BF8800006C9C3 /* MovieDetailTitleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A991942A4BF8800006C9C3 /* MovieDetailTitleCoordinator.swift */; };
+		E2A991972A4C0B8E0006C9C3 /* MovieDetailOptionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A991962A4C0B8E0006C9C3 /* MovieDetailOptionsCoordinator.swift */; };
+		E2A991992A4C0C5F0006C9C3 /* MovieDetailPosterCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A991982A4C0C5F0006C9C3 /* MovieDetailPosterCoordinatorTests.swift */; };
+		E2A9919B2A4C0E190006C9C3 /* MovieDetailOptionsCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9919A2A4C0E190006C9C3 /* MovieDetailOptionsCoordinatorTests.swift */; };
+		E2A9919D2A4C0EFF0006C9C3 /* MovieDetailTitleCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9919C2A4C0EFF0006C9C3 /* MovieDetailTitleCoordinatorTests.swift */; };
 		E2ACC8AF2A3E4946007FDFC9 /* AuthenticationMockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ACC8AE2A3E4946007FDFC9 /* AuthenticationMockFactory.swift */; };
 		E2ACC8B42A3E4AED007FDFC9 /* AuthPermissionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ACC8B32A3E4AED007FDFC9 /* AuthPermissionViewControllerTests.swift */; };
 		E2B084482A1FED1A009F6AC4 /* MovieDetailTitleRenderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B084472A1FED1A009F6AC4 /* MovieDetailTitleRenderContent.swift */; };
@@ -825,6 +831,12 @@
 		E2A958D42A367C970004FC5C /* MovieDetailOptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailOptionTests.swift; sourceTree = "<group>"; };
 		E2A958D62A367DC80004FC5C /* MovieDetailOptionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailOptionViewTests.swift; sourceTree = "<group>"; };
 		E2A958D82A3680AA0004FC5C /* MovieDetailOptionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailOptionsViewControllerTests.swift; sourceTree = "<group>"; };
+		E2A991922A4BF1E40006C9C3 /* MovieDetailPosterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailPosterCoordinator.swift; sourceTree = "<group>"; };
+		E2A991942A4BF8800006C9C3 /* MovieDetailTitleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailTitleCoordinator.swift; sourceTree = "<group>"; };
+		E2A991962A4C0B8E0006C9C3 /* MovieDetailOptionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailOptionsCoordinator.swift; sourceTree = "<group>"; };
+		E2A991982A4C0C5F0006C9C3 /* MovieDetailPosterCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailPosterCoordinatorTests.swift; sourceTree = "<group>"; };
+		E2A9919A2A4C0E190006C9C3 /* MovieDetailOptionsCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailOptionsCoordinatorTests.swift; sourceTree = "<group>"; };
+		E2A9919C2A4C0EFF0006C9C3 /* MovieDetailTitleCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailTitleCoordinatorTests.swift; sourceTree = "<group>"; };
 		E2ACC8AE2A3E4946007FDFC9 /* AuthenticationMockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationMockFactory.swift; sourceTree = "<group>"; };
 		E2ACC8B32A3E4AED007FDFC9 /* AuthPermissionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionViewControllerTests.swift; sourceTree = "<group>"; };
 		E2B084472A1FED1A009F6AC4 /* MovieDetailTitleRenderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailTitleRenderContent.swift; sourceTree = "<group>"; };
@@ -1141,6 +1153,7 @@
 				E2A958D42A367C970004FC5C /* MovieDetailOptionTests.swift */,
 				E2A958D62A367DC80004FC5C /* MovieDetailOptionViewTests.swift */,
 				E2A958D82A3680AA0004FC5C /* MovieDetailOptionsViewControllerTests.swift */,
+				E2A9919A2A4C0E190006C9C3 /* MovieDetailOptionsCoordinatorTests.swift */,
 			);
 			path = MovieDetailOptions;
 			sourceTree = "<group>";
@@ -1206,6 +1219,7 @@
 			isa = PBXGroup;
 			children = (
 				E21925622A247CDE0058BA74 /* MovieDetailPosterViewModelTests.swift */,
+				E2A991982A4C0C5F0006C9C3 /* MovieDetailPosterCoordinatorTests.swift */,
 			);
 			path = MovieDetailPoster;
 			sourceTree = "<group>";
@@ -2159,6 +2173,7 @@
 				E2A104AF29EFA1B400DA0809 /* MovieDetailPosterViewController.swift */,
 				E202124129F0F04400F92734 /* MovieDetailPosterViewModel.swift */,
 				E2B0844C2A201F11009F6AC4 /* MovieDetailPosterRenderContent.swift */,
+				E2A991922A4BF1E40006C9C3 /* MovieDetailPosterCoordinator.swift */,
 			);
 			path = MovieDetailPoster;
 			sourceTree = "<group>";
@@ -2275,6 +2290,7 @@
 			isa = PBXGroup;
 			children = (
 				E2B0844A2A1FEE81009F6AC4 /* MovieDetailTitleViewModelTests.swift */,
+				E2A9919C2A4C0EFF0006C9C3 /* MovieDetailTitleCoordinatorTests.swift */,
 			);
 			path = MovieDetailTitle;
 			sourceTree = "<group>";
@@ -2334,6 +2350,7 @@
 				E2D2928B29DCA69B007DE995 /* MovieDetailOptionsViewModel.swift */,
 				E2D2928D29DCA784007DE995 /* MovieDetailOptionsViewController.swift */,
 				E2B0844E2A2076EF009F6AC4 /* MovieDetailOptionsRenderContent.swift */,
+				E2A991962A4C0B8E0006C9C3 /* MovieDetailOptionsCoordinator.swift */,
 			);
 			path = MovieDetailOptions;
 			sourceTree = "<group>";
@@ -2375,6 +2392,7 @@
 				E2D614002A1DD22700D72A59 /* MovieDetailTitleViewController.swift */,
 				E2D614022A1DE1D900D72A59 /* MovieDetailTitleViewModel.swift */,
 				E2B084472A1FED1A009F6AC4 /* MovieDetailTitleRenderContent.swift */,
+				E2A991942A4BF8800006C9C3 /* MovieDetailTitleCoordinator.swift */,
 			);
 			path = MovieDetailTitle;
 			sourceTree = "<group>";
@@ -2973,6 +2991,7 @@
 				E265C2612495392900712284 /* MoviesByGenreInteractor.swift in Sources */,
 				E2009F4F2515BD8600D4B48F /* SplashBuilder.swift in Sources */,
 				E21662E025EB672D001C2905 /* LoadingView.swift in Sources */,
+				E2A991932A4BF1E40006C9C3 /* MovieDetailPosterCoordinator.swift in Sources */,
 				E22447742234BC3500A59FEF /* UpcomingMovieExpandedCollectionViewCell.swift in Sources */,
 				E2254693226A3D6500E9042C /* CustomListTableViewCell.swift in Sources */,
 				E2912676250DE651007AD101 /* DIContainer.swift in Sources */,
@@ -3057,6 +3076,7 @@
 				E2040F8D29933F0A00ABAE82 /* UserPreferencesHandlerProtocol.swift in Sources */,
 				E229AFA924A84259002AB427 /* ProfileSection.swift in Sources */,
 				E2A104B029EFA1B400DA0809 /* MovieDetailPosterViewController.swift in Sources */,
+				E2A991952A4BF8800006C9C3 /* MovieDetailTitleCoordinator.swift in Sources */,
 				E25E85642663295D0028D607 /* RecommendedMoviesInteractor.swift in Sources */,
 				E28366762470E641008E2544 /* UIImageView+Extensions.swift in Sources */,
 				E2E4452B22474876009ABDEA /* CharacterSet+Extensions.swift in Sources */,
@@ -3118,6 +3138,7 @@
 				E254348C265A1DBD0008C830 /* Result+Optional.swift in Sources */,
 				E200182821EE323200F29220 /* SearchOptionsViewController.swift in Sources */,
 				E2E518B224A9A8D100CC3FA5 /* MovieVideosProtocols.swift in Sources */,
+				E2A991972A4C0B8E0006C9C3 /* MovieDetailOptionsCoordinator.swift in Sources */,
 				E2864A3B24D6722700271EF0 /* FavoriteToggleBarButtonItem.swift in Sources */,
 				E2709802220FA508007F18A2 /* MovieVideosViewModel.swift in Sources */,
 				E222DC282192B61300A2EDF4 /* MovieListCellViewModel.swift in Sources */,
@@ -3139,6 +3160,7 @@
 				E221169721914E4D0039F8C9 /* UpcomingMoviesViewModelTests.swift in Sources */,
 				E2864A3D24D6734E00271EF0 /* MovieDetailMockFactory.swift in Sources */,
 				E220250024BEBFD500465316 /* AccountViewModelTests.swift in Sources */,
+				E2A9919B2A4C0E190006C9C3 /* MovieDetailOptionsCoordinatorTests.swift in Sources */,
 				E2A958D92A3680AA0004FC5C /* MovieDetailOptionsViewControllerTests.swift in Sources */,
 				E2EAEC5224CFC6CC00D89F04 /* CustomListsMockFactory.swift in Sources */,
 				E2A958D72A367DC80004FC5C /* MovieDetailOptionViewTests.swift in Sources */,
@@ -3160,6 +3182,7 @@
 				E2ACC8AF2A3E4946007FDFC9 /* AuthenticationMockFactory.swift in Sources */,
 				E2A958BB2A363AC50004FC5C /* SimilarMoviesCoordinatorTests.swift in Sources */,
 				E2748DE92838B7E200CD2BA2 /* MovieCreditCellViewModelTests.swift in Sources */,
+				E2A9919D2A4C0EFF0006C9C3 /* MovieDetailTitleCoordinatorTests.swift in Sources */,
 				E2116941220E0BDF00595822 /* MovieDetailViewModelTests.swift in Sources */,
 				E2C42E1624C3F3FC0047A8EF /* ProfileViewModelTests.swift in Sources */,
 				E29B74C7298A4A08001801D5 /* ProfileFactoryTests.swift in Sources */,
@@ -3177,6 +3200,7 @@
 				E27F30F62999B74100ACBAE2 /* MockUserPreferencesHandler.swift in Sources */,
 				E28A68D324D7A1E600D20E52 /* MovieVideosMockFactory.swift in Sources */,
 				E2B0844B2A1FEE81009F6AC4 /* MovieDetailTitleViewModelTests.swift in Sources */,
+				E2A991992A4C0C5F0006C9C3 /* MovieDetailPosterCoordinatorTests.swift in Sources */,
 				E2B8C49B28B738E2006A8ECC /* FavoritesSavedMoviesInteractorTests.swift in Sources */,
 				E2A958CC2A3677B70004FC5C /* AccountInteractorTests.swift in Sources */,
 				E2A958D52A367C970004FC5C /* MovieDetailOptionTests.swift in Sources */,
