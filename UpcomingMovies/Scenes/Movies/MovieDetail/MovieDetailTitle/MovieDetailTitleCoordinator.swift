@@ -12,10 +12,10 @@ protocol MovieDetailTitleCoordinatorProtocol: AnyObject { }
 
 final class MovieDetailTitleCoordinator: BaseCoordinator, MovieDetailTitleCoordinatorProtocol {
 
-    private let renderContent: MovieDetailTitleRenderContent
+    private let renderContent: MovieDetailTitleRenderContent?
 
     init(navigationController: UINavigationController,
-         renderContent: MovieDetailTitleRenderContent) {
+         renderContent: MovieDetailTitleRenderContent?) {
         self.renderContent = renderContent
         super.init(navigationController: navigationController)
     }
