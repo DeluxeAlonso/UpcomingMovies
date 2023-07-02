@@ -31,11 +31,6 @@ final class MovieDetailPosterViewController: UIViewController, Storyboarded {
         configureUI()
     }
 
-    func update(with viewModel: MovieDetailPosterViewModelProtocol) {
-        self.viewModel = viewModel
-        configureUI()
-    }
-
     private func configureUI() {
         backdropImageView.setImage(with: viewModel?.backdropURL)
         posterImageView.setImage(with: viewModel?.posterURL)
