@@ -127,7 +127,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         }, on: .main)
         viewModel?.movieDetailPosterRenderContent.bindAndFire({ [weak self] renderContent in
             guard let self, let renderContent else { return }
-            self.coordinator?.embedMovieDetailPoster(on: self, in: self.titleContainerView, with: renderContent)
+            self.coordinator?.embedMovieDetailPoster(on: self, in: self.posterContainerView, with: renderContent)
         }, on: .main)
         viewModel?.movieDetailTitleRenderContent.bindAndFire({ [weak self] renderContent in
             guard let self, let renderContent else { return }

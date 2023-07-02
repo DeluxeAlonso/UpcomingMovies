@@ -21,7 +21,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
 
     private let movieInfo: MovieDetailInfo
 
-    private var movieDetailPosterViewController: MovieDetailPosterViewController?
+    private var movieDetailPosterCoordinator: MovieDetailPosterCoordinator?
     private var movieDetailTitleViewController: MovieDetailTitleViewController?
     private var movieDetailOptionsViewController: MovieDetailOptionsViewController?
 
@@ -77,20 +77,18 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
     func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate,
                                 in containerView: UIView,
                                 with renderContent: MovieDetailPosterRenderContent?) {
-        let viewModel: MovieDetailPosterViewModelProtocol = DIContainer.shared.resolve(argument: renderContent)
-        guard movieDetailPosterViewController == nil else {
-            movieDetailPosterViewController?.update(with: viewModel)
-            return
+        if movieDetailPosterCoordinator != nil {
+            movieDetailPosterCoordinator?.dismiss()
+            movieDetailPosterCoordinator = nil
         }
 
-        let viewController = MovieDetailPosterViewController.instantiate()
+        let coordinator = MovieDetailPosterCoordinator(navigationController: navigationController,
+                                                       renderContent: renderContent,
+                                                       delegate: parentViewController)
+        movieDetailPosterCoordinator = coordinator
 
-        viewController.viewModel = viewModel
-        viewController.delegate = parentViewController
-
-        parentViewController.add(asChildViewController: viewController, containerView: containerView)
-
-        self.movieDetailPosterViewController = viewController
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start(coordinatorMode: .embed(parentViewController: parentViewController, containerView: containerView))
     }
 
     func embedMovieDetailTitle(on parentViewController: UIViewController,
