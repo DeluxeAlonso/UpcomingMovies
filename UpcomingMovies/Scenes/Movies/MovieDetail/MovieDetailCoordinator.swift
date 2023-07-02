@@ -16,14 +16,13 @@ enum MovieDetailInfo {
 
 }
 
-// TODO: - Adds unit tests for MovieDetailCoordinator
 final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProtocol {
 
     private let movieInfo: MovieDetailInfo
 
-    private var movieDetailPosterViewController: MovieDetailPosterViewController?
-    private var movieDetailTitleViewController: MovieDetailTitleViewController?
-    private var movieDetailOptionsViewController: MovieDetailOptionsViewController?
+    private var movieDetailPosterCoordinator: MovieDetailPosterCoordinator?
+    private var movieDetailTitleCoordinator: MovieDetailTitleCoordinator?
+    private var movieDetailOptionsCoordinator: MovieDetailOptionsCoordinator?
 
     // MARK: - Initializers
 
@@ -77,20 +76,19 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
     func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate,
                                 in containerView: UIView,
                                 with renderContent: MovieDetailPosterRenderContent?) {
-        let viewModel: MovieDetailPosterViewModelProtocol = DIContainer.shared.resolve(argument: renderContent)
-        guard movieDetailPosterViewController == nil else {
-            movieDetailPosterViewController?.update(with: viewModel)
-            return
+        if movieDetailPosterCoordinator != nil {
+            movieDetailPosterCoordinator?.dismiss()
+            movieDetailPosterCoordinator = nil
         }
 
-        let viewController = MovieDetailPosterViewController.instantiate()
+        let coordinator = MovieDetailPosterCoordinator(navigationController: navigationController,
+                                                       renderContent: renderContent,
+                                                       delegate: parentViewController)
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        movieDetailPosterCoordinator = coordinator
 
-        viewController.viewModel = viewModel
-        viewController.delegate = parentViewController
-
-        parentViewController.add(asChildViewController: viewController, containerView: containerView)
-
-        self.movieDetailPosterViewController = viewController
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start(coordinatorMode: .embed(parentViewController: parentViewController, containerView: containerView))
     }
 
     func embedMovieDetailTitle(on parentViewController: UIViewController,
@@ -100,22 +98,19 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
                               with: nil)
     }
 
-    var viewModel: MovieDetailTitleViewModelProtocol?
     func embedMovieDetailTitle(on parentViewController: UIViewController,
                                in containerView: UIView,
                                with renderContent: MovieDetailTitleRenderContent?) {
-        let viewModel: MovieDetailTitleViewModelProtocol = DIContainer.shared.resolve(argument: renderContent)
-        self.viewModel = viewModel
-        guard movieDetailTitleViewController == nil else {
-            movieDetailTitleViewController?.update(with: viewModel)
-            return
+        if movieDetailTitleCoordinator != nil {
+            movieDetailTitleCoordinator?.dismiss()
+            movieDetailTitleCoordinator = nil
         }
-        let viewController = MovieDetailTitleViewController.instantiate()
+        let coordinator = MovieDetailTitleCoordinator(navigationController: navigationController, renderContent: renderContent)
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        movieDetailTitleCoordinator = coordinator
 
-        viewController.viewModel = viewModel
-        parentViewController.add(asChildViewController: viewController, containerView: containerView)
-
-        self.movieDetailTitleViewController = viewController
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start(coordinatorMode: .embed(parentViewController: parentViewController, containerView: containerView))
     }
 
     func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
@@ -126,20 +121,18 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
     func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
                                  in containerView: UIView,
                                  with renderContent: MovieDetailOptionsRenderContent?) {
-        let viewModel: MovieDetailOptionsViewModelProtocol = DIContainer.shared.resolve(argument: renderContent)
-        guard movieDetailOptionsViewController == nil else {
-            movieDetailOptionsViewController?.update(with: viewModel)
-            return
+        if movieDetailOptionsCoordinator != nil {
+            movieDetailOptionsCoordinator?.dismiss()
+            movieDetailOptionsCoordinator = nil
         }
+        let coordinator = MovieDetailOptionsCoordinator(navigationController: navigationController,
+                                                        renderContent: renderContent,
+                                                        delegate: parentViewController)
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+        movieDetailOptionsCoordinator = coordinator
 
-        let viewController = MovieDetailOptionsViewController.instantiate()
-
-        viewController.viewModel = viewModel
-        viewController.delegate = parentViewController
-
-        parentViewController.add(asChildViewController: viewController, containerView: containerView)
-
-        self.movieDetailOptionsViewController = viewController
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start(coordinatorMode: .embed(parentViewController: parentViewController, containerView: containerView))
     }
 
     // MARK: - Private

@@ -24,6 +24,8 @@ final class MovieDetailTitleViewController: UIViewController, Storyboarded {
         super.viewDidLoad()
         setupUI()
         setupBindables()
+
+        configureUI()
     }
 
     override func viewDidLayoutSubviews() {
@@ -31,12 +33,6 @@ final class MovieDetailTitleViewController: UIViewController, Storyboarded {
         let targetSize = CGSize(width: view.bounds.width,
                                 height: UIView.layoutFittingCompressedSize.height)
         preferredContentSize = view.systemLayoutSizeFitting(targetSize)
-    }
-
-    func update(with viewModel: MovieDetailTitleViewModelProtocol) {
-        self.viewModel = viewModel
-        configureUI()
-        setupBindables()
     }
 
     private func setupUI() {

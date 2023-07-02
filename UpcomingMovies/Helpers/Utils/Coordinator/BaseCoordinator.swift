@@ -46,6 +46,10 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
             navigationController.transitioningDelegate = configuration?.transitioningDelegate
             presentingViewController.present(navigationController, animated: true, completion: nil)
         case .embed(let parentViewController, let containerView):
+            guard parentCoordinator != nil else {
+                assertionFailure("When starting on embed mode, parent coordinator is needed to perform appropiate deallocation.")
+                return
+            }
             if let containerView {
                 parentViewController.add(asChildViewController: viewController,
                                          containerView: containerView)
@@ -71,7 +75,7 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
             }
         case .embed(let parentViewController, _):
             parentViewController.remove(asChildViewController: viewController)
-            unwrappedParentCoordinator.childDidFinish()
+            unwrappedParentCoordinator.childDidFinish(self)
         }
     }
 

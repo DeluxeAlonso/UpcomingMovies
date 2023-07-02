@@ -39,6 +39,7 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
         navigationController.setNavigationBarHidden(false, animated: true)
 
         let coordinator = ProfileCoordinator(navigationController: navigationController, user: user, delegate: parentViewController)
+        coordinator.parentCoordinator = unwrappedParentCoordinator
         profileCoordinator = coordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
