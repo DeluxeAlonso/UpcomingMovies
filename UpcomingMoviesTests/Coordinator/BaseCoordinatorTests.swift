@@ -135,6 +135,7 @@ final class BaseCoordinatorTests: XCTestCase {
     func testStartEmbedWithContainerViewCoordinatorMode() {
         // Arrange
         let coordinator = createSUT()
+        coordinator.parentCoordinator = MockCoordinator()
         let parentViewController = MockViewController()
         let containerView = UIView()
         parentViewController.view.addSubview(containerView)
@@ -148,6 +149,7 @@ final class BaseCoordinatorTests: XCTestCase {
         // Arrange
         let coordinator = createSUT()
         let parentViewController = MockViewController()
+        coordinator.parentCoordinator = MockCoordinator()
         // Act
         coordinator.start(coordinatorMode: .embed(parentViewController: parentViewController, containerView: nil))
         // Assert
@@ -195,7 +197,7 @@ final class BaseCoordinatorTests: XCTestCase {
         coordinator.dismiss()
         // Assert
         XCTAssertEqual(builtViewController.removeFromParentCallCount, 1)
-        XCTAssertEqual(parentCoordinator.childDidFinishCallCount, 1)
+        XCTAssertEqual(parentCoordinator.childDidFinishChildCoordinatorCallCount, 1)
     }
 
     private func createSUT(buildResult: UIViewController? = nil) -> BaseCoordinator {
