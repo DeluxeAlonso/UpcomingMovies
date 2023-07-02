@@ -23,7 +23,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
 
     private var movieDetailPosterCoordinator: MovieDetailPosterCoordinator?
     private var movieDetailTitleCoordinator: MovieDetailTitleCoordinator?
-    private var movieDetailOptionsViewController: MovieDetailOptionsViewController?
+    private var movieDetailOptionsCoordinator: MovieDetailOptionsCoordinator?
 
     // MARK: - Initializers
 
@@ -120,20 +120,17 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
     func embedMovieDetailOptions(on parentViewController: MovieDetailOptionsViewControllerDelegate,
                                  in containerView: UIView,
                                  with renderContent: MovieDetailOptionsRenderContent?) {
-        let viewModel: MovieDetailOptionsViewModelProtocol = DIContainer.shared.resolve(argument: renderContent)
-        guard movieDetailOptionsViewController == nil else {
-            movieDetailOptionsViewController?.update(with: viewModel)
-            return
+        if movieDetailOptionsCoordinator != nil {
+            movieDetailOptionsCoordinator?.dismiss()
+            movieDetailOptionsCoordinator = nil
         }
+        let coordinator = MovieDetailOptionsCoordinator(navigationController: navigationController,
+                                                        renderContent: renderContent,
+                                                        delegate: parentViewController)
+        movieDetailOptionsCoordinator = coordinator
 
-        let viewController = MovieDetailOptionsViewController.instantiate()
-
-        viewController.viewModel = viewModel
-        viewController.delegate = parentViewController
-
-        parentViewController.add(asChildViewController: viewController, containerView: containerView)
-
-        self.movieDetailOptionsViewController = viewController
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start(coordinatorMode: .embed(parentViewController: parentViewController, containerView: containerView))
     }
 
     // MARK: - Private
