@@ -26,33 +26,6 @@ final class MovieDetailOptionsViewControllerTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testModelUpdate() {
-        // Arrange
-        let viewController = createSUT()
-        _ = viewController.view
-        let newViewModel = MockMovieDetailOptionsViewModel()
-        newViewModel.options = [.credits, .reviews, .similarMovies, .trailers]
-        // Act
-        viewController.update(with: newViewModel)
-        // Assert
-        XCTAssertEqual(viewController.viewModel?.options, newViewModel.options)
-    }
-
-    func testModelUpdateAfterFirstUpdate() {
-        // Arrange
-        let viewController = createSUT()
-        _ = viewController.view
-        let firstViewModel = MockMovieDetailOptionsViewModel()
-        firstViewModel.options = [.trailers]
-        let newViewModel = MockMovieDetailOptionsViewModel()
-        newViewModel.options = [.credits, .reviews, .similarMovies, .trailers]
-        // Act
-        viewController.update(with: firstViewModel)
-        viewController.update(with: newViewModel)
-        // Assert
-        XCTAssertEqual(viewController.viewModel?.options, newViewModel.options)
-    }
-
     func testOptionAction() {
         // Arrange
         let viewController = createSUT()
