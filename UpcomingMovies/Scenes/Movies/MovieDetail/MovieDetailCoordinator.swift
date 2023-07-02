@@ -16,7 +16,6 @@ enum MovieDetailInfo {
 
 }
 
-// TODO: - Adds unit tests for MovieDetailCoordinator
 final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProtocol {
 
     private let movieInfo: MovieDetailInfo
