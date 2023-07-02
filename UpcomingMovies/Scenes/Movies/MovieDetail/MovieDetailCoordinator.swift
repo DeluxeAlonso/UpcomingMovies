@@ -85,6 +85,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         let coordinator = MovieDetailPosterCoordinator(navigationController: navigationController,
                                                        renderContent: renderContent,
                                                        delegate: parentViewController)
+        coordinator.parentCoordinator = unwrappedParentCoordinator
         movieDetailPosterCoordinator = coordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
@@ -106,6 +107,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
             movieDetailTitleCoordinator = nil
         }
         let coordinator = MovieDetailTitleCoordinator(navigationController: navigationController, renderContent: renderContent)
+        coordinator.parentCoordinator = unwrappedParentCoordinator
         movieDetailTitleCoordinator = coordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
@@ -127,6 +129,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
         let coordinator = MovieDetailOptionsCoordinator(navigationController: navigationController,
                                                         renderContent: renderContent,
                                                         delegate: parentViewController)
+        coordinator.parentCoordinator = unwrappedParentCoordinator
         movieDetailOptionsCoordinator = coordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)

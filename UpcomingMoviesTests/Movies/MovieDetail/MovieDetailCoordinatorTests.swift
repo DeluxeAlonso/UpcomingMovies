@@ -144,7 +144,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
         XCTAssertEqual(parentViewController.addChildCallCount, 1)
     }
 
-    func testEmbedMovieDetailPosterShouldNotEmbedTwice() {
+    func testMultipleEmbedMovieDetailPosterShouldNotAddMoreThanOneChild() {
         // Arrange
         let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
         let parentViewController = MockMovieDetailPosterViewControllerDelegate()
@@ -155,7 +155,8 @@ final class MovieDetailCoordinatorTests: XCTestCase {
         coordinator.embedMovieDetailPoster(on: parentViewController, in: containerView)
         coordinator.embedMovieDetailPoster(on: parentViewController, in: containerView)
         // Assert
-        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+        XCTAssertEqual(parentViewController.addChildCallCount, 3)
+        XCTAssertEqual(coordinator.childCoordinators.count, 1)
     }
 
     func testEmbedMovieDetailTitle() {
@@ -182,7 +183,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
         XCTAssertEqual(parentViewController.addChildCallCount, 1)
     }
 
-    func testEmbedMovieDetailTitleShouldNotEmbedTwice() {
+    func testMultipleEmbedMovieDetailTitleShouldNotAddMoreThanOneChild() {
         // Arrange
         let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
         let parentViewController = MockViewController()
@@ -193,7 +194,8 @@ final class MovieDetailCoordinatorTests: XCTestCase {
         coordinator.embedMovieDetailTitle(on: parentViewController, in: containerView)
         coordinator.embedMovieDetailTitle(on: parentViewController, in: containerView)
         // Assert
-        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+        XCTAssertEqual(parentViewController.addChildCallCount, 3)
+        XCTAssertEqual(coordinator.childCoordinators.count, 1)
     }
 
     func testEmbedMovieDetailOptions() {
@@ -220,7 +222,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
         XCTAssertEqual(parentViewController.addChildCallCount, 1)
     }
 
-    func testEmbedMovieDetailOptionsShouldNotEmbedTwice() {
+    func testMultipleEmbedMovieDetailOptionsShouldNotAddMoreThanOneChild() {
         // Arrange
         let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
         let parentViewController = MockMovieDetailOptionsViewControllerDelegate()
@@ -231,7 +233,8 @@ final class MovieDetailCoordinatorTests: XCTestCase {
         coordinator.embedMovieDetailOptions(on: parentViewController, in: containerView)
         coordinator.embedMovieDetailOptions(on: parentViewController, in: containerView)
         // Assert
-        XCTAssertEqual(parentViewController.addChildCallCount, 1)
+        XCTAssertEqual(parentViewController.addChildCallCount, 3)
+        XCTAssertEqual(coordinator.childCoordinators.count, 1)
     }
 
     private func createSUT(movieInfo: MovieDetailInfo) -> MovieDetailCoordinator {
