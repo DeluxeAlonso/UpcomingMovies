@@ -62,9 +62,34 @@ final class MockAuthPermissionViewControllerDelegate: AuthPermissionViewControll
 
 final class MockSignInViewControllerDelegate: MockViewController, SignInViewControllerDelegate {
 
-    private(set) var didTapSignInButtonCallCount = 0
-    func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
-        didTapSignInButtonCallCount += 1
+    private(set) var didUpdateAuthenticationStateCallCount = 0
+    func signInViewController(_ signInViewController: SignInViewController, didUpdateAuthenticationState state: AuthenticationState) {
+        didUpdateAuthenticationStateCallCount += 1
+    }
+
+}
+
+final class MockSignInInteractor: SignInInteractorProtocol {
+
+    var permissionURLResult: Result<URL, Error>?
+    func getAuthPermissionURL(completion: @escaping (Result<URL, Error>) -> Void) {
+        if let permissionURLResult {
+            completion(permissionURLResult)
+        }
+    }
+
+    var signInUserResult: Result<User, Error>?
+    func signInUser(completion: @escaping (Result<User, Error>) -> Void) {
+        if let signInUserResult {
+            completion(signInUserResult)
+        }
+    }
+
+    var signOutUserResult: Result<Bool, Error>?
+    func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void) {
+        if let signOutUserResult {
+            completion(signOutUserResult)
+        }
     }
 
 }
