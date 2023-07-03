@@ -21,6 +21,7 @@ final class SignInViewController: UIViewController, Storyboarded {
 
     static var storyboardName: String = "Account"
 
+    var viewModel: SignInViewModelProtocol?
     weak var coordinator: SignInCoordinatorProtocol?
     weak var delegate: SignInViewControllerDelegate?
 
