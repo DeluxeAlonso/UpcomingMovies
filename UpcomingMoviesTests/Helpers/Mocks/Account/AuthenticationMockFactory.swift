@@ -85,11 +85,4 @@ final class MockSignInInteractor: SignInInteractorProtocol {
         }
     }
 
-    var signOutUserResult: Result<Bool, Error>?
-    func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void) {
-        if let signOutUserResult {
-            completion(signOutUserResult)
-        }
-    }
-
 }

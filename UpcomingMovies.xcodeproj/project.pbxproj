@@ -439,6 +439,7 @@
 		E2FE17F62A5296580033D6A2 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FE17F52A5296580033D6A2 /* SignInViewModel.swift */; };
 		E2FE17F82A5296FA0033D6A2 /* SignInAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FE17F72A5296FA0033D6A2 /* SignInAssembly.swift */; };
 		E2FE17FA2A52973B0033D6A2 /* SignInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FE17F92A52973B0033D6A2 /* SignInInteractor.swift */; };
+		E2FE18002A52A1380033D6A2 /* SignInViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FE17FF2A52A1380033D6A2 /* SignInViewModelTests.swift */; };
 		E2FE720A28F738D4002178BA /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FE720928F738D4002178BA /* UIScrollView+Extensions.swift */; };
 		E2FEDD992793E04E001A016E /* MovieDetailUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEDD982793E04E001A016E /* MovieDetailUIHelper.swift */; };
 		E2FEDD9B2793E0D5001A016E /* ProgressHUDAdapterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEDD9A2793E0D5001A016E /* ProgressHUDAdapterProtocol.swift */; };
@@ -946,6 +947,7 @@
 		E2FE17F52A5296580033D6A2 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		E2FE17F72A5296FA0033D6A2 /* SignInAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAssembly.swift; sourceTree = "<group>"; };
 		E2FE17F92A52973B0033D6A2 /* SignInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInInteractor.swift; sourceTree = "<group>"; };
+		E2FE17FF2A52A1380033D6A2 /* SignInViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModelTests.swift; sourceTree = "<group>"; };
 		E2FE24E0223E24A800E6E664 /* UpcomingMovies.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UpcomingMovies.entitlements; sourceTree = "<group>"; };
 		E2FE720928F738D4002178BA /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
 		E2FEDD982793E04E001A016E /* MovieDetailUIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailUIHelper.swift; sourceTree = "<group>"; };
@@ -2283,6 +2285,7 @@
 			children = (
 				E2ACC8B22A3E4ADA007FDFC9 /* AuthPermission */,
 				E26578B52A40F26B00D8A071 /* SignInCoordinatorTests.swift */,
+				E2FE17FF2A52A1380033D6A2 /* SignInViewModelTests.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -3169,6 +3172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2FE18002A52A1380033D6A2 /* SignInViewModelTests.swift in Sources */,
 				E221169721914E4D0039F8C9 /* UpcomingMoviesViewModelTests.swift in Sources */,
 				E2864A3D24D6734E00271EF0 /* MovieDetailMockFactory.swift in Sources */,
 				E220250024BEBFD500465316 /* AccountViewModelTests.swift in Sources */,

@@ -46,15 +46,4 @@ final class SignInViewModel: SignInViewModelProtocol {
         }
     }
 
-    func signOutCurrentUser() {
-        interactor.signOutUser { result in
-            switch result {
-            case .success:
-                self.didUpdateAuthenticationState.value = .justSignedOut
-            case .failure:
-                self.didReceiveError.send()
-            }
-        }
-    }
-
 }
