@@ -11,6 +11,7 @@ import UpcomingMoviesDomain
 
 protocol SignInViewModelProtocol {
 
+    var startLoading: AnyBehaviorBindable<Bool> { get }
     var showAuthPermission: AnyPublishBindable<URL> { get }
     var didUpdateAuthenticationState: AnyBehaviorBindable<AuthenticationState?> { get }
     var didReceiveError: AnyPublishBindable<Void> { get }
@@ -29,4 +30,8 @@ protocol SignInInteractorProtocol {
 }
 
 protocol SignInCoordinatorProtocol: AnyObject {
+
+    func showAuthPermission(for authPermissionURL: URL,
+                            and authPermissionDelegate: AuthPermissionViewControllerDelegate)
+
 }

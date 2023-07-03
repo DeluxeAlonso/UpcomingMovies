@@ -11,6 +11,7 @@ import UIKit
 protocol SignInViewControllerDelegate: UIViewController {
 
     func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool)
+    func signInViewController(_ signInViewController: SignInViewController, didUpdateAuthenticationState state: AuthenticationState)
 
 }
 
@@ -36,14 +37,38 @@ final class SignInViewController: UIViewController, Storyboarded {
     }
 
     override func viewDidLoad() {
-        setupImageTransionHandler()
+        setupUI()
+        setupBindables()
     }
 
     // MARK: - Private
 
+    private func setupUI() {
+        setupImageTransionHandler()
+    }
+
     private func setupImageTransionHandler() {
         imageTransitionHandler = ImageTransitionHandler(imageView: iconImageView,
                                                         transitionImages: transitionImages)
+    }
+
+    private func setupBindables() {
+        viewModel?.startLoading.bind({ [weak self] start in
+            guard let self else { return }
+            start ? self.startLoading() : self.stopLoading()
+        }, on: .main)
+        viewModel?.didUpdateAuthenticationState.bindAndFire({ [weak self] authState in
+            guard let self = self, let authState else { return }
+            self.delegate?.signInViewController(self, didUpdateAuthenticationState: authState)
+        }, on: .main)
+        viewModel?.showAuthPermission.bind({ [weak self] authPermissionURL in
+            guard let self else { return }
+            self.coordinator?.showAuthPermission(for: authPermissionURL, and: self)
+        }, on: .main)
+        viewModel?.didReceiveError.bind({ [weak self] in
+            guard let self = self else { return }
+            self.stopLoading()
+        }, on: .main)
     }
 
     // MARK: - Internal
@@ -59,7 +84,19 @@ final class SignInViewController: UIViewController, Storyboarded {
     // MARK: - Actions
 
     @IBAction func loginButtonAction(_ sender: Any) {
-        delegate?.signInViewController(self, didTapSignInButton: true)
+//        delegate?.signInViewController(self, didTapSignInButton: true)
+        viewModel?.startAuthorizationProcess()
+    }
+
+}
+
+// MARK: - AuthPermissionViewControllerDelegate
+
+extension SignInViewController: AuthPermissionViewControllerDelegate {
+
+    func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
+                                      didReceiveAuthorization authorized: Bool) {
+        if authorized { viewModel?.signInUser() }
     }
 
 }

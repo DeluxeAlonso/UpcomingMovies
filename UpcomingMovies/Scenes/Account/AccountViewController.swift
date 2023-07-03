@@ -90,6 +90,14 @@ final class AccountViewController: UIViewController, Storyboarded {
 // MARK: - SignInViewControllerDelegate
 
 extension AccountViewController: SignInViewControllerDelegate {
+    func signInViewController(_ signInViewController: SignInViewController, didUpdateAuthenticationState state: AuthenticationState) {
+        switch state {
+        case .justSignedIn: self.showProfileView(withAnimatedNavigationBar: true)
+        case .justSignedOut: self.showSignInView(withAnimatedNavigationBar: true)
+        case .currentlySignedIn: self.showProfileView()
+        case .currentlySignedOut: self.showSignInView()
+        }
+    }
 
     func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
         // TODO: - Remove this temporal work around. Sign in logic should be placed in sign in scene.
