@@ -10,7 +10,6 @@ import UIKit
 
 protocol SignInViewControllerDelegate: UIViewController {
 
-    func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool)
     func signInViewController(_ signInViewController: SignInViewController, didUpdateAuthenticationState state: AuthenticationState)
 
 }
@@ -71,20 +70,17 @@ final class SignInViewController: UIViewController, Storyboarded {
         }, on: .main)
     }
 
-    // MARK: - Internal
-
-    func startLoading() {
+    private func startLoading() {
         signInButton.startAnimation()
     }
 
-    func stopLoading() {
+    private func stopLoading() {
         signInButton.stopAnimation(revertAfterDelay: 0.1, completion: nil)
     }
 
     // MARK: - Actions
 
     @IBAction func loginButtonAction(_ sender: Any) {
-//        delegate?.signInViewController(self, didTapSignInButton: true)
         viewModel?.startAuthorizationProcess()
     }
 

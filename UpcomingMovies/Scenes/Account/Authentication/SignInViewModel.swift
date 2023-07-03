@@ -22,6 +22,7 @@ final class SignInViewModel: SignInViewModelProtocol {
     }
 
     // MARK: - SignInViewModelProtocol
+
     func startAuthorizationProcess() {
         startLoading.value = true
         interactor.getAuthPermissionURL { result in
@@ -35,9 +36,7 @@ final class SignInViewModel: SignInViewModelProtocol {
     }
 
     func signInUser() {
-        startLoading.value = true
         interactor.signInUser { result in
-            self.startLoading.value = false
             switch result {
             case .success:
                 self.didUpdateAuthenticationState.value = .justSignedIn
