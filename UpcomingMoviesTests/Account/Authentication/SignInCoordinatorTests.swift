@@ -33,7 +33,19 @@ final class SignInCoordinatorTests: XCTestCase {
         // Act
         let viewController = coordinator.build()
         // Assert
+        XCTAssertNotNil(viewController.viewModel)
         XCTAssertNotNil(viewController.delegate)
+    }
+
+    func testShowAuthPermission() {
+        // Arrange
+        let coordinator = createSUT()
+        let delegate = MockAuthPermissionViewControllerDelegate()
+        let testURL = URL(string: "www.google.com")!
+        // Act
+        coordinator.showAuthPermission(for: testURL, and: delegate)
+        // Assert
+        XCTAssertEqual(coordinator.unwrappedParentCoordinator.childCoordinators.count, 1)
     }
 
     private func createSUT() -> SignInCoordinator {

@@ -16,6 +16,7 @@ final class SceneAssembly: Assembly {
             AccountAssembly(),
             AuthenticationAssembly(),
             ProfileAssembly(),
+            SignInAssembly(),
             SavedMoviesAssembly(),
             CustomListsAssembly(),
             CustomListDetailAssembly(),

@@ -19,8 +19,23 @@ final class SignInCoordinator: BaseCoordinator, SignInCoordinatorProtocol {
 
     override func build() -> SignInViewController {
         let viewController = SignInViewController.instantiate()
+        viewController.viewModel = DIContainer.shared.resolve()
+        viewController.coordinator = self
         viewController.delegate = delegate
         return viewController
+    }
+
+    func showAuthPermission(for authPermissionURL: URL,
+                            and authPermissionDelegate: AuthPermissionViewControllerDelegate) {
+        let navigationController = UINavigationController()
+        let coordinator = AuthPermissionCoordinator(navigationController: navigationController,
+                                                    authPermissionURL: authPermissionURL)
+        coordinator.authPermissionDelegate = authPermissionDelegate
+        coordinator.presentingViewController = self.navigationController.topViewController
+        coordinator.parentCoordinator = unwrappedParentCoordinator
+
+        unwrappedParentCoordinator.childCoordinators.append(coordinator)
+        coordinator.start()
     }
 
 }

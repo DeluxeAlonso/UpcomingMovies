@@ -10,9 +10,6 @@ import UIKit
 
 final class AccountViewController: UIViewController, Storyboarded {
 
-    private var signInViewController: SignInViewController?
-    private var profileViewController: ProfileViewController?
-
     static var storyboardName: String = "Account"
 
     var viewModel: AccountViewModelProtocol?
@@ -23,7 +20,6 @@ final class AccountViewController: UIViewController, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupBindables()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,41 +57,19 @@ final class AccountViewController: UIViewController, Storyboarded {
         coordinator?.removeSignInViewController(from: self)
     }
 
-    // MARK: - Reactive Behavior
-
-    private func setupBindables() {
-        viewModel?.showAuthPermission.bind({ [weak self] authPermissionURL in
-            guard let self = self else { return }
-            self.coordinator?.showAuthPermission(for: authPermissionURL, and: self)
-        }, on: .main)
-
-        viewModel?.didUpdateAuthenticationState.bindAndFire({ [weak self] authState in
-            guard let self = self, let authState else { return }
-            switch authState {
-            case .justSignedIn: self.showProfileView(withAnimatedNavigationBar: true)
-            case .justSignedOut: self.showSignInView(withAnimatedNavigationBar: true)
-            case .currentlySignedIn: self.showProfileView()
-            case .currentlySignedOut: self.showSignInView()
-            }
-        }, on: .main)
-
-        viewModel?.didReceiveError.bind({ [weak self] in
-            guard let self = self else { return }
-            self.signInViewController?.stopLoading()
-        }, on: .main)
-    }
-
 }
 
 // MARK: - SignInViewControllerDelegate
 
 extension AccountViewController: SignInViewControllerDelegate {
 
-    func signInViewController(_ signInViewController: SignInViewController, didTapSignInButton tapped: Bool) {
-        // TODO: - Remove this temporal work around. Sign in logic should be placed in sign in scene.
-        self.signInViewController = signInViewController
-        signInViewController.startLoading()
-        viewModel?.startAuthorizationProcess()
+    func signInViewController(_ signInViewController: SignInViewController, didUpdateAuthenticationState state: AuthenticationState) {
+        switch state {
+        case .justSignedIn: self.showProfileView(withAnimatedNavigationBar: true)
+        case .justSignedOut: self.showSignInView(withAnimatedNavigationBar: true)
+        case .currentlySignedIn: self.showProfileView()
+        case .currentlySignedOut: self.showSignInView()
+        }
     }
 
 }
