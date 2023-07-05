@@ -16,29 +16,41 @@ final class AuthPermissionCoordinator: BaseCoordinator, AuthPermissionCoordinato
     var authPermissionDelegate: AuthPermissionViewControllerDelegate?
 
     init(navigationController: UINavigationController,
-         authPermissionURL: URL) {
+         authPermissionURL: URL,
+         authPermissionDelegate: AuthPermissionViewControllerDelegate?) {
         self.authPermissionURL = authPermissionURL
+        self.authPermissionDelegate = authPermissionDelegate
         super.init(navigationController: navigationController)
     }
 
-    override func start() {
+    override func build() -> AuthPermissionViewController {
         let viewController = AuthPermissionViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(argument: authPermissionURL)
         viewController.delegate = authPermissionDelegate
         viewController.coordinator = self
 
-        navigationController.pushViewController(viewController, animated: false)
-        presentingViewController?.present(navigationController, animated: true, completion: nil)
+        return viewController
     }
 
-    func dismiss(completion: (() -> Void)? = nil) {
-        let presentedViewController = navigationController.topViewController
-        presentedViewController?.dismiss(animated: true) { [weak self] in
-            completion?()
-            self?.parentCoordinator?.childDidFinish()
-        }
-    }
+//    override func start() {
+//        let viewController = AuthPermissionViewController.instantiate()
+//
+//        viewController.viewModel = DIContainer.shared.resolve(argument: authPermissionURL)
+//        viewController.delegate = authPermissionDelegate
+//        viewController.coordinator = self
+//
+//        navigationController.pushViewController(viewController, animated: false)
+//        presentingViewController?.present(navigationController, animated: true, completion: nil)
+//    }
+
+//    func dismiss(completion: (() -> Void)? = nil) {
+//        let presentedViewController = navigationController.topViewController
+//        presentedViewController?.dismiss(animated: true) { [weak self] in
+//            completion?()
+//            self?.parentCoordinator?.childDidFinish()
+//        }
+//    }
 
     func didDismiss() {
         parentCoordinator?.childDidFinish()

@@ -60,7 +60,8 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
                             and authPermissionDelegate: AuthPermissionViewControllerDelegate) {
         let navigationController = UINavigationController()
         let coordinator = AuthPermissionCoordinator(navigationController: navigationController,
-                                                    authPermissionURL: authPermissionURL)
+                                                    authPermissionURL: authPermissionURL,
+                                                    authPermissionDelegate: nil)
         coordinator.authPermissionDelegate = authPermissionDelegate
         coordinator.presentingViewController = self.navigationController.topViewController
         coordinator.parentCoordinator = unwrappedParentCoordinator

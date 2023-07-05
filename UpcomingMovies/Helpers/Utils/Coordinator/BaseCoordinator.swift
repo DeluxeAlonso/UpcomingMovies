@@ -65,17 +65,24 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     }
 
     open func dismiss() {
+        dismiss(completion: nil)
+    }
+
+    open func dismiss(completion: (() -> Void)? = nil) {
         switch coordinatorMode {
         case .push:
             navigationController.popViewController(animated: true)
+            completion?()
         case .present:
             let presentedViewController = navigationController.topViewController
             presentedViewController?.dismiss(animated: true) { [weak self] in
                 self?.unwrappedParentCoordinator.childDidFinish()
+                completion?()
             }
         case .embed(let parentViewController, _):
             parentViewController.remove(asChildViewController: viewController)
             unwrappedParentCoordinator.childDidFinish(self)
+            completion?()
         }
     }
 
