@@ -41,9 +41,6 @@ protocol AccountCoordinatorProtocol: AnyObject {
     func removeSignInViewController(from parentViewController: UIViewController)
     func removeProfileViewController(from parentViewController: UIViewController)
 
-    func showAuthPermission(for authPermissionURL: URL,
-                            and authPermissionDelegate: AuthPermissionViewControllerDelegate)
-
     func showProfileOption(_ profileOption: ProfileOptionProtocol)
 
 }

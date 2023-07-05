@@ -56,20 +56,6 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
         profileCoordinator = nil
     }
 
-    func showAuthPermission(for authPermissionURL: URL,
-                            and authPermissionDelegate: AuthPermissionViewControllerDelegate) {
-        let navigationController = UINavigationController()
-        let coordinator = AuthPermissionCoordinator(navigationController: navigationController,
-                                                    authPermissionURL: authPermissionURL,
-                                                    authPermissionDelegate: nil)
-        coordinator.authPermissionDelegate = authPermissionDelegate
-        coordinator.presentingViewController = self.navigationController.topViewController
-        coordinator.parentCoordinator = unwrappedParentCoordinator
-
-        unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
-    }
-
     func showProfileOption(_ profileOption: ProfileOptionProtocol) {
         guard let profileOption = ProfileOption(rawValue: profileOption.identifier) else { return }
         switch profileOption {
