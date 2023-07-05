@@ -27,28 +27,6 @@ final class AccountViewModel: AccountViewModelProtocol {
 
     // MARK: - AccountViewModelProtocol
 
-    func startAuthorizationProcess() {
-        interactor.getAuthPermissionURL { result in
-            switch result {
-            case .success(let url):
-                self.showAuthPermission.send(url)
-            case .failure:
-                self.didReceiveError.send()
-            }
-        }
-    }
-
-    func signInUser() {
-        interactor.signInUser { result in
-            switch result {
-            case .success:
-                self.didUpdateAuthenticationState.value = .justSignedIn
-            case .failure:
-                self.didReceiveError.send()
-            }
-        }
-    }
-
     func signOutCurrentUser() {
         interactor.signOutUser { result in
             switch result {

@@ -88,14 +88,3 @@ extension AccountViewController: ProfileViewControllerDelegate {
     }
 
 }
-
-// MARK: - AuthPermissionViewControllerDelegate
-
-extension AccountViewController: AuthPermissionViewControllerDelegate {
-
-    func authPermissionViewController(_ authPermissionViewController: AuthPermissionViewController,
-                                      didReceiveAuthorization authorized: Bool) {
-        if authorized { viewModel?.signInUser() }
-    }
-
-}

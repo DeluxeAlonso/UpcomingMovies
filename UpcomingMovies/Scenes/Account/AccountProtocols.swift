@@ -15,8 +15,6 @@ protocol AccountViewModelProtocol {
     var didUpdateAuthenticationState: AnyBehaviorBindable<AuthenticationState?> { get }
     var didReceiveError: AnyPublishBindable<Void> { get }
 
-    func startAuthorizationProcess()
-    func signInUser()
     func signOutCurrentUser()
 
     func isUserSignedIn() -> Bool
