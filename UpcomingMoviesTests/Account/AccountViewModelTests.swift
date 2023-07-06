@@ -11,7 +11,7 @@ import XCTest
 @testable import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
-class AccountViewModelTests: XCTestCase {
+final class AccountViewModelTests: XCTestCase {
 
     private var mockInteractor: MockAccountInteractor!
     private var viewModelToTest: AccountViewModelProtocol!
