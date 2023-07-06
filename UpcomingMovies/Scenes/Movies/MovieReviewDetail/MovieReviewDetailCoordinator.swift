@@ -12,8 +12,6 @@ import UpcomingMoviesDomain
 final class MovieReviewDetailCoordinator: BaseCoordinator, MovieReviewDetailCoordinatorProtocol {
 
     private let review: Review
-
-    var presentingViewController: UIViewController?
     var transitioningDelegate: UIViewControllerTransitioningDelegate?
 
     init(navigationController: UINavigationController, review: Review) {

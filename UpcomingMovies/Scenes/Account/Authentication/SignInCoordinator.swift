@@ -27,15 +27,14 @@ final class SignInCoordinator: BaseCoordinator, SignInCoordinatorProtocol {
 
     func showAuthPermission(for authPermissionURL: URL,
                             and authPermissionDelegate: AuthPermissionViewControllerDelegate) {
-        let navigationController = UINavigationController()
-        let coordinator = AuthPermissionCoordinator(navigationController: navigationController,
-                                                    authPermissionURL: authPermissionURL)
-        coordinator.authPermissionDelegate = authPermissionDelegate
-        coordinator.presentingViewController = self.navigationController.topViewController
+        guard let presentingViewController = navigationController.topViewController else { return }
+        let coordinator = AuthPermissionCoordinator(navigationController: UINavigationController(),
+                                                    authPermissionURL: authPermissionURL,
+                                                    authPermissionDelegate: authPermissionDelegate)
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
         unwrappedParentCoordinator.childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(coordinatorMode: .present(presentingViewController: presentingViewController, configuration: nil))
     }
 
 }

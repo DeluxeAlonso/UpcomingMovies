@@ -15,8 +15,6 @@ protocol AccountViewModelProtocol {
     var didUpdateAuthenticationState: AnyBehaviorBindable<AuthenticationState?> { get }
     var didReceiveError: AnyPublishBindable<Void> { get }
 
-    func startAuthorizationProcess()
-    func signInUser()
     func signOutCurrentUser()
 
     func isUserSignedIn() -> Bool
@@ -40,9 +38,6 @@ protocol AccountCoordinatorProtocol: AnyObject {
 
     func removeSignInViewController(from parentViewController: UIViewController)
     func removeProfileViewController(from parentViewController: UIViewController)
-
-    func showAuthPermission(for authPermissionURL: URL,
-                            and authPermissionDelegate: AuthPermissionViewControllerDelegate)
 
     func showProfileOption(_ profileOption: ProfileOptionProtocol)
 

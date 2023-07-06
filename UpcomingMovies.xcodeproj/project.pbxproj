@@ -72,6 +72,7 @@
 		E21F93BB2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F93BA2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift */; };
 		E220250024BEBFD500465316 /* AccountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22024FF24BEBFD500465316 /* AccountViewModelTests.swift */; };
 		E220250224BEBFEA00465316 /* AccountMockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E220250124BEBFEA00465316 /* AccountMockFactory.swift */; };
+		E22040AE2A5542800094866D /* AuthPermissionCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22040AD2A5542800094866D /* AuthPermissionCoordinatorTests.swift */; };
 		E22052DE24C2AA18000F755E /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22052DD24C2AA18000F755E /* ProfileInteractor.swift */; };
 		E221168021914E4B0039F8C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221167F21914E4B0039F8C9 /* AppDelegate.swift */; };
 		E221168721914E4B0039F8C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221168521914E4B0039F8C9 /* Main.storyboard */; };
@@ -567,6 +568,7 @@
 		E21F93BA2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSignOutTableViewCell.swift; sourceTree = "<group>"; };
 		E22024FF24BEBFD500465316 /* AccountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModelTests.swift; sourceTree = "<group>"; };
 		E220250124BEBFEA00465316 /* AccountMockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMockFactory.swift; sourceTree = "<group>"; };
+		E22040AD2A5542800094866D /* AuthPermissionCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionCoordinatorTests.swift; sourceTree = "<group>"; };
 		E22052DD24C2AA18000F755E /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		E221167C21914E4B0039F8C9 /* UpcomingMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UpcomingMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E221167F21914E4B0039F8C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -2294,6 +2296,7 @@
 			isa = PBXGroup;
 			children = (
 				E2ACC8B32A3E4AED007FDFC9 /* AuthPermissionViewControllerTests.swift */,
+				E22040AD2A5542800094866D /* AuthPermissionCoordinatorTests.swift */,
 			);
 			path = AuthPermission;
 			sourceTree = "<group>";
@@ -3193,6 +3196,7 @@
 				E279169E28F092360092B592 /* SearchOptionsViewModelTests.swift in Sources */,
 				E2C03B26222502AB00A4C47A /* MovieReviewsViewModelTests.swift in Sources */,
 				E24D57CE2849D74800B5A101 /* MovieCreditsInteractorTests.swift in Sources */,
+				E22040AE2A5542800094866D /* AuthPermissionCoordinatorTests.swift in Sources */,
 				E2C42E1824C3F9BF0047A8EF /* ProfileMockFactory.swift in Sources */,
 				E26859B024D099B500CDCF85 /* MovieCreditsMockFactory.swift in Sources */,
 				E2ACC8AF2A3E4946007FDFC9 /* AuthenticationMockFactory.swift in Sources */,

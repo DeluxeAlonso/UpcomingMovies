@@ -11,37 +11,28 @@ import UIKit
 final class AuthPermissionCoordinator: BaseCoordinator, AuthPermissionCoordinatorProtocol {
 
     private let authPermissionURL: URL
-
-    var presentingViewController: UIViewController?
-    var authPermissionDelegate: AuthPermissionViewControllerDelegate?
+    private let authPermissionDelegate: AuthPermissionViewControllerDelegate?
 
     init(navigationController: UINavigationController,
-         authPermissionURL: URL) {
+         authPermissionURL: URL,
+         authPermissionDelegate: AuthPermissionViewControllerDelegate?) {
         self.authPermissionURL = authPermissionURL
+        self.authPermissionDelegate = authPermissionDelegate
         super.init(navigationController: navigationController)
     }
 
-    override func start() {
+    override func build() -> AuthPermissionViewController {
         let viewController = AuthPermissionViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(argument: authPermissionURL)
         viewController.delegate = authPermissionDelegate
         viewController.coordinator = self
 
-        navigationController.pushViewController(viewController, animated: false)
-        presentingViewController?.present(navigationController, animated: true, completion: nil)
-    }
-
-    func dismiss(completion: (() -> Void)? = nil) {
-        let presentedViewController = navigationController.topViewController
-        presentedViewController?.dismiss(animated: true) { [weak self] in
-            completion?()
-            self?.parentCoordinator?.childDidFinish()
-        }
+        return viewController
     }
 
     func didDismiss() {
-        parentCoordinator?.childDidFinish()
+        unwrappedParentCoordinator.childDidFinish()
     }
 
 }
