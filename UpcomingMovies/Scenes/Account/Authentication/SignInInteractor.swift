@@ -35,8 +35,4 @@ final class SignInInteractor: SignInInteractorProtocol {
         }
     }
 
-    func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void) {
-        authUseCase.signOutUser(completion: completion)
-    }
-
 }
