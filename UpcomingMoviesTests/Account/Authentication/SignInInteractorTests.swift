@@ -13,12 +13,12 @@ import XCTest
 class SignInInteractorTests: XCTestCase {
 
     private var interactor: SignInInteractor!
-    private var mockMovieUseCase: MovieUseCaseProtocolMock!
+    private var mockUserUseCase: UserUseCaseProtocolMock!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        mockMovieUseCase = MovieUseCaseProtocolMock()
-        interactor = MovieVideosInteractor(movieUseCase: mockMovieUseCase)
+        mockUserUseCase = UserUseCaseProtocolMock()
+        interactor = SignInInteractor(useCaseProvider: <#T##UseCaseProviderProtocol#>)
     }
 
     override func tearDownWithError() throws {
