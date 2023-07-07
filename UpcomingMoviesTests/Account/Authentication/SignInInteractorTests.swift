@@ -9,29 +9,51 @@
 import XCTest
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
+@testable import NetworkInfrastructure
 
 class SignInInteractorTests: XCTestCase {
 
     private var interactor: SignInInteractor!
     private var mockUserUseCase: UserUseCaseProtocolMock!
+    private var mockAuthUseCase: AuthUseCaseProtocolMock!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         mockUserUseCase = UserUseCaseProtocolMock()
-        interactor = SignInInteractor(useCaseProvider: <#T##UseCaseProviderProtocol#>)
+        mockAuthUseCase = AuthUseCaseProtocolMock()
+        interactor = SignInInteractor(authUseCase: mockAuthUseCase, userUseCase: mockUserUseCase)
     }
 
     override func tearDownWithError() throws {
         interactor = nil
-        mockMovieUseCase = nil
+        mockUserUseCase = nil
+        mockAuthUseCase = nil
         try super.tearDownWithError()
     }
 
-    func testGetMovieVideosCalled() {
+    func testGetAuthPermissionURL() {
         // Act
-        interactor.getMovieVideos(for: 1, page: 1, completion: { _ in })
+        interactor.getAuthPermissionURL(completion: { _ in })
         // Assert
-        XCTAssertEqual(mockMovieUseCase.getMovieVideosCallCount, 1)
+        XCTAssertEqual(mockAuthUseCase.getAuthURLCallCount, 1)
+    }
+
+    func testSignInUserSuccess() {
+        mockAuthUseCase.signInUserResult = .success(.with())
+        // Act
+        interactor.signInUser(completion: { _ in })
+        // Assert
+        XCTAssertEqual(mockAuthUseCase.signInUserCallCount, 1)
+        XCTAssertEqual(mockUserUseCase.saveUserCallCount, 1)
+    }
+
+    func testSignInUserError() {
+        mockAuthUseCase.signInUserResult = .failure(APIError.badRequest)
+        // Act
+        interactor.signInUser(completion: { _ in })
+        // Assert
+        XCTAssertEqual(mockAuthUseCase.signInUserCallCount, 1)
+        XCTAssertEqual(mockUserUseCase.saveUserCallCount, 0)
     }
 
 }
