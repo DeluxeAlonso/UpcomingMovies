@@ -16,7 +16,7 @@ final class SignInAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return SignInInteractor(useCaseProvider: useCaseProvider)
+            return SignInInteractor(authUseCase: useCaseProvider.authUseCase(), userUseCase: useCaseProvider.userUseCase())
         }
 
         container.register(SignInViewModelProtocol.self) { resolver in

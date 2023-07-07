@@ -14,9 +14,10 @@ final class SignInInteractor: SignInInteractorProtocol {
     private let authUseCase: AuthUseCaseProtocol
     private let userUseCase: UserUseCaseProtocol
 
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        self.authUseCase = useCaseProvider.authUseCase()
-        self.userUseCase = useCaseProvider.userUseCase()
+    init(authUseCase: AuthUseCaseProtocol,
+         userUseCase: UserUseCaseProtocol) {
+        self.authUseCase = authUseCase
+        self.userUseCase = userUseCase
     }
 
     func getAuthPermissionURL(completion: @escaping (Result<URL, Error>) -> Void) {
