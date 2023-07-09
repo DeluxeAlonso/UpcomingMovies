@@ -11,14 +11,14 @@ import XCTest
 
 final class SignInViewControllerTests: XCTestCase {
 
-    private var viewModel: MockAuthPermissionViewModel!
-    private var coordinator: MockAuthPermissionCoordinator!
+    private var viewModel: MockSignInViewModel!
+    private var coordinator: MockSignInCoordinator!
     private var delegate: MockAuthPermissionViewControllerDelegate!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        viewModel = MockAuthPermissionViewModel()
-        coordinator = MockAuthPermissionCoordinator()
+        viewModel = MockSignInViewModel()
+        coordinator = MockSignInCoordinator()
         delegate = MockAuthPermissionViewControllerDelegate()
     }
 
