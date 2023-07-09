@@ -114,7 +114,3 @@ final class MockSignInCoordinator: SignInCoordinatorProtocol {
     }
 
 }
-
-final class MockSignInViewControllerDelegate: SignInViewControllerDelegate {
-
-}

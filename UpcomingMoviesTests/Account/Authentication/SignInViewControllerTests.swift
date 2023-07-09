@@ -13,13 +13,13 @@ final class SignInViewControllerTests: XCTestCase {
 
     private var viewModel: MockSignInViewModel!
     private var coordinator: MockSignInCoordinator!
-    private var delegate: MockAuthPermissionViewControllerDelegate!
+    private var delegate: MockSignInViewControllerDelegate!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         viewModel = MockSignInViewModel()
         coordinator = MockSignInCoordinator()
-        delegate = MockAuthPermissionViewControllerDelegate()
+        delegate = MockSignInViewControllerDelegate()
     }
 
     override func tearDownWithError() throws {
@@ -33,25 +33,52 @@ final class SignInViewControllerTests: XCTestCase {
         // Arrange
         let viewController = createSUT()
         _ = viewController.view
-        coordinator.dismissResult = ()
         // Act
-        viewController.perform(Selector("closeBarButtonAction"), with: nil)
+        viewController.loginButtonAction(())
         // Assert
-        XCTAssertEqual(coordinator.dismissCallCount, 1)
-        XCTAssertEqual(delegate.didReceiveAuthorizationCallCount, 1)
+        XCTAssertEqual(viewModel.startAuthorizationProcessCallCount, 1)
     }
 
-    func testPresentationControllerDidDismiss() {
+    func testDidUpdateAuthenticationState() {
         // Arrange
         let viewController = createSUT()
         _ = viewController.view
-        coordinator.dismissResult = ()
         // Act
-        viewController.presentationControllerDidDismiss(UIPresentationController(presentedViewController: UIViewController(),
-                                                                                 presenting: nil))
+        viewModel.didUpdateAuthenticationState.value = .currentlySignedIn
         // Assert
-        XCTAssertEqual(coordinator.didDismissCallCount, 1)
-        XCTAssertEqual(delegate.didReceiveAuthorizationCallCount, 1)
+        _ = XCTWaiter.wait(for: [XCTestExpectation(description: "")], timeout: 0.1)
+        XCTAssertEqual(delegate.didUpdateAuthenticationStateCallCount, 2)
+    }
+
+    func testShowAuthPermission() {
+        // Arrange
+        let viewController = createSUT()
+        _ = viewController.view
+        // Act
+        viewModel.showAuthPermission.send(URL(string: "www.google.com")!)
+        // Assert
+        _ = XCTWaiter.wait(for: [XCTestExpectation(description: "")], timeout: 0.1)
+        XCTAssertEqual(coordinator.showAuthPermissionCallCount, 1)
+    }
+
+    func testDidReceiveAuthorizationTrue() {
+        // Arrange
+        let viewController = createSUT()
+        _ = viewController.view
+        // Act
+        viewController.authPermissionViewController(AuthPermissionViewController(), didReceiveAuthorization: true)
+        // Assert
+        XCTAssertEqual(viewModel.signInUserCallCount, 1)
+    }
+
+    func testDidReceiveAuthorizationFalse() {
+        // Arrange
+        let viewController = createSUT()
+        _ = viewController.view
+        // Act
+        viewController.authPermissionViewController(AuthPermissionViewController(), didReceiveAuthorization: false)
+        // Assert
+        XCTAssertEqual(viewModel.signInUserCallCount, 0)
     }
 
     private func createSUT() -> SignInViewController {
