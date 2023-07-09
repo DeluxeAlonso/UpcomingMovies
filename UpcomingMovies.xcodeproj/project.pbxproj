@@ -311,6 +311,7 @@
 		E2A024AA256F6B7600D2018C /* SmallWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A024A9256F6B7600D2018C /* SmallWidgetView.swift */; };
 		E2A076612A29B02F0089062F /* MockNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A076602A29B02F0089062F /* MockNavigationController.swift */; };
 		E2A104B029EFA1B400DA0809 /* MovieDetailPosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A104AF29EFA1B400DA0809 /* MovieDetailPosterViewController.swift */; };
+		E2A322F62A5A722C00AC0C2A /* SignInViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A322F52A5A722C00AC0C2A /* SignInViewControllerTests.swift */; };
 		E2A4D9362511B05500571893 /* AuthenticationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A4D9352511B05500571893 /* AuthenticationAssembly.swift */; };
 		E2A4D9382511B06000571893 /* ProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A4D9372511B06000571893 /* ProfileAssembly.swift */; };
 		E2A4D93A2511B0E200571893 /* CustomListsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A4D9392511B0E200571893 /* CustomListsAssembly.swift */; };
@@ -812,6 +813,7 @@
 		E2A024A9256F6B7600D2018C /* SmallWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallWidgetView.swift; sourceTree = "<group>"; };
 		E2A076602A29B02F0089062F /* MockNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNavigationController.swift; sourceTree = "<group>"; };
 		E2A104AF29EFA1B400DA0809 /* MovieDetailPosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailPosterViewController.swift; sourceTree = "<group>"; };
+		E2A322F52A5A722C00AC0C2A /* SignInViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewControllerTests.swift; sourceTree = "<group>"; };
 		E2A4D9352511B05500571893 /* AuthenticationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAssembly.swift; sourceTree = "<group>"; };
 		E2A4D9372511B06000571893 /* ProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembly.swift; sourceTree = "<group>"; };
 		E2A4D9392511B0E200571893 /* CustomListsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListsAssembly.swift; sourceTree = "<group>"; };
@@ -2291,6 +2293,7 @@
 				E26578B52A40F26B00D8A071 /* SignInCoordinatorTests.swift */,
 				E2FE17FF2A52A1380033D6A2 /* SignInViewModelTests.swift */,
 				E2BE5AA02A57EB350088B1CD /* SignInInteractorTests.swift */,
+				E2A322F52A5A722C00AC0C2A /* SignInViewControllerTests.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -3228,6 +3231,7 @@
 				E2B8C49B28B738E2006A8ECC /* FavoritesSavedMoviesInteractorTests.swift in Sources */,
 				E2A958CC2A3677B70004FC5C /* AccountInteractorTests.swift in Sources */,
 				E2A958D52A367C970004FC5C /* MovieDetailOptionTests.swift in Sources */,
+				E2A322F62A5A722C00AC0C2A /* SignInViewControllerTests.swift in Sources */,
 				E25DAC8F2A28676D00806501 /* MovieDetailCoordinatorTests.swift in Sources */,
 				E2ACC8B42A3E4AED007FDFC9 /* AuthPermissionViewControllerTests.swift in Sources */,
 				E2A958C82A363FFE0004FC5C /* MovieReviewDetailCoordinatorTests.swift in Sources */,
