@@ -86,3 +86,22 @@ final class MockSignInInteractor: SignInInteractorProtocol {
     }
 
 }
+
+final class MockSignInViewModelProtocol: SignInViewModelProtocol {
+
+    var startLoading: AnyBehaviorBindable<Bool> = BehaviorBindable(false).eraseToAnyBindable()
+    var showAuthPermission: AnyPublishBindable<URL> = PublishBindable<URL>().eraseToAnyBindable()
+    var didUpdateAuthenticationState = BehaviorBindable<AuthenticationState?>(nil).eraseToAnyBindable()
+    var didReceiveError: AnyPublishBindable<Void> = PublishBindable<Void>().eraseToAnyBindable()
+
+    private(set) var startAuthorizationProcessCallCount = 0
+    func startAuthorizationProcess() {
+        startAuthorizationProcessCallCount += 1
+    }
+
+    private(set) var signInUserCallCount = 0
+    func signInUser() {
+        signInUserCallCount += 1
+    }
+
+}
