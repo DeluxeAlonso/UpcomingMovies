@@ -10,6 +10,10 @@
 @testable import UpcomingMoviesDomain
 
 final class MockProfileInteractor: ProfileInteractorProtocol {
+    func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void) {
+        
+    }
+
 
     var getAccountDetailResult: Result<User, Error>?
     func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void) {
