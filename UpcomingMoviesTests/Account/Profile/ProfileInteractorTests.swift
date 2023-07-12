@@ -22,6 +22,7 @@ final class ProfileInteractorTests: XCTestCase {
         try super.setUpWithError()
         mockUserUseCase = UserUseCaseProtocolMock()
         mockAuthUseCase = AuthUseCaseProtocolMock()
+        mockAccountUseCase = AccountUseCaseProtocolMock()
         interactor = ProfileInteractor(userUseCase: mockUserUseCase,
                                        authUseCase: mockAuthUseCase,
                                        accountUseCase: mockAccountUseCase)
