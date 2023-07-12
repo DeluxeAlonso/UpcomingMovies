@@ -20,7 +20,9 @@ final class ProfileAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return ProfileInteractor(useCaseProvider: useCaseProvider)
+            return ProfileInteractor(userUseCase: useCaseProvider.userUseCase(),
+                                     authUseCase: useCaseProvider.authUseCase(),
+                                     accountUseCase: useCaseProvider.accountUseCase())
         }
 
         container.register(ProfileViewModelProtocol.self) { (resolver, user: User) in

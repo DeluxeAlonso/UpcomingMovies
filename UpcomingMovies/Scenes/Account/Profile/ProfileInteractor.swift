@@ -15,10 +15,12 @@ final class ProfileInteractor: ProfileInteractorProtocol {
     private let authUseCase: AuthUseCaseProtocol
     private let accountUseCase: AccountUseCaseProtocol
 
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        self.userUseCase = useCaseProvider.userUseCase()
-        self.authUseCase = useCaseProvider.authUseCase()
-        self.accountUseCase = useCaseProvider.accountUseCase()
+    init(userUseCase: UserUseCaseProtocol,
+         authUseCase: AuthUseCaseProtocol,
+         accountUseCase: AccountUseCaseProtocol) {
+        self.userUseCase = userUseCase
+        self.authUseCase = authUseCase
+        self.accountUseCase = accountUseCase
     }
 
     // TODO: - Change this method to get the account detail given the id of a user account
