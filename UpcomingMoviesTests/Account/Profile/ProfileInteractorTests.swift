@@ -45,4 +45,20 @@ final class ProfileInteractorTests: XCTestCase {
         XCTAssertEqual(mockUserUseCase.saveUserCallCount, 1)
     }
 
+    func testGetAccountDetailError() {
+        // Arrange
+        mockAccountUseCase.getAccountDetailResult = .failure(APIError.badRequest)
+        // Act
+        interactor.getAccountDetail(completion: { _ in })
+        // Assert
+        XCTAssertEqual(mockUserUseCase.saveUserCallCount, 0)
+    }
+
+    func testSignOutUser() {
+        // Act
+        interactor.signOutUser(completion: { _ in })
+        // Assert
+        XCTAssertEqual(mockAuthUseCase.signOutUserCallCount, 1)
+    }
+
 }

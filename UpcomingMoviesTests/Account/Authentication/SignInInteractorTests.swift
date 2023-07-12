@@ -39,6 +39,7 @@ class SignInInteractorTests: XCTestCase {
     }
 
     func testSignInUserSuccess() {
+        // Arrange
         mockAuthUseCase.signInUserResult = .success(.with())
         // Act
         interactor.signInUser(completion: { _ in })
@@ -48,6 +49,7 @@ class SignInInteractorTests: XCTestCase {
     }
 
     func testSignInUserError() {
+        // Arrange
         mockAuthUseCase.signInUserResult = .failure(APIError.badRequest)
         // Act
         interactor.signInUser(completion: { _ in })
