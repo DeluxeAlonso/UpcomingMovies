@@ -18,6 +18,8 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     private let factory: ProfileFactoryProtocol
 
     let reloadAccountInfo = PublishBindable<Void>().eraseToAnyBindable()
+    let didUpdateAuthenticationState = BehaviorBindable<AuthenticationState?>(nil).eraseToAnyBindable()
+    let didReceiveError = PublishBindable<Void>().eraseToAnyBindable()
 
     // MARK: - Computed properties
 
@@ -75,6 +77,17 @@ final class ProfileViewModel: ProfileViewModelProtocol {
             if self.userAccount != user {
                 self.userAccount = user
                 self.reloadAccountInfo.send(())
+            }
+        }
+    }
+
+    func signOutCurrentUser() {
+        interactor.signOutUser { result in
+            switch result {
+            case .success:
+                self.didUpdateAuthenticationState.value = .justSignedOut
+            case .failure:
+                self.didReceiveError.send()
             }
         }
     }

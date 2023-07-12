@@ -12,10 +12,12 @@ import UpcomingMoviesDomain
 final class ProfileInteractor: ProfileInteractorProtocol {
 
     private let userUseCase: UserUseCaseProtocol
+    private let authUseCase: AuthUseCaseProtocol
     private let accountUseCase: AccountUseCaseProtocol
 
     init(useCaseProvider: UseCaseProviderProtocol) {
         self.userUseCase = useCaseProvider.userUseCase()
+        self.authUseCase = useCaseProvider.authUseCase()
         self.accountUseCase = useCaseProvider.accountUseCase()
     }
 
@@ -30,6 +32,10 @@ final class ProfileInteractor: ProfileInteractorProtocol {
                 completion(.failure(error))
             }
         })
+    }
+
+    func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void) {
+        authUseCase.signOutUser(completion: completion)
     }
 
 }

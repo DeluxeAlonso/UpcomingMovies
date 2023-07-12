@@ -13,6 +13,8 @@ protocol ProfileViewModelProtocol {
     var userInfoCell: ProfileAccountInforCellViewModelProtocol? { get }
 
     var reloadAccountInfo: AnyPublishBindable<Void> { get }
+    var didUpdateAuthenticationState: AnyBehaviorBindable<AuthenticationState?> { get }
+    var didReceiveError: AnyPublishBindable<Void> { get }
 
     func section(at index: Int) -> ProfileSection
     func numberOfSections() -> Int
@@ -29,6 +31,7 @@ protocol ProfileViewModelProtocol {
 protocol ProfileInteractorProtocol {
 
     func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void)
+    func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void)
 
 }
 

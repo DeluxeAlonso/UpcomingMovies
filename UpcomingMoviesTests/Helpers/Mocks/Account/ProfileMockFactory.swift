@@ -11,11 +11,22 @@
 
 final class MockProfileInteractor: ProfileInteractorProtocol {
 
+    var signOutUserResult: Result<Bool, Error>?
+    private(set) var signOutUserCallCount = 0
+    func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void) {
+        if let signOutUserResult {
+            completion(signOutUserResult)
+        }
+        signOutUserCallCount += 1
+    }
+
     var getAccountDetailResult: Result<User, Error>?
+    private(set) var getAccountDetailCallCount = 0
     func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void) {
         if let getAccountDetailResult {
             completion(getAccountDetailResult)
         }
+        getAccountDetailCallCount += 1
     }
 
 }

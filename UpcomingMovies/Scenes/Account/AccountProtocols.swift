@@ -12,7 +12,6 @@ import UpcomingMoviesDomain
 protocol AccountViewModelProtocol {
 
     var showAuthPermission: AnyPublishBindable<URL> { get }
-    var didUpdateAuthenticationState: AnyBehaviorBindable<AuthenticationState?> { get }
     var didReceiveError: AnyPublishBindable<Void> { get }
 
     func signOutCurrentUser()
