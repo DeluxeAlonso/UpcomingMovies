@@ -24,7 +24,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     // MARK: - Computed properties
 
     var userInfoCell: ProfileAccountInforCellViewModelProtocol? {
-        return ProfileAccountInforCellViewModel(userAccount: userAccount)
+        ProfileAccountInforCellViewModel(userAccount: userAccount)
     }
 
     // MARK: - Initializers
