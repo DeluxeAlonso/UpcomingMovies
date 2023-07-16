@@ -15,6 +15,7 @@ final class ProfileViewController: UITableViewController, Storyboarded {
     private var dataSource: ProfileDataSource!
 
     var viewModel: ProfileViewModelProtocol?
+    weak var coordinator: ProfileCoordinatorProtocol?
     weak var delegate: ProfileViewControllerDelegate?
 
     // MARK: - Lifecycle

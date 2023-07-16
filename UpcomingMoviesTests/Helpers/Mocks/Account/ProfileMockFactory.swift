@@ -130,3 +130,5 @@ final class MockProfileViewControllerDelegate: MockViewController, ProfileViewCo
     }
 
 }
+
+final class MockProfileCoordinator: ProfileCoordinatorProtocol {}
