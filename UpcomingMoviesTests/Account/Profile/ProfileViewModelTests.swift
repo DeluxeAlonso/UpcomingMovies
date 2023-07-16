@@ -124,4 +124,18 @@ class ProfileViewModelTests: XCTestCase {
         XCTAssertEqual(numberOfSections, sectionsToTest.count)
     }
 
+    func testSignOutUserError() {
+        // Arrange
+        let errorToTest = APIError.badRequest
+        let expectation = XCTestExpectation(description: "Sign out user error")
+        // Act
+        viewModelToTest.didReceiveError.bind {
+            expectation.fulfill()
+        }
+        mockInteractor.signOutUserResult = Result.failure(errorToTest)
+        viewModelToTest.signOutCurrentUser()
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }

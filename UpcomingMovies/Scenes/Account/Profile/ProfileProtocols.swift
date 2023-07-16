@@ -44,13 +44,10 @@ protocol ProfileFactoryProtocol {
 
 }
 
-protocol ProfileViewControllerDelegate: UIViewController {
+protocol ProfileViewControllerDelegate: UIViewController, AuthenticationStateDelegate {
 
     func profileViewController(didTapProfileOption option: ProfileOptionProtocol)
-    func profileViewController(didSignOut signedOut: Bool)
 
 }
 
-protocol ProfileCoordinatorProtocol: AnyObject {
-    
-}
+protocol ProfileCoordinatorProtocol: AnyObject {}
