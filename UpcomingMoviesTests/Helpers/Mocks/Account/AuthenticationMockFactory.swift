@@ -63,7 +63,7 @@ final class MockAuthPermissionViewControllerDelegate: AuthPermissionViewControll
 final class MockSignInViewControllerDelegate: MockViewController, SignInViewControllerDelegate {
 
     private(set) var didUpdateAuthenticationStateCallCount = 0
-    func signInViewController(_ signInViewController: SignInViewController, didUpdateAuthenticationState state: AuthenticationState) {
+    func didUpdateAuthenticationState(_ state: AuthenticationState) {
         didUpdateAuthenticationStateCallCount += 1
     }
 

@@ -28,20 +28,6 @@ final class AccountViewModelTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testSignOutUserError() {
-        // Arrange
-        let errorToTest = APIError.badRequest
-        let expectation = XCTestExpectation(description: "Sign out user error")
-        // Act
-        viewModelToTest.didReceiveError.bind {
-            expectation.fulfill()
-        }
-        mockInteractor.signOutUserResult = Result.failure(errorToTest)
-        viewModelToTest.signOutCurrentUser()
-        // Assert
-        wait(for: [expectation], timeout: 1.0)
-    }
-
     func testCurrentUserNotNil() {
         // Arrange
         let userToTest = User.with()

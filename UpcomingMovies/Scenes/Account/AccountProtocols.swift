@@ -14,8 +14,6 @@ protocol AccountViewModelProtocol {
     var showAuthPermission: AnyPublishBindable<URL> { get }
     var didReceiveError: AnyPublishBindable<Void> { get }
 
-    func signOutCurrentUser()
-
     func isUserSignedIn() -> Bool
     func currentUser() -> User?
 
@@ -23,7 +21,6 @@ protocol AccountViewModelProtocol {
 
 protocol AccountInteractorProtocol {
 
-    func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void)
     func currentUser() -> User?
 
 }

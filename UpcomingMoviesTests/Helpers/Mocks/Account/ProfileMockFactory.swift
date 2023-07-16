@@ -63,9 +63,9 @@ final class MockProfileViewControllerDelegate: MockViewController, ProfileViewCo
         didTapProfileOptionCallCount += 1
     }
 
-    private(set) var didSignOutCallCount = 0
-    func profileViewController(didSignOut signedOut: Bool) {
-        didSignOutCallCount += 1
+    private(set) var didUpdateAuthenticationStateCallCount = 0
+    func didUpdateAuthenticationState(_ state: AuthenticationState) {
+        didUpdateAuthenticationStateCallCount += 1
     }
 
 }

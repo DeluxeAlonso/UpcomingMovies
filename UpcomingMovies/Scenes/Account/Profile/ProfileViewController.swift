@@ -57,7 +57,7 @@ final class ProfileViewController: UITableViewController, Storyboarded {
     private func showSignOutActionSheet() {
         let signOutAction = UIAlertAction(title: LocalizedStrings.signOut(),
                                           style: .destructive) { _ in
-            self.delegate?.profileViewController(didSignOut: true)
+            self.viewModel?.signOutCurrentUser()
         }
         showSimpleActionSheet(title: LocalizedStrings.signOutConfirmationTitle(),
                               message: nil, action: signOutAction)
@@ -69,6 +69,10 @@ final class ProfileViewController: UITableViewController, Storyboarded {
         viewModel?.reloadAccountInfo.bind({ [weak self] _ in
             guard let self = self else { return }
             self.reloadAccountInfo()
+        }, on: .main)
+        viewModel?.didUpdateAuthenticationState.bindAndFire({ [weak self] authState in
+            guard let self = self, let authState else { return }
+            self.delegate?.didUpdateAuthenticationState(authState)
         }, on: .main)
     }
 

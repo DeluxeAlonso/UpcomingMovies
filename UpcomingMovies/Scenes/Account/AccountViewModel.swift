@@ -27,17 +27,6 @@ final class AccountViewModel: AccountViewModelProtocol {
 
     // MARK: - AccountViewModelProtocol
 
-    func signOutCurrentUser() {
-        interactor.signOutUser { result in
-            switch result {
-            case .success:
-                self.didUpdateAuthenticationState.value = .justSignedOut
-            case .failure:
-                self.didReceiveError.send()
-            }
-        }
-    }
-
     func isUserSignedIn() -> Bool {
         currentUser() != nil
     }

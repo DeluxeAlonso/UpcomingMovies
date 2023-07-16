@@ -63,7 +63,7 @@ final class AccountViewController: UIViewController, Storyboarded {
 
 extension AccountViewController: SignInViewControllerDelegate {
 
-    func signInViewController(_ signInViewController: SignInViewController, didUpdateAuthenticationState state: AuthenticationState) {
+    func didUpdateAuthenticationState(_ state: AuthenticationState) {
         switch state {
         case .justSignedIn: self.showProfileView(withAnimatedNavigationBar: true)
         case .justSignedOut: self.showSignInView(withAnimatedNavigationBar: true)
@@ -80,11 +80,6 @@ extension AccountViewController: ProfileViewControllerDelegate {
 
     func profileViewController(didTapProfileOption option: ProfileOptionProtocol) {
         coordinator?.showProfileOption(option)
-    }
-
-    func profileViewController(didSignOut signedOut: Bool) {
-        viewModel?.signOutCurrentUser()
-        showSignInView(withAnimatedNavigationBar: true)
     }
 
 }

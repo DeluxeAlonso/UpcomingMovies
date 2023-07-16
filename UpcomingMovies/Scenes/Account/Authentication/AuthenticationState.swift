@@ -10,3 +10,9 @@ enum AuthenticationState {
     case currentlySignedIn, justSignedIn
     case currentlySignedOut, justSignedOut
 }
+
+protocol AuthenticationStateDelegate {
+
+    func didUpdateAuthenticationState(_ state: AuthenticationState)
+
+}

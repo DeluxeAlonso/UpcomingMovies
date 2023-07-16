@@ -8,9 +8,7 @@
 
 import UIKit
 
-protocol SignInViewControllerDelegate: UIViewController {
-
-    func signInViewController(_ signInViewController: SignInViewController, didUpdateAuthenticationState state: AuthenticationState)
+protocol SignInViewControllerDelegate: UIViewController, AuthenticationStateDelegate {
 
 }
 
@@ -58,7 +56,7 @@ final class SignInViewController: UIViewController, Storyboarded {
         }, on: .main)
         viewModel?.didUpdateAuthenticationState.bindAndFire({ [weak self] authState in
             guard let self = self, let authState else { return }
-            self.delegate?.signInViewController(self, didUpdateAuthenticationState: authState)
+            self.delegate?.didUpdateAuthenticationState(authState)
         }, on: .main)
         viewModel?.showAuthPermission.bind({ [weak self] authPermissionURL in
             guard let self else { return }
