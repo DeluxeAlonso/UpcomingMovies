@@ -11,17 +11,10 @@ import UpcomingMoviesDomain
 
 final class AccountInteractor: AccountInteractorProtocol {
 
-    private let authUseCase: AuthUseCaseProtocol
     private let authHandler: AuthenticationHandlerProtocol
 
-    init(useCaseProvider: UseCaseProviderProtocol,
-         authHandler: AuthenticationHandlerProtocol) {
-        self.authUseCase = useCaseProvider.authUseCase()
+    init(authHandler: AuthenticationHandlerProtocol) {
         self.authHandler = authHandler
-    }
-
-    func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void) {
-        authUseCase.signOutUser(completion: completion)
     }
 
     func currentUser() -> User? {
