@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import UpcomingMovies
 
 final class ProfileViewControllerTests: XCTestCase {
 
@@ -32,5 +33,13 @@ final class ProfileViewControllerTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+
+    private func createSUT() -> ProfileViewController {
+        let viewController = ProfileViewController.instantiate()
+
+
+        return viewController
+    }
+
 
 }
