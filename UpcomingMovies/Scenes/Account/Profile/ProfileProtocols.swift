@@ -25,6 +25,7 @@ protocol ProfileViewModelProtocol {
                                          at index: Int) -> ProfileSelectableOptionCellViewModelProtocol
 
     func getAccountDetails()
+    func signOutCurrentUser()
 
 }
 

@@ -83,7 +83,6 @@ extension AccountViewController: ProfileViewControllerDelegate {
     }
 
     func profileViewController(didSignOut signedOut: Bool) {
-        viewModel?.signOutCurrentUser()
         showSignInView(withAnimatedNavigationBar: true)
     }
 
