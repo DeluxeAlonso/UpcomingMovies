@@ -31,6 +31,67 @@ final class MockProfileInteractor: ProfileInteractorProtocol {
 
 }
 
+final class MockProfileViewModel: ProfileViewModelProtocol {
+
+    var userInfoCell: ProfileAccountInforCellViewModelProtocol?
+
+    var reloadAccountInfo = PublishBindable<Void>().eraseToAnyBindable()
+    var didUpdateAuthenticationState = BehaviorBindable<AuthenticationState?>(nil).eraseToAnyBindable()
+    var didReceiveError = PublishBindable<Void>().eraseToAnyBindable()
+
+    var sectionAtIndexResult: ProfileSection = .accountInfo
+    private(set) var sectionAtIndexCallCount = 0
+    func section(at index: Int) -> ProfileSection {
+        sectionAtIndexCallCount += 1
+        return sectionAtIndexResult
+    }
+
+    var numberOfSectionsResult: Int = 0
+    private(set) var numberOfSectionsCallCount = 0
+    func numberOfSections() -> Int {
+        numberOfSectionsCallCount += 1
+        return numberOfSectionsResult
+    }
+
+    var numberOfRowsResult: Int = 0
+    private(set) var numberOfRowsCallCount = 0
+    func numberOfRows(for section: Int) -> Int {
+        numberOfRowsCallCount += 1
+        return numberOfRowsResult
+    }
+
+    var profileOptionResult = ProfileOption.customLists
+    private(set) var profileOptionCallCount = 0
+    func profileOption(for section: Int, at index: Int) -> ProfileOptionProtocol {
+        profileOptionCallCount += 1
+        return profileOptionResult
+    }
+
+    var buildProfileOptionCellViewModelResult = MockProfileSelectableOptionCellViewModel()
+    private(set) var buildProfileOptionCellViewModelCallCount = 0
+    func buildProfileOptionCellViewModel(for section: Int, at index: Int) -> ProfileSelectableOptionCellViewModelProtocol {
+        buildProfileOptionCellViewModelCallCount += 1
+        return buildProfileOptionCellViewModelResult
+    }
+
+    private(set) var getAccountDetailsCallCount = 0
+    func getAccountDetails() {
+        getAccountDetailsCallCount += 1
+    }
+
+    private(set) var signOutCurrentUserCallCount = 0
+    func signOutCurrentUser() {
+        signOutCurrentUserCallCount += 1
+    }
+
+}
+
+final class MockProfileSelectableOptionCellViewModel: ProfileSelectableOptionCellViewModelProtocol {
+
+    var title: String?
+
+}
+
 final class MockProfileViewFactory: ProfileFactoryProtocol {
 
     var collectionSectionOptions: [ProfileOptionProtocol] = []
@@ -69,3 +130,5 @@ final class MockProfileViewControllerDelegate: MockViewController, ProfileViewCo
     }
 
 }
+
+final class MockProfileCoordinator: ProfileCoordinatorProtocol {}
