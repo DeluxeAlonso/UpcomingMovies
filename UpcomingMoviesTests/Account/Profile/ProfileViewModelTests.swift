@@ -11,7 +11,7 @@ import XCTest
 @testable import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
-class ProfileViewModelTests: XCTestCase {
+final class ProfileViewModelTests: XCTestCase {
 
     private var mockInteractor: MockProfileInteractor!
     private var mockFactory: MockProfileViewFactory!

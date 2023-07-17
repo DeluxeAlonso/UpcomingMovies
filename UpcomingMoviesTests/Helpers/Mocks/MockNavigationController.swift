@@ -40,7 +40,7 @@ final class MockNavigationController: UINavigationController {
     var viewControllersResult: [UIViewController] = []
     override var viewControllers: [UIViewController] {
         get {
-            return viewControllersResult
+            viewControllersResult
         }
         set {
             super.viewControllers = newValue
