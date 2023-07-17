@@ -22,5 +22,5 @@ public final class UserUseCaseProtocolMock: UserUseCaseProtocol {
     public func saveUser(_ user: User) {
         saveUserCallCount += 1
     }
-    
+
 }
