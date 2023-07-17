@@ -9,7 +9,7 @@
 import XCTest
 @testable import UpcomingMovies
 
-class ProfileFactoryTests: XCTestCase {
+final class ProfileFactoryTests: XCTestCase {
 
     private var factory: ProfileFactory!
 
