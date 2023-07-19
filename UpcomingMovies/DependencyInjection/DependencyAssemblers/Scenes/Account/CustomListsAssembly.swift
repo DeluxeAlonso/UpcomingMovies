@@ -16,7 +16,7 @@ final class CustomListsAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return CustomListsInteractor(useCaseProvider: useCaseProvider)
+            return CustomListsInteractor(accountUseCase: useCaseProvider.accountUseCase())
         }
 
         container.register(CustomListsViewModelProtocol.self) { resolver in

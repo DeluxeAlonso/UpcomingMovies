@@ -13,8 +13,8 @@ final class CustomListDetailInteractor: CustomListDetailInteractorProtocol {
 
     private let accountUseCase: AccountUseCaseProtocol
 
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        self.accountUseCase = useCaseProvider.accountUseCase()
+    init(accountUseCase: AccountUseCaseProtocol) {
+        self.accountUseCase = accountUseCase
     }
 
     func getCustomListMovies(listId: String, completion: @escaping (Result<[Movie], Error>) -> Void) {

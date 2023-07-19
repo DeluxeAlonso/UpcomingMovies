@@ -16,7 +16,7 @@ final class CustomListDetailAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return CustomListDetailInteractor(useCaseProvider: useCaseProvider)
+            return CustomListDetailInteractor(accountUseCase: useCaseProvider.accountUseCase())
         }
 
         container.register(CustomListDetailViewModelProtocol.self) { (resolver, list: List) in
