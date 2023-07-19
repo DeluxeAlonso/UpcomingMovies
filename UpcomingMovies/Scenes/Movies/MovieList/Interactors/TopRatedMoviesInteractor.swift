@@ -13,8 +13,8 @@ struct TopRatedMoviesInteractor: MoviesInteractorProtocol {
 
     let movieUseCase: MovieUseCaseProtocol
 
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        self.movieUseCase = useCaseProvider.movieUseCase()
+    init(movieUseCase: MovieUseCaseProtocol) {
+        self.movieUseCase = movieUseCase
     }
 
     func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
