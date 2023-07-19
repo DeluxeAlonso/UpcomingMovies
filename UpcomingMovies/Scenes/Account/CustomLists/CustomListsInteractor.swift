@@ -13,8 +13,8 @@ final class CustomListsInteractor: CustomListsInteractorProtocol {
 
     private let accountUseCase: AccountUseCaseProtocol
 
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        self.accountUseCase = useCaseProvider.accountUseCase()
+    init(accountUseCase: AccountUseCaseProtocol) {
+        self.accountUseCase = accountUseCase
     }
 
     func getCustomLists(page: Int?, completion: @escaping (Result<[List], Error>) -> Void) {
