@@ -16,9 +16,10 @@ final class SearchOptionsInteractor: SearchOptionsInteractorProtocol {
 
     var didUpdateMovieVisit: (() -> Void)?
 
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        self.movieVisitUseCase = useCaseProvider.movieVisitUseCase()
-        self.genreUseCase = useCaseProvider.genreUseCase()
+    init(movieVisitUseCase: MovieVisitUseCaseProtocol,
+         genreUseCase: GenreUseCaseProtocol) {
+        self.movieVisitUseCase = movieVisitUseCase
+        self.genreUseCase = genreUseCase
 
         self.movieVisitUseCase.didUpdateMovieVisit = { [weak self] in
             self?.didUpdateMovieVisit?()

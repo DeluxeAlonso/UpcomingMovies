@@ -17,7 +17,8 @@ final class SearchMoviesAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return SearchOptionsInteractor(useCaseProvider: useCaseProvider)
+            return SearchOptionsInteractor(movieVisitUseCase: useCaseProvider.movieVisitUseCase(),
+                                           genreUseCase: useCaseProvider.genreUseCase())
         }
         container.register(SearchOptionsViewModelProtocol.self) { resolver in
             guard let interactor = resolver.resolve(SearchOptionsInteractorProtocol.self) else {
