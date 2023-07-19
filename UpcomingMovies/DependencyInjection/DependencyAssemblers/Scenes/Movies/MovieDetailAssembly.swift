@@ -23,7 +23,10 @@ final class MovieDetailAssembly: Assembly {
             guard let authHandler = resolver.resolve(AuthenticationHandlerProtocol.self) else {
                 fatalError("AuthenticationHandlerProtocol dependency could not be resolved")
             }
-            return MovieDetailInteractor(useCaseProvider: useCaseProvider,
+            return MovieDetailInteractor(movieUseCase: useCaseProvider.movieUseCase(),
+                                         movieVisitUseCase: useCaseProvider.movieVisitUseCase(),
+                                         genreUseCase: useCaseProvider.genreUseCase(),
+                                         accountUseCase: useCaseProvider.accountUseCase(),
                                          authHandler: authHandler)
         }
 
