@@ -16,7 +16,7 @@ final class UpcomingMoviesAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return UpcomingMoviesInteractor(useCaseProvider: useCaseProvider)
+            return UpcomingMoviesInteractor(movieUseCase: useCaseProvider.movieUseCase())
         }
 
         container.register(UpcomingMoviesFactoryProtocol.self) { _ in
