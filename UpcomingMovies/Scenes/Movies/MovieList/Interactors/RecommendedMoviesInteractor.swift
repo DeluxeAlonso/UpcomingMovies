@@ -12,8 +12,8 @@ struct RecommendedMoviesInteractor: MoviesInteractorProtocol {
 
     private let accountUseCase: AccountUseCaseProtocol
 
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        self.accountUseCase = useCaseProvider.accountUseCase()
+    init(accountUseCase: AccountUseCaseProtocol) {
+        self.accountUseCase = accountUseCase
     }
 
     func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {

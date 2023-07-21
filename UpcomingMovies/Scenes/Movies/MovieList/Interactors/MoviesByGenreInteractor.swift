@@ -15,8 +15,8 @@ struct MoviesByGenreInteractor: MoviesInteractorProtocol {
     let genreId: Int
     let genreName: String
 
-    init(useCaseProvider: UseCaseProviderProtocol, genreId: Int, genreName: String) {
-        self.movieUseCase = useCaseProvider.movieUseCase()
+    init(movieUseCase: MovieUseCaseProtocol, genreId: Int, genreName: String) {
+        self.movieUseCase = movieUseCase
         self.genreId = genreId
         self.genreName = genreName
     }

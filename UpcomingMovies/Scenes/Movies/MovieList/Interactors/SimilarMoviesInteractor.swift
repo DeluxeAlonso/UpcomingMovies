@@ -14,8 +14,8 @@ struct SimilarMoviesInteractor: MoviesInteractorProtocol {
     let movieUseCase: MovieUseCaseProtocol
     let movieId: Int
 
-    init(useCaseProvider: UseCaseProviderProtocol, movieId: Int) {
-        self.movieUseCase = useCaseProvider.movieUseCase()
+    init(movieUseCase: MovieUseCaseProtocol, movieId: Int) {
+        self.movieUseCase = movieUseCase
         self.movieId = movieId
     }
 

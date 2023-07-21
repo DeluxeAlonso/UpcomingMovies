@@ -24,7 +24,7 @@ final class MovieListAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return PopularMoviesInteractor(useCaseProvider: useCaseProvider)
+            return PopularMoviesInteractor(movieUseCase: useCaseProvider.movieUseCase())
         }
 
         container.register(MovieListViewModelProtocol.self, name: "PopularMovies") { (resolver, displayTitle: String) in
@@ -43,7 +43,7 @@ final class MovieListAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return TopRatedMoviesInteractor(useCaseProvider: useCaseProvider)
+            return TopRatedMoviesInteractor(movieUseCase: useCaseProvider.movieUseCase())
         }
 
         container.register(MovieListViewModelProtocol.self, name: "TopRatedMovies") { (resolver, displayTitle: String) in
@@ -63,7 +63,7 @@ final class MovieListAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return SimilarMoviesInteractor(useCaseProvider: useCaseProvider, movieId: movieId)
+            return SimilarMoviesInteractor(movieUseCase: useCaseProvider.movieUseCase(), movieId: movieId)
         }
 
         container.register(MovieListViewModelProtocol.self, name: "SimilarMovies") { (resolver, displayTitle: String, movieId: Int) in
@@ -84,7 +84,7 @@ final class MovieListAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return MoviesByGenreInteractor(useCaseProvider: useCaseProvider,
+            return MoviesByGenreInteractor(movieUseCase: useCaseProvider.movieUseCase(),
                                            genreId: genreId, genreName: genreName)
         }
 
@@ -104,7 +104,7 @@ final class MovieListAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return RecommendedMoviesInteractor(useCaseProvider: useCaseProvider)
+            return RecommendedMoviesInteractor(accountUseCase: useCaseProvider.accountUseCase())
         }
 
         container.register(MovieListViewModelProtocol.self, name: "RecommendedMovies") { (resolver, displayTitle: String) in

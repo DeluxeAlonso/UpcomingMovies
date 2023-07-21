@@ -17,11 +17,15 @@ final class MovieDetailInteractor: MovieDetailInteractorProtocol {
 
     private let authHandler: AuthenticationHandlerProtocol
 
-    init(useCaseProvider: UseCaseProviderProtocol, authHandler: AuthenticationHandlerProtocol) {
-        self.movieUseCase = useCaseProvider.movieUseCase()
-        self.movieVisitUseCase = useCaseProvider.movieVisitUseCase()
-        self.genreUseCase = useCaseProvider.genreUseCase()
-        self.accountUseCase = useCaseProvider.accountUseCase()
+    init(movieUseCase: MovieUseCaseProtocol,
+         movieVisitUseCase: MovieVisitUseCaseProtocol,
+         genreUseCase: GenreUseCaseProtocol,
+         accountUseCase: AccountUseCaseProtocol,
+         authHandler: AuthenticationHandlerProtocol) {
+        self.movieUseCase = movieUseCase
+        self.movieVisitUseCase = movieVisitUseCase
+        self.genreUseCase = genreUseCase
+        self.accountUseCase = accountUseCase
         self.authHandler = authHandler
     }
 
