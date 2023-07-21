@@ -16,7 +16,8 @@ final class SplashAssembly: Assembly {
             guard let useCaseProvider = resolver.resolve(UseCaseProviderProtocol.self) else {
                 fatalError("UseCaseProviderProtocol dependency could not be resolved")
             }
-            return SplashInteractor(useCaseProvider: useCaseProvider)
+            return SplashInteractor(genreUseCase: useCaseProvider.genreUseCase(),
+                                    configurationUseCase: useCaseProvider.configurationUseCase())
         }
 
         container.register(SplashViewModelProtocol.self) { resolver in
