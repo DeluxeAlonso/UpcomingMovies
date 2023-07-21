@@ -13,9 +13,10 @@ struct SplashInteractor: SplashInteractorProtocol {
     private let genreUseCase: GenreUseCaseProtocol
     private let configurationUseCase: ConfigurationUseCaseProtocol
 
-    init(useCaseProvider: UseCaseProviderProtocol) {
-        self.genreUseCase = useCaseProvider.genreUseCase()
-        self.configurationUseCase = useCaseProvider.configurationUseCase()
+    init(genreUseCase: GenreUseCaseProtocol,
+         configurationUseCase: ConfigurationUseCaseProtocol) {
+        self.genreUseCase = genreUseCase
+        self.configurationUseCase = configurationUseCase
     }
 
     // MARK: - SplashInteractorProtocol
