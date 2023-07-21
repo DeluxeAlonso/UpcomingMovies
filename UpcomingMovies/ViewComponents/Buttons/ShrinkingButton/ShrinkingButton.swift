@@ -8,7 +8,8 @@
 
 import UIKit
 
-@IBDesignable class ShrinkingButton: UIButton {
+@IBDesignable
+final class ShrinkingButton: UIButton {
 
     @IBInspectable var spinnerColor: UIColor = UIColor.white {
         didSet {
