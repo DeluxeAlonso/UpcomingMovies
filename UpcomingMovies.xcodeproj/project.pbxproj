@@ -1258,7 +1258,6 @@
 		E21F378E2193F33900D6BFB6 /* Movie */ = {
 			isa = PBXGroup;
 			children = (
-				E2709809220FAF7A007F18A2 /* MovieVideos */,
 				E2709808220FAF75007F18A2 /* UpcomingMovies */,
 				E2709807220FAF6F007F18A2 /* MovieList */,
 			);
@@ -1919,6 +1918,7 @@
 		E27097FE220FA4D2007F18A2 /* MovieVideos */ = {
 			isa = PBXGroup;
 			children = (
+				E276DAD82A6FA8DB005A14C1 /* Cells */,
 				E27097FF220FA4F2007F18A2 /* MovieVideosViewController.swift */,
 				E2709801220FA508007F18A2 /* MovieVideosViewModel.swift */,
 				E290DF05249FB23E00BABBB8 /* MovieVideosCoordinator.swift */,
@@ -1948,16 +1948,6 @@
 				E22447792234C01100A59FEF /* Preview */,
 			);
 			path = UpcomingMovies;
-			sourceTree = "<group>";
-		};
-		E2709809220FAF7A007F18A2 /* MovieVideos */ = {
-			isa = PBXGroup;
-			children = (
-				E270980A220FAF99007F18A2 /* MovieVideoCell.swift */,
-				E270980E220FB03B007F18A2 /* MovieVideoCell.xib */,
-				E270980C220FAFA7007F18A2 /* MovieVideoCellViewModel.swift */,
-			);
-			path = MovieVideos;
 			sourceTree = "<group>";
 		};
 		E2748DE72838B7AD00CD2BA2 /* MovieCredits */ = {
@@ -2072,6 +2062,16 @@
 				E2EB92462213E52E0067F011 /* MovieReviewCell.xib */,
 				E2638088221284050038AD00 /* MovieReviewCellViewModel.swift */,
 				E263808A221288210038AD00 /* MovieReviewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E276DAD82A6FA8DB005A14C1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E270980A220FAF99007F18A2 /* MovieVideoCell.swift */,
+				E270980E220FB03B007F18A2 /* MovieVideoCell.xib */,
+				E270980C220FAFA7007F18A2 /* MovieVideoCellViewModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
