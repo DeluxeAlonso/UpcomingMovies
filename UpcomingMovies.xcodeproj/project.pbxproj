@@ -1058,6 +1058,7 @@
 		E200182521EE310900F29220 /* SearchOptions */ = {
 			isa = PBXGroup;
 			children = (
+				E276DAD42A6FA816005A14C1 /* Cells */,
 				E2E518AB24A99AF400CC3FA5 /* SearchOptionsSections.swift */,
 				E200182721EE323200F29220 /* SearchOptionsViewController.swift */,
 				E200182921EE336F00F29220 /* SearchOptionsViewModel.swift */,
@@ -1488,21 +1489,10 @@
 		E222DC242192AF8700A2EDF4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				E223773621EEA2C0000400B7 /* SearchOption */,
 				E21F378E2193F33900D6BFB6 /* Movie */,
 				E21F378D2193F32400D6BFB6 /* RecentSearch */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		E223773621EEA2C0000400B7 /* SearchOption */ = {
-			isa = PBXGroup;
-			children = (
-				E25FA2EC2265A3FD00FB5E71 /* RecentlyVisited */,
-				E25FA2EB2265A3D600FB5E71 /* DefaultSearch */,
-				E25FA2EA2265A3C800FB5E71 /* Genres */,
-			);
-			path = SearchOption;
 			sourceTree = "<group>";
 		};
 		E224476E223435F100A59FEF /* Layouts */ = {
@@ -2072,6 +2062,16 @@
 				E2254691226A3D6500E9042C /* CustomListTableViewCell.swift */,
 				E2254692226A3D6500E9042C /* CustomListTableViewCell.xib */,
 				E2254695226A3D8100E9042C /* CustomListCellViewModel.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E276DAD42A6FA816005A14C1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E25FA2EC2265A3FD00FB5E71 /* RecentlyVisited */,
+				E25FA2EB2265A3D600FB5E71 /* DefaultSearch */,
+				E25FA2EA2265A3C800FB5E71 /* Genres */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
