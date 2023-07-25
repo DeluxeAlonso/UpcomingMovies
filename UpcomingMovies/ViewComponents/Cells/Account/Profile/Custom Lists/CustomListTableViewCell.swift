@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomListTableViewCell: UITableViewCell {
+final class CustomListTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!

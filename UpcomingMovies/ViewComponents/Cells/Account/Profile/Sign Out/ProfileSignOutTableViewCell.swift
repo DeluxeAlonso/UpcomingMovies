@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileSignOutTableViewCell: UITableViewCell {
+final class ProfileSignOutTableViewCell: UITableViewCell {
 
     // MARK: - Initializers
 
