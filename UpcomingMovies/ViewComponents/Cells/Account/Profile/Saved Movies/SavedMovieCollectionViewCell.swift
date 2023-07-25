@@ -9,7 +9,7 @@
 import UIKit
 import CollectionViewSlantedLayout
 
-class SavedMovieCollectionViewCell: CollectionViewSlantedCell {
+final class SavedMovieCollectionViewCell: CollectionViewSlantedCell {
 
     @IBOutlet private weak var backdropImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
