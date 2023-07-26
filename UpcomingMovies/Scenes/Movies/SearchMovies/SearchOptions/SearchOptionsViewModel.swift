@@ -61,7 +61,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     func loadGenres() {
         interactor.getGenres(completion: { [weak self] result in
             guard let self = self else { return }
-            guard let genres = try? result.get() else { return }
+            guard let genres = result.wrappedValue else { return }
             self.genres = genres
             self.needsContentReload.send()
         })
@@ -70,7 +70,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
     func loadVisitedMovies() {
         interactor.getMovieVisits { [weak self] result in
             guard let self = self else { return }
-            guard let movieVisits = try? result.get() else { return }
+            guard let movieVisits = result.wrappedValue else { return }
 
             self.movieVisits = movieVisits
             let viewStateChanged = self.configureViewState(movieVisits: movieVisits)
