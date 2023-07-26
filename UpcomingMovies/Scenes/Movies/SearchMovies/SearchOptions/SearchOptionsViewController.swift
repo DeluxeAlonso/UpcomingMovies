@@ -25,6 +25,11 @@ final class SearchOptionsViewController: UITableViewController, Storyboarded {
         setupBindables()
 
         viewModel?.loadGenres()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // TODO: - Temporal fix to didUpdateMovieVisit not working as expected
         viewModel?.loadVisitedMovies()
     }
 
