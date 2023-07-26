@@ -59,7 +59,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
     func loadRecentSearches() {
         interactor.getMovieSearches(limit: 5) { [weak self] result in
             guard let self = self else { return }
-            guard let recentSearches = try? result.get() else { return }
+            guard let recentSearches = result.wrappedValue else { return }
 
             self.recentSearches = recentSearches
         }
