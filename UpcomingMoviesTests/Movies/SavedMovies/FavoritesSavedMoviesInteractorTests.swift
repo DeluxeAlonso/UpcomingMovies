@@ -34,7 +34,7 @@ class FavoritesSavedMoviesInteractorTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Should get saved movies")
         // Act
         interactor.getSavedMovies(page: 1) { movies in
-            guard let movies = try? movies.get() else {
+            guard let movies = movies.wrappedValue else {
                 XCTFail("No valid movies")
                 return
             }
