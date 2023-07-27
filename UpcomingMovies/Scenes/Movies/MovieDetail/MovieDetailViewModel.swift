@@ -143,7 +143,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             return
         }
         interactor.getMovieAccountState(for: id, completion: { result in
-            guard let accountState = try? result.get() else {
+            guard let accountState = result.wrappedValue else {
                 self.movieAccountState.value = nil
                 return
             }
