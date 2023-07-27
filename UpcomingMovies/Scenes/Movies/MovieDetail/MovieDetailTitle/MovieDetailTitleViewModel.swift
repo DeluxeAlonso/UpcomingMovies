@@ -49,7 +49,7 @@ final class MovieDetailTitleViewModel: MovieDetailTitleViewModelProtocol {
     private func getMoviesGenresNames(for genreIds: [Int]) {
         interactor.findGenres(for: genreIds, completion: { [weak self] result in
             guard let self = self else { return }
-            let genres = try? result.get()
+            let genres = result.wrappedValue
             self.showGenresNames.value = genres?.compactMap { $0.name }.joined(separator: " • ")
         })
     }
