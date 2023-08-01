@@ -27,6 +27,12 @@ final class UpcomingMoviesCoordinator: BaseCoordinator, UpcomingMoviesCoordinato
 
     private var navigationDelegate: UpcomingMoviesNavigationDelegate?
 
+    init(navigationController: UINavigationController,
+         navigationDelegate: UpcomingMoviesNavigationDelegate?) {
+        self.navigationDelegate = navigationDelegate
+        super.init(navigationController: navigationController)
+    }
+
     // MARK: - Coordinator
 
     var rootIdentifier: String {
