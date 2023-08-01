@@ -20,7 +20,8 @@ final class MainTabBarBuilder {
     class func buildViewCoordinators() -> [RootCoordinator] {
 
         let upcomingMoviesNavigationController = createNavigationController(title: "Upcoming", image: #imageLiteral(resourceName: "Movies"))
-        let upcomingMoviesCoordinator = UpcomingMoviesCoordinator(navigationController: upcomingMoviesNavigationController)
+        let upcomingMoviesCoordinator = UpcomingMoviesCoordinator(navigationController: upcomingMoviesNavigationController,
+                                                                  navigationDelegate: UpcomingMoviesNavigation())
         upcomingMoviesCoordinator.start(coordinatorMode: .push)
 
         let searchMoviesNavigationController = createNavigationController(title: "Search", image: #imageLiteral(resourceName: "Search"))
