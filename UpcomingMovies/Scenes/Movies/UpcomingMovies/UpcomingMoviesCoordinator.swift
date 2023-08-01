@@ -62,9 +62,6 @@ final class UpcomingMoviesCoordinator: BaseCoordinator, UpcomingMoviesCoordinato
     override func setupNavigationControllerDelegate() {
         // We only configure the delegate if it is needed.
         guard navigationController.delegate == nil else { return }
-
-        // TODO: - Inject UpcomingMoviesNavigation
-        navigationDelegate = UpcomingMoviesNavigation()
         navigationDelegate?.parentCoordinator = self
 
         navigationController.delegate = navigationDelegate

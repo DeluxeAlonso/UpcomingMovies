@@ -60,7 +60,7 @@ final class UpcomingMoviesCoordinatorTests: XCTestCase {
     }
 
     private func createSUT() -> UpcomingMoviesCoordinator {
-        UpcomingMoviesCoordinator(navigationController: navigationController)
+        UpcomingMoviesCoordinator(navigationController: navigationController, navigationDelegate: nil)
     }
 
 }
