@@ -44,5 +44,5 @@ final class MockUpcomingMoviesNavigationDelegate: NSObject, UpcomingMoviesNaviga
     func updateOffset(_ verticalSafeAreaOffset: CGFloat) {
         updateOffsetCallCount += 1
     }
-    
+
 }
