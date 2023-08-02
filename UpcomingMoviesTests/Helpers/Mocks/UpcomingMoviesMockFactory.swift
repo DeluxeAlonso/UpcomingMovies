@@ -30,3 +30,19 @@ final class MockUpcomingMoviesFactory: UpcomingMoviesFactoryProtocol {
     }
 
 }
+
+final class MockUpcomingMoviesNavigationDelegate: NSObject, UpcomingMoviesNavigationDelegate {
+
+    var parentCoordinator: Coordinator?
+
+    private(set) var configureCallCount = 0
+    func configure(selectedFrame: CGRect?, with imageToTransition: UIImage?) {
+        configureCallCount += 1
+    }
+
+    private(set) var updateOffsetCallCount = 0
+    func updateOffset(_ verticalSafeAreaOffset: CGFloat) {
+        updateOffsetCallCount += 1
+    }
+    
+}
