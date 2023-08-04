@@ -63,6 +63,15 @@ final class UpcomingMoviesCoordinatorTests: XCTestCase {
         XCTAssertEqual(navigationDelegate.updateOffsetCallCount, 1)
     }
 
+    func testSetupNavigationControllerDelegate() {
+        // Arrange
+        let coordinator = createSUT()
+        // Act
+        coordinator.setupNavigationControllerDelegate()
+        // Assert
+        XCTAssertEqual(navigationController.delegate?.description, navigationDelegate.description)
+    }
+
     private func createSUT() -> UpcomingMoviesCoordinator {
         UpcomingMoviesCoordinator(navigationController: navigationController, navigationDelegate: navigationDelegate)
     }
