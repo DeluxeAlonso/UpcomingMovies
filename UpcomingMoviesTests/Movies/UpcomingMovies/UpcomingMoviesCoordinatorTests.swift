@@ -13,10 +13,12 @@ import UIKit
 final class UpcomingMoviesCoordinatorTests: XCTestCase {
 
     var navigationController: MockNavigationController!
+    var navigationDelegate: MockUpcomingMoviesNavigationDelegate!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         navigationController = MockNavigationController()
+        navigationDelegate = MockUpcomingMoviesNavigationDelegate()
     }
 
     override func tearDownWithError() throws {
@@ -57,10 +59,12 @@ final class UpcomingMoviesCoordinatorTests: XCTestCase {
             return
         }
         XCTAssertTrue(childCoordinator is MovieDetailCoordinatorProtocol)
+        XCTAssertEqual(navigationDelegate.configureCallCount, 1)
+        XCTAssertEqual(navigationDelegate.updateOffsetCallCount, 1)
     }
 
     private func createSUT() -> UpcomingMoviesCoordinator {
-        UpcomingMoviesCoordinator(navigationController: navigationController, navigationDelegate: nil)
+        UpcomingMoviesCoordinator(navigationController: navigationController, navigationDelegate: navigationDelegate)
     }
 
 }
