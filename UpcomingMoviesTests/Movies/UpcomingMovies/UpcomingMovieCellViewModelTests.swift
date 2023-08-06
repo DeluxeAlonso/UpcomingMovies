@@ -10,7 +10,7 @@ import XCTest
 @testable import UpcomingMovies
 import UpcomingMoviesDomain
 
-class UpcomingMovieCellViewModelTests: XCTestCase {
+final class UpcomingMovieCellViewModelTests: XCTestCase {
 
     func testUpcomingMovieCellPosterURL() {
         // Arrange
