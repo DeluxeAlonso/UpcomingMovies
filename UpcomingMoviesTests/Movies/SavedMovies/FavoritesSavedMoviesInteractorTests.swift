@@ -10,7 +10,7 @@ import XCTest
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 
-class FavoritesSavedMoviesInteractorTests: XCTestCase {
+final class FavoritesSavedMoviesInteractorTests: XCTestCase {
 
     private var interactor: FavoritesSavedMoviesInteractor!
     private var accountUseCase: AccountUseCaseProtocolMock! = AccountUseCaseProtocolMock()

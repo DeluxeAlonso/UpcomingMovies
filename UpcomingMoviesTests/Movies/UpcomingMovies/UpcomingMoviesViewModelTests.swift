@@ -11,7 +11,7 @@ import XCTest
 import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
-class UpcomingMoviesViewModelTests: XCTestCase {
+final class UpcomingMoviesViewModelTests: XCTestCase {
 
     typealias MoviesViewState = SimpleViewState<UpcomingMoviesDomain.Movie>
 
