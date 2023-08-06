@@ -8,7 +8,7 @@
 
 import Foundation
 @testable import UpcomingMovies
-@testable import UpcomingMoviesDomain
+import UpcomingMoviesDomain
 
 final class SearchOptionsInteractorMock: SearchOptionsInteractorProtocol {
 
