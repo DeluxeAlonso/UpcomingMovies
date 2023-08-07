@@ -8,12 +8,10 @@
 
 import XCTest
 @testable import UpcomingMovies
-@testable import UpcomingMoviesDomain
-@testable import UpcomingMoviesData
+import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
-@testable import CoreDataInfrastructure
 
-class MovieDetailViewModelTests: XCTestCase {
+final class MovieDetailViewModelTests: XCTestCase {
 
     private var mockInteractor: MockMovieDetailInteractor!
     private var mockFactory: MockMovieDetailViewFactory!
