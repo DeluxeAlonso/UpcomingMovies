@@ -8,9 +8,9 @@
 
 import XCTest
 @testable import UpcomingMovies
-@testable import UpcomingMoviesDomain
+import UpcomingMoviesDomain
 
-class MovieCreditCellViewModelTests: XCTestCase {
+final class MovieCreditCellViewModelTests: XCTestCase {
 
     func testNameForCreditModelCreatedWithCast() {
         // Arrange
