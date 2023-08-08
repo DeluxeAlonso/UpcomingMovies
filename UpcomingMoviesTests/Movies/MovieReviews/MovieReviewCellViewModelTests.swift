@@ -10,7 +10,7 @@ import XCTest
 import UpcomingMoviesDomain
 @testable import UpcomingMovies
 
-class MovieReviewCellViewModelTests: XCTestCase {
+final class MovieReviewCellViewModelTests: XCTestCase {
 
     func testMovieReviewCellAuthorName() {
         // Arrange

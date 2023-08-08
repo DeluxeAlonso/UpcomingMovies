@@ -8,11 +8,11 @@
 
 import XCTest
 @testable import UpcomingMovies
-@testable import UpcomingMoviesDomain
+import UpcomingMoviesDomain
 @testable import UpcomingMoviesData
 @testable import NetworkInfrastructure
 
-class MovieReviewsViewModelTests: XCTestCase {
+final class MovieReviewsViewModelTests: XCTestCase {
 
     typealias MovieReviewsState = SimpleViewState<UpcomingMoviesDomain.Review>
 
