@@ -10,7 +10,7 @@ import XCTest
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
 
-class MovieVideosInteractorTests: XCTestCase {
+final class MovieVideosInteractorTests: XCTestCase {
 
     private var interactor: MovieVideosInteractor!
     private var mockMovieUseCase: MovieUseCaseProtocolMock!
