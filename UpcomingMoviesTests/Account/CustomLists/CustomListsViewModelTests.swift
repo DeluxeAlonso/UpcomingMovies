@@ -8,7 +8,7 @@
 
 import XCTest
 @testable import UpcomingMovies
-@testable import UpcomingMoviesDomain
+import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
 class CustomListsViewModelTests: XCTestCase {
