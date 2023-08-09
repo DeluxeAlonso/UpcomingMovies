@@ -8,10 +8,10 @@
 
 import XCTest
 @testable import UpcomingMovies
-@testable import UpcomingMoviesDomain
+import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
-class SavedMoviesViewModelTests: XCTestCase {
+final class SavedMoviesViewModelTests: XCTestCase {
 
     private var mockInteractor: MockSavedMoviesInteractor!
     private var viewModelToTest: SavedMoviesViewModelProtocol!
