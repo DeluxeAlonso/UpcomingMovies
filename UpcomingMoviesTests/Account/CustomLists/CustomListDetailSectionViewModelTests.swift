@@ -10,7 +10,7 @@ import XCTest
 @testable import UpcomingMovies
 import UpcomingMoviesDomain
 
-class CustomListDetailSectionViewModelTests: XCTestCase {
+final class CustomListDetailSectionViewModelTests: XCTestCase {
 
     func testMovieCountText() {
         // Arrange
