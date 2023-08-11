@@ -9,7 +9,6 @@
 import XCTest
 @testable import UpcomingMovies
 import UpcomingMoviesDomain
-@testable import NetworkInfrastructure
 
 final class UpcomingMoviesViewModelTests: XCTestCase {
 
@@ -85,7 +84,7 @@ final class UpcomingMoviesViewModelTests: XCTestCase {
 
     func testGetMoviesError() {
         // Arrange
-        let errorToTest = APIError.badRequest
+        let errorToTest = TestError()
         let expectation = XCTestExpectation(description: "Should get error state")
         // Act
         viewModelToTest.viewState.bind { state in
