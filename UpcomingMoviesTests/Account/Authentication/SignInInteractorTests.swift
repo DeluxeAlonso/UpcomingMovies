@@ -11,7 +11,7 @@ import XCTest
 @testable import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
-class SignInInteractorTests: XCTestCase {
+final class SignInInteractorTests: XCTestCase {
 
     private var interactor: SignInInteractor!
     private var mockUserUseCase: UserUseCaseProtocolMock!
