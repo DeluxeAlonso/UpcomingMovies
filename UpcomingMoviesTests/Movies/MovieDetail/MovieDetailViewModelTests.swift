@@ -9,7 +9,6 @@
 import XCTest
 @testable import UpcomingMovies
 import UpcomingMoviesDomain
-@testable import NetworkInfrastructure
 
 final class MovieDetailViewModelTests: XCTestCase {
 
@@ -92,7 +91,7 @@ final class MovieDetailViewModelTests: XCTestCase {
         viewModelToTest.showErrorRetryView.bind { _ in
             expectation.fulfill()
         }
-        mockInteractor.getMovieDetailResult = Result.failure(APIError.badRequest)
+        mockInteractor.getMovieDetailResult = Result.failure(TestError())
         viewModelToTest.getMovieDetail(showLoader: false)
         // Assert
         wait(for: [expectation], timeout: 1.0)
@@ -198,7 +197,7 @@ final class MovieDetailViewModelTests: XCTestCase {
         let viewModelToTest = createSUT(with: 1, title: "Title")
         viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: false))
         let addToWatchListAction = viewModelToTest.getAvailableAlertActions().last
-        let errorToTest = APIError.badRequest
+        let errorToTest = TestError()
         mockInteractor.addToWatchlistResult = .failure(errorToTest)
         let expectation = XCTestExpectation(description: "showErrorAlert event should be sent")
         viewModelToTest.showErrorAlert.bind { error in
@@ -233,7 +232,7 @@ final class MovieDetailViewModelTests: XCTestCase {
         let viewModelToTest = createSUT(with: 1, title: "Title")
         viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: true))
         let removeFromWatchListAction = viewModelToTest.getAvailableAlertActions().last
-        let errorToTest = APIError.badRequest
+        let errorToTest = TestError()
         mockInteractor.removeFromWatchlistResult = .failure(errorToTest)
         let expectation = XCTestExpectation(description: "showErrorAlert event should be sent")
         viewModelToTest.showErrorAlert.bind { error in
@@ -286,7 +285,7 @@ final class MovieDetailViewModelTests: XCTestCase {
         // Arrange
         let viewModelToTest = createSUT(with: 1, title: "Title")
         viewModelToTest.movieAccountState.value = .init(.init(favorite: true, watchlist: true))
-        let errorToTest = APIError.badRequest
+        let errorToTest = TestError()
         mockInteractor.markMovieAsFavoriteResult = .failure(errorToTest)
         let expectation = XCTestExpectation(description: "showErrorAlert event should be sent")
         viewModelToTest.showErrorAlert.bind { error in
@@ -329,7 +328,7 @@ final class MovieDetailViewModelTests: XCTestCase {
         // Arrange
         let viewModelToTest = createSUT(with: 1, title: "Title")
         viewModelToTest.movieAccountState.value = .init(.init(favorite: false, watchlist: true))
-        let errorToTest = APIError.badRequest
+        let errorToTest = TestError()
         mockInteractor.markMovieAsFavoriteResult = .failure(errorToTest)
         let expectation = XCTestExpectation(description: "showErrorAlert event should be sent")
         viewModelToTest.showErrorAlert.bind { error in
@@ -364,7 +363,7 @@ final class MovieDetailViewModelTests: XCTestCase {
         // Arrange
         let viewModelToTest = createSUT(with: 1, title: "Title")
         mockInteractor.isUserSignedInResult = true
-        mockInteractor.getMovieAccountStateResult = .failure(APIError.badRequest)
+        mockInteractor.getMovieAccountStateResult = .failure(TestError())
         let expectation = XCTestExpectation(description: "movieAccountState event should be sent")
         viewModelToTest.movieAccountState.bind { movieAccountStateModel in
             XCTAssertNil(movieAccountStateModel)
