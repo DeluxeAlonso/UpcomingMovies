@@ -9,7 +9,6 @@
 import XCTest
 @testable import UpcomingMovies
 import UpcomingMoviesDomain
-@testable import NetworkInfrastructure
 
 final class CustomListsViewModelTests: XCTestCase {
 
@@ -81,14 +80,14 @@ final class CustomListsViewModelTests: XCTestCase {
 
     func testGetCustomListsError() {
         // Arrange
-        let errorToTest = APIError.badRequest
+        let errorToTest = TestError()
         let expectation = XCTestExpectation(description: "Should get error state")
         // Act
         viewModelToTest.viewState.bind { state in
             XCTAssertEqual(state, .error(errorToTest))
             expectation.fulfill()
         }
-        mockInteractor.getCustomListsResult = Result.failure(APIError.badRequest)
+        mockInteractor.getCustomListsResult = Result.failure(errorToTest)
         viewModelToTest.getCustomLists()
         // Assert
         wait(for: [expectation], timeout: 1.0)
