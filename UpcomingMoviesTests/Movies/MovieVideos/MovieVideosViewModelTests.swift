@@ -9,7 +9,6 @@
 import XCTest
 @testable import UpcomingMovies
 import UpcomingMoviesDomain
-@testable import NetworkInfrastructure
 
 final class MovieVideosViewModelTests: XCTestCase {
 
@@ -68,13 +67,14 @@ final class MovieVideosViewModelTests: XCTestCase {
 
     func testGetVideosError() {
         // Arrange
+        let errorToTest = TestError()
         let expectation = XCTestExpectation(description: "Should get error state")
         // Act
         viewModelToTest.viewState.bind { state in
-            XCTAssertEqual(state, .error(APIError.badRequest))
+            XCTAssertEqual(state, .error(errorToTest))
             expectation.fulfill()
         }
-        mockInteractor.getMovieVideosResult = Result.failure(APIError.badRequest)
+        mockInteractor.getMovieVideosResult = Result.failure(errorToTest)
         viewModelToTest.getMovieVideos(showLoader: false)
         // Assert
         wait(for: [expectation], timeout: 1.0)
