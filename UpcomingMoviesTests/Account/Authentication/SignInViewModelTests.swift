@@ -9,7 +9,6 @@
 import XCTest
 @testable import UpcomingMovies
 import UpcomingMoviesDomain
-@testable import NetworkInfrastructure
 
 final class SignInViewModelTests: XCTestCase {
 
@@ -45,7 +44,7 @@ final class SignInViewModelTests: XCTestCase {
 
     func testAuthorizationProcessError() {
         // Arrange
-        let errorToTest = APIError.badRequest
+        let errorToTest = TestError()
         let expectation = XCTestExpectation(description: "Get permission URL error")
         // Act
         viewModelToTest.didReceiveError.bind {
@@ -74,7 +73,7 @@ final class SignInViewModelTests: XCTestCase {
 
     func testSignInUserError() {
         // Arrange
-        let errorToTest = APIError.badRequest
+        let errorToTest = TestError()
         let expectation = XCTestExpectation(description: "Sign in user error")
         // Act
         viewModelToTest.didReceiveError.bind {

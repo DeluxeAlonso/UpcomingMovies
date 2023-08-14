@@ -9,7 +9,6 @@
 import XCTest
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
-@testable import NetworkInfrastructure
 
 final class ProfileInteractorTests: XCTestCase {
 
@@ -47,7 +46,7 @@ final class ProfileInteractorTests: XCTestCase {
 
     func testGetAccountDetailError() {
         // Arrange
-        mockAccountUseCase.getAccountDetailResult = .failure(APIError.badRequest)
+        mockAccountUseCase.getAccountDetailResult = .failure(TestError())
         // Act
         interactor.getAccountDetail(completion: { _ in })
         // Assert

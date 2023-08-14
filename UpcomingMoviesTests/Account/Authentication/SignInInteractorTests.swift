@@ -9,7 +9,6 @@
 import XCTest
 @testable import UpcomingMovies
 @testable import UpcomingMoviesDomain
-@testable import NetworkInfrastructure
 
 final class SignInInteractorTests: XCTestCase {
 
@@ -50,7 +49,7 @@ final class SignInInteractorTests: XCTestCase {
 
     func testSignInUserError() {
         // Arrange
-        mockAuthUseCase.signInUserResult = .failure(APIError.badRequest)
+        mockAuthUseCase.signInUserResult = .failure(TestError())
         // Act
         interactor.signInUser(completion: { _ in })
         // Assert

@@ -9,7 +9,6 @@
 import XCTest
 @testable import UpcomingMovies
 import UpcomingMoviesDomain
-@testable import NetworkInfrastructure
 
 final class ProfileViewModelTests: XCTestCase {
 
@@ -65,7 +64,7 @@ final class ProfileViewModelTests: XCTestCase {
 
     func testGetAccountDetailError() {
         //Arrange
-        let errorToTest = APIError.badRequest
+        let errorToTest = TestError()
         let expectation = XCTestExpectation(description: "Should not reload account info")
         expectation.isInverted = true
         // Act
@@ -140,7 +139,7 @@ final class ProfileViewModelTests: XCTestCase {
 
     func testSignOutUserError() {
         // Arrange
-        let errorToTest = APIError.badRequest
+        let errorToTest = TestError()
         let expectation = XCTestExpectation(description: "Sign out user error")
         // Act
         viewModelToTest.didReceiveError.bind {
