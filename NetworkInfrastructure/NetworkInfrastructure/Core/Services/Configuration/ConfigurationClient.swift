@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ConfigurationClient: APIClient, ConfigurationClientProtocol {
+final class ConfigurationClient: APIClient, ConfigurationClientProtocol {
 
     let session: URLSession
 
