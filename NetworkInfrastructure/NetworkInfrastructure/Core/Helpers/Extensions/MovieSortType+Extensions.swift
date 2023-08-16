@@ -10,7 +10,7 @@ import UpcomingMoviesDomain
 
 extension MovieSortType.Watchlist {
 
-    public func callAsFunction() -> String {
+    func callAsFunction() -> String {
         switch self {
         case .createdAtAsc: return "created_at.asc"
         case .createdAtDesc: return "created_at.desc"
@@ -21,7 +21,7 @@ extension MovieSortType.Watchlist {
 
 extension MovieSortType.Favorite {
 
-    public func callAsFunction() -> String {
+    func callAsFunction() -> String {
         switch self {
         case .createdAtAsc: return "created_at.asc"
         case .createdAtDesc: return "created_at.desc"
