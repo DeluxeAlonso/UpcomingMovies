@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MovieClient: APIClient, MovieClientProtocol {
+final class MovieClient: APIClient, MovieClientProtocol {
 
     let session: URLSession
 

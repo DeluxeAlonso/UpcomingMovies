@@ -9,7 +9,7 @@ import XCTest
 @testable import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
-class AccountRemoteDataSourceTests: XCTestCase {
+final class AccountRemoteDataSourceTests: XCTestCase {
 
     var dataSource: AccountRemoteDataSource!
     var accountClient: AccountClientProtocolMock!

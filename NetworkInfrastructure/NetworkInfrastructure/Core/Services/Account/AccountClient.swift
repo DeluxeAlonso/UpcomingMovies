@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-class AccountClient: APIClient, AccountClientProtocol {
+final class AccountClient: APIClient, AccountClientProtocol {
 
     let session: URLSession
 
