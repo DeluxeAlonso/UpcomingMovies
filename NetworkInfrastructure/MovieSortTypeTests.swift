@@ -9,7 +9,7 @@ import XCTest
 import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
-class MovieSortTypeTests: XCTestCase {
+final class MovieSortTypeTests: XCTestCase {
 
     func testWatchlistSortTypeCallAsFunctionCreatedAtAsc() throws {
         // Arrange
