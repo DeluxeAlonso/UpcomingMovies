@@ -10,7 +10,7 @@ import Foundation
 final class MockURLSession: URLSession {
 
     var dataTaskWithRequestCompletionHandler: (Data?, URLResponse?, Error?) = (nil, nil, nil)
-    var dataTaskWithRequestResult = URLSessionDataTask()
+    var dataTaskWithRequestResult = MockURLSessionDataTask()
     private(set) var dataTaskWithRequestCallCount = 0
     override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         dataTaskWithRequestCallCount += 1
