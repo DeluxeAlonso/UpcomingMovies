@@ -8,7 +8,7 @@
 import XCTest
 @testable import NetworkInfrastructure
 
-class RequestTokenTests: XCTestCase {
+final class RequestTokenTests: XCTestCase {
 
     func testMissingSuccessFromResponse() throws {
         // Arrange
