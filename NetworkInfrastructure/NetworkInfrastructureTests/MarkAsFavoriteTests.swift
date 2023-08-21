@@ -8,7 +8,7 @@
 import XCTest
 @testable import NetworkInfrastructure
 
-class MarkAsFavoriteTests: XCTestCase {
+final class MarkAsFavoriteTests: XCTestCase {
 
     func testMissingStatusCodeFromResponse() throws {
         // Arrange

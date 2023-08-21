@@ -8,7 +8,7 @@
 import XCTest
 @testable import NetworkInfrastructure
 
-class MovieImagesConfigurationTests: XCTestCase {
+final class MovieImagesConfigurationTests: XCTestCase {
 
     func testMissingBaseURLStringFromResponse() throws {
         // Arrange

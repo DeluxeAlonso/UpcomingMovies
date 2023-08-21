@@ -8,7 +8,7 @@
 import XCTest
 @testable import NetworkInfrastructure
 
-class MovieCreditsTests: XCTestCase {
+final class MovieCreditsTests: XCTestCase {
 
     // MARK: - Cast tests
 
