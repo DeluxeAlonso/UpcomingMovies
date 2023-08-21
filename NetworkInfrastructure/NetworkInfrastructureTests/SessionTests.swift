@@ -8,7 +8,7 @@
 import XCTest
 @testable import NetworkInfrastructure
 
-class SessionTests: XCTestCase {
+final class SessionTests: XCTestCase {
 
     func testMissingSuccessFromResponse() throws {
         // Arrange
