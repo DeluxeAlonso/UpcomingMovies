@@ -9,7 +9,7 @@
 import XCTest
 @testable import NetworkInfrastructure
 
-class URLGenerationTests: XCTestCase {
+final class URLGenerationTests: XCTestCase {
 
     func testURLRequestSetJsonContentType() {
         // Arrange
