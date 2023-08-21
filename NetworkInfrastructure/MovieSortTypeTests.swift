@@ -29,4 +29,22 @@ class MovieSortTypeTests: XCTestCase {
         XCTAssertEqual(callAsFunctionResult, "created_at.desc")
     }
 
+    func testFavoriteSortTypeCallAsFunctionCreatedAtAsc() throws {
+        // Arrange
+        let sortType = MovieSortType.Favorite.createdAtAsc
+        // Act
+        let callAsFunctionResult = sortType()
+        // Assert
+        XCTAssertEqual(callAsFunctionResult, "created_at.asc")
+    }
+
+    func testFavoriteSortTypeCallAsFunctionCreatedAtDesc() throws {
+        // Arrange
+        let sortType = MovieSortType.Favorite.createdAtDesc
+        // Act
+        let callAsFunctionResult = sortType()
+        // Assert
+        XCTAssertEqual(callAsFunctionResult, "created_at.desc")
+    }
+
 }
