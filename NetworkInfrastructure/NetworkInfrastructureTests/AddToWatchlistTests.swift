@@ -8,7 +8,7 @@
 import XCTest
 @testable import NetworkInfrastructure
 
-class AddToWatchlistTests: XCTestCase {
+final class AddToWatchlistTests: XCTestCase {
 
     func testMissingStatusCodeFromResponse() throws {
         // Arrange

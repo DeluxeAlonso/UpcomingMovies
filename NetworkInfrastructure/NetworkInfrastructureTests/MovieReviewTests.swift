@@ -8,7 +8,7 @@
 import XCTest
 @testable import NetworkInfrastructure
 
-class MovieReviewTests: XCTestCase {
+final class MovieReviewTests: XCTestCase {
 
     func testMissingIdFromResponse() throws {
         // Arrange

@@ -8,7 +8,7 @@
 import XCTest
 @testable import NetworkInfrastructure
 
-class AccessTokenTests: XCTestCase {
+final class AccessTokenTests: XCTestCase {
 
     func testMissingAccounIdFromResponse() throws {
         // Arrange

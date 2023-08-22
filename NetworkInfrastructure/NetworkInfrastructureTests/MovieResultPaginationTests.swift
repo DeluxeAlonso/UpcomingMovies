@@ -9,7 +9,7 @@
 import XCTest
 @testable import NetworkInfrastructure
 
-class MovieResultPaginationTests: XCTestCase {
+final class MovieResultPaginationTests: XCTestCase {
 
     var movieResultUnderTest: MovieResult!
 
