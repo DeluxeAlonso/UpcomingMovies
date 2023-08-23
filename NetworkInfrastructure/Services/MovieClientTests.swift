@@ -11,33 +11,60 @@ import XCTest
 final class MovieClientTests: XCTestCase {
 
     private var urlSession: MockURLSession!
-    private var movieClient: MovieClient
+    private var movieClient: MovieClient!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         urlSession = MockURLSession()
-        movieClient = Mo
+        movieClient = MovieClient(session: urlSession)
 
     }
 
     override func tearDownWithError() throws {
         urlSession = nil
+        movieClient = nil
         try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testGetPopularMoviesSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(MovieResult(results: [], currentPage: 1, totalPages: 1))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
+        }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Get popular movies success")
+        // Act
+        movieClient.getPopularMovies(page: 1) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Get popular movies error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testGetPopularMoviesError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Get popular movies error")
+        // Act
+        movieClient.getPopularMovies(page: 1) { result in
+            switch result {
+            case .success:
+                XCTFail("Get popular movies success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
         }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
 
 }
