@@ -15,15 +15,16 @@ final class AccountClient: APIClient, AccountClientProtocol {
 
     // MARK: - Initializers
 
-    init(configuration: URLSessionConfiguration) {
-        self.session = URLSession(configuration: configuration)
+    init(session: URLSession) {
+        self.session = session
     }
 
     convenience init() {
         let configuration: URLSessionConfiguration = .default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        let session = URLSession(configuration: configuration)
 
-        self.init(configuration: configuration)
+        self.init(session: session)
     }
 
     // MARK: - Collection List
