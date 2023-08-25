@@ -14,15 +14,15 @@ final class GenreClient: APIClient, GenreClientProtocol {
 
     // MARK: - Initializers
 
-    init(configuration: URLSessionConfiguration) {
-        self.session = URLSession(configuration: configuration)
+    init(session: URLSession) {
+        self.session = session
     }
 
     convenience init() {
         let configuration: URLSessionConfiguration = .default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
 
-        self.init(configuration: configuration)
+        self.init(session: URLSession(configuration: configuration))
     }
 
     // MARK: - GenreClientProtocol
