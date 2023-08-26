@@ -51,31 +51,31 @@
 "addToFavoritesSuccess" = "Zu Favouriten hinzugefügt!";
 "removeFromFavoritesSuccess" = "Von Favoriten entfernt";
 
-"addToWatchlistHint" = "Add to watchlist";
-"removeFromWatchlistHint" = "Remove from watchlist";
-"addToWatchlistSuccess" = "Added to watchlist";
-"removeFromWatchlistSuccess" = "Removed from watchlist";
+"addToWatchlistHint" = "Zur Watchlist hinzufügen";
+"removeFromWatchlistHint" = "Von der Watchlist entfernen";
+"addToWatchlistSuccess" = "Hinzugefügt zur Qatchlist";
+"removeFromWatchlistSuccess" = "Entfernt von Watchlist";
 
-"expandMovieCellsHint" = "Expand movies";
-"collapseMovieCellsHint" = "Collapse movies";
+"expandMovieCellsHint" = "Filme erweitern";
+"collapseMovieCellsHint" = "Filme einklappen";
 
-"topRatedMoviesTitle" = "Top Rated Movies";
-"popularMoviesTitle" = "Popular Movies";
-"similarMoviesTitle" = "Similar Movies";
+"topRatedMoviesTitle" = "Am besten bewertete Filme";
+"popularMoviesTitle" = "Beliebte File";
+"similarMoviesTitle" = "Ähnliche Filme";
 
 "cast" = "Cast";
 "crew" = "Crew";
 
-"ratingHint" = "Rating of %.1f";
+"ratingHint" = "Bewertung von %.1f";
 
-"cancel" = "Cancel";
+"cancel" = "Abbrechen";
 
-"shareMovieActionSheetItemTitle" = "Share this movie!";
+"shareMovieActionSheetItemTitle" = "Teile diesen Film!";
 
-"upcomingMoviesSmallWidgetTitle" = "Upcoming";
-"upcomingMoviesWidgetDescription" = "Keep up to date with the latest releases";
+"upcomingMoviesSmallWidgetTitle" = "Bevorstehend";
+"upcomingMoviesWidgetDescription" = "Bleiben Sie mit den neuesten Veröffentlichungen auf dem Laufenden";
 
-"searchMoviesSmallWidgetTitle" = "Search";
-"searchMoviesWidgetDescription" = "Search your favorite movies";
+"searchMoviesSmallWidgetTitle" = "Suche";
+"searchMoviesWidgetDescription" = "Suche dein lieblings Film";
 
-"movieListRecommendationsTitle" = "Recommendations";
+"movieListRecommendationsTitle" = "Vorschläge";
