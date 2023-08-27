@@ -21,8 +21,9 @@ final class ConfigurationClient: APIClient, ConfigurationClientProtocol {
     convenience init() {
         let configuration: URLSessionConfiguration = .default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        let session = URLSession(configuration: configuration)
 
-        self.init(session: URLSession(configuration: configuration))
+        self.init(session: session)
     }
 
     // MARK: - ConfigurationClientProtocol
