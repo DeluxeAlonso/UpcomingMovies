@@ -21,8 +21,9 @@ final class AuthClient: APIClient, AuthClientProtocol {
     convenience init() {
         let configuration: URLSessionConfiguration = .default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        let session = URLSession(configuration: configuration)
 
-        self.init(session: URLSession(configuration: configuration))
+        self.init(session: session)
     }
 
     // MARK: - AuthClientProtocol
