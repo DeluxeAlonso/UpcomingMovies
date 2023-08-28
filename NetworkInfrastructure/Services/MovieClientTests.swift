@@ -190,4 +190,45 @@ final class MovieClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testGetMoviesByGenreError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Get movies by genre error")
+        // Act
+        movieClient.getMoviesByGenre(page: 1, genreId: 1) { result in
+            switch result {
+            case .success:
+                XCTFail("Get movies by genre success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetMoviesByGenreSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(MovieResult(results: [], currentPage: 1, totalPages: 1))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
+        }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Get movies by genre success")
+        // Act
+        movieClient.getMoviesByGenre(page: 1, genreId: 1) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Get movies by genre error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }
