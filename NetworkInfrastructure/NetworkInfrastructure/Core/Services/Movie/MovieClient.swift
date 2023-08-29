@@ -72,7 +72,8 @@ final class MovieClient: APIClient, MovieClientProtocol {
 
     // MARK: - Movie search
 
-    func searchMovies(searchText: String, includeAdult: Bool,
+    func searchMovies(searchText: String,
+                      includeAdult: Bool,
                       completion: @escaping (Result<MovieResult?, APIError>) -> Void) {
         fetch(with: MovieProvider.search(searchText: searchText, includeAdult: includeAdult).request, decode: { json -> MovieResult? in
             guard let movieResult = json as? MovieResult else { return  nil }
