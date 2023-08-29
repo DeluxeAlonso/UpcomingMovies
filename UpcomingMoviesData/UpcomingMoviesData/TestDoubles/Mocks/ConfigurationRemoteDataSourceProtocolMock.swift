@@ -5,7 +5,7 @@
 //  Created by Alonso on 25/06/22.
 //
 
-@testable import UpcomingMoviesDomain
+import UpcomingMoviesDomain
 
 final class ConfigurationRemoteDataSourceProtocolMock: ConfigurationRemoteDataSourceProtocol {
 
