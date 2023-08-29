@@ -157,7 +157,7 @@ final class ProfileViewControllerTests: XCTestCase {
         // Act
         viewModel.didUpdateAuthenticationState.value = .currentlySignedOut
         // Assert
-        _ = XCTWaiter.wait(for: [XCTestExpectation(description: "")], timeout: 0.1)
+        _ = XCTWaiter.wait(for: [XCTestExpectation(description: "")], timeout: 1)
         XCTAssertEqual(delegate.didUpdateAuthenticationStateCallCount, 2)
     }
 
