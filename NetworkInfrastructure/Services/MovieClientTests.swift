@@ -292,7 +292,15 @@ final class MovieClientTests: XCTestCase {
 
     func testGetMovieDetailSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(MovieDetailResult(id: 1, title: "", genres: [], overview: "", posterPath: nil, backdropPath: nil, releaseDate: "", voteAverage: nil))
+        let movieDetailResult = MovieDetailResult(id: 1,
+                                                  title: "",
+                                                  genres: [],
+                                                  overview: "",
+                                                  posterPath: nil,
+                                                  backdropPath: nil,
+                                                  releaseDate: "",
+                                                  voteAverage: nil)
+        let data = try JSONEncoder().encode(movieDetailResult)
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
