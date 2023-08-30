@@ -231,4 +231,86 @@ final class MovieClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testSearchMoviesError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Search movies error")
+        // Act
+        movieClient.searchMovies(searchText: "", includeAdult: false) { result in
+            switch result {
+            case .success:
+                XCTFail("Search movies success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testSearchMoviesSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(MovieResult(results: [], currentPage: 1, totalPages: 1))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
+        }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Search movies success")
+        // Act
+        movieClient.searchMovies(searchText: "", includeAdult: false) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Search movies error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetMovieDetailError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Get movie detail error")
+        // Act
+        movieClient.getMovieDetail(with: 1) { result in
+            switch result {
+            case .success:
+                XCTFail("Get movie detail success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetMovieDetailSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(MovieDetailResult(id: 1, title: "", genres: [], overview: "", posterPath: nil, backdropPath: nil, releaseDate: "", voteAverage: nil))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
+        }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Get movie detail success")
+        // Act
+        movieClient.getMovieDetail(with: 1) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Get movie detail error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }
