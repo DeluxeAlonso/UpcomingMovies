@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-public struct VideoResult: Decodable {
+public struct VideoResult: Codable {
 
     let results: [Video]
 

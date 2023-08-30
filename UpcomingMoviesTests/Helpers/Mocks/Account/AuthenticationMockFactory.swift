@@ -22,7 +22,7 @@ final class MockAuthPermissionCoordinator: AuthPermissionCoordinatorProtocol {
     var dismissResult: Void?
     private(set) var dismissCallCount = 0
     func dismiss(completion: (() -> Void)?) {
-        if let dismissResult {
+        if dismissResult != nil {
             completion?()
         }
         dismissCallCount += 1

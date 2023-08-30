@@ -8,6 +8,7 @@
 import XCTest
 @testable import NetworkInfrastructure
 
+// swiftlint:disable all
 final class MovieClientTests: XCTestCase {
 
     private var urlSession: MockURLSession!
@@ -292,7 +293,15 @@ final class MovieClientTests: XCTestCase {
 
     func testGetMovieDetailSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(MovieDetailResult(id: 1, title: "", genres: [], overview: "", posterPath: nil, backdropPath: nil, releaseDate: "", voteAverage: nil))
+        let movieDetailResult = MovieDetailResult(id: 1,
+                                                  title: "",
+                                                  genres: [],
+                                                  overview: "",
+                                                  posterPath: nil,
+                                                  backdropPath: nil,
+                                                  releaseDate: "",
+                                                  voteAverage: nil)
+        let data = try JSONEncoder().encode(movieDetailResult)
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
@@ -306,6 +315,47 @@ final class MovieClientTests: XCTestCase {
                 break
             case .failure:
                 XCTFail("Get movie detail error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetMovieVideosError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Get movie videos error")
+        // Act
+        movieClient.getMovieVideos(with: 1) { result in
+            switch result {
+            case .success:
+                XCTFail("Get movie videos success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetMovieVideosSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(VideoResult(results: []))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
+        }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Get movie videos success")
+        // Act
+        movieClient.getMovieVideos(with: 1) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Get movie videos error")
             }
             expectation.fulfill()
         }
