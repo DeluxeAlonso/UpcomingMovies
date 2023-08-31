@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-struct ReviewResult: Decodable, Paginable {
+struct ReviewResult: Codable, Paginable {
 
     let results: [Review]
     var currentPage: Int
