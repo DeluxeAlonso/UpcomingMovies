@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-struct Cast: Decodable {
+struct Cast: Codable {
 
     let id: Int
     let character: String
