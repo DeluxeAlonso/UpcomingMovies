@@ -445,4 +445,45 @@ final class MovieClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testGetMovieAccountStateError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Get movie account state error")
+        // Act
+        movieClient.getMovieAccountState(with: 1, sessionId: "") { result in
+            switch result {
+            case .success:
+                XCTFail("Get movie account state success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetMovieAccountStateSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(MovieAccountStateResult(id: 1, favorite: true, watchlist: true))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
+        }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Get movie account state success")
+        // Act
+        movieClient.getMovieAccountState(with: 1, sessionId: "") { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Get movie account state error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }
