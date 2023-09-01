@@ -6,7 +6,7 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-struct MovieAccountStateResult: Decodable {
+struct MovieAccountStateResult: Codable {
 
     let id: Int
     let favorite: Bool
