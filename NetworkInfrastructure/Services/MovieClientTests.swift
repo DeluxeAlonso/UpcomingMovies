@@ -404,4 +404,45 @@ final class MovieClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testGetMovieCreditsError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Get movie credits error")
+        // Act
+        movieClient.getMovieCredits(with: 1) { result in
+            switch result {
+            case .success:
+                XCTFail("Get movie credits success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetMovieCreditsSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(CreditResult(id: 1, cast: [], crew: []))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
+        }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Get movie credits success")
+        // Act
+        movieClient.getMovieCredits(with: 1) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Get movie credits error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }
