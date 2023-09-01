@@ -38,7 +38,7 @@ Pod::Spec.new do |spec|
   spec.dependency "KeychainSwift", "~> 19.0"
 
   spec.test_spec 'NetworkInfrastructureTests' do |test_spec|
-    test_spec.source_files = 'NetworkInfrastructureTests/**/*.{swift}'
+    test_spec.source_files = 'NetworkInfrastructureTests/*.{swift}', 'NetworkInfrastructureTests/**/*.{swift}'
   end
 
 end
