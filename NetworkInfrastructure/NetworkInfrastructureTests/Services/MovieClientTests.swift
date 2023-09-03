@@ -486,4 +486,45 @@ final class MovieClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testRateMovieError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Rate movie error")
+        // Act
+        movieClient.rateMovie(movieId: 1, sessionId: "", value: 4) { result in
+            switch result {
+            case .success:
+                XCTFail("Rate movie success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testRateMovieSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(RateMovieResult(statusCode: 200, statusMessage: ""))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
+        }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Rate movie success")
+        // Act
+        movieClient.rateMovie(movieId: 1, sessionId: "", value: 4) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Rate movie error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }
