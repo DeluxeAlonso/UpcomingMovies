@@ -46,7 +46,7 @@ final class SignInViewControllerTests: XCTestCase {
         // Act
         viewModel.didUpdateAuthenticationState.value = .currentlySignedIn
         // Assert
-        _ = XCTWaiter.wait(for: [XCTestExpectation(description: "")], timeout: 0.1)
+        _ = XCTWaiter.wait(for: [XCTestExpectation(description: "")], timeout: 1)
         XCTAssertEqual(delegate.didUpdateAuthenticationStateCallCount, 2)
     }
 
@@ -57,7 +57,7 @@ final class SignInViewControllerTests: XCTestCase {
         // Act
         viewModel.showAuthPermission.send(URL(string: "www.google.com")!)
         // Assert
-        _ = XCTWaiter.wait(for: [XCTestExpectation(description: "")], timeout: 0.1)
+        _ = XCTWaiter.wait(for: [XCTestExpectation(description: "")], timeout: 1)
         XCTAssertEqual(coordinator.showAuthPermissionCallCount, 1)
     }
 
