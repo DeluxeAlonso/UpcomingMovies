@@ -17,7 +17,6 @@ final class AccountClientTests: XCTestCase {
         try super.setUpWithError()
         urlSession = MockURLSession()
         accountClient = AccountClient(session: urlSession)
-
     }
 
     override func tearDownWithError() throws {
