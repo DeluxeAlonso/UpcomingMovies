@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-struct List: Decodable {
+struct List: Codable {
 
     let id: String
     let name: String

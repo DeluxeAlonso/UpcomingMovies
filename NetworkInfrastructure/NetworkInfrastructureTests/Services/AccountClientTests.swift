@@ -150,7 +150,7 @@ final class AccountClientTests: XCTestCase {
 
     func testGetCustomListsSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(ListResult(results: [], currentPage: 1, totalPages: 1))
+        let data = try JSONEncoder().encode(ListResult(results: [], currentPage: 1, totalPages: 1 ))
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
