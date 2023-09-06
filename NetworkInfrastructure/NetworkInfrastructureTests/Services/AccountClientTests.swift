@@ -148,4 +148,45 @@ final class AccountClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testGetCustomListsSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(ListResult(results: [], currentPage: 1, totalPages: 1 ))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
+        }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Get custom lists success")
+        // Act
+        accountClient.getCustomLists(page: 1, accessToken: "", accountId: "") { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Get custom lists error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetCustomListsError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Get custom lists error")
+        // Act
+        accountClient.getCustomLists(page: 1, accessToken: "", accountId: "") { result in
+            switch result {
+            case .success:
+                XCTFail("Get custom lists success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }
