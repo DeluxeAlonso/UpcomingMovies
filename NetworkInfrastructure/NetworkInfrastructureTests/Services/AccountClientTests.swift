@@ -191,20 +191,20 @@ final class AccountClientTests: XCTestCase {
 
     func testCustomListMoviesSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(ListResult(results: [], currentPage: 1, totalPages: 1 ))
+        let data = try JSONEncoder().encode(MovieResult(results: [], currentPage: 1, totalPages: 1))
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
         }
         urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
-        let expectation = XCTestExpectation(description: "Get custom lists success")
+        let expectation = XCTestExpectation(description: "Get custom list movies success")
         // Act
         accountClient.getCustomListMovies(with: "", listId: "") { result in
             switch result {
             case .success:
                 break
             case .failure:
-                XCTFail("Get custom lists error")
+                XCTFail("Get custom list movies error")
             }
             expectation.fulfill()
         }
@@ -215,12 +215,12 @@ final class AccountClientTests: XCTestCase {
     func testCustomListMoviesError() throws {
         // Arrange
         urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
-        let expectation = XCTestExpectation(description: "Get custom lists error")
+        let expectation = XCTestExpectation(description: "Get custom list movies error")
         // Act
         accountClient.getCustomListMovies(with: "", listId: "") { result in
             switch result {
             case .success:
-                XCTFail("Get custom lists success")
+                XCTFail("Get custom list movies success")
             case .failure:
                 break
             }
