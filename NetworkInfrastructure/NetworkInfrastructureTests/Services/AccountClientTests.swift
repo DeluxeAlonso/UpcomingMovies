@@ -312,4 +312,45 @@ final class AccountClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testAddToWatchlistSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(AddToWatchlistResult(statusCode: 200, statusMessage: ""))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
+        }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Add to watchlist success")
+        // Act
+        accountClient.addToWatchlist(1, sessionId: "", accountId: 1, watchlist: true) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Add to watchlist error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testAddToWatchlistError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Add to watchlist error")
+        // Act
+        accountClient.addToWatchlist(1, sessionId: "", accountId: 1, watchlist: true) { result in
+            switch result {
+            case .success:
+                XCTFail("Add to watchlist success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }
