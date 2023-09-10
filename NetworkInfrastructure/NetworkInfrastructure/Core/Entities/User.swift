@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-struct User: Decodable {
+struct User: Codable {
 
     let id: Int
     let name: String
@@ -26,11 +26,11 @@ struct User: Decodable {
 
 }
 
-struct Avatar: Decodable {
+struct Avatar: Codable {
     let gravatar: Gravatar
 }
 
-struct Gravatar: Decodable {
+struct Gravatar: Codable {
     let hash: String
 }
 

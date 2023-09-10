@@ -189,7 +189,7 @@ final class AccountClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testCustomListMoviesSuccess() throws {
+    func testGetCustomListMoviesSuccess() throws {
         // Arrange
         let data = try JSONEncoder().encode(MovieResult(results: [], currentPage: 1, totalPages: 1))
         guard let url = URL(string: "www.google.com") else {
@@ -212,7 +212,7 @@ final class AccountClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testCustomListMoviesError() throws {
+    func testGetCustomListMoviesError() throws {
         // Arrange
         urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
         let expectation = XCTestExpectation(description: "Get custom list movies error")
@@ -221,6 +221,47 @@ final class AccountClientTests: XCTestCase {
             switch result {
             case .success:
                 XCTFail("Get custom list movies success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetAccountDetailSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(User(id: 1, name: "", username: "", includeAdult: false, avatar: nil))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
+        }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Get account detail success")
+        // Act
+        accountClient.getAccountDetail(with: "") { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Get account detail error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetAccountDetailError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Get account detail error")
+        // Act
+        accountClient.getAccountDetail(with: "") { result in
+            switch result {
+            case .success:
+                XCTFail("Get account detail success")
             case .failure:
                 break
             }
