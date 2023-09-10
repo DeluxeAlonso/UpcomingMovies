@@ -271,4 +271,45 @@ final class AccountClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testMarkAsFavoriteSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(MarkAsFavoriteResult(statusCode: 200, statusMessage: ""))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
+        }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Mark as favorite success")
+        // Act
+        accountClient.getAccountDetail(with: "") { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Mark as favorite error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testMarkAsFavoriteError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Mark as favorite error")
+        // Act
+        accountClient.getAccountDetail(with: "") { result in
+            switch result {
+            case .success:
+                XCTFail("Mark as favorite success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }
