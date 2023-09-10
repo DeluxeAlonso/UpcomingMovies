@@ -281,7 +281,7 @@ final class AccountClientTests: XCTestCase {
         urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
         let expectation = XCTestExpectation(description: "Mark as favorite success")
         // Act
-        accountClient.getAccountDetail(with: "") { result in
+        accountClient.markAsFavorite(1, sessionId: "", accountId: 1, favorite: true) { result in
             switch result {
             case .success:
                 break
@@ -299,7 +299,7 @@ final class AccountClientTests: XCTestCase {
         urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
         let expectation = XCTestExpectation(description: "Mark as favorite error")
         // Act
-        accountClient.getAccountDetail(with: "") { result in
+        accountClient.markAsFavorite(1, sessionId: "", accountId: 1, favorite: true) { result in
             switch result {
             case .success:
                 XCTFail("Mark as favorite success")
