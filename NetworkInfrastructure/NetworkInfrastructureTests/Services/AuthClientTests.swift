@@ -6,30 +6,64 @@
 //
 
 import XCTest
+@testable import NetworkInfrastructure
 
 final class AuthClientTests: XCTestCase {
 
+    private var urlSession: MockURLSession!
+    private var authClient: AuthClient!
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
+        urlSession = MockURLSession()
+        authClient = AuthClient(session: urlSession)
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        urlSession = nil
+        authClient = nil
+        try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testGetRequestTokenSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(RequestTokenResult(success: true, token: ""))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
         }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Get request token success")
+        // Act
+        authClient.getRequestToken(with: "") { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Get request token error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetRequestTokenError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Get request token error")
+        // Act
+        authClient.getRequestToken(with: "") { result in
+            switch result {
+            case .success:
+                XCTFail("Get request token success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
     }
 
 }
