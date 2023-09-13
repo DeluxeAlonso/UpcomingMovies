@@ -66,4 +66,45 @@ final class AuthClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testGetAccessTokenSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(AccessToken(token: "", accountId: ""))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
+        }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Get access token success")
+        // Act
+        authClient.getAccessToken(with: "", requestToken: "") { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Get access token error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetAccessTokenError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Get access token error")
+        // Act
+        authClient.getAccessToken(with: "", requestToken: "") { result in
+            switch result {
+            case .success:
+                XCTFail("Get access token success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }
