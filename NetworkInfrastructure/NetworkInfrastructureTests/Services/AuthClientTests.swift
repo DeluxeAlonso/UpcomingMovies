@@ -107,4 +107,45 @@ final class AuthClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testCreateSessionIdSuccess() throws {
+        // Arrange
+        let data = try JSONEncoder().encode(SessionResult(success: true, sessionId: ""))
+        guard let url = URL(string: "www.google.com") else {
+            XCTFail("Invalid URL")
+            return
+        }
+        urlSession.dataTaskWithRequestCompletionHandler = (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil), nil)
+        let expectation = XCTestExpectation(description: "Create session id success")
+        // Act
+        authClient.createSessionId(with: "") { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Create session id error")
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testCreateSessionIdError() throws {
+        // Arrange
+        urlSession.dataTaskWithRequestCompletionHandler = (nil, nil, nil)
+        let expectation = XCTestExpectation(description: "Create session id error")
+        // Act
+        authClient.createSessionId(with: "") { result in
+            switch result {
+            case .success:
+                XCTFail("Create session id success")
+            case .failure:
+                break
+            }
+            expectation.fulfill()
+        }
+        // Assert
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }
