@@ -109,7 +109,7 @@ final class AuthClientTests: XCTestCase {
 
     func testCreateSessionIdSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(AccessToken(token: "", accountId: ""))
+        let data = try JSONEncoder().encode(SessionResult(success: true, sessionId: ""))
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
