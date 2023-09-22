@@ -13,7 +13,7 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
 
     private let authClient: AuthClientProtocol
     private let accountClient: AccountClientProtocol
-    private let authManager: AuthenticationManager
+    private let authManager: AuthenticationManagerProtocol
 
     init(authClient: AuthClientProtocol, accountClient: AccountClientProtocol, authManager: AuthenticationManager = AuthenticationManager.shared) {
         self.authClient = authClient
