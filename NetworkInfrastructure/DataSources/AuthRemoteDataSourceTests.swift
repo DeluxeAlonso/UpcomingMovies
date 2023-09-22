@@ -21,7 +21,7 @@ final class AuthRemoteDataSourceTests: XCTestCase {
         authClient = AuthClientProtocolMock()
         accountClient = AccountClientProtocolMock()
         authManager = AuthenticationManagerProtocolMock()
-        dataSource = AuthRemoteDataSource(client: accountClient, authManager: authManager)
+        dataSource = AuthRemoteDataSource(authClient: authClient, accountClient: accountClient, authManager: authManager)
     }
 
     override func tearDownWithError() throws {
@@ -31,3 +31,5 @@ final class AuthRemoteDataSourceTests: XCTestCase {
         dataSource = nil
         try super.tearDownWithError()
     }
+
+}
