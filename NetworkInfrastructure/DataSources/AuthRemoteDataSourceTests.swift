@@ -32,4 +32,47 @@ final class AuthRemoteDataSourceTests: XCTestCase {
         try super.tearDownWithError()
     }
 
+    func testGetAuthURLSuccess() {
+        // Arrange
+        authManager.userAccount = .init(accountId: 1, sessionId: "")
+        let tokenToTest = "123"
+        authClient.getRequestTokenResult = .success(RequestTokenResult(success: true, token: tokenToTest))
+
+        let expectation = XCTestExpectation(description: "Should get auth URL")
+        // Act
+        dataSource.getAuthURL { url in
+            guard let url = try? url.get() else {
+                XCTFail("No valid URL")
+                return
+            }
+            XCTAssertTrue(url.absoluteString.contains(tokenToTest))
+            expectation.fulfill()
+        }
+        // Assert
+        XCTAssertEqual(authClient.getRequestTokenCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testGetAuthURLFailure() {
+        // Arrange
+        authManager.userAccount = .init(accountId: 1, sessionId: "")
+        let errorToTest = APIError.badRequest
+        authClient.getRequestTokenResult = .failure(errorToTest)
+
+        let expectation = XCTestExpectation(description: "Should get an error")
+        // Act
+        dataSource.getAuthURL { url in
+            switch url {
+            case .success:
+                XCTFail("Should throw an error")
+            case .failure(let error):
+                XCTAssertEqual(error as? APIError, errorToTest)
+                expectation.fulfill()
+            }
+        }
+        // Assert
+        XCTAssertEqual(accountClient.getRequestTokenCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }
