@@ -34,7 +34,7 @@ final class AuthRemoteDataSourceTests: XCTestCase {
 
     func testGetAuthURLSuccess() {
         // Arrange
-        authManager.userAccount = .init(accountId: 1, sessionId: "")
+        //authManager.userAccount = .init(accountId: 1, sessionId: "")
         let tokenToTest = "123"
         authClient.getRequestTokenResult = .success(RequestTokenResult(success: true, token: tokenToTest))
 
@@ -55,7 +55,7 @@ final class AuthRemoteDataSourceTests: XCTestCase {
 
     func testGetAuthURLFailure() {
         // Arrange
-        authManager.userAccount = .init(accountId: 1, sessionId: "")
+        //authManager.userAccount = .init(accountId: 1, sessionId: "")
         let errorToTest = APIError.badRequest
         authClient.getRequestTokenResult = .failure(errorToTest)
 
@@ -71,7 +71,34 @@ final class AuthRemoteDataSourceTests: XCTestCase {
             }
         }
         // Assert
-        XCTAssertEqual(accountClient.getRequestTokenCallCount, 1)
+        XCTAssertEqual(authClient.getRequestTokenCallCount, 1)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testSignInUserSuccess() {
+        // Arrange
+        authManager.requestToken = "123"
+        let userToTest = User(id: 123, name: "", username: "", includeAdult: false, avatar: nil)
+        authClient.getAccessTokenResult = .success(AccessToken(token: "123", accountId: "123"))
+        authClient.createSessionIdResult = .success(SessionResult(success: true, sessionId: "123"))
+        accountClient.getAccountDetailResult = .success(userToTest)
+
+        let expectation = XCTestExpectation(description: "Should sign in user")
+        // Act
+        dataSource.signInUser { user in
+            guard let user = try? user.get() else {
+                XCTFail("No valid user")
+                return
+            }
+            XCTAssertEqual(user.id, userToTest.id)
+            expectation.fulfill()
+        }
+        // Assert
+        XCTAssertEqual(authClient.getAccessTokenCallCount, 1)
+        XCTAssertEqual(authClient.createSessionIdCallCount, 1)
+        XCTAssertEqual(accountClient.getAccountDetailCallCount, 1)
+        XCTAssertEqual(authManager.saveCurrentUserCallCount, 1)
+
         wait(for: [expectation], timeout: 1.0)
     }
 
