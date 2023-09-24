@@ -203,4 +203,14 @@ final class AuthRemoteDataSourceTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testCurrentUserId() {
+        // Arrange
+        let userIdToTest = 12345
+        authManager.userAccount = Account(accountId: userIdToTest, sessionId: "12345")
+        // Act
+        let currentUserId = dataSource.currentUserId()
+        // Assert
+        XCTAssertEqual(currentUserId, userIdToTest)
+    }
+
 }
