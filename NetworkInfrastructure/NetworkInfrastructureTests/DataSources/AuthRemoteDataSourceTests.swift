@@ -34,7 +34,6 @@ final class AuthRemoteDataSourceTests: XCTestCase {
 
     func testGetAuthURLSuccess() {
         // Arrange
-        //authManager.userAccount = .init(accountId: 1, sessionId: "")
         let tokenToTest = "123"
         authClient.getRequestTokenResult = .success(RequestTokenResult(success: true, token: tokenToTest))
 
@@ -55,7 +54,6 @@ final class AuthRemoteDataSourceTests: XCTestCase {
 
     func testGetAuthURLFailure() {
         // Arrange
-        //authManager.userAccount = .init(accountId: 1, sessionId: "")
         let errorToTest = APIError.badRequest
         authClient.getRequestTokenResult = .failure(errorToTest)
 
