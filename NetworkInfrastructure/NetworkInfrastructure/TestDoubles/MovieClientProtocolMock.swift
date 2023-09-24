@@ -117,5 +117,4 @@ final class MovieClientProtocolMock: MovieClientProtocol {
         rateMovieCallCount += 1
     }
 
-
 }

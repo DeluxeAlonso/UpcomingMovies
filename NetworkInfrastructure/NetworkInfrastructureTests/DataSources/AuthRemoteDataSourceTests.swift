@@ -129,4 +129,61 @@ final class AuthRemoteDataSourceTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testSignInUserFailureInCreateSessionId() {
+        // Arrange
+        authManager.requestToken = "123"
+        let userToTest = User(id: 123, name: "", username: "", includeAdult: false, avatar: nil)
+        let errorToTest = APIError.badRequest
+        authClient.getAccessTokenResult = .success(AccessToken(token: "123", accountId: "123"))
+        authClient.createSessionIdResult = .failure(errorToTest)
+        accountClient.getAccountDetailResult = .success(userToTest)
+
+        let expectation = XCTestExpectation(description: "Should get an error")
+        // Act
+        dataSource.signInUser { user in
+            switch user {
+            case .success:
+                XCTFail("Should throw an error")
+            case .failure(let error):
+                XCTAssertEqual(error as? APIError, errorToTest)
+                expectation.fulfill()
+            }
+        }
+        // Assert
+        XCTAssertEqual(authClient.getAccessTokenCallCount, 1)
+        XCTAssertEqual(authClient.createSessionIdCallCount, 1)
+        XCTAssertEqual(accountClient.getAccountDetailCallCount, 0)
+        XCTAssertEqual(authManager.saveCurrentUserCallCount, 0)
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testSignInUserFailureInGetAccountDetails() {
+        // Arrange
+        authManager.requestToken = "123"
+        let errorToTest = APIError.badRequest
+        authClient.getAccessTokenResult = .success(AccessToken(token: "123", accountId: "123"))
+        authClient.createSessionIdResult = .success(SessionResult(success: true, sessionId: "123"))
+        accountClient.getAccountDetailResult = .failure(errorToTest)
+
+        let expectation = XCTestExpectation(description: "Should get an error")
+        // Act
+        dataSource.signInUser { user in
+            switch user {
+            case .success:
+                XCTFail("Should throw an error")
+            case .failure(let error):
+                XCTAssertEqual(error as? APIError, errorToTest)
+                expectation.fulfill()
+            }
+        }
+        // Assert
+        XCTAssertEqual(authClient.getAccessTokenCallCount, 1)
+        XCTAssertEqual(authClient.createSessionIdCallCount, 1)
+        XCTAssertEqual(accountClient.getAccountDetailCallCount, 1)
+        XCTAssertEqual(authManager.saveCurrentUserCallCount, 0)
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }
