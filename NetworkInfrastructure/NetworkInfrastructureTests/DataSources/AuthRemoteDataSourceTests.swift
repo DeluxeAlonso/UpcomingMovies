@@ -186,4 +186,31 @@ final class AuthRemoteDataSourceTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testSignOutUser() {
+        let expectation = XCTestExpectation(description: "Should sign out user")
+        // Act
+        dataSource.signOutUser { signedOut in
+            guard let signedOut = try? signedOut.get() else {
+                XCTFail("No valid user")
+                return
+            }
+            XCTAssertEqual(signedOut, true)
+            expectation.fulfill()
+        }
+        // Assert
+        XCTAssertEqual(authManager.deleteCurrentUserCallCount, 1)
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testCurrentUserId() {
+        // Arrange
+        let userIdToTest = 12345
+        authManager.userAccount = Account(accountId: userIdToTest, sessionId: "12345")
+        // Act
+        let currentUserId = dataSource.currentUserId()
+        // Assert
+        XCTAssertEqual(currentUserId, userIdToTest)
+    }
+
 }
