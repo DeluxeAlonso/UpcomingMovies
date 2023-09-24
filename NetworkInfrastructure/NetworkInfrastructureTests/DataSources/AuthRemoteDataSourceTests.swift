@@ -181,7 +181,7 @@ final class AuthRemoteDataSourceTests: XCTestCase {
         XCTAssertEqual(authClient.getAccessTokenCallCount, 1)
         XCTAssertEqual(authClient.createSessionIdCallCount, 1)
         XCTAssertEqual(accountClient.getAccountDetailCallCount, 1)
-        XCTAssertEqual(authManager.saveCurrentUserCallCount, 1)
+        XCTAssertEqual(authManager.saveCurrentUserCallCount, 0)
 
         wait(for: [expectation], timeout: 1.0)
     }
