@@ -6,7 +6,7 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-struct RequestTokenResult: Codable {
+struct RequestTokenResult: Decodable {
 
     let success: Bool
     let token: String

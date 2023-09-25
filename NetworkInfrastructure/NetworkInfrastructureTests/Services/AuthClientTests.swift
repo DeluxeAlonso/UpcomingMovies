@@ -27,7 +27,8 @@ final class AuthClientTests: XCTestCase {
 
     func testGetRequestTokenSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(RequestTokenResult(success: true, token: ""))
+        let requestTokenResultJSON: [String: Any] = ["success": true, "request_token": "12345"]
+        let data = try JSONSerialization.data(withJSONObject: requestTokenResultJSON)
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
