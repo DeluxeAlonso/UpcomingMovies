@@ -6,7 +6,7 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-struct AccessToken: Codable {
+struct AccessToken: Decodable {
 
     let token: String
     let accountId: String
