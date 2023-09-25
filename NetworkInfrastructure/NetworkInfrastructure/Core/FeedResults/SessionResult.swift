@@ -6,7 +6,7 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-struct SessionResult: Codable {
+struct SessionResult: Decodable {
 
     let success: Bool
     let sessionId: String

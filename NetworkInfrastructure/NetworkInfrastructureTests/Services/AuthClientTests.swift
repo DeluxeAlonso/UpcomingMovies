@@ -27,7 +27,7 @@ final class AuthClientTests: XCTestCase {
 
     func testGetRequestTokenSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(RequestTokenResult(success: true, token: ""))
+        let data = MockResponse.requestTokenResult.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
@@ -68,7 +68,7 @@ final class AuthClientTests: XCTestCase {
 
     func testGetAccessTokenSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(AccessToken(token: "", accountId: ""))
+        let data = MockResponse.accessToken.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
@@ -109,7 +109,7 @@ final class AuthClientTests: XCTestCase {
 
     func testCreateSessionIdSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(SessionResult(success: true, sessionId: ""))
+        let data = MockResponse.sessionResult.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return

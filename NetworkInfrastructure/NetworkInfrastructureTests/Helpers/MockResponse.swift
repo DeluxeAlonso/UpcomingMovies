@@ -9,11 +9,11 @@ import Foundation
 
 enum MockResponse {
     case accessToken
-    case requestToken
+    case requestTokenResult
     case markAsFavorite
     case addToWatchlist
     case rateMovie
-    case session
+    case sessionResult
     case video
     case cast
     case crew
@@ -30,7 +30,7 @@ enum MockResponse {
                   "access_token": "eyJhbGciOiJIUzI1NiIsInR"
                 }
                 """
-        case .requestToken:
+        case .requestTokenResult:
             return """
                 {
                   "success": true,
@@ -45,7 +45,7 @@ enum MockResponse {
                     "status_message": "The item/record was updated successfully."
                 }
                 """
-        case .session:
+        case .sessionResult:
             return """
                 {
                   "success": true,

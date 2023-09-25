@@ -12,7 +12,7 @@ final class SessionTests: XCTestCase {
 
     func testMissingSuccessFromResponse() throws {
         // Arrange
-        let dataResponse = MockResponse.session.dataResponse
+        let dataResponse = MockResponse.sessionResult.dataResponse
         // Act
         let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "success")
         // Assert
@@ -21,7 +21,7 @@ final class SessionTests: XCTestCase {
 
     func testMissingSessionIdFromDResponse() throws {
         // Arrange
-        let dataResponse = MockResponse.session.dataResponse
+        let dataResponse = MockResponse.sessionResult.dataResponse
         // Act
         let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "session_id")
         // Assert
@@ -31,7 +31,7 @@ final class SessionTests: XCTestCase {
     func testSessionIdFromResponse() throws {
         // Arrange
         let sessionIdToTest = "sessionId"
-        let dataResponse = MockResponse.session.dataResponse
+        let dataResponse = MockResponse.sessionResult.dataResponse
         // Act
         let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("session_id", sessionIdToTest))
         let decodedSessionResult = try JSONDecoder().decode(SessionResult.self, from: jsonDataToTest)
@@ -42,7 +42,7 @@ final class SessionTests: XCTestCase {
     func testSuccessFromResponse() throws {
         // Arrange
         let successToTest = true
-        let dataResponse = MockResponse.session.dataResponse
+        let dataResponse = MockResponse.sessionResult.dataResponse
         // Act
         let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("success", successToTest))
         let decodedSessionResult = try JSONDecoder().decode(SessionResult.self, from: jsonDataToTest)
