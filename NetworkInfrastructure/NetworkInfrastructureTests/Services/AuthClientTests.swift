@@ -27,7 +27,7 @@ final class AuthClientTests: XCTestCase {
 
     func testGetRequestTokenSuccess() throws {
         // Arrange
-        let data = MockResponse.requestToken.dataResponse
+        let data = MockResponse.requestTokenResult.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
@@ -68,11 +68,7 @@ final class AuthClientTests: XCTestCase {
 
     func testGetAccessTokenSuccess() throws {
         // Arrange
-        let accessTokenResultJSON: [String: Any] = [
-            "access_token": "12345",
-            "account_id": "12345"
-        ]
-        let data = try JSONSerialization.data(withJSONObject: accessTokenResultJSON)
+        let data = MockResponse.accessToken.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return

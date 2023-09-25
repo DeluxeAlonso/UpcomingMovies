@@ -9,7 +9,7 @@ import Foundation
 
 enum MockResponse {
     case accessToken
-    case requestToken
+    case requestTokenResult
     case markAsFavorite
     case addToWatchlist
     case rateMovie
@@ -30,7 +30,7 @@ enum MockResponse {
                   "access_token": "eyJhbGciOiJIUzI1NiIsInR"
                 }
                 """
-        case .requestToken:
+        case .requestTokenResult:
             return """
                 {
                   "success": true,

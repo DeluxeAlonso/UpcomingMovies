@@ -12,7 +12,7 @@ final class RequestTokenTests: XCTestCase {
 
     func testMissingSuccessFromResponse() throws {
         // Arrange
-        let dataResponse = MockResponse.requestToken.dataResponse
+        let dataResponse = MockResponse.requestTokenResult.dataResponse
         // Act
         let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "success")
         // Assert
@@ -21,7 +21,7 @@ final class RequestTokenTests: XCTestCase {
 
     func testMissingTokenFromDResponse() throws {
         // Arrange
-        let dataResponse = MockResponse.requestToken.dataResponse
+        let dataResponse = MockResponse.requestTokenResult.dataResponse
         // Act
         let jsonDataToTest = try dataResponse.json(deletingKeyPaths: "request_token")
         // Assert
@@ -31,7 +31,7 @@ final class RequestTokenTests: XCTestCase {
     func testSuccessFromResponse() throws {
         // Arrange
         let successToTest = true
-        let dataResponse = MockResponse.requestToken.dataResponse
+        let dataResponse = MockResponse.requestTokenResult.dataResponse
         // Act
         let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("success", successToTest))
         let decodedRequestToken = try JSONDecoder().decode(RequestTokenResult.self, from: jsonDataToTest)
@@ -42,7 +42,7 @@ final class RequestTokenTests: XCTestCase {
     func testTokenFromResponse() throws {
         // Arrange
         let tokenToTest = "test"
-        let dataResponse = MockResponse.requestToken.dataResponse
+        let dataResponse = MockResponse.requestTokenResult.dataResponse
         // Act
         let jsonDataToTest = try dataResponse.json(updatingKeyPaths: ("request_token", tokenToTest))
         let decodedRequestToken = try JSONDecoder().decode(RequestTokenResult.self, from: jsonDataToTest)
