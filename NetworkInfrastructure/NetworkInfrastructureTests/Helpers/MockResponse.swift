@@ -13,7 +13,7 @@ enum MockResponse {
     case markAsFavorite
     case addToWatchlist
     case rateMovie
-    case session
+    case sessionResult
     case video
     case cast
     case crew
@@ -45,7 +45,7 @@ enum MockResponse {
                     "status_message": "The item/record was updated successfully."
                 }
                 """
-        case .session:
+        case .sessionResult:
             return """
                 {
                   "success": true,
