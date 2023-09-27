@@ -29,7 +29,7 @@ final class MovieClientTests: XCTestCase {
 
     func testGetPopularMoviesSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(MovieResult(results: [], currentPage: 1, totalPages: 1))
+        let data = MockResponse.movieResult.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
@@ -88,7 +88,7 @@ final class MovieClientTests: XCTestCase {
 
     func testGetUpcomingMoviesSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(MovieResult(results: [], currentPage: 1, totalPages: 1))
+        let data = MockResponse.movieResult.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
@@ -129,7 +129,7 @@ final class MovieClientTests: XCTestCase {
 
     func testGetTopRatedMoviesSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(MovieResult(results: [], currentPage: 1, totalPages: 1))
+        let data = MockResponse.movieResult.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
@@ -170,7 +170,7 @@ final class MovieClientTests: XCTestCase {
 
     func testGetSimilarMoviesSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(MovieResult(results: [], currentPage: 1, totalPages: 1))
+        let data = MockResponse.movieResult.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
@@ -211,7 +211,7 @@ final class MovieClientTests: XCTestCase {
 
     func testGetMoviesByGenreSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(MovieResult(results: [], currentPage: 1, totalPages: 1))
+        let data = MockResponse.movieResult.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
@@ -252,7 +252,7 @@ final class MovieClientTests: XCTestCase {
 
     func testSearchMoviesSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(MovieResult(results: [], currentPage: 1, totalPages: 1))
+        let data = MockResponse.movieResult.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return

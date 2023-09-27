@@ -20,6 +20,7 @@ enum MockResponse {
     case review
     case genre
     case imageConfiguration
+    case movieResult
 
     var jsonString: String {
         switch self {
@@ -144,6 +145,20 @@ enum MockResponse {
                   "w780",
                   "original"
                   ]
+                }
+                """
+        case .movieResult:
+            return """
+                {
+                  "results": [
+                    {
+                      "id": 1,
+                      "title": "Title",
+                      "overview": "Overview"
+                    }
+                  ],
+                  "page": 1,
+                  "total_pages": 1
                 }
                 """
         }
