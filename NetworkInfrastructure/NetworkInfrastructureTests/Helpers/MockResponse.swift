@@ -158,7 +158,7 @@ enum MockResponse {
                     }
                   ],
                   "page": 1,
-                  "total_pages: 1"
+                  "total_pages": 1
                 }
                 """
         }
