@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-public struct ListResult: Codable, Paginable {
+public struct ListResult: Decodable, Paginable {
 
     let results: [List]
     var currentPage: Int
