@@ -6,7 +6,7 @@
 //  Copyright © 2018 Alonso. All rights reserved.
 //
 
-struct MovieResult: Codable, Paginable {
+struct MovieResult: Decodable, Paginable {
 
     let results: [Movie]
     var currentPage: Int
