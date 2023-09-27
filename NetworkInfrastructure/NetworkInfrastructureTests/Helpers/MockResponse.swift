@@ -21,6 +21,7 @@ enum MockResponse {
     case genre
     case imageConfiguration
     case movieResult
+    case listResult
 
     var jsonString: String {
         switch self {
@@ -155,6 +156,20 @@ enum MockResponse {
                       "id": 1,
                       "title": "Title",
                       "overview": "Overview"
+                    }
+                  ],
+                  "page": 1,
+                  "total_pages": 1
+                }
+                """
+        case .listResult:
+            return """
+                {
+                  "results": [
+                    {
+                      "id": 1,
+                      "name": "List Name",
+                      "number_of_items": 2
                     }
                   ],
                   "page": 1,
