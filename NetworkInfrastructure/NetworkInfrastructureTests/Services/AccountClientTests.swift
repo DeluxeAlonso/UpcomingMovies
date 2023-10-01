@@ -314,7 +314,7 @@ final class AccountClientTests: XCTestCase {
 
     func testAddToWatchlistSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(AddToWatchlistResult(statusCode: 200, statusMessage: ""))
+        let data = MockResponse.addToWatchlist.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
