@@ -5,7 +5,7 @@
 //  Created by Alonso on 6/09/21.
 //
 
-struct AddToWatchlistResult: Codable {
+struct AddToWatchlistResult: Decodable {
 
     let statusCode: Int
     let statusMessage: String
