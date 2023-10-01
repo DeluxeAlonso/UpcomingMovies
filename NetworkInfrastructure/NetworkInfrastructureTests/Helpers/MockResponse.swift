@@ -19,6 +19,7 @@ enum MockResponse {
     case cast
     case crew
     case review
+    case reviewResult
     case genre
     case imageConfiguration
     case movieResult
@@ -139,6 +140,29 @@ enum MockResponse {
                   "url": "https://www.themoviedb.org/review/58a231c5925141179e000674"
                 }
                 """
+        case .reviewResult:
+            return """
+                {
+                  "results": [
+                    {
+                      "author": "Cat Ellington",
+                      "author_details": {
+                        "name": "Cat Ellington",
+                        "username": "CatEllington",
+                        "avatar_path": "/uCmwgSbJAcHqNwSvQvTv2dB95tx.jpg",
+                        "rating": null
+                      },
+                      "content": "(As I'm writing this review, Darth Vader's theme music begins to build in my mind...)",
+                      "created_at": "2017-02-13T22:23:01.268Z",
+                      "id": "58a231c5925141179e000674",
+                      "updated_at": "2017-02-13T23:16:19.538Z",
+                      "url": "https://www.themoviedb.org/review/58a231c5925141179e000674"
+                    }
+                  ],
+                  "page": 1,
+                  "total_pages": 1
+                }
+            """
         case .genre:
             return """
                 {
