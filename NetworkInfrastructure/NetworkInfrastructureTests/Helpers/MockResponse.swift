@@ -15,6 +15,7 @@ enum MockResponse {
     case rateMovie
     case sessionResult
     case video
+    case videoResult
     case cast
     case crew
     case review
@@ -67,6 +68,25 @@ enum MockResponse {
                   "official": false,
                   "published_at": "2015-02-26T03:19:25.000Z",
                   "id": "5e382d1b4ca676001453826d"
+                }
+                """
+        case .videoResult:
+            return """
+                {
+                    "results": [
+                        {
+                          "iso_639_1": "en",
+                          "iso_3166_1": "US",
+                          "name": "Fight Club - Theatrical Trailer Remastered in HD",
+                          "key": "6JnN1DmbqoU",
+                          "site": "YouTube",
+                          "size": 1080,
+                          "type": "Trailer",
+                          "official": false,
+                          "published_at": "2015-02-26T03:19:25.000Z",
+                          "id": "5e382d1b4ca676001453826d"
+                        }
+                    ]
                 }
                 """
         case .cast:

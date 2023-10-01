@@ -342,7 +342,7 @@ final class MovieClientTests: XCTestCase {
 
     func testGetMovieVideosSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(VideoResult(results: []))
+        let data = MockResponse.videoResult.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
