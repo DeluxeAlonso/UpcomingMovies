@@ -232,7 +232,7 @@ final class AccountClientTests: XCTestCase {
 
     func testGetAccountDetailSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(User(id: 1, name: "", username: "", includeAdult: false, avatar: nil))
+        let data = MockResponse.user.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
