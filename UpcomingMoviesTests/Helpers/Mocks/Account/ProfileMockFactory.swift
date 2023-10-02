@@ -33,7 +33,7 @@ final class MockProfileInteractor: ProfileInteractorProtocol {
 
 final class MockProfileViewModel: ProfileViewModelProtocol {
 
-    var userInfoCell: ProfileAccountInforCellViewModelProtocol?
+    var userInfoCell: ProfileAccountInfoCellViewModelProtocol?
 
     var reloadAccountInfo = PublishBindable<Void>().eraseToAnyBindable()
     var didUpdateAuthenticationState = BehaviorBindable<AuthenticationState?>(nil).eraseToAnyBindable()

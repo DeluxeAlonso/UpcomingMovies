@@ -9,7 +9,7 @@
 import Foundation
 import UpcomingMoviesDomain
 
-protocol ProfileAccountInforCellViewModelProtocol {
+protocol ProfileAccountInfoCellViewModelProtocol {
 
     var name: String { get }
     var username: String? { get }
@@ -17,7 +17,7 @@ protocol ProfileAccountInforCellViewModelProtocol {
 
 }
 
-final class ProfileAccountInforCellViewModel: ProfileAccountInforCellViewModelProtocol {
+final class ProfileAccountInfoCellViewModel: ProfileAccountInfoCellViewModelProtocol {
 
     let name: String
     let username: String?
