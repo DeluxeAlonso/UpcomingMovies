@@ -27,11 +27,15 @@ struct User: Decodable {
 }
 
 struct Avatar: Decodable {
-    let gravatar: Gravatar
+    let tmdb: AvatarPath
 }
 
-struct Gravatar: Decodable {
-    let hash: String
+struct AvatarPath: Decodable {
+    let path: String
+
+    private enum CodingKeys: String, CodingKey {
+        case path = "avatar_path"
+    }
 }
 
 extension User: DomainConvertible {
@@ -40,7 +44,7 @@ extension User: DomainConvertible {
         UpcomingMoviesDomain.User(id: id, name: name,
                                   username: username,
                                   includeAdult: includeAdult,
-                                  avatarPath: avatar?.gravatar.hash)
+                                  avatarPath: avatar?.tmdb.path)
     }
 
 }

@@ -10,7 +10,7 @@ import UpcomingMoviesDomain
 
 protocol ProfileViewModelProtocol {
 
-    var userInfoCell: ProfileAccountInforCellViewModelProtocol? { get }
+    var userInfoCell: ProfileAccountInfoCellViewModelProtocol? { get }
 
     var reloadAccountInfo: AnyPublishBindable<Void> { get }
     var didUpdateAuthenticationState: AnyBehaviorBindable<AuthenticationState?> { get }

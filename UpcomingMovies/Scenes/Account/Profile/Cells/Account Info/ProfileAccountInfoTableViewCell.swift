@@ -14,7 +14,7 @@ final class ProfileAccountInfoTableViewCell: UITableViewCell {
     @IBOutlet private weak var usernameLabel: UILabel!
     @IBOutlet private weak var avatarImageView: UIImageView!
 
-    var viewModel: ProfileAccountInforCellViewModelProtocol? {
+    var viewModel: ProfileAccountInfoCellViewModelProtocol? {
         didSet {
             setupBindables()
         }
