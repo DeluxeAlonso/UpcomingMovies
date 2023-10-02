@@ -24,6 +24,7 @@ enum MockResponse {
     case imageConfiguration
     case movieResult
     case listResult
+    case user
 
     var jsonString: String {
         switch self {
@@ -218,6 +219,25 @@ enum MockResponse {
                   ],
                   "page": 1,
                   "total_pages": 1
+                }
+                """
+        case .user:
+            return """
+                {
+                  "avatar": {
+                    "gravatar": {
+                      "hash": "a4f7b0f48f9bc68bcbef1e0e6ce2d882"
+                    },
+                    "tmdb": {
+                      "avatar_path": "/5JoRQ9PxchAI4yEaWIUVoBUk5uI.jpg"
+                    }
+                  },
+                  "id": 12345,
+                  "iso_639_1": "en",
+                  "iso_3166_1": "PE",
+                  "name": "Alonso Alvarez",
+                  "include_adult": false,
+                  "username": "DeluxeAlonso"
                 }
                 """
         }
