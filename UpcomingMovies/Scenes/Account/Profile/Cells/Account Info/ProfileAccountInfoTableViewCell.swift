@@ -36,8 +36,13 @@ final class ProfileAccountInfoTableViewCell: UITableViewCell {
 
     private func setupUI() {
         selectionStyle = .none
-        avatarImageView.layer.borderWidth = 4.0
+
+        setupAvatarImageView()
         setupLabels()
+    }
+
+    private func setupAvatarImageView() {
+        avatarImageView.layer.borderWidth = 4.0
     }
 
     private func setupLabels() {
