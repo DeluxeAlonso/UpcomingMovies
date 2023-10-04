@@ -27,14 +27,16 @@ final class ProfileAccountInfoTableViewCell: UITableViewCell {
         setupUI()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        avatarImageView.layer.borderColor = ColorPalette.Label.defaultColor.cgColor
+    }
+
     // MARK: - Private
 
     private func setupUI() {
         selectionStyle = .none
-
         avatarImageView.layer.borderWidth = 4.0
-        avatarImageView.layer.borderColor = ColorPalette.lightGrayColor.cgColor
-
         setupLabels()
     }
 
