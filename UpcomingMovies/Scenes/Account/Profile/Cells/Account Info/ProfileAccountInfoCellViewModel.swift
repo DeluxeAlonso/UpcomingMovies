@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 protocol ProfileAccountInfoCellViewModelProtocol {
 
     var name: String { get }
-    var username: String? { get }
+    var username: String { get }
     var avatarImageURL: URL? { get }
 
 }
@@ -20,7 +20,7 @@ protocol ProfileAccountInfoCellViewModelProtocol {
 final class ProfileAccountInfoCellViewModel: ProfileAccountInfoCellViewModelProtocol {
 
     let name: String
-    let username: String?
+    let username: String
     let avatarImageURL: URL?
 
     // MARK: - Initializers
