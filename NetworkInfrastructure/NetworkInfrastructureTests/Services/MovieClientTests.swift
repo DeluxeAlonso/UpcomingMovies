@@ -301,7 +301,7 @@ final class MovieClientTests: XCTestCase {
                                                   backdropPath: nil,
                                                   releaseDate: "",
                                                   voteAverage: nil)
-        let data = try JSONEncoder().encode(movieDetailResult)
+        let data = MockResponse.movieResult
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
