@@ -21,6 +21,7 @@ enum MockResponse {
     case review
     case reviewResult
     case genre
+    case genreResult
     case imageConfiguration
     case movieResult
     case listResult
@@ -169,6 +170,15 @@ enum MockResponse {
                 {
                   "id": 12345,
                   "name": "Adventure"
+                }
+                """
+        case .genreResult:
+            return """
+                {
+                    "genres: {
+                      "id": 12345,
+                      "name": "Adventure"
+                    }
                 }
                 """
         case .imageConfiguration:
