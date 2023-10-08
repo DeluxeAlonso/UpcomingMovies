@@ -293,14 +293,6 @@ final class MovieClientTests: XCTestCase {
 
     func testGetMovieDetailSuccess() throws {
         // Arrange
-        let movieDetailResult = MovieDetailResult(id: 1,
-                                                  title: "",
-                                                  genres: [],
-                                                  overview: "",
-                                                  posterPath: nil,
-                                                  backdropPath: nil,
-                                                  releaseDate: "",
-                                                  voteAverage: nil)
         let data = MockResponse.movieDetailResult.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
