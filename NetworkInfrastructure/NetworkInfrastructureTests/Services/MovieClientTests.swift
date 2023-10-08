@@ -301,7 +301,7 @@ final class MovieClientTests: XCTestCase {
                                                   backdropPath: nil,
                                                   releaseDate: "",
                                                   voteAverage: nil)
-        let data = MockResponse.movieResult
+        let data = MockResponse.movieDetailResult.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
