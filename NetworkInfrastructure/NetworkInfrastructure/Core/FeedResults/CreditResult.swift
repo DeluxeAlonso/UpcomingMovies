@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-struct CreditResult: Codable {
+struct CreditResult: Decodable {
 
     let id: Int
     let cast: [Cast]
