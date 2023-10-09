@@ -18,7 +18,6 @@ platform :ios do
 	  mode: :lint,
 	  executable: './Pods/SwiftLint/swiftlint',
 	  output_file: "swiftlint.result.json",
-	  config_file: ".swiftlint.yml",
 	  raise_if_swiftlint_error: true
 	)
 	end

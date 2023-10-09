@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-struct Crew: Codable {
+struct Crew: Decodable {
 
     let id: Int
     let job: String
