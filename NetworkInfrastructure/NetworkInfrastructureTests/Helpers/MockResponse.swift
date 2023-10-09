@@ -16,6 +16,7 @@ enum MockResponse {
     case sessionResult
     case video
     case videoResult
+    case creditResult
     case cast
     case crew
     case review
@@ -93,6 +94,43 @@ enum MockResponse {
                     ]
                 }
                 """
+        case .creditResult:
+            return """
+                {
+                    "id": 238,
+                    "cast": [
+                        {
+                            "adult": false,
+                            "gender": 2,
+                            "id": 3084,
+                            "known_for_department": "Acting",
+                            "name": "Marlon Brando",
+                            "original_name": "Marlon Brando",
+                            "popularity": 19.922,
+                            "profile_path": "/eEHCjqKMWSvQU4bmwhLMsg4RtEr.jpg",
+                            "cast_id": 146,
+                            "character": "Don Vito Corleone",
+                            "credit_id": "6489aa85e2726001072483a9",
+                            "order": 0
+                        }
+                    ],
+                    "crew": [
+                        {
+                            "adult": false,
+                            "gender": 2,
+                            "id": 154,
+                            "known_for_department": "Editing",
+                            "name": "Walter Murch",
+                            "original_name": "Walter Murch",
+                            "popularity": 3.867,
+                            "profile_path": "/kQh7U7kRLF9NKEMpxiGjZEIu0o3.jpg",
+                            "credit_id": "62bd43fb63d9370092ba09da",
+                            "department": "Crew",
+                            "job": "Post Production Consulting"
+                        }
+                    ]
+                }
+            """
         case .cast:
             return """
                 {
