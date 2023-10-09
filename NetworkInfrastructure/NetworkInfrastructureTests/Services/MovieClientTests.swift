@@ -416,7 +416,7 @@ final class MovieClientTests: XCTestCase {
 
     func testGetMovieCreditsSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(CreditResult(id: 1, cast: [], crew: []))
+        let data = MockResponse.creditResult.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
