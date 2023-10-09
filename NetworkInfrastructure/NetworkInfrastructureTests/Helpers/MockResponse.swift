@@ -282,7 +282,7 @@ enum MockResponse {
                   "imdb_id": "tt4495098",
                   "original_language": "en",
                   "original_title": "Gran Turismo",
-                  "overview": "The ultimate wish-fulfillment tale of a teenage Gran Turismo player whose gaming skills won him a series of Nissan competitions to become an actual professional racecar driver.",
+                  "overview": "The ultimate wish-fulfillment",
                   "popularity": 2320.595,
                   "poster_path": "/51tqzRtKMMZEYUpSYkrUE7v9ehm.jpg",
                   "production_companies": [
