@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-struct MovieDetailResult: Codable {
+struct MovieDetailResult: Decodable {
 
     let id: Int
     let title: String
