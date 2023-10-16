@@ -6,7 +6,7 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-struct MarkAsFavoriteResult: Codable {
+struct MarkAsFavoriteResult: Decodable {
 
     let statusCode: Int
     let statusMessage: String
