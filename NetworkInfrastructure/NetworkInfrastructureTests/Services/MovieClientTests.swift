@@ -457,7 +457,7 @@ final class MovieClientTests: XCTestCase {
 
     func testGetMovieAccountStateSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(MovieAccountStateResult(id: 1, favorite: true, watchlist: true))
+        let data = MockResponse.accountStateResult.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
