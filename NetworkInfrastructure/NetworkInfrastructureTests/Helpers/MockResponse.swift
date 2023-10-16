@@ -28,6 +28,7 @@ enum MockResponse {
     case movieDetailResult
     case listResult
     case user
+    case accountStateResult
 
     var jsonString: String {
         switch self {
@@ -370,6 +371,15 @@ enum MockResponse {
                   "name": "Alonso Alvarez",
                   "include_adult": false,
                   "username": "DeluxeAlonso"
+                }
+                """
+        case .accountStateResult:
+            return """
+                {
+                  "id": 575264,
+                  "favorite": false,
+                  "rated": false,
+                  "watchlist": false
                 }
                 """
         }
