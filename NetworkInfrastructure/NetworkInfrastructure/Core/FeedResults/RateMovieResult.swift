@@ -5,7 +5,7 @@
 //  Created by Alonso on 3/06/21.
 //
 
-struct RateMovieResult: Codable {
+struct RateMovieResult: Decodable {
 
     let statusCode: Int
     let statusMessage: String
