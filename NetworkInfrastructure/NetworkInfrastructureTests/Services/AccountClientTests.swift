@@ -273,7 +273,7 @@ final class AccountClientTests: XCTestCase {
 
     func testMarkAsFavoriteSuccess() throws {
         // Arrange
-        let data = try JSONEncoder().encode(MarkAsFavoriteResult(statusCode: 200, statusMessage: ""))
+        let data = MockResponse.markAsFavorite.dataResponse
         guard let url = URL(string: "www.google.com") else {
             XCTFail("Invalid URL")
             return
