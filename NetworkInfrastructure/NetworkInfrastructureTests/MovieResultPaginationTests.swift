@@ -12,29 +12,29 @@ import XCTest
 final class MovieResultPaginationTests: XCTestCase {
 
     func testMovieResultHasMorePagesTrue() {
-        //Arrange
+        // Arrange
         let movieResultUnderTest = MovieResult(results: [], currentPage: 1, totalPages: 2)
-        //Act
+        // Act
         let hasMorePages = movieResultUnderTest.hasMorePages
-        //Assert
+        // Assert
         XCTAssertTrue(hasMorePages)
     }
 
     func testMovieResultHasMorePagesFalse() {
-        //Arrange
+        // Arrange
         let movieResultUnderTest = MovieResult(results: [], currentPage: 1, totalPages: 1)
-        //Act
+        // Act
         let hasMorePages = movieResultUnderTest.hasMorePages
-        //Assert
+        // Assert
         XCTAssertFalse(hasMorePages)
     }
 
     func testMovieResultNextPage() {
-        //Arrange
+        // Arrange
         let movieResultUnderTest = MovieResult(results: [], currentPage: 1, totalPages: 2)
-        //Act
+        // Act
         let nextPage = movieResultUnderTest.nextPage
-        //Assert
+        // Assert
         XCTAssertEqual(nextPage, 2)
     }
 
