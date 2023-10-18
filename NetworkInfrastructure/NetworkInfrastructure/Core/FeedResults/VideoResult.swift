@@ -6,7 +6,7 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-public struct VideoResult: Decodable {
+struct VideoResult: Decodable {
 
     let results: [Video]
 
