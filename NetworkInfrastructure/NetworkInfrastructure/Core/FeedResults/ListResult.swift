@@ -6,7 +6,7 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-public struct ListResult: Decodable, Paginable {
+struct ListResult: Decodable, Paginable {
 
     let results: [List]
     var currentPage: Int
