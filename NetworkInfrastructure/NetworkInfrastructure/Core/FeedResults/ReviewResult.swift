@@ -9,8 +9,8 @@
 struct ReviewResult: Decodable, Paginable {
 
     let results: [Review]
-    var currentPage: Int
-    var totalPages: Int
+    let currentPage: Int
+    let totalPages: Int
 
     private enum CodingKeys: String, CodingKey {
         case results
