@@ -6,8 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
-
 struct MovieDetailResult: Decodable {
 
     let id: Int

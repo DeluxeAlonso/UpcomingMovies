@@ -6,8 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
-
 struct ReviewResult: Decodable, Paginable {
 
     let results: [Review]
