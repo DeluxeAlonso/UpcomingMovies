@@ -11,40 +11,30 @@ import XCTest
 
 final class MovieResultPaginationTests: XCTestCase {
 
-    var movieResultUnderTest: MovieResult!
-
-    override func setUp() {
-        super.setUp()
-        movieResultUnderTest = MovieResult(results: [],
-                                           currentPage: 1,
-                                           totalPages: 2)
-    }
-
-    override func tearDown() {
-        movieResultUnderTest = nil
-        super.tearDown()
-    }
-
     func testMovieResultHasMorePagesTrue() {
-        //Act
+        // Arrange
+        let movieResultUnderTest = MovieResult(results: [], currentPage: 1, totalPages: 2)
+        // Act
         let hasMorePages = movieResultUnderTest.hasMorePages
-        //Assert
+        // Assert
         XCTAssertTrue(hasMorePages)
     }
 
     func testMovieResultHasMorePagesFalse() {
-        //Arrange
-        movieResultUnderTest.totalPages = 1
-        //Act
+        // Arrange
+        let movieResultUnderTest = MovieResult(results: [], currentPage: 1, totalPages: 1)
+        // Act
         let hasMorePages = movieResultUnderTest.hasMorePages
-        //Assert
+        // Assert
         XCTAssertFalse(hasMorePages)
     }
 
     func testMovieResultNextPage() {
-        //Act
+        // Arrange
+        let movieResultUnderTest = MovieResult(results: [], currentPage: 1, totalPages: 2)
+        // Act
         let nextPage = movieResultUnderTest.nextPage
-        //Assert
+        // Assert
         XCTAssertEqual(nextPage, 2)
     }
 

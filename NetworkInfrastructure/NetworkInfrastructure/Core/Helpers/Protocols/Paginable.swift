@@ -8,8 +8,8 @@
 
 protocol Paginable {
 
-    var currentPage: Int { get set }
-    var totalPages: Int { get set }
+    var currentPage: Int { get }
+    var totalPages: Int { get }
 
 }
 
