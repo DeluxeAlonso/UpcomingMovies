@@ -17,29 +17,25 @@ final public class RemoteDataSource: RemoteDataSourceProtocol {
     }
 
     public func movieDataSource() -> MovieRemoteDataSourceProtocol {
-        let client = MovieClient()
-        return MovieRemoteDataSource(client: client)
+        return MovieRemoteDataSource(client: MovieClient())
     }
 
     public func genreDataSource() -> GenreRemoteDataSourceProtocol {
         let client = GenreClient()
-        return GenreRemoteDataSource(client: client)
+        return GenreRemoteDataSource(client: GenreClient())
     }
 
     public func accountDataSource() -> AccountRemoteDataSourceProtocol {
         let client = AccountClient()
-        return AccountRemoteDataSource(client: client)
+        return AccountRemoteDataSource(client: AccountClient())
     }
 
     public func authDataSource() -> AuthRemoteDataSourceProtocol {
-        let authClient = AuthClient()
-        let accountClient = AccountClient()
-        return AuthRemoteDataSource(authClient: authClient, accountClient: accountClient)
+        return AuthRemoteDataSource(authClient: AuthClient(), accountClient: AccountClient())
     }
 
     public func configurationDataSource() -> ConfigurationRemoteDataSourceProtocol {
-        let configurationClient = ConfigurationClient()
-        return ConfigurationRemoteDataSource(client: configurationClient)
+        return ConfigurationRemoteDataSource(client: ConfigurationClient())
     }
 
 }
