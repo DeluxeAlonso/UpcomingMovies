@@ -131,7 +131,7 @@ extension UIViewController {
 
         let top = navigationController.navigationBar.intrinsicContentSize.height
 
-        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        let window = UIApplication.shared.keyWindow
         let statusBarHeight = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
 
         let navBarHeight = top + statusBarHeight
