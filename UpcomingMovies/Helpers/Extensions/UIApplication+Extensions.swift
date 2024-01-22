@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIApplication {
-    
+
     var keyWindow: UIWindow? {
         connectedScenes
             .filter { $0.activationState == .foregroundActive }
@@ -17,5 +17,5 @@ extension UIApplication {
             .flatMap({ $0 as? UIWindowScene })?.windows
             .first(where: \.isKeyWindow)
     }
-    
+
 }
