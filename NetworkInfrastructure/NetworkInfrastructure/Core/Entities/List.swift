@@ -76,18 +76,9 @@ extension List: DomainConvertible {
                                          description: description,
                                          backdropPath: backdropPath,
                                          averageRating: averageRating,
-                                         runtime: Int(runtime),
+                                         runtime: runtime?.asInteger,
                                          movieCount: movieCount,
                                          movies: movies)
-    }
-
-}
-
-extension Int {
-
-    init?(_ string: String?) {
-        guard let string, let stringNumber = Int(string) else { return nil }
-        self = stringNumber
     }
 
 }
