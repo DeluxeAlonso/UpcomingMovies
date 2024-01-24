@@ -36,7 +36,7 @@ final class CustomListDetailSectionViewModelTests: XCTestCase {
 
     func testMovieRuntimeText() {
         // Arrange
-        let runtimeToTest = "65"
+        let runtimeToTest = 65
         let list = List.with(runtime: runtimeToTest)
         let viewModel = CustomListDetailSectionViewModel(list: list)
         // Act

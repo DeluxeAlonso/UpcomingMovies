@@ -26,10 +26,7 @@ final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelPr
     init(list: List) {
         movieCountText = "\(list.movieCount)"
         if let rating = list.averageRating { ratingText = "\(getTruncatedRating(rating))" }
-        if let runtime = list.runtime,
-           let runtimeNumber = Int(runtime) {
-            self.runtimeText = getRuntimeText(for: runtimeNumber)
-        }
+        if let runtime = list.runtime { runtimeText = getRuntimeText(for: runtime) }
     }
 
     private func getRuntimeText(for runtime: Int) -> String {

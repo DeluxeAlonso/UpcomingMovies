@@ -71,9 +71,23 @@ extension List: DomainConvertible {
 
     func asDomain() -> UpcomingMoviesDomain.List {
         let movies = self.movies?.map { $0.asDomain() }
-        return UpcomingMoviesDomain.List(id: id, name: name, description: description,
-                                         backdropPath: backdropPath, averageRating: averageRating,
-                                         runtime: runtime, movieCount: movieCount, movies: movies)
+        return UpcomingMoviesDomain.List(id: id,
+                                         name: name,
+                                         description: description,
+                                         backdropPath: backdropPath,
+                                         averageRating: averageRating,
+                                         runtime: Int(runtime),
+                                         movieCount: movieCount,
+                                         movies: movies)
+    }
+
+}
+
+extension Int {
+
+    init?(_ string: String?) {
+        guard let string, let stringNumber = Int(string) else { return nil }
+        self = stringNumber
     }
 
 }
