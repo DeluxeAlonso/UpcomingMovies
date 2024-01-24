@@ -15,7 +15,7 @@ struct List: Decodable {
     let description: String?
     let backdropPath: String?
     let averageRating: Double?
-    let runtime: Int?
+    let runtime: String?
     let movieCount: Int
     let movies: [Movie]?
 
@@ -34,7 +34,7 @@ struct List: Decodable {
          description: String?,
          backdropPath: String?,
          averageRating: Double?,
-         runtime: Int?,
+         runtime: String?,
          movieCount: Int,
          movies: [Movie]?) {
         self.id = id
@@ -60,7 +60,7 @@ struct List: Decodable {
         self.description = try? container.decode(String.self, forKey: .description)
         self.backdropPath = try? container.decode(String.self, forKey: .backdropPath)
         self.averageRating = try? container.decode(Double.self, forKey: .averageRating)
-        self.runtime = try? container.decode(Int.self, forKey: .runtime)
+        self.runtime = try? container.decode(String.self, forKey: .runtime)
         self.movieCount = try container.decode(Int.self, forKey: .movieCount)
         self.movies = try? container.decode([Movie].self, forKey: .movies)
     }

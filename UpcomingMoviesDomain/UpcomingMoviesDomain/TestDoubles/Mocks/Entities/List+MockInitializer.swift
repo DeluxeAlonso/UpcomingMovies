@@ -13,7 +13,7 @@ public extension List {
                      description: String = "Test",
                      backdropPath: String? = nil,
                      averageRating: Double? = nil,
-                     runtime: Int? = nil,
+                     runtime: String? = nil,
                      movieCount: Int = 1,
                      movies: [Movie]? = [Movie.with()]) -> List {
         List(id: id, name: name, description: description,
