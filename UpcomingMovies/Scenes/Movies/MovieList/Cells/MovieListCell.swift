@@ -13,7 +13,10 @@ final class MovieListCell: UITableViewCell {
     @IBOutlet private weak var movieContainerView: UIView!
     @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var genreLabel: UILabel!
+
+    @IBOutlet private weak var genreTitleLabel: UILabel!
+    @IBOutlet private weak var genreValueLabel: UILabel!
+
     @IBOutlet private weak var releaseDateLabel: UILabel!
     @IBOutlet private weak var voteAverageView: VoteAverageView!
 
@@ -41,7 +44,8 @@ final class MovieListCell: UITableViewCell {
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
         nameLabel.text = viewModel.name
-        genreLabel.text = viewModel.genreName
+        genreTitleLabel.text = LocalizedStrings.movieListCellGenreTitle()
+        genreValueLabel.text = viewModel.genreName
         releaseDateLabel.text = viewModel.releaseDate
         posterImageView.setImage(with: viewModel.posterURL)
         voteAverageView.voteValue = viewModel.voteAverage

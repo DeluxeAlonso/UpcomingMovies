@@ -79,3 +79,4 @@
 "searchMoviesWidgetDescription" = "Search your favorite movies";
 
 "movieListRecommendationsTitle" = "Recommendations";
+"movieListCellGenreTitle" = "Genre:";
