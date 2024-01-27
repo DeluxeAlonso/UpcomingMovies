@@ -157,7 +157,8 @@
                 <outlet property="movieContainerView" destination="pUb-64-Eal" id="zer-Mh-bt5"/>
                 <outlet property="nameLabel" destination="eJa-oE-hQX" id="CSx-0o-AWZ"/>
                 <outlet property="posterImageView" destination="ERG-v5-qqf" id="ixo-lR-HTa"/>
-                <outlet property="releaseDateLabel" destination="dG3-Ga-B91" id="jCf-zq-q9u"/>
+                <outlet property="releaseDateTitleLabel" destination="WCE-yh-j6B" id="DCs-hj-we8"/>
+                <outlet property="releaseDateValueLabel" destination="dG3-Ga-B91" id="jCf-zq-q9u"/>
                 <outlet property="voteAverageView" destination="9iP-90-boE" id="iJl-1C-Sda"/>
             </connections>
             <point key="canvasLocation" x="138.40000000000001" y="119.64017991004499"/>

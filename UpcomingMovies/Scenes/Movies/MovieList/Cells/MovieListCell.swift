@@ -17,7 +17,9 @@ final class MovieListCell: UITableViewCell {
     @IBOutlet private weak var genreTitleLabel: UILabel!
     @IBOutlet private weak var genreValueLabel: UILabel!
 
-    @IBOutlet private weak var releaseDateLabel: UILabel!
+    @IBOutlet private weak var releaseDateTitleLabel: UILabel!
+    @IBOutlet private weak var releaseDateValueLabel: UILabel!
+
     @IBOutlet private weak var voteAverageView: VoteAverageView!
 
     var viewModel: MovieListCellViewModelProtocol? {
@@ -46,7 +48,8 @@ final class MovieListCell: UITableViewCell {
         nameLabel.text = viewModel.name
         genreTitleLabel.text = LocalizedStrings.movieListCellGenreTitle()
         genreValueLabel.text = viewModel.genreName
-        releaseDateLabel.text = viewModel.releaseDate
+        releaseDateTitleLabel.text = LocalizedStrings.movieListCellReleaseDateTitle()
+        releaseDateValueLabel.text = viewModel.releaseDate
         posterImageView.setImage(with: viewModel.posterURL)
         voteAverageView.voteValue = viewModel.voteAverage
     }

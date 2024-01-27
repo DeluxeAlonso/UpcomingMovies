@@ -80,3 +80,4 @@
 
 "movieListRecommendationsTitle" = "Recomendaciones";
 "movieListCellGenreTitle" = "Género:";
+"movieListCellReleaseDateTitle" = "Lanzamiento:";

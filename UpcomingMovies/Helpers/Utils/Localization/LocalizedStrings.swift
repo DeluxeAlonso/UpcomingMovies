@@ -76,5 +76,6 @@ enum LocalizedStrings: String, Localizable {
 
     case movieListRecommendationsTitle
     case movieListCellGenreTitle
+    case movieListCellReleaseDateTitle
 
 }
