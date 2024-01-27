@@ -12,7 +12,7 @@ final class MovieListCell: UITableViewCell {
 
     @IBOutlet private weak var movieContainerView: UIView!
     @IBOutlet private weak var posterImageView: UIImageView!
-    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var movieNameLabel: UILabel!
 
     @IBOutlet private weak var genreTitleLabel: UILabel!
     @IBOutlet private weak var genreValueLabel: UILabel!
@@ -45,7 +45,7 @@ final class MovieListCell: UITableViewCell {
 
     private func setupBindables() {
         guard let viewModel = viewModel else { return }
-        nameLabel.text = viewModel.name
+        movieNameLabel.text = viewModel.name
         genreTitleLabel.text = LocalizedStrings.movieListCellGenreTitle()
         genreValueLabel.text = viewModel.genreName
         releaseDateTitleLabel.text = LocalizedStrings.movieListCellReleaseDateTitle()

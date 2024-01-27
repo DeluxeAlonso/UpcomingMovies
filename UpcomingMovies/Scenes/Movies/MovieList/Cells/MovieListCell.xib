@@ -155,7 +155,7 @@
                 <outlet property="genreTitleLabel" destination="0Yb-dV-CGS" id="ZNh-nK-cU0"/>
                 <outlet property="genreValueLabel" destination="sl6-HG-Vi1" id="3wY-RO-zQI"/>
                 <outlet property="movieContainerView" destination="pUb-64-Eal" id="zer-Mh-bt5"/>
-                <outlet property="nameLabel" destination="eJa-oE-hQX" id="CSx-0o-AWZ"/>
+                <outlet property="movieNameLabel" destination="eJa-oE-hQX" id="CSx-0o-AWZ"/>
                 <outlet property="posterImageView" destination="ERG-v5-qqf" id="ixo-lR-HTa"/>
                 <outlet property="releaseDateTitleLabel" destination="WCE-yh-j6B" id="DCs-hj-we8"/>
                 <outlet property="releaseDateValueLabel" destination="dG3-Ga-B91" id="jCf-zq-q9u"/>
