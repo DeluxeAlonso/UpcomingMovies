@@ -10,9 +10,9 @@ import UIKit
 
 final class CustomListDetailSectionView: UIView, NibLoadable {
 
-    @IBOutlet private weak var movieCountLabel: UILabel!
-    @IBOutlet private weak var ratingLabel: UILabel!
-    @IBOutlet private weak var runtimeLabel: UILabel!
+    @IBOutlet private weak var movieCountValueLabel: UILabel!
+    @IBOutlet private weak var ratingValueLabel: UILabel!
+    @IBOutlet private weak var runtimeValueLabel: UILabel!
 
     @IBOutlet var titleLabels: [UILabel]!
 
@@ -32,17 +32,17 @@ final class CustomListDetailSectionView: UIView, NibLoadable {
     // MARK: - Private
 
     private func setupUI() {
-        movieCountLabel.textColor = ColorPalette.whiteColor
-        movieCountLabel.font = FontHelper.body
-        movieCountLabel.adjustsFontForContentSizeCategory = true
+        movieCountValueLabel.textColor = ColorPalette.whiteColor
+        movieCountValueLabel.font = FontHelper.body
+        movieCountValueLabel.adjustsFontForContentSizeCategory = true
 
-        ratingLabel.textColor = ColorPalette.whiteColor
-        ratingLabel.font = FontHelper.body
-        ratingLabel.adjustsFontForContentSizeCategory = true
+        ratingValueLabel.textColor = ColorPalette.whiteColor
+        ratingValueLabel.font = FontHelper.body
+        ratingValueLabel.adjustsFontForContentSizeCategory = true
 
-        runtimeLabel.textColor = ColorPalette.whiteColor
-        runtimeLabel.font = FontHelper.body
-        runtimeLabel.adjustsFontForContentSizeCategory = true
+        runtimeValueLabel.textColor = ColorPalette.whiteColor
+        runtimeValueLabel.font = FontHelper.body
+        runtimeValueLabel.adjustsFontForContentSizeCategory = true
 
         titleLabels.forEach {
             $0.textColor = ColorPalette.whiteColor
@@ -54,9 +54,9 @@ final class CustomListDetailSectionView: UIView, NibLoadable {
     // MARK: - Reactive Behavior
 
     private func setupBindables() {
-        movieCountLabel.text = viewModel?.movieCountText
-        ratingLabel.text = viewModel?.ratingText
-        runtimeLabel.text = viewModel?.runtimeText
+        movieCountValueLabel.text = viewModel?.movieCountText
+        ratingValueLabel.text = viewModel?.ratingText
+        runtimeValueLabel.text = viewModel?.runtimeText
     }
 
 }

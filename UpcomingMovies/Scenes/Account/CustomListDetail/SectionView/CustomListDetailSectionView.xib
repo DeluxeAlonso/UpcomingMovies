@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -118,6 +116,7 @@
                     </subviews>
                 </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="7qk-10-GUp" secondAttribute="bottom" id="2Jv-hM-jqT"/>
@@ -130,11 +129,10 @@
                 <constraint firstItem="7qk-10-GUp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="yVA-SS-VUg"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="movieCountLabel" destination="jQZ-Ly-Qqm" id="xe0-yH-Moz"/>
-                <outlet property="ratingLabel" destination="4mk-bX-1xG" id="64K-YW-H3D"/>
-                <outlet property="runtimeLabel" destination="S0E-cb-rNI" id="Kol-7N-0vf"/>
+                <outlet property="movieCountValueLabel" destination="jQZ-Ly-Qqm" id="xe0-yH-Moz"/>
+                <outlet property="ratingValueLabel" destination="4mk-bX-1xG" id="64K-YW-H3D"/>
+                <outlet property="runtimeValueLabel" destination="S0E-cb-rNI" id="Kol-7N-0vf"/>
                 <outletCollection property="titleLabels" destination="yfm-s2-qS0" collectionClass="NSMutableArray" id="Ok9-ce-c5V"/>
                 <outletCollection property="titleLabels" destination="ofC-tK-cKv" collectionClass="NSMutableArray" id="ap5-gs-z0I"/>
                 <outletCollection property="titleLabels" destination="rlT-RD-Rxv" collectionClass="NSMutableArray" id="aNa-Wu-J7b"/>
