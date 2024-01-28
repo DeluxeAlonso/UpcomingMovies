@@ -81,3 +81,7 @@
 "movieListRecommendationsTitle" = "Recommendations";
 "movieListCellGenreTitle" = "Genre:";
 "movieListCellReleaseDateTitle" = "Release:";
+
+"customListDetailSectionMovieCountTitle" = "Movies";
+"customListDetailSectionRatingTitle" = "Rating";
+"customListDetailSectionRuntimeTitle" = "Runtime";

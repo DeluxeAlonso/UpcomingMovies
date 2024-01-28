@@ -130,12 +130,12 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="movieCountTitleLabel" destination="yfm-s2-qS0" id="s0q-x9-6qx"/>
                 <outlet property="movieCountValueLabel" destination="jQZ-Ly-Qqm" id="xe0-yH-Moz"/>
+                <outlet property="ratingTitleLabel" destination="ofC-tK-cKv" id="2B3-MN-yEI"/>
                 <outlet property="ratingValueLabel" destination="4mk-bX-1xG" id="64K-YW-H3D"/>
+                <outlet property="runtimeTitleLabel" destination="rlT-RD-Rxv" id="kpj-gh-l2o"/>
                 <outlet property="runtimeValueLabel" destination="S0E-cb-rNI" id="Kol-7N-0vf"/>
-                <outletCollection property="titleLabels" destination="yfm-s2-qS0" collectionClass="NSMutableArray" id="Ok9-ce-c5V"/>
-                <outletCollection property="titleLabels" destination="ofC-tK-cKv" collectionClass="NSMutableArray" id="ap5-gs-z0I"/>
-                <outletCollection property="titleLabels" destination="rlT-RD-Rxv" collectionClass="NSMutableArray" id="aNa-Wu-J7b"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="-141.96428571428569"/>
         </view>

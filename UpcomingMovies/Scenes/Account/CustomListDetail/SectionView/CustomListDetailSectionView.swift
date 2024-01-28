@@ -10,11 +10,12 @@ import UIKit
 
 final class CustomListDetailSectionView: UIView, NibLoadable {
 
+    @IBOutlet private weak var movieCountTitleLabel: UILabel!
     @IBOutlet private weak var movieCountValueLabel: UILabel!
+    @IBOutlet private weak var ratingTitleLabel: UILabel!
     @IBOutlet private weak var ratingValueLabel: UILabel!
+    @IBOutlet private weak var runtimeTitleLabel: UILabel!
     @IBOutlet private weak var runtimeValueLabel: UILabel!
-
-    @IBOutlet var titleLabels: [UILabel]!
 
     var viewModel: CustomListDetailSectionViewModelProtocol? {
         didSet {
@@ -44,7 +45,7 @@ final class CustomListDetailSectionView: UIView, NibLoadable {
         runtimeValueLabel.font = FontHelper.body
         runtimeValueLabel.adjustsFontForContentSizeCategory = true
 
-        titleLabels.forEach {
+        [movieCountTitleLabel, ratingTitleLabel, runtimeTitleLabel].forEach {
             $0.textColor = ColorPalette.whiteColor
             $0.font = FontHelper.caption1Light
             $0.adjustsFontForContentSizeCategory = true
@@ -54,8 +55,11 @@ final class CustomListDetailSectionView: UIView, NibLoadable {
     // MARK: - Reactive Behavior
 
     private func setupBindables() {
+        movieCountTitleLabel.text = LocalizedStrings.customListDetailSectionMovieCountTitle()
         movieCountValueLabel.text = viewModel?.movieCountText
+        ratingTitleLabel.text = LocalizedStrings.customListDetailSectionRatingTitle()
         ratingValueLabel.text = viewModel?.ratingText
+        runtimeTitleLabel.text = LocalizedStrings.customListDetailSectionRuntimeTitle()
         runtimeValueLabel.text = viewModel?.runtimeText
     }
 
