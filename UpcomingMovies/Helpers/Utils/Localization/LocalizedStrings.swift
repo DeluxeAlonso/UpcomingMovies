@@ -78,4 +78,8 @@ enum LocalizedStrings: String, Localizable {
     case movieListCellGenreTitle
     case movieListCellReleaseDateTitle
 
+    case customListDetailSectionMovieCountTitle
+    case customListDetailSectionRatingTitle
+    case customListDetailSectionRuntimeTitle
+
 }
