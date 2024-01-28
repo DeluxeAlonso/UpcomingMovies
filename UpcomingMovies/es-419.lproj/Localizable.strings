@@ -79,3 +79,5 @@
 "searchMoviesWidgetDescription" = "Busca tus películas favoritas";
 
 "movieListRecommendationsTitle" = "Recomendaciones";
+"movieListCellGenreTitle" = "Género:";
+"movieListCellReleaseDateTitle" = "Lanzamiento:";

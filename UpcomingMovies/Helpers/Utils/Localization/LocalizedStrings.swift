@@ -75,5 +75,7 @@ enum LocalizedStrings: String, Localizable {
     case shareMovieActionSheetItemTitle
 
     case movieListRecommendationsTitle
+    case movieListCellGenreTitle
+    case movieListCellReleaseDateTitle
 
 }
