@@ -12,7 +12,9 @@
 "searchMoviesTabBarTitle" = "Search";
 "searchMoviesTitle" = "Search movies";
 "recentSearches" = "Recent searches";
+
 "emptySearchResults" = "No results to show.";
+"emptyReviewResults" = "No reviews to show";
 
 "recentlyVisitedSeearchSectionTitle" = "Recently visited";
 "movieGenresSearchSectionTitle" = "Movie genres";
