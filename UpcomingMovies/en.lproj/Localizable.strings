@@ -12,9 +12,7 @@
 "searchMoviesTabBarTitle" = "Search";
 "searchMoviesTitle" = "Search movies";
 "recentSearches" = "Recent searches";
-
 "emptySearchResults" = "No results to show.";
-"emptyReviewResults" = "No reviews to show";
 
 "recentlyVisitedSeearchSectionTitle" = "Recently visited";
 "movieGenresSearchSectionTitle" = "Movie genres";
@@ -37,6 +35,7 @@
 "emptyMovieResults" = "There are no movies to show right now.";
 "emptyVideoResults" = "There are no trailers to show right now.";
 "emptyCreditReults" = "No credits to show.";
+"emptyReviewResults" = "There are no reviews to show right now.";
 
 "movieDetailTitle" = "Movie detail";
 "movieDetailShareActionTitle" = "Share this movie!";

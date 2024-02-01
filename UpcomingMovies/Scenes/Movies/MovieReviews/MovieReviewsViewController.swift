@@ -69,7 +69,7 @@ final class MovieReviewsViewController: UIViewController, Storyboarded, Placehol
             hideDisplayedPlaceholderView()
             tableView.tableFooterView = UIView()
         case .empty:
-            presentEmptyView(with: "There are no reviews to show right now.")
+            presentEmptyView(with: LocalizedStrings.emptyReviewResults())
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
                              retryHandler: { [weak self] in
