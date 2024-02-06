@@ -37,7 +37,8 @@ struct List: Decodable {
          averageRating: Double?,
          runtime: String?,
          movieCount: Int,
-         movies: [Movie]?) {
+         movies: [Movie]?,
+         revenue: Int?) {
         self.id = id
         self.name = name
         self.description = description
@@ -46,6 +47,7 @@ struct List: Decodable {
         self.runtime = runtime
         self.movieCount = movieCount
         self.movies = movies
+        self.revenue = revenue
     }
 
     init(from decoder: Decoder) throws {
