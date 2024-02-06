@@ -14,10 +14,17 @@ extension List {
                        averageRating: Double? = nil,
                        runtime: String? = nil,
                        movieCount: Int = 1,
-                       movies: [Movie]? = [Movie.create()]) -> List {
-        List(id: id, name: name, description: description,
-             backdropPath: backdropPath, averageRating: averageRating,
-             runtime: runtime, movieCount: movieCount, movies: movies)
+                       movies: [Movie]? = [Movie.create()],
+                       revenue: Int? = nil) -> List {
+        List(id: id,
+             name: name,
+             description: description,
+             backdropPath: backdropPath,
+             averageRating: averageRating,
+             runtime: runtime,
+             movieCount: movieCount,
+             movies: movies,
+             revenue: revenue)
     }
 
 }

@@ -18,9 +18,10 @@ struct List: Decodable {
     let runtime: String?
     let movieCount: Int
     let movies: [Movie]?
+    let revenue: Int?
 
     private enum CodingKeys: String, CodingKey {
-        case id, name, description, runtime
+        case id, name, description, runtime, revenue
         case backdropPath = "backdrop_path"
         case averageRating = "average_rating"
         case movieCount = "number_of_items"
@@ -36,7 +37,8 @@ struct List: Decodable {
          averageRating: Double?,
          runtime: String?,
          movieCount: Int,
-         movies: [Movie]?) {
+         movies: [Movie]?,
+         revenue: Int?) {
         self.id = id
         self.name = name
         self.description = description
@@ -45,6 +47,7 @@ struct List: Decodable {
         self.runtime = runtime
         self.movieCount = movieCount
         self.movies = movies
+        self.revenue = revenue
     }
 
     init(from decoder: Decoder) throws {
@@ -63,6 +66,7 @@ struct List: Decodable {
         self.runtime = try? container.decode(String.self, forKey: .runtime)
         self.movieCount = try container.decode(Int.self, forKey: .movieCount)
         self.movies = try? container.decode([Movie].self, forKey: .movies)
+        self.revenue = try? container.decode(Int.self, forKey: .movieCount)
     }
 
 }
@@ -78,7 +82,8 @@ extension List: DomainConvertible {
                                          averageRating: averageRating,
                                          runtime: runtime?.asInteger,
                                          movieCount: movieCount,
-                                         movies: movies)
+                                         movies: movies,
+                                         revenue: revenue)
     }
 
 }

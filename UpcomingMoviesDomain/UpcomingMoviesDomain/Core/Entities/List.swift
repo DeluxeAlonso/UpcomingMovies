@@ -16,9 +16,17 @@ public struct List: Equatable {
     public let runtime: Int?
     public let movieCount: Int
     public let movies: [Movie]?
+    public let revenue: Int?
 
-    public init(id: String, name: String, description: String?, backdropPath: String?,
-                averageRating: Double?, runtime: Int?, movieCount: Int, movies: [Movie]?) {
+    public init(id: String,
+                name: String,
+                description: String?,
+                backdropPath: String?,
+                averageRating: Double?,
+                runtime: Int?,
+                movieCount: Int,
+                movies: [Movie]?,
+                revenue: Int?) {
         self.id = id
         self.name = name
         self.description = description
@@ -27,6 +35,7 @@ public struct List: Equatable {
         self.runtime = runtime
         self.movieCount = movieCount
         self.movies = movies
+        self.revenue = revenue
     }
 
 }

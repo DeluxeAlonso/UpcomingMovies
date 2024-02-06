@@ -15,10 +15,17 @@ public extension List {
                      averageRating: Double? = nil,
                      runtime: Int? = nil,
                      movieCount: Int = 1,
-                     movies: [Movie]? = [Movie.with()]) -> List {
-        List(id: id, name: name, description: description,
-             backdropPath: backdropPath, averageRating: averageRating,
-             runtime: runtime, movieCount: movieCount, movies: movies)
+                     movies: [Movie]? = [Movie.with()],
+                     revenue: Int? = nil) -> List {
+        List(id: id,
+             name: name,
+             description: description,
+             backdropPath: backdropPath,
+             averageRating: averageRating,
+             runtime: runtime,
+             movieCount: movieCount,
+             movies: movies,
+             revenue: revenue)
     }
 
 }

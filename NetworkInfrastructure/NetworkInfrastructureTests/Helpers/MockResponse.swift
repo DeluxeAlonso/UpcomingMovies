@@ -26,6 +26,7 @@ enum MockResponse {
     case imageConfiguration
     case movieResult
     case movieDetailResult
+    case list
     case listResult
     case user
     case accountStateResult
@@ -338,6 +339,29 @@ enum MockResponse {
                   "video": false,
                   "vote_average": 8.023,
                   "vote_count": 884
+                }
+            """
+        case .list:
+            return """
+                {
+                  "account_object_id": "5c490f9ac3a368477789f631",
+                  "adult": 0,
+                  "average_rating": 8.1,
+                  "backdrop_path": "/tYjyk4Ij7CwVOn2ovcXdRYffR9k.jpg",
+                  "created_at": "2019-04-20 07:10:32 UTC",
+                  "description": "List with all the Godfather films",
+                  "featured": 0,
+                  "id": 110115,
+                  "iso_3166_1": "US",
+                  "iso_639_1": "en",
+                  "name": "The Godfather Movies",
+                  "number_of_items": 5,
+                  "poster_path": null,
+                  "public": 1,
+                  "revenue": 484432473,
+                  "runtime": "1217",
+                  "sort_by": 1,
+                  "updated_at": "2020-05-10 20:35:32 UTC"
                 }
             """
         case .listResult:
