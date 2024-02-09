@@ -35,6 +35,7 @@ final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelPr
         movieCountText = "\(list.movieCount)"
         if let rating = list.averageRating { ratingText = "\(getTruncatedRating(rating))" }
         if let runtime = list.runtime { runtimeText = getRuntimeText(for: runtime) }
+        if let revenue = list.revenue { revenueText = getRevenueText(revenue: revenue) ?? "-" }
     }
 
     private func getRuntimeText(for runtime: Int) -> String {
@@ -45,6 +46,10 @@ final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelPr
 
     private func getTruncatedRating(_ rating: Double) -> Double {
         Double(floor(rating * 100) / 100)
+    }
+
+    private func getRevenueText(revenue: Int) -> String? {
+        currencyFormatter.string(from: NSNumber(integerLiteral: revenue))
     }
 
 }
