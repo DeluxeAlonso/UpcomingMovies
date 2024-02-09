@@ -14,6 +14,7 @@ protocol CustomListDetailSectionViewModelProtocol {
     var movieCountText: String { get }
     var ratingText: String { get }
     var runtimeText: String { get }
+    var revenueText: String { get }
 
 }
 
