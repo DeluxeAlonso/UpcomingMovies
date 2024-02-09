@@ -23,6 +23,7 @@ final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelPr
     let movieCountText: String
     var ratingText: String = "-"
     var runtimeText: String = "-"
+    var revenueText: String = "-"
 
     init(list: List) {
         movieCountText = "\(list.movieCount)"
