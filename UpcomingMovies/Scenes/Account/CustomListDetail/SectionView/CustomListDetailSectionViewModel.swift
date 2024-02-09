@@ -54,15 +54,15 @@ final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelPr
 
         switch num {
         case 1_000_000_000...:
-            return "\(sign)\((num / 1_000_000_000).reduceScale(to: 1))B"
+            return "$\(sign)\((num / 1_000_000_000).reduceScale(to: 1))B"
         case 1_000_000...:
-            return "\(sign)\((num / 1_000_000).reduceScale(to: 1))M"
+            return "$\(sign)\((num / 1_000_000).reduceScale(to: 1))M"
         case 1_000...:
-            return "\(sign)\((num / 1_000).reduceScale(to: 1))K"
+            return "$\(sign)\((num / 1_000).reduceScale(to: 1))K"
         case 0...:
-            return "\(revenue)"
+            return "$\(revenue)"
         default:
-            return "\(sign)\(revenue)"
+            return "$\(sign)\(revenue)"
         }
     }
 
