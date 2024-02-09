@@ -25,6 +25,12 @@ final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelPr
     var runtimeText: String = "-"
     var revenueText: String = "-"
 
+    private lazy var currencyFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return formatter
+    }()
+
     init(list: List) {
         movieCountText = "\(list.movieCount)"
         if let rating = list.averageRating { ratingText = "\(getTruncatedRating(rating))" }
