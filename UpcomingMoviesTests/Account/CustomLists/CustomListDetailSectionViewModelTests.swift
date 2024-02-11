@@ -45,7 +45,7 @@ final class CustomListDetailSectionViewModelTests: XCTestCase {
         XCTAssertEqual(movieCountText, "1h 5m")
     }
 
-    func testMovieRevenueText() {
+    func testMovieRevenueTextMillionValue() {
         // Arrange
         let revenueToTest: Double = 484432473
         let list = List.with(revenue: revenueToTest)
@@ -54,6 +54,28 @@ final class CustomListDetailSectionViewModelTests: XCTestCase {
         let movieRevenueText = viewModel.revenueText
         // Assert
         XCTAssertEqual(movieRevenueText, "$484.4M")
+    }
+
+    func testMovieRevenueTextThousandValue() {
+        // Arrange
+        let revenueToTest: Double = 7500
+        let list = List.with(revenue: revenueToTest)
+        let viewModel = CustomListDetailSectionViewModel(list: list)
+        // Act
+        let movieRevenueText = viewModel.revenueText
+        // Assert
+        XCTAssertEqual(movieRevenueText, "$7.5K")
+    }
+
+    func testMovieRevenueTextHundredValue() {
+        // Arrange
+        let revenueToTest: Double = 750
+        let list = List.with(revenue: revenueToTest)
+        let viewModel = CustomListDetailSectionViewModel(list: list)
+        // Act
+        let movieRevenueText = viewModel.revenueText
+        // Assert
+        XCTAssertEqual(movieRevenueText, "$750.0")
     }
 
 }
