@@ -47,7 +47,7 @@ final class CustomListDetailSectionViewModelTests: XCTestCase {
 
     func testMovieRevenueText() {
         // Arrange
-        let revenueToTest = 484432473
+        let revenueToTest: Double = 484432473
         let list = List.with(revenue: revenueToTest)
         let viewModel = CustomListDetailSectionViewModel(list: list)
         // Act
