@@ -66,7 +66,7 @@ final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelPr
 
 }
 
-extension Double {
+fileprivate extension Double {
 
     func reduceScale(to places: Int) -> Double {
         let multiplier = pow(10, Double(places))
