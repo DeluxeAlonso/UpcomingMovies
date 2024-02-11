@@ -57,8 +57,8 @@ final class CustomListDetailSectionView: UIView, NibLoadable {
         ratingValueLabel.text = viewModel?.ratingText
         runtimeTitleLabel.text = LocalizedStrings.customListDetailSectionRuntimeTitle()
         runtimeValueLabel.text = viewModel?.runtimeText
-        runtimeTitleLabel.text = LocalizedStrings.customListDetailSectionRevenueTitle()
-        runtimeValueLabel.text = viewModel?.revenueText
+        revenueTitleLabel.text = LocalizedStrings.customListDetailSectionRevenueTitle()
+        revenueValueLabel.text = viewModel?.revenueText
     }
 
 }
