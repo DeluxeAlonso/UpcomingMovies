@@ -16,7 +16,7 @@ public extension List {
                      runtime: Int? = nil,
                      movieCount: Int = 1,
                      movies: [Movie]? = [Movie.with()],
-                     revenue: Int? = nil) -> List {
+                     revenue: Double? = nil) -> List {
         List(id: id,
              name: name,
              description: description,

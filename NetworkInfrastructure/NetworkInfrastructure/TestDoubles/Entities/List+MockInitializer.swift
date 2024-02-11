@@ -15,7 +15,7 @@ extension List {
                        runtime: String? = nil,
                        movieCount: Int = 1,
                        movies: [Movie]? = [Movie.create()],
-                       revenue: Int? = nil) -> List {
+                       revenue: Double? = nil) -> List {
         List(id: id,
              name: name,
              description: description,

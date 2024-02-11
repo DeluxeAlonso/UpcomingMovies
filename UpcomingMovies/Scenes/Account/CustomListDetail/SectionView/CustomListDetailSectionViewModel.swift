@@ -48,13 +48,11 @@ final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelPr
         Double(floor(rating * 100) / 100)
     }
 
-    private func getRevenueText(revenue: Int) -> String? {
-        let num = abs(Double(revenue))
+    private func getRevenueText(revenue: Double) -> String? {
+        let num = abs(revenue)
         let sign = (revenue < 0) ? "-" : ""
 
         switch num {
-        case 1_000_000_000...:
-            return "$\(sign)\((num / 1_000_000_000).reduceScale(to: 1))B"
         case 1_000_000...:
             return "$\(sign)\((num / 1_000_000).reduceScale(to: 1))M"
         case 1_000...:
@@ -68,7 +66,7 @@ final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelPr
 
 }
 
-extension Double {
+fileprivate extension Double {
 
     func reduceScale(to places: Int) -> Double {
         let multiplier = pow(10, Double(places))
