@@ -82,5 +82,6 @@ enum LocalizedStrings: String, Localizable {
     case customListDetailSectionMovieCountTitle
     case customListDetailSectionRatingTitle
     case customListDetailSectionRuntimeTitle
+    case customListDetailSectionRevenueTitle
 
 }
