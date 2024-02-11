@@ -18,7 +18,7 @@ struct List: Decodable {
     let runtime: String?
     let movieCount: Int
     let movies: [Movie]?
-    let revenue: Int?
+    let revenue: Double?
 
     private enum CodingKeys: String, CodingKey {
         case id, name, description, runtime, revenue
@@ -38,7 +38,7 @@ struct List: Decodable {
          runtime: String?,
          movieCount: Int,
          movies: [Movie]?,
-         revenue: Int?) {
+         revenue: Double?) {
         self.id = id
         self.name = name
         self.description = description
@@ -66,7 +66,7 @@ struct List: Decodable {
         self.runtime = try? container.decode(String.self, forKey: .runtime)
         self.movieCount = try container.decode(Int.self, forKey: .movieCount)
         self.movies = try? container.decode([Movie].self, forKey: .movies)
-        self.revenue = try? container.decode(Int.self, forKey: .movieCount)
+        self.revenue = try? container.decode(Double.self, forKey: .movieCount)
     }
 
 }
