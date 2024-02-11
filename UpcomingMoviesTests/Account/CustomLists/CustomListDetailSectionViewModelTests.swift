@@ -53,7 +53,7 @@ final class CustomListDetailSectionViewModelTests: XCTestCase {
         // Act
         let movieRevenueText = viewModel.revenueText
         // Assert
-        XCTAssertEqual(movieRevenueText, "484.4M")
+        XCTAssertEqual(movieRevenueText, "$484.4M")
     }
 
 }
