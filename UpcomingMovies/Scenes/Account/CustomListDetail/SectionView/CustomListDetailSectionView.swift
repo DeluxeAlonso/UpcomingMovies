@@ -16,6 +16,8 @@ final class CustomListDetailSectionView: UIView, NibLoadable {
     @IBOutlet private weak var ratingValueLabel: UILabel!
     @IBOutlet private weak var runtimeTitleLabel: UILabel!
     @IBOutlet private weak var runtimeValueLabel: UILabel!
+    @IBOutlet private weak var revenueTitleLabel: UILabel!
+    @IBOutlet private weak var revenueValueLabel: UILabel!
 
     var viewModel: CustomListDetailSectionViewModelProtocol? {
         didSet {
