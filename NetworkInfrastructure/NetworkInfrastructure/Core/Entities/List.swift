@@ -66,7 +66,7 @@ struct List: Decodable {
         self.runtime = try? container.decode(String.self, forKey: .runtime)
         self.movieCount = try container.decode(Int.self, forKey: .movieCount)
         self.movies = try? container.decode([Movie].self, forKey: .movies)
-        self.revenue = try? container.decode(Double.self, forKey: .movieCount)
+        self.revenue = try? container.decode(Double.self, forKey: .revenue)
     }
 
 }
