@@ -48,8 +48,8 @@ final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelPr
         Double(floor(rating * 100) / 100)
     }
 
-    private func getRevenueText(revenue: Int) -> String? {
-        let num = abs(Double(revenue))
+    private func getRevenueText(revenue: Double) -> String? {
+        let num = abs(revenue)
         let sign = (revenue < 0) ? "-" : ""
 
         switch num {
