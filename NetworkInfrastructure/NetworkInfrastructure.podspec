@@ -16,7 +16,6 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = "12.0"
 
   spec.source = { :git => "http://DeluxeAlonso/NetworkInfrastructure.git", :tag => "#{spec.version}" }
-  spec.resources = "NetworkInfrastructure/BaseParameters.plist"
   
   spec.source_files  = "NetworkInfrastructure"
   spec.public_header_files = "NetworkInfrastructure/**/*.h"
