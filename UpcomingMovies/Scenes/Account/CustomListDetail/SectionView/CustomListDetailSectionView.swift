@@ -16,6 +16,8 @@ final class CustomListDetailSectionView: UIView, NibLoadable {
     @IBOutlet private weak var ratingValueLabel: UILabel!
     @IBOutlet private weak var runtimeTitleLabel: UILabel!
     @IBOutlet private weak var runtimeValueLabel: UILabel!
+    @IBOutlet private weak var revenueTitleLabel: UILabel!
+    @IBOutlet private weak var revenueValueLabel: UILabel!
 
     var viewModel: CustomListDetailSectionViewModelProtocol? {
         didSet {
@@ -33,19 +35,13 @@ final class CustomListDetailSectionView: UIView, NibLoadable {
     // MARK: - Private
 
     private func setupUI() {
-        movieCountValueLabel.textColor = ColorPalette.whiteColor
-        movieCountValueLabel.font = FontHelper.body
-        movieCountValueLabel.adjustsFontForContentSizeCategory = true
+        [movieCountValueLabel, ratingValueLabel, runtimeValueLabel, revenueValueLabel].forEach {
+            $0.textColor = ColorPalette.whiteColor
+            $0.font = FontHelper.body
+            $0.adjustsFontForContentSizeCategory = true
+        }
 
-        ratingValueLabel.textColor = ColorPalette.whiteColor
-        ratingValueLabel.font = FontHelper.body
-        ratingValueLabel.adjustsFontForContentSizeCategory = true
-
-        runtimeValueLabel.textColor = ColorPalette.whiteColor
-        runtimeValueLabel.font = FontHelper.body
-        runtimeValueLabel.adjustsFontForContentSizeCategory = true
-
-        [movieCountTitleLabel, ratingTitleLabel, runtimeTitleLabel].forEach {
+        [movieCountTitleLabel, ratingTitleLabel, runtimeTitleLabel, revenueTitleLabel].forEach {
             $0.textColor = ColorPalette.whiteColor
             $0.font = FontHelper.caption1Light
             $0.adjustsFontForContentSizeCategory = true
@@ -61,6 +57,8 @@ final class CustomListDetailSectionView: UIView, NibLoadable {
         ratingValueLabel.text = viewModel?.ratingText
         runtimeTitleLabel.text = LocalizedStrings.customListDetailSectionRuntimeTitle()
         runtimeValueLabel.text = viewModel?.runtimeText
+        revenueTitleLabel.text = LocalizedStrings.customListDetailSectionRevenueTitle()
+        revenueValueLabel.text = viewModel?.revenueText
     }
 
 }
