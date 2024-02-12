@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum APIError: Error, Equatable, CustomStringConvertible {
+enum APIError: Error, Equatable {
 
     case notAuthenticated
     case notFound
@@ -39,19 +39,6 @@ enum APIError: Error, Equatable, CustomStringConvertible {
         switch self {
         case .notAuthenticated: return true
         default: return false
-        }
-    }
-
-    var description: String {
-        switch self {
-        case .notAuthenticated:
-            return ErrorMessages.Default.NotAuthorized
-        case .notFound:
-            return ErrorMessages.Default.NotFound
-        case .networkProblem, .unknown:
-            return ErrorMessages.Default.ServerError
-        case .requestFailed, .badRequest, .invalidData:
-            return ErrorMessages.Default.RequestFailed
         }
     }
 
