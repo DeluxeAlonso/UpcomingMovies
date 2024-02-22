@@ -6,7 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
 import UpcomingMoviesDomain
 
 protocol CustomListDetailSectionViewModelProtocol {
@@ -24,12 +23,6 @@ final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelPr
     var ratingText: String = "-"
     var runtimeText: String = "-"
     var revenueText: String = "-"
-
-    private lazy var currencyFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        return formatter
-    }()
 
     init(list: List) {
         movieCountText = "\(list.movieCount)"
