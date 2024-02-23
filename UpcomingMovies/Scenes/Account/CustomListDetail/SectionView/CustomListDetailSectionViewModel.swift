@@ -20,9 +20,9 @@ protocol CustomListDetailSectionViewModelProtocol {
 final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelProtocol {
 
     let movieCountText: String
-    var ratingText: String = "-"
-    var runtimeText: String = "-"
-    var revenueText: String = "-"
+    private(set) var ratingText: String = "-"
+    private(set) var runtimeText: String = "-"
+    private(set) var revenueText: String = "-"
 
     init(list: List) {
         movieCountText = "\(list.movieCount)"
