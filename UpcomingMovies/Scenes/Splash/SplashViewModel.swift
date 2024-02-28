@@ -6,7 +6,6 @@
 //  Copyright © 2018 Alonso. All rights reserved.
 //
 
-import Foundation
 import UpcomingMoviesDomain
 
 final class SplashViewModel: SplashViewModelProtocol {
