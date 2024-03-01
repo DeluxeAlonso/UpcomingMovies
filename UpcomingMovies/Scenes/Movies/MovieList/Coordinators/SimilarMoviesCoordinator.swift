@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UpcomingMoviesDomain
 
 final class SimilarMoviesCoordinator: BaseCoordinator, MovieListCoordinatorProtocol, MovieDetailCoordinable {
 
