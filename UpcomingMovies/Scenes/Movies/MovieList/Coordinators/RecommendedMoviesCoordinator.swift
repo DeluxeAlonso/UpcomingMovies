@@ -6,8 +6,6 @@
 //  Copyright © 2021 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
-
 final class RecommendedMoviesCoordinator: BaseCoordinator, MovieListCoordinatorProtocol, MovieDetailCoordinable {
 
     override func build() -> MovieListViewController {
