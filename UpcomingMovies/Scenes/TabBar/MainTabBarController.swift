@@ -10,7 +10,7 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
 
-    private var currentSelectedItemIndex: Int!
+    private var currentSelectedItemIndex: Int?
     private let coordinators: [Coordinator]
 
     // MARK: - Initializers
@@ -48,6 +48,7 @@ extension MainTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         guard let currentTabBarIndex = viewControllers?.firstIndex(of: viewController),
               currentTabBarIndex == selectedIndex,
+              let currentSelectedItemIndex,
               selectedIndex == currentSelectedItemIndex else {
             currentSelectedItemIndex = selectedIndex
             return
