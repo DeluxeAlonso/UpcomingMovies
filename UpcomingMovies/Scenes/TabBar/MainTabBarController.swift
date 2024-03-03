@@ -11,7 +11,7 @@ import UIKit
 final class MainTabBarController: UITabBarController {
 
     private var currentSelectedItemIndex: Int!
-    private var coordinators: [Coordinator]!
+    private let coordinators: [Coordinator]
 
     // MARK: - Initializers
 
