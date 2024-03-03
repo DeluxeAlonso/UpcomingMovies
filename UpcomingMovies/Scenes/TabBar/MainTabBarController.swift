@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController {
 
     private var currentSelectedItemIndex: Int!
     private var coordinators: [Coordinator]!
