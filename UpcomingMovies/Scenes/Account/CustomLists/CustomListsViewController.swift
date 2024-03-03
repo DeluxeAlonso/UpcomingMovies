@@ -9,7 +9,7 @@
 import UIKit
 import UpcomingMoviesDomain
 
-class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
+final class CustomListsViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
 
     @IBOutlet private weak var tableView: UITableView!
 
