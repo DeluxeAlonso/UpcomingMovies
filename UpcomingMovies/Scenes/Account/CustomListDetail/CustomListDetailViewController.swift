@@ -15,9 +15,9 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
 
     static var storyboardName = "CustomLists"
 
-    private var headerView: CustomListDetailHeaderView!
+    private var headerView: CustomListDetailHeaderView?
+    private var dataSource: SimpleTableViewDataSource<MovieListCellViewModelProtocol>?
 
-    private var dataSource: SimpleTableViewDataSource<MovieListCellViewModelProtocol>!
     private var displayedCellsIndexPaths = Set<IndexPath>()
 
     /// Used to determinate if the header view is being presented or not.
@@ -88,7 +88,7 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
     }
 
     private func setupTableViewHeader() {
-        headerView = CustomListDetailHeaderView.loadFromNib()
+        let headerView = CustomListDetailHeaderView.loadFromNib()
         headerView.viewModel = viewModel?.buildHeaderViewModel()
 
         headerView.setHeaderOffset(navigationBarHeight)
@@ -96,11 +96,12 @@ class CustomListDetailViewController: UIViewController, Storyboarded {
 
         tableView.clipsToBounds = false
         tableView.tableHeaderView = headerView
+        self.headerView = headerView
     }
 
     private func reloadTableView() {
         guard let viewModel = viewModel else { return }
-        dataSource = SimpleTableViewDataSource.make(for: viewModel.movieCells)
+        self.dataSource = SimpleTableViewDataSource.make(for: viewModel.movieCells)
         tableView.dataSource = dataSource
         tableView.reloadData()
     }

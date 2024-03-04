@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SplashViewController: UIViewController, Storyboarded {
+final class SplashViewController: UIViewController, Storyboarded {
 
     static var storyboardName: String = "Main"
 
