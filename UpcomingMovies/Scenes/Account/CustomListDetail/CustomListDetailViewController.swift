@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomListDetailViewController: UIViewController, Storyboarded {
+final class CustomListDetailViewController: UIViewController, Storyboarded {
 
     @IBOutlet private weak var navigationBarPlaceholderView: UIView!
     @IBOutlet private weak var tableView: UITableView!
