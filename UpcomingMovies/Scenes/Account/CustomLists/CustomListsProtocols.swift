@@ -13,8 +13,6 @@ protocol CustomListsViewModelProtocol {
 
     var startLoading: AnyBehaviorBindable<Bool> { get }
     var viewState: AnyBehaviorBindable<CustomListsViewState> { get }
-
-    var lists: [List] { get }
     var listCells: [CustomListCellViewModelProtocol] { get }
 
     func list(at index: Int) -> List
