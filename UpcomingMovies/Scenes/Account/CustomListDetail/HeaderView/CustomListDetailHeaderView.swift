@@ -17,8 +17,8 @@ final class CustomListDetailHeaderView: UIView, NibLoadable {
     @IBOutlet private weak var descriptionView: UIView!
     @IBOutlet private weak var descriptionLabel: UILabel!
 
-    private(set) var initialHeightConstraintConstant: CGFloat!
-    private(set) var initialTopContstraintConstant: CGFloat!
+    private(set) var initialHeightConstraintConstant: CGFloat?
+    private(set) var initialTopContstraintConstant: CGFloat?
 
     var viewModel: CustomListDetailHeaderViewModelProtocol? {
         didSet {
@@ -59,6 +59,7 @@ final class CustomListDetailHeaderView: UIView, NibLoadable {
     // MARK: - Internal
 
     func setHeaderOffset(_ offset: CGFloat) {
+        guard let initialTopContstraintConstant else { return }
         posterImageViewTopConstraint.constant = initialTopContstraintConstant - offset
     }
 
