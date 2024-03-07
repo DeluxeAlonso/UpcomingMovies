@@ -200,7 +200,8 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
 
     private func configureScrollView(_ scrollView: UIScrollView, forceUpdate: Bool = false) {
         guard let tableView = scrollView as? UITableView,
-              let headerView = tableView.tableHeaderView as? CustomListDetailHeaderView else {
+              let headerView = tableView.tableHeaderView as? CustomListDetailHeaderView,
+              let initialHeightConstraintConstant = headerView.initialHeightConstraintConstant else {
             return
         }
         let contentOffsetY = tableView.contentOffset.y
@@ -212,9 +213,9 @@ extension CustomListDetailViewController: UIScrollViewDelegate {
         }
 
         // Stretchy header
-        let height = headerView.initialHeightConstraintConstant - contentOffsetY
+        let height = initialHeightConstraintConstant - contentOffsetY
         let newHeight = max(height, 40)
-        let newOffSet = newHeight - headerView.initialHeightConstraintConstant
+        let newOffSet = newHeight - initialHeightConstraintConstant
 
         headerView.setHeaderOffset(navigationBarHeight + newOffSet)
         headerView.setPosterHeight(newHeight)
