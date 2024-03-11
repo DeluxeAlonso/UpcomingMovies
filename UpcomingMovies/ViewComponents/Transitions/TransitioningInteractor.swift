@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransitioningInteractor: UIPercentDrivenInteractiveTransition {
+final class TransitioningInteractor: UIPercentDrivenInteractiveTransition {
 
     private let navigationController: UINavigationController
     private var shouldCompleteTransition: Bool = false
