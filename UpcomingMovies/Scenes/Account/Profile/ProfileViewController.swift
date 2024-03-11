@@ -12,7 +12,7 @@ final class ProfileViewController: UITableViewController, Storyboarded {
 
     static var storyboardName: String = "Account"
 
-    private var dataSource: ProfileDataSource!
+    private var dataSource: ProfileDataSource?
 
     var viewModel: ProfileViewModelProtocol?
     weak var coordinator: ProfileCoordinatorProtocol?

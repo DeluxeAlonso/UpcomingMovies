@@ -65,10 +65,10 @@ extension AccountViewController: SignInViewControllerDelegate {
 
     func didUpdateAuthenticationState(_ state: AuthenticationState) {
         switch state {
-        case .justSignedIn: self.showProfileView(withAnimatedNavigationBar: true)
-        case .justSignedOut: self.showSignInView(withAnimatedNavigationBar: true)
-        case .currentlySignedIn: self.showProfileView()
-        case .currentlySignedOut: self.showSignInView()
+        case .justSignedIn: showProfileView(withAnimatedNavigationBar: true)
+        case .justSignedOut: showSignInView(withAnimatedNavigationBar: true)
+        case .currentlySignedIn: showProfileView()
+        case .currentlySignedOut: showSignInView()
         }
     }
 
