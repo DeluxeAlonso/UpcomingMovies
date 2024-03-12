@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchMoviesResultView: UIView {
+final class SearchMoviesResultView: UIView {
 
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
