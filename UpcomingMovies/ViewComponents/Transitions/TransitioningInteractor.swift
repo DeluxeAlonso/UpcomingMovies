@@ -8,12 +8,12 @@
 
 import UIKit
 
-class TransitioningInteractor: UIPercentDrivenInteractiveTransition {
+final class TransitioningInteractor: UIPercentDrivenInteractiveTransition {
 
     private let navigationController: UINavigationController
     private var shouldCompleteTransition: Bool = false
 
-    public var transitionInProgress: Bool = false
+    private(set) var transitionInProgress: Bool = false
 
     // MARK: - Initializers
 

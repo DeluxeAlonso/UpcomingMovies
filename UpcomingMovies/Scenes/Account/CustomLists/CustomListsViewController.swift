@@ -15,7 +15,7 @@ final class CustomListsViewController: UIViewController, Storyboarded, Placehold
 
     static var storyboardName = "CustomLists"
 
-    private var dataSource: SimpleTableViewDataSource<CustomListCellViewModelProtocol>!
+    private var dataSource: SimpleTableViewDataSource<CustomListCellViewModelProtocol>?
 
     var viewModel: CustomListsViewModelProtocol?
     weak var coordinator: CustomListsCoordinatorProtocol?

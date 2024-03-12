@@ -17,7 +17,7 @@ protocol SearchMoviesResultControllerDelegate: UIViewController {
 final class SearchMoviesResultController: UIViewController, Keyboardable {
 
     private var viewModel: SearchMoviesResultViewModelProtocol
-    private var dataSource: SearchMoviesResultDataSource!
+    private var dataSource: SearchMoviesResultDataSource?
 
     weak var delegate: SearchMoviesResultControllerDelegate?
     weak var coordinator: SearchMoviesCoordinator?
