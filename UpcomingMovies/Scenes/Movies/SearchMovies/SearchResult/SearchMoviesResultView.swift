@@ -30,6 +30,12 @@ final class SearchMoviesResultView: UIView {
 
     var tableViewBottomConstraint: NSLayoutConstraint?
 
+    var dataSource: SearchMoviesResultDataSource? {
+        didSet {
+            tableView.dataSource = dataSource
+        }
+    }
+
     // MARK: - Initializers
 
     override init(frame: CGRect) {
