@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchMoviesResultView: UIView {
+final class SearchMoviesResultView: UIView {
 
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -28,7 +28,13 @@ class SearchMoviesResultView: UIView {
         return footerView
     }()
 
-    var tableViewBottomConstraint: NSLayoutConstraint!
+    var tableViewBottomConstraint: NSLayoutConstraint?
+
+    var dataSource: SearchMoviesResultDataSource? {
+        didSet {
+            tableView.dataSource = dataSource
+        }
+    }
 
     // MARK: - Initializers
 
@@ -51,11 +57,12 @@ class SearchMoviesResultView: UIView {
 
     private func setupTableView() {
         addSubview(tableView)
-        tableViewBottomConstraint = tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        let tableViewBottomConstraint = tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         NSLayoutConstraint.activate([tableView.topAnchor.constraint(equalTo: topAnchor),
                                      tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
                                      tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
                                      tableViewBottomConstraint])
+        self.tableViewBottomConstraint = tableViewBottomConstraint
     }
 
 }

@@ -61,13 +61,13 @@ final class SearchMoviesResultController: UIViewController, Keyboardable {
     private func setupObservers() {
         registerKeyboardWillShowNotification(using: { [weak self] keyboardFrame in
             self?.view.layoutIfNeeded()
-            self?.searchMoviesResultView.tableViewBottomConstraint.constant = -keyboardFrame.size.height
+            self?.searchMoviesResultView.tableViewBottomConstraint?.constant = -keyboardFrame.size.height
             self?.view.layoutIfNeeded()
         })
 
         registerKeyboardWillHideNotification(using: { [weak self] in
             self?.view.layoutIfNeeded()
-            self?.searchMoviesResultView.tableViewBottomConstraint.constant = 0
+            self?.searchMoviesResultView.tableViewBottomConstraint?.constant = 0
             self?.view.layoutIfNeeded()
         })
     }
@@ -87,7 +87,7 @@ final class SearchMoviesResultController: UIViewController, Keyboardable {
 
     private func reloadTableView() {
         dataSource = SearchMoviesResultDataSource(viewModel: viewModel)
-        searchMoviesResultView.tableView.dataSource = dataSource
+        searchMoviesResultView.dataSource = dataSource
         searchMoviesResultView.tableView.reloadData()
     }
 
