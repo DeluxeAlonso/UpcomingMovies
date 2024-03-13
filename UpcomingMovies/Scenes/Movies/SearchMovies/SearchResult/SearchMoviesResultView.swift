@@ -71,4 +71,8 @@ final class SearchMoviesResultView: UIView {
         tableView.reloadData()
     }
 
+    func setFooterView(_ footerView: UIView) {
+        tableView.tableFooterView = footerView
+    }
+
 }

@@ -96,14 +96,14 @@ final class SearchMoviesResultController: UIViewController, Keyboardable {
         tableView.separatorStyle = .none
         switch state {
         case .empty:
-            tableView.tableFooterView = FooterView(message: LocalizedStrings.emptySearchResults())
+            searchMoviesResultView.setFooterView(FooterView(message: LocalizedStrings.emptySearchResults()))
         case .populated, .recentSearches:
             tableView.tableFooterView = UIView()
             tableView.separatorStyle = .singleLine
         case .searching:
-            tableView.tableFooterView = searchMoviesResultView.loadingFooterView
+            searchMoviesResultView.setFooterView(searchMoviesResultView.loadingFooterView)
         case .error(let error):
-            tableView.tableFooterView = FooterView(message: error.localizedDescription)
+            searchMoviesResultView.setFooterView(FooterView(message: error.localizedDescription))
         }
     }
 
