@@ -71,8 +71,21 @@ final class SearchMoviesResultView: UIView {
         tableView.reloadData()
     }
 
-    func setFooterView(_ footerView: UIView) {
-        tableView.tableFooterView = footerView
+    func setFooterView(_ footerType: FooterType) {
+        switch footerType {
+        case .custom(let view):
+            tableView.tableFooterView = view
+        case .empty:
+            tableView.tableFooterView = UIView()
+            tableView.separatorStyle = .singleLine
+        }
+    }
+
+    // MARK: - Footer type
+
+    enum FooterType {
+        case custom(UIView)
+        case empty
     }
 
 }
