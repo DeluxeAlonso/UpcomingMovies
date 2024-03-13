@@ -21,7 +21,7 @@ final class SearchMoviesResultView: UIView {
         return tableView
     }()
 
-    lazy var loadingFooterView: LoadingFooterView = {
+    private lazy var loadingFooterView: LoadingFooterView = {
         let footerView = LoadingFooterView()
         footerView.frame = LoadingFooterView.recommendedFrame
         footerView.startAnimating()
@@ -63,6 +63,33 @@ final class SearchMoviesResultView: UIView {
                                      tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
                                      tableViewBottomConstraint])
         self.tableViewBottomConstraint = tableViewBottomConstraint
+    }
+
+    // MARK: - Internal
+
+    func reloadData() {
+        tableView.reloadData()
+    }
+
+    func setFooterView(_ footerType: FooterType) {
+        tableView.separatorStyle = .none
+        switch footerType {
+        case .custom(let view):
+            tableView.tableFooterView = view
+        case .loading:
+            tableView.tableFooterView = loadingFooterView
+        case .empty:
+            tableView.tableFooterView = UIView()
+            tableView.separatorStyle = .singleLine
+        }
+    }
+
+    // MARK: - Footer type
+
+    enum FooterType {
+        case custom(UIView)
+        case loading
+        case empty
     }
 
 }

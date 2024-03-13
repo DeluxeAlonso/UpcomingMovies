@@ -88,22 +88,21 @@ final class SearchMoviesResultController: UIViewController, Keyboardable {
     private func reloadTableView() {
         dataSource = SearchMoviesResultDataSource(viewModel: viewModel)
         searchMoviesResultView.dataSource = dataSource
-        searchMoviesResultView.tableView.reloadData()
+        searchMoviesResultView.reloadData()
     }
 
-    private func configureView(with state: SearchMoviesResultViewState) {
-        let tableView = searchMoviesResultView.tableView
-        tableView.separatorStyle = .none
+    private func configureFooterView(with state: SearchMoviesResultViewState) {
         switch state {
         case .empty:
-            tableView.tableFooterView = FooterView(message: LocalizedStrings.emptySearchResults())
+            let footerView = FooterView(message: LocalizedStrings.emptySearchResults())
+            searchMoviesResultView.setFooterView(.custom(footerView))
         case .populated, .recentSearches:
-            tableView.tableFooterView = UIView()
-            tableView.separatorStyle = .singleLine
+            searchMoviesResultView.setFooterView(.empty)
         case .searching:
-            tableView.tableFooterView = searchMoviesResultView.loadingFooterView
+            searchMoviesResultView.setFooterView(.loading)
         case .error(let error):
-            tableView.tableFooterView = FooterView(message: error.localizedDescription)
+            let footerView = FooterView(message: error.localizedDescription)
+            searchMoviesResultView.setFooterView(.custom(footerView))
         }
     }
 
@@ -112,7 +111,7 @@ final class SearchMoviesResultController: UIViewController, Keyboardable {
     private func setupBindables() {
         viewModel.viewState.bindAndFire({ [weak self] state in
             guard let self else { return }
-            self.configureView(with: state)
+            self.configureFooterView(with: state)
             self.reloadTableView()
         }, on: .main)
         viewModel.needsRefresh.bind({ [weak self] in
