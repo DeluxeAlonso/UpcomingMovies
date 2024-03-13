@@ -65,4 +65,10 @@ final class SearchMoviesResultView: UIView {
         self.tableViewBottomConstraint = tableViewBottomConstraint
     }
 
+    // MARK: - Internal
+
+    func reloadData() {
+        tableView.reloadData()
+    }
+
 }

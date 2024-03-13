@@ -88,7 +88,7 @@ final class SearchMoviesResultController: UIViewController, Keyboardable {
     private func reloadTableView() {
         dataSource = SearchMoviesResultDataSource(viewModel: viewModel)
         searchMoviesResultView.dataSource = dataSource
-        searchMoviesResultView.tableView.reloadData()
+        searchMoviesResultView.reloadData()
     }
 
     private func configureView(with state: SearchMoviesResultViewState) {
