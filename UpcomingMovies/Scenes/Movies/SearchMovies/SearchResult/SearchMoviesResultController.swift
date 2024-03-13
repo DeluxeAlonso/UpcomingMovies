@@ -91,7 +91,7 @@ final class SearchMoviesResultController: UIViewController, Keyboardable {
         searchMoviesResultView.reloadData()
     }
 
-    private func configureView(with state: SearchMoviesResultViewState) {
+    private func configureFooterView(with state: SearchMoviesResultViewState) {
         switch state {
         case .empty:
             let footerView = FooterView(message: LocalizedStrings.emptySearchResults())
@@ -111,7 +111,7 @@ final class SearchMoviesResultController: UIViewController, Keyboardable {
     private func setupBindables() {
         viewModel.viewState.bindAndFire({ [weak self] state in
             guard let self else { return }
-            self.configureView(with: state)
+            self.configureFooterView(with: state)
             self.reloadTableView()
         }, on: .main)
         viewModel.needsRefresh.bind({ [weak self] in
