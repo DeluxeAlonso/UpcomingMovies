@@ -40,6 +40,12 @@ final class SearchMoviesResultView: UIView {
         }
     }
 
+    var delegate: SearchMoviesResultDelegate? {
+        didSet {
+            tableView.delegate = delegate
+        }
+    }
+
     // MARK: - Initializers
 
     override init(frame: CGRect) {
