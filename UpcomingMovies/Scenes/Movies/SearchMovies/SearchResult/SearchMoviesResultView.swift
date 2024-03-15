@@ -18,6 +18,10 @@ final class SearchMoviesResultView: UIView {
         tableView.estimatedRowHeight = 150
         tableView.backgroundColor = .clear
 
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = .zero
+        }
+
         return tableView
     }()
 
@@ -33,6 +37,12 @@ final class SearchMoviesResultView: UIView {
     var dataSource: SearchMoviesResultDataSource? {
         didSet {
             tableView.dataSource = dataSource
+        }
+    }
+
+    var delegate: SearchMoviesResultDelegate? {
+        didSet {
+            tableView.delegate = delegate
         }
     }
 

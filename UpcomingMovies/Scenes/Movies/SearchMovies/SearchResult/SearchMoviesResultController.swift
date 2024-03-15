@@ -81,8 +81,7 @@ final class SearchMoviesResultController: UIViewController, Keyboardable {
 
     private func setupTableView() {
         let tableView = searchMoviesResultView.tableView
-        tableView.delegate = self
-        if #available(iOS 15.0, *) { tableView.sectionHeaderTopPadding = .zero }
+        searchMoviesResultView.delegate = self
         tableView.registerNib(cellType: MovieListCell.self)
         tableView.registerNib(cellType: RecentSearchCell.self)
     }
@@ -137,7 +136,7 @@ final class SearchMoviesResultController: UIViewController, Keyboardable {
 
 // MARK: - UITableViewDelegate
 
-extension SearchMoviesResultController: UITableViewDelegate {
+extension SearchMoviesResultController: SearchMoviesResultDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
