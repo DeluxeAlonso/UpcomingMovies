@@ -28,7 +28,7 @@ final class SearchMoviesResultView: UIView {
         return footerView
     }()
 
-    var tableViewBottomConstraint: NSLayoutConstraint?
+    private var tableViewBottomConstraint: NSLayoutConstraint?
 
     var dataSource: SearchMoviesResultDataSource? {
         didSet {
@@ -82,6 +82,10 @@ final class SearchMoviesResultView: UIView {
             tableView.tableFooterView = UIView()
             tableView.separatorStyle = .singleLine
         }
+    }
+
+    func setBottomContraintConstant(_ constant: CGFloat) {
+        tableViewBottomConstraint?.constant = constant
     }
 
     // MARK: - Footer type
