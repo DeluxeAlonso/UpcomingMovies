@@ -297,6 +297,7 @@
 		E2912676250DE651007AD101 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2912675250DE651007AD101 /* DIContainer.swift */; };
 		E2916FF02639174E004D8C04 /* AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F789F72598401700002CAD /* AppExtension.swift */; };
 		E2916FF526391872004D8C04 /* AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F789F72598401700002CAD /* AppExtension.swift */; };
+		E29360C52BA41BB30044AC6B /* SearchMoviesResultDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29360C42BA41BB30044AC6B /* SearchMoviesResultDelegate.swift */; };
 		E293AD27224B38480070F783 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E293AD26224B38480070F783 /* WebKit.framework */; };
 		E29407FE2209E83600A74F68 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */; };
 		E29408002209E85000A74F68 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */; };
@@ -798,6 +799,7 @@
 		E2912671250DD20F007AD101 /* DataSourceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceAssembly.swift; sourceTree = "<group>"; };
 		E2912673250DD358007AD101 /* ProviderAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderAssembly.swift; sourceTree = "<group>"; };
 		E2912675250DE651007AD101 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		E29360C42BA41BB30044AC6B /* SearchMoviesResultDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesResultDelegate.swift; sourceTree = "<group>"; };
 		E293AD26224B38480070F783 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		E29407FF2209E85000A74F68 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
@@ -1087,6 +1089,7 @@
 				E2E518A724A9991400CC3FA5 /* SearchMoviesResultViewState.swift */,
 				E2E518A924A9993200CC3FA5 /* SearchMoviesResultSections.swift */,
 				E222B73F24D626FF00CD9EC6 /* SearchMoviesResultInteractor.swift */,
+				E29360C42BA41BB30044AC6B /* SearchMoviesResultDelegate.swift */,
 			);
 			path = SearchResult;
 			sourceTree = "<group>";
@@ -3045,6 +3048,7 @@
 				E21F37902193F36300D6BFB6 /* RecentSearchCell.swift in Sources */,
 				E2CBD95629BCE62400F1D102 /* ImageConfigurationHandlerProtocol.swift in Sources */,
 				E2D614032A1DE1D900D72A59 /* MovieDetailTitleViewModel.swift in Sources */,
+				E29360C52BA41BB30044AC6B /* SearchMoviesResultDelegate.swift in Sources */,
 				E2251B1022146A4D00EE7A51 /* SimpleViewState.swift in Sources */,
 				E226C64B21FFA099004AA771 /* UIView+Extensions.swift in Sources */,
 				E2B47516227EAFB50004F621 /* ShrinkingButton.swift in Sources */,
