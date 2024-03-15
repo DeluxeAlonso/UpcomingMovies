@@ -60,15 +60,17 @@ final class SearchMoviesResultController: UIViewController, Keyboardable {
 
     private func setupObservers() {
         registerKeyboardWillShowNotification(using: { [weak self] keyboardFrame in
-            self?.view.layoutIfNeeded()
-            self?.searchMoviesResultView.setBottomContraintConstant(-keyboardFrame.size.height)
-            self?.view.layoutIfNeeded()
+            guard let self else { return }
+            self.view.layoutIfNeeded()
+            self.searchMoviesResultView.setBottomContraintConstant(-keyboardFrame.size.height)
+            self.view.layoutIfNeeded()
         })
 
         registerKeyboardWillHideNotification(using: { [weak self] in
-            self?.view.layoutIfNeeded()
-            self?.searchMoviesResultView.setBottomContraintConstant(0)
-            self?.view.layoutIfNeeded()
+            guard let self else { return }
+            self.view.layoutIfNeeded()
+            self.searchMoviesResultView.setBottomContraintConstant(0)
+            self.view.layoutIfNeeded()
         })
     }
 
