@@ -28,7 +28,7 @@ final class SearchMoviesResultView: UIView {
         return footerView
     }()
 
-    var tableViewBottomConstraint: NSLayoutConstraint?
+    private var tableViewBottomConstraint: NSLayoutConstraint?
 
     var dataSource: SearchMoviesResultDataSource? {
         didSet {
