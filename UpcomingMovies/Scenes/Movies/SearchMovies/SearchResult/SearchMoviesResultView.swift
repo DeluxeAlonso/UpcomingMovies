@@ -84,6 +84,10 @@ final class SearchMoviesResultView: UIView {
         }
     }
 
+    func setBottomContraintConstant(_ constant: CGFloat) {
+        tableViewBottomConstraint?.constant = constant
+    }
+
     // MARK: - Footer type
 
     enum FooterType {
