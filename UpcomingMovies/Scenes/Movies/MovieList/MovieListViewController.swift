@@ -13,8 +13,8 @@ final class MovieListViewController: UIViewController, Storyboarded, Placeholder
 
     @IBOutlet private weak var tableView: UITableView!
 
-    private var dataSource: SimpleTableViewDataSource<MovieListCellViewModelProtocol>!
-    private var prefetchDataSource: TableViewDataSourcePrefetching!
+    private var dataSource: SimpleTableViewDataSource<MovieListCellViewModelProtocol>?
+    private var prefetchDataSource: TableViewDataSourcePrefetching?
     private var displayedCellsIndexPaths = Set<IndexPath>()
 
     static var storyboardName: String = "MovieList"
