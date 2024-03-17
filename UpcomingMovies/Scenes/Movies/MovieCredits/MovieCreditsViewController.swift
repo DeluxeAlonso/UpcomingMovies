@@ -15,7 +15,7 @@ final class MovieCreditsViewController: UIViewController, Storyboarded, Placehol
     static var storyboardName = "MovieDetail"
 
     private var displayedCellsIndexPaths = Set<IndexPath>()
-    private var dataSource: MovieCreditsDataSource!
+    private var dataSource: MovieCreditsDataSource?
 
     var viewModel: MovieCreditsViewModelProtocol?
     weak var coordinator: MovieCreditsCoordinatorProtocol?
