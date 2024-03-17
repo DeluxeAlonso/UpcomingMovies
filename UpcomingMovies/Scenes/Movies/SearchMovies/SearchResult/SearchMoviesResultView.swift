@@ -77,6 +77,11 @@ final class SearchMoviesResultView: UIView {
 
     // MARK: - Internal
 
+    func setupView() {
+        tableView.registerNib(cellType: MovieListCell.self)
+        tableView.registerNib(cellType: RecentSearchCell.self)
+    }
+
     func reloadData() {
         tableView.reloadData()
     }
