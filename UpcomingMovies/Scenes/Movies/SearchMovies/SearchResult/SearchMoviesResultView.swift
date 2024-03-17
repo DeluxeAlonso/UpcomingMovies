@@ -10,7 +10,7 @@ import UIKit
 
 final class SearchMoviesResultView: UIView {
 
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
