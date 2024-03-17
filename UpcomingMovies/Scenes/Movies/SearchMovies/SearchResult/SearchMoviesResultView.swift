@@ -10,7 +10,7 @@ import UIKit
 
 final class SearchMoviesResultView: UIView {
 
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -76,6 +76,11 @@ final class SearchMoviesResultView: UIView {
     }
 
     // MARK: - Internal
+
+    func setupView() {
+        tableView.registerNib(cellType: MovieListCell.self)
+        tableView.registerNib(cellType: RecentSearchCell.self)
+    }
 
     func reloadData() {
         tableView.reloadData()

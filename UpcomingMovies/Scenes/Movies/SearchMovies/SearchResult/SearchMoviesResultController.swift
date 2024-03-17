@@ -76,14 +76,8 @@ final class SearchMoviesResultController: UIViewController, Keyboardable {
 
     private func setupUI() {
         view.backgroundColor = ColorPalette.defaultBackgroundColor
-        setupTableView()
-    }
-
-    private func setupTableView() {
-        let tableView = searchMoviesResultView.tableView
+        searchMoviesResultView.setupView()
         searchMoviesResultView.delegate = self
-        tableView.registerNib(cellType: MovieListCell.self)
-        tableView.registerNib(cellType: RecentSearchCell.self)
     }
 
     private func reloadTableView() {
