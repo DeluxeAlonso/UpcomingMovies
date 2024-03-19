@@ -14,7 +14,7 @@ final class MovieDetailUIHelper: MovieDetailUIHelperProtocol, LoadingDisplayable
 
     // MARK: - LoadingDisplayable
 
-    var loaderView: LoadingView = RadarView()
+    let loaderView: LoadingView = RadarView()
 
     // MARK: - Initializers
 
