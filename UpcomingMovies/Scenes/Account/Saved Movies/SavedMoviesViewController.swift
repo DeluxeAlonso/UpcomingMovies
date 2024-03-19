@@ -10,14 +10,14 @@ import UIKit
 import CollectionViewSlantedLayout
 import UpcomingMoviesDomain
 
-class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
+final class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
 
     @IBOutlet private weak var collectionView: UICollectionView!
 
     static var storyboardName = "Account"
 
-    private var dataSource: SimpleCollectionViewDataSource<SavedMovieCellViewModelProtocol>!
-    private var prefetchDataSource: CollectionViewDataSourcePrefetching!
+    private var dataSource: SimpleCollectionViewDataSource<SavedMovieCellViewModelProtocol>?
+    private var prefetchDataSource: CollectionViewDataSourcePrefetching?
 
     var viewModel: SavedMoviesViewModelProtocol?
     weak var coordinator: SavedMoviesCoordinatorProtocol?
