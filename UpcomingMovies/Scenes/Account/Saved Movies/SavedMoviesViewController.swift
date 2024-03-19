@@ -10,7 +10,7 @@ import UIKit
 import CollectionViewSlantedLayout
 import UpcomingMoviesDomain
 
-class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
+final class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
 
     @IBOutlet private weak var collectionView: UICollectionView!
 
