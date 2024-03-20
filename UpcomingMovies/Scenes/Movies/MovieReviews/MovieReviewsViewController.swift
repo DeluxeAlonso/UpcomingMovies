@@ -15,9 +15,9 @@ final class MovieReviewsViewController: UIViewController, Storyboarded, Placehol
 
     static var storyboardName = "MovieDetail"
 
-    private var dataSource: SimpleTableViewDataSource<MovieReviewCellViewModelProtocol>!
-    private var prefetchDataSource: TableViewDataSourcePrefetching!
-    private var scaleTransitioningDelegate: ScaleTransitioningDelegate!
+    private var dataSource: SimpleTableViewDataSource<MovieReviewCellViewModelProtocol>?
+    private var prefetchDataSource: TableViewDataSourcePrefetching?
+    private var scaleTransitioningDelegate: ScaleTransitioningDelegate?
 
     var viewModel: MovieReviewsViewModelProtocol?
     weak var coordinator: MovieReviewsCoordinatorProtocol?
