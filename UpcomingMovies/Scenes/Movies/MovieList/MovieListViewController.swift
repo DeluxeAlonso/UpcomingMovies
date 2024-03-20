@@ -24,7 +24,7 @@ final class MovieListViewController: UIViewController, Storyboarded, Placeholder
 
     // MARK: - LoadingDisplayable
 
-    var loaderView: LoadingView = RadarView()
+    let loaderView: LoadingView = RadarView()
 
     // MARK: - Lifcycle
 
