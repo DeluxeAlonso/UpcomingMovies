@@ -23,7 +23,7 @@ final class MovieVideosViewController: UIViewController, Storyboarded, Placehold
 
     // MARK: - LoadingDisplayable
 
-    var loaderView: LoadingView = RadarView()
+    let loaderView: LoadingView = RadarView()
 
     // MARK: - Lifecycle
 
