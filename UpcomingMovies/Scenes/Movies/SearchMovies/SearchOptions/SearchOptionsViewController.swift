@@ -12,7 +12,7 @@ final class SearchOptionsViewController: UITableViewController, Storyboarded {
 
     static var storyboardName = "SearchMovies"
 
-    private var dataSource: SearchOptionsDataSource!
+    private var dataSource: SearchOptionsDataSource?
 
     var viewModel: SearchOptionsViewModelProtocol?
     weak var delegate: SearchOptionsViewControllerDelegate?
