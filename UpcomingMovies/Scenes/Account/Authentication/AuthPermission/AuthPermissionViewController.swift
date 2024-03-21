@@ -26,8 +26,8 @@ final class AuthPermissionViewController: UIViewController, Storyboarded {
 
     static var storyboardName = "Account"
 
-    private var estimatedProgressObserver: NSKeyValueObservation!
-    private var webViewNavigationDelegate: AuthPermissionWebViewNavigationDelegate!
+    private var estimatedProgressObserver: NSKeyValueObservation?
+    private var webViewNavigationDelegate: AuthPermissionWebViewNavigationDelegate?
 
     var viewModel: AuthPermissionViewModelProtocol?
     weak var coordinator: AuthPermissionCoordinatorProtocol?
