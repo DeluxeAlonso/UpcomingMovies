@@ -15,7 +15,7 @@ final class MovieVideosViewController: UIViewController, Storyboarded, Placehold
 
     static var storyboardName = "MovieDetail"
 
-    private var dataSource: SimpleTableViewDataSource<MovieVideoCellViewModelProtocol>!
+    private var dataSource: SimpleTableViewDataSource<MovieVideoCellViewModelProtocol>?
     private var displayedCellsIndexPaths = Set<IndexPath>()
 
     var viewModel: MovieVideosViewModelProtocol?
