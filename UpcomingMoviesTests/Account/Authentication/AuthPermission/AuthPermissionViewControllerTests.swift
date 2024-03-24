@@ -35,7 +35,7 @@ final class AuthPermissionViewControllerTests: XCTestCase {
         _ = viewController.view
         coordinator.dismissResult = ()
         // Act
-        viewController.perform(Selector("closeBarButtonAction"), with: nil)
+        viewController.perform(#selector(AuthPermissionViewController.closeBarButtonAction), with: nil)
         // Assert
         XCTAssertEqual(coordinator.dismissCallCount, 1)
         XCTAssertEqual(delegate.didReceiveAuthorizationCallCount, 1)

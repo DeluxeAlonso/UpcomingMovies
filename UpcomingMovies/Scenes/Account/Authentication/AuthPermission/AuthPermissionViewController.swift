@@ -106,7 +106,7 @@ final class AuthPermissionViewController: UIViewController, Storyboarded {
 
     // MARK: - Selectors
 
-    @objc private func closeBarButtonAction() {
+    @objc func closeBarButtonAction() {
         dismiss()
     }
 
