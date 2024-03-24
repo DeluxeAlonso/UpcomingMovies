@@ -33,7 +33,7 @@ final class MovieDetailOptionsViewControllerTests: XCTestCase {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: nil)
         movieDetailOptionView.addGestureRecognizer(tapGestureRecognizer)
         // Act
-        viewController.perform(Selector("optionAction:"), with: tapGestureRecognizer)
+        viewController.perform(#selector(MovieDetailOptionsViewController.optionAction(_:)), with: tapGestureRecognizer)
         // Assert
         XCTAssertEqual(delegate.didSelectOptionCallCount, 1)
     }
@@ -43,7 +43,7 @@ final class MovieDetailOptionsViewControllerTests: XCTestCase {
         let viewController = createSUT()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: nil)
         // Act
-        viewController.perform(Selector("optionAction:"), with: tapGestureRecognizer)
+        viewController.perform(#selector(MovieDetailOptionsViewController.optionAction(_:)), with: tapGestureRecognizer)
         // Assert
         XCTAssertEqual(delegate.didSelectOptionCallCount, 0)
     }

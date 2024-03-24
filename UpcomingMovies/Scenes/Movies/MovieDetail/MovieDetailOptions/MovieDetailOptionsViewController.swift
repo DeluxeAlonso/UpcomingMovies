@@ -48,7 +48,7 @@ final class MovieDetailOptionsViewController: UIViewController, Storyboarded {
 
     // MARK: - Selectors
 
-    @objc private func optionAction(_ sender: UITapGestureRecognizer) {
+    @objc func optionAction(_ sender: UITapGestureRecognizer) {
         guard let sender = sender.view as? MovieDetailOptionView else { return }
         let movieDetailOption = sender.option
         delegate?.movieDetailOptionsViewController(self, didSelectOption: movieDetailOption)
