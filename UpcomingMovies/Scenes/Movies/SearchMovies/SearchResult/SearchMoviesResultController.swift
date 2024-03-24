@@ -22,7 +22,7 @@ final class SearchMoviesResultController: UIViewController, Keyboardable {
     weak var delegate: SearchMoviesResultControllerDelegate?
     weak var coordinator: SearchMoviesCoordinator?
 
-    var searchMoviesResultView = SearchMoviesResultView()
+    private let searchMoviesResultView = SearchMoviesResultView()
 
     // MARK: - Initializers
 
