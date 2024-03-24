@@ -69,14 +69,15 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
         viewState.value = .searching
         interactor.saveSearchText(searchText, completion: nil)
         interactor.searchMovies(searchText: searchText,
-                                page: nil, completion: { result in
-                                    switch result {
-                                    case .success(let movies):
-                                        self.viewState.value = movies.isEmpty ? .empty : .populated(movies)
-                                    case .failure(let error):
-                                        self.viewState.value = .error(error)
-                                    }
-                                })
+                                page: nil,
+                                completion: { result in
+            switch result {
+            case .success(let movies):
+                self.viewState.value = movies.isEmpty ? .empty : .populated(movies)
+            case .failure(let error):
+                self.viewState.value = .error(error)
+            }
+        })
     }
 
     func clearMovies() {
