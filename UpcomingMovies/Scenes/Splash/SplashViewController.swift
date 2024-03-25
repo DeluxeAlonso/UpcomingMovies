@@ -13,6 +13,7 @@ final class SplashViewController: UIViewController, Storyboarded {
     static var storyboardName: String = "Main"
 
     var viewModel: SplashViewModelProtocol?
+    var navigationHandler: NavigationHandlerProtocol?
 
     // MARK: - Lifecycle
 
@@ -29,8 +30,7 @@ final class SplashViewController: UIViewController, Storyboarded {
     private func setupBindables() {
         viewModel?.initialDownloadsEnded.bind({ [weak self] in
             guard let self = self else { return }
-            let navigationHandler: NavigationHandlerProtocol = DIContainer.shared.resolve()
-            navigationHandler.initialTransition(from: self.view.window)
+            self.navigationHandler?.initialTransition(from: self.view.window)
         }, on: .main)
     }
 
