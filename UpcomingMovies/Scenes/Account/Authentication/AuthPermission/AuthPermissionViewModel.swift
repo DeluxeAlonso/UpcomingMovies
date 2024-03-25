@@ -10,7 +10,7 @@ import Foundation
 
 final class AuthPermissionViewModel: AuthPermissionViewModelProtocol {
 
-    private var authPermissionURL: URL
+    private let authPermissionURL: URL
 
     // MARK: - Initializers
 
