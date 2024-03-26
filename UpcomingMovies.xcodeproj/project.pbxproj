@@ -32,6 +32,7 @@
 		E2060333226D8C610006FB2E /* Keyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2060332226D8C610006FB2E /* Keyboardable.swift */; };
 		E20635A4226E127200FDD85E /* SearchMoviesResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20635A3226E127200FDD85E /* SearchMoviesResultView.swift */; };
 		E2066E6E284871C2009A85A0 /* MovieVideosInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2066E6D284871C2009A85A0 /* MovieVideosInteractorTests.swift */; };
+		E20712B62BB1426E00784D58 /* SplashBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20712B52BB1426E00784D58 /* SplashBuilderTests.swift */; };
 		E208FC472635238A008593D8 /* SimpleViewStateProcessable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208FC462635238A008593D8 /* SimpleViewStateProcessable.swift */; };
 		E20A39DA2ACE8A6C00C1C10E /* ProfileAccountInfoCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20A39D92ACE8A6C00C1C10E /* ProfileAccountInfoCellViewModelTests.swift */; };
 		E20B7160249C5F8B00E88439 /* SearchMoviesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20B715F249C5F8B00E88439 /* SearchMoviesCoordinator.swift */; };
@@ -533,6 +534,7 @@
 		E2060332226D8C610006FB2E /* Keyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboardable.swift; sourceTree = "<group>"; };
 		E20635A3226E127200FDD85E /* SearchMoviesResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesResultView.swift; sourceTree = "<group>"; };
 		E2066E6D284871C2009A85A0 /* MovieVideosInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideosInteractorTests.swift; sourceTree = "<group>"; };
+		E20712B52BB1426E00784D58 /* SplashBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashBuilderTests.swift; sourceTree = "<group>"; };
 		E208FC462635238A008593D8 /* SimpleViewStateProcessable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleViewStateProcessable.swift; sourceTree = "<group>"; };
 		E20A39D92ACE8A6C00C1C10E /* ProfileAccountInfoCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAccountInfoCellViewModelTests.swift; sourceTree = "<group>"; };
 		E20B715F249C5F8B00E88439 /* SearchMoviesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesCoordinator.swift; sourceTree = "<group>"; };
@@ -1164,6 +1166,14 @@
 			path = UserPreferencesHandler;
 			sourceTree = "<group>";
 		};
+		E20712B42BB1425E00784D58 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				E20712B52BB1426E00784D58 /* SplashBuilderTests.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		E208FC4C263523D0008593D8 /* SimpleViewState */ = {
 			isa = PBXGroup;
 			children = (
@@ -1346,6 +1356,7 @@
 		E221169521914E4D0039F8C9 /* UpcomingMoviesTests */ = {
 			isa = PBXGroup;
 			children = (
+				E20712B42BB1425E00784D58 /* Splash */,
 				E26578BA2A417CCB00D8A071 /* Coordinator */,
 				E2E6D1FB283CA9F700D63A23 /* Movies */,
 				E2E6D1FA283CA9AD00D63A23 /* Account */,
@@ -3253,6 +3264,7 @@
 				E2A772AC2A3C2F7D00FBD5F3 /* CustomListDetailViewModelTests.swift in Sources */,
 				E2A076612A29B02F0089062F /* MockNavigationController.swift in Sources */,
 				E2721A50284C61DA00482B65 /* MovieReviewsInteractorTests.swift in Sources */,
+				E20712B62BB1426E00784D58 /* SplashBuilderTests.swift in Sources */,
 				E243D03628B9EBEB0039D0AA /* WatchlistSavedMoviesInteractorTests.swift in Sources */,
 				E2066E6E284871C2009A85A0 /* MovieVideosInteractorTests.swift in Sources */,
 				E26578B62A40F26B00D8A071 /* SignInCoordinatorTests.swift in Sources */,
