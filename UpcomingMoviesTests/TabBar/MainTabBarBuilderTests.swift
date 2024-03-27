@@ -32,4 +32,15 @@ final class MainTabBarBuilderTests: XCTestCase {
         XCTAssertNotNil(coordinators[2] as? AccountCoordinator)
     }
 
+    func testRootCoordinatorIdentifier() {
+        // Act
+        let upcomingMoviesIdentifier = RootCoordinatorIdentifier.upcomingMovies
+        let searchMoviesIdentifier = RootCoordinatorIdentifier.searchMovies
+        let accountIdentifier = RootCoordinatorIdentifier.account
+        // Assert
+        XCTAssertEqual(upcomingMoviesIdentifier, "upcoming")
+        XCTAssertEqual(searchMoviesIdentifier, "search")
+        XCTAssertEqual(accountIdentifier, "account")
+    }
+
 }
