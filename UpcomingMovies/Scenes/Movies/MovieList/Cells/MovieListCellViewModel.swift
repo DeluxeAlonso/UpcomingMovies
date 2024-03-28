@@ -19,7 +19,7 @@ protocol MovieListCellViewModelProtocol {
 
 }
 
-final class MovieCellViewModel: MovieListCellViewModelProtocol {
+final class MovieListCellViewModel: MovieListCellViewModelProtocol {
 
     let name: String
     let genreName: String?

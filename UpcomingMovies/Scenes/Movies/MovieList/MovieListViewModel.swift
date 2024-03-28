@@ -32,7 +32,7 @@ final class MovieListViewModel: MovieListViewModelProtocol, SimpleViewStateProce
     }
 
     var movieCells: [MovieListCellViewModelProtocol] {
-        movies.compactMap { MovieCellViewModel($0) }
+        movies.compactMap { MovieListCellViewModel($0) }
     }
 
     // MARK: - Initializers
