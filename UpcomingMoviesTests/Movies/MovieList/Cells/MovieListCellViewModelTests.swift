@@ -1,5 +1,5 @@
 //
-//  MovieCellViewModelTests.swift
+//  MovieListCellViewModelTests.swift
 //  UpcomingMoviesTests
 //
 //  Created by Alonso on 27/03/24.
@@ -10,7 +10,7 @@ import XCTest
 @testable import UpcomingMovies
 import UpcomingMoviesDomain
 
-final class MovieCellViewModelTests: XCTestCase {
+final class MovieListCellViewModelTests: XCTestCase {
 
     func testName() {
         // Arrange
