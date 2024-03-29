@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UpcomingMoviesDomain
 
 protocol MovieProtocol: GenreNameable {
     var id: Int { get }
@@ -17,4 +18,12 @@ protocol MovieProtocol: GenreNameable {
     var backdropPath: String? { get }
     var releaseDate: String? { get }
     var voteAverage: Double? { get }
+}
+
+extension Movie: MovieProtocol {
+
+    var genreId: Int? {
+        genreIds?.first
+    }
+
 }
