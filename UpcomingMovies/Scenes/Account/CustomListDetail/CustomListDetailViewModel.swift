@@ -26,8 +26,8 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
         viewState.value.currentMovies
     }
 
-    var movieCells: [MovieCellViewModel] {
-        movies.map { MovieCellViewModel($0) }
+    var movieCells: [MovieListCellViewModel] {
+        movies.map { MovieListCellViewModel($0) }
     }
 
     var listName: String? {

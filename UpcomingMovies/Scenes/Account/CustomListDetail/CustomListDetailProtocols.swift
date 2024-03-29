@@ -13,7 +13,7 @@ protocol CustomListDetailViewModelProtocol {
 
     var listName: String? { get }
     var viewState: AnyBehaviorBindable<CustomListDetailViewState> { get }
-    var movieCells: [MovieCellViewModel] { get }
+    var movieCells: [MovieListCellViewModel] { get }
 
     func buildHeaderViewModel() -> CustomListDetailHeaderViewModelProtocol
     func buildSectionViewModel() -> CustomListDetailSectionViewModel

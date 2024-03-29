@@ -28,7 +28,7 @@ final class MockCustomListDetailViewModel: CustomListDetailViewModelProtocol {
 
     var viewState: AnyBehaviorBindable<CustomListDetailViewState> = BehaviorBindable<CustomListDetailViewState>(.empty).eraseToAnyBindable()
 
-    var movieCells: [MovieCellViewModel] = []
+    var movieCells: [MovieListCellViewModel] = []
 
     var buildHeaderViewModelCallCount = 0
     var buildHeaderViewModelResult = CustomListDetailHeaderViewModel(list: .with())

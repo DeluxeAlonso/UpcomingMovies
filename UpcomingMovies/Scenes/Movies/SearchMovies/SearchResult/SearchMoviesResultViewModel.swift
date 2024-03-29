@@ -30,7 +30,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
     }
 
     var movieCells: [MovieListCellViewModelProtocol] {
-        movies.compactMap { MovieCellViewModel($0)}
+        movies.compactMap { MovieListCellViewModel($0)}
     }
 
     // MARK: - Stored properties
