@@ -6,7 +6,6 @@
 //  Copyright © 2024 Alonso. All rights reserved.
 //
 
-import Foundation
 import UpcomingMoviesDomain
 
 protocol MovieProtocol: GenreNameable {
@@ -18,6 +17,8 @@ protocol MovieProtocol: GenreNameable {
     var backdropPath: String? { get }
     var releaseDate: String? { get }
     var voteAverage: Double? { get }
+    var posterURL: URL? { get }
+    var backdropURL: URL? { get }
 }
 
 extension Movie: MovieProtocol {
