@@ -8,7 +8,7 @@
 
 import UpcomingMoviesDomain
 
-protocol MovieProtocol: GenreNameable {
+protocol MovieProtocol: GenreNameable, ImageConfigurable {
     var id: Int { get }
     var title: String { get }
     var genreIds: [Int]? { get }
@@ -23,6 +23,18 @@ extension Movie: MovieProtocol {
 
     var genreId: Int? {
         genreIds?.first
+    }
+
+    var posterURL: URL? {
+        guard let posterPath = posterPath else { return nil }
+        let urlString = regularImageBaseURLString.appending(posterPath)
+        return URL(string: urlString)
+    }
+
+    var backdropURL: URL? {
+        guard let backdropPath = backdropPath else { return nil }
+        let urlString = backdropImageBaseURLString.appending(backdropPath)
+        return URL(string: urlString)
     }
 
 }
