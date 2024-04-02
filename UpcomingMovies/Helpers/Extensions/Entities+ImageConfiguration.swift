@@ -35,22 +35,6 @@ extension ImageConfigurable {
 
 }
 
-extension Movie: ImageConfigurable {
-
-    var posterURL: URL? {
-        guard let posterPath = posterPath else { return nil }
-        let urlString = regularImageBaseURLString.appending(posterPath)
-        return URL(string: urlString)
-    }
-
-    var backdropURL: URL? {
-        guard let backdropPath = backdropPath else { return nil }
-        let urlString = backdropImageBaseURLString.appending(backdropPath)
-        return URL(string: urlString)
-    }
-
-}
-
 extension Cast: ImageConfigurable {
 
     var profileURL: URL? {
