@@ -13,8 +13,6 @@ protocol MovieProtocol: GenreNameable {
     var title: String { get }
     var genreIds: [Int]? { get }
     var overview: String { get }
-    var posterPath: String? { get }
-    var backdropPath: String? { get }
     var releaseDate: String? { get }
     var voteAverage: Double? { get }
     var posterURL: URL? { get }

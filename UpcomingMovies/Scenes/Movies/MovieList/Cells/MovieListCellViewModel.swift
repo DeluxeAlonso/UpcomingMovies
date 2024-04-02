@@ -27,7 +27,7 @@ final class MovieListCellViewModel: MovieListCellViewModelProtocol {
     let posterURL: URL?
     let voteAverage: Double?
 
-    init(_ movie: Movie) {
+    init(_ movie: MovieProtocol) {
         self.name = movie.title
         self.genreName = movie.genreName
         self.releaseDate = movie.releaseDate
