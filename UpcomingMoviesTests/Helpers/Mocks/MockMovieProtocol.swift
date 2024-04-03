@@ -9,7 +9,7 @@
 import Foundation
 @testable import UpcomingMovies
 
-class MockMovieProtocol: MovieProtocol {
+final class MockMovieProtocol: MovieProtocol {
     var id: Int = 0
     var title: String = ""
     var genreIds: [Int]?
