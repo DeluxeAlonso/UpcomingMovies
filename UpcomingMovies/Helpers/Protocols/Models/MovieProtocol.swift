@@ -21,10 +21,6 @@ protocol MovieProtocol: GenreNameable, ImageConfigurable {
 
 extension Movie: MovieProtocol {
 
-    var genreId: Int? {
-        genreIds?.first
-    }
-
     var posterURL: URL? {
         guard let posterPath = posterPath else { return nil }
         let urlString = regularImageBaseURLString.appending(posterPath)
@@ -35,6 +31,18 @@ extension Movie: MovieProtocol {
         guard let backdropPath = backdropPath else { return nil }
         let urlString = backdropImageBaseURLString.appending(backdropPath)
         return URL(string: urlString)
+    }
+
+    var genreHandler: GenreHandlerProtocol {
+        DIContainer.shared.resolve()
+    }
+
+    var genreName: String {
+        guard let genreId = genreIds?.first,
+              let genreName = genreHandler.getGenreName(for: genreId) else {
+            return "-"
+        }
+        return genreName
     }
 
 }

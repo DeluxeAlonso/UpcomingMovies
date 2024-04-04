@@ -18,5 +18,6 @@ final class MockMovieProtocol: MovieProtocol {
     var voteAverage: Double?
     var posterURL: URL?
     var backdropURL: URL?
-    var genreId: Int?
+
+    var genreName: String = ""
 }
