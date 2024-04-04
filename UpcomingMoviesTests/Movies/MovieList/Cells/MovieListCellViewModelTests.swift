@@ -25,12 +25,12 @@ final class MovieListCellViewModelTests: XCTestCase {
     func testGenreName() {
         // Arrange
         let movie = MockMovieProtocol()
-        movieToTest.ge
-        let viewModel = createSUT(with: Movie.with(genreIds: [1]))
+        movie.genreName = "Action"
         // Act
+        let viewModel = createSUT(with: movie)
         let genreName = viewModel.genreName
         // Assert
-        XCTAssertEqual("-", genreName)//TODO: - Inject genre handler in MovieListCellViewModel
+        XCTAssertEqual("Action", genreName)
     }
 
     func testReleaseDate() {
