@@ -61,7 +61,7 @@ final class MovieListCellViewModelTests: XCTestCase {
         XCTAssertEqual(voteAverageToTest, voteAverage)
     }
 
-    private func createSUT(with movie: Movie) -> MovieListCellViewModel {
+    private func createSUT(with movie: MovieProtocol) -> MovieListCellViewModel {
         MovieListCellViewModel(movie)
     }
 
