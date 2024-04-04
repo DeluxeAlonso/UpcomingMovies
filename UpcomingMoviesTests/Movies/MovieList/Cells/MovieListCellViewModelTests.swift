@@ -14,12 +14,13 @@ final class MovieListCellViewModelTests: XCTestCase {
 
     func testName() {
         // Arrange
-        let titleToTest = "Title"
-        let viewModel = createSUT(with: Movie.with(title: titleToTest))
+        let movie = MockMovieProtocol()
+        movie.title = "Title"
         // Act
+        let viewModel = createSUT(with: movie)
         let title = viewModel.name
         // Assert
-        XCTAssertEqual(titleToTest, title)
+        XCTAssertEqual("Title", title)
     }
 
     func testGenreName() {
@@ -35,32 +36,35 @@ final class MovieListCellViewModelTests: XCTestCase {
 
     func testReleaseDate() {
         // Arrange
-        let releaseDateToTest = "12-12-2025"
-        let viewModel = createSUT(with: Movie.with(releaseDate: releaseDateToTest))
+        let movie = MockMovieProtocol()
+        movie.releaseDate = "12-12-2025"
         // Act
+        let viewModel = createSUT(with: movie)
         let releaseDate = viewModel.releaseDate
         // Assert
-        XCTAssertEqual(releaseDateToTest, releaseDate)
+        XCTAssertEqual("12-12-2025", releaseDate)
     }
 
     func testPosterURL() {
         // Arrange
-        let posterPathToTest = "/path"
-        let viewModel = createSUT(with: Movie.with(posterPath: posterPathToTest))
+        let movie = MockMovieProtocol()
+        movie.posterURL = URL(string: "www.google.com")
         // Act
+        let viewModel = createSUT(with: movie)
         let posterURL = viewModel.posterURL
         // Assert
-        XCTAssertEqual(URL(string: ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString + posterPathToTest), posterURL)
+        XCTAssertEqual("www.google.com", posterURL?.absoluteString)
     }
 
     func testVoteAverage() {
         // Arrange
-        let voteAverageToTest = 7.5
-        let viewModel = createSUT(with: Movie.with(voteAverage: voteAverageToTest))
+        let movie = MockMovieProtocol()
+        movie.voteAverage = 7.5
         // Act
+        let viewModel = createSUT(with: movie)
         let voteAverage = viewModel.voteAverage
         // Assert
-        XCTAssertEqual(voteAverageToTest, voteAverage)
+        XCTAssertEqual(7.5, voteAverage)
     }
 
     private func createSUT(with movie: MovieProtocol) -> MovieListCellViewModel {
