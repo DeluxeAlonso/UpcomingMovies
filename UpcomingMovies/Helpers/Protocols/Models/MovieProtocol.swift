@@ -21,10 +21,6 @@ protocol MovieProtocol: GenreNameable, ImageConfigurable {
 
 extension Movie: MovieProtocol {
 
-    var genreId: Int? {
-        genreIds?.first
-    }
-
     var posterURL: URL? {
         guard let posterPath = posterPath else { return nil }
         let urlString = regularImageBaseURLString.appending(posterPath)
@@ -42,7 +38,7 @@ extension Movie: MovieProtocol {
     }
 
     var genreName: String {
-        guard let genreId = genreId,
+        guard let genreId = genreIds?.first,
               let genreName = genreHandler.getGenreName(for: genreId) else {
             return "-"
         }
