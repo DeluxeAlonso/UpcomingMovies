@@ -24,6 +24,8 @@ final class MovieListCellViewModelTests: XCTestCase {
 
     func testGenreName() {
         // Arrange
+        let movie = MockMovieProtocol()
+        movieToTest.ge
         let viewModel = createSUT(with: Movie.with(genreIds: [1]))
         // Act
         let genreName = viewModel.genreName

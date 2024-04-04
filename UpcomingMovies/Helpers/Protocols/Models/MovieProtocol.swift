@@ -37,4 +37,16 @@ extension Movie: MovieProtocol {
         return URL(string: urlString)
     }
 
+    var genreHandler: GenreHandlerProtocol {
+        DIContainer.shared.resolve()
+    }
+
+    var genreName: String {
+        guard let genreId = genreId,
+              let genreName = genreHandler.getGenreName(for: genreId) else {
+            return "-"
+        }
+        return genreName
+    }
+
 }
