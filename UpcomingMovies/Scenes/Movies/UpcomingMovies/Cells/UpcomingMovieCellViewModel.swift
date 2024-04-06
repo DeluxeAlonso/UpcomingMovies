@@ -25,7 +25,7 @@ final class UpcomingMovieCellViewModel: UpcomingMovieCellViewModelProtocol {
     let posterURL: URL?
     let backdropURL: URL?
 
-    init(_ movie: Movie) {
+    init(_ movie: MovieProtocol) {
         title = movie.title
         releaseDate = movie.releaseDate
         posterURL = movie.posterURL
