@@ -14,25 +14,27 @@ final class UpcomingMovieCellViewModelTests: XCTestCase {
 
     func testUpcomingMovieCellPosterURL() {
         // Arrange
-        let posterPathToTest = "/poster.jpg"
-        let viewModel = createSUT(with: Movie.with(backdropPath: posterPathToTest))
+        let movie = MockMovieProtocol()
+        movie.posterURL = URL(string: "www.google.com")
         // Act
+        let viewModel = createSUT(with: movie)
         let viewModelPosterURL = viewModel.posterURL
         // Assert
-        XCTAssertEqual(viewModelPosterURL, URL(string: ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString + posterPathToTest))
+        XCTAssertEqual(viewModelPosterURL?.absoluteString, "www.google.com")
     }
 
     func testUpcomingMovieCellBackdropURL() {
         // Arrange
-        let backdropPathToTest = "/backdrop.jpg"
-        let viewModel = createSUT(with: Movie.with(backdropPath: backdropPathToTest))
+        let movie = MockMovieProtocol()
+        movie.backdropURL = URL(string: "www.google.com")
         // Act
+        let viewModel = createSUT(with: movie)
         let viewModelBackdropURL = viewModel.backdropURL
         // Assert
-        XCTAssertEqual(viewModelBackdropURL, URL(string: ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString + backdropPathToTest))
+        XCTAssertEqual(viewModelBackdropURL?.absoluteString, "www.google.com")
     }
 
-    private func createSUT(with movie: Movie) -> UpcomingMovieCellViewModel {
+    private func createSUT(with movie: MovieProtocol) -> UpcomingMovieCellViewModel {
         UpcomingMovieCellViewModel(movie)
     }
 
