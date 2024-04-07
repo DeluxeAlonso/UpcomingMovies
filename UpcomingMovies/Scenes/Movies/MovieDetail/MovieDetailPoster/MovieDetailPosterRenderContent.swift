@@ -13,7 +13,7 @@ struct MovieDetailPosterRenderContent {
     let backdropURL: URL?
     let posterURL: URL?
 
-    init(movie: Movie) {
+    init(movie: MovieProtocol) {
         self.backdropURL = movie.backdropURL
         self.posterURL = movie.posterURL
     }
