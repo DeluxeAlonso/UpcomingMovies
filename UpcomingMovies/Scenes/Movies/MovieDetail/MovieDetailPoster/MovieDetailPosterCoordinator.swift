@@ -12,11 +12,11 @@ protocol MovieDetailPosterCoordinatorProtocol: AnyObject { }
 
 final class MovieDetailPosterCoordinator: BaseCoordinator, MovieDetailPosterCoordinatorProtocol {
 
-    private let renderContent: MovieDetailPosterRenderContent?
+    private let renderContent: MovieDetailPosterRenderContentProtocol?
     private weak var delegate: MovieDetailPosterViewControllerDelegate?
 
     init(navigationController: UINavigationController,
-         renderContent: MovieDetailPosterRenderContent?,
+         renderContent: MovieDetailPosterRenderContentProtocol?,
          delegate: MovieDetailPosterViewControllerDelegate?) {
         self.renderContent = renderContent
         self.delegate = delegate

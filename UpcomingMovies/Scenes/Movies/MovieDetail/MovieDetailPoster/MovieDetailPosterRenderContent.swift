@@ -8,6 +8,13 @@
 
 import UpcomingMoviesDomain
 
+protocol MovieDetailPosterRenderContentProtocol {
+
+    var backdropURL: URL? { get }
+    var posterURL: URL? { get }
+
+}
+
 struct MovieDetailPosterRenderContent {
 
     let backdropURL: URL?
