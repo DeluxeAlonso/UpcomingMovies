@@ -39,7 +39,7 @@ final class MovieDetailPosterCoordinatorTests: XCTestCase {
 
     private func createSUT() -> MovieDetailPosterCoordinator {
         MovieDetailPosterCoordinator(navigationController: navigationController,
-                                     renderContent: .init(movie: .with()),
+                                     renderContent: .init(movie: MockMovieProtocol()),
                                      delegate: delegate)
     }
 

@@ -75,7 +75,7 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
 
     func embedMovieDetailPoster(on parentViewController: MovieDetailPosterViewControllerDelegate,
                                 in containerView: UIView,
-                                with renderContent: MovieDetailPosterRenderContentProtocol?) {
+                                with renderContent: MovieDetailPosterRenderContent?) {
         if movieDetailPosterCoordinator != nil {
             movieDetailPosterCoordinator?.dismiss()
             movieDetailPosterCoordinator = nil
