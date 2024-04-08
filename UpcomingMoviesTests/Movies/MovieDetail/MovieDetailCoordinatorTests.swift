@@ -139,7 +139,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
         let containerView = UIView()
         parentViewController.view.addSubview(containerView)
         // Act
-        coordinator.embedMovieDetailPoster(on: parentViewController, in: containerView, with: .init(movie: .with(id: 1)))
+        coordinator.embedMovieDetailPoster(on: parentViewController, in: containerView, with: .init(movie: MockMovieProtocol()))
         // Assert
         XCTAssertEqual(parentViewController.addChildCallCount, 1)
     }
