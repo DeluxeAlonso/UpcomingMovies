@@ -34,7 +34,7 @@ final class MovieDetailTitleCoordinatorTests: XCTestCase {
     }
 
     private func createSUT() -> MovieDetailTitleCoordinator {
-        MovieDetailTitleCoordinator(navigationController: navigationController, renderContent: .init(movie: .with()))
+        MovieDetailTitleCoordinator(navigationController: navigationController, renderContent: .init(movie: MockMovieProtocol()))
     }
 
 }
