@@ -15,7 +15,7 @@ struct MovieDetailTitleRenderContent {
     let voteAverage: Double?
     let genreIds: [Int]?
 
-    init(movie: Movie) {
+    init(movie: MovieProtocol) {
         self.title = movie.title
         self.releaseDate = movie.releaseDate
         self.voteAverage = movie.voteAverage
