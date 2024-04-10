@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import UIKit
 @testable import UpcomingMovies
 
 final class MovieDetailTitleCoordinatorTests: XCTestCase {
