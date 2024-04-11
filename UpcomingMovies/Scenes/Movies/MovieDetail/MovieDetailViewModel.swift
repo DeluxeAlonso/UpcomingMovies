@@ -59,7 +59,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     // MARK: - Initializers
 
-    init(_ movie: Movie,
+    init(_ movie: MovieProtocol,
          interactor: MovieDetailInteractorProtocol,
          factory: MovieDetailFactoryProtocol) {
         self.id = movie.id
@@ -87,7 +87,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     // MARK: - Private
 
-    private func setupMovie(_ movie: Movie) {
+    private func setupMovie(_ movie: MovieProtocol) {
         releaseDate = movie.releaseDate
         voteAverage = movie.voteAverage
         overview = movie.overview
