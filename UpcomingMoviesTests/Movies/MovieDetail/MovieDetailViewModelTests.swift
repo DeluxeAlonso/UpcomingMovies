@@ -30,8 +30,10 @@ final class MovieDetailViewModelTests: XCTestCase {
     func testMovieDetailTitle() {
         // Arrange
         let titleToTest = "Test 1"
-        let viewModelToTest = createSUT(with: .with(title: titleToTest))
+        let movie = MockMovieProtocol()
+        movie.title = titleToTest
         // Act
+        let viewModelToTest = createSUT(with: movie)
         let title = viewModelToTest.title
         // Assert
         XCTAssertEqual(title, titleToTest)
@@ -40,8 +42,10 @@ final class MovieDetailViewModelTests: XCTestCase {
     func testMovieDetailReleaseDate() {
         // Arrange
         let releaseDateToTest = "2019-02-01"
-        let viewModelToTest = createSUT(with: .with(releaseDate: releaseDateToTest))
+        let movie = MockMovieProtocol()
+        movie.releaseDate = releaseDateToTest
         // Act
+        let viewModelToTest = createSUT(with: movie)
         let releaseDate = viewModelToTest.releaseDate
         // Assert
         XCTAssertEqual(releaseDate, releaseDateToTest)
@@ -50,8 +54,10 @@ final class MovieDetailViewModelTests: XCTestCase {
     func testMovieDetailOverview() {
         // Arrange
         let overviewToTest = "Overview"
-        let viewModelToTest = createSUT(with: .with(overview: overviewToTest))
+        let movie = MockMovieProtocol()
+        movie.overview = overviewToTest
         // Act
+        let viewModelToTest = createSUT(with: movie)
         let overview = viewModelToTest.overview
         // Assert
         XCTAssertEqual(overview, overviewToTest)
@@ -73,7 +79,7 @@ final class MovieDetailViewModelTests: XCTestCase {
 
     func testDidSetupMovieDetailNeedsFetchFalse() {
         // Arrange
-        let viewModelToTest = createSUT(with: .with(id: 1))
+        let viewModelToTest = createSUT(with: MockMovieProtocol())
         // Act
         viewModelToTest.didSetupMovieDetail.bind { _ in
             XCTFail("didSetupMovieDetail event should not be sent")
@@ -431,7 +437,7 @@ final class MovieDetailViewModelTests: XCTestCase {
 
     // MARK: - Utils
 
-    private func createSUT(with movie: UpcomingMoviesDomain.Movie) -> MovieDetailViewModelProtocol {
+    private func createSUT(with movie: MockMovieProtocol) -> MovieDetailViewModelProtocol {
         MovieDetailViewModel(movie,
                              interactor: mockInteractor,
                              factory: mockFactory)
