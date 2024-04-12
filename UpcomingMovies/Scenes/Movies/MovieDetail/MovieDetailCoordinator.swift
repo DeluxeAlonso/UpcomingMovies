@@ -11,7 +11,7 @@ import UpcomingMoviesDomain
 
 enum MovieDetailInfo {
 
-    case complete(movie: Movie)
+    case complete(movie: MovieProtocol)
     case partial(movieId: Int, movieTitle: String)
 
 }

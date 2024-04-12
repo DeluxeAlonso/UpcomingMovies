@@ -32,8 +32,4 @@ protocol MoviesInteractorProtocol {
 
 }
 
-protocol MovieListCoordinatorProtocol: AnyObject {
-
-    func showMovieDetail(for movie: Movie)
-
-}
+protocol MovieListCoordinatorProtocol: AnyObject, MovieDetailCoordinable {}
