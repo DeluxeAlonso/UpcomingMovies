@@ -21,7 +21,7 @@ final class SavedMovieCellViewModel: SavedMovieCellViewModelProtocol {
     let title: String
     let backdropURL: URL?
 
-    init(_ favorite: Movie) {
+    init(_ favorite: MovieProtocol) {
         title = favorite.title
         backdropURL = favorite.backdropURL
     }
