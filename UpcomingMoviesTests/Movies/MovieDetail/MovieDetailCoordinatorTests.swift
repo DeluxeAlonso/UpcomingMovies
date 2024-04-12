@@ -26,7 +26,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testBuildWithCompleteMovieInfo() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         // Act
         let viewController = coordinator.build()
         // Assert
@@ -48,7 +48,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testShowSharingOptions() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         // Act
         coordinator.showSharingOptions(withShareTitle: "Title")
         // Assert
@@ -57,7 +57,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testShowActionSheet() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         // Act
         coordinator.showActionSheet(title: "Title", message: "message", actions: [.init(title: "action title", style: .default)])
         // Assert
@@ -66,7 +66,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testShowCreditsMovieOptions() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         // Act
         coordinator.showMovieOption(.credits)
         // Assert
@@ -94,7 +94,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testShowVideosMovieOptions() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         // Act
         coordinator.showMovieOption(.trailers)
         // Assert
@@ -108,7 +108,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testShowSimilarMoviesMovieOptions() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         // Act
         coordinator.showMovieOption(.similarMovies)
         // Assert
@@ -122,7 +122,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testEmbedMovieDetailPoster() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         let parentViewController = MockMovieDetailPosterViewControllerDelegate()
         let containerView = UIView()
         parentViewController.view.addSubview(containerView)
@@ -134,7 +134,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testEmbedMovieDetailPosterWithRenderContent() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         let parentViewController = MockMovieDetailPosterViewControllerDelegate()
         let containerView = UIView()
         parentViewController.view.addSubview(containerView)
@@ -146,7 +146,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testMultipleEmbedMovieDetailPosterShouldNotAddMoreThanOneChild() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         let parentViewController = MockMovieDetailPosterViewControllerDelegate()
         let containerView = UIView()
         parentViewController.view.addSubview(containerView)
@@ -161,7 +161,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testEmbedMovieDetailTitle() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         let parentViewController = MockViewController()
         let containerView = UIView()
         parentViewController.view.addSubview(containerView)
@@ -173,7 +173,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testEmbedMovieDetailTitleWithRenderContent() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         let parentViewController = MockViewController()
         let containerView = UIView()
         parentViewController.view.addSubview(containerView)
@@ -185,7 +185,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testMultipleEmbedMovieDetailTitleShouldNotAddMoreThanOneChild() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         let parentViewController = MockViewController()
         let containerView = UIView()
         parentViewController.view.addSubview(containerView)
@@ -200,7 +200,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testEmbedMovieDetailOptions() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         let parentViewController = MockMovieDetailOptionsViewControllerDelegate()
         let containerView = UIView()
         parentViewController.view.addSubview(containerView)
@@ -212,7 +212,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testEmbedMovieDetailOptionsWithRenderContent() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         let parentViewController = MockMovieDetailOptionsViewControllerDelegate()
         let containerView = UIView()
         parentViewController.view.addSubview(containerView)
@@ -224,7 +224,7 @@ final class MovieDetailCoordinatorTests: XCTestCase {
 
     func testMultipleEmbedMovieDetailOptionsShouldNotAddMoreThanOneChild() {
         // Arrange
-        let coordinator = createSUT(movieInfo: .complete(movie: .with(id: 1)))
+        let coordinator = createSUT(movieInfo: .complete(movie: MockMovieProtocol()))
         let parentViewController = MockMovieDetailOptionsViewControllerDelegate()
         let containerView = UIView()
         parentViewController.view.addSubview(containerView)
