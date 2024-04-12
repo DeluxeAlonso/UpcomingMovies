@@ -30,7 +30,7 @@ final class MovieDetailAssembly: Assembly {
                                          authHandler: authHandler)
         }
 
-        container.register(MovieDetailViewModelProtocol.self) { (resolver, movie: Movie) in
+        container.register(MovieDetailViewModelProtocol.self) { (resolver, movie: MovieProtocol) in
             guard let factory = resolver.resolve(MovieDetailFactoryProtocol.self) else {
                 fatalError("MovieDetailFactoryProtocol dependency could not be resolved")
             }
