@@ -32,8 +32,4 @@ protocol SavedMoviesInteractorProtocol {
 
 }
 
-protocol SavedMoviesCoordinatorProtocol: AnyObject {
-
-    func showMovieDetail(for movie: Movie)
-
-}
+protocol SavedMoviesCoordinatorProtocol: AnyObject, MovieDetailCoordinable {}

@@ -10,13 +10,13 @@ import UpcomingMoviesDomain
 
 protocol MovieDetailCoordinable {
 
-    func showMovieDetail(for movie: Movie)
+    func showMovieDetail(for movie: MovieProtocol)
 
 }
 
 extension MovieDetailCoordinable where Self: Coordinator {
 
-    func showMovieDetail(for movie: Movie) {
+    func showMovieDetail(for movie: MovieProtocol) {
         let movieInfo = MovieDetailInfo.complete(movie: movie)
 
         let coordinator = MovieDetailCoordinator(navigationController: navigationController, movieInfo: movieInfo)
