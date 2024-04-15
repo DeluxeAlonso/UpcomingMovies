@@ -45,8 +45,8 @@ final class MockCustomListDetailViewModel: CustomListDetailViewModelProtocol {
     }
 
     var movieAtIndexCallCount = 0
-    var movieAtIndexResult: Movie = .with()
-    func movie(at index: Int) -> Movie {
+    var movieAtIndexResult: MovieProtocol = MockMovieProtocol()
+    func movie(at index: Int) -> MovieProtocol {
         movieAtIndexCallCount += 1
         return movieAtIndexResult
     }
