@@ -51,7 +51,7 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
         CustomListDetailSectionViewModel(list: list)
     }
 
-    func movie(at index: Int) -> Movie {
+    func movie(at index: Int) -> MovieProtocol {
         movies[index]
     }
 
