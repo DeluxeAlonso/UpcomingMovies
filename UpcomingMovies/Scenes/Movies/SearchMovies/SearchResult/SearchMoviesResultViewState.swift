@@ -14,7 +14,7 @@ enum SearchMoviesResultViewState: Equatable {
     case recentSearches
     case empty
     case searching
-    case populated([Movie])
+    case populated([MovieProtocol])
     case error(Error)
 
     static func == (lhs: SearchMoviesResultViewState, rhs: SearchMoviesResultViewState) -> Bool {
@@ -26,7 +26,7 @@ enum SearchMoviesResultViewState: Equatable {
         case (.searching, .searching):
             return true
         case (.populated(let lhsMovies), .populated(let rhsMovies)):
-            return lhsMovies == rhsMovies
+            return lhsMovies.map { $0.id } == rhsMovies.map { $0.id }
         case (.error, .error):
             return true
         default:
@@ -45,7 +45,7 @@ enum SearchMoviesResultViewState: Equatable {
         }
     }
 
-    var currentSearchedMovies: [Movie] {
+    var currentSearchedMovies: [MovieProtocol] {
         switch self {
         case .populated(let entities):
             return entities
