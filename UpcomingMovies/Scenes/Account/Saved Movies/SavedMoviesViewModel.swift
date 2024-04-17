@@ -44,7 +44,7 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol, SimpleViewStateP
 
     // MARK: - SavedMoviesViewModelProtocol
 
-    func movie(at index: Int) -> Movie {
+    func movie(at index: Int) -> MovieProtocol {
         movies[index]
     }
 
