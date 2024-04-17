@@ -35,7 +35,7 @@ protocol SearchMoviesResultViewModelProtocol {
     func loadRecentSearches()
 
     func searchMovies(withSearchText searchText: String)
-    func searchedMovie(at index: Int) -> Movie
+    func searchedMovie(at index: Int) -> MovieProtocol
 
     func clearMovies()
 
@@ -45,7 +45,7 @@ protocol SearchMoviesResultInteractorProtocol {
 
     var didUpdateMovieSearches: (() -> Void)? { get set }
 
-    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
+    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[MovieProtocol], Error>) -> Void)
 
     func getMovieSearches(limit: Int?,
                           completion: @escaping (Result<[MovieSearch], Error>) -> Void)
