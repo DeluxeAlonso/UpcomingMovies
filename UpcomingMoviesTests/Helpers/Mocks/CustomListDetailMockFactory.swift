@@ -13,7 +13,7 @@ final class MockCustomListDetailInteractor: CustomListDetailInteractorProtocol {
 
     var getCustomListMoviesCallCount = 0
     var getCustomListMoviesResult: Result<[Movie], Error>?
-    func getCustomListMovies(listId: String, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func getCustomListMovies(listId: String, completion: @escaping (Result<[MovieProtocol], Error>) -> Void) {
         if let getCustomListMoviesResult {
             completion(getCustomListMoviesResult)
         }

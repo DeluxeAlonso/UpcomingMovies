@@ -124,7 +124,7 @@ final class SavedMoviesViewModelTests: XCTestCase {
 
     func testMovieIndex() {
         // Arrange
-        let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        let moviesToTest: [MovieProtocol] = [Movie.with(id: 1), Movie.with(id: 2)]
         let indexToTest = Int.random(in: 0...moviesToTest.count - 1)
         // Act
         mockInteractor.getSavedMoviesResult = Result.success(moviesToTest)

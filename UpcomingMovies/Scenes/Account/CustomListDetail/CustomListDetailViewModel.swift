@@ -22,7 +22,7 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
 
     // MARK: - Computed properties
 
-    private var movies: [Movie] {
+    private var movies: [MovieProtocol] {
         viewState.value.currentMovies
     }
 
