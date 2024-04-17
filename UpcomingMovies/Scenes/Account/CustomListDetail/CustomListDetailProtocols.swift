@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UpcomingMoviesDomain
 
 protocol CustomListDetailViewModelProtocol {
 
@@ -26,7 +25,7 @@ protocol CustomListDetailViewModelProtocol {
 
 protocol CustomListDetailInteractorProtocol {
 
-    func getCustomListMovies(listId: String, completion: @escaping (Result<[Movie], Error>) -> Void)
+    func getCustomListMovies(listId: String, completion: @escaping (Result<[MovieProtocol], Error>) -> Void)
 
 }
 

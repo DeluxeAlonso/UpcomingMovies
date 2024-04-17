@@ -131,7 +131,7 @@ final class SavedMoviesViewModelTests: XCTestCase {
         viewModelToTest.getCollectionList()
         let movie = viewModelToTest.movie(at: indexToTest)
         // Assert
-        XCTAssertEqual(movie, moviesToTest[indexToTest])
+        XCTAssertEqual(movie.id, moviesToTest[indexToTest].id)
     }
 
 }

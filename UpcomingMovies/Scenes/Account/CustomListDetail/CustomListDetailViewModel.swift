@@ -22,7 +22,7 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
 
     // MARK: - Computed properties
 
-    private var movies: [Movie] {
+    private var movies: [MovieProtocol] {
         viewState.value.currentMovies
     }
 
@@ -68,7 +68,7 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
 
     // MARK: - Private
 
-    private func processResult(_ movies: [Movie]) -> CustomListDetailViewState {
+    private func processResult(_ movies: [MovieProtocol]) -> CustomListDetailViewState {
         guard !movies.isEmpty else { return .empty }
 
         return .populated(movies)
