@@ -17,8 +17,15 @@ final class CustomListDetailInteractor: CustomListDetailInteractorProtocol {
         self.accountUseCase = accountUseCase
     }
 
-    func getCustomListMovies(listId: String, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        accountUseCase.getCustomListMovies(listId: listId, completion: completion)
+    func getCustomListMovies(listId: String, completion: @escaping (Result<[MovieProtocol], Error>) -> Void) {
+        accountUseCase.getCustomListMovies(listId: listId) { result in
+            switch result {
+            case .success(let movies):
+                completion(.success(movies))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
 }
