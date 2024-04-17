@@ -21,7 +21,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
 
     // MARK: - Computed properties
 
-    private var movies: [Movie] {
+    private var movies: [MovieProtocol] {
         viewState.value.currentSearchedMovies
     }
 
@@ -86,7 +86,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
 
     // MARK: - Movie detail builder
 
-    func searchedMovie(at index: Int) -> Movie {
+    func searchedMovie(at index: Int) -> MovieProtocol {
         movies[index]
     }
 }
