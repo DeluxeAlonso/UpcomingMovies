@@ -124,14 +124,14 @@ final class SavedMoviesViewModelTests: XCTestCase {
 
     func testMovieIndex() {
         // Arrange
-        let moviesToTest: [MovieProtocol] = [Movie.with(id: 1), Movie.with(id: 2)]
+        let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
         let indexToTest = Int.random(in: 0...moviesToTest.count - 1)
         // Act
         mockInteractor.getSavedMoviesResult = Result.success(moviesToTest)
         viewModelToTest.getCollectionList()
         let movie = viewModelToTest.movie(at: indexToTest)
         // Assert
-        XCTAssertEqual(movie, moviesToTest[indexToTest])
+        XCTAssertEqual(movie.id, moviesToTest[indexToTest].id)
     }
 
 }
