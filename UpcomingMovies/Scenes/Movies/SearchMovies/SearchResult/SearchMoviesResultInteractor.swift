@@ -27,11 +27,18 @@ final class SearchMoviesResultInteractor: SearchMoviesResultInteractorProtocol {
         }
     }
 
-    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[MovieProtocol], Error>) -> Void) {
         let includeAdult = authHandler.currentUser()?.includeAdult ?? false
         movieUseCase.searchMovies(searchText: searchText,
                                   includeAdult: includeAdult,
-                                  page: page, completion: completion)
+                                  page: page, completion: { result in
+            switch result {
+            case .success(let movies):
+                completion(.success(movies))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
     }
 
     func getMovieSearches(limit: Int? = nil,
