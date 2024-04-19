@@ -22,7 +22,7 @@ protocol MovieListViewModelProtocol {
     func getMovies()
     func refreshMovies()
 
-    func selectedMovie(at index: Int) -> Movie
+    func selectedMovie(at index: Int) -> MovieProtocol
 
 }
 
