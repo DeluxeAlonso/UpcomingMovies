@@ -52,7 +52,7 @@ final class MovieListViewModel: MovieListViewModelProtocol, SimpleViewStateProce
         self.fetchMovies(currentPage: 1, showLoader: false)
     }
 
-    func selectedMovie(at index: Int) -> Movie {
+    func selectedMovie(at index: Int) -> MovieProtocol {
         movies[index]
     }
 
