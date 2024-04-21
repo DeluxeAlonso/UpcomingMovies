@@ -46,3 +46,27 @@ extension Movie: MovieProtocol {
     }
 
 }
+
+final class AnyMovieProtocol: MovieProtocol, Equatable {
+
+    private let movie: Movie
+
+    var id: Int { movie.id }
+    var title: String { movie.title }
+    var genreIds: [Int]? { movie.genreIds }
+    var overview: String { movie.overview }
+    var releaseDate: String? { movie.releaseDate }
+    var voteAverage: Double? { movie.voteAverage }
+    var posterURL: URL? { movie.posterURL }
+    var backdropURL: URL? { movie.backdropURL }
+    var genreName: String { movie.genreName }
+
+    init(_ movie: Movie) {
+        self.movie = movie
+    }
+
+    static func == (lhs: AnyMovieProtocol, rhs: AnyMovieProtocol) -> Bool {
+        lhs.movie == rhs.movie
+    }
+
+}
