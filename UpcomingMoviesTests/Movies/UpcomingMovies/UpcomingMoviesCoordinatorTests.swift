@@ -50,7 +50,7 @@ final class UpcomingMoviesCoordinatorTests: XCTestCase {
         // Arrange
         let coordinator = createSUT()
         // Act
-        coordinator.showMovieDetail(for: .with(),
+        coordinator.showMovieDetail(for: MockMovieProtocol(),
                                     with: .init(selectedFrame: .zero, imageToTransition: .actions, transitionOffset: .leastNonzeroMagnitude))
         // Assert
         XCTAssertEqual(coordinator.unwrappedParentCoordinator.childCoordinators.count, 1)
