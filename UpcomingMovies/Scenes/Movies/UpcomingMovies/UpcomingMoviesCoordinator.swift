@@ -49,7 +49,7 @@ final class UpcomingMoviesCoordinator: BaseCoordinator, UpcomingMoviesCoordinato
         return viewController
     }
 
-    func showMovieDetail(for movie: Movie, with navigationConfiguration: UpcomingMoviesNavigationConfiguration?) {
+    func showMovieDetail(for movie: MovieProtocol, with navigationConfiguration: UpcomingMoviesNavigationConfiguration?) {
         if let navigationConfiguration = navigationConfiguration {
             configureNavigationDelegate(with: navigationConfiguration)
         }
