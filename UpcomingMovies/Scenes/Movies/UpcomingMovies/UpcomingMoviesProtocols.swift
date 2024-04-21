@@ -40,7 +40,7 @@ protocol UpcomingMoviesViewModelProtocol {
 
 protocol UpcomingMoviesCoordinatorProtocol: AnyObject {
 
-    func showMovieDetail(for movie: Movie, with navigationConfiguration: UpcomingMoviesNavigationConfiguration?)
+    func showMovieDetail(for movie: MovieProtocol, with navigationConfiguration: UpcomingMoviesNavigationConfiguration?)
 
 }
 

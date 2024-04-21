@@ -60,7 +60,7 @@ final class UpcomingMoviesViewModel: UpcomingMoviesViewModelProtocol, SimpleView
         self.fetchMovies(currentPage: 1, showLoader: false)
     }
 
-    func movie(for index: Int) -> Movie {
+    func movie(for index: Int) -> MovieProtocol {
         movies[index]
     }
 
