@@ -30,7 +30,7 @@ protocol UpcomingMoviesViewModelProtocol {
      */
     func refreshMovies()
 
-    func movie(for index: Int) -> Movie
+    func movie(for index: Int) -> MovieProtocol
 
     func getToggleBarButtonItemModel() -> ToggleBarButtonItemViewModelProtocol
 
