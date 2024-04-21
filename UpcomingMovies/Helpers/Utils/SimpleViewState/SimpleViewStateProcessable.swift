@@ -9,7 +9,7 @@
 import Foundation
 
 protocol SimpleViewStateProcessable {
-    
+
     func processResult<T>(_ entities: [T]) -> SimpleViewState<T>
     
     func processResult<T>(_ entities: [T],

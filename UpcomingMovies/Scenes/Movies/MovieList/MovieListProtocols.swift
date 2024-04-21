@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UpcomingMoviesDomain
 
 protocol MovieListViewModelProtocol {
 
@@ -27,7 +28,7 @@ protocol MovieListViewModelProtocol {
 
 protocol MoviesInteractorProtocol {
 
-    func getMovies(page: Int, completion: @escaping (Result<[MovieProtocol], Error>) -> Void)
+    func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void)
 
 }
 
