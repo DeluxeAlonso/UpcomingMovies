@@ -14,25 +14,27 @@ final class MovieReviewCellViewModelTests: XCTestCase {
 
     func testMovieReviewCellAuthorName() {
         // Arrange
-        let authorNametoTest = "Alonso"
-        let viewModel = createSUT(with: Review.with(authorName: authorNametoTest))
+        let review = MockReviewProtocol()
+        review.authorName = "Alonso"
+        let viewModel = createSUT(with: review)
         // Act
         let viewModelAuthorName = viewModel.authorName
         // Assert
-        XCTAssertEqual(viewModelAuthorName, authorNametoTest)
+        XCTAssertEqual(viewModelAuthorName, "Alonso")
     }
 
     func testMovieReviewCellContent() {
         // Arrange
-        let contentToTest = "Review content"
-        let viewModel = createSUT(with: Review.with(content: contentToTest))
+        let review = MockReviewProtocol()
+        review.content = "Review content"
+        let viewModel = createSUT(with: review)
         // Act
         let viewModelContent = viewModel.content
         // Assert
-        XCTAssertEqual(viewModelContent, contentToTest)
+        XCTAssertEqual(viewModelContent, "Review content")
     }
 
-    private func createSUT(with review: Review) -> MovieReviewCellViewModel {
+    private func createSUT(with review: ReviewProtocol) -> MovieReviewCellViewModel {
         MovieReviewCellViewModel(review)
     }
 
