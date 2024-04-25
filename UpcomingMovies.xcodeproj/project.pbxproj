@@ -299,6 +299,7 @@
 		E2912676250DE651007AD101 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2912675250DE651007AD101 /* DIContainer.swift */; };
 		E2916FF02639174E004D8C04 /* AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F789F72598401700002CAD /* AppExtension.swift */; };
 		E2916FF526391872004D8C04 /* AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F789F72598401700002CAD /* AppExtension.swift */; };
+		E292C4D82BDA08BF00D2EB9B /* MockReviewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E292C4D72BDA08BF00D2EB9B /* MockReviewProtocol.swift */; };
 		E29360C52BA41BB30044AC6B /* SearchMoviesResultDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29360C42BA41BB30044AC6B /* SearchMoviesResultDelegate.swift */; };
 		E293AD27224B38480070F783 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E293AD26224B38480070F783 /* WebKit.framework */; };
 		E29407FE2209E83600A74F68 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */; };
@@ -809,6 +810,7 @@
 		E2912671250DD20F007AD101 /* DataSourceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceAssembly.swift; sourceTree = "<group>"; };
 		E2912673250DD358007AD101 /* ProviderAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderAssembly.swift; sourceTree = "<group>"; };
 		E2912675250DE651007AD101 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		E292C4D72BDA08BF00D2EB9B /* MockReviewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReviewProtocol.swift; sourceTree = "<group>"; };
 		E29360C42BA41BB30044AC6B /* SearchMoviesResultDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesResultDelegate.swift; sourceTree = "<group>"; };
 		E293AD26224B38480070F783 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		E29407FD2209E83600A74F68 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
@@ -1720,6 +1722,7 @@
 				E2B428042A3ACC41001DE7E0 /* CustomListDetailMockFactory.swift */,
 				E26578BD2A417D0A00D8A071 /* MockCoordinator.swift */,
 				E2B2D2932BBD0A17000690AF /* MockMovieProtocol.swift */,
+				E292C4D72BDA08BF00D2EB9B /* MockReviewProtocol.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -3321,6 +3324,7 @@
 				E25DAC8F2A28676D00806501 /* MovieDetailCoordinatorTests.swift in Sources */,
 				E2ACC8B42A3E4AED007FDFC9 /* AuthPermissionViewControllerTests.swift in Sources */,
 				E2A958C82A363FFE0004FC5C /* MovieReviewDetailCoordinatorTests.swift in Sources */,
+				E292C4D82BDA08BF00D2EB9B /* MockReviewProtocol.swift in Sources */,
 				E26578BE2A417D0A00D8A071 /* MockCoordinator.swift in Sources */,
 				E2B428032A3ACB78001DE7E0 /* CustomListDetailViewControllerTests.swift in Sources */,
 				E255BD8B2841FAC00076D550 /* MovieReviewCellViewModelTests.swift in Sources */,
