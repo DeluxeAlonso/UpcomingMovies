@@ -21,7 +21,7 @@ final class MovieReviewCellViewModel: MovieReviewCellViewModelProtocol {
     let authorName: String
     let content: String
 
-    init(_ review: Review) {
+    init(_ review: ReviewProtocol) {
         self.authorName = review.authorName
         self.content = review.content
     }
