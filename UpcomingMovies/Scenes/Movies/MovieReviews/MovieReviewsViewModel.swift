@@ -22,7 +22,7 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
 
     // MARK: - Computed properties
 
-    private var reviews: [Review] {
+    private var reviews: [ReviewProtocol] {
         viewState.value.currentEntities
     }
 
@@ -51,7 +51,7 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
 
     // MARK: - MovieReviewsViewModelProtocol
 
-    func selectedReview(at index: Int) -> Review {
+    func selectedReview(at index: Int) -> ReviewProtocol {
         reviews[index]
     }
 
@@ -72,9 +72,9 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
             self.startLoading.value = false
             switch result {
             case .success(let reviews):
-                self.viewState.value = self.processResult(reviews,
+                self.viewState.value = self.processResult(reviews.map { $0.eraseToAnyReview() },
                                                           currentPage: currentPage,
-                                                          currentEntities: self.reviews)
+                                                          currentEntities: self.reviews.map { $0.eraseToAnyReview() })
             case .failure(let error):
                 self.viewState.value = .error(error)
             }

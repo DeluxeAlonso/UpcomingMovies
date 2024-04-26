@@ -27,7 +27,7 @@ final class MovieReviewsInteractorTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testGetMovieReviewssCalled() {
+    func testGetMovieReviewsCalled() {
         // Arrange
         let reviewToTest = [Review.with()]
         mockMovieUseCase.getMovieReviewsResult = .success(reviewToTest)
@@ -39,7 +39,7 @@ final class MovieReviewsInteractorTests: XCTestCase {
                 XCTFail("No valid reviews")
                 return
             }
-            XCTAssertEqual(reviews, reviewToTest)
+            XCTAssertEqual(reviews.map { $0.eraseToAnyReview() }, reviewToTest.map { $0.eraseToAnyReview() })
             expectation.fulfill()
         })
         // Assert

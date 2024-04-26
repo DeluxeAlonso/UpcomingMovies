@@ -11,10 +11,10 @@ import UpcomingMoviesDomain
 
 final class MovieReviewDetailCoordinator: BaseCoordinator, MovieReviewDetailCoordinatorProtocol {
 
-    private let review: Review
+    private let review: ReviewProtocol
     var transitioningDelegate: UIViewControllerTransitioningDelegate?
 
-    init(navigationController: UINavigationController, review: Review) {
+    init(navigationController: UINavigationController, review: ReviewProtocol) {
         self.review = review
         super.init(navigationController: navigationController)
     }

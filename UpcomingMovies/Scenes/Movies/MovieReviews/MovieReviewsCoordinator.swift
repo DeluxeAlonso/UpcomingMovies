@@ -29,7 +29,7 @@ final class MovieReviewsCoordinator: BaseCoordinator, MovieReviewsCoordinatorPro
         return viewController
     }
 
-    func showReviewDetail(for review: Review, transitionView: UIView? = nil) {
+    func showReviewDetail(for review: ReviewProtocol, transitionView: UIView? = nil) {
         guard let presentingViewController = navigationController.topViewController else { return }
 
         let coordinator = MovieReviewDetailCoordinator(navigationController: UINavigationController(), review: review)

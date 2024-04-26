@@ -16,8 +16,16 @@ final class MovieReviewsInteractor: MovieReviewsInteractorProtocol {
         self.movieUseCase = movieUseCase
     }
 
-    func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[Review], Error>) -> Void) {
-        movieUseCase.getMovieReviews(for: movieId, page: page, completion: completion)
+    func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[ReviewProtocol], Error>) -> Void) {
+        movieUseCase.getMovieReviews(for: movieId, page: page, completion: { result in
+            switch result {
+            case .success(let reviews):
+                completion(.success(reviews))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
+
     }
 
 }

@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 
 final class MovieReviewsViewModelTests: XCTestCase {
 
-    typealias MovieReviewsState = SimpleViewState<UpcomingMoviesDomain.Review>
+    typealias MovieReviewsState = SimpleViewState<AnyReviewProtocol>
 
     private var mockInteractor: MockMovieReviewsInteractor!
     private var viewModelToTest: MovieReviewsViewModelProtocol!
@@ -53,7 +53,7 @@ final class MovieReviewsViewModelTests: XCTestCase {
 
     func testGetReviewsPopulated() {
         // Arrange
-        let reviewsToTest = [Review.with(id: "1"), Review.with(id: "2")]
+        let reviewsToTest = [MockReviewProtocol(id: "1"), MockReviewProtocol(id: "2")].map { $0.eraseToAnyReview() }
         let expectation = XCTestExpectation(description: "Should get populated state")
         var statesToReceive: [MovieReviewsState] = [.paging(reviewsToTest, next: 2), .populated(reviewsToTest)]
         // Act
@@ -74,10 +74,10 @@ final class MovieReviewsViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Should get paging state")
         // Act
         viewModelToTest.viewState.bind { state in
-            XCTAssertEqual(state, .paging([Review.with(id: "1"), Review.with(id: "2")], next: 2))
+            XCTAssertEqual(state, .paging([MockReviewProtocol(id: "1"), MockReviewProtocol(id: "2")].map { $0.eraseToAnyReview() }, next: 2))
             expectation.fulfill()
         }
-        mockInteractor.getMovieReviewsResult = Result.success([Review.with(id: "1"), Review.with(id: "2")])
+        mockInteractor.getMovieReviewsResult = Result.success([MockReviewProtocol(id: "1"), MockReviewProtocol(id: "2")])
         viewModelToTest.getMovieReviews()
         // Assert
         wait(for: [expectation], timeout: 1.0)
@@ -103,10 +103,10 @@ final class MovieReviewsViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Should get paging state")
         // Act
         viewModelToTest.viewState.bind { state in
-            XCTAssertEqual(state, .paging([Review.with(id: "1"), Review.with(id: "2")], next: 2))
+            XCTAssertEqual(state, .paging([MockReviewProtocol(id: "1"), MockReviewProtocol(id: "2")].map { $0.eraseToAnyReview() }, next: 2))
             expectation.fulfill()
         }
-        mockInteractor.getMovieReviewsResult = Result.success([Review.with(id: "1"), Review.with(id: "2")])
+        mockInteractor.getMovieReviewsResult = Result.success([MockReviewProtocol(id: "1"), MockReviewProtocol(id: "2")])
         viewModelToTest.refreshMovieReviews()
         // Assert
         wait(for: [expectation], timeout: 1.0)
