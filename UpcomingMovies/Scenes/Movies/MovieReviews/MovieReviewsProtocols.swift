@@ -19,7 +19,7 @@ protocol MovieReviewsViewModelProtocol {
     var reviewCells: [MovieReviewCellViewModelProtocol] { get }
     var needsPrefetch: Bool { get }
 
-    func selectedReview(at index: Int) -> Review
+    func selectedReview(at index: Int) -> ReviewProtocol
 
     func getMovieReviews()
     func refreshMovieReviews()
@@ -29,7 +29,7 @@ protocol MovieReviewsViewModelProtocol {
 protocol MovieReviewsInteractorProtocol {
 
     func getMovieReviews(for movieId: Int, page: Int?,
-                         completion: @escaping (Result<[Review], Error>) -> Void)
+                         completion: @escaping (Result<[ReviewProtocol], Error>) -> Void)
 
 }
 
