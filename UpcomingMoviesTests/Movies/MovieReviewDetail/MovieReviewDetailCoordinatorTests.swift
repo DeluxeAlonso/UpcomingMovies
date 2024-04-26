@@ -27,7 +27,7 @@ final class MovieReviewDetailCoordinatorTests: XCTestCase {
 
     func testBuild() {
         // Arrange
-        let coordinator = createSUT(review: .with())
+        let coordinator = createSUT(review: MockReviewProtocol())
         // Act
         let viewController = coordinator.build()
         // Assert
@@ -35,7 +35,7 @@ final class MovieReviewDetailCoordinatorTests: XCTestCase {
         XCTAssertNotNil(viewController.coordinator)
     }
 
-    private func createSUT(review: Review) -> MovieReviewDetailCoordinator {
+    private func createSUT(review: ReviewProtocol) -> MovieReviewDetailCoordinator {
         MovieReviewDetailCoordinator(navigationController: navigationController, review: review)
     }
 
