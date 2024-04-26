@@ -11,8 +11,8 @@ import UpcomingMoviesDomain
 
 final class MockMovieReviewsInteractor: MovieReviewsInteractorProtocol {
 
-    var getMovieReviewsResult: Result<[Review], Error>?
-    func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[Review], Error>) -> Void) {
+    var getMovieReviewsResult: Result<[ReviewProtocol], Error>?
+    func getMovieReviews(for movieId: Int, page: Int?, completion: @escaping (Result<[ReviewProtocol], Error>) -> Void) {
         if let getMovieReviewsResult {
             completion(getMovieReviewsResult)
         }
