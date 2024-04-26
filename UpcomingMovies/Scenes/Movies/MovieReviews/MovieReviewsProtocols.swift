@@ -35,6 +35,6 @@ protocol MovieReviewsInteractorProtocol {
 
 protocol MovieReviewsCoordinatorProtocol: AnyObject {
 
-    func showReviewDetail(for review: Review, transitionView: UIView?)
+    func showReviewDetail(for review: ReviewProtocol, transitionView: UIView?)
 
 }
