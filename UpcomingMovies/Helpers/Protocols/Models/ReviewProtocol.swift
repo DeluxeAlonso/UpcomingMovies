@@ -17,27 +17,23 @@ protocol ReviewProtocol {
 }
 
 extension ReviewProtocol {
-    func eraseToAnyReview() -> AnyReviewProtocol {
-        AnyReviewProtocol(self)
+    func eraseToAnyReview() -> AnyReview {
+        AnyReview(self)
     }
 }
 
 extension Review: ReviewProtocol {}
 
-final class AnyReviewProtocol: ReviewProtocol, Equatable {
+struct AnyReview: ReviewProtocol, Equatable {
 
-    private let review: ReviewProtocol
-
-    var id: String { review.id }
-    var authorName: String { review.authorName }
-    var content: String { review.content }
+    let id: String
+    let authorName: String
+    let content: String
 
     init(_ review: ReviewProtocol) {
-        self.review = review
-    }
-
-    static func == (lhs: AnyReviewProtocol, rhs: AnyReviewProtocol) -> Bool {
-        lhs.id == rhs.id && lhs.authorName == rhs.authorName && lhs.content == rhs.content
+        self.id = review.id
+        self.authorName = review.authorName
+        self.content = review.content
     }
 
 }

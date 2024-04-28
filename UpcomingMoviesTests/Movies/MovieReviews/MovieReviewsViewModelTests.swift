@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 
 final class MovieReviewsViewModelTests: XCTestCase {
 
-    typealias MovieReviewsState = SimpleViewState<AnyReviewProtocol>
+    typealias MovieReviewsState = SimpleViewState<AnyReview>
 
     private var mockInteractor: MockMovieReviewsInteractor!
     private var viewModelToTest: MovieReviewsViewModelProtocol!
