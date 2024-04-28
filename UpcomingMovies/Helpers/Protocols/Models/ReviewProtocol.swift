@@ -17,14 +17,14 @@ protocol ReviewProtocol {
 }
 
 extension ReviewProtocol {
-    func eraseToAnyReview() -> AnyReviewProtocol {
-        AnyReviewProtocol(self)
+    func eraseToAnyReview() -> AnyReview {
+        AnyReview(self)
     }
 }
 
 extension Review: ReviewProtocol {}
 
-struct AnyReviewProtocol: ReviewProtocol, Equatable {
+struct AnyReview: ReviewProtocol, Equatable {
 
     let id: String
     let authorName: String
