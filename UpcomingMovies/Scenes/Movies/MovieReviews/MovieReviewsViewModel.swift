@@ -6,8 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
-
 final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStateProcessable {
 
     // MARK: - Dependencies
