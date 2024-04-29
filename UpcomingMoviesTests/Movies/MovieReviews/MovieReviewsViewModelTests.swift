@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 
 final class MovieReviewsViewModelTests: XCTestCase {
 
-    typealias MovieReviewsState = SimpleViewState<AnyReview>
+    typealias MovieReviewsState = SimpleViewState<ReviewProtocol>
 
     private var mockInteractor: MockMovieReviewsInteractor!
     private var viewModelToTest: MovieReviewsViewModelProtocol!
@@ -53,7 +53,7 @@ final class MovieReviewsViewModelTests: XCTestCase {
 
     func testGetReviewsPopulated() {
         // Arrange
-        let reviewsToTest = [MockReviewProtocol(id: "1"), MockReviewProtocol(id: "2")].map { $0.eraseToAnyReview() }
+        let reviewsToTest = [MockReviewProtocol(id: "1"), MockReviewProtocol(id: "2")]
         let expectation = XCTestExpectation(description: "Should get populated state")
         var statesToReceive: [MovieReviewsState] = [.paging(reviewsToTest, next: 2), .populated(reviewsToTest)]
         // Act
@@ -74,7 +74,7 @@ final class MovieReviewsViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Should get paging state")
         // Act
         viewModelToTest.viewState.bind { state in
-            XCTAssertEqual(state, .paging([MockReviewProtocol(id: "1"), MockReviewProtocol(id: "2")].map { $0.eraseToAnyReview() }, next: 2))
+            XCTAssertEqual(state, .paging([MockReviewProtocol(id: "1"), MockReviewProtocol(id: "2")], next: 2))
             expectation.fulfill()
         }
         mockInteractor.getMovieReviewsResult = Result.success([MockReviewProtocol(id: "1"), MockReviewProtocol(id: "2")])
@@ -103,7 +103,7 @@ final class MovieReviewsViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Should get paging state")
         // Act
         viewModelToTest.viewState.bind { state in
-            XCTAssertEqual(state, .paging([MockReviewProtocol(id: "1"), MockReviewProtocol(id: "2")].map { $0.eraseToAnyReview() }, next: 2))
+            XCTAssertEqual(state, .paging([MockReviewProtocol(id: "1"), MockReviewProtocol(id: "2")], next: 2))
             expectation.fulfill()
         }
         mockInteractor.getMovieReviewsResult = Result.success([MockReviewProtocol(id: "1"), MockReviewProtocol(id: "2")])
