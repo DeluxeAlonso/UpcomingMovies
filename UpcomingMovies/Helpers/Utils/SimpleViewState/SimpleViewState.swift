@@ -8,30 +8,13 @@
 
 import Foundation
 
-enum SimpleViewState<Entity>: Equatable where Entity: Equatable {
+enum SimpleViewState<Entity> {
 
     case initial
     case paging([Entity], next: Int)
     case populated([Entity])
     case empty
     case error(Error)
-
-    static func == (lhs: SimpleViewState, rhs: SimpleViewState) -> Bool {
-        switch (lhs, rhs) {
-        case (.initial, .initial):
-            return true
-        case (let .paging(lhsEntities, _), let .paging(rhsEntities, _)):
-            return lhsEntities == rhsEntities
-        case (let .populated(lhsEntities), let .populated(rhsEntities)):
-            return lhsEntities == rhsEntities
-        case (.empty, .empty):
-            return true
-        case (.error, .error):
-            return true
-        default:
-            return false
-        }
-    }
 
     var currentEntities: [Entity] {
         switch self {

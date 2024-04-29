@@ -39,7 +39,7 @@ final class MovieReviewsInteractorTests: XCTestCase {
                 XCTFail("No valid reviews")
                 return
             }
-            XCTAssertEqual(reviews.map { $0.eraseToAnyReview() }, reviewToTest.map { $0.eraseToAnyReview() })
+            XCTAssertEqual(reviews.map { $0.id }, reviewToTest.map { $0.id })
             expectation.fulfill()
         })
         // Assert
