@@ -15,10 +15,10 @@ extension SimpleViewState: Equatable {
         switch (lhs, rhs) {
         case (.initial, .initial):
             return true
-        case (let .paging(lhsEntities, _), let .paging(rhsEntities, _)):
-            return lhsEntities == rhsEntities
-        case (let .populated(lhsEntities), let .populated(rhsEntities)):
-            return lhsEntities == rhsEntities
+        case (let .paging(_, lhsNext), let .paging(_, rhsNext)):
+            return lhsNext == rhsNext
+        case (.populated, .populated):
+            return true
         case (.empty, .empty):
             return true
         case (.error, .error):
