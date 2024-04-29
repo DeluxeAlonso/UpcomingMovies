@@ -410,6 +410,7 @@
 		E2DCE7F424B12F4F0041301E /* ToggleBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DCE7F324B12F4F0041301E /* ToggleBarButtonItem.swift */; };
 		E2DCE7F724B12F940041301E /* ToggleBarButtonContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DCE7F624B12F940041301E /* ToggleBarButtonContent.swift */; };
 		E2DCE7F924B134ED0041301E /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DCE7F824B134ED0041301E /* Either.swift */; };
+		E2DE32892BDF57B00070B8E0 /* SimpleViewState+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE32882BDF57B00070B8E0 /* SimpleViewState+Extensions.swift */; };
 		E2E4452922474855009ABDEA /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E4452822474855009ABDEA /* Dictionary+Extensions.swift */; };
 		E2E4452B22474876009ABDEA /* CharacterSet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E4452A22474876009ABDEA /* CharacterSet+Extensions.swift */; };
 		E2E4452F22475533009ABDEA /* AuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E4452E22475533009ABDEA /* AuthenticationHandler.swift */; };
@@ -935,6 +936,7 @@
 		E2DCE7F324B12F4F0041301E /* ToggleBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleBarButtonItem.swift; sourceTree = "<group>"; };
 		E2DCE7F624B12F940041301E /* ToggleBarButtonContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleBarButtonContent.swift; sourceTree = "<group>"; };
 		E2DCE7F824B134ED0041301E /* Either.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
+		E2DE32882BDF57B00070B8E0 /* SimpleViewState+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewState+Extensions.swift"; sourceTree = "<group>"; };
 		E2E4452822474855009ABDEA /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		E2E4452A22474876009ABDEA /* CharacterSet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacterSet+Extensions.swift"; sourceTree = "<group>"; };
 		E2E4452E22475533009ABDEA /* AuthenticationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHandler.swift; sourceTree = "<group>"; };
@@ -1732,6 +1734,7 @@
 			children = (
 				E2554E5C24B589700043C3EB /* Mocks */,
 				E26A81282A84A796002C7029 /* TestError.swift */,
+				E2DE32882BDF57B00070B8E0 /* SimpleViewState+Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3336,6 +3339,7 @@
 				E243D03628B9EBEB0039D0AA /* WatchlistSavedMoviesInteractorTests.swift in Sources */,
 				E2066E6E284871C2009A85A0 /* MovieVideosInteractorTests.swift in Sources */,
 				E26578B62A40F26B00D8A071 /* SignInCoordinatorTests.swift in Sources */,
+				E2DE32892BDF57B00070B8E0 /* SimpleViewState+Extensions.swift in Sources */,
 				E2850D3024CBD13F0036BEAF /* SavedMoviesViewModelTests.swift in Sources */,
 				E2A958AF2A362ABC0004FC5C /* UpcomingMoviesCoordinatorTests.swift in Sources */,
 				E26578B82A40F4AE00D8A071 /* ProfileCoordinatorTests.swift in Sources */,
