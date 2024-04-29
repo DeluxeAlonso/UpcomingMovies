@@ -16,24 +16,4 @@ protocol ReviewProtocol {
 
 }
 
-extension ReviewProtocol {
-    func eraseToAnyReview() -> AnyReview {
-        AnyReview(self)
-    }
-}
-
 extension Review: ReviewProtocol {}
-
-struct AnyReview: ReviewProtocol, Equatable {
-
-    let id: String
-    let authorName: String
-    let content: String
-
-    init(_ review: ReviewProtocol) {
-        self.id = review.id
-        self.authorName = review.authorName
-        self.content = review.content
-    }
-
-}

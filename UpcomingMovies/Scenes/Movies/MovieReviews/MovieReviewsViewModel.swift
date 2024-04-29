@@ -72,9 +72,9 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
             self.startLoading.value = false
             switch result {
             case .success(let reviews):
-                self.viewState.value = self.processResult(reviews.map { $0.eraseToAnyReview() },
+                self.viewState.value = self.processResult(reviews,
                                                           currentPage: currentPage,
-                                                          currentEntities: self.reviews.map { $0.eraseToAnyReview() })
+                                                          currentEntities: self.reviews)
             case .failure(let error):
                 self.viewState.value = .error(error)
             }
