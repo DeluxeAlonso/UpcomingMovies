@@ -28,7 +28,7 @@ protocol SavedMoviesViewModelProtocol {
 
 protocol SavedMoviesInteractorProtocol {
 
-    func getSavedMovies(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void)
+    func getSavedMovies(page: Int?, completion: @escaping (Result<[MovieProtocol], Error>) -> Void)
 
 }
 
