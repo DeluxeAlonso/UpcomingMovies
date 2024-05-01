@@ -39,7 +39,7 @@ final class SavedMoviesViewModelTests: XCTestCase {
     func testGetCollectionListPopulated() {
         // Arrange
         let moviestoTest = [Movie.with(id: 1), Movie.with(id: 2)]
-        var statesToReceive: [SimpleViewState<UpcomingMoviesDomain.Movie>] = [.paging(moviestoTest, next: 2), .populated(moviestoTest)]
+        var statesToReceive: [SimpleViewState<MovieProtocol>] = [.paging(moviestoTest, next: 2), .populated(moviestoTest)]
 
         let expectation = XCTestExpectation(description: "Should get populated state after a paging state")
         // Act
