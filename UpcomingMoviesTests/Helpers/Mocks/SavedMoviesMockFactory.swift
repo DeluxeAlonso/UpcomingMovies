@@ -11,8 +11,8 @@ import UpcomingMoviesDomain
 
 final class MockSavedMoviesInteractor: SavedMoviesInteractorProtocol {
 
-    var getSavedMoviesResult: Result<[Movie], Error>?
-    func getSavedMovies(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    var getSavedMoviesResult: Result<[MovieProtocol], Error>?
+    func getSavedMovies(page: Int?, completion: @escaping (Result<[MovieProtocol], Error>) -> Void) {
         if let getSavedMoviesResult {
             completion(getSavedMoviesResult)
         }

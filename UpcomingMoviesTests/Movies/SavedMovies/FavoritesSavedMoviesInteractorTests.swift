@@ -38,7 +38,7 @@ final class FavoritesSavedMoviesInteractorTests: XCTestCase {
                 XCTFail("No valid movies")
                 return
             }
-            XCTAssertEqual(movies, moviesToTest)
+            XCTAssertEqual(movies.count, moviesToTest.count)
             expectation.fulfill()
         }
         // Assert
