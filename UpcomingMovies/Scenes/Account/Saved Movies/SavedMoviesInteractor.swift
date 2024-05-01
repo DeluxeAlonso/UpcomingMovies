@@ -16,8 +16,15 @@ final class FavoritesSavedMoviesInteractor: SavedMoviesInteractorProtocol {
         self.accountUseCase = accountUseCase
     }
 
-    func getSavedMovies(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        accountUseCase.getFavoriteList(page: page, sortBy: .createdAtDesc, completion: completion)
+    func getSavedMovies(page: Int?, completion: @escaping (Result<[MovieProtocol], Error>) -> Void) {
+        accountUseCase.getFavoriteList(page: page, sortBy: .createdAtDesc, completion: { result in
+            switch result {
+            case .success(let movies):
+                completion(.success(movies))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
     }
 
 }
@@ -30,8 +37,15 @@ final class WatchlistSavedMoviesInteractor: SavedMoviesInteractorProtocol {
         self.accountUseCase = accountUseCase
     }
 
-    func getSavedMovies(page: Int?, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        accountUseCase.getWatchlist(page: page, sortBy: .createdAtDesc, completion: completion)
+    func getSavedMovies(page: Int?, completion: @escaping (Result<[MovieProtocol], Error>) -> Void) {
+        accountUseCase.getWatchlist(page: page, sortBy: .createdAtDesc, completion: { result in
+            switch result {
+            case .success(let movies):
+                completion(.success(movies))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
     }
 
 }
