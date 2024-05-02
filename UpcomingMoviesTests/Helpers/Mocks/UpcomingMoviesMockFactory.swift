@@ -7,14 +7,14 @@
 //
 
 @testable import UpcomingMovies
-import UpcomingMoviesDomain
+import UIKit
 
 final class MockUpcomingMoviesInteractor: MoviesInteractorProtocol {
 
     var displayTitle: String = "Upcoming Movies"
 
-    var upcomingMovies: Result<[UpcomingMoviesDomain.Movie], Error>?
-    func getMovies(page: Int, completion: @escaping (Result<[UpcomingMoviesDomain.Movie], Error>) -> Void) {
+    var upcomingMovies: Result<[MovieProtocol], Error>?
+    func getMovies(page: Int, completion: @escaping (Result<[MovieProtocol], Error>) -> Void) {
         if let upcomingMovies {
             completion(upcomingMovies)
         }
