@@ -16,8 +16,15 @@ struct RecommendedMoviesInteractor: MoviesInteractorProtocol {
         self.accountUseCase = accountUseCase
     }
 
-    func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        accountUseCase.getRecommendedList(page: page, completion: completion)
+    func getMovies(page: Int, completion: @escaping (Result<[MovieProtocol], Error>) -> Void) {
+        accountUseCase.getRecommendedList(page: page, completion: { result in
+            switch result {
+            case .success(let movies):
+                completion(.success(movies))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
     }
 
 }

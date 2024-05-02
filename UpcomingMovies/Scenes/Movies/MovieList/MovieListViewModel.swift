@@ -23,7 +23,7 @@ final class MovieListViewModel: MovieListViewModelProtocol, SimpleViewStateProce
 
     // MARK: - Computed Properties
 
-    private var movies: [Movie] {
+    private var movies: [MovieProtocol] {
         viewState.value.currentEntities
     }
 

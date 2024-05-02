@@ -21,8 +21,15 @@ struct MoviesByGenreInteractor: MoviesInteractorProtocol {
         self.genreName = genreName
     }
 
-    func getMovies(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        movieUseCase.getMoviesByGenre(page: page, genreId: genreId, completion: completion)
+    func getMovies(page: Int, completion: @escaping (Result<[MovieProtocol], Error>) -> Void) {
+        movieUseCase.getMoviesByGenre(page: page, genreId: genreId, completion: { result in
+            switch result {
+            case .success(let movies):
+                completion(.success(movies))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
     }
 
 }

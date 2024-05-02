@@ -8,4 +8,4 @@
 
 import UpcomingMoviesDomain
 
-typealias UpcomingMoviesViewState = SimpleViewState<Movie>
+typealias UpcomingMoviesViewState = SimpleViewState<MovieProtocol>

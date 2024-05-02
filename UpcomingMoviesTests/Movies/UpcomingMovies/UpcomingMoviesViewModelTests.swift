@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 
 final class UpcomingMoviesViewModelTests: XCTestCase {
 
-    typealias MoviesViewState = SimpleViewState<UpcomingMoviesDomain.Movie>
+    typealias MoviesViewState = SimpleViewState<MovieProtocol>
 
     private var mockInteractor: MockUpcomingMoviesInteractor!
     private var mockFactory = MockUpcomingMoviesFactory()
@@ -35,7 +35,7 @@ final class UpcomingMoviesViewModelTests: XCTestCase {
 
     func testGetMoviesEmpty() {
         // Arrange
-        let moviesToTest: [UpcomingMoviesDomain.Movie] = []
+        let moviesToTest: [MovieProtocol] = []
         let expectation = XCTestExpectation(description: "Should get empty state")
         // Act
         viewModelToTest.viewState.bind { state in
