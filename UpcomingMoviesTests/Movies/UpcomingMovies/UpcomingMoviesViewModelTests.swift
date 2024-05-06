@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import UpcomingMovies
-import UpcomingMoviesDomain
 
 final class UpcomingMoviesViewModelTests: XCTestCase {
 
@@ -50,7 +49,7 @@ final class UpcomingMoviesViewModelTests: XCTestCase {
 
     func testGetMoviesPopulated() {
         // Arrange
-        let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        let moviesToTest = [MockMovieProtocol(id: 1), MockMovieProtocol(id: 2)]
         var statesToReceive: [MoviesViewState] = [.paging(moviesToTest, next: 2), .populated(moviesToTest)]
 
         let expectation = XCTestExpectation(description: "Should get populated state after a paging state")
@@ -69,7 +68,7 @@ final class UpcomingMoviesViewModelTests: XCTestCase {
 
     func testGetMoviesPaging() {
         // Arrange
-        let moviestoTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        let moviestoTest = [MockMovieProtocol(id: 1), MockMovieProtocol(id: 2)]
         let expectation = XCTestExpectation(description: "Should get paging state")
         // Act
         viewModelToTest.viewState.bind { state in
@@ -99,7 +98,7 @@ final class UpcomingMoviesViewModelTests: XCTestCase {
 
     func testUpcomingMovieCellPosterURL() {
         // Arrange
-        let cellViewModel = UpcomingMovieCellViewModel(Movie.with())
+        let cellViewModel = UpcomingMovieCellViewModel(MockMovieProtocol(posterURL: URL(string: "https://image.tmdb.org/t/p/w185/poster.jpg")))
         // Act
         let posterURL = cellViewModel.posterURL
         // Assert
@@ -108,7 +107,7 @@ final class UpcomingMoviesViewModelTests: XCTestCase {
 
     func testUpcomingMovieCellBackdropURL() {
         // Arrange
-        let cellViewModel = UpcomingMovieCellViewModel(Movie.with())
+        let cellViewModel = UpcomingMovieCellViewModel(MockMovieProtocol(backdropURL: URL(string: "https://image.tmdb.org/t/p/w500/backdrop.jpg")))
         // Act
         let backdropURL = cellViewModel.backdropURL
         // Assert
