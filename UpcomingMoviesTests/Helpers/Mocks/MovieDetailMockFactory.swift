@@ -36,9 +36,9 @@ final class MockMovieDetailInteractor: MovieDetailInteractorProtocol {
         findGenresCallCount += 1
     }
 
-    var getMovieDetailResult: Result<Movie, Error>?
+    var getMovieDetailResult: Result<MovieProtocol, Error>?
     private(set) var getMovieDetailCallCount = 0
-    func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void) {
+    func getMovieDetail(for movieId: Int, completion: @escaping (Result<MovieProtocol, Error>) -> Void) {
         if let getMovieDetailResult {
             completion(getMovieDetailResult)
         }

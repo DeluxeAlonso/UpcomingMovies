@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import UpcomingMovies
-import UpcomingMoviesDomain
 
 final class MovieDetailViewModelTests: XCTestCase {
 
@@ -71,7 +70,7 @@ final class MovieDetailViewModelTests: XCTestCase {
         viewModelToTest.didSetupMovieDetail.bind { _ in
             expectation.fulfill()
         }
-        mockInteractor.getMovieDetailResult = Result.success(Movie.with(id: 1))
+        mockInteractor.getMovieDetailResult = Result.success(MockMovieProtocol()(id: 1))
         viewModelToTest.getMovieDetail(showLoader: false)
         // Assert
         wait(for: [expectation], timeout: 1.0)
@@ -396,7 +395,7 @@ final class MovieDetailViewModelTests: XCTestCase {
         let viewModelToTest = createSUT(with: 1, title: "Title")
         let genreNameToTest = "GenreName"
         mockInteractor.findGenreResult = .success(.init(id: 1, name: genreNameToTest))
-        mockInteractor.getMovieDetailResult = Result.success(Movie.with(id: 1, title: "Title", genreIds: [1]))
+        mockInteractor.getMovieDetailResult = Result.success(MockMovieProtocol(id: 1, title: "Title", genreIds: [1]))
         let expectation = XCTestExpectation(description: "showGenreName event should be sent")
         viewModelToTest.showGenreName.bind { genreName in
             XCTAssertEqual(genreName, genreNameToTest)
@@ -412,7 +411,7 @@ final class MovieDetailViewModelTests: XCTestCase {
         // Arrange
         let viewModelToTest = createSUT(with: 1, title: "Title")
         mockInteractor.findGenreResult = .success(nil)
-        mockInteractor.getMovieDetailResult = Result.success(Movie.with(id: 1, title: "Title", genreIds: [1]))
+        mockInteractor.getMovieDetailResult = Result.success(MockMovieProtocol(id: 1, title: "Title", genreIds: [1]))
         let expectation = XCTestExpectation(description: "showGenreName event should be sent")
         viewModelToTest.showGenreName.bind { genreName in
             XCTAssertEqual(genreName, "-")
@@ -428,7 +427,7 @@ final class MovieDetailViewModelTests: XCTestCase {
         // Arrange
         let viewModelToTest = createSUT(with: 1, title: "Title")
         mockInteractor.findGenreResult = .success(nil)
-        mockInteractor.getMovieDetailResult = Result.success(Movie.with(id: 1, title: "Title"))
+        mockInteractor.getMovieDetailResult = Result.success(MockMovieProtocol(id: 1, title: "Title"))
         // Act
         viewModelToTest.getMovieDetail(showLoader: false)
         // Assert
