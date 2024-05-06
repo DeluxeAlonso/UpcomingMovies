@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import UpcomingMovies
+import UpcomingMoviesDomain
 
 final class MovieDetailViewModelTests: XCTestCase {
 
@@ -70,7 +71,7 @@ final class MovieDetailViewModelTests: XCTestCase {
         viewModelToTest.didSetupMovieDetail.bind { _ in
             expectation.fulfill()
         }
-        mockInteractor.getMovieDetailResult = Result.success(MockMovieProtocol()(id: 1))
+        mockInteractor.getMovieDetailResult = Result.success(MockMovieProtocol(id: 1))
         viewModelToTest.getMovieDetail(showLoader: false)
         // Assert
         wait(for: [expectation], timeout: 1.0)
