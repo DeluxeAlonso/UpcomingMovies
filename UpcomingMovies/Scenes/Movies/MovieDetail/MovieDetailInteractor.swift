@@ -53,8 +53,15 @@ final class MovieDetailInteractor: MovieDetailInteractorProtocol {
         }
     }
 
-    func getMovieDetail(for movieId: Int, completion: @escaping (Result<Movie, Error>) -> Void) {
-        movieUseCase.getMovieDetail(for: movieId, completion: completion)
+    func getMovieDetail(for movieId: Int, completion: @escaping (Result<MovieProtocol, Error>) -> Void) {
+        movieUseCase.getMovieDetail(for: movieId, completion: { result in
+            switch result {
+            case .success(let movies):
+                completion(.success(movies))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
     }
 
     func getMovieAccountState(for movieId: Int,
