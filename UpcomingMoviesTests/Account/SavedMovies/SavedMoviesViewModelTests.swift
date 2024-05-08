@@ -38,7 +38,7 @@ final class SavedMoviesViewModelTests: XCTestCase {
 
     func testGetCollectionListPopulated() {
         // Arrange
-        let moviestoTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        let moviestoTest = [MockMovieProtocol(id: 1), MockMovieProtocol(id: 2)]
         var statesToReceive: [SimpleViewState<MovieProtocol>] = [.paging(moviestoTest, next: 2), .populated(moviestoTest)]
 
         let expectation = XCTestExpectation(description: "Should get populated state after a paging state")
@@ -57,7 +57,7 @@ final class SavedMoviesViewModelTests: XCTestCase {
 
     func testGetCollectionListPaging() {
         // Arrange
-        let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        let moviesToTest = [MockMovieProtocol(id: 1), MockMovieProtocol(id: 2)]
         let expectation = XCTestExpectation(description: "Should get paging state")
         // Act
         viewModelToTest.viewState.bind { state in
@@ -102,7 +102,7 @@ final class SavedMoviesViewModelTests: XCTestCase {
 
     func testMovieCellsCount() {
         // Arrange
-        let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        let moviesToTest = [MockMovieProtocol(id: 1), MockMovieProtocol(id: 2)]
         // Act
         mockInteractor.getSavedMoviesResult = Result.success(moviesToTest)
         viewModelToTest.getCollectionList()
@@ -124,7 +124,7 @@ final class SavedMoviesViewModelTests: XCTestCase {
 
     func testMovieIndex() {
         // Arrange
-        let moviesToTest = [Movie.with(id: 1), Movie.with(id: 2)]
+        let moviesToTest = [MockMovieProtocol(id: 1), MockMovieProtocol(id: 2)]
         let indexToTest = Int.random(in: 0...moviesToTest.count - 1)
         // Act
         mockInteractor.getSavedMoviesResult = Result.success(moviesToTest)
