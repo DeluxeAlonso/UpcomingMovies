@@ -7,7 +7,6 @@
 //
 
 @testable import UpcomingMovies
-import UpcomingMoviesDomain
 import XCTest
 
 final class MovieDetailTitleViewModelTests: XCTestCase {
@@ -27,7 +26,7 @@ final class MovieDetailTitleViewModelTests: XCTestCase {
     func testMovieDetailTitle() {
         // Arrange
         let titleToTest = "Test 1"
-        let renderContent = MovieDetailTitleRenderContent(movie: Movie.with(title: titleToTest))
+        let renderContent = MovieDetailTitleRenderContent(movie: MockMovieProtocol(title: titleToTest))
         let viewModelToTest = createSUT(renderContent: renderContent)
         // Act
         let title = viewModelToTest.title
@@ -38,7 +37,7 @@ final class MovieDetailTitleViewModelTests: XCTestCase {
     func testMovieDetailSubtitle() {
         // Arrange
         let releaseDateToTest = "Release Date"
-        let renderContent = MovieDetailTitleRenderContent(movie: Movie.with(releaseDate: releaseDateToTest))
+        let renderContent = MovieDetailTitleRenderContent(movie: MockMovieProtocol(releaseDate: releaseDateToTest))
         let viewModelToTest = createSUT(renderContent: renderContent)
         // Act
         let subtitle = viewModelToTest.subtitle
@@ -49,7 +48,7 @@ final class MovieDetailTitleViewModelTests: XCTestCase {
     func testMovieDetailVoteAverage() {
         // Arrange
         let voteAverageToTest = 5.0
-        let renderContent = MovieDetailTitleRenderContent(movie: Movie.with(voteAverage: voteAverageToTest))
+        let renderContent = MovieDetailTitleRenderContent(movie: MockMovieProtocol(voteAverage: voteAverageToTest))
         let viewModelToTest = createSUT(renderContent: renderContent)
         // Act
         let voteAverage = viewModelToTest.voteAverage
@@ -60,7 +59,7 @@ final class MovieDetailTitleViewModelTests: XCTestCase {
     func testMovieDetailGenreIds() {
         // Arrange
         let genreIdsToTest = [1, 2, 3]
-        let renderContent = MovieDetailTitleRenderContent(movie: Movie.with(genreIds: genreIdsToTest))
+        let renderContent = MovieDetailTitleRenderContent(movie: MockMovieProtocol(genreIds: genreIdsToTest))
         let viewModelToTest = createSUT(renderContent: renderContent)
         // Act
         let genreIds = viewModelToTest.genreIds
