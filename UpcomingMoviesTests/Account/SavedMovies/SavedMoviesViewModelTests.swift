@@ -72,7 +72,7 @@ final class SavedMoviesViewModelTests: XCTestCase {
 
     func testGetCollectionListEmpty() {
         // Arrange
-        let moviesToTest: [UpcomingMoviesDomain.Movie] = []
+        let moviesToTest: [MovieProtocol] = []
         let expectation = XCTestExpectation(description: "Should get empty state")
         // Act
         viewModelToTest.viewState.bind { state in
@@ -113,7 +113,7 @@ final class SavedMoviesViewModelTests: XCTestCase {
 
     func testMovieCellsZeroCount() {
         // Arrange
-        let moviesToTest: [UpcomingMoviesDomain.Movie] = []
+        let moviesToTest: [MovieProtocol] = []
         // Act
         mockInteractor.getSavedMoviesResult = Result.success(moviesToTest)
         viewModelToTest.getCollectionList()
