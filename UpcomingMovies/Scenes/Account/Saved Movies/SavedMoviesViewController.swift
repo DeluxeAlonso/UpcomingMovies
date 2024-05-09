@@ -8,7 +8,6 @@
 
 import UIKit
 import CollectionViewSlantedLayout
-import UpcomingMoviesDomain
 
 final class SavedMoviesViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
 
