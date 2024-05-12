@@ -14,24 +14,24 @@ final class MovieDetailPosterViewModelTests: XCTestCase {
 
     func testMovieDetailBackdropURL() {
         // Arrange
-        let backdropPathToTest = "pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"
-        let renderContent = MovieDetailPosterRenderContent(movie: Movie.with(backdropPath: backdropPathToTest))
+        let movie = MockMovieProtocol(backdropURL: URL(string: "https://image.tmdb.org/t/p/w500/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
+        let renderContent = MovieDetailPosterRenderContent(movie: movie)
         let viewModelToTest = createSUT(renderContent: renderContent)
         // Act
         let backdropURL = viewModelToTest.backdropURL
         // Assert
-        XCTAssertEqual(backdropURL, URL(string: ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString + backdropPathToTest))
+        XCTAssertEqual(backdropURL, URL(string: "https://image.tmdb.org/t/p/w500/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
     }
 
     func testMovieDetailPosterURL() {
         // Arrange
-        let posterPathToTest = "pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"
-        let renderContent = MovieDetailPosterRenderContent(movie: Movie.with(posterPath: posterPathToTest))
+        let movie = MockMovieProtocol(posterURL: URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
+        let renderContent = MovieDetailPosterRenderContent(movie: movie)
         let viewModelToTest = createSUT(renderContent: renderContent)
         // Act
         let posterURL = viewModelToTest.posterURL
         // Assert
-        XCTAssertEqual(posterURL, URL(string: ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString + posterPathToTest))
+        XCTAssertEqual(posterURL, URL(string: "https://image.tmdb.org/t/p/w185/pEFRzXtLmxYNjGd0XqJDHPDFKB2.jpg"))
     }
 
     private func createSUT(renderContent: MovieDetailPosterRenderContent) -> MovieDetailPosterViewModel {
