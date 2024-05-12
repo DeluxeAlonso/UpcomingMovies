@@ -6,8 +6,6 @@
 //  Copyright © 2023 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
-
 struct MovieDetailTitleRenderContent {
 
     let title: String
