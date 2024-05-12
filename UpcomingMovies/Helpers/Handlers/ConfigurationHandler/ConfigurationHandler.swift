@@ -16,11 +16,11 @@ final class ConfigurationHandler: ConfigurationHandlerProtocol {
     // MARK: - ConfigurationHandlerProtocol
 
     var regularImageBaseURLString: String {
-        return imageConfiguration?.regularImageBaseURLString ?? ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString
+        imageConfiguration?.regularImageBaseURLString ?? ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString
     }
 
     var backdropImageBaseURLString: String {
-        return imageConfiguration?.backdropImageBaseURLString ??  ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
+        imageConfiguration?.backdropImageBaseURLString ??  ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
     }
 
     var avatarImageBaseURLString: String? {
