@@ -16,16 +16,10 @@ final class ConfigurationHandler: ConfigurationHandlerProtocol {
     // MARK: - ConfigurationHandlerProtocol
 
     var regularImageBaseURLString: String {
-        guard !isTesting() else {
-            return ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString
-        }
         return imageConfiguration?.regularImageBaseURLString ?? ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString
     }
 
     var backdropImageBaseURLString: String {
-        guard !isTesting() else {
-            return ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
-        }
         return imageConfiguration?.backdropImageBaseURLString ??  ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
     }
 
@@ -36,12 +30,4 @@ final class ConfigurationHandler: ConfigurationHandlerProtocol {
     func setConfiguration(_ configuration: Configuration) {
         self.imageConfiguration = ImageConfigurationHandler(configuration: configuration)
     }
-
-    // MARK: - XCTest
-
-    // TODO: - Remove this when not necessary
-    private func isTesting() -> Bool {
-        NSClassFromString("XCTest") != nil
-    }
-
 }
