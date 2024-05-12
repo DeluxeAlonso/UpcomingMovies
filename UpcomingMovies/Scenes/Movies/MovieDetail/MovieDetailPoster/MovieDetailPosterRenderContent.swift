@@ -6,7 +6,7 @@
 //  Copyright © 2023 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
+import Foundation
 
 struct MovieDetailPosterRenderContent {
 
