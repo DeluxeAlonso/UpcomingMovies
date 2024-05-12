@@ -7,7 +7,6 @@
 //
 
 @testable import UpcomingMovies
-import UpcomingMoviesDomain
 import XCTest
 
 final class MovieDetailPosterViewModelTests: XCTestCase {
