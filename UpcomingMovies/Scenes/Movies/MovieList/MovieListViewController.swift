@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UpcomingMoviesDomain
 
 final class MovieListViewController: UIViewController, Storyboarded, PlaceholderDisplayable, LoadingDisplayable {
 
