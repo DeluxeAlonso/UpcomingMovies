@@ -16,11 +16,17 @@ final class ConfigurationHandler: ConfigurationHandlerProtocol {
     // MARK: - ConfigurationHandlerProtocol
 
     var regularImageBaseURLString: String {
-        imageConfiguration?.regularImageBaseURLString ?? ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString
+//        guard !isTesting() else {
+//            return ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString
+//        }
+        return imageConfiguration?.regularImageBaseURLString ?? ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString
     }
 
     var backdropImageBaseURLString: String {
-        imageConfiguration?.backdropImageBaseURLString ??  ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
+//        guard !isTesting() else {
+//            return ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
+//        }
+        return imageConfiguration?.backdropImageBaseURLString ??  ImageConfigurationHandler.Constants.defaultBackdropImageBaseURLString
     }
 
     var avatarImageBaseURLString: String? {
@@ -30,4 +36,5 @@ final class ConfigurationHandler: ConfigurationHandlerProtocol {
     func setConfiguration(_ configuration: Configuration) {
         self.imageConfiguration = ImageConfigurationHandler(configuration: configuration)
     }
+
 }

@@ -35,16 +35,6 @@ extension ImageConfigurable {
 
 }
 
-extension Cast: ImageConfigurable {
-
-    var profileURL: URL? {
-        guard let photoPath = photoPath else { return nil }
-        let urlString = regularImageBaseURLString.appending(photoPath)
-        return URL(string: urlString)
-    }
-
-}
-
 extension Crew: ImageConfigurable {
 
     var profileURL: URL? {
