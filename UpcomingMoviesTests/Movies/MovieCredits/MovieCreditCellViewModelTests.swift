@@ -34,12 +34,12 @@ final class MovieCreditCellViewModelTests: XCTestCase {
 
     func testProfileURLForCreditModelCreatedWithCast() {
         // Arrange
-        let photoPathToTest = "/path"
-        let viewModel = createSUT(with: Cast.with(photoPath: photoPathToTest))
+        let cast = MockCastProtocol(profileURL: URL(string: "https://image.tmdb.org/t/p/w185/path"))
+        let viewModel = createSUT(with: cast)
         // Act
         let viewModelProfileURL = viewModel.profileURL
         // Assert
-        XCTAssertEqual(URL(string: ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString + photoPathToTest), viewModelProfileURL)
+        XCTAssertEqual(URL(string: "https://image.tmdb.org/t/p/w185/path"), viewModelProfileURL)
     }
 
     func testNameForCreditModelCreatedWithCrew() {
@@ -64,19 +64,19 @@ final class MovieCreditCellViewModelTests: XCTestCase {
 
     func testProfileURLForCreditModelCreatedWithCrew() {
         // Arrange
-        let photoPathToTest = "/path"
-        let viewModel = createSUT(with: Crew.with(photoPath: photoPathToTest))
+        let crew = MockCrewProtocol(profileURL: URL(string: "https://image.tmdb.org/t/p/w185/path"))
+        let viewModel = createSUT(with: crew)
         // Act
         let viewModelProfileURL = viewModel.profileURL
         // Assert
-        XCTAssertEqual(URL(string: ImageConfigurationHandler.Constants.defaultRegularImageBaseURLString + photoPathToTest), viewModelProfileURL)
+        XCTAssertEqual(URL(string: "https://image.tmdb.org/t/p/w185/path"), viewModelProfileURL)
     }
 
-    private func createSUT(with cast: Cast) -> MovieCreditCellViewModel {
+    private func createSUT(with cast: CastProtocol) -> MovieCreditCellViewModel {
         MovieCreditCellViewModel(cast: cast)
     }
 
-    private func createSUT(with crew: Crew) -> MovieCreditCellViewModel {
+    private func createSUT(with crew: CrewProtocol) -> MovieCreditCellViewModel {
         MovieCreditCellViewModel(crew: crew)
     }
 
