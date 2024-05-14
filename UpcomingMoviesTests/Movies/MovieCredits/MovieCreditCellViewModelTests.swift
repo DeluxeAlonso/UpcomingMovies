@@ -14,22 +14,22 @@ final class MovieCreditCellViewModelTests: XCTestCase {
 
     func testNameForCreditModelCreatedWithCast() {
         // Arrange
-        let nameToTest = "Alonso"
-        let viewModel = createSUT(with: Cast.with(name: nameToTest))
+        let cast = MockCastProtocol(name: "Alonso")
+        let viewModel = createSUT(with: cast)
         // Act
         let viewModelName = viewModel.name
         // Assert
-        XCTAssertEqual(nameToTest, viewModelName)
+        XCTAssertEqual("Alonso", viewModelName)
     }
 
     func testRoleForCreditModelCreatedWithCast() {
         // Arrange
-        let characterToTest = "Villain"
-        let viewModel = createSUT(with: Cast.with(character: characterToTest))
+        let cast = MockCastProtocol(character: "Villain")
+        let viewModel = createSUT(with: cast)
         // Act
         let viewModelRole = viewModel.role
         // Assert
-        XCTAssertEqual(characterToTest, viewModelRole)
+        XCTAssertEqual("Villain", viewModelRole)
     }
 
     func testProfileURLForCreditModelCreatedWithCast() {
@@ -44,22 +44,22 @@ final class MovieCreditCellViewModelTests: XCTestCase {
 
     func testNameForCreditModelCreatedWithCrew() {
         // Arrange
-        let nameToTest = "Alonso"
-        let viewModel = createSUT(with: Crew.with(name: nameToTest))
+        let crew = MockCrewProtocol(name: "Villain")
+        let viewModel = createSUT(with: crew)
         // Act
         let viewModelName = viewModel.name
         // Assert
-        XCTAssertEqual(nameToTest, viewModelName)
+        XCTAssertEqual("Villain", viewModelName)
     }
 
     func testRoleForCreditModelCreatedWithCrew() {
         // Arrange
-        let jobToTest = "Assistant"
-        let viewModel = createSUT(with: Crew.with(job: jobToTest))
+        let crew = MockCrewProtocol(job: "Assistant")
+        let viewModel = createSUT(with: crew)
         // Act
         let viewModelRole = viewModel.role
         // Assert
-        XCTAssertEqual(jobToTest, viewModelRole)
+        XCTAssertEqual("Assistant", viewModelRole)
     }
 
     func testProfileURLForCreditModelCreatedWithCrew() {
