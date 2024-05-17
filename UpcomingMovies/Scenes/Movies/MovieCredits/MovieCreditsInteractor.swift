@@ -18,8 +18,15 @@ final class MovieCreditsInteractor: MovieCreditsInteractorProtocol {
     }
 
     func getMovieCredits(for movieId: Int, page: Int?,
-                         completion: @escaping (Result<MovieCredits, Error>) -> Void) {
-        movieUseCase.getMovieCredits(for: movieId, page: page, completion: completion)
+                         completion: @escaping (Result<MovieCreditsProtocol, Error>) -> Void) {
+        movieUseCase.getMovieCredits(for: movieId, page: page, completion: { result in
+            switch result {
+            case .success(let credits):
+                completion(.success(credits))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
     }
 
 }
