@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UpcomingMoviesDomain
 
 final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
 
@@ -92,9 +91,9 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
 
     // MARK: - Private
 
-    private func processResult(_ movieCredits: MovieCredits) -> MovieCreditsViewState {
-        let fetchedCast = movieCredits.cast
-        let fetchedCrew = movieCredits.crew
+    private func processResult(_ movieCredits: MovieCreditsProtocol) -> MovieCreditsViewState {
+        let fetchedCast = movieCredits.creditCast
+        let fetchedCrew = movieCredits.creditCrew
         if fetchedCast.isEmpty && fetchedCrew.isEmpty {
             return .empty
         } else {

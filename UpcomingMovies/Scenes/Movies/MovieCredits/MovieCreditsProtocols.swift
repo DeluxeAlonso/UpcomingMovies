@@ -31,7 +31,7 @@ protocol MovieCreditsViewModelProtocol {
 protocol MovieCreditsInteractorProtocol {
 
     func getMovieCredits(for movieId: Int, page: Int?,
-                         completion: @escaping (Result<MovieCredits, Error>) -> Void)
+                         completion: @escaping (Result<MovieCreditsProtocol, Error>) -> Void)
 
 }
 
