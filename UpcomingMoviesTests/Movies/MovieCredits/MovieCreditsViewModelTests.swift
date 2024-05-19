@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import UpcomingMovies
-import UpcomingMoviesDomain
 
 final class MovieCreditsViewModelTests: XCTestCase {
 
@@ -47,7 +46,7 @@ final class MovieCreditsViewModelTests: XCTestCase {
             XCTAssertEqual(state, .empty)
             expectation.fulfill()
         }
-        mockInteractor.getMovieCreditsResult = Result.success(MovieCredits.withEmptyValues())
+        mockInteractor.getMovieCreditsResult = Result.success(MockMovieCreditsProtocol(creditCast: [], creditCrew: []))
         viewModelToTest.getMovieCredits(showLoader: false)
         // Assert
         wait(for: [expectation], timeout: 1.0)
