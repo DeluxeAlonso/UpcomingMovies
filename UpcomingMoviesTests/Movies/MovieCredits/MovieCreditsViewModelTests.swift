@@ -58,10 +58,11 @@ final class MovieCreditsViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Should get populated state")
         // Act
         viewModelToTest.viewState.bind { state in
-            XCTAssertEqual(state, .populated([MockCastProtocol()], [MockCrewProtocol()]))
+            XCTAssertEqual(state, .populated([MockCastProtocol(id: 1)], [MockCrewProtocol(id: 1)]))
             expectation.fulfill()
         }
-        mockInteractor.getMovieCreditsResult = Result.success(MovieCredits.with())
+        let movieCredits = MockMovieCreditsProtocol(creditCast: [MockCastProtocol(id: 1)], creditCrew: [MockCrewProtocol(id: 1)])
+        mockInteractor.getMovieCreditsResult = Result.success(movieCredits)
         viewModelToTest.getMovieCredits(showLoader: false)
         // Assert
         wait(for: [expectation], timeout: 1.0)
@@ -105,7 +106,7 @@ final class MovieCreditsViewModelTests: XCTestCase {
 
         let castToTest = [MockCastProtocol()]
         let crewToTest = [MockCrewProtocol()]
-        let movieCreditsToTest = MovieCredits(cast: castToTest, crew: crewToTest)
+        let movieCreditsToTest = MockMovieCreditsProtocol(creditCast: castToTest, creditCrew: crewToTest)
         mockInteractor.getMovieCreditsResult = Result.success(movieCreditsToTest)
         // Act
         viewModelToTest.getMovieCredits(showLoader: false)
@@ -124,7 +125,7 @@ final class MovieCreditsViewModelTests: XCTestCase {
 
         let castToTest = [MockCastProtocol()]
         let crewToTest = [MockCrewProtocol()]
-        let movieCreditsToTest = MovieCredits(cast: castToTest, crew: crewToTest)
+        let movieCreditsToTest = MockMovieCreditsProtocol(creditCast: castToTest, creditCrew: crewToTest)
         mockInteractor.getMovieCreditsResult = Result.success(movieCreditsToTest)
         // Act
         viewModelToTest.getMovieCredits(showLoader: false)

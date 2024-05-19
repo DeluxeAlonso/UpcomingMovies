@@ -15,7 +15,7 @@ final class MockMovieCreditsProtocol: MovieCreditsProtocol {
     var creditCrew: [CrewProtocol] = []
 
     init(creditCast: [CastProtocol] = [],
-                  creditCrew: [CrewProtocol] = []) {
+         creditCrew: [CrewProtocol] = []) {
         self.creditCast = creditCast
         self.creditCrew = creditCrew
     }
