@@ -395,6 +395,7 @@
 		E2C44C1F2616C6D0004B9C9B /* ToastFailureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C44C1E2616C6D0004B9C9B /* ToastFailureConfiguration.swift */; };
 		E2C9C0DC26425AF100DDD067 /* MovieDetailOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9C0DB26425AF000DDD067 /* MovieDetailOptionView.swift */; };
 		E2CA10F92BF970FD00446711 /* VideoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA10F82BF970FD00446711 /* VideoProtocol.swift */; };
+		E2CA10FB2BF995F100446711 /* MockMovieCreditsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA10FA2BF995F100446711 /* MockMovieCreditsProtocol.swift */; };
 		E2CBD95629BCE62400F1D102 /* ImageConfigurationHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBD95529BCE62400F1D102 /* ImageConfigurationHandlerProtocol.swift */; };
 		E2CF112124A7F2C10048AFC0 /* CustomListsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF112024A7F2C10048AFC0 /* CustomListsCoordinator.swift */; };
 		E2CF112324A7F4D60048AFC0 /* CustomListDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF112224A7F4D60048AFC0 /* CustomListDetailCoordinator.swift */; };
@@ -918,6 +919,7 @@
 		E2C44C1E2616C6D0004B9C9B /* ToastFailureConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastFailureConfiguration.swift; sourceTree = "<group>"; };
 		E2C9C0DB26425AF000DDD067 /* MovieDetailOptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailOptionView.swift; sourceTree = "<group>"; };
 		E2CA10F82BF970FD00446711 /* VideoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProtocol.swift; sourceTree = "<group>"; };
+		E2CA10FA2BF995F100446711 /* MockMovieCreditsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMovieCreditsProtocol.swift; sourceTree = "<group>"; };
 		E2CBD95529BCE62400F1D102 /* ImageConfigurationHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConfigurationHandlerProtocol.swift; sourceTree = "<group>"; };
 		E2CF112024A7F2C10048AFC0 /* CustomListsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListsCoordinator.swift; sourceTree = "<group>"; };
 		E2CF112224A7F4D60048AFC0 /* CustomListDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailCoordinator.swift; sourceTree = "<group>"; };
@@ -1739,6 +1741,7 @@
 				E292C4D72BDA08BF00D2EB9B /* MockReviewProtocol.swift */,
 				E2A750F42BF1D618007A194C /* MockCastProtocol.swift */,
 				E2A750F62BF1D9FE007A194C /* MockCrewProtocol.swift */,
+				E2CA10FA2BF995F100446711 /* MockMovieCreditsProtocol.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -3321,6 +3324,7 @@
 				E29B74C7298A4A08001801D5 /* ProfileFactoryTests.swift in Sources */,
 				E2554E5E24B5898C0043C3EB /* UpcomingMoviesMockFactory.swift in Sources */,
 				E2EAEC5024CFC67100D89F04 /* CustomListsViewModelTests.swift in Sources */,
+				E2CA10FB2BF995F100446711 /* MockMovieCreditsProtocol.swift in Sources */,
 				E2C1D3FA2A2D999900D0670C /* MockViewController.swift in Sources */,
 				E2E9A78F2BB3CC14007469B7 /* MainTabBarBuilderTests.swift in Sources */,
 				E235676B2A5E7202001D2500 /* ProfileInteractorTests.swift in Sources */,
