@@ -20,7 +20,7 @@ final class AuthenticationHandler: AuthenticationHandlerProtocol {
         self.userUseCase = userUseCase
     }
 
-    // MARK: - Authentitacion Persistence
+    // MARK: - Authentitation Persistence
 
     func currentUser() -> User? {
         guard let userId = authUseCase.currentUserId() else { return nil }
