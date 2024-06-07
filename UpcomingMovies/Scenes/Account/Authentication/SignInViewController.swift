@@ -78,7 +78,7 @@ final class SignInViewController: UIViewController, Storyboarded {
 
     // MARK: - Actions
 
-    @IBAction func loginButtonAction(_ sender: Any) {
+    @IBAction private func loginButtonAction(_ sender: Any) {
         viewModel?.startAuthorizationProcess()
     }
 
