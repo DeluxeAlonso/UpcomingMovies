@@ -35,7 +35,7 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
 
     // MARK: - Stored properties
 
-    var movieTitle: String
+    let movieTitle: String
 
     // MARK: - Initializers
 

@@ -44,7 +44,7 @@ final class MovieReviewDetailViewController: UIViewController, Storyboarded {
 
     // MARK: - Actions
 
-    @IBAction func closeAction(_ sender: Any) {
+    @IBAction private func closeAction(_ sender: Any) {
         coordinator?.dismiss()
     }
 

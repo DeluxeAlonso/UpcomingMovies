@@ -10,7 +10,7 @@ import UIKit
 
 protocol MovieReviewsViewModelProtocol {
 
-    var movieTitle: String { get set }
+    var movieTitle: String { get }
 
     var viewState: AnyBehaviorBindable<MovieReviewsViewState> { get }
     var startLoading: AnyBehaviorBindable<Bool> { get }
