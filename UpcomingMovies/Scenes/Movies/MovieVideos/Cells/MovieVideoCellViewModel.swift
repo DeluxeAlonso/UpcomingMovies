@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UpcomingMoviesDomain
 
 protocol MovieVideoCellViewModelProtocol {
 
@@ -21,7 +20,7 @@ final class MovieVideoCellViewModel: MovieVideoCellViewModelProtocol {
     let name: String
     let thumbnailURL: URL?
 
-    init(_ video: Video) {
+    init(_ video: VideoProtocol) {
         name = video.name
         thumbnailURL = video.thumbnailURL
     }
