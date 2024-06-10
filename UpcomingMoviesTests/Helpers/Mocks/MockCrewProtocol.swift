@@ -10,9 +10,10 @@ import Foundation
 @testable import UpcomingMovies
 
 final class MockCrewProtocol: CrewProtocol {
-    var id: Int = 0
-    var job: String = ""
-    var name: String = ""
+
+    var id: Int
+    var job: String
+    var name: String
     var profileURL: URL?
 
     init(id: Int = 0,
@@ -24,4 +25,5 @@ final class MockCrewProtocol: CrewProtocol {
         self.name = name
         self.profileURL = profileURL
     }
+
 }
