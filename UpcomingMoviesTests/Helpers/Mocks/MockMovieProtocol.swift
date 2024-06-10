@@ -41,4 +41,5 @@ final class MockMovieProtocol: MovieProtocol {
         self.backdropURL = backdropURL
         self.genreName = genreName
     }
+
 }

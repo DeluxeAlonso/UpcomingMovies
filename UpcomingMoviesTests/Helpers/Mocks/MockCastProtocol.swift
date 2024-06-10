@@ -10,9 +10,10 @@ import Foundation
 @testable import UpcomingMovies
 
 final class MockCastProtocol: CastProtocol {
-    var id: Int = 0
-    var character: String = ""
-    var name: String = ""
+
+    var id: Int
+    var character: String
+    var name: String
     var profileURL: URL?
 
     init(id: Int = 0,
@@ -24,4 +25,5 @@ final class MockCastProtocol: CastProtocol {
         self.name = name
         self.profileURL = profileURL
     }
+
 }
