@@ -21,7 +21,7 @@ final class MovieVideoCellViewModel: MovieVideoCellViewModelProtocol {
     let name: String
     let thumbnailURL: URL?
 
-    init(_ video: VideoProtocol) {
+    init(_ video: Video) {
         name = video.name
         thumbnailURL = video.thumbnailURL
     }
