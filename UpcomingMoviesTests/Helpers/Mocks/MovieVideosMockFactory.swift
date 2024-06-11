@@ -11,8 +11,8 @@ import UpcomingMoviesDomain
 
 final class MockMovieVideosInteractor: MovieVideosInteractorProtocol {
 
-    var getMovieVideosResult: Result<[Video], Error>?
-    func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[Video], Error>) -> Void) {
+    var getMovieVideosResult: Result<[VideoProtocol], Error>?
+    func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[VideoProtocol], Error>) -> Void) {
         if let getMovieVideosResult {
             completion(getMovieVideosResult)
         }
