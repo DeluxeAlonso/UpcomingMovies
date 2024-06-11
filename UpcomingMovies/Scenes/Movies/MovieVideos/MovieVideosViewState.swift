@@ -6,6 +6,4 @@
 //  Copyright © 2022 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
-
-typealias MovieVideosViewState = SimpleViewState<Video>
+typealias MovieVideosViewState = SimpleViewState<VideoProtocol>

@@ -17,8 +17,15 @@ struct MovieVideosInteractor: MovieVideosInteractorProtocol {
         self.movieUseCase = movieUseCase
     }
 
-    func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[Video], Error>) -> Void) {
-        movieUseCase.getMovieVideos(for: movieId, page: page, completion: completion)
+    func getMovieVideos(for movieId: Int, page: Int?, completion: @escaping (Result<[VideoProtocol], Error>) -> Void) {
+        movieUseCase.getMovieVideos(for: movieId, page: page, completion: { result in
+            switch result {
+            case .success(let videos):
+                completion(.success(videos))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
     }
 
 }

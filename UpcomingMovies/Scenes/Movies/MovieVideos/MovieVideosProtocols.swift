@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UpcomingMoviesDomain
 
 protocol MovieVideosViewModelProtocol {
 
@@ -26,7 +25,7 @@ protocol MovieVideosViewModelProtocol {
 protocol MovieVideosInteractorProtocol {
 
     func getMovieVideos(for movieId: Int, page: Int?,
-                        completion: @escaping (Result<[Video], Error>) -> Void)
+                        completion: @escaping (Result<[VideoProtocol], Error>) -> Void)
 
 }
 
