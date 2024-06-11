@@ -27,7 +27,7 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol, SimpleViewStateP
         videos.map { MovieVideoCellViewModel($0) }
     }
 
-    private var videos: [Video] {
+    private var videos: [VideoProtocol] {
         viewState.value.currentEntities
     }
 
