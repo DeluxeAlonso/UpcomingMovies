@@ -387,6 +387,7 @@
 		E2C085B02616520400AC5383 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C085AF2616520400AC5383 /* ToastView.swift */; };
 		E2C085BA2616521100AC5383 /* ToastConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C085B92616521100AC5383 /* ToastConfigurationProtocol.swift */; };
 		E2C085C02616527400AC5383 /* UIView+ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C085BF2616527400AC5383 /* UIView+ToastView.swift */; };
+		E2C14FF72C1956F40050236F /* ListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C14FF62C1956F40050236F /* ListProtocol.swift */; };
 		E2C1D3FA2A2D999900D0670C /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1D3F92A2D999900D0670C /* MockViewController.swift */; };
 		E2C39A2624BA558F007938BC /* AccountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C39A2524BA558F007938BC /* AccountInteractor.swift */; };
 		E2C42E1424C3E8900047A8EF /* ProfileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C42E1324C3E8900047A8EF /* ProfileFactory.swift */; };
@@ -912,6 +913,7 @@
 		E2C085AF2616520400AC5383 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		E2C085B92616521100AC5383 /* ToastConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastConfigurationProtocol.swift; sourceTree = "<group>"; };
 		E2C085BF2616527400AC5383 /* UIView+ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ToastView.swift"; sourceTree = "<group>"; };
+		E2C14FF62C1956F40050236F /* ListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListProtocol.swift; sourceTree = "<group>"; };
 		E2C1D3F92A2D999900D0670C /* MockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
 		E2C39A2524BA558F007938BC /* AccountInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInteractor.swift; sourceTree = "<group>"; };
 		E2C42E1324C3E8900047A8EF /* ProfileFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFactory.swift; sourceTree = "<group>"; };
@@ -2439,6 +2441,7 @@
 				E2A750F22BF1D559007A194C /* CrewProtocol.swift */,
 				E29DFE752BF70B6200DD1FFA /* MovieCreditsProtocol.swift */,
 				E2CA10F82BF970FD00446711 /* VideoProtocol.swift */,
+				E2C14FF62C1956F40050236F /* ListProtocol.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3133,6 +3136,7 @@
 				E208FC472635238A008593D8 /* SimpleViewStateProcessable.swift in Sources */,
 				E223B086224828FB0050277B /* ProfileSelectableOptionCellViewModel.swift in Sources */,
 				E22671AB28E95396003AA27C /* PublishBindable.swift in Sources */,
+				E2C14FF72C1956F40050236F /* ListProtocol.swift in Sources */,
 				E2D2928E29DCA784007DE995 /* MovieDetailOptionsViewController.swift in Sources */,
 				E284EF4D21F127FB004E705F /* VisitedMovieCellViewModel.swift in Sources */,
 				E2D1040F220CD1BC005F310C /* UIRefreshControl+Extensions.swift in Sources */,
