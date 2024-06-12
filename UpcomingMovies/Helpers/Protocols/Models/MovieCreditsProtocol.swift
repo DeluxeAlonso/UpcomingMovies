@@ -12,7 +12,7 @@ protocol MovieCreditsProtocol {
 
     var cast: [CastProtocol] { get }
     var crew: [CrewProtocol] { get }
-    
+
 }
 
 struct MovieCreditsProtocolAdapter: MovieCreditsProtocol {
