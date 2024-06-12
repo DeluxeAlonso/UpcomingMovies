@@ -92,8 +92,8 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     // MARK: - Private
 
     private func processResult(_ movieCredits: MovieCreditsProtocol) -> MovieCreditsViewState {
-        let fetchedCast = movieCredits.creditCast
-        let fetchedCrew = movieCredits.creditCrew
+        let fetchedCast = movieCredits.cast
+        let fetchedCrew = movieCredits.crew
         if fetchedCast.isEmpty && fetchedCrew.isEmpty {
             return .empty
         } else {

@@ -11,13 +11,13 @@ import Foundation
 
 final class MockMovieCreditsProtocol: MovieCreditsProtocol {
 
-    var creditCast: [CastProtocol]
-    var creditCrew: [CrewProtocol]
+    var cast: [CastProtocol]
+    var crew: [CrewProtocol]
 
     init(creditCast: [CastProtocol] = [],
          creditCrew: [CrewProtocol] = []) {
-        self.creditCast = creditCast
-        self.creditCrew = creditCrew
+        self.cast = creditCast
+        self.crew = creditCrew
     }
 
 }
