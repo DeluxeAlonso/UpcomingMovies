@@ -22,7 +22,7 @@ final class MovieCreditsInteractor: MovieCreditsInteractorProtocol {
         movieUseCase.getMovieCredits(for: movieId, page: page, completion: { result in
             switch result {
             case .success(let credits):
-                completion(.success(credits))
+                completion(.success(MovieCreditsProtocolAdapter(credits)))
             case .failure(let error):
                 completion(.failure(error))
             }

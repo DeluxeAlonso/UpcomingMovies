@@ -10,19 +10,19 @@ import UpcomingMoviesDomain
 
 protocol MovieCreditsProtocol {
 
-    var creditCast: [CastProtocol] { get }
-    var creditCrew: [CrewProtocol] { get }
-    
+    var cast: [CastProtocol] { get }
+    var crew: [CrewProtocol] { get }
+
 }
 
-extension MovieCredits: MovieCreditsProtocol {
+struct MovieCreditsProtocolAdapter: MovieCreditsProtocol {
 
-    var creditCast: [CastProtocol] {
-        cast
-    }
+    let cast: [CastProtocol]
+    let crew: [CrewProtocol]
 
-    var creditCrew: [CrewProtocol] {
-        crew
+    init(_ movieCredits: MovieCredits) {
+        self.cast = movieCredits.cast
+        self.crew = movieCredits.crew
     }
 
 }
