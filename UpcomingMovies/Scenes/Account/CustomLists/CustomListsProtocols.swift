@@ -15,7 +15,7 @@ protocol CustomListsViewModelProtocol {
     var viewState: AnyBehaviorBindable<CustomListsViewState> { get }
     var listCells: [CustomListCellViewModelProtocol] { get }
 
-    func list(at index: Int) -> List
+    func list(at index: Int) -> ListProtocol
 
     func getCustomLists()
     func refreshCustomLists()
