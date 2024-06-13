@@ -31,14 +31,14 @@ final class MockCustomListDetailViewModel: CustomListDetailViewModelProtocol {
     var movieCells: [MovieListCellViewModel] = []
 
     var buildHeaderViewModelCallCount = 0
-    var buildHeaderViewModelResult = CustomListDetailHeaderViewModel(list: .with())
+    var buildHeaderViewModelResult = CustomListDetailHeaderViewModel(list: MockListProtocol())
     func buildHeaderViewModel() -> CustomListDetailHeaderViewModelProtocol {
         buildHeaderViewModelCallCount += 1
         return buildHeaderViewModelResult
     }
 
     var buildSectionViewModelCallCount = 0
-    var buildSectionViewModelResult = CustomListDetailSectionViewModel(list: .with())
+    var buildSectionViewModelResult = CustomListDetailSectionViewModel(list: MockListProtocol())
     func buildSectionViewModel() -> CustomListDetailSectionViewModel {
         buildSectionViewModelCallCount += 1
         return buildSectionViewModelResult
