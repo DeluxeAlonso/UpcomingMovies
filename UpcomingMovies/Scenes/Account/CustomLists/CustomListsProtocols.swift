@@ -30,6 +30,6 @@ protocol CustomListsInteractorProtocol {
 
 protocol CustomListsCoordinatorProtocol: Coordinator {
 
-    func showListDetail(for customList: List)
+    func showListDetail(for customList: ListProtocol)
 
 }
