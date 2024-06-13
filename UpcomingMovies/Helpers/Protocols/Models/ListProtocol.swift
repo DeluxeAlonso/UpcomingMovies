@@ -18,7 +18,7 @@ protocol ListProtocol {
     var averageRating: Double? { get }
     var runtime: Int? { get }
     var movieCount: Int { get }
-    var movies: [MovieProtocol]? { get }
+    var movies: [MovieProtocol] { get }
     var revenue: Double? { get }
 
 }
@@ -32,7 +32,7 @@ struct ListProtocolAdapter: ListProtocol {
     let averageRating: Double?
     let runtime: Int?
     let movieCount: Int
-    let movies: [MovieProtocol]?
+    let movies: [MovieProtocol]
     let revenue: Double?
 
     init(_ list: List) {
@@ -43,7 +43,7 @@ struct ListProtocolAdapter: ListProtocol {
         self.averageRating = list.averageRating
         self.runtime = list.runtime
         self.movieCount = list.movieCount
-        self.movies = list.movies
+        self.movies = list.movies ?? []
         self.revenue = list.revenue
     }
 
