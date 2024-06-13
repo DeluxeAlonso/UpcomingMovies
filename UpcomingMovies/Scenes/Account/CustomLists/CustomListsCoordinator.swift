@@ -19,7 +19,7 @@ final class CustomListsCoordinator: BaseCoordinator, CustomListsCoordinatorProto
         navigationController.pushViewController(viewController, animated: true)
     }
 
-    func showListDetail(for customList: List) {
+    func showListDetail(for customList: ListProtocol) {
         let coordinator = CustomListDetailCoordinator(navigationController: navigationController, customList: customList)
         coordinator.parentCoordinator = unwrappedParentCoordinator
 
