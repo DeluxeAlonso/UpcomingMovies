@@ -23,7 +23,7 @@ struct CustomListDetailHeaderViewModel: CustomListDetailHeaderViewModelProtocol 
     let description: String?
     let posterURL: URL?
 
-    init(list: List) {
+    init(list: ListProtocol) {
         self.name = list.name
         self.description = list.description
         self.posterURL = list.backdropURL

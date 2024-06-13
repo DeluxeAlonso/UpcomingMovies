@@ -9,12 +9,12 @@
 import Foundation
 import UpcomingMoviesDomain
 
-protocol ListProtocol {
+protocol ListProtocol: ImageConfigurable {
 
     var id: String { get }
     var name: String { get }
     var description: String? { get }
-    var backdropPath: String? { get }
+    var backdropURL: URL? { get }
     var averageRating: Double? { get }
     var runtime: Int? { get }
     var movieCount: Int { get }
@@ -34,6 +34,12 @@ struct ListProtocolAdapter: ListProtocol {
     let movieCount: Int
     let movies: [MovieProtocol]
     let revenue: Double?
+
+    var backdropURL: URL? {
+        guard let backdropPath = backdropPath else { return nil }
+        let urlString = backdropImageBaseURLString.appending(backdropPath)
+        return URL(string: urlString)
+    }
 
     init(_ list: List) {
         self.id = list.id
