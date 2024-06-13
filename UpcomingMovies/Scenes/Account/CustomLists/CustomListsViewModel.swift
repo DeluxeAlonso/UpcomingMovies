@@ -22,7 +22,7 @@ final class CustomListsViewModel: CustomListsViewModelProtocol, SimpleViewStateP
 
     // MARK: - Computed properties
 
-    private var lists: [List] {
+    private var lists: [ListProtocol] {
         viewState.value.currentEntities
     }
 
