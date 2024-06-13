@@ -35,16 +35,6 @@ extension ImageConfigurable {
 
 }
 
-extension List: ImageConfigurable {
-
-    var backdropURL: URL? {
-        guard let backdropPath = backdropPath else { return nil }
-        let urlString = backdropImageBaseURLString.appending(backdropPath)
-        return URL(string: urlString)
-    }
-
-}
-
 extension User: ImageConfigurable {
 
     var avatarImageURL: URL? {

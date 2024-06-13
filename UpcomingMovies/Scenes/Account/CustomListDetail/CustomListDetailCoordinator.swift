@@ -11,9 +11,9 @@ import UpcomingMoviesDomain
 
 final class CustomListDetailCoordinator: BaseCoordinator, CustomListDetailCoordinatorProtocol, MovieDetailCoordinable {
 
-    private let customList: List
+    private let customList: ListProtocol
 
-    init(navigationController: UINavigationController, customList: List) {
+    init(navigationController: UINavigationController, customList: ListProtocol) {
         self.customList = customList
         super.init(navigationController: navigationController)
     }

@@ -22,7 +22,7 @@ final class CustomListsViewModel: CustomListsViewModelProtocol, SimpleViewStateP
 
     // MARK: - Computed properties
 
-    private var lists: [List] {
+    private var lists: [ListProtocol] {
         viewState.value.currentEntities
     }
 
@@ -38,7 +38,7 @@ final class CustomListsViewModel: CustomListsViewModelProtocol, SimpleViewStateP
 
     // MARK: - CustomListsViewModelProtocol
 
-    func list(at index: Int) -> List {
+    func list(at index: Int) -> ListProtocol {
         lists[index]
     }
 

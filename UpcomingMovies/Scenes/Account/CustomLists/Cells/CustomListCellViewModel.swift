@@ -23,7 +23,7 @@ final class CustomListCellViewModel: CustomListCellViewModelProtocol {
     let description: String?
     let movieCount: Int
 
-    init(_ list: List) {
+    init(_ list: ListProtocol) {
         self.name = list.name
         self.description = list.description
         self.movieCount = list.movieCount

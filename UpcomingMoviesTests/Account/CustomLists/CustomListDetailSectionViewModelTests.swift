@@ -15,7 +15,7 @@ final class CustomListDetailSectionViewModelTests: XCTestCase {
     func testMovieCountText() {
         // Arrange
         let movieCountToTest = 1
-        let list = List.with(movieCount: movieCountToTest)
+        let list = MockListProtocol(movieCount: movieCountToTest)
         let viewModel = CustomListDetailSectionViewModel(list: list)
         // Act
         let movieCountText = viewModel.movieCountText
@@ -26,7 +26,7 @@ final class CustomListDetailSectionViewModelTests: XCTestCase {
     func testRatingText() {
         // Arrange
         let ratingToTest = 7.6302
-        let list = List.with(averageRating: ratingToTest)
+        let list = MockListProtocol(averageRating: ratingToTest)
         let viewModel = CustomListDetailSectionViewModel(list: list)
         // Act
         let movieCountText = viewModel.ratingText
@@ -37,7 +37,7 @@ final class CustomListDetailSectionViewModelTests: XCTestCase {
     func testMovieRuntimeText() {
         // Arrange
         let runtimeToTest = 65
-        let list = List.with(runtime: runtimeToTest)
+        let list = MockListProtocol(runtime: runtimeToTest)
         let viewModel = CustomListDetailSectionViewModel(list: list)
         // Act
         let movieCountText = viewModel.runtimeText
@@ -48,7 +48,7 @@ final class CustomListDetailSectionViewModelTests: XCTestCase {
     func testMovieRevenueTextMillionValue() {
         // Arrange
         let revenueToTest: Double = 484432473
-        let list = List.with(revenue: revenueToTest)
+        let list = MockListProtocol(revenue: revenueToTest)
         let viewModel = CustomListDetailSectionViewModel(list: list)
         // Act
         let movieRevenueText = viewModel.revenueText
@@ -59,7 +59,7 @@ final class CustomListDetailSectionViewModelTests: XCTestCase {
     func testMovieRevenueTextThousandValue() {
         // Arrange
         let revenueToTest: Double = 7500
-        let list = List.with(revenue: revenueToTest)
+        let list = MockListProtocol(revenue: revenueToTest)
         let viewModel = CustomListDetailSectionViewModel(list: list)
         // Act
         let movieRevenueText = viewModel.revenueText
@@ -70,7 +70,7 @@ final class CustomListDetailSectionViewModelTests: XCTestCase {
     func testMovieRevenueTextHundredValue() {
         // Arrange
         let revenueToTest: Double = 750
-        let list = List.with(revenue: revenueToTest)
+        let list = MockListProtocol(revenue: revenueToTest)
         let viewModel = CustomListDetailSectionViewModel(list: list)
         // Act
         let movieRevenueText = viewModel.revenueText

@@ -24,7 +24,7 @@ final class CustomListDetailSectionViewModel: CustomListDetailSectionViewModelPr
     private(set) var runtimeText: String = "-"
     private(set) var revenueText: String = "-"
 
-    init(list: List) {
+    init(list: ListProtocol) {
         movieCountText = "\(list.movieCount)"
         if let rating = list.averageRating { ratingText = "\(getTruncatedRating(rating))" }
         if let runtime = list.runtime { runtimeText = getRuntimeText(for: runtime) }

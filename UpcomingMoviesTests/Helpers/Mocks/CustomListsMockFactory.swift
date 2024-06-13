@@ -11,8 +11,8 @@ import UpcomingMoviesDomain
 
 final class MockCustomListsInteractor: CustomListsInteractorProtocol {
 
-    var getCustomListsResult: Result<[List], Error>?
-    func getCustomLists(page: Int?, completion: @escaping (Result<[List], Error>) -> Void) {
+    var getCustomListsResult: Result<[ListProtocol], Error>?
+    func getCustomLists(page: Int?, completion: @escaping (Result<[ListProtocol], Error>) -> Void) {
         if let getCustomListsResult {
             completion(getCustomListsResult)
         }

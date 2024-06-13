@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 
 final class CustomListsViewModelTests: XCTestCase {
 
-    typealias CustomListsState = SimpleViewState<UpcomingMoviesDomain.List>
+    typealias CustomListsState = SimpleViewState<ListProtocol>
 
     private var mockInteractor: MockCustomListsInteractor!
     private var viewModelToTest: CustomListsViewModelProtocol!
@@ -31,7 +31,7 @@ final class CustomListsViewModelTests: XCTestCase {
 
     func testGetCustomListsEmpty() {
         // Arrange
-        let customListsToTest: [UpcomingMoviesDomain.List] = []
+        let customListsToTest: [ListProtocol] = []
         let expectation = XCTestExpectation(description: "Should get empty state")
         // Act
         viewModelToTest.viewState.bind { state in
@@ -46,7 +46,7 @@ final class CustomListsViewModelTests: XCTestCase {
 
     func testGetCustomListsPopulated() {
         // Arrange
-        let customListsToTest: [UpcomingMoviesDomain.List] = [List.with(id: "1"), List.with(id: "2")]
+        let customListsToTest: [ListProtocol] = [MockListProtocol(id: "1"), MockListProtocol(id: "2")]
         var statesToReceive: [CustomListsState] = [.paging(customListsToTest, next: 2), .populated(customListsToTest)]
 
         let expectation = XCTestExpectation(description: "Should get populated state after a paging state")
@@ -65,7 +65,7 @@ final class CustomListsViewModelTests: XCTestCase {
 
     func testGetCustomListsPaging() {
         // Arrange
-        let customListsToTest: [UpcomingMoviesDomain.List] = [List.with(id: "1"), List.with(id: "2")]
+        let customListsToTest: [ListProtocol] = [MockListProtocol(id: "1"), MockListProtocol(id: "2")]
         let expectation = XCTestExpectation(description: "Should get paging state")
         // Act
         viewModelToTest.viewState.bind { state in

@@ -13,7 +13,7 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
 
     // MARK: - Dependencies
 
-    private let list: List
+    private let list: ListProtocol
     private let interactor: CustomListDetailInteractorProtocol
 
     // MARK: - Reactive properties
@@ -36,7 +36,7 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
 
     // MARK: - Initializers
 
-    init(_ list: List, interactor: CustomListDetailInteractorProtocol) {
+    init(_ list: ListProtocol, interactor: CustomListDetailInteractorProtocol) {
         self.list = list
         self.interactor = interactor
     }

@@ -17,8 +17,15 @@ final class CustomListsInteractor: CustomListsInteractorProtocol {
         self.accountUseCase = accountUseCase
     }
 
-    func getCustomLists(page: Int?, completion: @escaping (Result<[List], Error>) -> Void) {
-        accountUseCase.getCustomLists(page: page, completion: completion)
+    func getCustomLists(page: Int?, completion: @escaping (Result<[ListProtocol], Error>) -> Void) {
+        accountUseCase.getCustomLists(page: page, completion: { result in
+            switch result {
+            case .success(let lists):
+                completion(.success(lists.map { ListProtocolAdapter($0) }))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
     }
 
 }

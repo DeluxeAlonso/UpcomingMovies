@@ -15,7 +15,7 @@ protocol CustomListsViewModelProtocol {
     var viewState: AnyBehaviorBindable<CustomListsViewState> { get }
     var listCells: [CustomListCellViewModelProtocol] { get }
 
-    func list(at index: Int) -> List
+    func list(at index: Int) -> ListProtocol
 
     func getCustomLists()
     func refreshCustomLists()
@@ -24,12 +24,12 @@ protocol CustomListsViewModelProtocol {
 
 protocol CustomListsInteractorProtocol {
 
-    func getCustomLists(page: Int?, completion: @escaping (Result<[List], Error>) -> Void)
+    func getCustomLists(page: Int?, completion: @escaping (Result<[ListProtocol], Error>) -> Void)
 
 }
 
 protocol CustomListsCoordinatorProtocol: Coordinator {
 
-    func showListDetail(for customList: List)
+    func showListDetail(for customList: ListProtocol)
 
 }

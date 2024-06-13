@@ -27,14 +27,14 @@ final class CustomListDetailViewModelTests: XCTestCase {
     func testListName() {
         // Arrange
         let nameToTest = "Name"
-        let viewModel = createSUT(list: .with(name: nameToTest))
+        let viewModel = createSUT(list: MockListProtocol(name: nameToTest))
         // Act
         let listName = viewModel.listName
         // Assert
         XCTAssertEqual(listName, nameToTest)
     }
 
-    private func createSUT(list: List) -> CustomListDetailViewModel {
+    private func createSUT(list: ListProtocol) -> CustomListDetailViewModel {
         CustomListDetailViewModel(list, interactor: interactor)
     }
 
