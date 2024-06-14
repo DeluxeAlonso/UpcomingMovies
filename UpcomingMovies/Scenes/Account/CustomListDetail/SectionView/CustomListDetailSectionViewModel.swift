@@ -6,7 +6,7 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
+import Foundation
 
 protocol CustomListDetailSectionViewModelProtocol {
 
