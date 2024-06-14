@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UpcomingMoviesDomain
 
 final class CustomListsViewModel: CustomListsViewModelProtocol, SimpleViewStateProcessable {
 
