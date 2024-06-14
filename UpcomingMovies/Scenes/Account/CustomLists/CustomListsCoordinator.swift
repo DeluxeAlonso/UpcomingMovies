@@ -6,8 +6,6 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
-
 final class CustomListsCoordinator: BaseCoordinator, CustomListsCoordinatorProtocol {
 
     override func start() {
