@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import UpcomingMovies
-import UpcomingMoviesDomain
 
 final class CustomListDetailViewModelTests: XCTestCase {
 
