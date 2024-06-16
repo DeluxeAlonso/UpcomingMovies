@@ -7,7 +7,6 @@
 //
 
 @testable import UpcomingMovies
-import UpcomingMoviesDomain
 
 final class MockCustomListDetailInteractor: CustomListDetailInteractorProtocol {
 
