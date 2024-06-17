@@ -21,7 +21,7 @@ final class CustomListsInteractor: CustomListsInteractorProtocol {
         accountUseCase.getCustomLists(page: page, completion: { result in
             switch result {
             case .success(let lists):
-                completion(.success(lists.map { ListProtocolAdapter($0) }))
+                completion(.success(lists.map { ListModel($0) }))
             case .failure(let error):
                 completion(.failure(error))
             }
