@@ -17,3 +17,17 @@ protocol ReviewProtocol {
 }
 
 extension Review: ReviewProtocol {}
+
+struct ReviewModel: ReviewProtocol {
+
+    let id: String
+    let authorName: String
+    let content: String
+
+    init(_ review: Review) {
+        self.id = review.id
+        self.authorName = review.authorName
+        self.content = review.content
+    }
+
+}
