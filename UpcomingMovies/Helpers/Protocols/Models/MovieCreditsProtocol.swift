@@ -15,7 +15,7 @@ protocol MovieCreditsProtocol {
 
 }
 
-struct MovieCreditsProtocolAdapter: MovieCreditsProtocol {
+struct MovieCreditsModel: MovieCreditsProtocol {
 
     let cast: [CastProtocol]
     let crew: [CrewProtocol]
