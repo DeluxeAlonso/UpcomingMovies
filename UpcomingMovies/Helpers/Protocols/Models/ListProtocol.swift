@@ -23,7 +23,7 @@ protocol ListProtocol: ImageConfigurable {
 
 }
 
-struct ListProtocolAdapter: ListProtocol {
+struct ListModel: ListProtocol {
 
     let id: String
     let name: String
