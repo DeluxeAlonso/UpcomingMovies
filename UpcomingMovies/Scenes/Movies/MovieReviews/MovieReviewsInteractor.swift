@@ -20,7 +20,7 @@ final class MovieReviewsInteractor: MovieReviewsInteractorProtocol {
         movieUseCase.getMovieReviews(for: movieId, page: page, completion: { result in
             switch result {
             case .success(let reviews):
-                completion(.success(reviews))
+                completion(.success(reviews.map(ReviewModel.init)))
             case .failure(let error):
                 completion(.failure(error))
             }

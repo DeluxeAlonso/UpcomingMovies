@@ -16,8 +16,6 @@ protocol ReviewProtocol {
 
 }
 
-extension Review: ReviewProtocol {}
-
 struct ReviewModel: ReviewProtocol {
 
     let id: String
