@@ -20,8 +20,6 @@ protocol VideoProtocol {
 
 }
 
-extension Video: VideoProtocol {}
-
 struct VideoModel: VideoProtocol {
 
     let id: String
