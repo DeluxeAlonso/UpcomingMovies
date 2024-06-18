@@ -21,3 +21,24 @@ protocol VideoProtocol {
 }
 
 extension Video: VideoProtocol {}
+
+struct VideoModel: VideoProtocol {
+
+    let id: String
+    let key: String
+    let name: String
+    let site: String
+    let browserURL: URL?
+    let deepLinkURL: URL?
+    let thumbnailURL: URL?
+
+    init(_ video: Video) {
+        self.id = video.id
+        self.key = video.key
+        self.name = video.name
+        self.site = video.site
+        self.browserURL = video.browserURL
+        self.deepLinkURL = video.deepLinkURL
+        self.thumbnailURL = video.thumbnailURL
+    }
+}
