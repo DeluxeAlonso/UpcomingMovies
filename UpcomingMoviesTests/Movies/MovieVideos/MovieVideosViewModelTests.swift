@@ -38,7 +38,7 @@ final class MovieVideosViewModelTests: XCTestCase {
 
     func testGetVideosPopulated() {
         // Arrange
-        let videostoTest = [Video.with(id: "1"), Video.with(id: "2")]
+        let videostoTest = [MockVideoProtocol(id: "1"), MockVideoProtocol(id: "2")]
         let expectation = XCTestExpectation(description: "Should get populated state")
         // Act
         viewModelToTest.viewState.bind { state in

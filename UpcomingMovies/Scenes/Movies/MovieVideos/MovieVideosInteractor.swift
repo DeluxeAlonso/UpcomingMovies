@@ -21,7 +21,7 @@ struct MovieVideosInteractor: MovieVideosInteractorProtocol {
         movieUseCase.getMovieVideos(for: movieId, page: page, completion: { result in
             switch result {
             case .success(let videos):
-                completion(.success(videos))
+                completion(.success(videos.map(VideoModel.init)))
             case .failure(let error):
                 completion(.failure(error))
             }
