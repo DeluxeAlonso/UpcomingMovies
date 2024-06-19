@@ -17,28 +17,24 @@ protocol CastProtocol: ImageConfigurable {
 
 }
 
-extension Cast: CastProtocol {
-
-    var profileURL: URL? {
-        guard let photoPath = photoPath else { return nil }
-        let urlString = regularImageBaseURLString.appending(photoPath)
-        return URL(string: urlString)
-    }
-
-}
-
 struct CastModel: CastProtocol {
 
     let id: Int
     let character: String
     let name: String
-    let profileURL: URL?
+    let photoPath: String?
 
     init(_ cast: Cast) {
         self.id = cast.id
         self.character = cast.character
         self.name = cast.name
-        self.profileURL = cast.profileURL
+        self.photoPath = cast.photoPath
+    }
+
+    var profileURL: URL? {
+        guard let photoPath = photoPath else { return nil }
+        let urlString = regularImageBaseURLString.appending(photoPath)
+        return URL(string: urlString)
     }
 
 }
