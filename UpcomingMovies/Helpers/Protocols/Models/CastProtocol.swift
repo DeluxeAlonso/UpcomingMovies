@@ -26,3 +26,19 @@ extension Cast: CastProtocol {
     }
 
 }
+
+struct CastModel: CastProtocol {
+
+    let id: Int
+    let character: String
+    let name: String
+    let profileURL: URL?
+
+    init(_ cast: Cast) {
+        self.id = cast.id
+        self.character = cast.character
+        self.name = cast.name
+        self.profileURL = cast.profileURL
+    }
+
+}
