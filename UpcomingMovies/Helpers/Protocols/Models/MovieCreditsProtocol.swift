@@ -21,7 +21,7 @@ struct MovieCreditsModel: MovieCreditsProtocol {
     let crew: [CrewProtocol]
 
     init(_ movieCredits: MovieCredits) {
-        self.cast = movieCredits.cast
+        self.cast = movieCredits.cast.map(CastModel.init)
         self.crew = movieCredits.crew
     }
 
