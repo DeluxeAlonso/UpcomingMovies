@@ -17,12 +17,24 @@ protocol CrewProtocol: ImageConfigurable {
 
 }
 
-extension Crew: CrewProtocol {
+struct CrewModel: CrewProtocol {
+
+    let id: Int
+    let job: String
+    let name: String
+    let photoPath: String?
 
     var profileURL: URL? {
         guard let photoPath = photoPath else { return nil }
         let urlString = regularImageBaseURLString.appending(photoPath)
         return URL(string: urlString)
+    }
+
+    init(_ crew: Crew) {
+        self.id = crew.id
+        self.job = crew.job
+        self.name = crew.name
+        self.photoPath = crew.photoPath
     }
 
 }

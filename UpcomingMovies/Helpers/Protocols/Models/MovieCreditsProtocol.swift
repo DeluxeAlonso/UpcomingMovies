@@ -22,7 +22,7 @@ struct MovieCreditsModel: MovieCreditsProtocol {
 
     init(_ movieCredits: MovieCredits) {
         self.cast = movieCredits.cast.map(CastModel.init)
-        self.crew = movieCredits.crew
+        self.crew = movieCredits.crew.map(CrewModel.init)
     }
 
 }
