@@ -17,16 +17,6 @@ protocol CrewProtocol: ImageConfigurable {
 
 }
 
-extension Crew: CrewProtocol {
-
-    var profileURL: URL? {
-        guard let photoPath = photoPath else { return nil }
-        let urlString = regularImageBaseURLString.appending(photoPath)
-        return URL(string: urlString)
-    }
-
-}
-
 struct CrewModel: CrewProtocol {
 
     let id: Int
