@@ -19,34 +19,6 @@ protocol MovieProtocol: GenreNameable, ImageConfigurable {
     var backdropURL: URL? { get }
 }
 
-extension Movie: MovieProtocol {
-
-    var posterURL: URL? {
-        guard let posterPath = posterPath else { return nil }
-        let urlString = regularImageBaseURLString.appending(posterPath)
-        return URL(string: urlString)
-    }
-
-    var backdropURL: URL? {
-        guard let backdropPath = backdropPath else { return nil }
-        let urlString = backdropImageBaseURLString.appending(backdropPath)
-        return URL(string: urlString)
-    }
-
-    var genreHandler: GenreHandlerProtocol {
-        DIContainer.shared.resolve()
-    }
-
-    var genreName: String {
-        guard let genreId = genreIds?.first,
-              let genreName = genreHandler.getGenreName(for: genreId) else {
-            return "-"
-        }
-        return genreName
-    }
-
-}
-
 struct MovieModel: MovieProtocol {
 
     let id: Int
@@ -81,7 +53,7 @@ struct MovieModel: MovieProtocol {
     }
 
     init(_ movie: Movie,
-         genreHandler: GenreHandlerProtocol = DIContainer.shared.resolve()) {
+         genreHandler: GenreHandlerProtocol) {
         self.id = movie.id
         self.title = movie.title
         self.genreIds = movie.genreIds
@@ -92,5 +64,9 @@ struct MovieModel: MovieProtocol {
         self.backdropPath = movie.backdropPath
 
         self.genreHandler = genreHandler
+    }
+
+    init(_ movie: Movie) {
+        self.init(movie, genreHandler: DIContainer.shared.resolve())
     }
 }

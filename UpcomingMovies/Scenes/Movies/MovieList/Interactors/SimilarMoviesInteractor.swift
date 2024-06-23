@@ -23,7 +23,7 @@ struct SimilarMoviesInteractor: MoviesInteractorProtocol {
         movieUseCase.getSimilarMovies(page: page, movieId: movieId, completion: { result in
             switch result {
             case .success(let movies):
-                completion(.success(movies))
+                completion(.success(movies.map(MovieModel.init)))
             case .failure(let error):
                 completion(.failure(error))
             }
