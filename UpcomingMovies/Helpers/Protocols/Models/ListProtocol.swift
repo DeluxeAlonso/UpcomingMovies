@@ -49,7 +49,7 @@ struct ListModel: ListProtocol {
         self.averageRating = list.averageRating
         self.runtime = list.runtime
         self.movieCount = list.movieCount
-        self.movies = list.movies ?? []
+        self.movies = list.movies?.map(MovieModel.init) ?? []
         self.revenue = list.revenue
     }
 

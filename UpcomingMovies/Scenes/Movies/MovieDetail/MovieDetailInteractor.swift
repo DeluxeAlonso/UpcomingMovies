@@ -57,7 +57,7 @@ final class MovieDetailInteractor: MovieDetailInteractorProtocol {
         movieUseCase.getMovieDetail(for: movieId, completion: { result in
             switch result {
             case .success(let movies):
-                completion(.success(movies))
+                completion(.success(MovieModel(movies)))
             case .failure(let error):
                 completion(.failure(error))
             }

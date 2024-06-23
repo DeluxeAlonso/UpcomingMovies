@@ -53,7 +53,7 @@ struct MovieModel: MovieProtocol {
     }
 
     init(_ movie: Movie,
-         genreHandler: GenreHandlerProtocol = DIContainer.shared.resolve()) {
+         genreHandler: GenreHandlerProtocol) {
         self.id = movie.id
         self.title = movie.title
         self.genreIds = movie.genreIds
@@ -64,5 +64,9 @@ struct MovieModel: MovieProtocol {
         self.backdropPath = movie.backdropPath
 
         self.genreHandler = genreHandler
+    }
+
+    init(_ movie: Movie) {
+        self.init(movie, genreHandler: DIContainer.shared.resolve())
     }
 }
