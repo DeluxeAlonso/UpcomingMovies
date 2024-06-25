@@ -22,7 +22,7 @@ struct CrewModel: CrewProtocol {
     let id: Int
     let job: String
     let name: String
-    let photoPath: String?
+    private let photoPath: String?
 
     var profileURL: URL? {
         guard let photoPath = photoPath else { return nil }
