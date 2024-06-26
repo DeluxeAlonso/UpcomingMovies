@@ -390,6 +390,7 @@
 		E2C085B02616520400AC5383 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C085AF2616520400AC5383 /* ToastView.swift */; };
 		E2C085BA2616521100AC5383 /* ToastConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C085B92616521100AC5383 /* ToastConfigurationProtocol.swift */; };
 		E2C085C02616527400AC5383 /* UIView+ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C085BF2616527400AC5383 /* UIView+ToastView.swift */; };
+		E2C145F82C2BD0A8006E1D4B /* CastModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C145F72C2BD0A8006E1D4B /* CastModelTests.swift */; };
 		E2C14FF72C1956F40050236F /* ListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C14FF62C1956F40050236F /* ListProtocol.swift */; };
 		E2C1D3FA2A2D999900D0670C /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1D3F92A2D999900D0670C /* MockViewController.swift */; };
 		E2C39A2624BA558F007938BC /* AccountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C39A2524BA558F007938BC /* AccountInteractor.swift */; };
@@ -919,6 +920,7 @@
 		E2C085AF2616520400AC5383 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		E2C085B92616521100AC5383 /* ToastConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastConfigurationProtocol.swift; sourceTree = "<group>"; };
 		E2C085BF2616527400AC5383 /* UIView+ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ToastView.swift"; sourceTree = "<group>"; };
+		E2C145F72C2BD0A8006E1D4B /* CastModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastModelTests.swift; sourceTree = "<group>"; };
 		E2C14FF62C1956F40050236F /* ListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListProtocol.swift; sourceTree = "<group>"; };
 		E2C1D3F92A2D999900D0670C /* MockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
 		E2C39A2524BA558F007938BC /* AccountInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInteractor.swift; sourceTree = "<group>"; };
@@ -1410,6 +1412,7 @@
 				E221169821914E4D0039F8C9 /* Info.plist */,
 				E2BB64D12C2923EA007D77C2 /* ReviewModelTests.swift */,
 				E29C5C882C2A73FD006E46B5 /* CrewModelTests.swift */,
+				E2C145F72C2BD0A8006E1D4B /* CastModelTests.swift */,
 			);
 			path = UpcomingMoviesTests;
 			sourceTree = "<group>";
@@ -3321,6 +3324,7 @@
 				E2A958C32A363D4D0004FC5C /* MovieVideosCoordinatorTests.swift in Sources */,
 				E29C5C892C2A73FD006E46B5 /* CrewModelTests.swift in Sources */,
 				E26D6B28297439C80082098A /* CustomListDetailSectionViewModelTests.swift in Sources */,
+				E2C145F82C2BD0A8006E1D4B /* CastModelTests.swift in Sources */,
 				E21925632A247CDE0058BA74 /* MovieDetailPosterViewModelTests.swift in Sources */,
 				E25AE2FB24B2DB5800DD1EE0 /* MovieCreditsViewModelTests.swift in Sources */,
 				E2A958C52A363D880004FC5C /* MovieReviewsCoordinatorTests.swift in Sources */,
