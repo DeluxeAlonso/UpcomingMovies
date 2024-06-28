@@ -12,7 +12,7 @@ import UpcomingMoviesDomain
 
 final class VideoModelTests: XCTestCase {
 
-    func testInitWithCast() {
+    func testInitWithVideo() {
         // Arrange
         let video = Video.with(id: "12345",
                               key: "Key",
