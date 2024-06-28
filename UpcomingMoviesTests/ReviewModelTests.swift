@@ -18,9 +18,9 @@ final class ReviewModelTests: XCTestCase {
         // Act
         let model = ReviewModel(review)
         // Assert
-        XCTAssertEqual(review.id, "12345")
-        XCTAssertEqual(review.content, "Content")
-        XCTAssertEqual(review.authorName, "Author")
+        XCTAssertEqual(model.id, "12345")
+        XCTAssertEqual(model.content, "Content")
+        XCTAssertEqual(model.authorName, "Author")
     }
 
 }
