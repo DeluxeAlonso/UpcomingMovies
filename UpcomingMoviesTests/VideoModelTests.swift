@@ -18,9 +18,9 @@ final class VideoModelTests: XCTestCase {
                               key: "Key",
                               name: "Name",
                               site: "Site",
-                              browserURL: URL(string: "www.google.com"),
-                              deepLinkURL: URL(string: "www.google.com"),
-                              thumbnailURL: URL(string: "www.google.com"))
+                              browserURL: URL(string: "www.browserURL.com"),
+                              deepLinkURL: URL(string: "www.deepLinkURL.com"),
+                              thumbnailURL: URL(string: "www.thumbnailURL.com"))
         // Act
         let model = VideoModel(video)
         // Assert
@@ -28,9 +28,9 @@ final class VideoModelTests: XCTestCase {
         XCTAssertEqual(model.key, "Key")
         XCTAssertEqual(model.name, "Name")
         XCTAssertEqual(model.site, "Site")
-        XCTAssertEqual(model.browserURL?.absoluteString, "www.google.com")
-        XCTAssertEqual(model.deepLinkURL?.absoluteString, "www.google.com")
-        XCTAssertEqual(model.thumbnailURL?.absoluteString, "www.google.com")
+        XCTAssertEqual(model.browserURL?.absoluteString, "www.browserURL.com")
+        XCTAssertEqual(model.deepLinkURL?.absoluteString, "www.deepLinkURL.com")
+        XCTAssertEqual(model.thumbnailURL?.absoluteString, "www.thumbnailURL.com")
     }
 
 }
