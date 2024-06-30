@@ -15,14 +15,14 @@ final class CrewModelTests: XCTestCase {
     func testInitWithCrew() {
         // Arrange
         let crew = Crew.with(id: 12345, job: "Job", name: "Name", photoPath: "/path")
+        let configurationHandler = MockConfigurationHandlerProtocol(regularImageBaseURLString: "https://image.tmdb.org/t/p/crew")
         // Act
-        let model = CrewModel(crew)
+        let model = CrewModel(crew, configurationHandler: configurationHandler)
         // Assert
         XCTAssertEqual(model.id, 12345)
         XCTAssertEqual(model.job, "Job")
         XCTAssertEqual(model.name, "Name")
-        // TODO: - Flaky test
-        // XCTAssertEqual(model.profileURL?.absoluteString, "https://image.tmdb.org/t/p/w342/path")
+        XCTAssertEqual(model.profileURL?.absoluteString, "https://image.tmdb.org/t/p/crew/path")
     }
 
 }
