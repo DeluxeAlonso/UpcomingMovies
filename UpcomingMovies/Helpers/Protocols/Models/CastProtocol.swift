@@ -24,11 +24,18 @@ struct CastModel: CastProtocol {
     let name: String
     let photoPath: String?
 
-    init(_ cast: Cast) {
+    let configurationHandler: ConfigurationHandlerProtocol
+
+    init(_ cast: Cast, configurationHandler: ConfigurationHandlerProtocol) {
         self.id = cast.id
         self.character = cast.character
         self.name = cast.name
         self.photoPath = cast.photoPath
+        self.configurationHandler = configurationHandler
+    }
+
+    init(_ cast: Cast) {
+        self.init(cast, configurationHandler: DIContainer.shared.resolve())
     }
 
     var profileURL: URL? {
