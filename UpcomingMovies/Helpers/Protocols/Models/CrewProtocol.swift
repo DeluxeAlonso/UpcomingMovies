@@ -24,17 +24,24 @@ struct CrewModel: CrewProtocol {
     let name: String
     private let photoPath: String?
 
+    let configurationHandler: ConfigurationHandlerProtocol
+
     var profileURL: URL? {
         guard let photoPath = photoPath else { return nil }
         let urlString = regularImageBaseURLString.appending(photoPath)
         return URL(string: urlString)
     }
 
-    init(_ crew: Crew) {
+    init(_ crew: Crew, configurationHandler: ConfigurationHandlerProtocol) {
         self.id = crew.id
         self.job = crew.job
         self.name = crew.name
         self.photoPath = crew.photoPath
+        self.configurationHandler = configurationHandler
+    }
+
+    init(_ crew: Crew) {
+        self.init(crew, configurationHandler: DIContainer.shared.resolve())
     }
 
 }
