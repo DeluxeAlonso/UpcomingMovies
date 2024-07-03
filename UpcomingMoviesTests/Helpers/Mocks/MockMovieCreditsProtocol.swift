@@ -6,7 +6,6 @@
 //  Copyright © 2024 Alonso. All rights reserved.
 //
 
-import Foundation
 @testable import UpcomingMovies
 
 final class MockMovieCreditsProtocol: MovieCreditsProtocol {
