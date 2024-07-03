@@ -6,7 +6,6 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import Foundation
 import UpcomingMoviesDomain
 
 final class ProfileViewModel: ProfileViewModelProtocol {
