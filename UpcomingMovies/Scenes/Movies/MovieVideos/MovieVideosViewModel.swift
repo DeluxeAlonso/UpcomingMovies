@@ -6,7 +6,7 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 final class MovieVideosViewModel: MovieVideosViewModelProtocol, SimpleViewStateProcessable {
 
