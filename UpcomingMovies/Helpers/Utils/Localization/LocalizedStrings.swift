@@ -84,4 +84,8 @@ enum LocalizedStrings: String, Localizable {
     case customListDetailSectionRuntimeTitle
     case customListDetailSectionRevenueTitle
 
+    case errorPlaceHolderViewTitleText
+    case errorPlaceHolderViewDetailText
+    case errorPlaceHolderViewRetryButtonTitle
+
 }
