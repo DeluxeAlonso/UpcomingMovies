@@ -89,7 +89,6 @@ final class ErrorPlaceholderView: UIView, NibLoadable, RetryPlaceHolderable {
 
 extension ErrorPlaceholderView {
 
-    // TODO: - Localize this
     struct Constants {
         static let errorTitle = LocalizedStrings.errorPlaceHolderViewTitleText()
         static let errorDetail = LocalizedStrings.errorPlaceHolderViewDetailText()
