@@ -88,6 +88,6 @@
 "customListDetailSectionRuntimeTitle" = "Runtime";
 "customListDetailSectionRevenueTitle" = "Revenue";
 
-"errorPlaceHolderViewTitleText" = "¡Ups!"
-"errorPlaceHolderViewDetailText" = "Something went wrong."
+"errorPlaceHolderViewTitleText" = "¡Ups!";
+"errorPlaceHolderViewDetailText" = "Something went wrong.";
 "errorPlaceHolderViewRetryButtonTitle" = "Retry";

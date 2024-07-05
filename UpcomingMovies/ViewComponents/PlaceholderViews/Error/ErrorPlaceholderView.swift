@@ -91,9 +91,9 @@ extension ErrorPlaceholderView {
 
     // TODO: - Localize this
     struct Constants {
-        static let errorTitle = "¡Ups!"
-        static let errorDetail = "Something went wrong."
-        static let retryButtonTitle = "Retry"
+        static let errorTitle = LocalizedStrings.errorPlaceHolderViewTitleText()
+        static let errorDetail = LocalizedStrings.errorPlaceHolderViewDetailText()
+        static let retryButtonTitle = LocalizedStrings.errorPlaceHolderViewRetryButtonTitle()
     }
 
 }
