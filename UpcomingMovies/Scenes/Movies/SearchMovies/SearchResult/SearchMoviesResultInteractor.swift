@@ -17,6 +17,10 @@ final class SearchMoviesResultInteractor: SearchMoviesResultInteractorProtocol {
 
     var didUpdateMovieSearches: (() -> Void)?
 
+    private var currentUser: User? {
+        authHandler.currentUser()
+    }
+
     init(useCaseProvider: UseCaseProviderProtocol, authHandler: AuthenticationHandlerProtocol) {
         self.movieUseCase = useCaseProvider.movieUseCase()
         self.movieSearchUseCase = useCaseProvider.movieSearchUseCase()
@@ -28,7 +32,7 @@ final class SearchMoviesResultInteractor: SearchMoviesResultInteractorProtocol {
     }
 
     func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[MovieProtocol], Error>) -> Void) {
-        let includeAdult = authHandler.currentUser()?.includeAdult ?? false
+        let includeAdult = currentUser?.includeAdult ?? false
         movieUseCase.searchMovies(searchText: searchText,
                                   includeAdult: includeAdult,
                                   page: page, completion: { result in
