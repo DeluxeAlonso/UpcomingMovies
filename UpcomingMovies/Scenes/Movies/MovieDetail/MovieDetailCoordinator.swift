@@ -25,7 +25,8 @@ final class MovieDetailCoordinator: BaseCoordinator, MovieDetailCoordinatorProto
 
     // MARK: - Initializers
 
-    init(navigationController: UINavigationController, movieInfo: MovieDetailInfo) {
+    init(navigationController: UINavigationController,
+         movieInfo: MovieDetailInfo) {
         self.movieInfo = movieInfo
         super.init(navigationController: navigationController)
     }
