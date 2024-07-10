@@ -46,14 +46,14 @@ final class SearchMoviesResultInteractor: SearchMoviesResultInteractorProtocol {
     }
 
     func getMovieSearches(limit: Int? = nil,
-                          completion: @escaping (Result<[MovieSearch], Error>) -> Void) {
+                          completion: @escaping (Result<[MovieSearchProtocol], Error>) -> Void) {
         movieSearchUseCase.getMovieSearches(completion: { result in
             switch result {
             case .success(let movieSearches):
                 if let limit = limit {
-                    completion(.success(Array(movieSearches.prefix(limit))))
+                    completion(.success(Array(movieSearches.prefix(limit)).map(MovieSearchModel.init)))
                 } else {
-                    completion(.success(movieSearches))
+                    completion(.success(movieSearches.map(MovieSearchModel.init)))
                 }
             case .failure(let error):
                 completion(.failure(error))
