@@ -35,7 +35,7 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
 
     // MARK: - Stored properties
 
-    private var recentSearches: [MovieSearch] = [] {
+    private var recentSearches: [MovieSearchProtocol] = [] {
         didSet {
             if viewState.value == .recentSearches {
                 needsRefresh.send()
