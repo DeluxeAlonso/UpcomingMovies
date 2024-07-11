@@ -6,7 +6,7 @@
 //  Copyright © 2018 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
+import Foundation
 
 final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
 
