@@ -26,8 +26,15 @@ final class SearchOptionsInteractor: SearchOptionsInteractorProtocol {
         }
     }
 
-    func getGenres(completion: @escaping (Result<[Genre], Error>) -> Void) {
-        genreUseCase.fetchAll(completion: completion, forceRefresh: false)
+    func getGenres(completion: @escaping (Result<[GenreProtocol], Error>) -> Void) {
+        genreUseCase.fetchAll(completion: { result in
+            switch result {
+            case .success(let genres):
+                completion(.success(genres.map(GenreModel.init)))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }, forceRefresh: false)
     }
 
     func getMovieVisits(completion: @escaping (Result<[MovieVisit], Error>) -> Void) {
