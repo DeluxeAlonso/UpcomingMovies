@@ -27,7 +27,7 @@ class SearchOptionsViewModelTests: XCTestCase {
 
     func testLoadGenres() {
         // Arrange
-        let genresToTest: [UpcomingMoviesDomain.Genre] = [Genre.init(id: 1, name: "Genre 1")]
+        let genresToTest: [GenreProtocol] = [MockGenreProtocol(id: 12345, name: "Genre 1")]
         let expectation = XCTestExpectation(description: "Content reload should be called")
         // Act
         viewModel.needsContentReload.bind({ _ in
