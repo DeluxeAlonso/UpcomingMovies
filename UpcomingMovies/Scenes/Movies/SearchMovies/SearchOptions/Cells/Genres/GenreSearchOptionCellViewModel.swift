@@ -21,7 +21,7 @@ final class GenreSearchOptionCellViewModel: GenreSearchOptionCellViewModelProtoc
     var id: Int
     var name: String?
 
-    init(genre: Genre) {
+    init(genre: GenreProtocol) {
         id = genre.id
         name = genre.name
     }

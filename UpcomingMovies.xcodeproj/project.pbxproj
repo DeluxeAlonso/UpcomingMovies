@@ -473,6 +473,7 @@
 		E2F9F7202201FC1100C62089 /* Transitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F71F2201FC1100C62089 /* Transitionable.swift */; };
 		E2F9F7222202787F00C62089 /* TransitioningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9F7212202787E00C62089 /* TransitioningAnimator.swift */; };
 		E2FB564E292DE5930011E499 /* PublishBindableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB564D292DE5930011E499 /* PublishBindableProtocol.swift */; };
+		E2FD06092C40F4D7008AD0DC /* MockGenreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FD06082C40F4D7008AD0DC /* MockGenreProtocol.swift */; };
 		E2FD140C23F972EF00455495 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FD140B23F972EF00455495 /* SceneDelegate.swift */; };
 		E2FE17F62A5296580033D6A2 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FE17F52A5296580033D6A2 /* SignInViewModel.swift */; };
 		E2FE17F82A5296FA0033D6A2 /* SignInAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FE17F72A5296FA0033D6A2 /* SignInAssembly.swift */; };
@@ -1019,6 +1020,7 @@
 		E2F9F71F2201FC1100C62089 /* Transitionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitionable.swift; sourceTree = "<group>"; };
 		E2F9F7212202787E00C62089 /* TransitioningAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitioningAnimator.swift; sourceTree = "<group>"; };
 		E2FB564D292DE5930011E499 /* PublishBindableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishBindableProtocol.swift; sourceTree = "<group>"; };
+		E2FD06082C40F4D7008AD0DC /* MockGenreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGenreProtocol.swift; sourceTree = "<group>"; };
 		E2FD140B23F972EF00455495 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E2FE17F52A5296580033D6A2 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		E2FE17F72A5296FA0033D6A2 /* SignInAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAssembly.swift; sourceTree = "<group>"; };
@@ -1775,6 +1777,7 @@
 				E29E94512C16A37900D42447 /* MockVideoProtocol.swift */,
 				E2B6CFD72C1AAF3500E2C6FE /* MockListProtocol.swift */,
 				E2D1C33B2C31F5490059B099 /* MockConfigurationHandlerProtocol.swift */,
+				E2FD06082C40F4D7008AD0DC /* MockGenreProtocol.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -3423,6 +3426,7 @@
 				E2A958BF2A363B750004FC5C /* RecommendedMoviesCoordinatorTests.swift in Sources */,
 				E219859824D2852900D76740 /* MovieReviewsMockFactory.swift in Sources */,
 				E2E65F2E2C38D8F100C3E006 /* MovieCreditsModelTests.swift in Sources */,
+				E2FD06092C40F4D7008AD0DC /* MockGenreProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,9 +14,9 @@ final class SearchOptionsInteractorMock: SearchOptionsInteractorProtocol {
 
     var didUpdateMovieVisit: (() -> Void)?
 
-    var getGenresResult: Result<[Genre], Error>?
+    var getGenresResult: Result<[GenreProtocol], Error>?
     private(set) var getGenresCallCount = 0
-    func getGenres(completion: @escaping (Result<[Genre], Error>) -> Void) {
+    func getGenres(completion: @escaping (Result<[GenreProtocol], Error>) -> Void) {
         if let getGenresResult = getGenresResult {
             completion(getGenresResult)
         }
