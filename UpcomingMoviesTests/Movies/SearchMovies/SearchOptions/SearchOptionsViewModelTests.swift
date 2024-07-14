@@ -10,7 +10,7 @@ import XCTest
 @testable import UpcomingMovies
 import UpcomingMoviesDomain
 
-class SearchOptionsViewModelTests: XCTestCase {
+final class SearchOptionsViewModelTests: XCTestCase {
 
     private var viewModel: SearchOptionsViewModel!
     private var interactor = SearchOptionsInteractorMock()
