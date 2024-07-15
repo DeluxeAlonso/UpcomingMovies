@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+protocol MovieVisitProtocol {
+
+    var id: Int { get }
+    var title: String { get }
+    var posterPath: String { get }
+    var createdAt: Date? { get }
+
+}
