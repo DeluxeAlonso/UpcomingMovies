@@ -41,7 +41,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
 
     // MARK: - Stored properties
 
-    private var movieVisits: [MovieVisit] = []
+    private var movieVisits: [MovieVisitProtocol] = []
     private var genres: [GenreProtocol] = []
     private let defaultSearchOptions: [DefaultSearchOption] = [.popular, .topRated]
 
@@ -118,7 +118,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
      * Configures the state of the view according to the saved movie visits
      * quantity. Returns true if the state changed and false if not.
      */
-    private func configureViewState(movieVisits: [MovieVisit]) -> Bool {
+    private func configureViewState(movieVisits: [MovieVisitProtocol]) -> Bool {
         let oldViewState = viewState.value
         viewState.value = movieVisits.isEmpty ? .emptyMovieVisits : .populatedMovieVisits
 
