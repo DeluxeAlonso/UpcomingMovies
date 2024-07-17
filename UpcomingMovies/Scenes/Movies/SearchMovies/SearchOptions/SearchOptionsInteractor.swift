@@ -37,8 +37,15 @@ final class SearchOptionsInteractor: SearchOptionsInteractorProtocol {
         }, forceRefresh: false)
     }
 
-    func getMovieVisits(completion: @escaping (Result<[MovieVisit], Error>) -> Void) {
-        movieVisitUseCase.getMovieVisits(completion: completion)
+    func getMovieVisits(completion: @escaping (Result<[MovieVisitProtocol], Error>) -> Void) {
+        movieVisitUseCase.getMovieVisits(completion: { result in
+            switch result {
+            case .success(let visits):
+                completion(.success(visits.map(MovieVisitModel.init)))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
     }
 
 }
