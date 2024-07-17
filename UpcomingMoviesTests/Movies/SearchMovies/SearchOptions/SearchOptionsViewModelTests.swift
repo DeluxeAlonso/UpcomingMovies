@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import UpcomingMovies
-import UpcomingMoviesDomain
 
 final class SearchOptionsViewModelTests: XCTestCase {
 
@@ -42,7 +41,7 @@ final class SearchOptionsViewModelTests: XCTestCase {
 
     func testLoadVisitedMoviesFirstLoad() {
         // Arrange
-        let movieVisitsToTest: [UpcomingMoviesDomain.MovieVisit] = [MovieVisit.with()]
+        let movieVisitsToTest: [MovieVisitProtocol] = [MockMovieVisitProtocol()]
         let expectation = XCTestExpectation(description: "Content reload should be called")
         // Act
         viewModel.needsContentReload.bind({ _ in
@@ -57,7 +56,7 @@ final class SearchOptionsViewModelTests: XCTestCase {
 
     func testLoadVisitedMoviesUpdate() {
         // Arrange
-        let movieVisitsToTest: [UpcomingMoviesDomain.MovieVisit] = [MovieVisit.with()]
+        let movieVisitsToTest: [MovieVisitProtocol] = [MockMovieVisitProtocol()]
         let expectation = XCTestExpectation(description: "Movie visit update should be called")
         // Act
         viewModel.updateVisitedMovies.bind({ _ in
