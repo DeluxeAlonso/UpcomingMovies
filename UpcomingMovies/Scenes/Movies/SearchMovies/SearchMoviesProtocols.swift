@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UpcomingMoviesDomain
 
 protocol SearchMoviesCoordinatorProtocol: AnyObject, MovieDetailCoordinable {
 
@@ -89,7 +88,7 @@ protocol SearchOptionsInteractorProtocol {
     var didUpdateMovieVisit: (() -> Void)? { get set }
 
     func getGenres(completion: @escaping (Result<[GenreProtocol], Error>) -> Void)
-    func getMovieVisits(completion: @escaping (Result<[MovieVisit], Error>) -> Void)
+    func getMovieVisits(completion: @escaping (Result<[MovieVisitProtocol], Error>) -> Void)
 
 }
 

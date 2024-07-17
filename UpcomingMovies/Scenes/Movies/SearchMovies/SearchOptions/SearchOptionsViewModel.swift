@@ -41,7 +41,7 @@ final class SearchOptionsViewModel: SearchOptionsViewModelProtocol {
 
     // MARK: - Stored properties
 
-    private var movieVisits: [MovieVisit] = []
+    private var movieVisits: [MovieVisitProtocol] = []
     private var genres: [GenreProtocol] = []
     private let defaultSearchOptions: [DefaultSearchOption] = [.popular, .topRated]
 
