@@ -14,7 +14,7 @@ final class MovieVisitModelTests: XCTestCase {
 
     func testInitWithMovieVisit() {
         // Arrange
-        let movieVisit = MovieVisit(id: 12345, title: "Title", posterPath: "/path", createdAt: Date(timeIntervalSince1970: 0))
+        let movieVisit = MovieVisit.with(id: 12345, title: "Title", posterPath: "/path", createdAt: Date(timeIntervalSince1970: 0))
         // Act
         let model = MovieVisitModel(movieVisit)
         // Assert
