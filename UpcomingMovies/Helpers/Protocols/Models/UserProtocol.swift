@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+protocol UserProtocol {
+
+    var id: Int { get }
+    var name: String { get }
+    var username: String { get }
+    var includeAdult: Bool { get }
+    var avatarPath: String? { get }
+
+}
