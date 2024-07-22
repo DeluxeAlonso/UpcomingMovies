@@ -407,6 +407,7 @@
 		E2C44C1F2616C6D0004B9C9B /* ToastFailureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C44C1E2616C6D0004B9C9B /* ToastFailureConfiguration.swift */; };
 		E2C8FFBF2C3F8AE500EB983D /* MovieSearchModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C8FFBE2C3F8AE500EB983D /* MovieSearchModelTests.swift */; };
 		E2C8FFC12C3F8B8A00EB983D /* GenreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C8FFC02C3F8B8A00EB983D /* GenreProtocol.swift */; };
+		E2C951B42C4E1CF3005297D8 /* MockUserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C951B32C4E1CF3005297D8 /* MockUserProtocol.swift */; };
 		E2C9C0DC26425AF100DDD067 /* MovieDetailOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9C0DB26425AF000DDD067 /* MovieDetailOptionView.swift */; };
 		E2CA10F92BF970FD00446711 /* VideoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA10F82BF970FD00446711 /* VideoProtocol.swift */; };
 		E2CA10FB2BF995F100446711 /* MockMovieCreditsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA10FA2BF995F100446711 /* MockMovieCreditsProtocol.swift */; };
@@ -949,6 +950,7 @@
 		E2C44C1E2616C6D0004B9C9B /* ToastFailureConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastFailureConfiguration.swift; sourceTree = "<group>"; };
 		E2C8FFBE2C3F8AE500EB983D /* MovieSearchModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchModelTests.swift; sourceTree = "<group>"; };
 		E2C8FFC02C3F8B8A00EB983D /* GenreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreProtocol.swift; sourceTree = "<group>"; };
+		E2C951B32C4E1CF3005297D8 /* MockUserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserProtocol.swift; sourceTree = "<group>"; };
 		E2C9C0DB26425AF000DDD067 /* MovieDetailOptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailOptionView.swift; sourceTree = "<group>"; };
 		E2CA10F82BF970FD00446711 /* VideoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProtocol.swift; sourceTree = "<group>"; };
 		E2CA10FA2BF995F100446711 /* MockMovieCreditsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMovieCreditsProtocol.swift; sourceTree = "<group>"; };
@@ -1791,6 +1793,7 @@
 				E2D1C33B2C31F5490059B099 /* MockConfigurationHandlerProtocol.swift */,
 				E2FD06082C40F4D7008AD0DC /* MockGenreProtocol.swift */,
 				E2B021DE2C464D7F00DFD495 /* MockMovieVisitProtocol.swift */,
+				E2C951B32C4E1CF3005297D8 /* MockUserProtocol.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -3412,6 +3415,7 @@
 				E2B8C49B28B738E2006A8ECC /* FavoritesSavedMoviesInteractorTests.swift in Sources */,
 				E2A958CC2A3677B70004FC5C /* AccountInteractorTests.swift in Sources */,
 				E2A958D52A367C970004FC5C /* MovieDetailOptionTests.swift in Sources */,
+				E2C951B42C4E1CF3005297D8 /* MockUserProtocol.swift in Sources */,
 				E2A322F62A5A722C00AC0C2A /* SignInViewControllerTests.swift in Sources */,
 				E25DAC8F2A28676D00806501 /* MovieDetailCoordinatorTests.swift in Sources */,
 				E2ACC8B42A3E4AED007FDFC9 /* AuthPermissionViewControllerTests.swift in Sources */,
