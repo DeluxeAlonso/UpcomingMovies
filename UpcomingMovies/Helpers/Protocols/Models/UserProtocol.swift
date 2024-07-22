@@ -27,16 +27,12 @@ struct UserModel: UserProtocol {
     let includeAdult: Bool
     let avatarPath: String?
 
-    init(id: Int = 12345,
-         name: String = "",
-         username: String = "",
-         includeAdult: Bool = false,
-         avatarPath: String? = nil) {
-        self.id = id
-        self.name = name
-        self.username = username
-        self.includeAdult = includeAdult
-        self.avatarPath = avatarPath
+    init(_ user: User) {
+        self.id = user.id
+        self.name = user.name
+        self.username = user.username
+        self.includeAdult = user.includeAdult
+        self.avatarPath = user.avatarPath
     }
 
 }
