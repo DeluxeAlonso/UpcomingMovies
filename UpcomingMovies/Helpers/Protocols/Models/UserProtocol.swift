@@ -9,13 +9,13 @@
 import Foundation
 import UpcomingMoviesDomain
 
-protocol UserProtocol {
+protocol UserProtocol: ImageConfigurable {
 
     var id: Int { get }
     var name: String { get }
     var username: String { get }
     var includeAdult: Bool { get }
-    var avatarPath: String? { get }
+    var avatarImageURL: URL? { get }
 
 }
 
@@ -25,7 +25,14 @@ struct UserModel: UserProtocol {
     let name: String
     let username: String
     let includeAdult: Bool
-    let avatarPath: String?
+
+    private let avatarPath: String?
+
+    var avatarImageURL: URL? {
+        guard let avatarPath, let avatarImageBaseURLString else { return nil }
+        let urlString = avatarImageBaseURLString.appending(avatarPath)
+        return URL(string: urlString)
+    }
 
     init(_ user: User) {
         self.id = user.id
