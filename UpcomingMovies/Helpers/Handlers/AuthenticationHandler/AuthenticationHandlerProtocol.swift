@@ -6,11 +6,9 @@
 //  Copyright © 2021 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
-
 protocol AuthenticationHandlerProtocol {
 
-    func currentUser() -> User?
+    func currentUser() -> UserProtocol?
     func isUserSignedIn() -> Bool
     func deleteCurrentUser()
 

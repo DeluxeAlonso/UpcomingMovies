@@ -31,7 +31,7 @@ final class AccountViewModel: AccountViewModelProtocol {
         currentUser() != nil
     }
 
-    func currentUser() -> User? {
+    func currentUser() -> UserProtocol? {
         interactor.currentUser()
     }
 
