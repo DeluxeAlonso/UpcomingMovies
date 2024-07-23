@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UpcomingMoviesDomain
 
 protocol AccountViewModelProtocol {
 
@@ -15,20 +14,20 @@ protocol AccountViewModelProtocol {
     var didReceiveError: AnyPublishBindable<Void> { get }
 
     func isUserSignedIn() -> Bool
-    func currentUser() -> User?
+    func currentUser() -> UserProtocol?
 
 }
 
 protocol AccountInteractorProtocol {
 
-    func currentUser() -> User?
+    func currentUser() -> UserProtocol?
 
 }
 
 protocol AccountCoordinatorProtocol: AnyObject {
 
     func embedSignInViewController(on parentViewController: SignInViewControllerDelegate)
-    func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate, for user: User)
+    func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate, for user: UserProtocol)
 
     func removeSignInViewController(from parentViewController: UIViewController)
     func removeProfileViewController(from parentViewController: UIViewController)
