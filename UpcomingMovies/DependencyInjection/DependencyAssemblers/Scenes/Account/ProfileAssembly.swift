@@ -25,7 +25,7 @@ final class ProfileAssembly: Assembly {
                                      accountUseCase: useCaseProvider.accountUseCase())
         }
 
-        container.register(ProfileViewModelProtocol.self) { (resolver, user: User) in
+        container.register(ProfileViewModelProtocol.self) { (resolver, user: UserProtocol) in
             guard let interactor = resolver.resolve(ProfileInteractorProtocol.self) else {
                 fatalError("ProfileInteractorProtocol dependency could not be resolved")
             }
