@@ -19,8 +19,8 @@ final class MockAccountInteractor: AccountInteractorProtocol {
         }
     }
 
-    var signInUserResult: Result<User, Error>?
-    func signInUser(completion: @escaping (Result<User, Error>) -> Void) {
+    var signInUserResult: Result<UserProtocol, Error>?
+    func signInUser(completion: @escaping (Result<UserProtocol, Error>) -> Void) {
         if let signInUserResult {
             completion(signInUserResult)
         }
