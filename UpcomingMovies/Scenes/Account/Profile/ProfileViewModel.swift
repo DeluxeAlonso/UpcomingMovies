@@ -6,13 +6,13 @@
 //  Copyright © 2019 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
+import Foundation
 
 final class ProfileViewModel: ProfileViewModelProtocol {
 
     // MARK: - Stored properties
 
-    private var userAccount: User
+    private var userAccount: UserProtocol
     private let interactor: ProfileInteractorProtocol
     private let factory: ProfileFactoryProtocol
 
@@ -28,7 +28,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
 
     // MARK: - Initializers
 
-    init(userAccount: User,
+    init(userAccount: UserProtocol,
          interactor: ProfileInteractorProtocol,
          factory: ProfileFactoryProtocol) {
         self.userAccount = userAccount
