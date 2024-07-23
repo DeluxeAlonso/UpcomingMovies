@@ -24,12 +24,12 @@ final class ProfileInteractor: ProfileInteractorProtocol {
     }
 
     // TODO: - Change this method to get the account detail given the id of a user account
-    func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void) {
+    func getAccountDetail(completion: @escaping (Result<UserProtocol, Error>) -> Void) {
         accountUseCase.getAccountDetail(completion: { result in
             switch result {
             case .success(let user):
                 self.userUseCase.saveUser(user)
-                completion(.success(user))
+                completion(.success(UserModel(user)))
             case .failure(let error):
                 completion(.failure(error))
             }

@@ -73,7 +73,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
             guard let user = result.wrappedValue else { return }
 
             // If there is no update to display we don't reload user account info
-            if self.userAccount != user {
+            if self.userAccount.hasUpdatedInfo(user) {
                 self.userAccount = user
                 self.reloadAccountInfo.send(())
             }
