@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UpcomingMoviesDomain
 
 final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
 
@@ -35,7 +34,7 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
         coordinator.start(coordinatorMode: .embed(parentViewController: parentViewController, containerView: nil))
     }
 
-    func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate, for user: User) {
+    func embedProfileViewController(on parentViewController: ProfileViewControllerDelegate, for user: UserProtocol) {
         navigationController.setNavigationBarHidden(false, animated: true)
 
         let coordinator = ProfileCoordinator(navigationController: navigationController, user: user, delegate: parentViewController)
