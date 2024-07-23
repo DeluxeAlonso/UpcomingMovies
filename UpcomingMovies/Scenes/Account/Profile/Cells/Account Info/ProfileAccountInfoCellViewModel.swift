@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UpcomingMoviesDomain
 
 protocol ProfileAccountInfoCellViewModelProtocol {
 
@@ -25,7 +24,7 @@ final class ProfileAccountInfoCellViewModel: ProfileAccountInfoCellViewModelProt
 
     // MARK: - Initializers
 
-    init(userAccount: User) {
+    init(userAccount: UserProtocol) {
         self.name = userAccount.name
         self.username = userAccount.username
         self.avatarImageURL = userAccount.avatarImageURL
