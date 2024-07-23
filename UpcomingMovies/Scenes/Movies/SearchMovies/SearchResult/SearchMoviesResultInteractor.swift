@@ -17,7 +17,7 @@ final class SearchMoviesResultInteractor: SearchMoviesResultInteractorProtocol {
 
     var didUpdateMovieSearches: (() -> Void)?
 
-    private var currentUser: User? {
+    private var currentUser: UserProtocol? {
         authHandler.currentUser()
     }
 
