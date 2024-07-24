@@ -18,7 +18,7 @@ final class MockUserProtocol: UserProtocol {
     var avatarImageURL: URL?
 
     var hasUpdatedInfoResult: Bool = false
-    func hasUpdatedInfo(_ newUserInfo: UpcomingMovies.UserProtocol) -> Bool { hasUpdatedInfoResult }
+    func hasUpdatedInfo(_ newUserInfo: UserProtocol) -> Bool { hasUpdatedInfoResult }
 
     init(id: Int = 12345,
          name: String = "",

@@ -34,6 +34,12 @@ final class ProfileViewModelTests: XCTestCase {
 
     func testGetAccountDetailSuccessInfoReloaded() {
         // Arrange
+        let currentUser = MockUserProtocol()
+        currentUser.hasUpdatedInfoResult = true
+        viewModelToTest = ProfileViewModel(userAccount: currentUser,
+                                           interactor: mockInteractor,
+                                           factory: mockFactory)
+
         let userToTest = MockUserProtocol(name: "Alonso")
         let expectation = XCTestExpectation(description: "Reload account info")
         // Act
