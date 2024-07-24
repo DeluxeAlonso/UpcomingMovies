@@ -33,8 +33,8 @@ final class MockAccountInteractor: AccountInteractorProtocol {
         }
     }
 
-    var currentUserResult: User?
-    func currentUser() -> User? {
+    var currentUserResult: UserProtocol?
+    func currentUser() -> UserProtocol? {
         currentUserResult
     }
 

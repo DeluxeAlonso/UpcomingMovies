@@ -15,7 +15,7 @@ final class ProfileAccountInfoCellViewModelTests: XCTestCase {
     func testName() {
         // Arrange
         let nameToTest = "Name"
-        let viewModel = createSUT(with: User.with(name: nameToTest))
+        let viewModel = createSUT(with: MockUserProtocol(name: nameToTest))
         // Act
         let viewModelName = viewModel.name
         // Assert
@@ -25,14 +25,14 @@ final class ProfileAccountInfoCellViewModelTests: XCTestCase {
     func testUsername() {
         // Arrange
         let usernameToTest = "Username"
-        let viewModel = createSUT(with: User.with(username: usernameToTest))
+        let viewModel = createSUT(with: MockUserProtocol(username: usernameToTest))
         // Act
         let viewModelUsername = viewModel.username
         // Assert
         XCTAssertEqual(usernameToTest, viewModelUsername)
     }
 
-    private func createSUT(with user: User) -> ProfileAccountInfoCellViewModel {
+    private func createSUT(with user: UserProtocol) -> ProfileAccountInfoCellViewModel {
         ProfileAccountInfoCellViewModel(userAccount: user)
     }
 
