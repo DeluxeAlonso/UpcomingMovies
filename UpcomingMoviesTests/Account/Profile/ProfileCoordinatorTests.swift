@@ -30,14 +30,14 @@ final class ProfileCoordinatorTests: XCTestCase {
 
     func testBuild() {
         // Arrange
-        let coordinator = createSUT(user: .with())
+        let coordinator = createSUT(user: MockUserProtocol())
         // Act
         let viewController = coordinator.build()
         // Assert
         XCTAssertNotNil(viewController.delegate)
     }
 
-    private func createSUT(user: User) -> ProfileCoordinator {
+    private func createSUT(user: UserProtocol) -> ProfileCoordinator {
         ProfileCoordinator(navigationController: navigationController, user: user, delegate: delegate)
     }
 

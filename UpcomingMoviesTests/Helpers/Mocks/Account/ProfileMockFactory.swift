@@ -20,9 +20,9 @@ final class MockProfileInteractor: ProfileInteractorProtocol {
         signOutUserCallCount += 1
     }
 
-    var getAccountDetailResult: Result<User, Error>?
+    var getAccountDetailResult: Result<UserProtocol, Error>?
     private(set) var getAccountDetailCallCount = 0
-    func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void) {
+    func getAccountDetail(completion: @escaping (Result<UserProtocol, Error>) -> Void) {
         if let getAccountDetailResult {
             completion(getAccountDetailResult)
         }
