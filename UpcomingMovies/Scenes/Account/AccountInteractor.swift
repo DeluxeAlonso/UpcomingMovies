@@ -17,7 +17,7 @@ final class AccountInteractor: AccountInteractorProtocol {
         self.authHandler = authHandler
     }
 
-    func currentUser() -> User? {
+    func currentUser() -> UserProtocol? {
         authHandler.currentUser()
     }
 

@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import UpcomingMovies
-import UpcomingMoviesDomain
 @testable import NetworkInfrastructure
 
 final class AccountViewModelTests: XCTestCase {
@@ -30,7 +29,7 @@ final class AccountViewModelTests: XCTestCase {
 
     func testCurrentUserNotNil() {
         // Arrange
-        let userToTest = User.with()
+        let userToTest = MockUserProtocol()
         // Act
         mockInteractor.currentUserResult = userToTest
         let user = viewModelToTest.currentUser()
@@ -40,7 +39,7 @@ final class AccountViewModelTests: XCTestCase {
 
     func testCurrentUserNil() {
         // Arrange
-        let userToTest: UpcomingMoviesDomain.User? = nil
+        let userToTest: UserProtocol? = nil
         // Act
         mockInteractor.currentUserResult = userToTest
         let user = viewModelToTest.currentUser()
@@ -50,7 +49,7 @@ final class AccountViewModelTests: XCTestCase {
 
     func testIsUserSignedInTrue() {
         // Arrange
-        let userToTest = User.with()
+        let userToTest = MockUserProtocol()
         // Act
         mockInteractor.currentUserResult = userToTest
         let isUserSignedIn = viewModelToTest.isUserSignedIn()
@@ -60,7 +59,7 @@ final class AccountViewModelTests: XCTestCase {
 
     func testIsUserSignedInFalse() {
         // Arrange
-        let userToTest: UpcomingMoviesDomain.User? = nil
+        let userToTest: UserProtocol? = nil
         // Act
         mockInteractor.currentUserResult = userToTest
         let isUserSignedIn = viewModelToTest.isUserSignedIn()

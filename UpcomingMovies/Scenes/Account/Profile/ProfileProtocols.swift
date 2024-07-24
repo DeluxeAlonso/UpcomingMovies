@@ -6,7 +6,7 @@
 //  Copyright © 2020 Alonso. All rights reserved.
 //
 
-import UpcomingMoviesDomain
+import UIKit
 
 protocol ProfileViewModelProtocol {
 
@@ -31,7 +31,7 @@ protocol ProfileViewModelProtocol {
 
 protocol ProfileInteractorProtocol {
 
-    func getAccountDetail(completion: @escaping (Result<User, Error>) -> Void)
+    func getAccountDetail(completion: @escaping (Result<UserProtocol, Error>) -> Void)
     func signOutUser(completion: @escaping (Result<Bool, Error>) -> Void)
 
 }

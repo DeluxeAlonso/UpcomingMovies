@@ -34,13 +34,3 @@ extension ImageConfigurable {
     }
 
 }
-
-extension User: ImageConfigurable {
-
-    var avatarImageURL: URL? {
-        guard let avatarPath, let avatarImageBaseURLString else { return nil }
-        let urlString = avatarImageBaseURLString.appending(avatarPath)
-        return URL(string: urlString)
-    }
-
-}

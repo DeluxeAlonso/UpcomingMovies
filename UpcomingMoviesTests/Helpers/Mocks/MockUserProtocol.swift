@@ -15,18 +15,21 @@ final class MockUserProtocol: UserProtocol {
     var name: String
     var username: String
     var includeAdult: Bool
-    var avatarPath: String?
+    var avatarImageURL: URL?
+
+    var hasUpdatedInfoResult: Bool = false
+    func hasUpdatedInfo(_ newUserInfo: UserProtocol) -> Bool { hasUpdatedInfoResult }
 
     init(id: Int = 12345,
          name: String = "",
          username: String = "",
          includeAdult: Bool = false,
-         avatarPath: String? = nil) {
+         avatarImageURL: URL? = nil) {
         self.id = id
         self.name = name
         self.username = username
         self.includeAdult = includeAdult
-        self.avatarPath = avatarPath
+        self.avatarImageURL = avatarImageURL
     }
 
 }

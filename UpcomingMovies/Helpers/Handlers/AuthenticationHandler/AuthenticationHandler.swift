@@ -22,9 +22,9 @@ final class AuthenticationHandler: AuthenticationHandlerProtocol {
 
     // MARK: - Authentitation Persistence
 
-    func currentUser() -> User? {
+    func currentUser() -> UserProtocol? {
         guard let userId = authUseCase.currentUserId() else { return nil }
-        return userUseCase.find(with: userId)
+        return userUseCase.find(with: userId).flatMap(UserModel.init)
     }
 
     func isUserSignedIn() -> Bool {

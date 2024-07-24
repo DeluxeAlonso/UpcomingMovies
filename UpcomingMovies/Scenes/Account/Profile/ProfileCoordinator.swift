@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import UpcomingMoviesDomain
 
 final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorProtocol {
 
-    private let user: User
+    private let user: UserProtocol
     private weak var delegate: ProfileViewControllerDelegate?
 
-    init(navigationController: UINavigationController, user: User, delegate: ProfileViewControllerDelegate?) {
+    init(navigationController: UINavigationController, user: UserProtocol, delegate: ProfileViewControllerDelegate?) {
         self.user = user
         self.delegate = delegate
         super.init(navigationController: navigationController)
