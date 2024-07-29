@@ -9,7 +9,6 @@
 import XCTest
 import UIKit
 @testable import UpcomingMovies
-import UpcomingMoviesDomain
 
 final class ProfileCoordinatorTests: XCTestCase {
 
