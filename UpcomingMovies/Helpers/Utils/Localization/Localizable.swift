@@ -18,12 +18,8 @@ extension Localizable where Self: RawRepresentable, Self.RawValue == String {
         "Localizable"
     }
 
-    private var localized: String {
-        rawValue.localized(tableName: tableName)
-    }
-
     func callAsFunction() -> String {
-        self.localized
+        rawValue.localized(tableName: tableName)
     }
 
 }
