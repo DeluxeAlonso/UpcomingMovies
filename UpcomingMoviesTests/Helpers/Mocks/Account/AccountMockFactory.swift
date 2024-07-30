@@ -8,7 +8,6 @@
 
 import Foundation
 @testable import UpcomingMovies
-@testable import UpcomingMoviesDomain
 
 final class MockAccountInteractor: AccountInteractorProtocol {
 
