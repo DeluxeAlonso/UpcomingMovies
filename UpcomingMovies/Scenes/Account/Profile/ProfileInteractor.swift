@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UpcomingMoviesDomain
 
 final class ProfileInteractor: ProfileInteractorProtocol {
 
