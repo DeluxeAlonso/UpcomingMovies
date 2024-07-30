@@ -6,8 +6,6 @@
 //  Copyright © 2021 Alonso. All rights reserved.
 //
 
-import Foundation
-
 protocol SimpleViewStateProcessable {
 
     func processResult<T>(_ entities: [T]) -> SimpleViewState<T>
