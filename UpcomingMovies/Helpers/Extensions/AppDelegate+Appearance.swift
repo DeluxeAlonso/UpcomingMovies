@@ -19,15 +19,13 @@ extension AppDelegate {
      content behind the navigation bar.
      */
     func configureGlobalAppearanceIfNeeded() {
-        if #available(iOS 15, *) {
-            let navigationBarAppearance = UINavigationBarAppearance()
-            UINavigationBar.appearance().standardAppearance = navigationBarAppearance
-            UINavigationBar.appearance().scrollEdgeAppearance = UINavigationBar.appearance().standardAppearance
+        let navigationBarAppearance = UINavigationBarAppearance()
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = UINavigationBar.appearance().standardAppearance
 
-            let tabBarAppearance = UITabBarAppearance()
-            UITabBar.appearance().standardAppearance = tabBarAppearance
-            UITabBar.appearance().scrollEdgeAppearance = UITabBar.appearance().standardAppearance
-        }
+        let tabBarAppearance = UITabBarAppearance()
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+        UITabBar.appearance().scrollEdgeAppearance = UITabBar.appearance().standardAppearance
     }
 
 }
