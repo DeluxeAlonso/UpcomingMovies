@@ -21,7 +21,7 @@ final class SimilarMoviesCoordinator: BaseCoordinator, MovieListCoordinatorProto
         let viewController = MovieListViewController.instantiate()
 
         viewController.viewModel = DIContainer.shared.resolve(name: "SimilarMovies",
-                                                              arguments: LocalizedStrings.similarMoviesTitle.localized, movieId)
+                                                              arguments: LocalizedStrings.similarMoviesTitle(), movieId)
         viewController.coordinator = self
 
         return viewController

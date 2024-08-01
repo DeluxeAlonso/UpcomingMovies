@@ -83,7 +83,7 @@ final class MovieListViewController: UIViewController, Storyboarded, Placeholder
             hideDisplayedPlaceholderView()
             tableView.tableFooterView = UIView()
         case .empty:
-            presentEmptyView(with: LocalizedStrings.emptyMovieResults.localized)
+            presentEmptyView(with: LocalizedStrings.emptyMovieResults())
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
                              retryHandler: { [weak self] in
