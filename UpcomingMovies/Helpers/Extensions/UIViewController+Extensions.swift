@@ -96,34 +96,23 @@ extension UIViewController {
     // MARK: - Navigation Bar
 
     func setClearAppearanceNavigationBar() {
-        if #available(iOS 15, *) {
-            // It is recommended by apple to set the appearance for the navigation
-            // item when configuring the navigation appearance of a specific view controller
-            // https://developer.apple.com/forums/thread/683590
-            let navigationBarAppearance = UINavigationBarAppearance()
-            navigationBarAppearance.configureWithTransparentBackground()
-            navigationItem.standardAppearance = navigationBarAppearance
-            navigationItem.scrollEdgeAppearance = navigationItem.standardAppearance
-        } else {
-            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            navigationController?.navigationBar.shadowImage = UIImage()
-        }
+        // It is recommended by apple to set the appearance for the navigation
+        // item when configuring the navigation appearance of a specific view controller
+        // https://developer.apple.com/forums/thread/683590
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithTransparentBackground()
+        navigationItem.standardAppearance = navigationBarAppearance
+        navigationItem.scrollEdgeAppearance = navigationItem.standardAppearance
     }
-
+    
     func setDefaultAppearanceNavigationBar(with barTintColor: UIColor) {
-        if #available(iOS 15, *) {
-            // It is recommended by apple to set the appearance for the navigation
-            // item when configuring the navigation appearance of a specific view controller
-            // https://developer.apple.com/forums/thread/683590
-            let navigationBarAppearance = UINavigationBarAppearance()
-            navigationBarAppearance.configureWithDefaultBackground()
-            navigationItem.standardAppearance = navigationBarAppearance
-            navigationItem.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
-        } else {
-            navigationController?.navigationBar.barTintColor = barTintColor
-            navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-            navigationController?.navigationBar.shadowImage = nil
-        }
+        // It is recommended by apple to set the appearance for the navigation
+        // item when configuring the navigation appearance of a specific view controller
+        // https://developer.apple.com/forums/thread/683590
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithDefaultBackground()
+        navigationItem.standardAppearance = navigationBarAppearance
+        navigationItem.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
     }
 
     var navigationBarHeight: CGFloat {

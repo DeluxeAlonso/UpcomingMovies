@@ -83,7 +83,7 @@ final class CustomListDetailViewController: UIViewController, Storyboarded {
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
-        if #available(iOS 15.0, *) { tableView.sectionHeaderTopPadding = .zero }
+        tableView.sectionHeaderTopPadding = .zero
         tableView.registerNib(cellType: MovieListCell.self)
     }
 

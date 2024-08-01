@@ -17,10 +17,7 @@ final class SearchMoviesResultView: UIView {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
         tableView.backgroundColor = .clear
-
-        if #available(iOS 15.0, *) {
-            tableView.sectionHeaderTopPadding = .zero
-        }
+        tableView.sectionHeaderTopPadding = .zero
 
         return tableView
     }()
