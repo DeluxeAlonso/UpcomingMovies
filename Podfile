@@ -22,11 +22,6 @@ target 'UpcomingMovies' do
   pod 'CoreDataInfrastructure', :path => 'CoreDataInfrastructure/', :testspecs => ['CoreDataInfrastructureTests']
   pod 'NetworkInfrastructure', :path => 'NetworkInfrastructure/', :testspecs => ['NetworkInfrastructureTests']
   pod 'NetworkInfrastructure/TestDoubles', :path => 'NetworkInfrastructure/'
-  
-  target 'UpcomingMoviesTodayExtension' do
-    pod 'Kingfisher'
-    pod 'CoreDataInfrastructure', :path => 'CoreDataInfrastructure/'
-  end
 
   target 'UpcomingMoviesTests' do
     inherit! :search_paths
