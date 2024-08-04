@@ -765,7 +765,6 @@
 		E26AB92F21F8C0ED00D9FEAA /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		E26AB93121F8C15800D9FEAA /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		E26AB93321F95AAE00D9FEAA /* MovieList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MovieList.storyboard; sourceTree = "<group>"; };
-		E26B03AB24687D04004447AC /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		E26B4F7A24CE266000F9089E /* CustomListsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListsInteractor.swift; sourceTree = "<group>"; };
 		E26B4F7D24CE90AD00F9089E /* MovieDetailCoordinable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailCoordinable.swift; sourceTree = "<group>"; };
 		E26BFAD02A63CD290067DD6E /* ProfileViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerTests.swift; sourceTree = "<group>"; };
@@ -902,9 +901,6 @@
 		E2B47517227EAFCE0004F621 /* SpinerLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinerLayer.swift; sourceTree = "<group>"; };
 		E2B47519227EB0960004F621 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		E2B63ACE246767EE00C0BB13 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		E2B63B1124676AE200C0BB13 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		E2B63B1624676AE200C0BB13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2B63B1D24676CC700C0BB13 /* Movies.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Movies.entitlements; sourceTree = "<group>"; };
 		E2B67D0E2C4B362C0033090B /* GenreModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreModelTests.swift; sourceTree = "<group>"; };
 		E2B6CFD72C1AAF3500E2C6FE /* MockListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListProtocol.swift; sourceTree = "<group>"; };
 		E2B8C49A28B738E2006A8ECC /* FavoritesSavedMoviesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSavedMoviesInteractorTests.swift; sourceTree = "<group>"; };
@@ -1358,7 +1354,6 @@
 			children = (
 				E221167E21914E4B0039F8C9 /* UpcomingMovies */,
 				E221169521914E4D0039F8C9 /* UpcomingMoviesTests */,
-				E2B63B1024676AE200C0BB13 /* UpcomingMoviesTodayExtension */,
 				E2EBDC2E256A26060026319B /* UpcomingMoviesWidgetExtension */,
 				E221167D21914E4B0039F8C9 /* Products */,
 				40F1AD1B5623EBC5C5B037B7 /* Pods */,
@@ -2427,17 +2422,6 @@
 				E2B47517227EAFCE0004F621 /* SpinerLayer.swift */,
 			);
 			path = ShrinkingButton;
-			sourceTree = "<group>";
-		};
-		E2B63B1024676AE200C0BB13 /* UpcomingMoviesTodayExtension */ = {
-			isa = PBXGroup;
-			children = (
-				E2B63B1D24676CC700C0BB13 /* Movies.entitlements */,
-				E2B63B1124676AE200C0BB13 /* TodayViewController.swift */,
-				E2B63B1624676AE200C0BB13 /* Info.plist */,
-				E26B03AB24687D04004447AC /* TodayView.swift */,
-			);
-			path = UpcomingMoviesTodayExtension;
 			sourceTree = "<group>";
 		};
 		E2B8C49928B738D1006A8ECC /* SavedMovies */ = {
