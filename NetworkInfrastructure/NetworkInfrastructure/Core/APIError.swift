@@ -44,19 +44,19 @@ enum APIError: Error, Equatable {
 
 }
 
-// MARK: - Constants
-
-extension APIError {
-
-    struct ErrorMessages {
-
-        struct Default {
-            static let ServerError = "Server Error. Please, try again later."
-            static let NotAuthorized = "This information is not available."
-            static let NotFound = "Bad request error."
-            static let RequestFailed = "Resquest failed. Please, try again later."
-        }
-
-    }
-
-}
+//// MARK: - Constants
+//
+//extension APIError {
+//
+//    struct ErrorMessages {
+//
+//        struct Default {
+//            static let ServerError = "Server Error. Please, try again later."
+//            static let NotAuthorized = "This information is not available."
+//            static let NotFound = "Bad request error."
+//            static let RequestFailed = "Resquest failed. Please, try again later."
+//        }
+//
+//    }
+//
+//}
