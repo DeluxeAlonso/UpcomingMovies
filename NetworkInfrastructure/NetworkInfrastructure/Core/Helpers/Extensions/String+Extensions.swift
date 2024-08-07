@@ -9,6 +9,6 @@ import Foundation
 
 extension String {
 
-    var asInteger: Int? { Int(self) }
+    var asInt: Int? { Int(self) }
 
 }

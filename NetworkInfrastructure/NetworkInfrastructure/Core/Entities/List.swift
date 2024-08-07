@@ -80,7 +80,7 @@ extension List: DomainConvertible {
                                          description: description,
                                          backdropPath: backdropPath,
                                          averageRating: averageRating,
-                                         runtime: runtime?.asInteger,
+                                         runtime: runtime?.asInt,
                                          movieCount: movieCount,
                                          movies: movies,
                                          revenue: revenue)
