@@ -34,3 +34,5 @@ protocol SignInCoordinatorProtocol: AnyObject {
                             and authPermissionDelegate: AuthPermissionViewControllerDelegate)
 
 }
+
+protocol SignInViewControllerDelegate: UIViewController, AuthenticationStateDelegate {}
