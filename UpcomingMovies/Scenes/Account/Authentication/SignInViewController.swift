@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol SignInViewControllerDelegate: UIViewController, AuthenticationStateDelegate {
-
-}
-
 final class SignInViewController: UIViewController, Storyboarded {
 
     @IBOutlet private weak var iconImageView: UIImageView!
