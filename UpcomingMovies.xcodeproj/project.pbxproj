@@ -420,6 +420,7 @@
 		E2D9A122283F519300ABFA2D /* MovieVideoCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D9A121283F519300ABFA2D /* MovieVideoCellViewModelTests.swift */; };
 		E2DB26E324B03C7F000DD01C /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DB26E224B03C7F000DD01C /* LocalizedStrings.swift */; };
 		E2DBF2F3220532C300CBB365 /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DBF2F2220532BD00CBB365 /* Animatable.swift */; };
+		E2DCBB192C688DC200B3593E /* ProfileSignOutCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DCBB182C688DC200B3593E /* ProfileSignOutCellViewModel.swift */; };
 		E2DCE7F424B12F4F0041301E /* ToggleBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DCE7F324B12F4F0041301E /* ToggleBarButtonItem.swift */; };
 		E2DCE7F724B12F940041301E /* ToggleBarButtonContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DCE7F624B12F940041301E /* ToggleBarButtonContent.swift */; };
 		E2DCE7F924B134ED0041301E /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DCE7F824B134ED0041301E /* Either.swift */; };
@@ -959,6 +960,7 @@
 		E2DC7B8325AAD5DC001A9D21 /* UpcomingMoviesDomain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UpcomingMoviesDomain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DC7B8625AAD5E8001A9D21 /* UpcomingMoviesDomain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UpcomingMoviesDomain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DC7B8A25AAD60E001A9D21 /* CoreDataInfrastructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CoreDataInfrastructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2DCBB182C688DC200B3593E /* ProfileSignOutCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSignOutCellViewModel.swift; sourceTree = "<group>"; };
 		E2DCE7F324B12F4F0041301E /* ToggleBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleBarButtonItem.swift; sourceTree = "<group>"; };
 		E2DCE7F624B12F940041301E /* ToggleBarButtonContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleBarButtonContent.swift; sourceTree = "<group>"; };
 		E2DCE7F824B134ED0041301E /* Either.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
@@ -1345,6 +1347,7 @@
 			isa = PBXGroup;
 			children = (
 				E21F93BA2269A2B5009666B1 /* ProfileSignOutTableViewCell.swift */,
+				E2DCBB182C688DC200B3593E /* ProfileSignOutCellViewModel.swift */,
 			);
 			path = "Sign Out";
 			sourceTree = "<group>";
@@ -2993,6 +2996,7 @@
 				E222DC262192AF9700A2EDF4 /* MovieListCell.swift in Sources */,
 				E27C019D280BFDD1000C510A /* MovieDetailActionModel.swift in Sources */,
 				E229AFAB24A8451F002AB427 /* SavedMoviesProtocols.swift in Sources */,
+				E2DCBB192C688DC200B3593E /* ProfileSignOutCellViewModel.swift in Sources */,
 				E237D3FB2A40307400E1B357 /* RangeReplaceableCollection+Extensions.swift in Sources */,
 				E26911772478D7690039F144 /* RetryActionable.swift in Sources */,
 				E223773A21EEA317000400B7 /* GenreSearchOptionCellViewModel.swift in Sources */,

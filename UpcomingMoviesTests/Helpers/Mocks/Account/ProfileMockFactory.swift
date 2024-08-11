@@ -74,6 +74,13 @@ final class MockProfileViewModel: ProfileViewModelProtocol {
         return buildProfileOptionCellViewModelResult
     }
 
+    var buildSignOutCellViewModelResult = MockProfileSignOutCellViewModel()
+    private(set) var buildSignOutCellViewModelCallCount = 0
+    func buildSignOutCellViewModel() -> ProfileSignOutCellViewModelProtocol {
+        buildSignOutCellViewModelCallCount += 1
+        return buildSignOutCellViewModelResult
+    }
+
     private(set) var getAccountDetailsCallCount = 0
     func getAccountDetails() {
         getAccountDetailsCallCount += 1
@@ -89,6 +96,12 @@ final class MockProfileViewModel: ProfileViewModelProtocol {
 final class MockProfileSelectableOptionCellViewModel: ProfileSelectableOptionCellViewModelProtocol {
 
     var title: String?
+
+}
+
+final class MockProfileSignOutCellViewModel: ProfileSignOutCellViewModelProtocol {
+
+    var title: String = ""
 
 }
 

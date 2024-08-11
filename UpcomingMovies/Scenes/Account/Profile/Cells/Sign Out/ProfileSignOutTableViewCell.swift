@@ -10,6 +10,12 @@ import UIKit
 
 final class ProfileSignOutTableViewCell: UITableViewCell {
 
+    var viewModel: ProfileSignOutCellViewModelProtocol? {
+        didSet {
+            setupBindables()
+        }
+    }
+
     // MARK: - Initializers
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -24,11 +30,16 @@ final class ProfileSignOutTableViewCell: UITableViewCell {
     // MARK: - Private
 
     private func setupUI() {
-        textLabel?.text = LocalizedStrings.signOut()
         textLabel?.textAlignment = .center
         textLabel?.textColor = ColorPalette.redColor
         textLabel?.font = FontHelper.calloutLight
         textLabel?.adjustsFontForContentSizeCategory = true
+    }
+
+    // MARK: - Reactive Behavior
+
+    private func setupBindables() {
+        textLabel?.text = viewModel?.title
     }
 
 }
