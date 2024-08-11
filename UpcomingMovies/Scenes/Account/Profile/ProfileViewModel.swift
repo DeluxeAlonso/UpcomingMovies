@@ -66,6 +66,10 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         return ProfileSelectableOptionCellViewModel(profileOption)
     }
 
+    func buildSignOutCellViewModel(for section: Int) -> ProfileSignOutCellViewModelProtocol {
+        ProfileSignOutCellViewModel()
+    }
+
     // MARK: - Networking
 
     func getAccountDetails() {
