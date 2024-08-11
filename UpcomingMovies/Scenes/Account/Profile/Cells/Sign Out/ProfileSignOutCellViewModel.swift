@@ -14,7 +14,7 @@ protocol ProfileSignOutCellViewModelProtocol {
 
 }
 
-final class ProfileSignOutCellViewModel: ProfileSignOutCellViewModelProtocol {
+struct ProfileSignOutCellViewModel: ProfileSignOutCellViewModelProtocol {
 
     var title: String {
         LocalizedStrings.signOut()
