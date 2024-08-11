@@ -23,7 +23,7 @@ protocol ProfileViewModelProtocol {
     func profileOption(for section: Int, at index: Int) -> ProfileOptionProtocol
     func buildProfileOptionCellViewModel(for section: Int,
                                          at index: Int) -> ProfileSelectableOptionCellViewModelProtocol
-    func buildSignOutCellViewModel(for section: Int) -> ProfileSignOutCellViewModelProtocol
+    func buildSignOutCellViewModel() -> ProfileSignOutCellViewModelProtocol
 
     func getAccountDetails()
     func signOutCurrentUser()

@@ -10,7 +10,7 @@ import UIKit
 
 final class ProfileSignOutTableViewCell: UITableViewCell {
 
-    var viewModel: ProfileSignOutCellViewModel? {
+    var viewModel: ProfileSignOutCellViewModelProtocol? {
         didSet {
             setupBindables()
         }

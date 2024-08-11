@@ -50,7 +50,7 @@ final class ProfileDataSource: NSObject, UITableViewDataSource {
             return cell
         case .signOut:
             let cell = ProfileSignOutTableViewCell(style: .default, reuseIdentifier: nil)
-            
+            cell.viewModel = viewModel.buildSignOutCellViewModel()
             return cell
         }
     }

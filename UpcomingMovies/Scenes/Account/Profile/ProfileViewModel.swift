@@ -66,7 +66,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         return ProfileSelectableOptionCellViewModel(profileOption)
     }
 
-    func buildSignOutCellViewModel(for section: Int) -> ProfileSignOutCellViewModelProtocol {
+    func buildSignOutCellViewModel() -> ProfileSignOutCellViewModelProtocol {
         ProfileSignOutCellViewModel()
     }
 
