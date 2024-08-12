@@ -15,7 +15,7 @@ protocol ProfileSelectableOptionCellViewModelProtocol {
 
 }
 
-final class ProfileSelectableOptionCellViewModel: ProfileSelectableOptionCellViewModelProtocol {
+struct ProfileSelectableOptionCellViewModel: ProfileSelectableOptionCellViewModelProtocol {
 
     let title: String?
 
