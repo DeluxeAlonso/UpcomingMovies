@@ -16,7 +16,7 @@ protocol ProfileAccountInfoCellViewModelProtocol {
 
 }
 
-final class ProfileAccountInfoCellViewModel: ProfileAccountInfoCellViewModelProtocol {
+struct ProfileAccountInfoCellViewModel: ProfileAccountInfoCellViewModelProtocol {
 
     let name: String
     let username: String
