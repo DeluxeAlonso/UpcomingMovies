@@ -16,6 +16,9 @@ protocol ProfileViewModelProtocol {
     var didUpdateAuthenticationState: AnyBehaviorBindable<AuthenticationState?> { get }
     var didReceiveError: AnyPublishBindable<Void> { get }
 
+    var signOutTitle: String? { get }
+    var signOutConfirmationTitle: String? { get }
+
     func section(at index: Int) -> ProfileSection
     func numberOfSections() -> Int
     func numberOfRows(for section: Int) -> Int
