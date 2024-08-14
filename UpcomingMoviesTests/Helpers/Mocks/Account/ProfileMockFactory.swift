@@ -39,6 +39,9 @@ final class MockProfileViewModel: ProfileViewModelProtocol {
     var didUpdateAuthenticationState = BehaviorBindable<AuthenticationState?>(nil).eraseToAnyBindable()
     var didReceiveError = PublishBindable<Void>().eraseToAnyBindable()
 
+    var signOutTitle: String?
+    var signOutConfirmationTitle: String?
+
     var sectionAtIndexResult: ProfileSection = .accountInfo
     private(set) var sectionAtIndexCallCount = 0
     func section(at index: Int) -> ProfileSection {
