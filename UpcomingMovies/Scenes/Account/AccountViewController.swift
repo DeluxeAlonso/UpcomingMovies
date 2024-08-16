@@ -32,7 +32,7 @@ final class AccountViewController: UIViewController, Storyboarded {
     // MARK: - Private
 
     private func setupUI() {
-        title = LocalizedStrings.accountTabBarTitle()
+        title = viewModel?.title
         setupContainerView()
         setupNavigationBar()
     }
@@ -43,7 +43,7 @@ final class AccountViewController: UIViewController, Storyboarded {
     }
 
     private func setupNavigationBar() {
-        navigationItem.title = LocalizedStrings.accountTitle()
+        navigationItem.title = viewModel?.navigationItemTitle
     }
 
     private func showSignInView(withAnimatedNavigationBar animated: Bool = false) {
