@@ -13,6 +13,9 @@ protocol AccountViewModelProtocol {
     var showAuthPermission: AnyPublishBindable<URL> { get }
     var didReceiveError: AnyPublishBindable<Void> { get }
 
+    var title: String? { get }
+    var navigationItemTitle: String? { get }
+
     func isUserSignedIn() -> Bool
     func currentUser() -> UserProtocol?
 
