@@ -16,6 +16,10 @@ final class AccountViewModel: AccountViewModelProtocol {
     let didUpdateAuthenticationState = BehaviorBindable<AuthenticationState?>(nil).eraseToAnyBindable()
     let didReceiveError = PublishBindable<Void>().eraseToAnyBindable()
 
+    var title: String? { LocalizedStrings.accountTabBarTitle() }
+
+    var navigationItemTitle: String? { LocalizedStrings.accountTitle() }
+
     // MARK: - Initializers
 
     init(interactor: AccountInteractorProtocol) {
