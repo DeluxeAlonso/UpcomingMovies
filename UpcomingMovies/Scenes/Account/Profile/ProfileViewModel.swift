@@ -26,6 +26,14 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         ProfileAccountInfoCellViewModel(userAccount: userAccount)
     }
 
+    var signOutTitle: String? {
+        LocalizedStrings.signOut()
+    }
+
+    var signOutConfirmationTitle: String? {
+        LocalizedStrings.signOutConfirmationTitle()
+    }
+
     // MARK: - Initializers
 
     init(userAccount: UserProtocol,

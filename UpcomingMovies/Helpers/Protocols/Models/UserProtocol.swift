@@ -22,20 +22,20 @@ protocol UserProtocol: ImageConfigurable {
 }
 
 struct UserModel: UserProtocol {
-    
+
     let id: Int
     let name: String
     let username: String
     let includeAdult: Bool
-    
+
     private let avatarPath: String?
-    
+
     var avatarImageURL: URL? {
         guard let avatarPath, let avatarImageBaseURLString else { return nil }
         let urlString = avatarImageBaseURLString.appending(avatarPath)
         return URL(string: urlString)
     }
-    
+
     init(_ user: User) {
         self.id = user.id
         self.name = user.name
@@ -43,7 +43,7 @@ struct UserModel: UserProtocol {
         self.includeAdult = user.includeAdult
         self.avatarPath = user.avatarPath
     }
-    
+
     func hasUpdatedInfo(_ newUserInfo: UserProtocol) -> Bool {
         self.id != newUserInfo.id ||
         self.name != newUserInfo.name ||

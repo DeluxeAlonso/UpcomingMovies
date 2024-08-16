@@ -104,7 +104,7 @@ extension UIViewController {
         navigationItem.standardAppearance = navigationBarAppearance
         navigationItem.scrollEdgeAppearance = navigationItem.standardAppearance
     }
-    
+
     func setDefaultAppearanceNavigationBar(with barTintColor: UIColor) {
         // It is recommended by apple to set the appearance for the navigation
         // item when configuring the navigation appearance of a specific view controller
