@@ -11,7 +11,7 @@
     }
   ],
   "defaultOptions" : {
-
+    "language" : "en"
   },
   "testTargets" : [
     {

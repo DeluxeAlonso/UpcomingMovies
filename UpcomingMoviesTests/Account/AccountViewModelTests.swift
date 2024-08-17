@@ -27,6 +27,20 @@ final class AccountViewModelTests: XCTestCase {
         try super.tearDownWithError()
     }
 
+    func testTitle() {
+        // Act
+        let title = viewModelToTest.title
+        // Assert
+        XCTAssertEqual(title, "Account")
+    }
+
+    func testNavigationItemTitle() {
+        // Act
+        let title = viewModelToTest.navigationItemTitle
+        // Assert
+        XCTAssertEqual(title, "Account")
+    }
+
     func testCurrentUserNotNil() {
         // Arrange
         let userToTest = MockUserProtocol()
