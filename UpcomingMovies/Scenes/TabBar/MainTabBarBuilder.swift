@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UpcomingMoviesDomain
 
 struct RootCoordinatorIdentifier {
     static let upcomingMovies = "upcoming"
