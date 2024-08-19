@@ -29,6 +29,8 @@
 "recomendedMoviesOption" = "Películas recomendadas";
 "includeAdults" = "Incluir películas para adultos";
 
+"signIn" = "Iniciar sesión";
+
 "signOutConfirmationTitle" = "¿Estás seguro de que deseas cerrar sesión?";
 "signOut" = "Cerrar sesión";
 

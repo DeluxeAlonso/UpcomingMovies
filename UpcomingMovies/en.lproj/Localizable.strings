@@ -29,6 +29,8 @@
 "recomendedMoviesOption" = "Recommendations";
 "includeAdults" = "Include adult movies";
 
+"signIn" = "Sign in with TheMovieDB";
+
 "signOutConfirmationTitle" = "Are you sure you want to sign out?";
 "signOut" = "Sign out";
 
