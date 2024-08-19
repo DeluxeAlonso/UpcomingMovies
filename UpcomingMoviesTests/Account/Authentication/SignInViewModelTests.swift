@@ -89,7 +89,7 @@ final class SignInViewModelTests: XCTestCase {
         // Act
         let buttonTitle = viewModelToTest.signInButtonTitle
         // Assert
-        XCTAssertEqual(buttonTitle, "Signm")
+        XCTAssertEqual(buttonTitle, "Sign in with TheMovieDB")
     }
 
 }
