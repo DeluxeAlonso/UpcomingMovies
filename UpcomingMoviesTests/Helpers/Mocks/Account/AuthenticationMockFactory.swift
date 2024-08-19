@@ -94,6 +94,8 @@ final class MockSignInViewModel: SignInViewModelProtocol {
     var didUpdateAuthenticationState = BehaviorBindable<AuthenticationState?>(nil).eraseToAnyBindable()
     var didReceiveError: AnyPublishBindable<Void> = PublishBindable<Void>().eraseToAnyBindable()
 
+    var signInButtonTitle: String? = ""
+
     private(set) var startAuthorizationProcessCallCount = 0
     func startAuthorizationProcess() {
         startAuthorizationProcessCallCount += 1
