@@ -19,6 +19,8 @@ protocol SignInViewModelProtocol {
     func startAuthorizationProcess()
     func signInUser()
 
+    var signInButtonTitle: String? { get }
+
 }
 
 protocol SignInInteractorProtocol {
