@@ -37,7 +37,7 @@ final class SignInViewController: UIViewController, Storyboarded {
     // MARK: - Private
 
     private func setupUI() {
-        signInButton.setTitle("test", for: .normal)
+        signInButton.setTitle(viewModel?.signInButtonTitle, for: .normal)
         setupImageTransionHandler()
     }
 
