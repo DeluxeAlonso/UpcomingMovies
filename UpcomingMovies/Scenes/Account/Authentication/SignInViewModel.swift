@@ -17,6 +17,10 @@ final class SignInViewModel: SignInViewModelProtocol {
     let didUpdateAuthenticationState = BehaviorBindable<AuthenticationState?>(nil).eraseToAnyBindable()
     let didReceiveError = PublishBindable<Void>().eraseToAnyBindable()
 
+    var signInButtonTitle: String? {
+        LocalizedStrings.signIn()
+    }
+
     init(interactor: SignInInteractorProtocol) {
         self.interactor = interactor
     }

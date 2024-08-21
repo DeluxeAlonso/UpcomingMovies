@@ -85,4 +85,11 @@ final class SignInViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testSignInButtonTitle() {
+        // Act
+        let buttonTitle = viewModelToTest.signInButtonTitle
+        // Assert
+        XCTAssertEqual(buttonTitle, "Sign in with TheMovieDB")
+    }
+
 }
