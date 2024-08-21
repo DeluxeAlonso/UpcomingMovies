@@ -33,6 +33,10 @@ final class SavedMoviesViewModel: SavedMoviesViewModelProtocol, SimpleViewStateP
         viewState.value.needsPrefetch
     }
 
+    var emptyMovieResultsTitle: String? {
+        LocalizedStrings.emptyMovieResults()
+    }
+
     var displayTitle: String?
 
     // MARK: - Initializers
