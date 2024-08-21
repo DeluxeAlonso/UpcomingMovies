@@ -18,6 +18,8 @@ protocol SavedMoviesViewModelProtocol {
     var startLoading: AnyBehaviorBindable<Bool> { get }
     var viewState: AnyBehaviorBindable<SavedMoviesViewState> { get }
 
+    var emptyMovieResultsTitle: String? { get }
+
     func getCollectionList()
     func refreshCollectionList()
 

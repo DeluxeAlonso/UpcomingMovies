@@ -102,7 +102,7 @@ final class SavedMoviesViewController: UIViewController, Storyboarded, Placehold
             hideDisplayedPlaceholderView()
             collectionView.backgroundView = UIView(frame: .zero)
         case .empty:
-            presentEmptyView(with: LocalizedStrings.emptyMovieResults())
+            presentEmptyView(with: viewModel?.emptyMovieResultsTitle)
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
                              retryHandler: { [weak self] in
