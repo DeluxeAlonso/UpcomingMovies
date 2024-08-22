@@ -21,6 +21,10 @@ final class CustomListsViewModel: CustomListsViewModelProtocol, SimpleViewStateP
 
     // MARK: - Computed properties
 
+    var title: String? {
+        LocalizedStrings.customListGroupOption()
+    }
+
     private var lists: [ListProtocol] {
         viewState.value.currentEntities
     }
