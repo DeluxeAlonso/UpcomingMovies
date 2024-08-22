@@ -92,4 +92,11 @@ final class CustomListsViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testTitle() {
+        // Act
+        let title = viewModelToTest.title
+        // Assert
+        XCTAssertEqual(title, "Created Lists")
+    }
+
 }
