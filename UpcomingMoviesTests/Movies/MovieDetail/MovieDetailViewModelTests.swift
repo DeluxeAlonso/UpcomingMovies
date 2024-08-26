@@ -122,6 +122,15 @@ final class MovieDetailViewModelTests: XCTestCase {
         XCTAssertEqual(screenTitle, String(format: LocalizedStrings.movieDetailShareText(), titleToTest))
     }
 
+    func testCancelTitle() {
+        // Arrange
+        let viewModelToTest = createSUT(with: MockMovieProtocol())
+        // Act
+        let cancelTitle = viewModelToTest.cancelTitle
+        // Assert
+        XCTAssertEqual(cancelTitle, "Cancel")
+    }
+
     func testSaveVisitedMovie() {
         // Arrange
         let viewModelToTest = createSUT(with: 1, title: "Title")
