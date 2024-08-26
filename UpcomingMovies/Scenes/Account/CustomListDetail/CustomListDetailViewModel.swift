@@ -21,6 +21,10 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
 
     // MARK: - Computed properties
 
+    var emptyMovieResultsTitle: String? {
+        LocalizedStrings.emptyMovieResults()
+    }
+
     private var movies: [MovieProtocol] {
         viewState.value.currentMovies
     }
