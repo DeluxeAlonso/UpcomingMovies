@@ -39,7 +39,7 @@ final class CustomListDetailViewModelTests: XCTestCase {
         // Act
         let emptyMovieResultsTitle = viewModel.emptyMovieResultsTitle
         // Assert
-        XCTAssertEqual(emptyMovieResultsTitle, "")
+        XCTAssertEqual(emptyMovieResultsTitle, "There are no movies to show right now.")
     }
 
     private func createSUT(list: ListProtocol) -> CustomListDetailViewModel {
