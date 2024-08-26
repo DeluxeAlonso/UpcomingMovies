@@ -33,6 +33,15 @@ final class CustomListDetailViewModelTests: XCTestCase {
         XCTAssertEqual(listName, nameToTest)
     }
 
+    func testEmptyMovieResultsTitle() {
+        // Arrange
+        let viewModel = createSUT(list: MockListProtocol())
+        // Act
+        let emptyMovieResultsTitle = viewModel.emptyMovieResultsTitle
+        // Assert
+        XCTAssertEqual(emptyMovieResultsTitle, "")
+    }
+
     private func createSUT(list: ListProtocol) -> CustomListDetailViewModel {
         CustomListDetailViewModel(list, interactor: interactor)
     }

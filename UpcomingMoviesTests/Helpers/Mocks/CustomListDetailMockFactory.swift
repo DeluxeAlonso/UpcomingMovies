@@ -29,6 +29,8 @@ final class MockCustomListDetailViewModel: CustomListDetailViewModelProtocol {
 
     var movieCells: [MovieListCellViewModel] = []
 
+    var emptyMovieResultsTitle: String = ""
+
     var buildHeaderViewModelCallCount = 0
     var buildHeaderViewModelResult = CustomListDetailHeaderViewModel(list: MockListProtocol())
     func buildHeaderViewModel() -> CustomListDetailHeaderViewModelProtocol {
