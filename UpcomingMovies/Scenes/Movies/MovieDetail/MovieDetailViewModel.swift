@@ -57,6 +57,10 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         String(format: LocalizedStrings.movieDetailShareText(), title)
     }
 
+    var cancelTitle: String {
+        LocalizedStrings.cancel()
+    }
+
     // MARK: - Initializers
 
     init(_ movie: MovieProtocol,
