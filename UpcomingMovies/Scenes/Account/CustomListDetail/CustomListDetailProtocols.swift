@@ -14,7 +14,7 @@ protocol CustomListDetailViewModelProtocol {
     var viewState: AnyBehaviorBindable<CustomListDetailViewState> { get }
     var movieCells: [MovieListCellViewModel] { get }
 
-    var emptyMovieResultsTitle: String? { get }
+    var emptyMovieResultsTitle: String { get }
 
     func buildHeaderViewModel() -> CustomListDetailHeaderViewModelProtocol
     func buildSectionViewModel() -> CustomListDetailSectionViewModel

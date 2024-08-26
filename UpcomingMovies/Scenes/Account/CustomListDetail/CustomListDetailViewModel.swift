@@ -21,7 +21,7 @@ final class CustomListDetailViewModel: CustomListDetailViewModelProtocol {
 
     // MARK: - Computed properties
 
-    var emptyMovieResultsTitle: String? {
+    var emptyMovieResultsTitle: String {
         LocalizedStrings.emptyMovieResults()
     }
 
