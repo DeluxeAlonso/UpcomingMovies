@@ -15,6 +15,8 @@ protocol MovieListViewModelProtocol {
 
     var needsPrefetch: Bool { get }
 
+    var emptyMovieResultsTitle: String { get }
+
     var displayTitle: String? { get set }
     var movieCells: [MovieListCellViewModelProtocol] { get }
 
