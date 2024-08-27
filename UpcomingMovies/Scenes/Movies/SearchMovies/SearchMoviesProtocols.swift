@@ -31,6 +31,9 @@ protocol SearchMoviesResultViewModelProtocol {
     var recentSearchCells: [RecentSearchCellViewModelProtocol] { get }
     var movieCells: [MovieListCellViewModelProtocol] { get }
 
+    var emptySearchResultsTitle: String { get }
+    var recentSearchesTitle: String { get }
+
     func loadRecentSearches()
 
     func searchMovies(withSearchText searchText: String)

@@ -89,7 +89,7 @@ final class SearchMoviesResultController: UIViewController, Keyboardable {
     private func configureFooterView(with state: SearchMoviesResultViewState) {
         switch state {
         case .empty:
-            let footerView = FooterView(message: LocalizedStrings.emptySearchResults())
+            let footerView = FooterView(message: viewModel.emptySearchResultsTitle)
             searchMoviesResultView.setFooterView(.custom(footerView))
         case .populated, .recentSearches:
             searchMoviesResultView.setFooterView(.empty)
@@ -152,7 +152,7 @@ extension SearchMoviesResultController: SearchMoviesResultDelegate {
         switch viewState {
         case .recentSearches:
             let headerView = HeaderView()
-            headerView.headerTitle = LocalizedStrings.recentSearches()
+            headerView.headerTitle = viewModel.recentSearchesTitle
             return headerView
         case .populated:
             let view = UIView()
