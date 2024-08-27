@@ -12,37 +12,34 @@ import UpcomingMoviesDomain
 
 final class SearchMoviesResultViewModelTests: XCTestCase {
 
-    private var mockInteractor: MockMovieDetailInteractor!
+    private var mockInteractor: MockSearchMoviesResultInteractor!
 
     override func setUp() {
         super.setUp()
-        mockInteractor = MockMovieDetailInteractor()
-        mockFactory = MockMovieDetailViewFactory()
+        mockInteractor = MockSearchMoviesResultInteractor()
     }
 
     override func tearDown() {
         mockInteractor = nil
-        mockFactory = nil
         super.tearDown()
     }
-    
-    func testScreenTitle() {
+
+    func testEmptySearchResultsTitle() {
         // Arrange
-        let viewModelToTest = createSUT(with: 1, title: "Title")
+        let viewModelToTest = SearchMoviesResultViewModel(interactor: mockInteractor)
         // Act
-        let screenTitle = viewModelToTest.screenTitle
+        let emptySearchResultsTitle = viewModelToTest.emptySearchResultsTitle
         // Assert
-        XCTAssertEqual(screenTitle, LocalizedStrings.movieDetailTitle())
+        XCTAssertEqual(emptySearchResultsTitle, "No results to show.")
     }
 
     func testShareTitle() {
         // Arrange
-        let titleToTest = "Title"
-        let viewModelToTest = createSUT(with: 1, title: titleToTest)
+        let viewModelToTest = SearchMoviesResultViewModel(interactor: mockInteractor)
         // Act
-        let screenTitle = viewModelToTest.shareTitle
+        let recentSearchesTitle = viewModelToTest.recentSearchesTitle
         // Assert
-        XCTAssertEqual(screenTitle, String(format: LocalizedStrings.movieDetailShareText(), titleToTest))
+        XCTAssertEqual(recentSearchesTitle, "Recent searches")
     }
 
 }
