@@ -33,6 +33,14 @@ final class SearchMoviesResultViewModel: SearchMoviesResultViewModelProtocol {
         movies.compactMap { MovieListCellViewModel($0)}
     }
 
+    var emptySearchResultsTitle: String {
+        LocalizedStrings.emptySearchResults()
+    }
+
+    var recentSearchesTitle: String {
+        LocalizedStrings.recentSearches()
+    }
+
     // MARK: - Stored properties
 
     private var recentSearches: [MovieSearchProtocol] = [] {
