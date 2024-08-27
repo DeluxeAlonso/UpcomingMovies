@@ -18,6 +18,7 @@ protocol MovieDetailViewModelProtocol {
 
     var screenTitle: String { get }
     var shareTitle: String { get }
+    var cancelTitle: String { get }
 
     var startLoading: AnyBehaviorBindable<Bool> { get }
     var showGenreName: AnyBehaviorBindable<String> { get }

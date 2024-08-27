@@ -196,7 +196,7 @@ final class MovieDetailViewController: UIViewController, Storyboarded, Transitio
         let availableActions = actionModels.map { actionModel in
             UIAlertAction(title: actionModel.title, style: .default) { _ in actionModel.action() }
         }
-        let cancelAction = UIAlertAction(title: LocalizedStrings.cancel(), style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: viewModel?.cancelTitle, style: .cancel) { _ in
             self.dismiss(animated: true)
         }
         let actions = [cancelAction] + availableActions
