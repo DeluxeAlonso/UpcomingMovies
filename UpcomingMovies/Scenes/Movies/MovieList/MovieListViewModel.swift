@@ -33,6 +33,10 @@ final class MovieListViewModel: MovieListViewModelProtocol, SimpleViewStateProce
         movies.compactMap { MovieListCellViewModel($0) }
     }
 
+    var emptyMovieResultsTitle: String {
+        LocalizedStrings.emptyMovieResults()
+    }
+
     // MARK: - Initializers
 
     init(interactor: MoviesInteractorProtocol) {
