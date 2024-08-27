@@ -13,7 +13,6 @@ import UpcomingMoviesDomain
 final class SearchMoviesResultViewModelTests: XCTestCase {
 
     private var mockInteractor: MockMovieDetailInteractor!
-    private var mockFactory: MockMovieDetailViewFactory!
 
     override func setUp() {
         super.setUp()

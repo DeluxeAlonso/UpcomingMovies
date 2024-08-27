@@ -42,3 +42,35 @@ final class MockSearchMoviesResultControllerDelegate: MockViewController, Search
     }
 
 }
+
+final class MockSearchMoviesResultInteractor: SearchMoviesResultInteractorProtocol {
+    var didUpdateMovieSearches: (() -> Void)?
+
+    var searchMoviesResult: Result<[MovieProtocol], Error>?
+    private(set) var searchMoviesCallCount = 0
+    func searchMovies(searchText: String, page: Int?, completion: @escaping (Result<[MovieProtocol], Error>) -> Void) {
+        if let searchMoviesResult = searchMoviesResult {
+            completion(searchMoviesResult)
+        }
+        searchMoviesCallCount += 1
+    }
+
+    var getMovieSearchesResult: Result<[MovieSearchProtocol], Error>?
+    private(set) var getMovieSearchesCallCount = 0
+    func getMovieSearches(limit: Int?, completion: @escaping (Result<[MovieSearchProtocol], Error>) -> Void) {
+        if let getMovieSearchesResult = getMovieSearchesResult {
+            completion(getMovieSearchesResult)
+        }
+        getMovieSearchesCallCount += 1
+    }
+
+    var saveSearchTextResult: Result<Void, Error>?
+    private(set) var saveSearchTextCallCount = 0
+    func saveSearchText(_ searchText: String, completion: ((Result<Void, Error>) -> Void)?) {
+        if let saveSearchTextResult = saveSearchTextResult {
+            completion?(saveSearchTextResult)
+        }
+        saveSearchTextCallCount += 1
+    }
+
+}
