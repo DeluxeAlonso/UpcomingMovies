@@ -36,7 +36,7 @@
 
 "emptyMovieResults" = "There are no movies to show right now.";
 "emptyVideoResults" = "There are no trailers to show right now.";
-"emptyCreditReults" = "No credits to show.";
+"emptyCreditResults" = "No credits to show.";
 "emptyReviewResults" = "There are no reviews to show right now.";
 
 "movieDetailTitle" = "Movie detail";

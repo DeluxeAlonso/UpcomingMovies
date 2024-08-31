@@ -38,7 +38,7 @@ enum LocalizedStrings: String, Localizable {
 
     case emptyMovieResults
     case emptyVideoResults
-    case emptyCreditReults
+    case emptyCreditResults
     case emptyReviewResults
 
     case movieDetailTitle

@@ -27,7 +27,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     // MARK: - Computed properties
 
     var emptyCreditResultsTitle: String {
-        LocalizedStrings.emptyCreditReults()
+        LocalizedStrings.emptyCreditResults()
     }
 
     // MARK: - Initializers
