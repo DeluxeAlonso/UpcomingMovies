@@ -36,7 +36,7 @@
 
 "emptyMovieResults" = "No hay películas que mostrar.";
 "emptyVideoResults" = "No hay trailers que mostrar.";
-"emptyCreditReults" = "No hay créditos que mostrar.";
+"emptyCreditResults" = "No hay créditos que mostrar.";
 "emptyReviewResults" = "No hay reviews que mostrar.";
 
 "movieDetailTitle" = "Detalle";

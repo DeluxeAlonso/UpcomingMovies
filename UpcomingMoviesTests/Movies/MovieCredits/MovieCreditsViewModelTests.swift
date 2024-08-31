@@ -173,4 +173,11 @@ final class MovieCreditsViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testEmptyCreditResultsTitle() {
+        // Act
+        let emptyCreditResultsTitle = viewModelToTest.emptyCreditResultsTitle
+        // Assert
+        XCTAssertEqual(emptyCreditResultsTitle, "No credits to show.")
+    }
+
 }
