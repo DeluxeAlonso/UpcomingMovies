@@ -24,6 +24,12 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     let startLoading = BehaviorBindable(false).eraseToAnyBindable()
     let didToggleSection =  PublishBindable<Int>().eraseToAnyBindable()
 
+    // MARK: - Computed properties
+
+    var emptyCreditResults: String {
+        LocalizedStrings.emptyCreditReults()
+    }
+
     // MARK: - Initializers
 
     init(movieId: Int, movieTitle: String,
