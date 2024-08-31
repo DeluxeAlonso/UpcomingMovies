@@ -64,7 +64,7 @@ final class MovieCreditsViewController: UIViewController, Storyboarded, Placehol
         case .populated, .initial:
             hideDisplayedPlaceholderView()
         case .empty:
-            presentEmptyView(with: LocalizedStrings.emptyCreditReults())
+            presentEmptyView(with: viewModel?.emptyCreditResults)
         case .error(let error):
             presentRetryView(with: error.localizedDescription,
                              retryHandler: { [weak self] in
