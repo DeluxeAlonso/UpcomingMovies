@@ -37,6 +37,13 @@ final class MovieReviewsViewModelTests: XCTestCase {
         XCTAssertEqual(title, "Movie 1")
     }
 
+    func testEmptyReviewResultsTitle() {
+        // Act
+        let emptyReviewResultsTitle = viewModelToTest.emptyReviewResultsTitle
+        // Assert
+        XCTAssertEqual(emptyReviewResultsTitle, "There are no reviews to show right now.")
+    }
+
     func testGetReviewsEmpty() {
         // Arrange
         let expectation = XCTestExpectation(description: "Should get empty state")
