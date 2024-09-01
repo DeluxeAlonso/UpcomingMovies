@@ -11,6 +11,7 @@ import Foundation
 protocol MovieVideosViewModelProtocol {
 
     var movieTitle: String { get }
+    var emptyVideoResultsTitle: String { get }
 
     var viewState: AnyBehaviorBindable<MovieVideosViewState> { get }
     var startLoading: AnyBehaviorBindable<Bool> { get }
