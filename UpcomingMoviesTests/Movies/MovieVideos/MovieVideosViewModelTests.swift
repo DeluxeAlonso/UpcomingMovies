@@ -36,6 +36,13 @@ final class MovieVideosViewModelTests: XCTestCase {
         XCTAssertEqual(title, "Movie Test")
     }
 
+    func testEmptyVideoResultsTitle() {
+        // Act
+        let emptyVideoResultsTitle = viewModelToTest.emptyVideoResultsTitle
+        // Assert
+        XCTAssertEqual(emptyVideoResultsTitle, "There are no trailers to show right now.")
+    }
+
     func testGetVideosPopulated() {
         // Arrange
         let videostoTest = [MockVideoProtocol(id: "1"), MockVideoProtocol(id: "2")]
