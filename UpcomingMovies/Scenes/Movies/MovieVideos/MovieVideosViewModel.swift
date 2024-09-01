@@ -30,6 +30,10 @@ final class MovieVideosViewModel: MovieVideosViewModelProtocol, SimpleViewStateP
         viewState.value.currentEntities
     }
 
+    var emptyVideoResultsTitle: String {
+        LocalizedStrings.emptyVideoResults()
+    }
+
     // MARK: - Stored properties
 
     let movieTitle: String
