@@ -33,6 +33,10 @@ final class MovieReviewsViewModel: MovieReviewsViewModelProtocol, SimpleViewStat
         viewState.value.needsPrefetch
     }
 
+    var emptyReviewResultsTitle: String {
+        LocalizedStrings.emptyReviewResults()
+    }
+
     // MARK: - Stored properties
 
     let movieTitle: String
