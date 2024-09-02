@@ -14,9 +14,9 @@ enum DefaultSearchOption {
     var title: String? {
         switch self {
         case .popular:
-            return "Popular movies"
+            return LocalizedStrings.popularMoviesTitle()
         case .topRated:
-            return "Top rated movies"
+            return LocalizedStrings.topRatedMoviesTitle()
         }
     }
 
