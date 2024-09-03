@@ -23,9 +23,9 @@ enum DefaultSearchOption {
     var subtitle: String? {
         switch self {
         case .popular:
-            return "The hottest movies on the internet"
+            return LocalizedStrings.popularMoviesSubtitle()
         case .topRated:
-            return "The top rated movies on the internet"
+            return LocalizedStrings.topRatedMoviesSubtitle()
         }
     }
 
