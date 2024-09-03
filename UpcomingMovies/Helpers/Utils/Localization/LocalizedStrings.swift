@@ -65,7 +65,9 @@ enum LocalizedStrings: String, Localizable {
     case collapseMovieCellsHint
 
     case topRatedMoviesTitle
+    case topRatedMoviesSubtitle
     case popularMoviesTitle
+    case popularMoviesSubtitle
     case similarMoviesTitle
 
     case cast
