@@ -63,7 +63,9 @@
 "collapseMovieCellsHint" = "Colapsar películas";
 
 "topRatedMoviesTitle" = "Películas Top";
+"topRatedMoviesSubtitle" = "Las películas mejores puntuadas del internet";
 "popularMoviesTitle" = "Películas Populares";
+"popularMoviesSubtitle" = "Las películas más buscadas del internet";
 "similarMoviesTitle" = "Películas Similares";
 
 "cast" = "Reparto";

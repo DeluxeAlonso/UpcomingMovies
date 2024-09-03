@@ -63,7 +63,9 @@
 "collapseMovieCellsHint" = "Collapse movies";
 
 "topRatedMoviesTitle" = "Top Rated Movies";
+"topRatedMoviesSubtitle" = "The top rated movies on the internet";
 "popularMoviesTitle" = "Popular Movies";
+"popularMoviesSubtitle" = "The hottest movies on the internet";
 "similarMoviesTitle" = "Similar Movies";
 
 "cast" = "Cast";

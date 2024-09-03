@@ -18,11 +18,39 @@ final class DefaultSearchOptionTests: XCTestCase {
         XCTAssertEqual(title, "Popular Movies")
     }
 
+    func testPopularSubtitle() {
+        // Act
+        let subtitle = DefaultSearchOption.popular.subtitle
+        // Assert
+        XCTAssertEqual(subtitle, "The hottest movies on the internet")
+    }
+
+    func testPopularIcon() {
+        // Act
+        let icon = DefaultSearchOption.popular.icon
+        // Assert
+        XCTAssertEqual(icon, #imageLiteral(resourceName: "Popular"))
+    }
+
     func testTopRatedTitle() {
         // Act
         let title = DefaultSearchOption.topRated.title
         // Assert
         XCTAssertEqual(title, "Top Rated Movies")
+    }
+
+    func testTopRatedSubtitle() {
+        // Act
+        let subtitle = DefaultSearchOption.topRated.subtitle
+        // Assert
+        XCTAssertEqual(subtitle, "The top rated movies on the internet")
+    }
+
+    func testTopRatedIcon() {
+        // Act
+        let icon = DefaultSearchOption.topRated.icon
+        // Assert
+        XCTAssertEqual(icon, #imageLiteral(resourceName: "TopRated"))
     }
 
 }
