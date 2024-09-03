@@ -25,6 +25,13 @@ final class DefaultSearchOptionTests: XCTestCase {
         XCTAssertEqual(subtitle, "The hottest movies on the internet")
     }
 
+    func testPopularIcon() {
+        // Act
+        let icon = DefaultSearchOption.popular.icon
+        // Assert
+        XCTAssertEqual(icon, #imageLiteral(resourceName: "Popular"))
+    }
+
     func testTopRatedTitle() {
         // Act
         let title = DefaultSearchOption.topRated.title
@@ -37,6 +44,13 @@ final class DefaultSearchOptionTests: XCTestCase {
         let subtitle = DefaultSearchOption.topRated.subtitle
         // Assert
         XCTAssertEqual(subtitle, "The top rated movies on the internet")
+    }
+
+    func testTopRatedIcon() {
+        // Act
+        let icon = DefaultSearchOption.topRated.icon
+        // Assert
+        XCTAssertEqual(icon, #imageLiteral(resourceName: "TopRated"))
     }
 
 }
