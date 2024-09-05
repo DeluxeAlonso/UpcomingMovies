@@ -136,6 +136,7 @@ final class MockSearchOptionsViewModel: SearchOptionsViewModelProtocol {
         getMovieGenreSelectionCallCount += 1
     }
 
+    // swiftlint:disable identifier_name
     private(set) var getRecentlyVisitedMovieSelectionCallCount = 0
     func getRecentlyVisitedMovieSelection(by index: Int) {
         getRecentlyVisitedMovieSelectionCallCount += 1
