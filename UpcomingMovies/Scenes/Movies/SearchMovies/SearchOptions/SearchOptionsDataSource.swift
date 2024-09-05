@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchOptionsDataSource: NSObject, UITableViewDataSource {
+final class SearchOptionsDataSource: NSObject, UITableViewDataSource {
 
     private var viewModel: SearchOptionsViewModelProtocol?
 
