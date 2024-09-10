@@ -46,7 +46,7 @@ final class SearchOptionsViewController: UITableViewController, Storyboarded {
     }
 
     private func setupDataSource() {
-        dataSource = SearchOptionsDataSource(viewModel: viewModel)
+        dataSource = viewModel.flatMap { SearchOptionsDataSource(viewModel: $0) }
         tableView.dataSource = dataSource
     }
 
