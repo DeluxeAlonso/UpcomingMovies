@@ -11,15 +11,17 @@ import XCTest
 
 final class SearchOptionsDataSourceTests: XCTestCase {
 
-    private var viewModel: SearchOptionsViewModel!
-    private var interactor = SearchOptionsInteractorMock()
+    private var dataSource: SearchOptionsDataSource!
+    private var viewModel: MockSearchOptionsViewModel!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        viewModel = SearchOptionsViewModel(interactor: interactor)
+        viewModel = MockSearchOptionsViewModel()
+        dataSource = SearchOptionsDataSource(viewModel: viewModel)
     }
 
     override func tearDownWithError() throws {
+        dataSource = nil
         viewModel = nil
         try super.tearDownWithError()
     }
