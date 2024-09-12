@@ -26,4 +26,22 @@ final class SearchOptionsDataSourceTests: XCTestCase {
         try super.tearDownWithError()
     }
 
+    func testNumberOfSectionsPopulatedState() {
+        // Arrange
+        viewModel.viewState = .init(.populatedMovieVisits)
+        // Act
+        let numberOfSections = dataSource.numberOfSections(in: UITableView())
+        // Assert
+        XCTAssertEqual(numberOfSections, 3)
+    }
+
+    func testNumberOfSectionsEmptyState() {
+        // Arrange
+        viewModel.viewState = .init(.emptyMovieVisits)
+        // Act
+        let numberOfSections = dataSource.numberOfSections(in: UITableView())
+        // Assert
+        XCTAssertEqual(numberOfSections, 2)
+    }
+
 }
