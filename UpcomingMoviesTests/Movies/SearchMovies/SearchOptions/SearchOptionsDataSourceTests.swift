@@ -62,4 +62,11 @@ final class SearchOptionsDataSourceTests: XCTestCase {
         XCTAssertNil(title)
     }
 
+    func testDidSelectMovie() {
+        // Act
+        dataSource.recentlyVisitedMoviesTableViewCell(RecentlyVisitedMoviesTableViewCell(), didSelectMovieAt: IndexPath(row: 0, section: 0))
+        // Assert
+        XCTAssertEqual(viewModel.getRecentlyVisitedMovieSelectionCallCount, 1)
+    }
+
 }
