@@ -44,4 +44,29 @@ final class SearchOptionsDataSourceTests: XCTestCase {
         XCTAssertEqual(numberOfSections, 2)
     }
 
+    func testTitleForHeaderInSectionPopulatedState() {
+        // Arrange
+        viewModel.viewState = .init(.populatedMovieVisits)
+        // Act
+        let title = dataSource.tableView(UITableView(), titleForHeaderInSection: 0)
+        // Assert
+        XCTAssertEqual(title, "Recently visited")
+    }
+
+    func testTitleForHeaderInSectionEmptyState() {
+        // Arrange
+        viewModel.viewState = .init(.emptyMovieVisits)
+        // Act
+        let title = dataSource.tableView(UITableView(), titleForHeaderInSection: 0)
+        // Assert
+        XCTAssertNil(title)
+    }
+
+    func testDidSelectMovie() {
+        // Act
+        dataSource.recentlyVisitedMoviesTableViewCell(RecentlyVisitedMoviesTableViewCell(), didSelectMovieAt: IndexPath(row: 0, section: 0))
+        // Assert
+        XCTAssertEqual(viewModel.getRecentlyVisitedMovieSelectionCallCount, 1)
+    }
+
 }
