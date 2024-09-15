@@ -62,6 +62,19 @@ final class SearchOptionsDataSourceTests: XCTestCase {
         XCTAssertNil(title)
     }
 
+    func testNumberOfRowsInSectionDefaultSearches() {
+        // Arrange
+        viewModel.sectionAtIndexResult = .defaultSearches
+        viewModel.defaultSearchOptionsCells = [
+            DefaultSearchOptionCellViewModel(defaultSearchOption: .popular),
+            DefaultSearchOptionCellViewModel(defaultSearchOption: .topRated)
+        ]
+        // Act
+        let numberOfRowsInSection = dataSource.tableView(UITableView(), numberOfRowsInSection: 0)
+        // Assert
+        XCTAssertEqual(numberOfRowsInSection, 2)
+    }
+
     func testNumberOfRowsInSectionRecentlyVisited() {
         // Arrange
         viewModel.sectionAtIndexResult = .recentlyVisited
