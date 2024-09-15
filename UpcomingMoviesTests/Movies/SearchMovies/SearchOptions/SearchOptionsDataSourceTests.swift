@@ -62,6 +62,41 @@ final class SearchOptionsDataSourceTests: XCTestCase {
         XCTAssertNil(title)
     }
 
+    func testNumberOfRowsInSectionGenres() {
+        // Arrange
+        viewModel.sectionAtIndexResult = .genres
+        viewModel.genreCells = [
+            GenreSearchOptionCellViewModel(genre: GenreModel(.init(id: 1, name: "Genre 2"))),
+            GenreSearchOptionCellViewModel(genre: GenreModel(.init(id: 2, name: "Genre 2")))
+        ]
+        // Act
+        let numberOfRowsInSection = dataSource.tableView(UITableView(), numberOfRowsInSection: 0)
+        // Assert
+        XCTAssertEqual(numberOfRowsInSection, 2)
+    }
+
+    func testNumberOfRowsInSectionDefaultSearches() {
+        // Arrange
+        viewModel.sectionAtIndexResult = .defaultSearches
+        viewModel.defaultSearchOptionsCells = [
+            DefaultSearchOptionCellViewModel(defaultSearchOption: .popular),
+            DefaultSearchOptionCellViewModel(defaultSearchOption: .topRated)
+        ]
+        // Act
+        let numberOfRowsInSection = dataSource.tableView(UITableView(), numberOfRowsInSection: 0)
+        // Assert
+        XCTAssertEqual(numberOfRowsInSection, 2)
+    }
+
+    func testNumberOfRowsInSectionRecentlyVisited() {
+        // Arrange
+        viewModel.sectionAtIndexResult = .recentlyVisited
+        // Act
+        let numberOfRowsInSection = dataSource.tableView(UITableView(), numberOfRowsInSection: 0)
+        // Assert
+        XCTAssertEqual(numberOfRowsInSection, 1)
+    }
+
     func testDidSelectMovie() {
         // Act
         dataSource.recentlyVisitedMoviesTableViewCell(RecentlyVisitedMoviesTableViewCell(), didSelectMovieAt: IndexPath(row: 0, section: 0))
