@@ -62,6 +62,19 @@ final class SearchOptionsDataSourceTests: XCTestCase {
         XCTAssertNil(title)
     }
 
+    func testNumberOfRowsInSectionGenres() {
+        // Arrange
+        viewModel.sectionAtIndexResult = .genres
+        viewModel.genreCells = [
+            GenreSearchOptionCellViewModel(genre: GenreModel(.init(id: 1, name: "Genre 2"))),
+            GenreSearchOptionCellViewModel(genre: GenreModel(.init(id: 2, name: "Genre 2")))
+        ]
+        // Act
+        let numberOfRowsInSection = dataSource.tableView(UITableView(), numberOfRowsInSection: 0)
+        // Assert
+        XCTAssertEqual(numberOfRowsInSection, 2)
+    }
+
     func testNumberOfRowsInSectionDefaultSearches() {
         // Arrange
         viewModel.sectionAtIndexResult = .defaultSearches
