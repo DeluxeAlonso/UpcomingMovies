@@ -124,6 +124,16 @@ final class SearchOptionsDataSourceTests: XCTestCase {
         XCTAssertNotNil(cellForRow as? DefaultSearchOptionTableViewCell)
     }
 
+    func testCellForRowRecentlyVisited() {
+        // Arrange
+        let tableView = UITableView()
+        tableView.registerNib(cellType: RecentlyVisitedMoviesTableViewCell.self)
+        viewModel.sectionAtIndexResult = .recentlyVisited
+        // Act
+        let cellForRow = dataSource.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
+        // Assert
+        XCTAssertNotNil(cellForRow as? RecentlyVisitedMoviesTableViewCell)
+    }
 
     func testDidSelectMovie() {
         // Act
