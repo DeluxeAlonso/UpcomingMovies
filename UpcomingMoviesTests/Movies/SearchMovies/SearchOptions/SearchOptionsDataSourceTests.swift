@@ -109,6 +109,22 @@ final class SearchOptionsDataSourceTests: XCTestCase {
         XCTAssertNotNil(cellForRow as? GenreSearchOptionTableViewCell)
     }
 
+    func testCellForRowDefaultSearches() {
+        // Arrange
+        let tableView = UITableView()
+        tableView.register(cellType: DefaultSearchOptionTableViewCell.self)
+        viewModel.sectionAtIndexResult = .defaultSearches
+        viewModel.defaultSearchOptionsCells = [
+            DefaultSearchOptionCellViewModel(defaultSearchOption: .popular),
+            DefaultSearchOptionCellViewModel(defaultSearchOption: .topRated)
+        ]
+        // Act
+        let cellForRow = dataSource.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
+        // Assert
+        XCTAssertNotNil(cellForRow as? DefaultSearchOptionTableViewCell)
+    }
+
+
     func testDidSelectMovie() {
         // Act
         dataSource.recentlyVisitedMoviesTableViewCell(RecentlyVisitedMoviesTableViewCell(), didSelectMovieAt: IndexPath(row: 0, section: 0))
