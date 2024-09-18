@@ -97,6 +97,15 @@ final class SearchOptionsDataSourceTests: XCTestCase {
         XCTAssertEqual(numberOfRowsInSection, 1)
     }
 
+    func testCellForRowGenres() {
+        // Arrange
+        viewModel.sectionAtIndexResult = .genres
+        // Act
+        let cellForRow = dataSource.tableView(UITableView(), cellForRowAt: IndexPath(row: 0, section: 0))
+        // Assert
+        XCTAssertNotNil(cellForRow as? GenreSearchOptionTableViewCell)
+    }
+
     func testDidSelectMovie() {
         // Act
         dataSource.recentlyVisitedMoviesTableViewCell(RecentlyVisitedMoviesTableViewCell(), didSelectMovieAt: IndexPath(row: 0, section: 0))
