@@ -99,9 +99,12 @@ final class SearchOptionsDataSourceTests: XCTestCase {
 
     func testCellForRowGenres() {
         // Arrange
+        let tableView = UITableView()
+        tableView.registerNib(cellType: GenreSearchOptionTableViewCell.self)
         viewModel.sectionAtIndexResult = .genres
+        viewModel.genreCells = [GenreSearchOptionCellViewModel(genre: GenreModel(.init(id: 1, name: "Genre 2")))]
         // Act
-        let cellForRow = dataSource.tableView(UITableView(), cellForRowAt: IndexPath(row: 0, section: 0))
+        let cellForRow = dataSource.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
         // Assert
         XCTAssertNotNil(cellForRow as? GenreSearchOptionTableViewCell)
     }
