@@ -110,7 +110,7 @@ final class SearchOptionsViewController: UITableViewController, Storyboarded {
         guard let viewModel = viewModel else { return 0.0 }
         switch viewModel.section(at: indexPath.section) {
         case .recentlyVisited:
-            return 140.0
+            return Constants.recentlyVisitedRowHeight
         case .defaultSearches:
             return 65.0
         case .genres:
@@ -118,4 +118,10 @@ final class SearchOptionsViewController: UITableViewController, Storyboarded {
         }
     }
 
+}
+
+extension SearchOptionsViewController {
+    struct Constants {
+        static let recentlyVisitedRowHeight: CGFloat = 140.0
+    }
 }
