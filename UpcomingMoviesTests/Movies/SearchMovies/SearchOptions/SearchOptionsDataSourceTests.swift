@@ -97,6 +97,44 @@ final class SearchOptionsDataSourceTests: XCTestCase {
         XCTAssertEqual(numberOfRowsInSection, 1)
     }
 
+    func testCellForRowGenres() {
+        // Arrange
+        let tableView = UITableView()
+        tableView.registerNib(cellType: GenreSearchOptionTableViewCell.self)
+        viewModel.sectionAtIndexResult = .genres
+        viewModel.genreCells = [GenreSearchOptionCellViewModel(genre: GenreModel(.init(id: 1, name: "Genre 2")))]
+        // Act
+        let cellForRow = dataSource.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
+        // Assert
+        XCTAssertNotNil(cellForRow as? GenreSearchOptionTableViewCell)
+    }
+
+    func testCellForRowDefaultSearches() {
+        // Arrange
+        let tableView = UITableView()
+        tableView.register(cellType: DefaultSearchOptionTableViewCell.self)
+        viewModel.sectionAtIndexResult = .defaultSearches
+        viewModel.defaultSearchOptionsCells = [
+            DefaultSearchOptionCellViewModel(defaultSearchOption: .popular),
+            DefaultSearchOptionCellViewModel(defaultSearchOption: .topRated)
+        ]
+        // Act
+        let cellForRow = dataSource.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
+        // Assert
+        XCTAssertNotNil(cellForRow as? DefaultSearchOptionTableViewCell)
+    }
+
+    func testCellForRowRecentlyVisited() {
+        // Arrange
+        let tableView = UITableView()
+        tableView.registerNib(cellType: RecentlyVisitedMoviesTableViewCell.self)
+        viewModel.sectionAtIndexResult = .recentlyVisited
+        // Act
+        let cellForRow = dataSource.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
+        // Assert
+        XCTAssertNotNil(cellForRow as? RecentlyVisitedMoviesTableViewCell)
+    }
+
     func testDidSelectMovie() {
         // Act
         dataSource.recentlyVisitedMoviesTableViewCell(RecentlyVisitedMoviesTableViewCell(), didSelectMovieAt: IndexPath(row: 0, section: 0))
