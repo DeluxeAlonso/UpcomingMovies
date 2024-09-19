@@ -112,9 +112,9 @@ final class SearchOptionsViewController: UITableViewController, Storyboarded {
         case .recentlyVisited:
             return Constants.recentlyVisitedRowHeight
         case .defaultSearches:
-            return 65.0
+            return Constants.defaultSearchesRowHeight
         case .genres:
-            return 50.0
+            return UITableView.automaticDimension
         }
     }
 
@@ -123,5 +123,6 @@ final class SearchOptionsViewController: UITableViewController, Storyboarded {
 extension SearchOptionsViewController {
     struct Constants {
         static let recentlyVisitedRowHeight: CGFloat = 140.0
+        static let genresRowHeight: CGFloat = 50.0
     }
 }
