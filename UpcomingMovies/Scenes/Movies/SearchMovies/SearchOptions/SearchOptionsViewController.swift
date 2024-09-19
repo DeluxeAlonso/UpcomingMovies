@@ -112,9 +112,9 @@ final class SearchOptionsViewController: UITableViewController, Storyboarded {
         case .recentlyVisited:
             return Constants.recentlyVisitedRowHeight
         case .defaultSearches:
-            return Constants.defaultSearchesRowHeight
-        case .genres:
             return UITableView.automaticDimension
+        case .genres:
+            return Constants.genresRowHeight
         }
     }
 
