@@ -23,14 +23,28 @@ final class SearchOptionsViewControllerTests: XCTestCase {
         try super.tearDownWithError()
     }
 
+    func testDidSelectRowRecentlyVisitedSection() {
+        // Arrange
+        let viewController = createSUT()
+        _ = viewController.view
+        let tableView = MockTableView()
+        viewModel.sectionAtIndexResult = .recentlyVisited
+        // Act
+        viewController.tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        // Assert
+        XCTAssertEqual(tableView.deselectRowCallCount, 1)
+    }
+
     func testDidSelectRowDefaultSearchesSection() {
         // Arrange
         let viewController = createSUT()
         _ = viewController.view
+        let tableView = MockTableView()
         viewModel.sectionAtIndexResult = .defaultSearches
         // Act
-        viewController.tableView(UITableView(), didSelectRowAt: IndexPath(row: 0, section: 0))
+        viewController.tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         // Assert
+        XCTAssertEqual(tableView.deselectRowCallCount, 1)
         XCTAssertEqual(viewModel.getDefaultSearchSelectionCallCount, 1)
     }
 
@@ -38,10 +52,12 @@ final class SearchOptionsViewControllerTests: XCTestCase {
         // Arrange
         let viewController = createSUT()
         _ = viewController.view
+        let tableView = MockTableView()
         viewModel.sectionAtIndexResult = .genres
         // Act
-        viewController.tableView(UITableView(), didSelectRowAt: IndexPath(row: 0, section: 0))
+        viewController.tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         // Assert
+        XCTAssertEqual(tableView.deselectRowCallCount, 1)
         XCTAssertEqual(viewModel.getMovieGenreSelectionCallCount, 1)
     }
 
