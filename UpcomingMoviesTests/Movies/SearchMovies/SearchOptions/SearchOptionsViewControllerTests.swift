@@ -70,7 +70,7 @@ final class SearchOptionsViewControllerTests: XCTestCase {
         // Act
         let height = viewController.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 0))
         // Assert
-        XCTAssertEqual(height, 1)
+        XCTAssertEqual(height, 140.0)
     }
 
     func testHeightForRowDefaultSearchesSection() {
@@ -82,7 +82,7 @@ final class SearchOptionsViewControllerTests: XCTestCase {
         // Act
         let height = viewController.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 0))
         // Assert
-        XCTAssertEqual(height, 1)
+        XCTAssertEqual(height, UITableView.automaticDimension)
     }
 
     func testHeightForRowGenresSection() {
@@ -94,7 +94,7 @@ final class SearchOptionsViewControllerTests: XCTestCase {
         // Act
         let height = viewController.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 0))
         // Assert
-        XCTAssertEqual(height, 1)
+        XCTAssertEqual(height, 50.0)
     }
 
     private func createSUT() -> SearchOptionsViewController {
