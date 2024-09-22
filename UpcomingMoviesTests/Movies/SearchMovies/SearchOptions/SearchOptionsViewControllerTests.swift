@@ -7,30 +7,49 @@
 //
 
 import XCTest
+@testable import UpcomingMovies
 
 final class SearchOptionsViewControllerTests: XCTestCase {
 
+    private var viewModel: MockSearchOptionsViewModel!
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
+        viewModel = MockSearchOptionsViewModel()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        viewModel = nil
+        try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testDidSelectRowDefaultSearchesSection() {
+        // Arrange
+        let viewController = createSUT()
+        _ = viewController.view
+        viewModel.sectionAtIndexResult = .defaultSearches
+        // Act
+        viewController.tableView(UITableView(), didSelectRowAt: IndexPath(row: 0, section: 0))
+        // Assert
+        XCTAssertEqual(viewModel.getDefaultSearchSelectionCallCount, 1)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testDidSelectRowGenresSection() {
+        // Arrange
+        let viewController = createSUT()
+        _ = viewController.view
+        viewModel.sectionAtIndexResult = .genres
+        // Act
+        viewController.tableView(UITableView(), didSelectRowAt: IndexPath(row: 0, section: 0))
+        // Assert
+        XCTAssertEqual(viewModel.getMovieGenreSelectionCallCount, 1)
+    }
+
+    private func createSUT() -> SearchOptionsViewController {
+        let viewController = SearchOptionsViewController.instantiate()
+        viewController.viewModel = viewModel
+
+        return viewController
     }
 
 }
