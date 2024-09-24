@@ -3,23 +3,22 @@ default_platform(:ios)
 ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "4"
 
 platform :ios do
-
-  	lane :tests do
+  lane :tests do
   	run_tests(
   	  workspace: "UpcomingMovies.xcworkspace",
-     	  devices: ["iPhone 14"],
-      	  scheme: "UpcomingMovies",
-	  code_coverage: true
-    	)
+     	devices: ["iPhone 14"],
+      scheme: "UpcomingMovies",
+      result_bundle: true,
+    )
 	end
 
 	lane :lint do
-	swiftlint(
-	  mode: :lint,
-	  executable: './Pods/SwiftLint/swiftlint',
-	  output_file: "swiftlint.result.json",
-	  raise_if_swiftlint_error: true
-	)
+    swiftlint(
+      mode: :lint,
+      executable: './Pods/SwiftLint/swiftlint',
+      output_file: "swiftlint.result.json",
+      raise_if_swiftlint_error: true
+    )
 	end
 
 end

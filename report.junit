@@ -1,0 +1,932 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="452" failures="0">
+    <testsuite name="CoreDataInfrastructure-Unit-CoreDataInfrastructureTests" tests="6" failures="0" skipped="0" time="0.009048104286193848">
+        <properties>
+          <property name="Configuration" value="Configuration"/>
+        </properties>
+        <testcase classname="CDMovieSearchStoreTests" name="testSaveMovieSearch()" time="0.00516200065612793">
+        </testcase>
+        <testcase classname="CDUserStoreTests" name="testSaveUser()" time="0.0010809898376464844">
+        </testcase>
+        <testcase classname="CDGenreStoreTests" name="testFindAllGenres()" time="0.0006930828094482422">
+        </testcase>
+        <testcase classname="CDGenreStoreTests" name="testSaveGenre()" time="0.0007569789886474609">
+        </testcase>
+        <testcase classname="CDMovieVisitStoreTests" name="testSaveMovieVisitError()" time="0.0005600452423095703">
+        </testcase>
+        <testcase classname="CDMovieVisitStoreTests" name="testSaveMovieVisitSuccess()" time="0.0007950067520141602">
+        </testcase>
+    </testsuite>
+    <testsuite name="NetworkInfrastructure-Unit-NetworkInfrastructureTests" tests="151" failures="0" skipped="0" time="0.17431282997131348">
+        <properties>
+          <property name="Configuration" value="Configuration"/>
+        </properties>
+        <testcase classname="MarkAsFavoriteTests" name="testStatusCodeFromResponse()" time="0.0014170408248901367">
+        </testcase>
+        <testcase classname="MarkAsFavoriteTests" name="testMissingStatusMessageFromResponse()" time="0.00041294097900390625">
+        </testcase>
+        <testcase classname="MarkAsFavoriteTests" name="testStatusMessageFromResponse()" time="0.0005129575729370117">
+        </testcase>
+        <testcase classname="MarkAsFavoriteTests" name="testMissingStatusCodeFromResponse()" time="0.00042700767517089844">
+        </testcase>
+        <testcase classname="MovieImagesConfigurationTests" name="testMissingBaseURLStringFromResponse()" time="0.000819087028503418">
+        </testcase>
+        <testcase classname="MovieImagesConfigurationTests" name="testMissingBackdropSizesFromResponse()" time="0.00043189525604248047">
+        </testcase>
+        <testcase classname="MovieImagesConfigurationTests" name="testMissingPosterSizesFromResponse()" time="0.0006400346755981445">
+        </testcase>
+        <testcase classname="MovieImagesConfigurationTests" name="testBaseURLStringFromResponse()" time="0.00039398670196533203">
+        </testcase>
+        <testcase classname="AccessTokenTests" name="testTokenFromResponse()" time="0.0008829832077026367">
+        </testcase>
+        <testcase classname="AccessTokenTests" name="testMissingTokenFromResponse()" time="0.00042498111724853516">
+        </testcase>
+        <testcase classname="AccessTokenTests" name="testMissingAccounIdFromResponse()" time="0.00048100948333740234">
+        </testcase>
+        <testcase classname="AccessTokenTests" name="testAccounIdFromResponse()" time="0.0005600452423095703">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testGetCustomListsSuccess()" time="0.004575014114379883">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testAddToWatchlistError()" time="0.0019170045852661133">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testGetCustomListMoviesError()" time="0.0014029741287231445">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testGetRecommendedListError()" time="0.0009989738464355469">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testGetRecommendedListSuccess()" time="0.0015929937362670898">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testAddToWatchlistSuccess()" time="0.000980973243713379">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testMarkAsFavoriteSuccess()" time="0.000702977180480957">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testGetWatchlistSuccess()" time="0.0008299350738525391">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testMarkAsFavoriteError()" time="0.0009959936141967773">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testGetWatchlistError()" time="0.0005109310150146484">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testGetCustomListsError()" time="0.0004839897155761719">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testGetCustomListMoviesSuccess()" time="0.0022319555282592773">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testGetFavoriteListError()" time="0.0005049705505371094">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testGetAccountDetailSuccess()" time="0.001405954360961914">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testGetFavoriteListSuccess()" time="0.0005539655685424805">
+        </testcase>
+        <testcase classname="AccountClientTests" name="testGetAccountDetailError()" time="0.0017670392990112305">
+        </testcase>
+        <testcase classname="MovieCreditsTests" name="testCharacterFromCastResponse()" time="0.0007959604263305664">
+        </testcase>
+        <testcase classname="MovieCreditsTests" name="testNameFromCrewResponse()" time="0.000598907470703125">
+        </testcase>
+        <testcase classname="MovieCreditsTests" name="testIdFromCastResponse()" time="0.0003399848937988281">
+        </testcase>
+        <testcase classname="MovieCreditsTests" name="testMissingIdFromCastResponse()" time="0.0004309415817260742">
+        </testcase>
+        <testcase classname="MovieCreditsTests" name="testMissingCharacterFromCastResponse()" time="0.0003930330276489258">
+        </testcase>
+        <testcase classname="MovieCreditsTests" name="testJobFromCrewResponse()" time="0.0003719329833984375">
+        </testcase>
+        <testcase classname="MovieCreditsTests" name="testMissingNameFromCrewResponse()" time="0.0003529787063598633">
+        </testcase>
+        <testcase classname="MovieCreditsTests" name="testMissingNameFromCastResponse()" time="0.0003839731216430664">
+        </testcase>
+        <testcase classname="MovieCreditsTests" name="testMissingJobFromCrewResponse()" time="0.0003409385681152344">
+        </testcase>
+        <testcase classname="MovieCreditsTests" name="testNameFromCastResponse()" time="0.00033295154571533203">
+        </testcase>
+        <testcase classname="MovieCreditsTests" name="testIdFromCrewResponse()" time="0.0003260374069213867">
+        </testcase>
+        <testcase classname="MovieCreditsTests" name="testMissingIdFromCrewResponse()" time="0.003769993782043457">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetFavoriteListNilUserAccount()" time="0.00040602684020996094">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testAddToWatchlistNilUserAccount()" time="0.00032901763916015625">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testMarkMovieAsFavoriteFailure()" time="0.0036510229110717773">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetCustomListMoviesSuccess()" time="0.0005019903182983398">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetRecommendedListFailure()" time="0.0004450082778930664">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetRecommendedListNilAccountIdAndToken()" time="0.0003540515899658203">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetRecommendedListSuccess()" time="0.0005069971084594727">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetCustomListMoviesNilAccessToken()" time="0.0003159046173095703">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetCustomListNilListResult()" time="0.000370025634765625">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testMarkMovieAsFavoriteSuccess()" time="0.002696990966796875">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetCustomListNilAccountIdAndToken()" time="0.00036704540252685547">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetAccountDetailSuccess()" time="0.00048601627349853516">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetCustomListMoviesNilListResult()" time="0.0003179311752319336">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetWatchlistSuccess()" time="0.0004709959030151367">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetWatchlistNilUserAccount()" time="0.00036203861236572266">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetWatchlistFailure()" time="0.0004290342330932617">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testAddToWatchlistSuccess()" time="0.0005019903182983398">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testMarkMovieAsFavoriteNilUserAccount()" time="0.00034809112548828125">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetCustomListsSuccess()" time="0.0006530284881591797">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetAccountDetailFailure()" time="0.0006650686264038086">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetCustomListFailure()" time="0.00047600269317626953">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetAccountDetailNilUserAccount()" time="0.0003789663314819336">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetFavoriteListSuccess()" time="0.0006209611892700195">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetRecommendedListNilListResult()" time="0.00035500526428222656">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetFavoriteListFailure()" time="0.00046896934509277344">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testAddToWatchlistFailure()" time="0.0005710124969482422">
+        </testcase>
+        <testcase classname="AccountRemoteDataSourceTests" name="testGetCustomListMoviesFailure()" time="0.0005789995193481445">
+        </testcase>
+        <testcase classname="AuthClientTests" name="testGetAccessTokenSuccess()" time="0.0005860328674316406">
+        </testcase>
+        <testcase classname="AuthClientTests" name="testGetAccessTokenError()" time="0.0006070137023925781">
+        </testcase>
+        <testcase classname="AuthClientTests" name="testGetRequestTokenError()" time="0.0005500316619873047">
+        </testcase>
+        <testcase classname="AuthClientTests" name="testGetRequestTokenSuccess()" time="0.0009160041809082031">
+        </testcase>
+        <testcase classname="AuthClientTests" name="testCreateSessionIdError()" time="0.00044596195220947266">
+        </testcase>
+        <testcase classname="AuthClientTests" name="testCreateSessionIdSuccess()" time="0.0030499696731567383">
+        </testcase>
+        <testcase classname="URLGenerationTests" name="testPercentEscapedEmptyParamters()" time="0.00033092498779296875">
+        </testcase>
+        <testcase classname="URLGenerationTests" name="testPercentEscapedSingleParameters()" time="0.00037491321563720703">
+        </testcase>
+        <testcase classname="URLGenerationTests" name="testURLRequestSetJsonContentTypeNil()" time="0.002909064292907715">
+        </testcase>
+        <testcase classname="URLGenerationTests" name="testPercentEscapedMultipleParameters()" time="0.00031507015228271484">
+        </testcase>
+        <testcase classname="URLGenerationTests" name="testURLRequestSetJsonContentType()" time="0.0006380081176757812">
+        </testcase>
+        <testcase classname="AddToWatchlistTests" name="testMissingStatusMessageFromResponse()" time="0.0035469532012939453">
+        </testcase>
+        <testcase classname="AddToWatchlistTests" name="testStatusMessageFromResponse()" time="0.0003889799118041992">
+        </testcase>
+        <testcase classname="AddToWatchlistTests" name="testStatusCodeFromResponse()" time="0.00045299530029296875">
+        </testcase>
+        <testcase classname="AddToWatchlistTests" name="testMissingStatusCodeFromResponse()" time="0.00037407875061035156">
+        </testcase>
+        <testcase classname="RateMovieTests" name="testStatusCodeFromResponse()" time="0.0007959604263305664">
+        </testcase>
+        <testcase classname="RateMovieTests" name="testMissingStatusMessageFromResponse()" time="0.00038301944732666016">
+        </testcase>
+        <testcase classname="RateMovieTests" name="testStatusMessageFromResponse()" time="0.0003699064254760742">
+        </testcase>
+        <testcase classname="RateMovieTests" name="testMissingStatusCodeFromResponse()" time="0.003079056739807129">
+        </testcase>
+        <testcase classname="RequestTokenTests" name="testMissingTokenFromDResponse()" time="0.0004119873046875">
+        </testcase>
+        <testcase classname="RequestTokenTests" name="testSuccessFromResponse()" time="0.00038993358612060547">
+        </testcase>
+        <testcase classname="RequestTokenTests" name="testTokenFromResponse()" time="0.0003370046615600586">
+        </testcase>
+        <testcase classname="RequestTokenTests" name="testMissingSuccessFromResponse()" time="0.0005030632019042969">
+        </testcase>
+        <testcase classname="MovieGenreTests" name="testIdFromResponse()" time="0.0007840394973754883">
+        </testcase>
+        <testcase classname="MovieGenreTests" name="testMissingNameFromResponse()" time="0.00034296512603759766">
+        </testcase>
+        <testcase classname="MovieGenreTests" name="testMissingIdFromResponse()" time="0.0035799741744995117">
+        </testcase>
+        <testcase classname="MovieGenreTests" name="testNameFromResponse()" time="0.00033795833587646484">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetMovieVideosError()" time="0.0007079839706420898">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetMovieReviewsSuccess()" time="0.003859996795654297">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetMoviesByGenreSuccess()" time="0.001181960105895996">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetMovieAccountStateSuccess()" time="0.0012099742889404297">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetUpcomingMoviesSuccess()" time="0.0006300210952758789">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetMovieCreditsSuccess()" time="0.0021309852600097656">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetTopRatedMoviesSuccess()" time="0.0005530118942260742">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetUpcomingMoviesError()" time="0.0006710290908813477">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testRateMovieError()" time="0.0005869865417480469">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetMovieCreditsError()" time="0.003023982048034668">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetTopRatedMoviesError()" time="0.0006539821624755859">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetMovieDetailError()" time="0.0006710290908813477">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetSimilarMoviesError()" time="0.0005959272384643555">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetMoviesByGenreError()" time="0.0005348920822143555">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetPopularMoviesError()" time="0.0008310079574584961">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetMovieVideosSuccess()" time="0.0015189647674560547">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetMovieReviewsError()" time="0.0004990100860595703">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetMovieAccountStateError()" time="0.0005359649658203125">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testSearchMoviesError()" time="0.0009000301361083984">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetPopularMoviesSuccess()" time="0.0006860494613647461">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testRateMovieSuccess()" time="0.0009840726852416992">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetMovieDetailSuccess()" time="0.0012140274047851562">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testGetSimilarMoviesSuccess()" time="0.003219008445739746">
+        </testcase>
+        <testcase classname="MovieClientTests" name="testSearchMoviesSuccess()" time="0.0006330013275146484">
+        </testcase>
+        <testcase classname="MovieReviewTests" name="testMissingIdFromResponse()" time="0.0004500150680541992">
+        </testcase>
+        <testcase classname="MovieReviewTests" name="testAuthorFromResponse()" time="0.003515958786010742">
+        </testcase>
+        <testcase classname="MovieReviewTests" name="testMissingContentFromResponse()" time="0.00034809112548828125">
+        </testcase>
+        <testcase classname="MovieReviewTests" name="testMissingAuthorFromResponse()" time="0.0006999969482421875">
+        </testcase>
+        <testcase classname="MovieReviewTests" name="testContentFromResponse()" time="0.0007309913635253906">
+        </testcase>
+        <testcase classname="MovieReviewTests" name="testIdFromResponse()" time="0.020009994506835938">
+        </testcase>
+        <testcase classname="AuthRemoteDataSourceTests" name="testCurrentUserId()" time="0.0005540847778320312">
+        </testcase>
+        <testcase classname="AuthRemoteDataSourceTests" name="testSignOutUser()" time="0.0007039308547973633">
+        </testcase>
+        <testcase classname="AuthRemoteDataSourceTests" name="testSignInUserFailureInGetAccessToken()" time="0.0007190704345703125">
+        </testcase>
+        <testcase classname="AuthRemoteDataSourceTests" name="testSignInUserSuccess()" time="0.0004940032958984375">
+        </testcase>
+        <testcase classname="AuthRemoteDataSourceTests" name="testGetAuthURLSuccess()" time="0.0009630918502807617">
+        </testcase>
+        <testcase classname="AuthRemoteDataSourceTests" name="testSignInUserFailureInGetAccountDetails()" time="0.0005910396575927734">
+        </testcase>
+        <testcase classname="AuthRemoteDataSourceTests" name="testSignInUserFailureInCreateSessionId()" time="0.0008341073989868164">
+        </testcase>
+        <testcase classname="AuthRemoteDataSourceTests" name="testGetAuthURLFailure()" time="0.0026960372924804688">
+        </testcase>
+        <testcase classname="MovieSortTypeTests" name="testFavoriteSortTypeCallAsFunctionCreatedAtAsc()" time="0.0003380775451660156">
+        </testcase>
+        <testcase classname="MovieSortTypeTests" name="testWatchlistSortTypeCallAsFunctionCreatedAtDesc()" time="0.0005310773849487305">
+        </testcase>
+        <testcase classname="MovieSortTypeTests" name="testWatchlistSortTypeCallAsFunctionCreatedAtAsc()" time="0.005846977233886719">
+        </testcase>
+        <testcase classname="MovieSortTypeTests" name="testFavoriteSortTypeCallAsFunctionCreatedAtDesc()" time="0.0009669065475463867">
+        </testcase>
+        <testcase classname="MovieResultPaginationTests" name="testMovieResultNextPage()" time="0.000764012336730957">
+        </testcase>
+        <testcase classname="MovieResultPaginationTests" name="testMovieResultHasMorePagesTrue()" time="0.0006129741668701172">
+        </testcase>
+        <testcase classname="MovieResultPaginationTests" name="testMovieResultHasMorePagesFalse()" time="0.00037300586700439453">
+        </testcase>
+        <testcase classname="VideosTests" name="testKeyFromResponse()" time="0.005261063575744629">
+        </testcase>
+        <testcase classname="VideosTests" name="testNameFromResponse()" time="0.00038492679595947266">
+        </testcase>
+        <testcase classname="VideosTests" name="testIdFromResponse()" time="0.00032198429107666016">
+        </testcase>
+        <testcase classname="VideosTests" name="testMissingIdFromResponse()" time="0.00034606456756591797">
+        </testcase>
+        <testcase classname="VideosTests" name="testMissingSiteFromResponse()" time="0.005380988121032715">
+        </testcase>
+        <testcase classname="VideosTests" name="testMissingNameFromResponse()" time="0.0007690191268920898">
+        </testcase>
+        <testcase classname="VideosTests" name="testSiteFromResponse()" time="0.0009230375289916992">
+        </testcase>
+        <testcase classname="VideosTests" name="testMissingKeyFromResponse()" time="0.001006007194519043">
+        </testcase>
+        <testcase classname="SessionTests" name="testSessionIdFromResponse()" time="0.0004559755325317383">
+        </testcase>
+        <testcase classname="SessionTests" name="testSuccessFromResponse()" time="0.0004820823669433594">
+        </testcase>
+        <testcase classname="SessionTests" name="testMissingSuccessFromResponse()" time="0.0004540681838989258">
+        </testcase>
+        <testcase classname="SessionTests" name="testMissingSessionIdFromDResponse()" time="0.006024956703186035">
+        </testcase>
+    </testsuite>
+    <testsuite name="UpcomingMoviesData-Unit-UpcomingMoviesDataTests" tests="7" failures="0" skipped="0" time="0.004625797271728516">
+        <properties>
+          <property name="Configuration" value="Configuration"/>
+        </properties>
+        <testcase classname="MovieVisitRepositoryTests" name="testGetMovieVisits()" time="0.0013068914413452148">
+        </testcase>
+        <testcase classname="MovieVisitRepositoryTests" name="testSaveMovieVisits()" time="0.0006459951400756836">
+        </testcase>
+        <testcase classname="ConfigurationRepositoryTests" name="testGetConfiguration()" time="0.0006939172744750977">
+        </testcase>
+        <testcase classname="MovieSearchRepositoryTests" name="testGetMovieSearches()" time="0.0003910064697265625">
+        </testcase>
+        <testcase classname="MovieSearchRepositoryTests" name="testSaveSearchTextCalled()" time="0.0003579854965209961">
+        </testcase>
+        <testcase classname="UserRepositoryTests" name="testFindUserCalled()" time="0.0005249977111816406">
+        </testcase>
+        <testcase classname="UserRepositoryTests" name="testSaveUserCalled()" time="0.0007050037384033203">
+        </testcase>
+    </testsuite>
+    <testsuite name="UpcomingMoviesDomain-Unit-UpcomingMoviesDomainTests" tests="2" failures="0" skipped="0" time="0.5258560180664062">
+        <properties>
+          <property name="Configuration" value="Configuration"/>
+        </properties>
+        <testcase classname="UpcomingMoviesDomainTests" name="testPerformanceExample()" time="0.5246330499649048">
+        </testcase>
+        <testcase classname="UpcomingMoviesDomainTests" name="testExample()" time="0.0012229681015014648">
+        </testcase>
+    </testsuite>
+    <testsuite name="UpcomingMoviesTests" tests="286" failures="0" skipped="0" time="5.750991702079773">
+        <properties>
+          <property name="Configuration" value="Configuration"/>
+        </properties>
+        <testcase classname="MovieDetailTitleRenderContentTests" name="testGenreIds()" time="0.0006910562515258789">
+        </testcase>
+        <testcase classname="MovieDetailTitleRenderContentTests" name="testVoteAverage()" time="0.00036394596099853516">
+        </testcase>
+        <testcase classname="MovieDetailTitleRenderContentTests" name="testTitle()" time="0.0003629922866821289">
+        </testcase>
+        <testcase classname="MovieDetailTitleRenderContentTests" name="testReleaseDate()" time="0.00046503543853759766">
+        </testcase>
+        <testcase classname="MovieCreditsCoordinatorTests" name="testBuild()" time="0.004310965538024902">
+        </testcase>
+        <testcase classname="CrewModelTests" name="testInitWithCrew()" time="0.00045299530029296875">
+        </testcase>
+        <testcase classname="MovieVideosViewModelTests" name="testGetVideosError()" time="0.0005199909210205078">
+        </testcase>
+        <testcase classname="MovieVideosViewModelTests" name="testMovieVideosTitle()" time="0.0040700435638427734">
+        </testcase>
+        <testcase classname="MovieVideosViewModelTests" name="testGetVideosEmpty()" time="0.000514984130859375">
+        </testcase>
+        <testcase classname="MovieVideosViewModelTests" name="testEmptyVideoResultsTitle()" time="0.00038301944732666016">
+        </testcase>
+        <testcase classname="MovieVideosViewModelTests" name="testGetVideosPopulated()" time="0.0006380081176757812">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testShowVideosMovieOptions()" time="0.006122946739196777">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testBuildWithPartialMovieInfo()" time="0.0044460296630859375">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testEmbedMovieDetailPoster()" time="0.007680058479309082">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testEmbedMovieDetailTitleWithRenderContent()" time="0.003969073295593262">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testMultipleEmbedMovieDetailOptionsShouldNotAddMoreThanOneChild()" time="0.003262042999267578">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testShowSharingOptions()" time="0.0007120370864868164">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testShowActionSheet()" time="0.002218008041381836">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testShowCreditsMovieOptions()" time="0.0015920400619506836">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testShowSimilarMoviesMovieOptions()" time="0.002502918243408203">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testShowReviewsMovieOptions()" time="0.002068042755126953">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testEmbedMovieDetailOptions()" time="0.0010390281677246094">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testBuildWithCompleteMovieInfo()" time="0.0012739896774291992">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testEmbedMovieDetailPosterWithRenderContent()" time="0.0014770030975341797">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testEmbedMovieDetailOptionsWithRenderContent()" time="0.0008779764175415039">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testMultipleEmbedMovieDetailTitleShouldNotAddMoreThanOneChild()" time="0.004860997200012207">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testEmbedMovieDetailTitle()" time="0.0017169713973999023">
+        </testcase>
+        <testcase classname="MovieDetailCoordinatorTests" name="testMultipleEmbedMovieDetailPosterShouldNotAddMoreThanOneChild()" time="0.005385041236877441">
+        </testcase>
+        <testcase classname="SearchMoviesResultViewModelTests" name="testShareTitle()" time="0.0004639625549316406">
+        </testcase>
+        <testcase classname="SearchMoviesResultViewModelTests" name="testEmptySearchResultsTitle()" time="0.0004520416259765625">
+        </testcase>
+        <testcase classname="MovieDetailPosterRenderContentTests" name="testPosterURL()" time="0.0005559921264648438">
+        </testcase>
+        <testcase classname="MovieDetailPosterRenderContentTests" name="testBackdropURL()" time="0.00041604042053222656">
+        </testcase>
+        <testcase classname="AuthPermissionCoordinatorTests" name="testDidDismiss()" time="0.000491023063659668">
+        </testcase>
+        <testcase classname="AuthPermissionCoordinatorTests" name="testBuild()" time="0.003628969192504883">
+        </testcase>
+        <testcase classname="TopRatedMoviesCoordinatorTests" name="testBuild()" time="0.0033919811248779297">
+        </testcase>
+        <testcase classname="MovieVisitModelTests" name="testInitWithMovieVisit()" time="0.0003839731216430664">
+        </testcase>
+        <testcase classname="ProfileFactoryTests" name="testProfileOptionForCollectionsSection()" time="0.0004240274429321289">
+        </testcase>
+        <testcase classname="ProfileFactoryTests" name="testProfileOptionForRecommendedSection()" time="0.0003299713134765625">
+        </testcase>
+        <testcase classname="ProfileFactoryTests" name="testSections()" time="0.00042808055877685547">
+        </testcase>
+        <testcase classname="ProfileFactoryTests" name="testProfileOptionForSignOutSection()" time="0.0006840229034423828">
+        </testcase>
+        <testcase classname="ProfileFactoryTests" name="testProfileOptionForCustomListsSection()" time="0.00039196014404296875">
+        </testcase>
+        <testcase classname="ProfileFactoryTests" name="testProfileOptionForAccountInfoSection()" time="0.00040400028228759766">
+        </testcase>
+        <testcase classname="AccountViewModelTests" name="testCurrentUserNil()" time="0.0004938840866088867">
+        </testcase>
+        <testcase classname="AccountViewModelTests" name="testCurrentUserNotNil()" time="0.0013370513916015625">
+        </testcase>
+        <testcase classname="AccountViewModelTests" name="testIsUserSignedInFalse()" time="0.0003559589385986328">
+        </testcase>
+        <testcase classname="AccountViewModelTests" name="testNavigationItemTitle()" time="0.00044095516204833984">
+        </testcase>
+        <testcase classname="AccountViewModelTests" name="testIsUserSignedInTrue()" time="0.0003600120544433594">
+        </testcase>
+        <testcase classname="AccountViewModelTests" name="testTitle()" time="0.0003629922866821289">
+        </testcase>
+        <testcase classname="MovieVideosCoordinatorTests" name="testBuild()" time="0.002758026123046875">
+        </testcase>
+        <testcase classname="UpcomingMoviesCoordinatorTests" name="testSetupNavigationControllerDelegate()" time="0.0004999637603759766">
+        </testcase>
+        <testcase classname="UpcomingMoviesCoordinatorTests" name="testShowMovieDetail()" time="0.010460972785949707">
+        </testcase>
+        <testcase classname="UpcomingMoviesCoordinatorTests" name="testBuild()" time="0.00308990478515625">
+        </testcase>
+        <testcase classname="UpcomingMoviesCoordinatorTests" name="testRootIdentifier()" time="0.00047898292541503906">
+        </testcase>
+        <testcase classname="SplashBuilderTests" name="testBuildViewController()" time="0.004876971244812012">
+        </testcase>
+        <testcase classname="UpcomingMoviesViewModelTests" name="testUpcomingMovieCellBackdropURL()" time="0.0004830360412597656">
+        </testcase>
+        <testcase classname="UpcomingMoviesViewModelTests" name="testGetMoviesPopulated()" time="0.0013670921325683594">
+        </testcase>
+        <testcase classname="UpcomingMoviesViewModelTests" name="testUpcomingMovieCellPosterURL()" time="0.00041794776916503906">
+        </testcase>
+        <testcase classname="UpcomingMoviesViewModelTests" name="testGetMoviesError()" time="0.0005179643630981445">
+        </testcase>
+        <testcase classname="UpcomingMoviesViewModelTests" name="testGetMoviesEmpty()" time="0.00044798851013183594">
+        </testcase>
+        <testcase classname="UpcomingMoviesViewModelTests" name="testGetMoviesPaging()" time="0.00044405460357666016">
+        </testcase>
+        <testcase classname="SignInCoordinatorTests" name="testShowAuthPermissionWithoutTopViewController()" time="0.0004709959030151367">
+        </testcase>
+        <testcase classname="SignInCoordinatorTests" name="testBuild()" time="0.003993988037109375">
+        </testcase>
+        <testcase classname="SignInCoordinatorTests" name="testShowAuthPermission()" time="0.0017009973526000977">
+        </testcase>
+        <testcase classname="WatchlistSavedMoviesInteractorTests" name="testGetWatchlistCalled()" time="0.0007749795913696289">
+        </testcase>
+        <testcase classname="SimilarMoviesCoordinatorTests" name="testBuild()" time="0.001498103141784668">
+        </testcase>
+        <testcase classname="MovieDetailOptionsViewControllerTests" name="testOptionAction()" time="0.0016460418701171875">
+        </testcase>
+        <testcase classname="MovieDetailOptionsViewControllerTests" name="testOptionActionInvalidTapGesture()" time="0.0010069608688354492">
+        </testcase>
+        <testcase classname="MovieSearchModelTests" name="testInitWithMovieSearch()" time="0.00036907196044921875">
+        </testcase>
+        <testcase classname="BaseCoordinatorTests" name="testStartEmbedWithoutContainerViewCoordinatorMode()" time="0.0007480382919311523">
+        </testcase>
+        <testcase classname="BaseCoordinatorTests" name="testNavigationControllerDidShowViewControllerIsBeingPresentedTrue()" time="0.00046896934509277344">
+        </testcase>
+        <testcase classname="BaseCoordinatorTests" name="testNavigationControllerDidShowViewControllerContainedInStack()" time="0.00042307376861572266">
+        </testcase>
+        <testcase classname="BaseCoordinatorTests" name="testStartPushCoordinatorMode()" time="0.0003540515899658203">
+        </testcase>
+        <testcase classname="BaseCoordinatorTests" name="testDismissPresentCoordinatorMode()" time="0.0036319494247436523">
+        </testcase>
+        <testcase classname="BaseCoordinatorTests" name="testSetupNavigationControllerDelegate()" time="0.0007899999618530273">
+        </testcase>
+        <testcase classname="BaseCoordinatorTests" name="testDismissEmbedWithoutContainerViewCoordinatorMode()" time="0.0007169246673583984">
+        </testcase>
+        <testcase classname="BaseCoordinatorTests" name="testStartEmbedWithContainerViewCoordinatorMode()" time="0.0007370710372924805">
+        </testcase>
+        <testcase classname="BaseCoordinatorTests" name="testNavigationControllerDidShow()" time="0.0047719478607177734">
+        </testcase>
+        <testcase classname="BaseCoordinatorTests" name="testStartPresentCoordinatorMode()" time="0.0004730224609375">
+        </testcase>
+        <testcase classname="BaseCoordinatorTests" name="testDismissPushCoordinatorMode()" time="0.00037992000579833984">
+        </testcase>
+        <testcase classname="BaseCoordinatorTests" name="testSetupNavigationControllerDelegateExistingDelegateShouldOverride()" time="0.0003699064254760742">
+        </testcase>
+        <testcase classname="BaseCoordinatorTests" name="testSetupNavigationControllerDelegateExistingDelegateShouldNotOverride()" time="0.005095005035400391">
+        </testcase>
+        <testcase classname="CustomListDetailViewModelTests" name="testListName()" time="0.00042498111724853516">
+        </testcase>
+        <testcase classname="CustomListDetailViewModelTests" name="testEmptyMovieResultsTitle()" time="0.0004138946533203125">
+        </testcase>
+        <testcase classname="SearchOptionsViewModelTests" name="testLoadGenres()" time="0.0006219148635864258">
+        </testcase>
+        <testcase classname="SearchOptionsViewModelTests" name="testLoadVisitedMoviesUpdate()" time="0.0006010532379150391">
+        </testcase>
+        <testcase classname="SearchOptionsViewModelTests" name="testLoadVisitedMoviesFirstLoad()" time="0.00044596195220947266">
+        </testcase>
+        <testcase classname="MainTabBarBuilderTests" name="testCreateNavigationController()" time="0.000516057014465332">
+        </testcase>
+        <testcase classname="MainTabBarBuilderTests" name="testBuildViewCoordinators()" time="0.004152059555053711">
+        </testcase>
+        <testcase classname="MainTabBarBuilderTests" name="testRootCoordinatorIdentifier()" time="0.00045609474182128906">
+        </testcase>
+        <testcase classname="MovieCreditCellViewModelTests" name="testNameForCreditModelCreatedWithCast()" time="0.0004420280456542969">
+        </testcase>
+        <testcase classname="MovieCreditCellViewModelTests" name="testProfileURLForCreditModelCreatedWithCrew()" time="0.00035393238067626953">
+        </testcase>
+        <testcase classname="MovieCreditCellViewModelTests" name="testNameForCreditModelCreatedWithCrew()" time="0.00048804283142089844">
+        </testcase>
+        <testcase classname="MovieCreditCellViewModelTests" name="testRoleForCreditModelCreatedWithCrew()" time="0.0004659891128540039">
+        </testcase>
+        <testcase classname="MovieCreditCellViewModelTests" name="testProfileURLForCreditModelCreatedWithCast()" time="0.0005170106887817383">
+        </testcase>
+        <testcase classname="MovieCreditCellViewModelTests" name="testRoleForCreditModelCreatedWithCast()" time="0.00036597251892089844">
+        </testcase>
+        <testcase classname="MovieDetailTitleCoordinatorTests" name="testBuild()" time="0.0027649402618408203">
+        </testcase>
+        <testcase classname="MoviesByGenreCoordinatorTests" name="testBuild()" time="0.0016139745712280273">
+        </testcase>
+        <testcase classname="CustomListsViewModelTests" name="testGetCustomListsPopulated()" time="0.001611948013305664">
+        </testcase>
+        <testcase classname="CustomListsViewModelTests" name="testGetCustomListsPaging()" time="0.0005899667739868164">
+        </testcase>
+        <testcase classname="CustomListsViewModelTests" name="testGetCustomListsEmpty()" time="0.0005159378051757812">
+        </testcase>
+        <testcase classname="CustomListsViewModelTests" name="testGetCustomListsError()" time="0.0004260540008544922">
+        </testcase>
+        <testcase classname="CustomListsViewModelTests" name="testTitle()" time="0.0003719329833984375">
+        </testcase>
+        <testcase classname="CastModelTests" name="testInitWithCast()" time="0.0005159378051757812">
+        </testcase>
+        <testcase classname="SearchMoviesCoordinatorTests" name="testShowMoviesByGenre()" time="0.0010600090026855469">
+        </testcase>
+        <testcase classname="SearchMoviesCoordinatorTests" name="testRootIdentifier()" time="0.00044405460357666016">
+        </testcase>
+        <testcase classname="SearchMoviesCoordinatorTests" name="testBuild()" time="0.0006740093231201172">
+        </testcase>
+        <testcase classname="SearchMoviesCoordinatorTests" name="testEmbedSearchController()" time="0.014258980751037598">
+        </testcase>
+        <testcase classname="SearchMoviesCoordinatorTests" name="testShowPopularMovies()" time="0.0014410018920898438">
+        </testcase>
+        <testcase classname="SearchMoviesCoordinatorTests" name="testShowMovieDetail()" time="0.0014770030975341797">
+        </testcase>
+        <testcase classname="SearchMoviesCoordinatorTests" name="testShowTopRatedMovies()" time="0.0010259151458740234">
+        </testcase>
+        <testcase classname="SearchMoviesCoordinatorTests" name="testEmbedSearchOptions()" time="0.006350040435791016">
+        </testcase>
+        <testcase classname="SignInViewControllerTests" name="testDidUpdateAuthenticationState()" time="1.003383994102478">
+        </testcase>
+        <testcase classname="SignInViewControllerTests" name="testCloseBarButtonAction()" time="0.0023900270462036133">
+        </testcase>
+        <testcase classname="SignInViewControllerTests" name="testDidReceiveAuthorizationFalse()" time="0.001145005226135254">
+        </testcase>
+        <testcase classname="SignInViewControllerTests" name="testShowAuthPermission()" time="1.0053550004959106">
+        </testcase>
+        <testcase classname="SignInViewControllerTests" name="testDidReceiveAuthorizationTrue()" time="0.00492095947265625">
+        </testcase>
+        <testcase classname="MovieReviewDetailCoordinatorTests" name="testBuild()" time="0.007789969444274902">
+        </testcase>
+        <testcase classname="CustomListDetailSectionViewModelTests" name="testMovieRevenueTextThousandValue()" time="0.0009210109710693359">
+        </testcase>
+        <testcase classname="CustomListDetailSectionViewModelTests" name="testRatingText()" time="0.0004229545593261719">
+        </testcase>
+        <testcase classname="CustomListDetailSectionViewModelTests" name="testMovieRuntimeText()" time="0.0003739595413208008">
+        </testcase>
+        <testcase classname="CustomListDetailSectionViewModelTests" name="testMovieCountText()" time="0.00035703182220458984">
+        </testcase>
+        <testcase classname="CustomListDetailSectionViewModelTests" name="testMovieRevenueTextHundredValue()" time="0.0003598928451538086">
+        </testcase>
+        <testcase classname="CustomListDetailSectionViewModelTests" name="testMovieRevenueTextMillionValue()" time="0.0005990266799926758">
+        </testcase>
+        <testcase classname="MovieDetailTitleViewModelTests" name="testMovieDetailTitle()" time="0.000903010368347168">
+        </testcase>
+        <testcase classname="MovieDetailTitleViewModelTests" name="testMovieDetailSubtitle()" time="0.0007729530334472656">
+        </testcase>
+        <testcase classname="MovieDetailTitleViewModelTests" name="testMovieDetailGenreIds()" time="0.0007989406585693359">
+        </testcase>
+        <testcase classname="MovieDetailTitleViewModelTests" name="testMovieDetailVoteAverage()" time="0.0008749961853027344">
+        </testcase>
+        <testcase classname="DefaultSearchOptionTests" name="testPopularSubtitle()" time="0.0009670257568359375">
+        </testcase>
+        <testcase classname="DefaultSearchOptionTests" name="testPopularIcon()" time="0.00048804283142089844">
+        </testcase>
+        <testcase classname="DefaultSearchOptionTests" name="testTopRatedTitle()" time="0.00038301944732666016">
+        </testcase>
+        <testcase classname="DefaultSearchOptionTests" name="testTopRatedIcon()" time="0.005646109580993652">
+        </testcase>
+        <testcase classname="DefaultSearchOptionTests" name="testTopRatedSubtitle()" time="0.0009610652923583984">
+        </testcase>
+        <testcase classname="DefaultSearchOptionTests" name="testPopularTitle()" time="0.0004990100860595703">
+        </testcase>
+        <testcase classname="ProfileAccountInfoCellViewModelTests" name="testName()" time="0.0006209611892700195">
+        </testcase>
+        <testcase classname="ProfileAccountInfoCellViewModelTests" name="testUsername()" time="0.005024075508117676">
+        </testcase>
+        <testcase classname="MovieDetailOptionsCoordinatorTests" name="testBuild()" time="0.0036859512329101562">
+        </testcase>
+        <testcase classname="MovieVideoCellViewModelTests" name="testThumbnailURLForVideoModel()" time="0.0007309913635253906">
+        </testcase>
+        <testcase classname="MovieVideoCellViewModelTests" name="testNameForVideoModel()" time="0.0005859136581420898">
+        </testcase>
+        <testcase classname="MovieListCellViewModelTests" name="testPosterURL()" time="0.0007090568542480469">
+        </testcase>
+        <testcase classname="MovieListCellViewModelTests" name="testName()" time="0.0006068944931030273">
+        </testcase>
+        <testcase classname="MovieListCellViewModelTests" name="testReleaseDate()" time="0.00047194957733154297">
+        </testcase>
+        <testcase classname="MovieListCellViewModelTests" name="testVoteAverage()" time="0.0030590295791625977">
+        </testcase>
+        <testcase classname="MovieListCellViewModelTests" name="testGenreName()" time="0.0005719661712646484">
+        </testcase>
+        <testcase classname="AccountInteractorTests" name="testPerformanceExample()" time="0.2826869487762451">
+        </testcase>
+        <testcase classname="AccountInteractorTests" name="testExample()" time="0.000532984733581543">
+        </testcase>
+        <testcase classname="MovieVideosInteractorTests" name="testGetMovieVideosCalled()" time="0.0005649328231811523">
+        </testcase>
+        <testcase classname="FavoritesSavedMoviesInteractorTests" name="testGetFavoriteListCalled()" time="0.0007131099700927734">
+        </testcase>
+        <testcase classname="SavedMovieCellViewModelTests" name="testBackdropURL()" time="0.000491023063659668">
+        </testcase>
+        <testcase classname="SavedMovieCellViewModelTests" name="testTitle()" time="0.00047397613525390625">
+        </testcase>
+        <testcase classname="MovieDetailPosterCoordinatorTests" name="testBuild()" time="0.0033600330352783203">
+        </testcase>
+        <testcase classname="MovieReviewsViewModelTests" name="testEmptyReviewResultsTitle()" time="0.0006060600280761719">
+        </testcase>
+        <testcase classname="MovieReviewsViewModelTests" name="testGetReviewsPopulated()" time="0.0009419918060302734">
+        </testcase>
+        <testcase classname="MovieReviewsViewModelTests" name="testRefreshReviews()" time="0.0007159709930419922">
+        </testcase>
+        <testcase classname="MovieReviewsViewModelTests" name="testMovieReviewsTitle()" time="0.008485913276672363">
+        </testcase>
+        <testcase classname="MovieReviewsViewModelTests" name="testGetReviewsError()" time="0.0006810426712036133">
+        </testcase>
+        <testcase classname="MovieReviewsViewModelTests" name="testGetReviewsEmpty()" time="0.0008299350738525391">
+        </testcase>
+        <testcase classname="MovieReviewsViewModelTests" name="testGetReviewsPaging()" time="0.0008100271224975586">
+        </testcase>
+        <testcase classname="MovieReviewCellViewModelTests" name="testMovieReviewCellContent()" time="0.00575101375579834">
+        </testcase>
+        <testcase classname="MovieReviewCellViewModelTests" name="testMovieReviewCellAuthorName()" time="0.0005400180816650391">
+        </testcase>
+        <testcase classname="SearchOptionsDataSourceTests" name="testNumberOfRowsInSectionDefaultSearches()" time="0.0011900663375854492">
+        </testcase>
+        <testcase classname="SearchOptionsDataSourceTests" name="testTitleForHeaderInSectionEmptyState()" time="0.0008130073547363281">
+        </testcase>
+        <testcase classname="SearchOptionsDataSourceTests" name="testCellForRowDefaultSearches()" time="0.008135080337524414">
+        </testcase>
+        <testcase classname="SearchOptionsDataSourceTests" name="testCellForRowRecentlyVisited()" time="0.0034140348434448242">
+        </testcase>
+        <testcase classname="SearchOptionsDataSourceTests" name="testNumberOfSectionsEmptyState()" time="0.0006200075149536133">
+        </testcase>
+        <testcase classname="SearchOptionsDataSourceTests" name="testNumberOfSectionsPopulatedState()" time="0.0005390644073486328">
+        </testcase>
+        <testcase classname="SearchOptionsDataSourceTests" name="testNumberOfRowsInSectionRecentlyVisited()" time="0.000513911247253418">
+        </testcase>
+        <testcase classname="SearchOptionsDataSourceTests" name="testCellForRowGenres()" time="0.0023920536041259766">
+        </testcase>
+        <testcase classname="SearchOptionsDataSourceTests" name="testDidSelectMovie()" time="0.0004279613494873047">
+        </testcase>
+        <testcase classname="SearchOptionsDataSourceTests" name="testTitleForHeaderInSectionPopulatedState()" time="0.0005679130554199219">
+        </testcase>
+        <testcase classname="SearchOptionsDataSourceTests" name="testNumberOfRowsInSectionGenres()" time="0.000577092170715332">
+        </testcase>
+        <testcase classname="VideoModelTests" name="testInitWithVideo()" time="0.0004140138626098633">
+        </testcase>
+        <testcase classname="MovieCreditsFactoryTests" name="testCastSection()" time="0.00036704540252685547">
+        </testcase>
+        <testcase classname="MovieCreditsFactoryTests" name="testCrewSection()" time="0.001732945442199707">
+        </testcase>
+        <testcase classname="MovieDetailOptionViewTests" name="testOption()" time="0.0008471012115478516">
+        </testcase>
+        <testcase classname="MovieDetailOptionViewTests" name="testAccessibility()" time="0.000738978385925293">
+        </testcase>
+        <testcase classname="SignInViewModelTests" name="testAuthorizationProcessError()" time="0.002668023109436035">
+        </testcase>
+        <testcase classname="SignInViewModelTests" name="testSignInUserSuccess()" time="0.0005130767822265625">
+        </testcase>
+        <testcase classname="SignInViewModelTests" name="testSignInButtonTitle()" time="0.00040590763092041016">
+        </testcase>
+        <testcase classname="SignInViewModelTests" name="testSignInUserError()" time="0.00048792362213134766">
+        </testcase>
+        <testcase classname="SignInViewModelTests" name="testAuthorizationProcessSuccess()" time="0.0007709264755249023">
+        </testcase>
+        <testcase classname="GenreModelTests" name="testInitWithGenre()" time="0.0003470182418823242">
+        </testcase>
+        <testcase classname="SignInInteractorTests" name="testGetAuthPermissionURL()" time="0.00041306018829345703">
+        </testcase>
+        <testcase classname="SignInInteractorTests" name="testSignInUserSuccess()" time="0.0003370046615600586">
+        </testcase>
+        <testcase classname="SignInInteractorTests" name="testSignInUserError()" time="0.0003180503845214844">
+        </testcase>
+        <testcase classname="PopularMoviesCoordinatorTests" name="testBuild()" time="0.003340005874633789">
+        </testcase>
+        <testcase classname="ProfileViewControllerTests" name="testDidSelectRowAtRecommendedSection()" time="0.0038199424743652344">
+        </testcase>
+        <testcase classname="ProfileViewControllerTests" name="testDidSelectRowAtSignOutSection()" time="0.0021439790725708008">
+        </testcase>
+        <testcase classname="ProfileViewControllerTests" name="testHeightForRowWithoutViewModel()" time="0.0012350082397460938">
+        </testcase>
+        <testcase classname="ProfileViewControllerTests" name="testDidSelectRowAtCollectionsSection()" time="0.0010519027709960938">
+        </testcase>
+        <testcase classname="ProfileViewControllerTests" name="testDidSelectRowAtAccountInfoSection()" time="0.0010260343551635742">
+        </testcase>
+        <testcase classname="ProfileViewControllerTests" name="testHeightForRowAtAccountInfoSection()" time="0.001230001449584961">
+        </testcase>
+        <testcase classname="ProfileViewControllerTests" name="testHeightForRowAtCollectionsSection()" time="0.0010470151901245117">
+        </testcase>
+        <testcase classname="ProfileViewControllerTests" name="testHeightForRowAtRecommendedSection()" time="0.0010050535202026367">
+        </testcase>
+        <testcase classname="ProfileViewControllerTests" name="testHeightForRowAtSignOutSection()" time="0.001114964485168457">
+        </testcase>
+        <testcase classname="ProfileViewControllerTests" name="testDidUpdateAuthenticationState()" time="1.005614995956421">
+        </testcase>
+        <testcase classname="ProfileViewControllerTests" name="testHeightForRowAtCustomListsSection()" time="0.0043489933013916016">
+        </testcase>
+        <testcase classname="ProfileViewControllerTests" name="testDidSelectRowAtCustomListsSection()" time="0.0037039518356323242">
+        </testcase>
+        <testcase classname="RecommendedMoviesCoordinatorTests" name="testBuild()" time="0.004227995872497559">
+        </testcase>
+        <testcase classname="MovieCreditsViewModelTests" name="testEmptyCreditResultsTitle()" time="0.000995039939880371">
+        </testcase>
+        <testcase classname="MovieCreditsViewModelTests" name="testGetMovieCreditsEmpty()" time="0.0007059574127197266">
+        </testcase>
+        <testcase classname="MovieCreditsViewModelTests" name="testNumberOfSections()" time="0.0004140138626098633">
+        </testcase>
+        <testcase classname="MovieCreditsViewModelTests" name="testNumberOfItemsCrewSection()" time="0.0008230209350585938">
+        </testcase>
+        <testcase classname="MovieCreditsViewModelTests" name="testToggleClosedSection()" time="0.000637054443359375">
+        </testcase>
+        <testcase classname="MovieCreditsViewModelTests" name="testNumberOfItemsCastSection()" time="0.00038802623748779297">
+        </testcase>
+        <testcase classname="MovieCreditsViewModelTests" name="testGetMovieCreditsError()" time="0.0005040168762207031">
+        </testcase>
+        <testcase classname="MovieCreditsViewModelTests" name="testGetMovieCreditsPopulated()" time="0.0005249977111816406">
+        </testcase>
+        <testcase classname="MovieCreditsViewModelTests" name="testToggleOpenedSection()" time="0.0005460977554321289">
+        </testcase>
+        <testcase classname="MovieCreditsViewModelTests" name="testMovieCreditsTitle()" time="0.0003820657730102539">
+        </testcase>
+        <testcase classname="MovieReviewsCoordinatorTests" name="testBuild()" time="0.010193943977355957">
+        </testcase>
+        <testcase classname="MovieReviewsCoordinatorTests" name="testShowReviewDetailWithoutTopViewController()" time="0.0003870725631713867">
+        </testcase>
+        <testcase classname="MovieReviewsCoordinatorTests" name="testShowReviewDetail()" time="0.0013759136199951172">
+        </testcase>
+        <testcase classname="MovieReviewsInteractorTests" name="testGetMovieReviewsCalled()" time="0.0006160736083984375">
+        </testcase>
+        <testcase classname="UpcomingMovieCellViewModelTests" name="testUpcomingMovieCellBackdropURL()" time="0.00038301944732666016">
+        </testcase>
+        <testcase classname="UpcomingMovieCellViewModelTests" name="testUpcomingMovieCellPosterURL()" time="0.0003420114517211914">
+        </testcase>
+        <testcase classname="MovieDetailPosterViewModelTests" name="testMovieDetailBackdropURL()" time="0.00040900707244873047">
+        </testcase>
+        <testcase classname="MovieDetailPosterViewModelTests" name="testMovieDetailPosterURL()" time="0.00035190582275390625">
+        </testcase>
+        <testcase classname="MovieCreditsModelTests" name="testInitWithMovieCredits()" time="0.00039398670196533203">
+        </testcase>
+        <testcase classname="ProfileCoordinatorTests" name="testBuild()" time="0.002357959747314453">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testCheckMovieAccountStateSuccess()" time="0.0004919767379760742">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testMovieDetailOverview()" time="0.00032901763916015625">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testHandleFavoriteMovieIsFavoriteTrueSuccessResponse()" time="0.000697016716003418">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testDidSetupMovieDetail()" time="0.0004609823226928711">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testSaveVisitedMovie()" time="0.0003190040588378906">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testMovieDetailReleaseDate()" time="0.00039708614349365234">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testGetAvailableAlertActionsWithAccountStateWatchlistFalse()" time="0.00042700767517089844">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testAddToWatchlistAlertActionError()" time="0.007655024528503418">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testHandleFavoriteMovieIsFavoriteTrueErrorResponse()" time="0.0005970001220703125">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testHandleFavoriteMovieIsFavoriteNilValue()" time="0.00034105777740478516">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testGetMovieGenreNameWihtoutId()" time="0.00033795833587646484">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testShowErrorRetryView()" time="0.00042307376861572266">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testMovieDetailTitle()" time="0.00032699108123779297">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testGetMovieGenreName()" time="0.00044798851013183594">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testDidSetupMovieDetailNeedsFetchFalse()" time="0.00031507015228271484">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testScreenTitle()" time="0.00039207935333251953">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testCheckMovieAccountStateError()" time="0.0004450082778930664">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testShareAlertAction()" time="0.00044906139373779297">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testGetAvailableAlertActionsWithAccountStateWatchlistTrue()" time="0.0003420114517211914">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testGetAvailableAlertActionsWithNoAccountState()" time="0.002375006675720215">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testRemoveFromWatchlistAlertActionSuccess()" time="0.0004730224609375">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testHandleFavoriteMovieIsFavoriteFalseSuccessResponse()" time="0.0005079507827758789">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testCancelTitle()" time="0.00035500526428222656">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testRemoveFromWatchlistAlertActionError()" time="0.0004858970642089844">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testShareTitle()" time="0.00035500526428222656">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testAddToWatchlistAlertActionSuccess()" time="0.00043189525604248047">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testHandleFavoriteMovieIsFavoriteFalseErrorResponse()" time="0.0033789873123168945">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testCheckMovieAccountStateIsUserSignedInFalse()" time="0.0004050731658935547">
+        </testcase>
+        <testcase classname="MovieDetailViewModelTests" name="testGetMovieGenreNameNil()" time="0.00045096874237060547">
+        </testcase>
+        <testcase classname="ProfileViewModelTests" name="testCustomListsOptionIndex()" time="0.0003631114959716797">
+        </testcase>
+        <testcase classname="ProfileViewModelTests" name="testSignOutUserSuccess()" time="0.0004259347915649414">
+        </testcase>
+        <testcase classname="ProfileViewModelTests" name="testGetAccountDetailError()" time="1.0036659240722656">
+        </testcase>
+        <testcase classname="ProfileViewModelTests" name="testGetAccountDetailSuccessInfoReloaded()" time="0.0012390613555908203">
+        </testcase>
+        <testcase classname="ProfileViewModelTests" name="testGetAccountDetailSuccessInfoNotReloaded()" time="1.0020599365234375">
+        </testcase>
+        <testcase classname="ProfileViewModelTests" name="testSectionIndex()" time="0.00040793418884277344">
+        </testcase>
+        <testcase classname="ProfileViewModelTests" name="testCollectionOptionIndex()" time="0.0004169940948486328">
+        </testcase>
+        <testcase classname="ProfileViewModelTests" name="testNumberOfSections()" time="0.0003739595413208008">
+        </testcase>
+        <testcase classname="ProfileViewModelTests" name="testSignOutUserError()" time="0.000577092170715332">
+        </testcase>
+        <testcase classname="MovieCreditsInteractorTests" name="testGetMovieCreditsCalled()" time="0.0009169578552246094">
+        </testcase>
+        <testcase classname="ProfileInteractorTests" name="testGetAccountDetailError()" time="0.0003949403762817383">
+        </testcase>
+        <testcase classname="ProfileInteractorTests" name="testSignOutUser()" time="0.0004229545593261719">
+        </testcase>
+        <testcase classname="ProfileInteractorTests" name="testGetAccountDetailSuccess()" time="0.0004069805145263672">
+        </testcase>
+        <testcase classname="CustomListDetailViewControllerTests" name="testHeightForHeaderInSection()" time="0.0025000572204589844">
+        </testcase>
+        <testcase classname="CustomListDetailViewControllerTests" name="testViewWillAppear()" time="0.014438986778259277">
+        </testcase>
+        <testcase classname="CustomListDetailViewControllerTests" name="testViewForHeaderInSection()" time="0.002958059310913086">
+        </testcase>
+        <testcase classname="MovieDetailOptionTests" name="testMovieDetailOptionsCredits()" time="0.00038301944732666016">
+        </testcase>
+        <testcase classname="MovieDetailOptionTests" name="testMovieDetailOptionsTrailers()" time="0.004512906074523926">
+        </testcase>
+        <testcase classname="MovieDetailOptionTests" name="testMovieDetailOptionsSimilarMovies()" time="0.00035202503204345703">
+        </testcase>
+        <testcase classname="MovieDetailOptionTests" name="testMovieDetailOptionsReviews()" time="0.00040900707244873047">
+        </testcase>
+        <testcase classname="SearchOptionsViewControllerTests" name="testDidSelectRowGenresSection()" time="0.0013920068740844727">
+        </testcase>
+        <testcase classname="SearchOptionsViewControllerTests" name="testHeightForRowDefaultSearchesSection()" time="0.0014330148696899414">
+        </testcase>
+        <testcase classname="SearchOptionsViewControllerTests" name="testHeightForRowRecentlyVisitedSection()" time="0.0011049509048461914">
+        </testcase>
+        <testcase classname="SearchOptionsViewControllerTests" name="testHeightForRowGenresSection()" time="0.000946044921875">
+        </testcase>
+        <testcase classname="SearchOptionsViewControllerTests" name="testDidSelectRowDefaultSearchesSection()" time="0.0009390115737915039">
+        </testcase>
+        <testcase classname="SearchOptionsViewControllerTests" name="testDidSelectRowRecentlyVisitedSection()" time="0.0010279417037963867">
+        </testcase>
+        <testcase classname="MovieDetailOptionsViewModelTests" name="testMovieDetailOptions()" time="0.0003739595413208008">
+        </testcase>
+        <testcase classname="AuthPermissionViewControllerTests" name="testPresentationControllerDidDismiss()" time="0.04006397724151611">
+        </testcase>
+        <testcase classname="AuthPermissionViewControllerTests" name="testCloseBarButtonAction()" time="0.003728032112121582">
+        </testcase>
+        <testcase classname="SavedMoviesViewModelTests" name="testMovieCellsCount()" time="0.0007870197296142578">
+        </testcase>
+        <testcase classname="SavedMoviesViewModelTests" name="testMovieCellsZeroCount()" time="0.00043892860412597656">
+        </testcase>
+        <testcase classname="SavedMoviesViewModelTests" name="testGetCollectionListError()" time="0.0006699562072753906">
+        </testcase>
+        <testcase classname="SavedMoviesViewModelTests" name="testGetCollectionListPopulated()" time="0.0005609989166259766">
+        </testcase>
+        <testcase classname="SavedMoviesViewModelTests" name="testGetCollectionListEmpty()" time="0.0004909038543701172">
+        </testcase>
+        <testcase classname="SavedMoviesViewModelTests" name="testMovieIndex()" time="0.0003129243850708008">
+        </testcase>
+        <testcase classname="SavedMoviesViewModelTests" name="testGetCollectionListPaging()" time="0.0006110668182373047">
+        </testcase>
+        <testcase classname="SavedMoviesViewModelTests" name="testEmptyMovieResultsTitle()" time="0.00048100948333740234">
+        </testcase>
+        <testcase classname="SavedMoviesViewModelTests" name="testSavedMoviesTitle()" time="0.0003820657730102539">
+        </testcase>
+        <testcase classname="ReviewModelTests" name="testInitWithReview()" time="0.0004069805145263672">
+        </testcase>
+    </testsuite>
+</testsuites>

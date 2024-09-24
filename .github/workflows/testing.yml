@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint:
-    runs-on: macos-12
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
     - name: Install Bundle
@@ -20,7 +20,7 @@ jobs:
 
   test:
     needs: lint
-    runs-on: macos-12
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
     - name: Install Bundle
@@ -29,7 +29,13 @@ jobs:
       run: pod install
     - name: Run unit tests
       run: bundle exec fastlane tests
-    - name: Upload coverage
-      uses: codecov/codecov-action@v1.2.1
+
+  upload:
+    - name: Upload test results with default CLI version
+      uses: trunk-io/analytics-uploader@main
       with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+        org-slug: trunk-staging-org
+        token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+        paths: fastlane/test_output/UpcomingMovies.xcresult
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
