@@ -107,7 +107,7 @@ final class SearchOptionsViewController: UITableViewController, Storyboarded {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let viewModel = viewModel else { return 0.0 }
+        guard let viewModel = viewModel else { return .zero }
         switch viewModel.section(at: indexPath.section) {
         case .recentlyVisited:
             return Constants.recentlyVisitedRowHeight
