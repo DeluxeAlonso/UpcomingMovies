@@ -22,6 +22,7 @@ public struct LocalizedStringsGenerator {
         \(stringExtension)
 
         \(localizedStringsEnum(stringsFileName))
+        
         """
 
         do {
