@@ -2701,6 +2701,7 @@
 				5EC83C5E01F2A4C789C0A107 /* [CP] Embed Pods Frameworks */,
 				E20198F421FBAEF400ED1FA8 /* ShellScript */,
 				E2B63ADD246767EE00C0BB13 /* Embed Foundation Extensions */,
+				E2C1D2F42CA7C3D600D82A70 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2912,6 +2913,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		E2C1D2F42CA7C3D600D82A70 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nxcrun --sdk macosx swiftc -parse-as-library Scripts/LocalizedStringsGenerator.swift -o LocalizedStringsScript\n./LocalizedStringsScript UpcomingMovies/Helpers/Utils/Localization/LocalizedStrings.swift Localizable\n";
 		};
 		F39A18CFCC4789258A5C8418 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
