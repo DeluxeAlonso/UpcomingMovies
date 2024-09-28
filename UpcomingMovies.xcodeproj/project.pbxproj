@@ -2692,13 +2692,13 @@
 			buildConfigurationList = E221169B21914E4D0039F8C9 /* Build configuration list for PBXNativeTarget "UpcomingMovies" */;
 			buildPhases = (
 				F39A18CFCC4789258A5C8418 /* [CP] Check Pods Manifest.lock */,
+				E2C1D2F42CA7C3D600D82A70 /* ShellScript */,
 				E221167821914E4B0039F8C9 /* Sources */,
 				E221167921914E4B0039F8C9 /* Frameworks */,
 				E221167A21914E4B0039F8C9 /* Resources */,
 				5EC83C5E01F2A4C789C0A107 /* [CP] Embed Pods Frameworks */,
 				E20198F421FBAEF400ED1FA8 /* ShellScript */,
 				E2B63ADD246767EE00C0BB13 /* Embed Foundation Extensions */,
-				E2C1D2F42CA7C3D600D82A70 /* ShellScript */,
 			);
 			buildRules = (
 			);
