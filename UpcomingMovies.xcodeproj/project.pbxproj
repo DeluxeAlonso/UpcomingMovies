@@ -1497,7 +1497,6 @@
 			children = (
 				E289D88828E15B9C00EA0155 /* Bindable */,
 				E26B4F7C24CE907700F9089E /* Coordinator */,
-				E265BCE6279C56BC00BA3176 /* Localization */,
 				E26EB50925CF508300AFE4A6 /* BaseConfiguration */,
 				E208FC4C263523D0008593D8 /* SimpleViewState */,
 				E289DB9123DCAE03008B2163 /* UIConstants.swift */,
@@ -1508,6 +1507,7 @@
 				E289DB8F23DCA25D008B2163 /* ProfileOptions.swift */,
 				E2DCE7F824B134ED0041301E /* Either.swift */,
 				E2F789F72598401700002CAD /* AppExtension.swift */,
+				E2DB26E224B03C7F000DD01C /* LocalizedStrings.swift */,
 				E26EB50325CF503600AFE4A6 /* PropertyListHelper.swift */,
 				E2671D7E25D8AD4400E457FF /* AppGroup.swift */,
 				E2040F8929933C8200ABAE82 /* UserDefaultsStorage.swift */,
@@ -1947,14 +1947,6 @@
 				E26578BB2A417CD900D8A071 /* BaseCoordinatorTests.swift */,
 			);
 			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		E265BCE6279C56BC00BA3176 /* Localization */ = {
-			isa = PBXGroup;
-			children = (
-				E2DB26E224B03C7F000DD01C /* LocalizedStrings.swift */,
-			);
-			path = Localization;
 			sourceTree = "<group>";
 		};
 		E265C255249538B100712284 /* Interactors */ = {
@@ -2923,7 +2915,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nxcrun --sdk macosx swiftc -parse-as-library Scripts/LocalizedStringsGenerator.swift -o LocalizedStringsScript\n./LocalizedStringsScript UpcomingMovies/Helpers/Utils/Localization/LocalizedStrings.swift Localizable\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nxcrun --sdk macosx swiftc -parse-as-library Scripts/LocalizedStringsGenerator.swift -o LocalizedStringsScript\n./LocalizedStringsScript UpcomingMovies/Helpers/Utils/LocalizedStrings.swift Localizable\n";
 		};
 		F39A18CFCC4789258A5C8418 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
