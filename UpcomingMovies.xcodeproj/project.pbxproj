@@ -217,7 +217,6 @@
 		E26578B82A40F4AE00D8A071 /* ProfileCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26578B72A40F4AE00D8A071 /* ProfileCoordinatorTests.swift */; };
 		E26578BC2A417CD900D8A071 /* BaseCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26578BB2A417CD900D8A071 /* BaseCoordinatorTests.swift */; };
 		E26578BE2A417D0A00D8A071 /* MockCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26578BD2A417D0A00D8A071 /* MockCoordinator.swift */; };
-		E265BCE8279C56D600BA3176 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E265BCE7279C56D600BA3176 /* Localizable.swift */; };
 		E265C259249538EA00712284 /* UpcomingMoviesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E265C258249538EA00712284 /* UpcomingMoviesInteractor.swift */; };
 		E265C25B2495390800712284 /* TopRatedMoviesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E265C25A2495390800712284 /* TopRatedMoviesInteractor.swift */; };
 		E265C25D2495391400712284 /* PopularMoviesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E265C25C2495391400712284 /* PopularMoviesInteractor.swift */; };
@@ -328,7 +327,6 @@
 		E2A5A25C2C4A2C7500120F40 /* MovieVisitModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5A25B2C4A2C7500120F40 /* MovieVisitModelTests.swift */; };
 		E2A621C126223ABC006A72FA /* ToastDefaultConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A621C026223ABC006A72FA /* ToastDefaultConfiguration.swift */; };
 		E2A621C82622B6A4006A72FA /* UIView+ToastUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A621C72622B6A4006A72FA /* UIView+ToastUtils.swift */; };
-		E2A6245824B030C500D4C1B4 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A6245724B030C500D4C1B4 /* String+Localized.swift */; };
 		E2A65E5121FEC39800485B4E /* VoteAverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A65E5021FEC39800485B4E /* VoteAverageView.swift */; };
 		E2A65E5321FECC2200485B4E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A65E5221FECC2200485B4E /* Utils.swift */; };
 		E2A750F12BF1D40C007A194C /* CastProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A750F02BF1D40C007A194C /* CastProtocol.swift */; };
@@ -748,7 +746,6 @@
 		E26578B72A40F4AE00D8A071 /* ProfileCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinatorTests.swift; sourceTree = "<group>"; };
 		E26578BB2A417CD900D8A071 /* BaseCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinatorTests.swift; sourceTree = "<group>"; };
 		E26578BD2A417D0A00D8A071 /* MockCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoordinator.swift; sourceTree = "<group>"; };
-		E265BCE7279C56D600BA3176 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		E265C258249538EA00712284 /* UpcomingMoviesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesInteractor.swift; sourceTree = "<group>"; };
 		E265C25A2495390800712284 /* TopRatedMoviesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedMoviesInteractor.swift; sourceTree = "<group>"; };
 		E265C25C2495391400712284 /* PopularMoviesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesInteractor.swift; sourceTree = "<group>"; };
@@ -863,7 +860,6 @@
 		E2A5A25B2C4A2C7500120F40 /* MovieVisitModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVisitModelTests.swift; sourceTree = "<group>"; };
 		E2A621C026223ABC006A72FA /* ToastDefaultConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastDefaultConfiguration.swift; sourceTree = "<group>"; };
 		E2A621C72622B6A4006A72FA /* UIView+ToastUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ToastUtils.swift"; sourceTree = "<group>"; };
-		E2A6245724B030C500D4C1B4 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		E2A65E5021FEC39800485B4E /* VoteAverageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteAverageView.swift; sourceTree = "<group>"; };
 		E2A65E5221FECC2200485B4E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E2A750F02BF1D40C007A194C /* CastProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastProtocol.swift; sourceTree = "<group>"; };
@@ -1278,7 +1274,6 @@
 				E28366752470E641008E2544 /* UIImageView+Extensions.swift */,
 				E270962F247B686100AE694E /* Entities+ImageConfiguration.swift */,
 				E24345E9247CBCEE008A2B66 /* Array+MidElement.swift */,
-				E2A6245724B030C500D4C1B4 /* String+Localized.swift */,
 				E20CBAFE24B1963600F3992E /* Bool+IntValue.swift */,
 				E20E62DA25199F9F005CB154 /* Entities+GenreName.swift */,
 				E26EB4C625CF4B0900AFE4A6 /* URL+PropertyListDecoder.swift */,
@@ -1502,7 +1497,6 @@
 			children = (
 				E289D88828E15B9C00EA0155 /* Bindable */,
 				E26B4F7C24CE907700F9089E /* Coordinator */,
-				E265BCE6279C56BC00BA3176 /* Localization */,
 				E26EB50925CF508300AFE4A6 /* BaseConfiguration */,
 				E208FC4C263523D0008593D8 /* SimpleViewState */,
 				E289DB9123DCAE03008B2163 /* UIConstants.swift */,
@@ -1513,6 +1507,7 @@
 				E289DB8F23DCA25D008B2163 /* ProfileOptions.swift */,
 				E2DCE7F824B134ED0041301E /* Either.swift */,
 				E2F789F72598401700002CAD /* AppExtension.swift */,
+				E2DB26E224B03C7F000DD01C /* LocalizedStrings.swift */,
 				E26EB50325CF503600AFE4A6 /* PropertyListHelper.swift */,
 				E2671D7E25D8AD4400E457FF /* AppGroup.swift */,
 				E2040F8929933C8200ABAE82 /* UserDefaultsStorage.swift */,
@@ -1952,15 +1947,6 @@
 				E26578BB2A417CD900D8A071 /* BaseCoordinatorTests.swift */,
 			);
 			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		E265BCE6279C56BC00BA3176 /* Localization */ = {
-			isa = PBXGroup;
-			children = (
-				E2DB26E224B03C7F000DD01C /* LocalizedStrings.swift */,
-				E265BCE7279C56D600BA3176 /* Localizable.swift */,
-			);
-			path = Localization;
 			sourceTree = "<group>";
 		};
 		E265C255249538B100712284 /* Interactors */ = {
@@ -2695,6 +2681,7 @@
 			buildConfigurationList = E221169B21914E4D0039F8C9 /* Build configuration list for PBXNativeTarget "UpcomingMovies" */;
 			buildPhases = (
 				F39A18CFCC4789258A5C8418 /* [CP] Check Pods Manifest.lock */,
+				E2C1D2F42CA7C3D600D82A70 /* ShellScript */,
 				E221167821914E4B0039F8C9 /* Sources */,
 				E221167921914E4B0039F8C9 /* Frameworks */,
 				E221167A21914E4B0039F8C9 /* Resources */,
@@ -2913,6 +2900,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
+		E2C1D2F42CA7C3D600D82A70 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nxcrun --sdk macosx swiftc -parse-as-library Scripts/LocalizedStringsGenerator.swift -o LocalizedStringsScript\n./LocalizedStringsScript UpcomingMovies/Helpers/Utils/LocalizedStrings.swift Localizable\n";
+		};
 		F39A18CFCC4789258A5C8418 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3015,7 +3019,6 @@
 				E28D78A124847DED00D86F66 /* MovieReviewDetailViewController.swift in Sources */,
 				E222B95B21FA0F49008BA816 /* UpcomingMovieCellViewModel.swift in Sources */,
 				E26882DC251456040000B581 /* MovieVideosAssembly.swift in Sources */,
-				E2A6245824B030C500D4C1B4 /* String+Localized.swift in Sources */,
 				E222DC262192AF9700A2EDF4 /* MovieListCell.swift in Sources */,
 				E27C019D280BFDD1000C510A /* MovieDetailActionModel.swift in Sources */,
 				E229AFAB24A8451F002AB427 /* SavedMoviesProtocols.swift in Sources */,
@@ -3053,7 +3056,6 @@
 				E28FF49B24B19A3E0015CB2F /* UpcomingMoviesFactory.swift in Sources */,
 				E2EAEC5624CFEF6A00D89F04 /* MovieCreditsViewSection.swift in Sources */,
 				E21F37922193F38300D6BFB6 /* RecentSearchCellViewModel.swift in Sources */,
-				E265BCE8279C56D600BA3176 /* Localizable.swift in Sources */,
 				E286770B2485E714006685F8 /* ScaleAnimatedTransition.swift in Sources */,
 				E222B74224D646B600CD9EC6 /* SearchOptionsInteractor.swift in Sources */,
 				E2EB923E221375190067F011 /* CollectionViewDataSourcePrefetching.swift in Sources */,
