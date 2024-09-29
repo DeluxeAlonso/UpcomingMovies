@@ -1,5 +1,5 @@
 //
-//  MovieCreditsFactory.swift
+//  MovieCreditsSectionManager.swift
 //  UpcomingMovies
 //
 //  Created by Alonso on 7/28/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class MovieCreditsFactory: MovieCreditsSectionManagerProtocol {
+final class MovieCreditsSectionManager: MovieCreditsSectionManagerProtocol {
 
     private var castSection = MovieCreditsCollapsibleSection(type: .cast, opened: true)
     private var crewSection = MovieCreditsCollapsibleSection(type: .crew, opened: false)

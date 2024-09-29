@@ -11,11 +11,11 @@ import XCTest
 
 final class MovieCreditsFactoryTests: XCTestCase {
 
-    private var factory: MovieCreditsFactory!
+    private var factory: MovieCreditsSectionManager!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        factory = MovieCreditsFactory()
+        factory = MovieCreditsSectionManager()
     }
 
     override func tearDownWithError() throws {

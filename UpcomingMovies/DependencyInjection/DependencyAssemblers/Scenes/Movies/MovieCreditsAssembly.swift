@@ -14,7 +14,7 @@ final class MovieCreditsAssembly: Assembly {
 
     func assemble(container: Container) {
         container.register(MovieCreditsSectionManagerProtocol.self) { _ in
-            MovieCreditsFactory()
+            MovieCreditsSectionManager()
         }
 
         container.register(MovieCreditsInteractorProtocol.self) { resolver in
