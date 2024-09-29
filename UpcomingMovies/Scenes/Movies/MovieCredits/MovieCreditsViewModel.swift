@@ -22,7 +22,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
 
     let viewState = BehaviorBindable(MovieCreditsViewState.initial).eraseToAnyBindable()
     let startLoading = BehaviorBindable(false).eraseToAnyBindable()
-    let didToggleSection =  PublishBindable<Int>().eraseToAnyBindable()
+    let didToggleSection = PublishBindable<Int>().eraseToAnyBindable()
 
     // MARK: - Computed properties
 
