@@ -22,7 +22,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
 
     let viewState = BehaviorBindable(MovieCreditsViewState.initial).eraseToAnyBindable()
     let startLoading = BehaviorBindable(false).eraseToAnyBindable()
-    let didToggleSection =  PublishBindable<Int>().eraseToAnyBindable()
+    let didToggleSection = PublishBindable<Int>().eraseToAnyBindable()
 
     // MARK: - Computed properties
 
@@ -32,7 +32,8 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
 
     // MARK: - Initializers
 
-    init(movieId: Int, movieTitle: String,
+    init(movieId: Int,
+         movieTitle: String,
          interactor: MovieCreditsInteractorProtocol,
          factory: MovieCreditsFactoryProtocol) {
         self.movieId = movieId
