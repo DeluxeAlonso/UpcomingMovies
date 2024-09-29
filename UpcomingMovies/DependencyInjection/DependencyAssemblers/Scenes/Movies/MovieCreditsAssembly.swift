@@ -13,7 +13,7 @@ import UpcomingMoviesDomain
 final class MovieCreditsAssembly: Assembly {
 
     func assemble(container: Container) {
-        container.register(MovieCreditsFactoryProtocol.self) { _ in
+        container.register(MovieCreditsSectionManagerProtocol.self) { _ in
             MovieCreditsFactory()
         }
 
@@ -25,7 +25,7 @@ final class MovieCreditsAssembly: Assembly {
         }
 
         container.register(MovieCreditsViewModelProtocol.self) { (resolver, movieId: Int, movieTitle: String) in
-            guard let factory = resolver.resolve(MovieCreditsFactoryProtocol.self) else {
+            guard let factory = resolver.resolve(MovieCreditsSectionManagerProtocol.self) else {
                 fatalError("MovieCreditsFactoryProtocol dependency could not be resolved")
             }
             guard let interactor = resolver.resolve(MovieCreditsInteractorProtocol.self) else {

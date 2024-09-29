@@ -16,7 +16,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     private(set) var movieTitle: String
 
     private let interactor: MovieCreditsInteractorProtocol
-    private var factory: MovieCreditsFactoryProtocol
+    private var factory: MovieCreditsSectionManagerProtocol
 
     // MARK: - Reactive properties
 
@@ -35,7 +35,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     init(movieId: Int,
          movieTitle: String,
          interactor: MovieCreditsInteractorProtocol,
-         factory: MovieCreditsFactoryProtocol) {
+         factory: MovieCreditsSectionManagerProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
 

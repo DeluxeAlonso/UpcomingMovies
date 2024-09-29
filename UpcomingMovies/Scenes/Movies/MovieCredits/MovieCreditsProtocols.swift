@@ -36,7 +36,7 @@ protocol MovieCreditsInteractorProtocol {
 
 }
 
-protocol MovieCreditsFactoryProtocol {
+protocol MovieCreditsSectionManagerProtocol {
 
     var sections: [MovieCreditsCollapsibleSection] { get }
 

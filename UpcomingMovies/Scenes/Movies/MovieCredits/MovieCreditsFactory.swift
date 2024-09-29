@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class MovieCreditsFactory: MovieCreditsFactoryProtocol {
+final class MovieCreditsFactory: MovieCreditsSectionManagerProtocol {
 
     private var castSection = MovieCreditsCollapsibleSection(type: .cast, opened: true)
     private var crewSection = MovieCreditsCollapsibleSection(type: .crew, opened: false)
