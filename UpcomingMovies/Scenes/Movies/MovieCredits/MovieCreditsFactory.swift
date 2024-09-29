@@ -26,12 +26,13 @@ final class MovieCreditsFactory: MovieCreditsFactoryProtocol {
         }
     }
 
-    func updateSection(type: MovieCreditsViewSection, opened: Bool) {
-        switch type {
+    func toggleSection(at index: Int) {
+        let typeToToggle = sections[index].type
+        switch typeToToggle {
         case .cast:
-            castSection.opened = opened
+            castSection.opened.toggle()
         case .crew:
-            crewSection.opened = opened
+            crewSection.opened.toggle()
         }
     }
 }

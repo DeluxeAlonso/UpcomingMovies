@@ -80,6 +80,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
 
     func toggleSection(_ section: Int) {
         factory.sections[section].opened.toggle()
+        factory.updateSection(type: factory.sections[section].type, opened: !factory.sections[section].opened)
         didToggleSection.send(section)
     }
 
@@ -89,8 +90,8 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
             self.startLoading.value = false
             switch result {
             case .success(let movieCredits):
-                self.factory.enableCollapsibleSection(type: .cast, enabled: !movieCredits.cast.isEmpty)
-                self.factory.enableCollapsibleSection(type: .crew, enabled: !movieCredits.crew.isEmpty)
+                self.factory.updateSection(type: .cast, enabled: !movieCredits.cast.isEmpty)
+                self.factory.updateSection(type: .crew, enabled: !movieCredits.crew.isEmpty)
                 self.viewState.value = self.processResult(movieCredits)
             case .failure(let error):
                 self.viewState.value = .error(error)

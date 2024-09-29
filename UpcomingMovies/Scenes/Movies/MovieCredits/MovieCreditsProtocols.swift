@@ -41,7 +41,7 @@ protocol MovieCreditsFactoryProtocol {
     var sections: [MovieCreditsCollapsibleSection] { get }
 
     func updateSection(type: MovieCreditsViewSection, enabled: Bool)
-    func updateSection(type: MovieCreditsViewSection, opened: Bool)
+    func toggleSection(at index: Int)
 
 }
 
