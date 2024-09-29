@@ -10,10 +10,19 @@ import Foundation
 
 final class MovieCreditsFactory: MovieCreditsFactoryProtocol {
 
-    var sections = [MovieCreditsCollapsibleSection(type: .cast, opened: true),
-                    MovieCreditsCollapsibleSection(type: .crew, opened: false)]
+    private var castSection = MovieCreditsCollapsibleSection(type: .cast, opened: true)
+    private var crewSection = MovieCreditsCollapsibleSection(type: .crew, opened: false)
 
-    func enableCollapsibleSection(type: MovieCreditsViewSection, enabled: Bool) {
+    var sections: [MovieCreditsCollapsibleSection] {
+        [castSection, crewSection].filter { $0.enabled }
+    }
+
+    func updateSection(type: MovieCreditsViewSection, enabled: Bool) {
+        var sectionToUpdate = sections.first(where: { $0.type == type })
+        sectionToUpdate?.enabled = enabled
+    }
+
+    func updateSection(type: MovieCreditsViewSection, opened: Bool) {
         var sectionToUpdate = sections.first(where: { $0.type == type })
         sectionToUpdate?.enabled = enabled
     }
