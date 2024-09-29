@@ -10,10 +10,14 @@ final class MovieCreditsCollapsibleSection {
 
     let type: MovieCreditsViewSection
     var opened: Bool
+    var enabled: Bool
 
-    init(type: MovieCreditsViewSection, opened: Bool) {
+    init(type: MovieCreditsViewSection,
+         opened: Bool,
+         enabled: Bool = true) {
         self.type = type
         self.opened = opened
+        self.enabled = enabled
     }
 
 }
