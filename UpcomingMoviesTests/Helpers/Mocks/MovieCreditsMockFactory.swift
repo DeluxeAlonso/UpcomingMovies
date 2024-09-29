@@ -20,7 +20,7 @@ final class MockMovieCreditsInteractor: MovieCreditsInteractorProtocol {
 
 }
 
-final class MockMovieCreditsFactory: MovieCreditsSectionManagerProtocol {
+final class MockMovieCreditsSectionManager: MovieCreditsSectionManagerProtocol {
 
     var sections: [MovieCreditsCollapsibleSection] = []
 

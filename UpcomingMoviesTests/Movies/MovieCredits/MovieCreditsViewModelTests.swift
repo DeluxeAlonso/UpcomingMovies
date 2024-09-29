@@ -12,13 +12,13 @@ import XCTest
 final class MovieCreditsViewModelTests: XCTestCase {
 
     private var mockInteractor: MockMovieCreditsInteractor!
-    private var mockFactory: MockMovieCreditsFactory!
+    private var mockFactory: MockMovieCreditsSectionManager!
     private var viewModelToTest: MovieCreditsViewModelProtocol!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         mockInteractor = MockMovieCreditsInteractor()
-        mockFactory = MockMovieCreditsFactory()
+        mockFactory = MockMovieCreditsSectionManager()
 
         viewModelToTest = MovieCreditsViewModel(movieId: 1, movieTitle: "Movie 1",
                                                 interactor: mockInteractor, factory: mockFactory)
