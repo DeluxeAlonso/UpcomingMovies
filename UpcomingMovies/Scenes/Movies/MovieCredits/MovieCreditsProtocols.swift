@@ -40,7 +40,7 @@ protocol MovieCreditsFactoryProtocol {
 
     var sections: [MovieCreditsCollapsibleSection] { get set }
 
-    func updateCollapsibleSection(type: MovieCreditsViewSection, shouldHide: Bool, shouldOpen: Bool)
+    func enableCollapsibleSection(type: MovieCreditsViewSection, enabled: Bool)
 
 }
 
