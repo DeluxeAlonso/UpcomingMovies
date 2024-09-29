@@ -36,9 +36,12 @@ protocol MovieCreditsInteractorProtocol {
 
 }
 
-protocol MovieCreditsFactoryProtocol {
+protocol MovieCreditsSectionManagerProtocol {
 
-    var sections: [MovieCreditsCollapsibleSection] { get set }
+    var sections: [MovieCreditsCollapsibleSection] { get }
+
+    func updateSection(type: MovieCreditsViewSection, enabled: Bool)
+    func toggleSection(at index: Int)
 
 }
 

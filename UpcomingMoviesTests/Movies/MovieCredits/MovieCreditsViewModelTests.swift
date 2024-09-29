@@ -12,21 +12,21 @@ import XCTest
 final class MovieCreditsViewModelTests: XCTestCase {
 
     private var mockInteractor: MockMovieCreditsInteractor!
-    private var mockFactory: MockMovieCreditsFactory!
+    private var mockSectionManager: MockMovieCreditsSectionManager!
     private var viewModelToTest: MovieCreditsViewModelProtocol!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         mockInteractor = MockMovieCreditsInteractor()
-        mockFactory = MockMovieCreditsFactory()
+        mockSectionManager = MockMovieCreditsSectionManager()
 
         viewModelToTest = MovieCreditsViewModel(movieId: 1, movieTitle: "Movie 1",
-                                                interactor: mockInteractor, factory: mockFactory)
+                                                interactor: mockInteractor, factory: mockSectionManager)
     }
 
     override func tearDownWithError() throws {
         mockInteractor = nil
-        mockFactory = nil
+        mockSectionManager = nil
         viewModelToTest = nil
         try super.tearDownWithError()
     }
@@ -88,7 +88,7 @@ final class MovieCreditsViewModelTests: XCTestCase {
             MovieCreditsCollapsibleSection(type: .cast, opened: true),
             MovieCreditsCollapsibleSection(type: .crew, opened: true)
         ]
-        mockFactory.sections = sectionsToTest
+        mockSectionManager.sections = sectionsToTest
         // Act
         let numberOfSections = viewModelToTest.numberOfSections()
         // Assert
@@ -101,7 +101,7 @@ final class MovieCreditsViewModelTests: XCTestCase {
             MovieCreditsCollapsibleSection(type: .cast, opened: true),
             MovieCreditsCollapsibleSection(type: .crew, opened: true)
         ]
-        mockFactory.sections = sectionsToTest
+        mockSectionManager.sections = sectionsToTest
 
         let castToTest = [MockCastProtocol()]
         let crewToTest = [MockCrewProtocol()]
@@ -120,7 +120,7 @@ final class MovieCreditsViewModelTests: XCTestCase {
             MovieCreditsCollapsibleSection(type: .cast, opened: true),
             MovieCreditsCollapsibleSection(type: .crew, opened: true)
         ]
-        mockFactory.sections = sectionsToTest
+        mockSectionManager.sections = sectionsToTest
 
         let castToTest = [MockCastProtocol()]
         let crewToTest = [MockCrewProtocol()]
@@ -139,18 +139,17 @@ final class MovieCreditsViewModelTests: XCTestCase {
             MovieCreditsCollapsibleSection(type: .cast, opened: false),
             MovieCreditsCollapsibleSection(type: .crew, opened: false)
         ]
-        mockFactory.sections = sectionsToTest
+        mockSectionManager.sections = sectionsToTest
         let sectionIndexToTest = Int.random(in: 0...sectionsToTest.count - 1)
         let expectation = XCTestExpectation(description: "Should toggle section")
         // Act
-        viewModelToTest.didToggleSection.bind { section in
-            let headerModel = self.viewModelToTest.headerModel(for: section)
-            XCTAssertTrue(headerModel.opened)
+        viewModelToTest.didToggleSection.bind { _ in
             expectation.fulfill()
         }
         viewModelToTest.toggleSection(sectionIndexToTest)
         // Assert
         wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(mockSectionManager.toggleSectionCallCount, 1)
     }
 
     func testToggleOpenedSection() {
@@ -159,18 +158,17 @@ final class MovieCreditsViewModelTests: XCTestCase {
             MovieCreditsCollapsibleSection(type: .cast, opened: true),
             MovieCreditsCollapsibleSection(type: .crew, opened: true)
         ]
-        mockFactory.sections = sectionsToTest
+        mockSectionManager.sections = sectionsToTest
         let sectionIndexToTest = Int.random(in: 0...sectionsToTest.count - 1)
         let expectation = XCTestExpectation(description: "Should toggle section")
         // Act
-        viewModelToTest.didToggleSection.bind { section in
-            let headerModel = self.viewModelToTest.headerModel(for: section)
-            XCTAssertFalse(headerModel.opened)
+        viewModelToTest.didToggleSection.bind { _ in
             expectation.fulfill()
         }
         viewModelToTest.toggleSection(sectionIndexToTest)
         // Assert
         wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(mockSectionManager.toggleSectionCallCount, 1)
     }
 
     func testEmptyCreditResultsTitle() {

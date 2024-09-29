@@ -16,7 +16,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     private(set) var movieTitle: String
 
     private let interactor: MovieCreditsInteractorProtocol
-    private var factory: MovieCreditsFactoryProtocol
+    private var factory: MovieCreditsSectionManagerProtocol
 
     // MARK: - Reactive properties
 
@@ -35,7 +35,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     init(movieId: Int,
          movieTitle: String,
          interactor: MovieCreditsInteractorProtocol,
-         factory: MovieCreditsFactoryProtocol) {
+         factory: MovieCreditsSectionManagerProtocol) {
         self.movieId = movieId
         self.movieTitle = movieTitle
 
@@ -79,7 +79,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     }
 
     func toggleSection(_ section: Int) {
-        factory.sections[section].opened.toggle()
+        factory.toggleSection(at: section)
         didToggleSection.send(section)
     }
 
@@ -89,6 +89,8 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
             self.startLoading.value = false
             switch result {
             case .success(let movieCredits):
+                self.factory.updateSection(type: .cast, enabled: !movieCredits.cast.isEmpty)
+                self.factory.updateSection(type: .crew, enabled: !movieCredits.crew.isEmpty)
                 self.viewState.value = self.processResult(movieCredits)
             case .failure(let error):
                 self.viewState.value = .error(error)
