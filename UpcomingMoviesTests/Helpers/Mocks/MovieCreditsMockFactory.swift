@@ -24,4 +24,14 @@ final class MockMovieCreditsFactory: MovieCreditsSectionManagerProtocol {
 
     var sections: [MovieCreditsCollapsibleSection] = []
 
+    private(set) var updateSectionCallCount = 0
+    func updateSection(type: UpcomingMovies.MovieCreditsViewSection, enabled: Bool) {
+        updateSectionCallCount += 1
+    }
+
+    private(set) var toggleSectionCallCount = 0
+    func toggleSection(at index: Int) {
+        toggleSectionCallCount += 1
+    }
+
 }
