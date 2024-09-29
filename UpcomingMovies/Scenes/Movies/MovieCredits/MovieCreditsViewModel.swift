@@ -79,8 +79,7 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
     }
 
     func toggleSection(_ section: Int) {
-        factory.sections[section].opened.toggle()
-        factory.updateSection(type: factory.sections[section].type, opened: !factory.sections[section].opened)
+        factory.toggleSection(at: section)
         didToggleSection.send(section)
     }
 
