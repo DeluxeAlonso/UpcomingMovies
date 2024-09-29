@@ -9,7 +9,7 @@
 import XCTest
 @testable import UpcomingMovies
 
-final class MovieCreditsSectionManager: XCTestCase {
+final class MovieCreditsSectionManagerTests: XCTestCase {
 
     private var factory: MovieCreditsSectionManager!
 
