@@ -18,12 +18,20 @@ final class MovieCreditsFactory: MovieCreditsFactoryProtocol {
     }
 
     func updateSection(type: MovieCreditsViewSection, enabled: Bool) {
-        var sectionToUpdate = sections.first(where: { $0.type == type })
-        sectionToUpdate?.enabled = enabled
+        switch type {
+        case .cast:
+            castSection.enabled = enabled
+        case .crew:
+            crewSection.enabled = enabled
+        }
     }
 
     func updateSection(type: MovieCreditsViewSection, opened: Bool) {
-        var sectionToUpdate = sections.first(where: { $0.type == type })
-        sectionToUpdate?.enabled = enabled
+        switch type {
+        case .cast:
+            castSection.opened = opened
+        case .crew:
+            crewSection.opened = opened
+        }
     }
 }
