@@ -1,5 +1,5 @@
 //
-//  MovieCreditsFactoryTests.swift
+//  MovieCreditsSectionManager.swift
 //  UpcomingMoviesTests
 //
 //  Created by Alonso on 3/02/23.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import UpcomingMovies
 
-final class MovieCreditsFactoryTests: XCTestCase {
+final class MovieCreditsSectionManager: XCTestCase {
 
     private var factory: MovieCreditsSectionManager!
 
