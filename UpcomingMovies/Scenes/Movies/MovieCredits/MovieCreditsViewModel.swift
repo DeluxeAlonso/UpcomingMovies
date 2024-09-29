@@ -32,7 +32,8 @@ final class MovieCreditsViewModel: MovieCreditsViewModelProtocol {
 
     // MARK: - Initializers
 
-    init(movieId: Int, movieTitle: String,
+    init(movieId: Int,
+         movieTitle: String,
          interactor: MovieCreditsInteractorProtocol,
          factory: MovieCreditsFactoryProtocol) {
         self.movieId = movieId
