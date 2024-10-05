@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransitioningAnimator: NSObject {
+final class TransitioningAnimator: NSObject {
 
     private let duration: TimeInterval
     private let isPresenting: Bool
