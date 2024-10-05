@@ -6,8 +6,6 @@
 //  Copyright © 2023 Alonso. All rights reserved.
 //
 
-import Foundation
-
 protocol ToggleBarButtonItemViewModelProtocol {
 
     /// We support more than two items for the ToggleBarButtonItem. First item will be displayed initially.
