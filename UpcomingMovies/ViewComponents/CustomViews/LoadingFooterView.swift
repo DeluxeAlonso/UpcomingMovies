@@ -12,7 +12,7 @@ final class LoadingFooterView: UIView {
 
     static let recommendedFrame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100)
 
-    private lazy var activityIndicatorView: UIActivityIndicatorView = {
+    private(set) lazy var activityIndicatorView: UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView()
         activityIndicatorView.style = .large
         activityIndicatorView.color = .darkGray

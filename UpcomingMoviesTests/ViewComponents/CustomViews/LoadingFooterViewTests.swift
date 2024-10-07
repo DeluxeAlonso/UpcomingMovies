@@ -30,4 +30,23 @@ final class LoadingFooterViewTests: XCTestCase {
         // Assert
         XCTAssertEqual(frame, frameToTest)
     }
+
+    func testStartAnimating() {
+        // Arrange
+        let view = LoadingFooterView()
+        // Act
+        view.startAnimating()
+        // Assert
+        XCTAssertTrue(view.activityIndicatorView.isAnimating)
+    }
+
+    func testStopAnimating() {
+        // Arrange
+        let view = LoadingFooterView()
+        // Act
+        view.startAnimating()
+        view.stopAnimating()
+        // Assert
+        XCTAssertFalse(view.activityIndicatorView.isAnimating)
+    }
 }
