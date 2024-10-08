@@ -325,6 +325,7 @@
 		E2A4D93A2511B0E200571893 /* CustomListsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A4D9392511B0E200571893 /* CustomListsAssembly.swift */; };
 		E2A4D93C2511BA4A00571893 /* CustomListDetailAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A4D93B2511BA4A00571893 /* CustomListDetailAssembly.swift */; };
 		E2A4D93F2511C0CF00571893 /* UpcomingMoviesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A4D93E2511C0CF00571893 /* UpcomingMoviesAssembly.swift */; };
+		E2A572AA2CB4EC85008A9439 /* VoteAverageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A572A92CB4EC85008A9439 /* VoteAverageViewTests.swift */; };
 		E2A5A25C2C4A2C7500120F40 /* MovieVisitModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5A25B2C4A2C7500120F40 /* MovieVisitModelTests.swift */; };
 		E2A621C126223ABC006A72FA /* ToastDefaultConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A621C026223ABC006A72FA /* ToastDefaultConfiguration.swift */; };
 		E2A621C82622B6A4006A72FA /* UIView+ToastUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A621C72622B6A4006A72FA /* UIView+ToastUtils.swift */; };
@@ -859,6 +860,7 @@
 		E2A4D9392511B0E200571893 /* CustomListsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListsAssembly.swift; sourceTree = "<group>"; };
 		E2A4D93B2511BA4A00571893 /* CustomListDetailAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListDetailAssembly.swift; sourceTree = "<group>"; };
 		E2A4D93E2511C0CF00571893 /* UpcomingMoviesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesAssembly.swift; sourceTree = "<group>"; };
+		E2A572A92CB4EC85008A9439 /* VoteAverageViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteAverageViewTests.swift; sourceTree = "<group>"; };
 		E2A5A25B2C4A2C7500120F40 /* MovieVisitModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVisitModelTests.swift; sourceTree = "<group>"; };
 		E2A621C026223ABC006A72FA /* ToastDefaultConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastDefaultConfiguration.swift; sourceTree = "<group>"; };
 		E2A621C72622B6A4006A72FA /* UIView+ToastUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ToastUtils.swift"; sourceTree = "<group>"; };
@@ -2296,6 +2298,7 @@
 			isa = PBXGroup;
 			children = (
 				E2A166F62CB2507A00FA1732 /* LoadingFooterViewTests.swift */,
+				E2A572A92CB4EC85008A9439 /* VoteAverageViewTests.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -3352,6 +3355,7 @@
 				E2D9A122283F519300ABFA2D /* MovieVideoCellViewModelTests.swift in Sources */,
 				E20A39DA2ACE8A6C00C1C10E /* ProfileAccountInfoCellViewModelTests.swift in Sources */,
 				E2BE5AA12A57EB350088B1CD /* SignInInteractorTests.swift in Sources */,
+				E2A572AA2CB4EC85008A9439 /* VoteAverageViewTests.swift in Sources */,
 				E2A77A252BC2666100D0ED34 /* MovieDetailPosterRenderContentTests.swift in Sources */,
 				E2E69B482842C59300CF0218 /* UpcomingMovieCellViewModelTests.swift in Sources */,
 				E27F30F62999B74100ACBAE2 /* MockUserPreferencesHandler.swift in Sources */,

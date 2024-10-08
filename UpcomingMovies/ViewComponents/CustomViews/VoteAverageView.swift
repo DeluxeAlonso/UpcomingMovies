@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 final class VoteAverageView: UIView {
 
-    private lazy var voteAverageLabel: UILabel = {
+    private(set) lazy var voteAverageLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = FontHelper.light(withSize: 12.0, dynamic: false)
