@@ -6,4 +6,19 @@
 //  Copyright © 2024 Alonso. All rights reserved.
 //
 
-import Foundation
+import XCTest
+@testable import UpcomingMovies
+
+final class VoteAverageViewTests: XCTestCase {
+
+    func testVoteValue() {
+        // Arrange
+        let frameToTest = LoadingFooterView.recommendedFrame
+        let view = LoadingFooterView()
+        // Act
+        let frame = view.frame
+        // Assert
+        XCTAssertEqual(frame, frameToTest)
+    }
+
+}
