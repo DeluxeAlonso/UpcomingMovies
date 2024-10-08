@@ -11,14 +11,14 @@ import XCTest
 
 final class VoteAverageViewTests: XCTestCase {
 
-    func testVoteValue() {
+    func testVoteValueUpdate() {
         // Arrange
-        let frameToTest = LoadingFooterView.recommendedFrame
-        let view = LoadingFooterView()
+        let view = VoteAverageView()
+        view.awakeFromNib()
         // Act
-        let frame = view.frame
+        view.voteValue = 1.0
         // Assert
-        XCTAssertEqual(frame, frameToTest)
+        XCTAssertEqual(view.voteAverageLabel.text, "1.0")
     }
 
 }
