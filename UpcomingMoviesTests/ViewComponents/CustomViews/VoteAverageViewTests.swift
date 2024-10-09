@@ -11,7 +11,7 @@ import XCTest
 
 final class VoteAverageViewTests: XCTestCase {
 
-    func testVoteValueUpdate() {
+    func testVoteValueUpdateWhenAwakeFromNib() {
         // Arrange
         let view = VoteAverageView()
         view.awakeFromNib()
