@@ -382,6 +382,7 @@
 		E2BCD6F724A068CB00FA4A1C /* MovieReviewsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BCD6F624A068CB00FA4A1C /* MovieReviewsCoordinator.swift */; };
 		E2BE1B34239DE9C200FC47FF /* MovieDetailOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE1B33239DE9C200FC47FF /* MovieDetailOption.swift */; };
 		E2BE5AA12A57EB350088B1CD /* SignInInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE5AA02A57EB350088B1CD /* SignInInteractorTests.swift */; };
+		E2BEC6622CB79BE90005E0C8 /* CollapsibleHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BEC6612CB79BE90005E0C8 /* CollapsibleHeaderViewModel.swift */; };
 		E2C03B26222502AB00A4C47A /* MovieReviewsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C03B25222502AB00A4C47A /* MovieReviewsViewModelTests.swift */; };
 		E2C085B02616520400AC5383 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C085AF2616520400AC5383 /* ToastView.swift */; };
 		E2C085BA2616521100AC5383 /* ToastConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C085B92616521100AC5383 /* ToastConfigurationProtocol.swift */; };
@@ -918,6 +919,7 @@
 		E2BCD6F624A068CB00FA4A1C /* MovieReviewsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewsCoordinator.swift; sourceTree = "<group>"; };
 		E2BE1B33239DE9C200FC47FF /* MovieDetailOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailOption.swift; sourceTree = "<group>"; };
 		E2BE5AA02A57EB350088B1CD /* SignInInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInInteractorTests.swift; sourceTree = "<group>"; };
+		E2BEC6612CB79BE90005E0C8 /* CollapsibleHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleHeaderViewModel.swift; sourceTree = "<group>"; };
 		E2C03B25222502AB00A4C47A /* MovieReviewsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewsViewModelTests.swift; sourceTree = "<group>"; };
 		E2C085AF2616520400AC5383 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		E2C085B92616521100AC5383 /* ToastConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastConfigurationProtocol.swift; sourceTree = "<group>"; };
@@ -1887,6 +1889,7 @@
 		E260116A2193883100E53095 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				E2BEC6602CB79BD60005E0C8 /* CollapsibleCollectionHeaderView */,
 				E2C085AE261651A300AC5383 /* ToastView */,
 				E21F379D219401CF00D6BFB6 /* HeaderView.swift */,
 				E21F37992193FEB000D6BFB6 /* LoadingFooterView.swift */,
@@ -1894,7 +1897,6 @@
 				E2A65E5021FEC39800485B4E /* VoteAverageView.swift */,
 				E222EA75220C724B00664C7F /* DefaultRefreshControl.swift */,
 				E21F378B2193F01600D6BFB6 /* SearchController.swift */,
-				E294C7462216282D0007F0A5 /* CollapsibleCollectionHeaderView.swift */,
 				E223DA072217BD1900A3DC58 /* RadarView.swift */,
 				E2234FA52245FB43004B2C7E /* GradientView.swift */,
 			);
@@ -2504,6 +2506,15 @@
 				E2A991962A4C0B8E0006C9C3 /* MovieDetailOptionsCoordinator.swift */,
 			);
 			path = MovieDetailOptions;
+			sourceTree = "<group>";
+		};
+		E2BEC6602CB79BD60005E0C8 /* CollapsibleCollectionHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				E294C7462216282D0007F0A5 /* CollapsibleCollectionHeaderView.swift */,
+				E2BEC6612CB79BE90005E0C8 /* CollapsibleHeaderViewModel.swift */,
+			);
+			path = CollapsibleCollectionHeaderView;
 			sourceTree = "<group>";
 		};
 		E2C085AE261651A300AC5383 /* ToastView */ = {
@@ -3212,6 +3223,7 @@
 				E2671D7F25D8AD4400E457FF /* AppGroup.swift in Sources */,
 				E2251B132214ECFA00EE7A51 /* MovieCreditsViewController.swift in Sources */,
 				E2DCE7F724B12F940041301E /* ToggleBarButtonContent.swift in Sources */,
+				E2BEC6622CB79BE90005E0C8 /* CollapsibleHeaderViewModel.swift in Sources */,
 				E26EB50425CF503600AFE4A6 /* PropertyListHelper.swift in Sources */,
 				E26EB50B25CF509300AFE4A6 /* BaseConfiguration.swift in Sources */,
 				E200182A21EE336F00F29220 /* SearchOptionsViewModel.swift in Sources */,
