@@ -16,10 +16,10 @@ protocol CollapsibleHeaderViewDelegate: AnyObject {
 
 final class CollapsibleHeaderViewModel {
 
-    var opened: Bool
-    var section: Int
-    var title: String
-    var shouldAnimate: Bool
+    let opened: Bool
+    let section: Int
+    let title: String
+    let shouldAnimate: Bool
 
     init(opened: Bool, section: Int, title: String, shouldAnimate: Bool = false) {
         self.opened = opened
