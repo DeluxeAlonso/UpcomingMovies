@@ -14,22 +14,6 @@ protocol CollapsibleHeaderViewDelegate: AnyObject {
 
 }
 
-final class CollapsibleHeaderViewModel {
-
-    let opened: Bool
-    let section: Int
-    let title: String
-    let shouldAnimate: Bool
-
-    init(opened: Bool, section: Int, title: String, shouldAnimate: Bool = false) {
-        self.opened = opened
-        self.section = section
-        self.title = title
-        self.shouldAnimate = shouldAnimate
-    }
-
-}
-
 class CollapsibleCollectionHeaderView: UICollectionReusableView {
 
     @IBOutlet private weak var titleLabel: UILabel!
