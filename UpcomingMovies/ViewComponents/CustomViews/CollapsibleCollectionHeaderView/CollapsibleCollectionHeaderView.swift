@@ -21,7 +21,7 @@ class CollapsibleCollectionHeaderView: UICollectionReusableView {
 
     weak var delegate: CollapsibleHeaderViewDelegate?
 
-    var viewModel: CollapsibleHeaderViewModel? {
+    var viewModel: CollapsibleHeaderViewModelProtocol? {
         didSet {
             setupBindables()
         }
