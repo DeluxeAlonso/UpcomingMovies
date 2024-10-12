@@ -3,6 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue)]()
 [![Platform](https://img.shields.io/badge/platform-iOS-violet)]()
 [![Swift 5](https://img.shields.io/badge/Swift-5-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![codecov](https://codecov.io/gh/DeluxeAlonso/UpcomingMovies/graph/badge.svg?token=WlD3VVKP1p)](https://codecov.io/gh/DeluxeAlonso/UpcomingMovies)
 
 Movies app written in Swift 5 using the TMDb API and demonstrating Clean Architecture, Dependency Injection, MVVM and Coordinators.
 
