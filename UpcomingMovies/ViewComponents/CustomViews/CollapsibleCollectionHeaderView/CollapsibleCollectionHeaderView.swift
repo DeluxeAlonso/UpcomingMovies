@@ -16,8 +16,8 @@ protocol CollapsibleHeaderViewDelegate: AnyObject {
 
 class CollapsibleCollectionHeaderView: UICollectionReusableView {
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var arrowImageView: UIImageView!
+    @IBOutlet private(set) weak var titleLabel: UILabel!
+    @IBOutlet private(set) weak var arrowImageView: UIImageView!
 
     weak var delegate: CollapsibleHeaderViewDelegate?
 

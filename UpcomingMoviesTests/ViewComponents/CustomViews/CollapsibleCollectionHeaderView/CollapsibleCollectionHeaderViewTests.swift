@@ -18,6 +18,19 @@ final class CollapsibleCollectionHeaderViewTests: XCTestCase {
         view.awakeFromNib()
         // Assert
         XCTAssertEqual(view.gestureRecognizers?.count, 1)
+        XCTAssertNotNil(view.gestureRecognizers?.first as? UITapGestureRecognizer)
+    }
+
+    func testBindablesSetup() {
+        // Arrange
+        let view = CollapsibleCollectionHeaderView()
+        let viewModel = MockCollapsibleHeaderViewModelProtocol()
+        viewModel.title = "Title"
+        // Act
+        view.viewModel = viewModel
+        // Assert
+        XCTAssertEqual(view.til, 1)
+        XCTAssertNotNil(view.gestureRecognizers?.first as? UITapGestureRecognizer)
     }
 
 }
