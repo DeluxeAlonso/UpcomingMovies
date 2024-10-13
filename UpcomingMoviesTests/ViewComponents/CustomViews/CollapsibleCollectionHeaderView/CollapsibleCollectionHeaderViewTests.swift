@@ -11,29 +11,32 @@ import XCTest
 
 final class CollapsibleCollectionHeaderViewTests: XCTestCase {
 
+    private var headerView: CollapsibleCollectionHeaderView?
+
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        let bundle = Bundle(for: CollapsibleCollectionHeaderView.self)
+        headerView = bundle.loadNibNamed(CollapsibleCollectionHeaderView.dequeueIdentifier, owner: nil)?.first as? CollapsibleCollectionHeaderView
+    }
+
+    override func tearDownWithError() throws {
+        headerView = nil
+        try super.tearDownWithError()
+    }
+
     func testTapGestureAddedOnAwakeFromNib() {
-        // Arrange
-        let view = CollapsibleCollectionHeaderView()
-        // Act
-        view.awakeFromNib()
         // Assert
-        XCTAssertEqual(view.gestureRecognizers?.count, 1)
-        XCTAssertNotNil(view.gestureRecognizers?.first as? UITapGestureRecognizer)
+        XCTAssertEqual(headerView?.gestureRecognizers?.count, 1)
+        XCTAssertNotNil(headerView?.gestureRecognizers?.first as? UITapGestureRecognizer)
     }
 
     func testTapGestureAction() {
         // Arrange
-        let viewController = MovieCreditsViewController.instantiate()
-        let view = CollapsibleCollectionHeaderView()
-        view.awakeFromNib()
-        _ = view.arrowImageView
-
         let delegate = MockCollapsibleHeaderViewDelegate()
+        headerView?.viewModel = MockCollapsibleHeaderViewModelProtocol()
+        headerView?.delegate = delegate
         // Act
-        view.viewModel = MockCollapsibleHeaderViewModelProtocol()
-        view.delegate = delegate
-
-        view.tapGestureAction()
+        headerView?.tapGestureAction()
         // Assert
         XCTAssertEqual(delegate.sectionToggledCallCount, 1)
     }
