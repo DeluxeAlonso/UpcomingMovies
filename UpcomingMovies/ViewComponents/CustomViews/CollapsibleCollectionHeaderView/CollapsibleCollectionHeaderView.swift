@@ -57,10 +57,7 @@ class CollapsibleCollectionHeaderView: UICollectionReusableView {
 
     func updateArrowImageView(animated: Bool) {
         guard let viewModel = viewModel else { return }
-        let animationDuration: CFTimeInterval = animated ? 0.3 : 0.0
-        let rotationValue = viewModel.opened ? CGFloat.pi / 2 : 0
-
-        arrowImageView.rotate(rotationValue, duration: animationDuration)
+        arrowImageView.rotate(viewModel.arrowRotationValue(), duration: animated ? 0.3 : 0.0)
     }
 
     // MARK: - Selector
