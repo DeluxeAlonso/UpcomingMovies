@@ -50,9 +50,8 @@ class CollapsibleCollectionHeaderView: UICollectionReusableView {
     }
 
     private func setupBindables() {
-        guard let viewModel = viewModel else { return }
-        accessibilityLabel = viewModel.title
-        titleLabel.text = viewModel.title
+        accessibilityLabel = viewModel?.title
+        titleLabel.text = viewModel?.title
     }
 
     func updateArrowImageView(animated: Bool) {

@@ -41,12 +41,32 @@ final class CollapsibleCollectionHeaderViewTests: XCTestCase {
         XCTAssertEqual(delegate.sectionToggledCallCount, 1)
     }
 
+    func testTapGestureActionWithNoViewModel() {
+        // Arrange
+        let delegate = MockCollapsibleHeaderViewDelegate()
+        headerView?.delegate = delegate
+        // Act
+        headerView?.tapGestureAction()
+        // Assert
+        XCTAssertEqual(delegate.sectionToggledCallCount, 0)
+    }
+
     func testUpdateArrowImageView() {
         // Arrange
         let viewModel = MockCollapsibleHeaderViewModelProtocol()
         headerView?.viewModel = viewModel
         // Act
         headerView?.updateArrowImageView(animated: true)
+        // Assert
+        XCTAssertEqual(viewModel.arrowRotationValueCallCount, 1)
+    }
+
+    func testUpdateArrowImageViewWithoutAnimation() {
+        // Arrange
+        let viewModel = MockCollapsibleHeaderViewModelProtocol()
+        headerView?.viewModel = viewModel
+        // Act
+        headerView?.updateArrowImageView(animated: false)
         // Assert
         XCTAssertEqual(viewModel.arrowRotationValueCallCount, 1)
     }
