@@ -25,3 +25,5 @@ extension Dequeueable where Self: UIView {
 extension UITableViewCell: Dequeueable { }
 
 extension UICollectionViewCell: Dequeueable { }
+
+extension UICollectionReusableView: Dequeueable { }

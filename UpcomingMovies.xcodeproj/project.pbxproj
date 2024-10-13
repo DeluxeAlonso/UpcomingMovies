@@ -323,6 +323,7 @@
 		E2A104B029EFA1B400DA0809 /* MovieDetailPosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A104AF29EFA1B400DA0809 /* MovieDetailPosterViewController.swift */; };
 		E2A162612CBA65EF0030BF59 /* CollapsibleCollectionHeaderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A162602CBA65EF0030BF59 /* CollapsibleCollectionHeaderViewTests.swift */; };
 		E2A166F72CB2507A00FA1732 /* LoadingFooterViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A166F62CB2507A00FA1732 /* LoadingFooterViewTests.swift */; };
+		E2A256772CBBA03B00C625CC /* CollapsibleCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2A256762CBBA03B00C625CC /* CollapsibleCollectionHeaderView.xib */; };
 		E2A322F62A5A722C00AC0C2A /* SignInViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A322F52A5A722C00AC0C2A /* SignInViewControllerTests.swift */; };
 		E2A4D9362511B05500571893 /* AuthenticationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A4D9352511B05500571893 /* AuthenticationAssembly.swift */; };
 		E2A4D9382511B06000571893 /* ProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A4D9372511B06000571893 /* ProfileAssembly.swift */; };
@@ -863,6 +864,7 @@
 		E2A104AF29EFA1B400DA0809 /* MovieDetailPosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailPosterViewController.swift; sourceTree = "<group>"; };
 		E2A162602CBA65EF0030BF59 /* CollapsibleCollectionHeaderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleCollectionHeaderViewTests.swift; sourceTree = "<group>"; };
 		E2A166F62CB2507A00FA1732 /* LoadingFooterViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingFooterViewTests.swift; sourceTree = "<group>"; };
+		E2A256762CBBA03B00C625CC /* CollapsibleCollectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollapsibleCollectionHeaderView.xib; sourceTree = "<group>"; };
 		E2A322F52A5A722C00AC0C2A /* SignInViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewControllerTests.swift; sourceTree = "<group>"; };
 		E2A4D9352511B05500571893 /* AuthenticationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAssembly.swift; sourceTree = "<group>"; };
 		E2A4D9372511B06000571893 /* ProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembly.swift; sourceTree = "<group>"; };
@@ -2549,6 +2551,7 @@
 			children = (
 				E294C7462216282D0007F0A5 /* CollapsibleCollectionHeaderView.swift */,
 				E2BEC6612CB79BE90005E0C8 /* CollapsibleHeaderViewModel.swift */,
+				E2A256762CBBA03B00C625CC /* CollapsibleCollectionHeaderView.xib */,
 			);
 			path = CollapsibleCollectionHeaderView;
 			sourceTree = "<group>";
@@ -2876,6 +2879,7 @@
 				E221168721914E4B0039F8C9 /* Main.storyboard in Resources */,
 				E221F770222BA316008DFF87 /* SavedMovieCollectionViewCell.xib in Resources */,
 				E2251B222214FBC700EE7A51 /* MovieCreditCell.xib in Resources */,
+				E2A256772CBBA03B00C625CC /* CollapsibleCollectionHeaderView.xib in Resources */,
 				E29E3812230E4F1300C351BF /* MovieDetail.storyboard in Resources */,
 				E223B08822482A170050277B /* ProfileSelectableOptionTableViewCell.xib in Resources */,
 				E21F37942193F47800D6BFB6 /* RecentSearchCell.xib in Resources */,

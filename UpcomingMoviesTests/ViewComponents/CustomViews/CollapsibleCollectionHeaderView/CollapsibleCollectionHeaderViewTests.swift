@@ -23,6 +23,7 @@ final class CollapsibleCollectionHeaderViewTests: XCTestCase {
 
     func testTapGestureAction() {
         // Arrange
+        let viewController = MovieCreditsViewController.instantiate()
         let view = CollapsibleCollectionHeaderView()
         view.awakeFromNib()
         _ = view.arrowImageView
