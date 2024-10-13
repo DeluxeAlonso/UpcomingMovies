@@ -44,6 +44,7 @@ final class MovieCreditsViewController: UIViewController, Storyboarded, Placehol
         collectionView.delegate = self
         collectionView.allowsMultipleSelection = false
         collectionView.registerNib(cellType: MovieCreditCell.self)
+        collectionView.registerNib(collectionReusableViewType: CollapsibleCollectionHeaderView.self)
 
         setupCollectionViewLayout()
     }
