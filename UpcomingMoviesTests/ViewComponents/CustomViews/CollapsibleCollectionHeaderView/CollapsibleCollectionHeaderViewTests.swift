@@ -41,4 +41,14 @@ final class CollapsibleCollectionHeaderViewTests: XCTestCase {
         XCTAssertEqual(delegate.sectionToggledCallCount, 1)
     }
 
+    func testUpdateArrowImageView() {
+        // Arrange
+        let viewModel = MockCollapsibleHeaderViewModelProtocol()
+        headerView?.viewModel = viewModel
+        // Act
+        headerView?.updateArrowImageView(animated: true)
+        // Assert
+        XCTAssertEqual(viewModel.arrowRotationValueCallCount, 1)
+    }
+
 }
