@@ -12,7 +12,7 @@ import XCTest
 final class CollapsibleHeaderViewModelTests: XCTestCase {
 
     func testInitWithDefaultShouldAnimate() {
-        // Act
+        // Arrange
         let viewModel = CollapsibleHeaderViewModel(opened: true, section: 0, title: "Title")
         // Assert
         XCTAssertEqual(viewModel.opened, true)
@@ -22,17 +22,39 @@ final class CollapsibleHeaderViewModelTests: XCTestCase {
     }
 
     func testInitWithShouldAnimateTrue() {
-        // Act
+        // Arrange
         let viewModel = CollapsibleHeaderViewModel(opened: true, section: 0, title: "Title", shouldAnimate: true)
+        // Act
+        let shouldAnimate = viewModel.shouldAnimate
         // Assert
-        XCTAssertEqual(viewModel.shouldAnimate, true)
+        XCTAssertEqual(shouldAnimate, true)
     }
 
     func testInitWithShouldAnimateFalse() {
-        // Act
+        // Arrange
         let viewModel = CollapsibleHeaderViewModel(opened: true, section: 0, title: "Title", shouldAnimate: false)
+        // Act
+        let shouldAnimate = viewModel.shouldAnimate
         // Assert
-        XCTAssertEqual(viewModel.shouldAnimate, false)
+        XCTAssertEqual(shouldAnimate, false)
+    }
+
+    func testArrowRotationValueOpenedState() {
+        // Arrange
+        let viewModel = CollapsibleHeaderViewModel(opened: true, section: 0, title: "Title", shouldAnimate: false)
+        // Act
+        let arrowRotationValue = viewModel.arrowRotationValue()
+        // Assert
+        XCTAssertEqual(arrowRotationValue, CGFloat.pi / 2)
+    }
+
+    func testArrowRotationValueNonOpenedState() {
+        // Arrange
+        let viewModel = CollapsibleHeaderViewModel(opened: false, section: 0, title: "Title", shouldAnimate: false)
+        // Act
+        let arrowRotationValue = viewModel.arrowRotationValue()
+        // Assert
+        XCTAssertEqual(arrowRotationValue, 0.0)
     }
 
 }

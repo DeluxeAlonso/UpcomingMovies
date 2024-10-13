@@ -15,6 +15,8 @@ protocol CollapsibleHeaderViewModelProtocol {
     var title: String { get }
     var shouldAnimate: Bool { get }
 
+    func arrowRotationValue() -> CGFloat
+
 }
 
 final class CollapsibleHeaderViewModel: CollapsibleHeaderViewModelProtocol {
@@ -29,6 +31,10 @@ final class CollapsibleHeaderViewModel: CollapsibleHeaderViewModelProtocol {
         self.section = section
         self.title = title
         self.shouldAnimate = shouldAnimate
+    }
+
+    func arrowRotationValue() -> CGFloat {
+        opened ? CGFloat.pi / 2 : 0
     }
 
 }

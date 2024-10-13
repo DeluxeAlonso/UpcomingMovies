@@ -16,8 +16,8 @@ protocol CollapsibleHeaderViewDelegate: AnyObject {
 
 class CollapsibleCollectionHeaderView: UICollectionReusableView {
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var arrowImageView: UIImageView!
+    @IBOutlet private(set) weak var titleLabel: UILabel!
+    @IBOutlet private(set) weak var arrowImageView: UIImageView!
 
     weak var delegate: CollapsibleHeaderViewDelegate?
 
@@ -50,17 +50,13 @@ class CollapsibleCollectionHeaderView: UICollectionReusableView {
     }
 
     private func setupBindables() {
-        guard let viewModel = viewModel else { return }
-        accessibilityLabel = viewModel.title
-        titleLabel.text = viewModel.title
+        accessibilityLabel = viewModel?.title
+        titleLabel.text = viewModel?.title
     }
 
     func updateArrowImageView(animated: Bool) {
         guard let viewModel = viewModel else { return }
-        let animationDuration: CFTimeInterval = animated ? 0.3 : 0.0
-        let rotationValue = viewModel.opened ? CGFloat.pi / 2 : 0
-
-        arrowImageView.rotate(rotationValue, duration: animationDuration)
+        arrowImageView.rotate(viewModel.arrowRotationValue(), duration: animated ? 0.3 : 0.0)
     }
 
     // MARK: - Selector
