@@ -41,6 +41,7 @@
 		E20C4B1224A80E440051D7FA /* AuthPermissionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20C4B1124A80E440051D7FA /* AuthPermissionProtocols.swift */; };
 		E20CBAFF24B1963600F3992E /* Bool+IntValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CBAFE24B1963600F3992E /* Bool+IntValue.swift */; };
 		E20E62DB25199F9F005CB154 /* Entities+GenreName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20E62DA25199F9F005CB154 /* Entities+GenreName.swift */; };
+		E20EF3BD2CC3801300FA72C1 /* DeepLinkDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20EF3BC2CC3801300FA72C1 /* DeepLinkDestination.swift */; };
 		E20F0746298CD4C300993047 /* MovieCreditsSectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20F0745298CD4C300993047 /* MovieCreditsSectionManager.swift */; };
 		E20F83BE294448E600551F2A /* MovieReviewsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20F83BD294448E500551F2A /* MovieReviewsViewState.swift */; };
 		E20FBDBD226D4D0E002E5596 /* CustomLists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E20FBDBC226D4D0E002E5596 /* CustomLists.storyboard */; };
@@ -574,6 +575,7 @@
 		E20C4B1124A80E440051D7FA /* AuthPermissionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPermissionProtocols.swift; sourceTree = "<group>"; };
 		E20CBAFE24B1963600F3992E /* Bool+IntValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+IntValue.swift"; sourceTree = "<group>"; };
 		E20E62DA25199F9F005CB154 /* Entities+GenreName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entities+GenreName.swift"; sourceTree = "<group>"; };
+		E20EF3BC2CC3801300FA72C1 /* DeepLinkDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkDestination.swift; sourceTree = "<group>"; };
 		E20F0745298CD4C300993047 /* MovieCreditsSectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditsSectionManager.swift; sourceTree = "<group>"; };
 		E20F83BD294448E500551F2A /* MovieReviewsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewsViewState.swift; sourceTree = "<group>"; };
 		E20FBDBC226D4D0E002E5596 /* CustomLists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomLists.storyboard; sourceTree = "<group>"; };
@@ -1290,6 +1292,14 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
+		E20EF3BB2CC37FFE00FA72C1 /* DeepLinks */ = {
+			isa = PBXGroup;
+			children = (
+				E20EF3BC2CC3801300FA72C1 /* DeepLinkDestination.swift */,
+			);
+			path = DeepLinks;
+			sourceTree = "<group>";
+		};
 		E2133F042A25CA4E0085C82D /* MovieDetailOptions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1542,6 +1552,7 @@
 			children = (
 				E289D88828E15B9C00EA0155 /* Bindable */,
 				E26B4F7C24CE907700F9089E /* Coordinator */,
+				E20EF3BB2CC37FFE00FA72C1 /* DeepLinks */,
 				E26EB50925CF508300AFE4A6 /* BaseConfiguration */,
 				E208FC4C263523D0008593D8 /* SimpleViewState */,
 				E289DB9123DCAE03008B2163 /* UIConstants.swift */,
@@ -3357,6 +3368,7 @@
 				E2C44C1F2616C6D0004B9C9B /* ToastFailureConfiguration.swift in Sources */,
 				E290DF06249FB23E00BABBB8 /* MovieVideosCoordinator.swift in Sources */,
 				E20191432934735800770948 /* BehaviorBindableProtocol.swift in Sources */,
+				E20EF3BD2CC3801300FA72C1 /* DeepLinkDestination.swift in Sources */,
 				E2A4D93C2511BA4A00571893 /* CustomListDetailAssembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
