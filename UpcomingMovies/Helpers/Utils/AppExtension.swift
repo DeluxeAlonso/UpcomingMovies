@@ -12,14 +12,7 @@ struct AppExtension {
 
     static let scheme = "upcomingmovies"
 
-    enum Host: String {
-
-        case upcomingMovies = "upcoming"
-        case searchMovies = "search"
-
-    }
-
-    static func url(for host: AppExtension.Host) -> URL? {
+    static func url(for host: DeepLinkDestination) -> URL? {
         let urlString = scheme + "://" + host.rawValue
         return URL(string: urlString)
     }
