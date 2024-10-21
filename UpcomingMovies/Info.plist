@@ -25,7 +25,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>extension</string>
+				<string>upcomingmovies</string>
 			</array>
 		</dict>
 	</array>

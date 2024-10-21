@@ -10,7 +10,7 @@ import Foundation
 
 struct AppExtension {
 
-    static let scheme = "extension"
+    static let scheme = "upcomingmovies"
 
     enum Host: String {
 
