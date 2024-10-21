@@ -39,13 +39,16 @@ final class NavigationHandler: NavigationHandlerProtocol {
         guard let url = url, let urlHost = url.host else { return }
 
         if url.scheme == AppExtension.scheme {
-            guard let host = AppExtension.Host(rawValue: urlHost) else { return }
+            guard let host = DeepLinkDestination(rawValue: urlHost) else { return }
             switch host {
             case .upcomingMovies:
                 changeTabBarToSelectedIndex(RootCoordinatorIdentifier.upcomingMovies, from: window)
 
             case .searchMovies:
                 changeTabBarToSelectedIndex(RootCoordinatorIdentifier.searchMovies, from: window)
+            case .detail:
+                // TODO: - Implement DeepLink Handler
+                break
             }
         }
     }

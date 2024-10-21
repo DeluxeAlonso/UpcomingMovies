@@ -382,6 +382,7 @@
 		E2B6CFD82C1AAF3500E2C6FE /* MockListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B6CFD72C1AAF3500E2C6FE /* MockListProtocol.swift */; };
 		E2B8C49B28B738E2006A8ECC /* FavoritesSavedMoviesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8C49A28B738E2006A8ECC /* FavoritesSavedMoviesInteractorTests.swift */; };
 		E2BACB952BB6754800BA5417 /* MovieProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BACB942BB6754800BA5417 /* MovieProtocol.swift */; };
+		E2BB433C2CC60F5B006567E9 /* DeepLinkDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20EF3BC2CC3801300FA72C1 /* DeepLinkDestination.swift */; };
 		E2BB64D22C2923EA007D77C2 /* ReviewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB64D12C2923EA007D77C2 /* ReviewModelTests.swift */; };
 		E2BB6F682BB52D6B00332AAB /* MovieListCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB6F672BB52D6B00332AAB /* MovieListCellViewModelTests.swift */; };
 		E2BC7F812C44F098003BB16A /* MovieVisitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BC7F802C44F098003BB16A /* MovieVisitProtocol.swift */; };
@@ -3498,6 +3499,7 @@
 			files = (
 				E2A02471256F635000D2018C /* UpcomingMoviesWidget.swift in Sources */,
 				E2671D8925D8AD9E00E457FF /* AppGroup.swift in Sources */,
+				E2BB433C2CC60F5B006567E9 /* DeepLinkDestination.swift in Sources */,
 				E2A02462256F634B00D2018C /* SearchMoviesWidget.swift in Sources */,
 				E2A02489256F662400D2018C /* WidgetProvider.swift in Sources */,
 				E2A024AA256F6B7600D2018C /* SmallWidgetView.swift in Sources */,
