@@ -379,6 +379,7 @@
 		E2B47518227EAFCE0004F621 /* SpinerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B47517227EAFCE0004F621 /* SpinerLayer.swift */; };
 		E2B4751A227EB0960004F621 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B47519227EB0960004F621 /* CGRect+Extensions.swift */; };
 		E2B67D0F2C4B362C0033090B /* GenreModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B67D0E2C4B362C0033090B /* GenreModelTests.swift */; };
+		E2B68CCF2CC761C9003AE49D /* DeepLinkHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B68CCE2CC761C9003AE49D /* DeepLinkHandlerProtocol.swift */; };
 		E2B6CFD82C1AAF3500E2C6FE /* MockListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B6CFD72C1AAF3500E2C6FE /* MockListProtocol.swift */; };
 		E2B8C49B28B738E2006A8ECC /* FavoritesSavedMoviesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8C49A28B738E2006A8ECC /* FavoritesSavedMoviesInteractorTests.swift */; };
 		E2BACB952BB6754800BA5417 /* MovieProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BACB942BB6754800BA5417 /* MovieProtocol.swift */; };
@@ -925,6 +926,7 @@
 		E2B47519227EB0960004F621 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		E2B63ACE246767EE00C0BB13 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		E2B67D0E2C4B362C0033090B /* GenreModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreModelTests.swift; sourceTree = "<group>"; };
+		E2B68CCE2CC761C9003AE49D /* DeepLinkHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerProtocol.swift; sourceTree = "<group>"; };
 		E2B6CFD72C1AAF3500E2C6FE /* MockListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListProtocol.swift; sourceTree = "<group>"; };
 		E2B8C49A28B738E2006A8ECC /* FavoritesSavedMoviesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSavedMoviesInteractorTests.swift; sourceTree = "<group>"; };
 		E2BACB942BB6754800BA5417 /* MovieProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieProtocol.swift; sourceTree = "<group>"; };
@@ -1583,8 +1585,8 @@
 				E20118E625FF25760091D248 /* ConfigurationHandler */,
 				E20118CD25FF237A0091D248 /* GenreHandler */,
 				E20118D825FF24A90091D248 /* NavigationHandler */,
+				E2B68CCD2CC761AE003AE49D /* DeepLinkHandler */,
 				E297A765248C6C5700AC89B9 /* ImageTransitionHandler.swift */,
-				E2BB433D2CC6142A006567E9 /* DeepLinkHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -2516,6 +2518,15 @@
 			path = ShrinkingButton;
 			sourceTree = "<group>";
 		};
+		E2B68CCD2CC761AE003AE49D /* DeepLinkHandler */ = {
+			isa = PBXGroup;
+			children = (
+				E2BB433D2CC6142A006567E9 /* DeepLinkHandler.swift */,
+				E2B68CCE2CC761C9003AE49D /* DeepLinkHandlerProtocol.swift */,
+			);
+			path = DeepLinkHandler;
+			sourceTree = "<group>";
+		};
 		E2B8C49928B738D1006A8ECC /* SavedMovies */ = {
 			isa = PBXGroup;
 			children = (
@@ -3045,6 +3056,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2B68CCF2CC761C9003AE49D /* DeepLinkHandlerProtocol.swift in Sources */,
 				E29408002209E85000A74F68 /* UICollectionView+Extensions.swift in Sources */,
 				E2A65E5121FEC39800485B4E /* VoteAverageView.swift in Sources */,
 				E241FE0922434D4900144FD3 /* AuthPermissionViewModel.swift in Sources */,
