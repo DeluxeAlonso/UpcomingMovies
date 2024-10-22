@@ -9,5 +9,7 @@
 import Foundation
 
 protocol DeepLinkHandlerProtocol {
+
     func handleDeepLinkUrl(_ url: URL?)
+
 }
