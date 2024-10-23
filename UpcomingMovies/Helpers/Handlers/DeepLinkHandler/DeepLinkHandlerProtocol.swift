@@ -10,6 +10,6 @@ import Foundation
 
 protocol DeepLinkHandlerProtocol {
 
-    func handleDeepLinkUrl(_ url: URL?)
+    func handleDeepLinkUrl(_ url: URL)
 
 }
