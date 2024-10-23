@@ -20,8 +20,15 @@ final class HandlerAssembly: Assembly {
                                          userUseCase: useCaseProvider.userUseCase())
         }.inObjectScope(.container)
 
-        container.register(NavigationHandlerProtocol.self) { _ in
-            NavigationHandler()
+        container.register(DeepLinkHandlerProtocol.self) { _ in
+            DeepLinkHandler()
+        }.inObjectScope(.container)
+
+        container.register(NavigationHandlerProtocol.self) { resolver in
+            guard let deepLinkHandler = resolver.resolve(DeepLinkHandlerProtocol.self) else {
+                fatalError("UseCaseProviderProtocol dependency could not be resolved")
+            }
+            return NavigationHandler(deepLinkHandler: deepLinkHandler)
         }.inObjectScope(.container)
 
         container.register(GenreHandlerProtocol.self) { _ in
