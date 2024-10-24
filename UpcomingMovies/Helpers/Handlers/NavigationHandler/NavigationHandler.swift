@@ -10,13 +10,16 @@ import UIKit
 
 final class NavigationHandler: NavigationHandlerProtocol {
 
+    private let deepLinkHandler: DeepLinkHandlerProtocol
+
     private var currentSelectedIndex: Int = 0
     private var rootCoordinators: [RootCoordinator]
 
     // MARK: - Initializers
 
-    init() {
-        rootCoordinators = MainTabBarBuilder.buildViewCoordinators()
+    init(deepLinkHandler: DeepLinkHandlerProtocol) {
+        self.deepLinkHandler = deepLinkHandler
+        self.rootCoordinators = MainTabBarBuilder.buildViewCoordinators()
     }
 
     // MARK: - NavigationHandlerProtocol

@@ -10,8 +10,7 @@ import Foundation
 
 final class DeepLinkHandler: DeepLinkHandlerProtocol {
 
-    func handleDeepLinkUrl(_ url: URL?) {
-        // TODO
+    func handleDeepLinkUrl(_ url: URL) {
     }
 
 }
