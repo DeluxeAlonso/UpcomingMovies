@@ -46,12 +46,17 @@ final class NavigationHandler: NavigationHandlerProtocol {
             switch host {
             case .upcomingMovies:
                 changeTabBarToSelectedIndex(RootCoordinatorIdentifier.upcomingMovies, from: window)
-
             case .searchMovies:
                 changeTabBarToSelectedIndex(RootCoordinatorIdentifier.searchMovies, from: window)
-            case .detail:
-                // TODO: - Implement DeepLink Handler
-                break
+            case .favorites:
+                changeTabBarToSelectedIndex(RootCoordinatorIdentifier.account, from: window)
+                // TODO: - Refactor
+                let rootCoordinator = rootCoordinators[index(for: RootCoordinatorIdentifier.account)]
+                let unwrappedParentCoordinator = rootCoordinator.childCoordinators.last?.unwrappedParentCoordinator
+                let coordinator = FavoritesSavedMoviesCoordinator(navigationController: unwrappedParentCoordinator?.navigationController ?? UINavigationController())
+                coordinator.parentCoordinator = unwrappedParentCoordinator
+                unwrappedParentCoordinator?.childCoordinators.append(coordinator)
+                coordinator.start()
             }
         }
     }
@@ -72,7 +77,7 @@ final class NavigationHandler: NavigationHandlerProtocol {
         guard let tabBarController = window?.rootViewController as? MainTabBarController else {
             return
         }
-        tabBarController.selectedIndex = selectedIndex
+        tabBarController.setSelectedIndex(selectedIndex)
     }
 
     private func index(for rootIdentifier: String) -> Int {
