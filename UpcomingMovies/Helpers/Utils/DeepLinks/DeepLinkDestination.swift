@@ -11,5 +11,5 @@ import Foundation
 enum DeepLinkDestination: String {
     case upcomingMovies = "upcoming"
     case searchMovies = "search"
-    case detail
+    case favorites
 }
