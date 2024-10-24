@@ -77,7 +77,7 @@ final class NavigationHandler: NavigationHandlerProtocol {
         guard let tabBarController = window?.rootViewController as? MainTabBarController else {
             return
         }
-        tabBarController.selectedIndex = selectedIndex
+        tabBarController.setSelectedIndex(selectedIndex)
     }
 
     private func index(for rootIdentifier: String) -> Int {
