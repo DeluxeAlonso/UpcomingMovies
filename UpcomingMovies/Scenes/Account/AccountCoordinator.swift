@@ -13,13 +13,12 @@ final class AccountCoordinator: BaseCoordinator, AccountCoordinatorProtocol {
     private var profileCoordinator: ProfileCoordinator?
     private var signInCoordinator: SignInCoordinator?
 
-    override func start() {
+    override func build() -> AccountViewController {
         let viewController = AccountViewController.instantiate()
-
         viewController.viewModel = DIContainer.shared.resolve()
         viewController.coordinator = self
 
-        navigationController.pushViewController(viewController, animated: true)
+        return viewController
     }
 
     func embedSignInViewController(on parentViewController: SignInViewControllerDelegate) {
