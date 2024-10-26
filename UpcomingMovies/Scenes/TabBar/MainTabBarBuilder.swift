@@ -29,7 +29,7 @@ final class MainTabBarBuilder {
 
         let accountNavigationController = createNavigationController(title: LocalizedStrings.accountTabBarTitle(), image: #imageLiteral(resourceName: "Account"))
         let accountCoordinator = AccountCoordinator(navigationController: accountNavigationController)
-        accountCoordinator.start()
+        accountCoordinator.start(coordinatorMode: .push)
 
         return [
             upcomingMoviesCoordinator,

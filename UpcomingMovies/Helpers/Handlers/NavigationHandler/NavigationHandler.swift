@@ -52,10 +52,10 @@ final class NavigationHandler: NavigationHandlerProtocol {
                 changeTabBarToSelectedIndex(RootCoordinatorIdentifier.account, from: window)
                 // TODO: - Refactor
                 let rootCoordinator = rootCoordinators[index(for: RootCoordinatorIdentifier.account)]
-                let unwrappedParentCoordinator = rootCoordinator.childCoordinators.last?.unwrappedParentCoordinator
-                let coordinator = FavoritesSavedMoviesCoordinator(navigationController: unwrappedParentCoordinator?.navigationController ?? UINavigationController())
+                let unwrappedParentCoordinator = rootCoordinator.childCoordinators.last?.unwrappedParentCoordinator ?? rootCoordinator
+                let coordinator = FavoritesSavedMoviesCoordinator(navigationController: unwrappedParentCoordinator.navigationController)
                 coordinator.parentCoordinator = unwrappedParentCoordinator
-                unwrappedParentCoordinator?.childCoordinators.append(coordinator)
+                unwrappedParentCoordinator.childCoordinators.append(coordinator)
                 coordinator.start()
             }
         }
