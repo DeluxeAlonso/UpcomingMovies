@@ -11,7 +11,7 @@ import UIKit
 final class NavigationHandler: NavigationHandlerProtocol {
 
     private let deepLinkHandler: DeepLinkHandlerProtocol
-    private var rootCoordinators: [RootCoordinator]
+    private let rootCoordinators: [RootCoordinator] = MainTabBarBuilder.buildViewCoordinators()
 
     private var initialTransitionCompleted: Bool = false
     private var onInitialTransition: ((UIWindow?) -> Void)?
@@ -20,7 +20,7 @@ final class NavigationHandler: NavigationHandlerProtocol {
 
     init(deepLinkHandler: DeepLinkHandlerProtocol) {
         self.deepLinkHandler = deepLinkHandler
-        self.rootCoordinators = MainTabBarBuilder.buildViewCoordinators()
+        self.deepLinkHandler.register(rootCoordinators: rootCoordinators)
     }
 
     // MARK: - NavigationHandlerProtocol
@@ -52,23 +52,7 @@ final class NavigationHandler: NavigationHandlerProtocol {
     }
 
     private func handleDeepLink(_ url: URL, and window: UIWindow?) {
-        guard let urlHost = url.host, let host = DeepLinkDestination(rawValue: urlHost) else {
-            return
-        }
-        switch host {
-        case .upcomingMovies:
-            changeTabBarToSelectedIndex(RootCoordinatorIdentifier.upcomingMovies, from: window)
-        case .searchMovies:
-            changeTabBarToSelectedIndex(RootCoordinatorIdentifier.searchMovies, from: window)
-        case .favorites:
-            changeTabBarToSelectedIndex(RootCoordinatorIdentifier.account, from: window)
-            let rootCoordinator = rootCoordinators[index(for: RootCoordinatorIdentifier.account)]
-            let unwrappedParentCoordinator = rootCoordinator.childCoordinators.last?.unwrappedParentCoordinator ?? rootCoordinator
-            let coordinator = FavoritesSavedMoviesCoordinator(navigationController: unwrappedParentCoordinator.navigationController)
-            coordinator.parentCoordinator = unwrappedParentCoordinator
-            unwrappedParentCoordinator.childCoordinators.append(coordinator)
-            coordinator.start()
-        }
+        deepLinkHandler.handleDeepLinkUrl(url, in: window)
     }
 
     func handleShortcutItem(_ shortcutItem: UIApplicationShortcutItem, and window: UIWindow?) {

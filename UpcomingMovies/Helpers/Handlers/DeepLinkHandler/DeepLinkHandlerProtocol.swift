@@ -10,6 +10,7 @@ import UIKit
 
 protocol DeepLinkHandlerProtocol {
 
+    func register(rootCoordinators: [RootCoordinator])
     func handleDeepLinkUrl(_ url: URL, in window: UIWindow?)
 
 }
