@@ -11,8 +11,6 @@ import UIKit
 final class NavigationHandler: NavigationHandlerProtocol {
 
     private let deepLinkHandler: DeepLinkHandlerProtocol
-
-    private var currentSelectedIndex: Int = 0
     private var rootCoordinators: [RootCoordinator]
 
     private var initialTransitionCompleted: Bool = false
@@ -37,7 +35,7 @@ final class NavigationHandler: NavigationHandlerProtocol {
                           completion: { _ in
             let mainTabBarController = MainTabBarController(coordinators: self.rootCoordinators)
             window.rootViewController = mainTabBarController
-            self.onInitialTransition?(window) ?? mainTabBarController.setSelectedIndex(self.currentSelectedIndex)
+            self.onInitialTransition?(window) ?? mainTabBarController.setSelectedIndex(0)
             self.initialTransitionCompleted = true
         })
     }
@@ -64,7 +62,6 @@ final class NavigationHandler: NavigationHandlerProtocol {
             changeTabBarToSelectedIndex(RootCoordinatorIdentifier.searchMovies, from: window)
         case .favorites:
             changeTabBarToSelectedIndex(RootCoordinatorIdentifier.account, from: window)
-            // TODO: - Refactor
             let rootCoordinator = rootCoordinators[index(for: RootCoordinatorIdentifier.account)]
             let unwrappedParentCoordinator = rootCoordinator.childCoordinators.last?.unwrappedParentCoordinator ?? rootCoordinator
             let coordinator = FavoritesSavedMoviesCoordinator(navigationController: unwrappedParentCoordinator.navigationController)
@@ -86,7 +83,6 @@ final class NavigationHandler: NavigationHandlerProtocol {
 
     private func changeTabBarToSelectedIndex(_ rootIdentifier: String, from window: UIWindow?) {
         let selectedIndex = index(for: rootIdentifier)
-        currentSelectedIndex = selectedIndex
         guard let tabBarController = window?.rootViewController as? MainTabBarController else {
             return
         }
