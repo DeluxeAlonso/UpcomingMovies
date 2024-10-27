@@ -6,11 +6,11 @@
 //  Copyright © 2024 Alonso. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 final class DeepLinkHandler: DeepLinkHandlerProtocol {
 
-    func handleDeepLinkUrl(_ url: URL) {
+    func handleDeepLinkUrl(_ url: URL, in window: UIWindow?) {
     }
 
 }
