@@ -27,16 +27,20 @@ final class DeepLinkHandler: DeepLinkHandlerProtocol {
             changeTabBarToSelectedIndex(RootCoordinatorIdentifier.searchMovies, from: window)
         case .favorites:
             changeTabBarToSelectedIndex(RootCoordinatorIdentifier.account, from: window)
-            let rootCoordinator = rootCoordinators[index(for: RootCoordinatorIdentifier.account)]
-            let unwrappedParentCoordinator = rootCoordinator.childCoordinators.last?.unwrappedParentCoordinator ?? rootCoordinator
-            let coordinator = FavoritesSavedMoviesCoordinator(navigationController: unwrappedParentCoordinator.navigationController)
-            coordinator.parentCoordinator = unwrappedParentCoordinator
-            unwrappedParentCoordinator.childCoordinators.append(coordinator)
+            let parentCoordinator = currentParentCoordinator(for: RootCoordinatorIdentifier.account)
+            let coordinator = FavoritesSavedMoviesCoordinator(navigationController: parentCoordinator.navigationController)
+            coordinator.parentCoordinator = parentCoordinator
+            parentCoordinator.childCoordinators.append(coordinator)
             coordinator.start()
         }
     }
 
     // MARK: - Private
+
+    private func currentParentCoordinator(for rootCoordinatorIdentifier: String) -> Coordinator {
+        let rootCoordinator = rootCoordinators[index(for: rootCoordinatorIdentifier)]
+        return rootCoordinator.childCoordinators.last?.unwrappedParentCoordinator ?? rootCoordinator
+    }
 
     private func changeTabBarToSelectedIndex(_ rootIdentifier: String, from window: UIWindow?) {
         let selectedIndex = index(for: rootIdentifier)
