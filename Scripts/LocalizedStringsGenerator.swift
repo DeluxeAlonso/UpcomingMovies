@@ -3,8 +3,6 @@ import Foundation
 @main
 public struct LocalizedStringsGenerator {
     static func main() {
-        print(CommandLine.arguments[1])
-        print(CommandLine.arguments[2])
         createLocalizedStringsFile(filePath: CommandLine.arguments[1], stringsFileName: CommandLine.arguments[2])
     }
 
@@ -27,7 +25,7 @@ public struct LocalizedStringsGenerator {
 
         do {
             try fileContentString.write(toFile: filePath, atomically: true, encoding: .utf8)
-            print("LocalizedString file successfully generated:\n \(filePath)\n")
+            print("LocalizedStrings file successfully generated:\n \(filePath)\n")
         } catch {
             print(error)
         }
@@ -38,13 +36,11 @@ public struct LocalizedStringsGenerator {
         do {
             let data = try String(contentsOfFile: localizableStringsFileURL.path, encoding: .utf8)
             let stringsLine = data.components(separatedBy: .newlines).filter { $0.contains(";") && $0.contains("=") }
-            print(stringsLine)
             let stringsKeys = stringsLine
                 .compactMap { $0.split(separator: "=").first }
                 .map { $0?.replacingOccurrences(of: " ", with: "") }
                 .map { $0?.replacingOccurrences(of: "\"", with: "") }
-            print(stringsKeys)
-            let enumCases = stringsKeys.map { "case \($0!)" }
+            let enumCases = stringsKeys.compactMap { $0 }.map { "case \($0)" }
             return """
                 enum LocalizedStrings: String, Localizable {
                     \(enumCases.joined(separator: "\n\t"))
@@ -64,7 +60,7 @@ public struct LocalizedStringsGenerator {
         }
         for case let fileURL as URL in enumerator {
             do {
-                let fileAttributes = try fileURL.resourceValues(forKeys:[.isRegularFileKey])
+                let fileAttributes = try fileURL.resourceValues(forKeys: [.isRegularFileKey])
                 if fileAttributes.isRegularFile == true, fileURL.lastPathComponent.contains(stringsFileName) {
                     files.append(fileURL)
                 }
