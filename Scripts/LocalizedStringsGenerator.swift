@@ -60,7 +60,7 @@ public struct LocalizedStringsGenerator {
         }
         for case let fileURL as URL in enumerator {
             do {
-                let fileAttributes = try fileURL.resourceValues(forKeys:[.isRegularFileKey])
+                let fileAttributes = try fileURL.resourceValues(forKeys: [.isRegularFileKey])
                 if fileAttributes.isRegularFile == true, fileURL.lastPathComponent.contains(stringsFileName) {
                     files.append(fileURL)
                 }
