@@ -8,13 +8,13 @@
 
 import UIKit
 
-public enum CoordinatorMode {
+enum CoordinatorMode {
     case push
     case present(presentingViewController: UIViewController, configuration: CoordinatorModePresentConfiguration?)
     case embed(parentViewController: UIViewController, containerView: UIView?)
 }
 
-public struct CoordinatorModePresentConfiguration {
+struct CoordinatorModePresentConfiguration {
     let modalPresentationStyle: UIModalPresentationStyle
     let transitioningDelegate: UIViewControllerTransitioningDelegate?
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
 
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
@@ -26,15 +26,15 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
         setupNavigationControllerDelegate()
     }
 
-    open func start() {
+    func start() {
         fatalError("Start method should be implemented")
     }
 
-    open func build() -> UIViewController {
+    func build() -> UIViewController {
         fatalError("Build method should be implemented")
     }
 
-    open func start(coordinatorMode: CoordinatorMode = .push) {
+    func start(coordinatorMode: CoordinatorMode = .push) {
         let viewController = build()
 
         switch coordinatorMode {
@@ -64,11 +64,11 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
         self.viewController = viewController
     }
 
-    open func dismiss() {
+    func dismiss() {
         dismiss(completion: nil)
     }
 
-    open func dismiss(completion: (() -> Void)? = nil) {
+    func dismiss(completion: (() -> Void)? = nil) {
         switch coordinatorMode {
         case .push:
             navigationController.popViewController(animated: true)
@@ -86,20 +86,20 @@ open class BaseCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
         }
     }
 
-    open var navigationControllerDelegate: UINavigationControllerDelegate? {
+    var navigationControllerDelegate: UINavigationControllerDelegate? {
         self
     }
 
-    open var shouldForceDelegateOverride: Bool = false
+    var shouldForceDelegateOverride: Bool = false
 
-    open func setupNavigationControllerDelegate() {
+    func setupNavigationControllerDelegate() {
         guard shouldForceDelegateOverride || navigationController.delegate == nil else {
             return
         }
         navigationController.delegate = navigationControllerDelegate
     }
 
-    public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         // We only intend to cover push/pop scenarios here. Present/dismissal handling should be done manually.
         let isBeingPresented = navigationController.isBeingPresented
         guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from), !isBeingPresented else {
