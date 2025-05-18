@@ -32,7 +32,7 @@ extension Managed {
 extension Managed where Self: NSManagedObject {
 
     static var entityName: String {
-        entity().name!
+        entity().name ?? ""
     }
 
     static func fetch(in context: NSManagedObjectContext,
